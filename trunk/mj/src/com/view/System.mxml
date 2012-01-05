@@ -9,6 +9,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.service.MahjongSoundService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -33,7 +34,9 @@
 	<s:Label x="57" y="30" text="声音："/>
 	<s:Label x="25" y="78" text="背景音乐："/>
 	<s:Label x="57" y="132" text="难度："/>
-	<s:HSlider x="124" y="187" enabled="false"/>
+	<s:HSlider id="slider" x="124" y="187"
+			   change="MahjongSyncService.instance.playHandSpeed = slider.value" enabled="true"
+			   maximum="20" minimum="1" stepSize="1" value="1"/>
 	<s:Label x="24" y="195" text="出牌速度："/>
 	<s:RadioButton x="129" y="121" label="初级" groupName="radiogroup1" enabled="false"/>
 	<s:RadioButton x="210" y="121" label="中级" groupName="radiogroup1" enabled="false"/>
