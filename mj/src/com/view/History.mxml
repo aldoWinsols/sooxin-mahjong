@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.managers.PopUpManager;
+			
+			[Bindable]
+			public var dp:ArrayCollection = null;
+			public static var history:History = null;
+			
+			public static function showHistory(dp:ArrayCollection, parent:DisplayObject):void{
+				if(!history){
+					history = new History();
+				}
+				history.dp = dp;
+				PopUpManager.addPopUp(history, parent);
+				PopUpManager.bringToFront(history);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:DataGrid id="dg" left="0" top="10" width="524" height="358" dataProvider="{dp}">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="userName" headerText="用户名"></s:GridColumn>
+				<s:GridColumn>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								
+								<fx:Script>
+									<![CDATA[
+										import com.mahjongSyncServer.services.RoomService;
+										
+										import mx.managers.PopUpManager;
+										
+										protected function button1_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											RoomService.instance.playerVideo(data.gameContent);
+											PopUpManager.removePopUp(outerDocument);
+										}
+										
+									]]>
+								</fx:Script>
+								
+								<s:HGroup>
+									<s:Button label="观看录像" click="button1_clickHandler(event)" />
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+</s:BorderContainer>
