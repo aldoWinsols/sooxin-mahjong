@@ -28,6 +28,7 @@ package com.amusement.Mahjong.service
 		private static var _instance:MahjongSyncService;
 
 		private var _isResult:Boolean = true;
+		public var playHandSpeed:int = 1;
 		
 		public function MahjongSyncService()
 		{
