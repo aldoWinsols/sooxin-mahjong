@@ -369,7 +369,7 @@ package com.mahjongSyncServer.services
 			if(player.needOperationName == "getOneMahjong"){
 				this.operationTimeNum = 0;
 			}else{
-				this.operationTimeNum = 1;
+				this.operationTimeNum = MahjongSyncService.instance.playHandSpeed;
 			}
 			
 			if(this.player.playerType == PlayerTypeEnum.ONLINE){
