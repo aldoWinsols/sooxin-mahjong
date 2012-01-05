@@ -18,7 +18,7 @@
 			protected function toggleswitch1_changeHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				MahjongSoundService.instance.soundSwitch(!soundSwitch.selected);
+				MahjongSoundService.instance.soundSwitch(soundSwitch.selected);
 			}
 			
 		]]>
@@ -28,7 +28,7 @@
 		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:ToggleSwitch id="soundSwitch" x="127" y="21" enabled="true" change="toggleswitch1_changeHandler(event)"/>
+	<s:ToggleSwitch id="soundSwitch" x="127" y="21" selected="true" enabled="true" change="toggleswitch1_changeHandler(event)"/>
 	<s:ToggleSwitch x="127" y="69" enabled="false"/>
 	<s:Label x="57" y="30" text="声音："/>
 	<s:Label x="25" y="78" text="背景音乐："/>
