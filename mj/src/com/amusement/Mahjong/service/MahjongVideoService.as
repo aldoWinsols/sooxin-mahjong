@@ -4,6 +4,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongInfoControl;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.model.MahjongMessage;
+	import com.control.HomeControl;
 	import com.model.Alert;
 	
 	import mx.events.CloseEvent;
@@ -58,6 +59,8 @@ package com.amusement.Mahjong.service
 				case Alert.YES:
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongRoomControl.instance.isVideo = false;
+					HomeControl.instance.home.operation.visible = true;
+					HomeControl.instance.home.visible = true;
 					//退出錄像播放
 //					MahjongVideo.insance.exitVideo();
 					break;
