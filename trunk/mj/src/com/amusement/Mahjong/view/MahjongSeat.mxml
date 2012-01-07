@@ -24,8 +24,12 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image id="oneImg" name="img1" x="0" y="0"  visible="false"/>
-	<s:Image id="twoImg" name="img2" x="0" y="0" visible="false"/>
-	<s:Image id="threeImg" name="img3" x="0" y="0"  visible="false"/>
-	<s:Image id="fourImg" name="img4" x="0" y="0"  visible="false"/>
+	<s:Image id="oneImg" visible="false" x="0" y="0" name="img1"
+			 source="com/amusement/Mahjong/assets/seat/1.png"/>
+	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2"
+			 source="com/amusement/Mahjong/assets/seat/2.png"/>
+	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3"
+			 source="com/amusement/Mahjong/assets/seat/3.png"/>
+	<s:Image id="fourImg" visible="false" x="0" y="0" name="img4"
+			 source="com/amusement/Mahjong/assets/seat/4.png"/>
 </s:Group>

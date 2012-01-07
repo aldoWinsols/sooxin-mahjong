@@ -24,13 +24,19 @@
 				// TODO Auto-generated method stub
 				new MahjongApplictionControl(this);
 				this.addElement(mahjongRoom);
-				this.addElement(home);
+				
 				
 				mahjongRoom.verticalCenter = 0;
 				mahjongRoom.horizontalCenter = 0;
 				mahjongRoom.visible = false;
 				home.verticalCenter = 0;
 				home.horizontalCenter = 0;
+				
+				this.addEventListener(MouseEvent.CLICK,touchBeginHandler);
+			}
+			
+			private function touchBeginHandler(e:MouseEvent):void{
+				this.addElement(home);
 			}
 
 		]]>

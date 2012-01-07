@@ -19,6 +19,8 @@ package com.mahjongSyncServer.services
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	import mx.binding.utils.BindingUtils;
+	
 	public class RoomService
 	{
 		private static var _instance:RoomService;

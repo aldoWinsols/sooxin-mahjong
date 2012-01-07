@@ -28,10 +28,10 @@ package com.amusement.Mahjong.control
 		}
 		
 		private function init():void{
-			_seatD = new Point(0, 0);
-			_seatL = new Point(0, 0);
-			_seatR = new Point(0, 0);
-			_seatU = new Point(0, 0);
+			_seatD = new Point(450, 660);
+			_seatL = new Point(15, 300);
+			_seatR = new Point(865, 300);
+			_seatU = new Point(450, 15);
 		}
 		
 		public function show():void{

@@ -1,5 +1,6 @@
 package com.mahjongSyncServer.services
 {
+	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.model.Message;
@@ -392,10 +393,30 @@ package com.mahjongSyncServer.services
 		}
 		
 		public function getOneMahjong():int {
-			var value:int = this.roomService.room.mahjongs.shift();
+			var value:int;
+			if(this.player.playerType == PlayerTypeEnum.ANDROID && (Math.random()*100 < MahjongSyncService.instance.level)){
+				value = this.action.huoDeMP();
+				
+				if(value == 0){
+					value = this.roomService.room.mahjongs.shift();
+				}else{
+					for(var i:int=0; i<this.roomService.room.mahjongs.length; i++){
+						if(value == this.roomService.room.mahjongs[i]){
+							this.roomService.room.mahjongs.splice(i,1);
+							break;
+						}
+					}
+				}
+			}else{
+				value = this.roomService.room.mahjongs.shift();
+			}
+			
 			player.sparr.push(value);
 			player.nowOperationMahjongValue = value;
 			player.isFangTuiDa = false;
+			
+			MahjongRoomControl.instance._mahjongRoom.mahjongsNum.text = "剩:"+this.roomService.room.mahjongs.length.toString();
+				
 			return value;
 		}
 		
