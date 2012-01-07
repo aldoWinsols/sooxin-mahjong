@@ -6,7 +6,6 @@ package com.mahjongSyncServer.services
 	import com.amusement.Mahjong.control.MahjongPlayerControlR;
 	import com.amusement.Mahjong.control.MahjongPlayerControlU;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
-	import com.amusement.Mahjong.control.MahjongVideoControl;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.model.Message;
@@ -30,7 +29,9 @@ package com.mahjongSyncServer.services
 		public var str:String = "";
 		private var timer:Timer = null;
 		private var userName:String = null;
+		private var haveMoney:Number = 0;
 		private var playerAuthz:int = 0;
+		private var roomNo:String = "";
 		private var dataService:DataService = new DataService();
 		public function RoomService()
 		{
@@ -67,14 +68,16 @@ package com.mahjongSyncServer.services
 			}
 		}
 		
-		public function beginGame(userName:String):void{
+		public function beginGame(userName:String, haveMoney:Number):void{
 			MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = true;
 			MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = true;
 			MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = true;
 			MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = true;
 			
 			findPlayerService().player.playerName = userName;
+			findPlayerService().player.haveMoney = haveMoney;
 			this.userName = userName;
+			this.haveMoney = haveMoney;
 			
 			for(var i:int=0; i<4; i++){
 				this.playerServices[i].player.clearAllData();
@@ -105,7 +108,7 @@ package com.mahjongSyncServer.services
 			var obj:Array = new Array();
 			obj.push(roomNo);
 			obj.push(shaizi);
-			
+			this.roomNo = roomNo.toString();
 			addHistoryMessage("beginGameI", obj);
 			trace(Util.changeVectoryToArray(findPlayerService().player.sparr));
 			
@@ -148,14 +151,22 @@ package com.mahjongSyncServer.services
 				playerNames.push(this.playerServices[i].player.playerName);
 				playerMahjongValues[i + 1] = Util.changeVectoryToArray(this.playerServices[i].player.sparr);
 			}
-//			str = DataService.getHistoryMessage(room.historyMessage, playerServices);
-//			dataService.saveGameHistory(userName,str);
-//			MahjongSyncService.instance.gameOverI(playerNames,playerMahjongValues,Util.changeBalanceVectoryToArray(BalanceService.instance.balanceList), str);
+			str = DataService.instance.getHistoryMessage(room.historyMessage, playerServices);
 			
-			DataService.instance.updatePlayerMoney(userName,getPlayerChangeMoney(playerAuthz,BalanceService.instance.balanceList));
-			
+			var winningLosing:Number = getPlayerChangeMoney(playerAuthz,BalanceService.instance.balanceList);
+			var preMoney:Number = haveMoney;
+			var afterMoney:Number = preMoney + winningLosing;
+			haveMoney = preMoney + winningLosing;
+			findPlayerService().player.haveMoney = haveMoney;
+			DataService.instance.afterData(userName,winningLosing, str, roomNo, getBeforeOneDate(), preMoney, winningLosing, afterMoney);
+
 			MahjongSyncService.instance.gameOverI(playerNames,playerMahjongValues,Util.changeBalanceVectoryToArray(BalanceService.instance.balanceList), str);
 			
+		}
+		private function getBeforeOneDate():String{
+			var date:Date = new Date();
+			var dateStr:String = date.fullYear + "-" + (date.month + 1) + "-" + date.date + " " + date.hours + ":" + date.minutes + ":" + date.seconds;
+			return dateStr;
 		}
 		
 		public function getPlayerChangeMoney(playerAuthz:int,arr:Vector.<Balance>):Number{
@@ -204,7 +215,7 @@ package com.mahjongSyncServer.services
 				BalanceService.instance.balanceList = new Vector.<Balance>();
 			}
 			
-			beginGame(userName);
+			beginGame(userName, haveMoney);
 				
 		}
 		

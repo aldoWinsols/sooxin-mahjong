@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
-				   xmlns:s="library://ns.adobe.com/flex/spark" 
-				   xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3"
+				   height="392">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import mx.collections.ArrayCollection;
 			import mx.managers.PopUpManager;
 			
-			[Bindable]
-			public var dp:ArrayCollection = null;
 			public static var history:History = null;
 			
-			public static function showHistory(dp:ArrayCollection, parent:DisplayObject):void{
-				if(!history){
-					history = new History();
-				}
-				history.dp = dp;
-				PopUpManager.addPopUp(history, parent);
-				PopUpManager.bringToFront(history);
+			public function showHistory(dp:Array):void{
+				this.visible = true;
+				this.dg.dataProvider = new ArrayList(dp);
 			}
 			
 		]]>
 	</fx:Script>
-	<s:DataGrid id="dg" left="0" top="10" width="524" height="358" dataProvider="{dp}">
+	<s:DataGrid id="dg" top="0" width="620" height="358" horizontalCenter="0">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn dataField="userName" headerText="用户名"></s:GridColumn>
-				<s:GridColumn>
+				<s:GridColumn dataField="roomNo" headerText="游戏编号"></s:GridColumn>
+				<s:GridColumn dataField="preMoney" headerText="游戏前点数"></s:GridColumn>
+				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢"></s:GridColumn>
+				<s:GridColumn dataField="afterMoney" headerText="游戏后点数"></s:GridColumn>
+				<s:GridColumn dataField="gameTime" headerText="开始时间"></s:GridColumn>
+				<s:GridColumn headerText="操作">
 					<s:itemRenderer>
 						<fx:Component>
 							<s:GridItemRenderer>
 								
 								<fx:Script>
 									<![CDATA[
+										import com.amusement.Mahjong.control.MahjongApplictionControl;
+										import com.control.HomeControl;
 										import com.mahjongSyncServer.services.RoomService;
 										
 										import mx.managers.PopUpManager;
@@ -43,6 +45,9 @@
 										protected function button1_clickHandler(event:MouseEvent):void
 										{
 											// TODO Auto-generated method stub
+											HomeControl.instance.home.operation.visible = false;
+											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+											HomeControl.instance.home.visible = false;
 											RoomService.instance.playerVideo(data.gameContent);
 											PopUpManager.removePopUp(outerDocument);
 										}
@@ -60,4 +65,5 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
+	<s:Button x="283" y="354" label="关闭" click="{this.visible = false}"/>
 </s:BorderContainer>

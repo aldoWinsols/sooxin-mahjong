@@ -13,6 +13,7 @@
 			import com.model.Alert;
 			import com.services.DataService;
 			
+			import mx.collections.ArrayList;
 			import mx.events.FlexEvent;
 			
 			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
@@ -45,7 +46,7 @@
 				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 				this.visible = false;
 				
-				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
 				
 			}
 			
@@ -60,6 +61,12 @@
 				// TODO Auto-generated method stub
 				DataService.instance.removePlayer(DataService.getPlayerByIndex(players.selectedIndex).id);
 				operation.visible = false;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
 			}
 			
 		]]>
@@ -83,7 +90,7 @@
 	<s:BorderContainer id="operation" borderVisible="false" dropShadowVisible="true" visible="false" width="150" height="250" horizontalCenter="0" verticalCenter="0" cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3">
 		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"
 				  horizontalCenter="0"/>
-		<s:Button y="75" width="120" height="45" label="游戏记录" enabled="false" horizontalCenter="0"/>
+		<s:Button y="75" width="120" height="45" label="游戏记录" click="button4_clickHandler(event)" enabled="true" horizontalCenter="0"/>
 		<s:Button y="128" width="120" height="45" label="删除档案" click="button3_clickHandler(event)"
 				  horizontalCenter="0"/>
 		<s:Button y="178" width="120" height="45" label="关闭" click="button2_clickHandler(event)"
@@ -92,4 +99,6 @@
 	</s:BorderContainer>
 	<view:PlayerAdd id="playerAdd" visible="false" horizontalCenter="0" verticalCenter="0">
 	</view:PlayerAdd>
+	<view:History id="history" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:History>
 </s:Group>
