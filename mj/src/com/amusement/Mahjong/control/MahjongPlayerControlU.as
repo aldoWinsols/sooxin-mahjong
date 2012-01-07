@@ -43,8 +43,8 @@ package com.amusement.Mahjong.control
 			this._mahjongPlayer.dSort.x = this._mahjongPlayer.out.x + this._mahjongPlayer.out.width;
 			this._mahjongPlayer.dSort.y = this._mahjongPlayer.out.y;
 			
-			this._mahjongPlayer.hSort.x = 150;
-			this._mahjongPlayer.hSort.y = -25;
+			this._mahjongPlayer.hSort.x = 158;
+			this._mahjongPlayer.hSort.y = -28;
 //			this._mahjongPlayer.hSort.x = 201.1;
 //			this._mahjongPlayer.hSort.y = -39.2;
 		}
@@ -181,13 +181,13 @@ package com.amusement.Mahjong.control
 				
 				for (var j:int=0; j < sparr.length - 1; j++)
 				{
-					sparr[j].x = -20 + this._mahjongPlayer.sp.x + (sparr.length - 1) * 33 - ((j + 1) * 33);
+					sparr[j].x = -28 + this._mahjongPlayer.sp.x + (sparr.length - 1) * 33 - ((j + 1) * 33);
 					sparr[j].y = this._mahjongPlayer.sp.y;
 				}
 			}else{
 				for (var i:int=0; i < sparr.length; i++)
 				{
-					sparr[i].x = -20 + this._mahjongPlayer.sp.x + sparr.length * 33 - ((i + 1) * 33);
+					sparr[i].x = -28 + this._mahjongPlayer.sp.x + sparr.length * 33 - ((i + 1) * 33);
 					sparr[i].y = this._mahjongPlayer.sp.y;
 				}
 			}

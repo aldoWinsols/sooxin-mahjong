@@ -46,7 +46,7 @@ package com.amusement.Mahjong.service
 			
 			MahjongRoomControl.instance.playerAzimuth = playerAzimuth;
 			
-//			MahjongSeatControl.instance.show();
+			MahjongSeatControl.instance.show();
 			
 			MahjongPoolService.instance.resetMahjongs();
 			resetMahjongs();
@@ -69,7 +69,7 @@ package com.amusement.Mahjong.service
 			MahjongOperationControl.instance.hide();
 			MahjongBalanceControl.instance.hide();
 			MahjongSignControl.instance.hide();
-//			MahjongSeatControl.instance.hide();
+			MahjongSeatControl.instance.hide();
 			
 			MahjongPlayerControlD.instance.reset();
 			MahjongPlayerControlL.instance.reset();

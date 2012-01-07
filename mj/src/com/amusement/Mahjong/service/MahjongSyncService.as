@@ -29,6 +29,7 @@ package com.amusement.Mahjong.service
 
 		private var _isResult:Boolean = true;
 		public var playHandSpeed:int = 1;
+		public var level:int = 0; //机器人智能水平
 		
 		public function MahjongSyncService()
 		{

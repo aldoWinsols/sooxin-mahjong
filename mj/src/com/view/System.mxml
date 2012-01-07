@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
-				   width="600" height="300" backgroundAlpha="0.5" backgroundColor="#000000"
+				   width="800" height="400" backgroundAlpha="0.5" backgroundColor="#000000"
 				   borderVisible="false"
 				   dropShadowVisible="true"
 				   color="#FF9600" cornerRadius="10">
@@ -22,6 +22,7 @@
 				MahjongSoundService.instance.soundSwitch(soundSwitch.selected);
 			}
 			
+			
 		]]>
 	</fx:Script>
 	
@@ -29,24 +30,23 @@
 		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:ToggleSwitch id="soundSwitch" x="127" y="21" selected="true" enabled="true" change="toggleswitch1_changeHandler(event)"/>
-	<s:ToggleSwitch x="127" y="69" enabled="false"/>
-	<s:Label x="57" y="30" text="声音："/>
-	<s:Label x="25" y="78" text="背景音乐："/>
-	<s:Label x="57" y="132" text="难度："/>
-	<s:HSlider id="slider" x="124" y="187"
+	<s:ToggleSwitch id="soundSwitch" x="167" y="21" selected="true" enabled="true" change="toggleswitch1_changeHandler(event)"/>
+	<s:ToggleSwitch x="167" y="89" enabled="false"/>
+	<s:Label x="67" y="30" text="声音："/>
+	<s:Label x="35" y="98" text="背景音乐："/>
+	<s:Label x="67" y="172" text="难度："/>
+	<s:HSlider id="slider" x="164" y="247"
 			   change="MahjongSyncService.instance.playHandSpeed = slider.value" enabled="true"
 			   maximum="20" minimum="1" stepSize="1" value="1"/>
-	<s:Label x="24" y="195" text="出牌速度："/>
-	<s:RadioButton x="129" y="121" label="初级" groupName="radiogroup1" enabled="false"/>
-	<s:RadioButton x="210" y="121" label="中级" groupName="radiogroup1" enabled="false"/>
-	<s:RadioButton x="291" y="121" label="高级" groupName="radiogroup1" enabled="false"/>
+	<s:Label x="34" y="255" text="出牌速度："/>
 	<!--<s:BorderContainer x="23" y="11" width="545" height="248" backgroundColor="#ffffff" backgroundAlpha="0.7">
 		<s:Label x="148" y="93" color="#FF0000" fontSize="50" fontWeight="bold" text="即将推出！"/>
 		<s:Button x="221" y="192" width="102" label="关闭" click="button1_clickHandler(event)"
 				  color="#000000"/>
 		
 	</s:BorderContainer>-->
-	<s:Button x="278" y="236" width="102" label="关闭" click="button1_clickHandler(event)"
+	<s:Button x="318" y="316" width="102" label="关闭" click="button1_clickHandler(event)"
 			  color="#000000"/>
+	<s:HSlider id="level" x="164" y="172" change="MahjongSyncService.instance.level = slider.value"
+			   maximum="100" minimum="0" stepSize="1" value="10"/>
 </s:BorderContainer>
