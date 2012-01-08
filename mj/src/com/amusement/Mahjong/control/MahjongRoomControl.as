@@ -101,13 +101,88 @@ package com.amusement.Mahjong.control
 		 */
 		public function playVideo(obj:Object):void{
 			_isVideo = true;
-			
+			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
+			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
+			if(MainControl.instance.main.applicationDPI == 160){
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerD.bottom = 50;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerL.left = 80;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerR.right = 160;
+				
+				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.x = 500;
+				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.y = 500;
+				
+				MahjongPlayerControlL.instance._mahjongPlayer.out.x = 100;
+				MahjongPlayerControlL.instance._mahjongPlayer.sp.y = -50;
+				MahjongPlayerControlL.instance._mahjongPlayer.pd.x = 20;
+				MahjongPlayerControlL.instance._mahjongPlayer.pd.y = 0;
+				MahjongPlayerControlL.instance._mahjongPlayer.dSort.x = MahjongPlayerControlL.instance._mahjongPlayer.out.x;
+				
+				MahjongPlayerControlR.instance._mahjongPlayer.out.x = -30;
+				MahjongPlayerControlR.instance._mahjongPlayer.sp.y = -20;
+				MahjongPlayerControlR.instance._mahjongPlayer.pd.x = 40;
+				MahjongPlayerControlR.instance._mahjongPlayer.pd.y = 0;
+				MahjongPlayerControlR.instance._mahjongPlayer.dSort.x = MahjongPlayerControlR.instance._mahjongPlayer.out.x+43;
+				
+				
+				MahjongPlayerControlU.instance._mahjongPlayer.out.y = 133;
+				MahjongPlayerControlU.instance._mahjongPlayer.pd.x = -20;
+				MahjongPlayerControlU.instance._mahjongPlayer.dSort.y = MahjongPlayerControlU.instance._mahjongPlayer.out.y;
+				
+				MahjongPlayerControlD.instance._mahjongPlayer.out.y = 8;
+				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
+				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
+				
+				MahjongWordControl.instance._azimuth1 = new Point(400,46);
+				MahjongWordControl.instance._azimuth2 = new Point(64,300);
+				MahjongWordControl.instance._azimuth3 = new Point(400,500);
+				MahjongWordControl.instance._azimuth4 = new Point(674,300);
+			}else if(MainControl.instance.main.applicationDPI == 320){
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerD.bottom = 50;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerL.left = 80;
+				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerR.right = 160;
+				
+				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.x = 500;
+				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.y = 500;
+				
+				MahjongPlayerControlL.instance._mahjongPlayer.out.x = 70;
+				MahjongPlayerControlL.instance._mahjongPlayer.sp.y = -50;
+				MahjongPlayerControlL.instance._mahjongPlayer.pd.x = 20;
+				MahjongPlayerControlL.instance._mahjongPlayer.pd.y = 0;
+				MahjongPlayerControlL.instance._mahjongPlayer.dSort.x = MahjongPlayerControlL.instance._mahjongPlayer.out.x;
+				
+				MahjongPlayerControlR.instance._mahjongPlayer.out.x = 5;
+				MahjongPlayerControlR.instance._mahjongPlayer.sp.y = -20;
+				MahjongPlayerControlR.instance._mahjongPlayer.pd.x = 40;
+				MahjongPlayerControlR.instance._mahjongPlayer.pd.y = 0;
+				MahjongPlayerControlR.instance._mahjongPlayer.dSort.x = MahjongPlayerControlR.instance._mahjongPlayer.out.x+43;
+				
+				MahjongPlayerControlU.instance._mahjongPlayer.sp.y = -30;
+				MahjongPlayerControlU.instance._mahjongPlayer.out.y = 88;
+				MahjongPlayerControlU.instance._mahjongPlayer.pd.x = -20;
+				MahjongPlayerControlU.instance._mahjongPlayer.dSort.y = MahjongPlayerControlU.instance._mahjongPlayer.out.y;
+				
+				MahjongPlayerControlD.instance._mahjongPlayer.sp.y = 200;
+				MahjongPlayerControlD.instance._mahjongPlayer.sp.x = -85;
+				MahjongPlayerControlD.instance._mahjongPlayer.out.y = 53;
+				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
+				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
+				
+				MahjongWordControl.instance._azimuth1 = new Point(250,46);
+				MahjongWordControl.instance._azimuth2 = new Point(64,250);
+				MahjongWordControl.instance._azimuth3 = new Point(250,400);
+				MahjongWordControl.instance._azimuth4 = new Point(674,250);
+				
+				
+			}
 			this.initTabletop(obj.roomType);
 			
 			this._mahjongRoomService.initRoom(obj.roomNo, obj.playerAzimuth);
 			for(var i:int = 1; i < obj.playerMahjongValues.length; i ++){
 				this._mahjongRoomService.setPlayerMahjongValues(i, obj.playerMahjongValues[i]);
 			}
+			
 			
 			this._mahjongRoom.roomTabletop.visible = true;
 			
