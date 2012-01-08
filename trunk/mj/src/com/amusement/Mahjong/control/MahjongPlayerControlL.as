@@ -40,8 +40,14 @@ package com.amusement.Mahjong.control
 			this._mahjongPlayer.dSort.x = this._mahjongPlayer.out.x;
 			this._mahjongPlayer.dSort.y = this._mahjongPlayer.out.y - this._mahjongPlayer.dSort.height +2;
 			
-			this._mahjongPlayer.hSort.x = -74;
-			this._mahjongPlayer.hSort.y = 185;
+			if(MainControl.instance.main.applicationDPI == 160 || MainControl.instance.main.applicationDPI == 320){
+				this._mahjongPlayer.hSort.x = -74;
+				this._mahjongPlayer.hSort.y = 185;
+			}else{
+				this._mahjongPlayer.hSort.x = -100;
+				this._mahjongPlayer.hSort.y = -100;
+			}
+			
 //			this._mahjongPlayer.hSort.x = -68;
 //			this._mahjongPlayer.hSort.y = 278.15;
 		}
