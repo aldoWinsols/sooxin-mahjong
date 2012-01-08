@@ -43,8 +43,17 @@ package com.amusement.Mahjong.control
 			this._mahjongPlayer.dSort.x = this._mahjongPlayer.out.x + this._mahjongPlayer.out.width;
 			this._mahjongPlayer.dSort.y = this._mahjongPlayer.out.y;
 			
-			this._mahjongPlayer.hSort.x = 158;
-			this._mahjongPlayer.hSort.y = -28;
+			if(MainControl.instance.main.applicationDPI == 320){
+				this._mahjongPlayer.hSort.x = 190;
+				this._mahjongPlayer.hSort.y = -65;
+			}else if(MainControl.instance.main.applicationDPI == 160){
+				this._mahjongPlayer.hSort.x = 158;
+				this._mahjongPlayer.hSort.y = -28;
+			}else{
+				this._mahjongPlayer.hSort.x = -100;
+				this._mahjongPlayer.hSort.y = -100;
+			}
+			
 //			this._mahjongPlayer.hSort.x = 201.1;
 //			this._mahjongPlayer.hSort.y = -39.2;
 		}
@@ -114,7 +123,7 @@ package com.amusement.Mahjong.control
 		public override function getOneMahjongV(mahjong:Mahjong):void
 		{
 			//TODO Auto-generated method stub
-			var px:int = this._mahjongPlayer.sp.x - 60;
+			var px:int = this._mahjongPlayer.sp.x - 65;
 			var py:int = this._mahjongPlayer.sp.y;
 			
 			var bmpName:String = "Simg0";
@@ -143,7 +152,7 @@ package com.amusement.Mahjong.control
 		public override function huV(mahjong:Mahjong, huType:int, haveHuCount:int, qiangGangAzimuth:int = 0):void
 		{
 			//TODO Auto-generated method stub
-			var px:int = this._mahjongPlayer.sp.x - 60;
+			var px:int = this._mahjongPlayer.sp.x - 65;
 			var py:int = this._mahjongPlayer.sp.y;
 			
 			super.hu(mahjong, px, py, "Dimg0", 1, huType, haveHuCount, qiangGangAzimuth);
