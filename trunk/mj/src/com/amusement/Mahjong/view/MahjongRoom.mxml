@@ -103,6 +103,8 @@
 		<s:Image y="253" right="10" alpha="0.5" source="assets/icon/Facebook.png" click="image3_clickHandler(event)"/>
 		<s:Image y="181" right="10" alpha="0.5" source="assets/icon/Settings.png" click="image2_clickHandler(event)"/>
 		
+		<view:MahjongSeat>
+		</view:MahjongSeat>
 		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view2:AboutUs id="aboutus" visible="false" horizontalCenter="0" verticalCenter="0">
@@ -113,8 +115,7 @@
 		</view2:Exit>
 		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:Help>
-		<view:MahjongSeat>
-		</view:MahjongSeat>
+		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
 	</s:Group>
