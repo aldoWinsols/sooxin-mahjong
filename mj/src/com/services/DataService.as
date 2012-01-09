@@ -148,7 +148,7 @@ package com.services{
 		
 		public function getGameHistory(playerName:String):void{
 			table = "gamelog";
-			sqls.text = "SELECT * FROM gamelog where playerName="+playerName;
+			sqls.text = "SELECT * FROM gamelog where playerName='"+playerName+"'";
 			sqls.execute();
 		}
 		
