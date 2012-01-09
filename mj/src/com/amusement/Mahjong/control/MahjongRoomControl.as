@@ -182,7 +182,10 @@ package com.amusement.Mahjong.control
 			for(var i:int = 1; i < obj.playerMahjongValues.length; i ++){
 				this._mahjongRoomService.setPlayerMahjongValues(i, obj.playerMahjongValues[i]);
 			}
-			
+			MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = true;
 			
 			this._mahjongRoom.roomTabletop.visible = true;
 			

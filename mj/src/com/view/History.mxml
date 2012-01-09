@@ -41,6 +41,7 @@
 										import com.amusement.Mahjong.control.MahjongApplictionControl;
 										import com.control.HomeControl;
 										import com.mahjongSyncServer.services.RoomService;
+										import com.services.DataService;
 										
 										import mx.managers.PopUpManager;
 										
@@ -54,11 +55,18 @@
 											PopUpManager.removePopUp(outerDocument);
 										}
 										
+										protected function button2_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											DataService.instance.removeGameLog(data.id,data.playerName);
+										}
+										
 									]]>
 								</fx:Script>
 								
 								<s:HGroup>
 									<s:Button label="观看录像" click="button1_clickHandler(event)" />
+									<s:Button label="删除" click="button2_clickHandler(event)" />
 								</s:HGroup>
 							</s:GridItemRenderer>
 						</fx:Component>

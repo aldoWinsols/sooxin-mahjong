@@ -30,6 +30,7 @@ package com.services{
 		private var sqlc:SQLConnection = new SQLConnection();
 		private var sqls:SQLStatement = new SQLStatement();
 		private var sqlStrs:Array = new Array();
+		private var selectPlayerName:String = null;
 		
 		private var table:String = "";
 		
@@ -115,6 +116,13 @@ package com.services{
 			refresh();
 		}
 		
+		public function removeGameLog(id:Number,playerName:String):void{
+			sqls.text = "DELETE FROM gamelog WHERE id="+id;
+			sqls.execute();
+			selectPlayerName = playerName;
+			refresh1();
+		}
+		
 		public function getPlayers():void{
 			table = "player";
 			sqls.text = "SELECT * FROM players";
@@ -161,6 +169,23 @@ package com.services{
 			{
 				table = "player";
 				sqls.text = "SELECT * FROM players"
+				sqls.execute();
+			}
+			else
+			{
+				timer.start();
+			}
+		}
+		
+		private function refresh1(e:TimerEvent = null):void
+		{
+			var timer:Timer = new Timer(10,1);
+			timer.addEventListener(TimerEvent.TIMER, refresh1);
+			
+			if ( !sqls.executing )
+			{
+				table = "gamelog";
+				sqls.text = "SELECT * FROM gamelog where playerName='"+selectPlayerName+"'";
 				sqls.execute();
 			}
 			else
