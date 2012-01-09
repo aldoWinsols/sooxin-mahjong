@@ -163,6 +163,10 @@ package com.amusement.Mahjong.service
 					
 					if(MahjongRoomControl.instance.isVideo){
 						MahjongVideoControl.instance.show();//显示录像控制面板
+						MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = false;
+						MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = false;
+						MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = false;
+						MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = false;
 					}else{
 						MahjongSyncService.instance.dealOver();
 					}
