@@ -109,7 +109,7 @@ package com.amusement.Mahjong.service
 		public function fastTimer():void
 		{
 			if(_messages.length > 0){
-				if (_msgTimer.delay > 0){
+				if (_msgTimer.delay > 100){
 					_msgTimer.delay -= 100;
 				}
 				if(!_msgTimer.running){
