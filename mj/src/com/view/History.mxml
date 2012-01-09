@@ -25,7 +25,7 @@
 				horizontalCenter="1">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn dataField="userName" headerText="用户名"></s:GridColumn>
+				<s:GridColumn dataField="playerName" headerText="用户名"></s:GridColumn>
 				<s:GridColumn dataField="roomNo" headerText="游戏编号"></s:GridColumn>
 				<s:GridColumn dataField="preMoney" headerText="游戏前点数"></s:GridColumn>
 				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢"></s:GridColumn>
