@@ -28,7 +28,7 @@ package com.mahjongSyncServer.services
 		public var logicService:LogicService = null;
 		public var str:String = "";
 		private var timer:Timer = null;
-		private var userName:String = null;
+		public var userName:String = null;
 		private var haveMoney:Number = 0;
 		private var playerAuthz:int = 0;
 		private var roomNo:String = "";
