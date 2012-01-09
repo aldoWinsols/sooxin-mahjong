@@ -66,6 +66,7 @@
 			protected function button4_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
+				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
 				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
 			}
 			
