@@ -20,7 +20,9 @@
 			
 		]]>
 	</fx:Script>
-	<s:DataGrid id="dg" top="61" width="776" height="407" horizontalCenter="1">
+	
+	<s:DataGrid id="dg" top="61" width="776" height="407" alpha="0.7" color="#000000" fontSize="14"
+				horizontalCenter="1">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn dataField="userName" headerText="用户名"></s:GridColumn>
@@ -65,5 +67,5 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:Button x="734" y="10" label="关闭" click="{this.visible = false}"/>
+	<s:Button x="724" y="10" height="40" label="关闭" click="{this.visible = false}"/>
 </s:BorderContainer>

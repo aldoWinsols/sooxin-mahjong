@@ -30,15 +30,16 @@
 		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:ToggleSwitch id="soundSwitch" x="157" y="21" selected="true" enabled="true" change="toggleswitch1_changeHandler(event)"/>
-	<s:ToggleSwitch x="157" y="69" enabled="false"/>
-	<s:Label x="67" y="30" text="声音："/>
-	<s:Label x="35" y="78" text="背景音乐："/>
-	<s:Label x="67" y="132" text="难度："/>
-	<s:HSlider id="slider" x="154" y="177"
+	<s:ToggleSwitch id="soundSwitch" x="154" y="24" change="toggleswitch1_changeHandler(event)"
+					enabled="true" fontSize="20" selected="true"/>
+	<s:ToggleSwitch x="154" y="78" enabled="false" fontSize="20"/>
+	<s:Label x="67" y="30" fontSize="20" text="声音："/>
+	<s:Label x="35" y="82" fontSize="20" text="背景音乐："/>
+	<s:Label x="67" y="137" fontSize="20" text="难度："/>
+	<s:HSlider id="slider" x="150" y="182" width="300"
 			   change="MahjongSyncService.instance.playHandSpeed = slider.value" enabled="true"
 			   maximum="20" minimum="1" stepSize="1" value="1"/>
-	<s:Label x="34" y="185" text="出牌速度："/>
+	<s:Label x="34" y="188" fontSize="20" text="出牌速度："/>
 	<!--<s:BorderContainer x="23" y="11" width="545" height="248" backgroundColor="#ffffff" backgroundAlpha="0.7">
 		<s:Label x="148" y="93" color="#FF0000" fontSize="50" fontWeight="bold" text="即将推出！"/>
 		<s:Button x="221" y="192" width="102" label="关闭" click="button1_clickHandler(event)"
@@ -47,6 +48,7 @@
 	</s:BorderContainer>-->
 	<s:Button x="215" y="232" width="102" label="关闭" click="button1_clickHandler(event)"
 			  color="#000000"/>
-	<s:HSlider id="level" x="154" y="132" change="MahjongSyncService.instance.level = slider.value"
-			   maximum="100" minimum="0" stepSize="1" value="10"/>
+	<s:HSlider id="level" x="150" y="132" width="300"
+			   change="MahjongSyncService.instance.level = slider.value" maximum="100" minimum="0"
+			   stepSize="1" value="10"/>
 </s:BorderContainer>

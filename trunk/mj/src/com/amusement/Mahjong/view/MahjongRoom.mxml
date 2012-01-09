@@ -96,7 +96,7 @@
 						   verticalCenter="0">
 			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="353" right="10" color="#FEE300" fontSize="24"/>
+		<s:Label id="mahjongsNum" y="353" right="10" color="#FEE300" fontSize="20"/>
 		<s:Image y="44" right="10" alpha="0.5" smooth="true" click="image1_clickHandler(event)" source="@Embed('assets/icon/Prefs.png')"/>
 		<s:Image y="112" right="10" alpha="0.5" smooth="true"
 				 source="@Embed('assets/icon/Safari2.png')" click="image4_clickHandler(event)"/>
