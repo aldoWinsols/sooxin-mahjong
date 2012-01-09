@@ -398,7 +398,7 @@ package com.amusement.Mahjong.service
 		private function getPlayerNames(players:Array):Array{
 			var playerNames:Array = [];
 			for(var i:int = 1; i < players.length; i ++){
-				playerNames[i] = players[i].playerName;
+				playerNames[i - 1] = players[i].playerName;
 			}
 			return playerNames;
 		}
