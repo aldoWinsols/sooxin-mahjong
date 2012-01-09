@@ -32,9 +32,10 @@ package com.amusement.Mahjong.service
 					this._mahjongMessageService.fastTimer();
 					break;
 				case "exitBtn":
-					Alert.yesLabel = "是";
-					Alert.noLabel = "否";
-					Alert.show("確定退出錄像播放嗎？", "提示", Alert.YES | Alert.NO, null, alertCloseHandler);
+					MahjongRoomControl.instance.clearTabletop();
+					MahjongRoomControl.instance.isVideo = false;
+					HomeControl.instance.home.operation.visible = true;
+					HomeControl.instance.home.visible = true;
 					break;
 			}
 			

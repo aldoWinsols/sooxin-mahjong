@@ -22,7 +22,7 @@ package com.amusement.Mahjong.control
 			super.initView();
 			
 			this._mahjongPlayer.out.x = 190;
-			this._mahjongPlayer.out.y = 72;
+			this._mahjongPlayer.out.y = 60;
 			this._mahjongPlayer.out.width = 352;
 			this._mahjongPlayer.out.height = 88;
 			
@@ -45,7 +45,7 @@ package com.amusement.Mahjong.control
 				this._mahjongPlayer.hSort.y = 280;
 			}else if(MainControl.instance.main.applicationDPI == 160){
 				this._mahjongPlayer.hSort.x = 320;
-				this._mahjongPlayer.hSort.y = 300;
+				this._mahjongPlayer.hSort.y = 320;
 			}else{
 				this._mahjongPlayer.hSort.x = -100;
 				this._mahjongPlayer.hSort.y = -100;

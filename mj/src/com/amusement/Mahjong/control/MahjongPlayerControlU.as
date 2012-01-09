@@ -25,7 +25,7 @@ package com.amusement.Mahjong.control
 			this._mahjongPlayer.setElementIndex(this._mahjongPlayer.out, 2);
 			
 			this._mahjongPlayer.out.x = -30;
-			this._mahjongPlayer.out.y = 68;
+			this._mahjongPlayer.out.y = 70;
 			this._mahjongPlayer.out.width = 352;
 			this._mahjongPlayer.out.height = 88;
 			

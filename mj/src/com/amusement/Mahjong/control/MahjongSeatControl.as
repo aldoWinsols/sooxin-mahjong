@@ -30,9 +30,9 @@ package com.amusement.Mahjong.control
 		
 		private function init():void{
 			if(MainControl.instance.main.applicationDPI == 160){
-				_seatD = new Point(450, 660);
-				_seatL = new Point(15, 300);
-				_seatR = new Point(865, 300);
+				_seatD = new Point(450, 680);
+				_seatL = new Point(15, 320);
+				_seatR = new Point(865, 320);
 				_seatU = new Point(450, 15);
 			}else if(MainControl.instance.main.applicationDPI == 320){
 				_seatD = new Point(400, 590);

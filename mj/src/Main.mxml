@@ -5,6 +5,7 @@
 			   xmlns:view="com.amusement.Mahjong.view.*"
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
 			   maxWidth="1024" maxHeight="768"
+			   splashScreenImage="@Embed('assets/splash.jpg')"
 			   enterFrame="application1_enterFrameHandler(event)"
 			   xmlns:view2="com.view.*" creationComplete="application1_creationCompleteHandler(event)"
 			   deactivate="application1_deactivateHandler(event)">
@@ -71,6 +72,6 @@
 	</fx:Declarations>
 	<Mahjong:MahjongAppliction horizontalCenter="0" verticalCenter="0">
 	</Mahjong:MahjongAppliction>
-	<s:Label id="time" right="12" top="15" color="#FFFFFF" text="标签" alpha="0.7"/>
+	<s:Label id="time" right="12" top="15" alpha="0.7" color="#FFFFFF" fontSize="18" text="标签"/>
 
 </s:Application>
