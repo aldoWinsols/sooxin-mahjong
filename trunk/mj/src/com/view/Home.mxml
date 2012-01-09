@@ -84,8 +84,8 @@
 			</s:SpinnerList>
 		</s:SpinnerListContainer>
 	</s:BorderContainer>	
-		<s:Button id="addPlayerB" x="20" y="18" width="120" height="45" label="添加帐户" color="#000000"
-				  fontSize="18" alpha="0.7"/>
+		<s:Button id="addPlayerB" x="20" y="18" width="120" height="45" label="添加帐户" alpha="0.5"
+				  chromeColor="#FFC600" color="#000000" fontSize="18"/>
 	
 	<s:BorderContainer id="operation" borderVisible="false" dropShadowVisible="true" visible="false" width="150" height="250" horizontalCenter="0" verticalCenter="0" cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3">
 		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"
