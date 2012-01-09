@@ -1,13 +1,11 @@
 package com.amusement.Mahjong.service
 {
-	import com.amusement.Mahjong.control.MahjongApplictionControl;
 	import com.amusement.Mahjong.control.MahjongInfoControl;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.model.MahjongMessage;
 	import com.control.HomeControl;
+	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
-	
-	import mx.events.CloseEvent;
 
 	public class MahjongVideoService
 	{
@@ -382,7 +380,7 @@ package com.amusement.Mahjong.service
 		private function getPlayerAzimuth(players:Array):int{
 			var playerAzimuth:int;
 			for(var i:int = 1; i < players.length; i ++){
-				if(players[i].playerName == "player3"){
+				if(players[i].playerName == RoomService.instance.userName){
 					playerAzimuth = i;
 					break;
 				}
