@@ -6,6 +6,7 @@ package com.amusement.Mahjong.control
 	import mx.events.FlexEvent;
 	
 	import spark.components.Group;
+	import spark.components.Image;
 
 	public class DiceOperation
 	{
@@ -129,6 +130,7 @@ package com.amusement.Mahjong.control
 			image.visible = false;
 			image.horizontalCenter = 0;
 			image.verticalCenter = 0;
+			image.id = "lastSaizi";
 			list.push(image);
 			main.addElement(image);
 			
@@ -242,10 +244,22 @@ package com.amusement.Mahjong.control
 					
 					imagenum ++;
 				}else{
+					count = 0;
+					imagenum = 0;
 					main.removeEventListener(Event.ENTER_FRAME, enterFrame);
 				}
 			}
 			count ++;
+		}
+		public function removeLastSaizi():void{
+			list.pop();
+			for(var i:int = 0; i < main.numElements; i++){
+				var image:Object = main.getElementAt(i);
+				if(image.id == "lastSaizi"){
+					main.removeElementAt(i);
+					break;
+				}
+			}
 		}
 	}
 }
