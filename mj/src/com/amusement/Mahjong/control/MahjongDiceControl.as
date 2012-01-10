@@ -58,6 +58,7 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function hide():void{
+			diceOperation.removeLastSaizi();
 			this._mahjongDice.visible = false;
 		}
 
