@@ -58,6 +58,11 @@
 			
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
+				if(players.selectedIndex == -1){
+					Alert.show("请先创建帐户！");
+					operation.visible = false;
+					return;
+				}
 				// TODO Auto-generated method stub
 				DataService.instance.removePlayer(DataService.getPlayerByIndex(players.selectedIndex).id);
 				operation.visible = false;
@@ -65,6 +70,11 @@
 			
 			protected function button4_clickHandler(event:MouseEvent):void
 			{
+				if(players.selectedIndex == -1){
+					Alert.show("请先创建帐户！");
+					operation.visible = false;
+					return;
+				}
 				// TODO Auto-generated method stub
 				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
 				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
