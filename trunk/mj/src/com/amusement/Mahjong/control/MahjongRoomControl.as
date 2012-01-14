@@ -2,6 +2,7 @@ package com.amusement.Mahjong.control
 {
 	import com.amusement.Mahjong.model.Mahjong;
 	import com.amusement.Mahjong.service.MahjongRoomService;
+	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.amusement.Mahjong.view.MahjongInfo;
 	import com.amusement.Mahjong.view.MahjongQuemen;
@@ -286,6 +287,8 @@ package com.amusement.Mahjong.control
 			
 			this._mahjongRoomService.showDice(diceNum);
 			
+			MahjongSoundService.instance.playBg();
+			
 			//初期测试
 			//			for(var i:int = 0; i < 4; i ++){
 			//				this._mahjongRoomService.dispenseMahjongs(i + 1, 13);
@@ -304,6 +307,8 @@ package com.amusement.Mahjong.control
 				this._mahjongRoomService.cut(obj.playerMahjongValues);
 				//测试
 //				MahjongVideoControl.instance.constructVideo(obj.videoContent, PlayerService.instance.player.acctMoney);
+				
+				MahjongSoundService.instance._bgChannel.stop();
 			}
 			
 			MahjongBalanceControl.instance.show(this.roomNo, obj.result, obj.playerNames);
