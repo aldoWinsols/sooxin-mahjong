@@ -134,9 +134,9 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
 				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
 				
-				MahjongWordControl.instance._azimuth1 = new Point(400,46);
+				MahjongWordControl.instance._azimuth1 = new Point(420,46);
 				MahjongWordControl.instance._azimuth2 = new Point(64,300);
-				MahjongWordControl.instance._azimuth3 = new Point(400,500);
+				MahjongWordControl.instance._azimuth3 = new Point(420,500);
 				MahjongWordControl.instance._azimuth4 = new Point(674,300);
 			}else if(MainControl.instance.main.applicationDPI == 320){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
@@ -170,9 +170,9 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
 				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
 				
-				MahjongWordControl.instance._azimuth1 = new Point(250,46);
+				MahjongWordControl.instance._azimuth1 = new Point(370,46);
 				MahjongWordControl.instance._azimuth2 = new Point(64,250);
-				MahjongWordControl.instance._azimuth3 = new Point(250,400);
+				MahjongWordControl.instance._azimuth3 = new Point(370,400);
 				MahjongWordControl.instance._azimuth4 = new Point(674,250);
 				
 				
@@ -233,9 +233,9 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
 				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
 				
-				MahjongWordControl.instance._azimuth1 = new Point(400,46);
+				MahjongWordControl.instance._azimuth1 = new Point(420,46);
 				MahjongWordControl.instance._azimuth2 = new Point(64,300);
-				MahjongWordControl.instance._azimuth3 = new Point(400,500);
+				MahjongWordControl.instance._azimuth3 = new Point(420,500);
 				MahjongWordControl.instance._azimuth4 = new Point(674,300);
 			}else if(MainControl.instance.main.applicationDPI == 320){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
@@ -269,9 +269,9 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlD.instance._mahjongPlayer.pd.x = 40;
 				MahjongPlayerControlD.instance._mahjongPlayer.dSort.y = MahjongPlayerControlD.instance._mahjongPlayer.out.y+40;
 				
-				MahjongWordControl.instance._azimuth1 = new Point(250,46);
+				MahjongWordControl.instance._azimuth1 = new Point(370,46);
 				MahjongWordControl.instance._azimuth2 = new Point(64,250);
-				MahjongWordControl.instance._azimuth3 = new Point(250,400);
+				MahjongWordControl.instance._azimuth3 = new Point(370,400);
 				MahjongWordControl.instance._azimuth4 = new Point(674,250);
 				
 				
