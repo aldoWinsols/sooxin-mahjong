@@ -4,6 +4,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.service.MahjongRoomService;
 	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.amusement.Mahjong.service.MahjongSyncService;
+	import com.amusement.Mahjong.util.MahjongUtil;
 	import com.amusement.Mahjong.view.MahjongInfo;
 	import com.amusement.Mahjong.view.MahjongQuemen;
 	import com.amusement.Mahjong.view.MahjongRoom;
@@ -29,6 +30,7 @@ package com.amusement.Mahjong.control
 		
 		private var _roomNo:Number;
 		private var _playerAzimuth:int;
+		public static var soundType:int = 0;
 		
 		private var _nowPutPlayerAzimuth:int;
 		private var _nowPutMahjong:Mahjong;
@@ -138,6 +140,11 @@ package com.amusement.Mahjong.control
 				MahjongWordControl.instance._azimuth2 = new Point(64,300);
 				MahjongWordControl.instance._azimuth3 = new Point(420,500);
 				MahjongWordControl.instance._azimuth4 = new Point(674,300);
+				
+				MahjongPlayerControlL.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlR.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlD.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlU.instance.soundType = Math.random() * 2;
 			}else if(MainControl.instance.main.applicationDPI == 320){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerD.bottom = 50;
@@ -175,7 +182,10 @@ package com.amusement.Mahjong.control
 				MahjongWordControl.instance._azimuth3 = new Point(370,400);
 				MahjongWordControl.instance._azimuth4 = new Point(674,250);
 				
-				
+				MahjongPlayerControlL.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlR.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlD.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlU.instance.soundType = Math.random() * 2;
 			}
 			this.initTabletop(obj.roomType);
 			
@@ -211,7 +221,6 @@ package com.amusement.Mahjong.control
 				
 				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.x = 500;
 				MahjongRoomControl.instance._mahjongRoom.mahjongOperation.y = 500;
-				
 				MahjongPlayerControlL.instance._mahjongPlayer.out.x = 100;
 				MahjongPlayerControlL.instance._mahjongPlayer.sp.y = -50;
 				MahjongPlayerControlL.instance._mahjongPlayer.pd.x = 20;
@@ -237,6 +246,11 @@ package com.amusement.Mahjong.control
 				MahjongWordControl.instance._azimuth2 = new Point(64,300);
 				MahjongWordControl.instance._azimuth3 = new Point(420,500);
 				MahjongWordControl.instance._azimuth4 = new Point(674,300);
+				
+				MahjongPlayerControlL.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlR.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlD.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlU.instance.soundType = Math.random() * 2;
 			}else if(MainControl.instance.main.applicationDPI == 320){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerD.bottom = 50;
@@ -274,6 +288,11 @@ package com.amusement.Mahjong.control
 				MahjongWordControl.instance._azimuth3 = new Point(370,400);
 				MahjongWordControl.instance._azimuth4 = new Point(674,250);
 				
+				MahjongPlayerControlL.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlR.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlD.instance.soundType = Math.random() * 2;
+				MahjongPlayerControlU.instance.soundType = Math.random() * 2;
+				
 				
 			}
 				
@@ -296,6 +315,23 @@ package com.amusement.Mahjong.control
 			//			MahjongSyncService.instance.readyGame();
 		}
 		
+		public function setPlayerSoundType():void{
+			var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, MahjongRoomControl.instance.playerAzimuth);
+			switch (resPlayerAzimuth){
+				case 1:
+					MahjongPlayerControlU.instance.soundType = MahjongRoomControl.soundType;
+					break;
+				case 2:
+					MahjongPlayerControlL.instance.soundType = MahjongRoomControl.soundType;
+					break;
+				case 3:
+					MahjongPlayerControlD.instance.soundType = MahjongRoomControl.soundType;
+					break;
+				case 4:
+					MahjongPlayerControlR.instance.soundType = MahjongRoomControl.soundType;
+					break;
+			}
+		}
 		/**
 		 * 结束游戏 
 		 * @param obj

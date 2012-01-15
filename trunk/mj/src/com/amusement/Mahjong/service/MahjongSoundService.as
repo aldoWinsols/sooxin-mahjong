@@ -10,13 +10,6 @@ package com.amusement.Mahjong.service
 
 		private static var _instance:MahjongSoundService;
 		
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/gangshanghua.mp3')]
-		private var _Gangshanghua:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/gangshangpao.mp3')]
-		private var _Gangshangpao:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/qianggang.mp3')]
-		private var _Qianggang:Class;
-		
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/luopai.mp3')]
 		private var _Luopai:Class;
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/fapai.mp3')]
@@ -27,15 +20,8 @@ package com.amusement.Mahjong.service
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/saizi.mp3')]
 		private var _Saizi:Class;
 		
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/qingdingzhang.mp3')]
-		private var _Qingdingzhang:Class;
-		
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/bg.mp3')]
 		private var bg:Class;
-		
-		private var _gangshanghua_mp3:SoundAsset;
-		private var _gangshangpao_mp3:SoundAsset;
-		private var _qianggang_mp3:SoundAsset;
 		
 		private var _luopai_mp3:SoundAsset;
 		private var _fapai_mp3:SoundAsset;
@@ -43,7 +29,6 @@ package com.amusement.Mahjong.service
 		
 		private var _saizi_mp3:SoundAsset;
 		
-		private var _qingdingzhang_mp3:SoundAsset;
 		private var _bg:SoundAsset;
 		
 		public var _bgChannel:SoundChannel;
@@ -63,17 +48,12 @@ package com.amusement.Mahjong.service
 		{
 			mahjongManVoiceService = new MahjongManVoiceService();
 			mahjongWomanVoiceService = new MahjongWomanVoiceService();
-			_gangshanghua_mp3 = new _Gangshanghua() as SoundAsset;
-			_gangshangpao_mp3 = new _Gangshangpao() as SoundAsset;
-			_qianggang_mp3 = new _Qianggang() as SoundAsset;
 			
 			_luopai_mp3 = new _Luopai() as SoundAsset;
 			_fapai_mp3 = new _Fapai() as SoundAsset;
 			_chucard_mp3 = new _Chucard() as SoundAsset;
 			
 			_saizi_mp3 = new _Saizi() as SoundAsset;
-			
-			_qingdingzhang_mp3 = new _Qingdingzhang() as SoundAsset;
 			
 			_bg = new bg() as SoundAsset;
 		}
@@ -215,13 +195,15 @@ package com.amusement.Mahjong.service
 						//					_zimo_mp3.play();
 						break;
 					case "gangshanghua":
-						_gangshanghua_mp3.play();
+//						_gangshanghua_mp3.play();
+						mahjongWomanVoiceService.zimos[1].play();
 						break;
 					case "gangshangpao":
-						_gangshangpao_mp3.play();
+//						_gangshangpao_mp3.play();
+						mahjongWomanVoiceService.hus[mahjongWomanVoiceService.getRandom(mahjongWomanVoiceService.hus)].play();
 						break;
 					case "qianggang":
-						_qianggang_mp3.play();
+//						_qianggang_mp3.play();
 						break;
 					case "luopai":
 						_luopai_mp3.play();
@@ -233,7 +215,7 @@ package com.amusement.Mahjong.service
 						_saizi_mp3.play();
 						break;
 					case "qingdingzhang":
-						_qingdingzhang_mp3.play();
+//						_qingdingzhang_mp3.play();
 						break;
 				}
 				
@@ -365,13 +347,15 @@ package com.amusement.Mahjong.service
 	//					_zimo_mp3.play();
 						break;
 					case "gangshanghua":
-						_gangshanghua_mp3.play();
+						mahjongManVoiceService.zimos[1].play();
+//						_gangshanghua_mp3.play();
 						break;
 					case "gangshangpao":
-						_gangshangpao_mp3.play();
+//						_gangshangpao_mp3.play();
+						mahjongManVoiceService.hus[mahjongManVoiceService.getRandom(mahjongManVoiceService.hus)].play();
 						break;
 					case "qianggang":
-						_qianggang_mp3.play();
+//						_qianggang_mp3.play();
 						break;
 					case "luopai":
 						_luopai_mp3.play();
@@ -383,7 +367,7 @@ package com.amusement.Mahjong.service
 						_saizi_mp3.play();
 						break;
 					case "qingdingzhang":
-						_qingdingzhang_mp3.play();
+//						_qingdingzhang_mp3.play();
 						break;
 				}
 			}
