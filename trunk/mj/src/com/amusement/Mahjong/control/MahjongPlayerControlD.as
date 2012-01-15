@@ -44,8 +44,8 @@ package com.amusement.Mahjong.control
 				this._mahjongPlayer.hSort.x = 348;
 				this._mahjongPlayer.hSort.y = 280;
 			}else if(MainControl.instance.main.applicationDPI == 160){
-				this._mahjongPlayer.hSort.x = 320;
-				this._mahjongPlayer.hSort.y = 320;
+				this._mahjongPlayer.hSort.x = 317;
+				this._mahjongPlayer.hSort.y = 296;
 			}else{
 				this._mahjongPlayer.hSort.x = -100;
 				this._mahjongPlayer.hSort.y = -100;
