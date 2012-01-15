@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   creationComplete="bordercontainer1_creationCompleteHandler(event)"
 				   width="600" height="340" backgroundAlpha="0.5" backgroundColor="#000000"
 				   borderVisible="false"
 				   dropShadowVisible="true"
@@ -8,8 +9,11 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongRoomControl;
 			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.amusement.Mahjong.service.MahjongSyncService;
+			
+			import mx.events.FlexEvent;
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -33,7 +37,14 @@
 			protected function boy_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				MahjongSoundService.instance.soundType = boy.selected;
+				MahjongRoomControl.soundType = boy.selected ? 1 : 0;
+				MahjongRoomControl.instance.setPlayerSoundType();
+			}
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongRoomControl.soundType = boy.selected ? 1 : 0;
 			}
 			
 		]]>

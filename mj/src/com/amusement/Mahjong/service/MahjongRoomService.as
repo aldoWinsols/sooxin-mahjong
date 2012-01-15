@@ -496,7 +496,6 @@ package com.amusement.Mahjong.service
 				MahjongTimerControl.instance.hide();
 			}
 			
-			MahjongSoundService.instance.soundPlay(putOneMahjongValue);//打牌声音
 			
 			var mahjong:Mahjong;
 			var resPlayerAzimuth:int=MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
@@ -504,18 +503,23 @@ package com.amusement.Mahjong.service
 			{
 				case 1:
 					mahjong = MahjongPlayerControlU.instance.putOneMahjongV(putOneMahjongValue, isPutDingzhang);
+					MahjongSoundService.instance.soundType = MahjongPlayerControlU.instance.soundType == 0 ? false : true;
 					break;
 				case 2:
 					mahjong = MahjongPlayerControlL.instance.putOneMahjongV(putOneMahjongValue, isPutDingzhang);
+					MahjongSoundService.instance.soundType = MahjongPlayerControlL.instance.soundType == 0 ? false : true;
 					break;
 				case 3:
 					mahjong = MahjongPlayerControlD.instance.putOneMahjongV(putOneMahjongValue, isPutDingzhang);
+					MahjongSoundService.instance.soundType = MahjongPlayerControlD.instance.soundType == 0 ? false : true;
 					break;
 				case 4:
 					mahjong = MahjongPlayerControlR.instance.putOneMahjongV(putOneMahjongValue, isPutDingzhang);
+					MahjongSoundService.instance.soundType = MahjongPlayerControlR.instance.soundType == 0 ? false : true;
 					break;
 			}
 			
+			MahjongSoundService.instance.soundPlay(putOneMahjongValue);//打牌声音
 			if(mahjong){
 				MahjongRoomControl.instance.nowPutMahjong = mahjong;
 				MahjongRoomControl.instance.nowPutPlayerAzimuth = playerAzimuthR;
@@ -535,24 +539,28 @@ package com.amusement.Mahjong.service
 			
 			if(MahjongRoomControl.instance.nowPutMahjong.value == pengValue){
 				if(removeLastMahjongByOut(MahjongRoomControl.instance.nowPutPlayerAzimuth, pengValue)){	
-					MahjongSoundService.instance.soundPlay("peng");//碰声音
 					
 					var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
 					this.showWord("peng", resPlayerAzimuth);
 					switch (resPlayerAzimuth){
 						case 1:
 							MahjongPlayerControlU.instance.pengV(MahjongRoomControl.instance.nowPutMahjong);
+							MahjongSoundService.instance.soundType = MahjongPlayerControlU.instance.soundType == 0 ? false : true;
 							break;
 						case 2:
 							MahjongPlayerControlL.instance.pengV(MahjongRoomControl.instance.nowPutMahjong);
+							MahjongSoundService.instance.soundType = MahjongPlayerControlL.instance.soundType == 0 ? false : true;
 							break;
 						case 3:
 							MahjongPlayerControlD.instance.pengV(MahjongRoomControl.instance.nowPutMahjong);
+							MahjongSoundService.instance.soundType = MahjongPlayerControlD.instance.soundType == 0 ? false : true;
 							break;
 						case 4:
 							MahjongPlayerControlR.instance.pengV(MahjongRoomControl.instance.nowPutMahjong);
+							MahjongSoundService.instance.soundType = MahjongPlayerControlR.instance.soundType == 0 ? false : true;
 							break;
 					}
+					MahjongSoundService.instance.soundPlay("peng");//碰声音
 				}
 				
 				if(!MahjongRoomControl.instance.isVideo){
@@ -594,24 +602,28 @@ package com.amusement.Mahjong.service
 			}
 			
 			if(mahjong){
-				MahjongSoundService.instance.soundPlay("gang");//杠声音
 				
 				var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
 				this.showWord("gang", resPlayerAzimuth);
 				switch (resPlayerAzimuth){
 					case 1:
 						MahjongPlayerControlU.instance.gangV(mahjong, isZigang);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlU.instance.soundType == 0 ? false : true;
 						break;
 					case 2:
 						MahjongPlayerControlL.instance.gangV(mahjong, isZigang);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlL.instance.soundType == 0 ? false : true;
 						break;
 					case 3:
 						MahjongPlayerControlD.instance.gangV(mahjong, isZigang);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlD.instance.soundType == 0 ? false : true;
 						break;
 					case 4:
 						MahjongPlayerControlR.instance.gangV(mahjong, isZigang);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlR.instance.soundType == 0 ? false : true;
 						break;
 				}
+				MahjongSoundService.instance.soundPlay("gang");//杠声音
 			}
 		}
 		
@@ -640,19 +652,9 @@ package com.amusement.Mahjong.service
 					}else if(removeLastMahjongByOut(MahjongRoomControl.instance.nowPutPlayerAzimuth, huValue)){
 						mahjong = MahjongRoomControl.instance.nowPutMahjong;
 					}
-					if(isAfterGang){
-						MahjongSoundService.instance.soundPlay("gangshangpao");//杠上炮声音
-					}else{
-						MahjongSoundService.instance.soundPlay("hu");//胡声音
-					}
 					break;
 				case 1: //自摸
 					mahjong = removeOneMahjongBySp(playerAzimuthR, huValue);
-					if(isAfterGang){
-						MahjongSoundService.instance.soundPlay("gangshanghua");//杠上花声音
-					}else{
-						MahjongSoundService.instance.soundPlay("zimo");//自摸声音
-					}
 					break;
 				case 2: //抢杠
 					mahjong = restoreGpAndPp(qiangGangAzimuth, huValue);
@@ -665,17 +667,41 @@ package com.amusement.Mahjong.service
 				switch (resPlayerAzimuth){
 					case 1:
 						MahjongPlayerControlU.instance.huV(mahjong, huType, haveHuCount, qiangGangAzimuth);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlU.instance.soundType == 0 ? false : true;
 						break;
 					case 2:
 						MahjongPlayerControlL.instance.huV(mahjong, huType, haveHuCount, qiangGangAzimuth);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlL.instance.soundType == 0 ? false : true;
 						break;
 					case 3:
 						MahjongPlayerControlD.instance.huV(mahjong, huType, haveHuCount, qiangGangAzimuth);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlD.instance.soundType == 0 ? false : true;
 						break;
 					case 4:
 						MahjongPlayerControlR.instance.huV(mahjong, huType, haveHuCount, qiangGangAzimuth);
+						MahjongSoundService.instance.soundType = MahjongPlayerControlR.instance.soundType == 0 ? false : true;
 						break;
 				}
+			}
+			
+			switch(huType){
+				case 0: //点炮
+					if(isAfterGang){
+						MahjongSoundService.instance.soundPlay("gangshangpao");//杠上炮声音
+					}else{
+						MahjongSoundService.instance.soundPlay("hu");//胡声音
+					}
+					break;
+				case 1: //自摸
+					if(isAfterGang){
+						MahjongSoundService.instance.soundPlay("gangshanghua");//杠上花声音
+					}else{
+						MahjongSoundService.instance.soundPlay("zimo");//自摸声音
+					}
+					break;
+				case 2: //抢杠
+					MahjongSoundService.instance.soundPlay("hu");//胡声音
+					break;
 			}
 		}
 		
@@ -1020,21 +1046,24 @@ package com.amusement.Mahjong.service
 				switch (resPlayerAzimuth){
 					case 1:
 						MahjongPlayerControlU.instance.mahjongValues = mahjongValues;
+						MahjongPlayerControlU.instance.soundType = MahjongRoomControl.soundType;
 						break;
 					case 2:
 						MahjongPlayerControlL.instance.mahjongValues = mahjongValues;
+						MahjongPlayerControlL.instance.soundType = MahjongRoomControl.soundType;
 						break;
 					case 3:
 						MahjongPlayerControlD.instance.mahjongValues = mahjongValues;
+						MahjongPlayerControlD.instance.soundType = MahjongRoomControl.soundType;
 						break;
 					case 4:
 						MahjongPlayerControlR.instance.mahjongValues = mahjongValues;
+						MahjongPlayerControlR.instance.soundType = MahjongRoomControl.soundType;
 						break;
 				}
 				
 			}
 		}
-		
 		/**
 		 * 获取玩家麻将值数组 
 		 * @param playerAzimuthR

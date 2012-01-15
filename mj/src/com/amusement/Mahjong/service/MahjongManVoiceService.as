@@ -160,12 +160,12 @@ package com.amusement.Mahjong.service
 		
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang.mp3')]
 		private var _Gang:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang0.mp3')]
-		private var _Gang_0:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang1.mp3')]
-		private var _Gang_1:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang2.mp3')]
-		private var _Gang_2:Class;
+//		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang0.mp3')]
+//		private var _Gang_0:Class;
+//		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang1.mp3')]
+//		private var _Gang_1:Class;
+//		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang2.mp3')]
+//		private var _Gang_2:Class;
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/gang3.mp3')]
 		private var _Gang_3:Class;
 		
@@ -178,13 +178,6 @@ package com.amusement.Mahjong.service
 		private var _Zimo:Class;
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/zimo0.mp3')]
 		private var _Zimo_0:Class;
-		
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/gangshanghua.mp3')]
-		private var _Gangshanghua:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/gangshangpao.mp3')]
-		private var _Gangshangpao:Class;
-		[Embed(source='com/amusement/Mahjong/assets/mjsound/qianggang.mp3')]
-		private var _Qianggang:Class;
 		
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/luopai.mp3')]
 		private var _Luopai:Class;
@@ -326,9 +319,9 @@ package com.amusement.Mahjong.service
 			
 			
 			gangs.push(new _Gang() as SoundAsset);
-			gangs.push(new _Gang_0() as SoundAsset);
-			gangs.push(new _Gang_1() as SoundAsset);
-			gangs.push(new _Gang_2() as SoundAsset);
+//			gangs.push(new _Gang_0() as SoundAsset);
+//			gangs.push(new _Gang_1() as SoundAsset);
+//			gangs.push(new _Gang_2() as SoundAsset);
 			gangs.push(new _Gang_3() as SoundAsset);
 			
 			

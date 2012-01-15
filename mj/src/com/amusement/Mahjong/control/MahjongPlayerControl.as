@@ -22,6 +22,8 @@ package com.amusement.Mahjong.control
 		
 		private var _mahjongValues:Array;
 		
+		public var soundType:int = 0;
+		
 		public function MahjongPlayerControl(mahjongPlayer:MahjongPlayer)
 		{
 			//TODO: implement function
@@ -32,7 +34,6 @@ package com.amusement.Mahjong.control
 
 		protected function init():void{
 			_state = 0;
-			
 			initView();
 		}
 		
