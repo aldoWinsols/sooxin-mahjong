@@ -29,6 +29,7 @@ package com.control
 //				return;
 //			}
 			DataService.instance.addPlayer(playerAdd.playerName.text,playerAdd.playerEmail.text);
+			playerAdd.playerName.text = "";
 		}
 		private function cancelHandler(e:MouseEvent):void{
 			this.playerAdd.visible = false;

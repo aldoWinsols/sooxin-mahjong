@@ -109,11 +109,12 @@ package com.services{
 			HomeControl.instance.home.playerAdd.visible = false;
 		}
 		
-		public function removePlayer(id:Number):void
+		public function removePlayer(id:Number, playerName:String):void
 		{
-			sqls.text = "DELETE FROM players WHERE id="+id;
-			sqls.execute();
-			refresh();
+			table = "create";
+			sqlStrs.push("DELETE FROM players WHERE id="+id);
+			sqlStrs.push("DELETE FROM gamelog WHERE playerName='"+playerName+"'");
+			resault(null);
 		}
 		
 		public function removeGameLog(id:Number,playerName:String):void{
