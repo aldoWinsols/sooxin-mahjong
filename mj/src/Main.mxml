@@ -6,7 +6,6 @@
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
 			   maxWidth="1024" maxHeight="768"
 			   splashScreenImage="@Embed('assets/splash.jpg')"
-			   enterFrame="application1_enterFrameHandler(event)"
 			   xmlns:view2="com.view.*" creationComplete="application1_creationCompleteHandler(event)"
 			   deactivate="application1_deactivateHandler(event)">
 	
@@ -36,6 +35,7 @@
 //				var ui:Sprite = new Sprite();
 //				this.addChild(ui);
 //				ui.addChild(webView);
+
 				new MainControl(this);
 				trace(this.width);
 				
@@ -56,12 +56,6 @@
 				}else{
 					time.text = date.getHours()+":"+date.getMinutes();
 				}
-			}
-			
-			protected function application1_enterFrameHandler(event:Event):void
-			{
-				// TODO Auto-generated method stub
-				
 			}
 			
 		]]>
