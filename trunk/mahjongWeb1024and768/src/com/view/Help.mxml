@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				    backgroundColor="#000000"
+					 backgroundAlpha="0.5"
+					  cornerRadius="10"
+					  borderVisible="false"
+					  dropShadowVisible="true"
+				   width="600" height="300">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:TextArea x="11" y="10" width="579" height="242" editable="false" fontSize="14"
+				text="四川麻将, 又称血战麻将, 采用四川地区流行的麻将打法, 尤其是成都及周边比较盛行。核心是打缺门, 刮风下雨, 成都计番, 流局查叫。一局牌中, 一家胡牌并不结束牌局, 而是未胡的玩家继续打, 直到3家胡牌或剩余的玩家流局。这样先胡的玩家并不一定获利最多, 点炮的玩家也能翻身, 提高了趣味性, 促进了牌局的稳定发展。牌局结束, 一并结算。&#xd;Sichuan Mahjong, also called bloody battle Mahjong, is a kind of Mahjong prevailing in the province of Sichuan, especially in downtown Chengdu and its surrounding areas. In traditional Mahjong with a set of 108 tiles based on Chinese characters and symbols, each player begins by receiving thirteen tiles. In turn players draw and discard tiles until they complete a legal hand using the fourteenth drawn tile to form four groups (melds) and a pair (head). In Sichuan Mahjong however, completing a legal hand doesn't mean the finishing of the game, but requires the remaining losing players to continue playing until all the three remaining players have won. In that case, the one who wins first doesn't mean earning the most credits or money. It is more interesting and makes players composed in playing. Th settlement is done after all is over."/>
+	<s:Button x="250" y="256" width="100" height="40" label="确定" click="button1_clickHandler(event)"/>
+</s:BorderContainer>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   xmlns:view="com.amusement.Mahjong.view.*"
+				   xmlns:view2="com.view.*"
+				   width="1024" height="768"
+				   creationComplete="module1_creationCompleteHandler(event)">
+	<s:states>
+		<s:State name="MahjongRoomState"/>
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.view.MahjongRoom;
+			import com.view.Home;
+			
+			import mx.events.FlexEvent;
+			
+			public var mahjongRoom:MahjongRoom = new MahjongRoom();
+			public var home:Home = new Home();
+			
+			protected function module1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MahjongApplictionControl(this);
+				this.addElement(mahjongRoom);
+				this.addElement(home);
+//				home.visible = false;
+				
+//				mahjongRoom.verticalCenter = 0;
+//				mahjongRoom.horizontalCenter = 0;
+				mahjongRoom.visible = false;
+				home.verticalCenter = 0;
+				home.horizontalCenter = 0;
+				
+				this.mjRoomBgImg.addEventListener(MouseEvent.CLICK,touchBeginHandler);
+			}
+			
+			private function touchBeginHandler(e:MouseEvent):void{
+//				if(home.visible){
+//					home.visible = false;
+//				}else{
+//					home.visible = true;
+//				}
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此 处 -->
+	</fx:Declarations>
+	<s:Group x="0" y="0" width="1024" height="768">
+		<s:Image id="mjRoomBgImg"
+				 source="@Embed('assets/index.jpg')"/>
+	</s:Group>
+
+</s:BorderContainer>
