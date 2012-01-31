@@ -214,6 +214,9 @@ package com.amusement.Mahjong.service
 					case "saizi":
 						_saizi_mp3.play();
 						break;
+					case "chat":
+						mahjongWomanVoiceService.chat[mahjongWomanVoiceService.getRandom(mahjongWomanVoiceService.chat)].play();
+						break;
 					case "qingdingzhang":
 //						_qingdingzhang_mp3.play();
 						break;
@@ -365,6 +368,9 @@ package com.amusement.Mahjong.service
 						break;
 					case "saizi":
 						_saizi_mp3.play();
+						break;
+					case "chat":
+						mahjongManVoiceService.chat[mahjongManVoiceService.getRandom(mahjongManVoiceService.chat)].play();
 						break;
 					case "qingdingzhang":
 //						_qingdingzhang_mp3.play();
