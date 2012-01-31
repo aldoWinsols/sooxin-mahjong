@@ -186,6 +186,13 @@ package com.amusement.Mahjong.service
 		[Embed(source='com/amusement/Mahjong/assets/mjsound/chucard.mp3')]
 		private var _Chucard:Class;
 		
+		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/chat7.mp3')]
+		private var _Chat7:Class;
+		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/chat8.mp3')]
+		private var _Chat8:Class;
+		[Embed(source='com/amusement/Mahjong/assets/mjsound/boy/chat9.mp3')]
+		private var _Chat9:Class;
+		
 		public var wan1:Vector.<SoundAsset> = new Vector.<SoundAsset>();
 		public var wan2:Vector.<SoundAsset> = new Vector.<SoundAsset>();
 		public var wan3:Vector.<SoundAsset> = new Vector.<SoundAsset>();
@@ -220,6 +227,8 @@ package com.amusement.Mahjong.service
 		public var gangs:Vector.<SoundAsset> = new Vector.<SoundAsset>();
 		public var hus:Vector.<SoundAsset> = new Vector.<SoundAsset>();
 		public var zimos:Vector.<SoundAsset> = new Vector.<SoundAsset>();
+		
+		public var chat:Vector.<SoundAsset> = new Vector.<SoundAsset>();
 		
 		public function MahjongManVoiceService()
 		{
@@ -331,6 +340,10 @@ package com.amusement.Mahjong.service
 			
 			zimos.push(new _Zimo() as SoundAsset);
 			zimos.push(new _Zimo_0() as SoundAsset);
+			
+			chat.push(new _Chat7() as SoundAsset);
+			chat.push(new _Chat8() as SoundAsset);
+			chat.push(new _Chat9() as SoundAsset);
 		}
 		
 		public function getRandom(array:Vector.<SoundAsset>):int{

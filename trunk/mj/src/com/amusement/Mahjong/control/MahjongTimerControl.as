@@ -1,5 +1,6 @@
 package com.amusement.Mahjong.control
 {
+	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.amusement.Mahjong.service.MahjongTimerService;
 	import com.amusement.Mahjong.view.MahjongTimer;
 	
@@ -26,6 +27,8 @@ package com.amusement.Mahjong.control
 		private var _timelagCount:int = 1;
 		
 		private var _isOnline:Boolean = false;
+		private var _count:int = 0;
+		private var _num:int = 0;
 		
 		public function MahjongTimerControl(mahjongTimer:MahjongTimer)
 		{
@@ -62,6 +65,7 @@ package com.amusement.Mahjong.control
 					if(remainCount == 0){
 						this._mahjongTimer.timelagBtn.enabled = false;
 					}
+					randomPlaySonud(remainCount);
 					this._mahjongTimer.timerTxt.text = (remainCount < 0 ? 0 : remainCount).toString();
 					
 					this._mahjongTimerService.timerHandler(remainCount, _isOnline);
@@ -70,6 +74,17 @@ package com.amusement.Mahjong.control
 					this._mahjongTimerService.timerCompleteHandler(_isOnline);
 					break;
 			}
+		}
+		
+		private function randomPlaySonud(remainCount:int):void{
+			if(_repeatCount - remainCount >= _count){
+				
+				if(40 >= _num){
+					_count = 101;
+					MahjongSoundService.instance.soundPlay("chat");
+				}
+			}
+			
 		}
 		
 		private function timelagBtnClickHandler(event:MouseEvent):void{
@@ -119,6 +134,8 @@ package com.amusement.Mahjong.control
 			_isOnline = true;
 			
 			_repeatCount = repeatCount;
+			_count = Math.random() * 5 + 5;
+			_num = Math.random() * 100;
 			_gameTimer.repeatCount = repeatCount + 1;
 			
 			this._mahjongTimer.timerTxt.text = repeatCount.toString();
