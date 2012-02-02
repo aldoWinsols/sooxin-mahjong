@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.girlfriend.view.*"
+		 width="768" height="1024">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="0" y="0" source="assets/girl/01-01.jpg"/>
+	<s:Button x="679" y="447" width="80" height="80" label="化妆"/>
+	<s:Button x="678" y="359" width="80" height="80" label="首饰"/>
+	<s:Button x="678" y="272" width="80" height="80" label="衣柜"/>
+	<s:Button x="678" y="185" width="80" height="80" label="打工"/>
+	<s:Button x="678" y="98" width="80" height="80" label="商店"/>
+	<s:Button x="678" y="10" width="80" height="80" label="任务"/>
+	<view:Num x="10" y="10">
+	</view:Num>
+	<s:Button x="679" y="535" width="80" height="80" label="档案"/>
+	<s:BorderContainer x="10" y="864" width="350" height="150" backgroundAlpha="0.3" cornerRadius="8">
+		
+	</s:BorderContainer>
+</s:Group>

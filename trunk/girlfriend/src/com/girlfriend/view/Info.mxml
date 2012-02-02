@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" width="400" height="300">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Label x="70" y="64" text="姓名："/>
+	<s:Label x="130" y="64" text="标签"/>
+	<s:Label x="235" y="64" text="小名："/>
+	<s:Label x="296" y="64" text="标签"/>
+	<s:Label x="70" y="94" text="年龄："/>
+	<s:Label x="130" y="94" text="标签"/>
+	<s:Label x="235" y="94" text="生日："/>
+	<s:Label x="296" y="94" text="标签"/>
+	<s:Label x="70" y="124" text="生肖："/>
+	<s:Label x="130" y="124" text="标签"/>
+	<s:Label x="235" y="124" text="星座："/>
+	<s:Label x="296" y="124" text="标签"/>
+	<s:Label x="70" y="154" text="血型："/>
+	<s:Label x="130" y="154" text="标签"/>
+	<s:Label x="235" y="154" text="家乡："/>
+	<s:Label x="296" y="154" text="标签"/>
+	<s:Label x="70" y="184" text="职业："/>
+	<s:Label x="130" y="184" text="标签"/>
+	<s:Label x="70" y="208" text="个人说明："/>
+	<s:Label x="115" y="236" text="标签"/>
+</s:BorderContainer>
