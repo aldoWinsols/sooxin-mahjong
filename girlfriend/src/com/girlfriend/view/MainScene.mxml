@@ -2,7 +2,22 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:view="com.girlfriend.view.*"
+		 creationComplete="group1_creationCompleteHandler(event)"
 		 width="768" height="1024">
+	<fx:Script>
+		<![CDATA[
+			import com.girlfriend.control.MainSceneControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainSceneControl(this);
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
@@ -10,7 +25,7 @@
 	<s:Button x="679" y="447" width="80" height="80" label="化妆"/>
 	<s:Button x="678" y="359" width="80" height="80" label="首饰"/>
 	<s:Button x="678" y="272" width="80" height="80" label="衣柜"/>
-	<s:Button x="678" y="185" width="80" height="80" label="打工"/>
+	<s:Button id="workBtn" x="678" y="185" width="80" height="80" label="打工"/>
 	<s:Button x="678" y="98" width="80" height="80" label="商店"/>
 	<s:Button x="678" y="10" width="80" height="80" label="任务"/>
 	<view:Num x="10" y="10">
