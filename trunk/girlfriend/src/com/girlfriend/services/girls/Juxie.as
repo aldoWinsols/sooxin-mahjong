@@ -1,4 +1,4 @@
-package com.girlfriend.services
+package com.girlfriend.services.girls
 {
 	import com.girlfriend.inter.GirlfriendServiceI;
 	import com.girlfriend.model.Girlfriend;

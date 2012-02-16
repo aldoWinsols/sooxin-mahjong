@@ -21,7 +21,7 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image x="0" y="0" source="assets/girl/01-01.jpg"/>
+	<s:Image x="0" y="0" source="assets/girl/01-01.png"/>
 	<s:Button x="679" y="447" width="80" height="80" label="化妆"/>
 	<s:Button x="678" y="359" width="80" height="80" label="首饰"/>
 	<s:Button x="678" y="272" width="80" height="80" label="衣柜"/>

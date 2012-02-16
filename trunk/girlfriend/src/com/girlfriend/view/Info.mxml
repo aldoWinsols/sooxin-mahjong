@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
-				   xmlns:s="library://ns.adobe.com/flex/spark" width="400" height="300">
+				   xmlns:s="library://ns.adobe.com/flex/spark" width="500" height="600">
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
@@ -24,4 +24,10 @@
 	<s:Label x="130" y="184" text="标签"/>
 	<s:Label x="70" y="208" text="个人说明："/>
 	<s:Label x="115" y="236" text="标签"/>
+	<s:Label x="69" y="380" text="最喜欢吃的蛋糕"/>
+	<s:Label x="69" y="404" text="最喜欢的颜色"/>
+	<s:Label x="69" y="323" text="三围"/>
+	<s:Label x="69" y="441" text="隐藏属性一"/>
+	<s:Label x="69" y="465" text="隐藏属性二"/>
+	<s:Label x="69" y="491" text="隐藏属性三"/>
 </s:BorderContainer>
