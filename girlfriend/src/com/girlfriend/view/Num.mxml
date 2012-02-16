@@ -7,10 +7,10 @@
 	<s:BorderContainer x="8" y="13" width="180" height="10" backgroundColor="#ff0000">
 		
 	</s:BorderContainer>
-	<s:BorderContainer x="9" y="35" width="180" height="10" backgroundColor="#ff0000">
+	<s:BorderContainer x="9" y="35" width="180" height="10" backgroundColor="#FFFC00">
 		
 	</s:BorderContainer>
-	<s:BorderContainer x="9" y="53" width="180" height="10" backgroundColor="#ff0000">
+	<s:BorderContainer x="9" y="53" width="180" height="10" backgroundColor="#14D400">
 		
 	</s:BorderContainer>
 </s:BorderContainer>
