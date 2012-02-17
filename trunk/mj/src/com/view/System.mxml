@@ -73,7 +73,7 @@
 	<s:Button x="219" y="271" width="102" label="关闭" click="button1_clickHandler(event)"
 			  color="#000000"/>
 	<s:HSlider id="level" x="151" y="170" width="300"
-			   change="MahjongSyncService.instance.level = slider.value" maximum="100" minimum="0"
+			   change="MahjongSyncService.instance.level = level.value" maximum="100" minimum="0"
 			   stepSize="1" value="10"/>
 	<s:RadioButton id="boy" x="154" fontSize="20" y="130" label="男生" click="boy_clickHandler(event)"/>
 	<s:RadioButton x="255" y="130" fontSize="20" label="女生" selected="true" click="boy_clickHandler(event)"/>
