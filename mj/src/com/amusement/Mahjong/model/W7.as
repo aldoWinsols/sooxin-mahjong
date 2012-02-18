@@ -5,7 +5,7 @@ package com.amusement.Mahjong.model
 
 	public class W7 extends Mahjong
 	{
-		[Embed(source="com/amusement/Mahjong/assets/mj/blue/w7.png")]
+		[Embed(source="com/amusement/Mahjong/assets/mj/blue/Bw7.png")]
 		private var SImage180B:Class; //手上的牌
 		[Embed(source="com/amusement/Mahjong/assets/mj/blue/pw7.png")]
 		private var PImage180B:Class; //碰牌

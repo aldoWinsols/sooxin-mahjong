@@ -337,8 +337,8 @@ package com.amusement.Mahjong.model
 				this.addChild(BigSP);
 				
 				BigSP.visible = false;
-				BigSP.x = -8;
-				BigSP.y -= 80;
+//				BigSP.x = -8;
+				BigSP.y -= 90;
 			}
 			if(Simg270){
 				this.addChild(Simg270);
@@ -501,8 +501,8 @@ package com.amusement.Mahjong.model
 		
 		private function endHandler(e:TouchEvent):void{
 			e.target.stopTouchDrag(e.touchPointID);
-			BigSP.x = -5;
-			BigSP.y = -100;
+//			BigSP.x = -5;
+			BigSP.y = -90;
 			BigSP.visible = false;
 			onClickMahjong();
 		}
@@ -572,7 +572,7 @@ package com.amusement.Mahjong.model
 					BigSP.visible = false;
 					break;
 				default:
-					this.BigSP.x = -5;
+//					this.BigSP.x = -5;
 					this.BigSP.y = -90;
 					break;
 			}

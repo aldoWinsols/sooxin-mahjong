@@ -14,6 +14,8 @@ package com.amusement.Mahjong.control
 			_instance = this;
 			this._mahjongPlayerService = new MahjongPlayerServiceD();
 			super(mahjongPlayer);
+//			mahjongPlayer.scaleX = 1.3;
+//			mahjongPlayer.scaleY = 1.3;
 		}
 
 		protected override function initView():void
@@ -33,8 +35,15 @@ package com.amusement.Mahjong.control
 			
 			this._mahjongPlayer.sp.x = -70;
 			this._mahjongPlayer.sp.y = 183.65;
-			this._mahjongPlayer.sp.width = 680;
-			this._mahjongPlayer.sp.height = 90;
+			
+			if(MainControl.instance.main.applicationDPI == 160){
+				this._mahjongPlayer.sp.width = 760;
+				this._mahjongPlayer.sp.height = 90;
+			}else{
+				this._mahjongPlayer.sp.width = 770;
+				this._mahjongPlayer.sp.height = 150;
+			}
+			
 			
 			this._mahjongPlayer.dSort.setSize("V");
 			this._mahjongPlayer.dSort.x = this._mahjongPlayer.out.x - this._mahjongPlayer.dSort.width - 7;
@@ -155,7 +164,7 @@ package com.amusement.Mahjong.control
 		{
 			//TODO Auto-generated method stub
 			var px:int = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width + 10;
-			var py:int = this._mahjongPlayer.sp.y;
+			var py:int = this._mahjongPlayer.sp.y +5;
 			
 			super.hu(mahjong, px, py, "Pimg180", 3, huType, haveHuCount, qiangGangAzimuth);
 		}
@@ -209,7 +218,7 @@ package com.amusement.Mahjong.control
 				this._mahjongPlayer.addElement(mahjongs[i]);
 				
 				mahjongs[i].show("Simg180");
-				mahjongs[i].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (13 - i) * 44;
+				mahjongs[i].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (13 - i) * 59;
 				mahjongs[i].y = this._mahjongPlayer.sp.y;
 			}
 		}
@@ -226,12 +235,12 @@ package com.amusement.Mahjong.control
 				sparr[sparr.length - 1].y = this._mahjongPlayer.sp.y;
 				
 				for(var j:int = 0; j < sparr.length - 1; j ++){
-					sparr[j].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (sparr.length - 1 - j) * 44;
+					sparr[j].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (sparr.length - 1 - j) * 59;
 					sparr[j].y = this._mahjongPlayer.sp.y;
 				}
 			}else{
 				for(var i:int = 0; i < sparr.length; i ++){
-					sparr[i].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (sparr.length - i) * 44;
+					sparr[i].x = this._mahjongPlayer.sp.x + this._mahjongPlayer.sp.width - (sparr.length - i) * 59;
 					sparr[i].y = this._mahjongPlayer.sp.y;
 				}
 			}
@@ -252,18 +261,18 @@ package com.amusement.Mahjong.control
 				
 				if(i % 4 == 3){
 					gprr[i].x = gprr[i-2].x;
-					gprr[i].y = gprr[i-2].y - 18;
+					gprr[i].y = gprr[i-2].y - 18 +5;
 				}else{
-					gprr[i].x = 95 +this._mahjongPlayer.sp.x + (i - int(i / 4)) * 42 + int(i / 4) * 5;
-					gprr[i].y = this._mahjongPlayer.sp.y;
+					gprr[i].x = -10 +this._mahjongPlayer.sp.x + (i - int(i / 4)) * 54 + int(i / 4) * 5;
+					gprr[i].y = this._mahjongPlayer.sp.y +3;
 				}
 			}
 			
 			for(var j:int = 0; j < pprr.length; j ++){
 				pprr[j].show("Pimg180");
 				
-				pprr[j].x = 95 +this._mahjongPlayer.sp.x + (gprr.length / 4) * (3 * 42 + 5) + (j * 42) + int(j / 3) * 5;
-				pprr[j].y = this._mahjongPlayer.sp.y;
+				pprr[j].x = -10 +this._mahjongPlayer.sp.x + (gprr.length / 4) * (3 * 54 + 5) + (j * 54) + int(j / 3) * 5;
+				pprr[j].y = this._mahjongPlayer.sp.y+5;
 			}
 			
 			var arr:Array=gprr.concat(pprr);
