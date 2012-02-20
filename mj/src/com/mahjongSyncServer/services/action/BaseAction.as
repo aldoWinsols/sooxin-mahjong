@@ -139,7 +139,7 @@ package com.mahjongSyncServer.services.action{
 		public function checkHu(value:int):Boolean {
 			// TODO Auto-generated method stub
 			
-			if(!checkDingzhangIsOver()){
+			if(!checkDingZhang()){
 				return false;
 			}
 			
@@ -160,7 +160,7 @@ package com.mahjongSyncServer.services.action{
 		public function checkZiHu(isZihu:Boolean):Boolean {
 			// TODO Auto-generated method stub
 			
-			if(!checkDingzhangIsOver()){
+			if(!checkDingZhang()){
 				return false;
 			}
 			
@@ -592,6 +592,14 @@ package com.mahjongSyncServer.services.action{
 			return 0;
 		}
 	
+		public function checkDingZhang():Boolean{
+			for (var i:int = 0; i < player.sparr.length; i++) {
+				if (player.sparr[i] / 10 == player.dingzhangValue / 10) {
+					return false;
+				}
+			}
+			return true;
+		}
 		
 		public function checkDingzhangIsOver():int {
 
