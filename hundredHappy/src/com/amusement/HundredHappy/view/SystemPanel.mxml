@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="339" height="232"
+		 fontFamily="黑体" fontSize="12" color="#AD8C49">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.services.HundredHappyMusicService;
+			
+			/* import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _musicSkin:Class;
+			[Bindable]
+			private var _musicDownSkin:Class;
+			[Bindable]
+			private var _musicOverSkin:Class;
+			
+			[Bindable]
+			private var _soundSkin:Class;
+			[Bindable]
+			private var _soundDownSkin:Class;
+			[Bindable]
+			private var _soundOverSkin:Class;
+			
+			public function set musicSkin(value:Class):void
+			{
+				_musicSkin = value;
+			}
+
+			public function set musicDownSkin(value:Class):void
+			{
+				_musicDownSkin = value;
+			}
+
+			public function set musicOverSkin(value:Class):void
+			{
+				_musicOverSkin = value;
+			}
+
+			public function set soundSkin(value:Class):void
+			{
+				_soundSkin = value;
+			}
+
+			public function set soundDownSkin(value:Class):void
+			{
+				_soundDownSkin = value;
+			}
+
+			public function set soundOverSkin(value:Class):void
+			{
+				_soundOverSkin = value;
+			} */
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:BorderContainer width="339" height="232" borderVisible="false" backgroundImage="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_bg.png')" >-->
+		<s:Image horizontalCenter="0" verticalCenter="0" source="@Embed(source='assets/amusement/systemSet/system_bg.png')"/>
+		<!--<mx:Image source="com/amusement/HundredHappy/assets/system/hh_system_bg.png"  x="0" y="0"/>-->
+		<s:ToggleButton id="musicBtn" right="58" verticalCenter="-52" selected="true" 
+						skinClass="com.skin.amusement.system.SystemOpenAndCloseButtonSkin"/>
+		<s:ToggleButton id="soundBtn" right="58" verticalCenter="-2" selected="true" 
+						skinClass="com.skin.amusement.system.SystemOpenAndCloseButtonSkin"/>
+		<!--<mx:Button id="musicBtn" x="226" y="53"
+					skin="{_musicSkin}"
+					downSkin="{_musicDownSkin}"
+					overSkin="{_musicOverSkin}"
+					/>
+		<mx:Button id="soundBtn" x="226" y="103"
+					skin="{_soundSkin}"
+					downSkin="{_soundDownSkin}"
+					overSkin="{_soundOverSkin}"
+					/>-->
+		<s:Label id="musicName" x="154" y="153" width="128" text="{HundredHappyMusicService.instance.currentMusicName}" fontSize="14" verticalAlign="middle" textAlign="center"/>
+		<s:Button id="leftBtn" horizontalCenter="-30" verticalCenter="43" skinClass="com.skin.amusement.system.SystemLeftButtonSkin"/>
+		<s:Button id="rightBtn" horizontalCenter="128" verticalCenter="43" skinClass="com.skin.amusement.system.SystemRightButtonSkin"/>
+		<s:Button id="presetBtn" horizontalCenter="-55" bottom="17" skinClass="com.skin.amusement.system.SystemPresetButtonSkin"/>
+		<s:Button id="confirmBtn" horizontalCenter="55" bottom="17" skinClass="com.skin.amusement.system.SystemConfirmButtonSkin"/>
+		<!--<mx:Button  id="leftBtn" x="133" y="153"
+					skin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_leftArrow_btn.png')"
+					overSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_leftArrow_over.png')"/>
+		<mx:Button  id="rightBtn" x="292" y="153"
+					skin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_rightArrow_btn.png')"
+					overSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_rightArrow_over.png')"/>
+		<mx:Button  id="presetBtn" x="81" y="190"
+					skin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_preset_btn.png')"
+					downSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_preset_down.png')"
+					overSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_preset_over.png')"/>
+		<mx:Button  id="confirmBtn" x="188" y="190"
+					skin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_confirm_btn.png')"
+					downSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_confirm_down.png')"
+					overSkin="@Embed(source='com/amusement/HundredHappy/assets/system/hh_system_confirm_over.png')"/>-->
+	<!--</s:BorderContainer>-->
+</s:Group>

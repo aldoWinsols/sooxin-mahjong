@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="1024" height="768"
+		 creationComplete="init()"
+		 xmlns:view="com.amusement.HundredHappy.view.*" 
+		 xmlns:view2="com.view.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.DeskPanelControl;
+			import com.amusement.HundredHappy.services.DeskPanelService;
+			import com.service.PlayerService;
+
+			[Bindable]
+			private var _DeskBg:Class;
+			
+			[Bindable]
+			private var _PromptImg:Class;
+			
+			public function init():void
+			{
+				new DeskPanelControl(this);                                                                                                                                                             
+			}
+			
+			public function set DeskBg(value:Class):void
+			{
+				_DeskBg = value;
+			}
+
+			public function set PromptImg(value:Class):void
+			{
+				_PromptImg = value;
+			}
+
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" bottom="0" source="@Embed(source='../assets/desk/hh_desk_red.jpg')"/>-->
+	<!--<s:Image horizontalCenter="0" bottom="-2" source="@Embed(source='../assets/hh_refer.jpg')" alpha="0.7"/>-->
+	<!--<mx:Image horizontalCenter="0" bottom="0" source="@Embed(source='com/amusement/HundredHappy/assets/desk.jpg')"/>-->
+	<s:Image id="deskBgImg" horizontalCenter="0" bottom="0" source="{_DeskBg}"/>
+	<s:Image right="3" bottom="225" mouseEnabled="false" mouseChildren="false" source="@Embed(source='../assets/hh_logo.png')"/>
+	<!--<mx:Image id="deskBgImg" horizontalCenter="0" bottom="0" source="{_DeskBg}"/>
+	<mx:Image x="778" y="398" mouseEnabled="false" mouseChildren="false" source="@Embed(source='com/amusement/HundredHappy/assets/hh_logo.png')"/>-->
+	<s:Label id="countDownV" horizontalCenter="461" verticalCenter="-305" fontSize="26" fontWeight="bold" fontFamily="Arial" color="#AD9D00" text="0"/>
+	<s:Label horizontalCenter="-469" verticalCenter="-305" fontSize="26" fontWeight="bold" fontFamily="Arial" color="#AD9D00" text="{int(DeskPanelService.instance.deskNo)}"/>
+	<view:HistoryPanel bottom="0" horizontalCenter="0"/>
+	<view:RealtimePotPanel left="12" y="383"/>
+	<view:CurrentBetPanel left="4.5" y="214"/>
+	
+	<s:Label left="235" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.player.acctName}"/>
+	<s:Label left="408" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.player.acctMoney}"/>
+	<s:Label left="551" verticalCenter="178" fontSize="14" color="#AD9D00" text="{DeskPanelService.instance.deskNo}"/>
+	<s:Label left="632" verticalCenter="178" fontSize="14" color="#AD9D00" text="{DeskPanelService.instance.gameNo}"/>
+	<!--g 2011-5-17 11:34 添加的网络质量 -->
+	<view2:NetworkQuality id="network" horizontalCenter="388" verticalCenter="178" color="#021116"/>
+	<s:Label id="totalTou" horizontalCenter="0" verticalCenter="210" width="92" height="20" fontSize="14" color="#AD9D00" verticalAlign="middle" textAlign="center" text="0"/>
+	
+	<view:BettingPanel horizontalCenter="0" verticalCenter="0"/>
+	<view:PlayerSeatPanel horizontalCenter="0" verticalCenter="0"/>
+	<view:ChupaiPanel horizontalCenter="0" y="40" visible="false"/>
+	<s:Image horizontalCenter="450" y="228" source="{_PromptImg}"/>
+	<!--<mx:Image y="228" horizontalCenter="445" source="{_PromptImg}"/>-->
+	<s:Label id="betResult" right="10" y="263" fontFamily="黑体" fontSize="26" color="#AD9D00" text=""/>
+	
+	<view:TurntablePanel left="155" bottom="157"/>
+	<!--zj 2011-5-18 13:34  桌面颜色 -->
+	<s:BorderContainer right="4" bottom="218" width="202" height="36" borderVisible="false" backgroundImage="@Embed(source='assets/amusement/tabletopSelect/tabletop_select_bg.png')">
+		<!--<s:Image source="assets/amusement/tabletopSelect/tabletop_select_bg.png"/>-->
+		<s:HGroup horizontalCenter="40" verticalCenter="0" gap="8">
+			<s:Image id="redBgBtn" source="@Embed(source='assets/amusement/tabletopSelect/tabletop_red_btn.png')"/>
+			<s:Image id="blueBgBtn" source="@Embed(source='assets/amusement/tabletopSelect/tabletop_blue_btn.png')"/>
+			<s:Image id="greenBgBtn" source="@Embed(source='assets/amusement/tabletopSelect/tabletop_green_btn.png')"/>
+		</s:HGroup>
+	</s:BorderContainer>
+	<!--<s:BorderContainer x="808" y="557" width="126" height="25" borderAlpha="0.0" backgroundImage="@Embed(source='../assets/desk/desk_bg_select.png')">
+		<mx:Image source="../assets/desk/desk_bg_select.png"/>
+		<mx:Button id="redBgBtn" x="72" y="5" skin="@Embed(source='com/amusement/HundredHappy/assets/desk/bg_red_btn.png')"/>
+		<mx:Button id="blueBgBtn" x="89" y="5" skin="@Embed(source='com/amusement/HundredHappy/assets/desk/bg_blue_btn.png')"/>
+		<mx:Button id="greenBgBtn" x="106" y="5" skin="@Embed(source='com/amusement/HundredHappy/assets/desk/bg_green_btn.png')"/>
+	</s:BorderContainer>-->
+	
+	<s:Button id="getDataBtn" left="198" bottom="224"
+			  skinClass="com.amusement.HundredHappy.skin.BaccaratGetDataButtonSkin"/>
+	<s:Button id="askZBtn" horizontalCenter="-173" bottom="158"
+			  skinClass="com.amusement.HundredHappy.skin.BaccaratAskZButtonSkin"/>
+	<s:Button id="askXBtn" horizontalCenter="-94" bottom="158"
+			  skinClass="com.amusement.HundredHappy.skin.BaccaratAskXButtonSkin"/>
+	<!--<mx:Button id="getDataBtn" x="198" y="503"
+			   skin="@Embed(source='../assets/hh_get_data_btn.png')"
+			   overSkin="@Embed(source='../assets/hh_get_data_over.png')"
+			   downSkin="@Embed(source='../assets/hh_get_data_down.png')"/>
+	<mx:Button id="askZBtn" x="318" y="587" width="50" height="21"
+			   skin="@Embed(source='../assets/hh_ask_z_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_ask_z_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_ask_z_over.png')"/>
+	<mx:Button id="askXBtn" x="388" y="587" width="50" height="21"
+			   skin="@Embed(source='../assets/hh_ask_x_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_ask_x_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_ask_x_over.png')"/>-->
+	
+	<s:Button id="exitBtn" right="6" bottom="158" toolTip="返回大厅"
+			  skinClass="com.skin.amusement.desk.DeskExitButtonSkin"/>
+	<s:Button id="fullScreenBtn" right="48" bottom="158" toolTip="全屏"
+			  skinClass="com.skin.amusement.desk.DeskFullScreenButtonSkin"/>
+	<s:Button id="helpBtn" right="91" bottom="158" toolTip="游戏规则" 
+			  skinClass="com.skin.amusement.desk.DeskHelpButtonSkin"/>
+	<s:Button id="systemBtn" right="134" bottom="158" toolTip="游戏设置"
+			  skinClass="com.skin.amusement.desk.DeskSystemSetButtonSkin"/>
+	<!--<mx:Button id="exitBtn" x="1000" y="560" width="18" height="18" toolTip="返回大厅"
+			   skin="@Embed(source='../assets/hh_exit_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_exit_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_exit_over.png')"/>
+	<mx:Button id="fullScreenBtn" x="979" y="560" width="18" height="18" toolTip="全屏"
+			   skin="@Embed(source='../assets/hh_fullScreen_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_fullScreen_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_fullScreen_over.png')"/>
+	<mx:Button id="helpBtn" x="958" y="560" width="18" height="18" toolTip="游戏规则" 
+			   skin="@Embed(source='../assets/hh_help_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_help_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_help_over.png')"/>
+	<mx:Button id="systemBtn" x="937" y="560" width="18" height="18" toolTip="游戏设置"
+			   skin="@Embed(source='../assets/hh_system_btn.png')"
+			   downSkin="@Embed(source='../assets/hh_system_down.png')"
+			   overSkin="@Embed(source='../assets/hh_system_over.png')"/>-->
+	
+	<view2:GameNotice id="notice" x="88" verticalCenter="-365" width="926" fontSize="14"/>
+	<!--<view2:Notice id="notice" x="88" verticalCenter="-349" txtWidth="926"/>-->
+</s:Group>

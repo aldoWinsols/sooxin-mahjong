@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)"
+		 width="245" height="83" 
+		 fontFamily="黑体" color="#FFFFFF" textAlign="center">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.model.jetton.BaccaratJetton;
+			import com.amusement.HundredHappy.services.BettingPanelService;
+			import com.amusement.HundredHappy.services.DeskPanelService;
+			import com.service.JettonService;
+			
+			import com.component.jetton.small.JettonS;
+			
+			import mx.events.FlexEvent;
+
+			protected var _type:String="";
+
+			protected function group1_creationCompleteHandler(event:FlexEvent):void{
+				this.liveView.addEventListener(MouseEvent.MOUSE_OVER, mouseEventHandler, false, 0, true);
+				this.liveView.addEventListener(MouseEvent.MOUSE_OUT, mouseEventHandler, false, 0, true);
+				this.liveView.addEventListener(MouseEvent.CLICK, mouseEventHandler, false, 0, true);
+			}
+			
+			private function mouseEventHandler(event:MouseEvent):void{
+				switch(event.type){
+					case MouseEvent.MOUSE_OVER:
+						this.liveView.setStyle("backgroundAlpha", 0.3);
+//						this.liveView.visible=true;
+						break;
+					case MouseEvent.MOUSE_OUT:
+						this.liveView.setStyle("backgroundAlpha", 0.0);
+//						this.liveView.visible=false;
+						break;
+					case MouseEvent.CLICK:
+						DeskPanelService.instance.updatePrompt();
+						if(BettingPanelService.instance.selectJetton){
+							var jetton:BaccaratJetton = BettingPanelService.instance.selectJetton;
+							var jettonValue:int = jetton.value;
+							if(DeskPanelService.instance.selfHundredHappyPlayerService.updateBet(jettonValue, _type)){
+								BettingPanelService.instance.addBetRecord(_type, jettonValue);
+//								BettingPanelService.instance.updateConfirmShine(true);
+							}
+						}
+						break;
+				}
+			}
+			
+			private function addJettonAtAuthz(jetton:JettonS, authz:Number):void{
+				var bc:BorderContainer = this.getChildByName("tou" + authz) as BorderContainer;
+				if(bc && jetton){
+					jetton.x = -8;
+					jetton.y = - bc.numElements * jetton.thick  - jetton.height ;
+					bc.addElement(jetton);
+				}
+			}
+			
+			private function clearJettonAtAuthz(authz:Number = -1):void{
+				var bc:BorderContainer;
+				if(authz == -1){
+					for(var i:int = 0; i < 7; i ++){
+						bc = this.getChildByName("tou" + authz) as BorderContainer;
+						if(bc){
+							bc.removeAllElements();
+						}
+					}
+				}else{
+					bc = this.getChildByName("tou" + authz) as BorderContainer;
+					if(bc){
+						bc.removeAllElements();
+					}
+				}
+			}
+			
+			private function updateTotalAtAuthz(total:Number, authz:Number):void{
+				var label:Label = this.getChildByName("total" + authz) as Label;
+				if(label){
+					label.text = total.toString();
+					if(total <= 0){
+						label.visible = false;
+					}else{
+						label.visible = true;
+					}
+				}
+			}
+			
+			public function updateJettonsByAuthz(total:Number, authz:Number):void{
+				clearJettonAtAuthz(authz);
+				var jettons:Array = JettonService.instance.getJettonsByTotal(total);
+				if(jettons){
+					for each(var jetton:JettonS in jettons){
+						addJettonAtAuthz(jetton, authz);
+					}
+				}
+				updateTotalAtAuthz(total, authz);
+			}
+			
+			//12-02-03 显示高亮
+			public function showLight(value:Boolean):void{
+				if(value){
+					this.liveView.setStyle("backgroundAlpha", 0.3);
+				}else{
+					this.liveView.setStyle("backgroundAlpha", 0.0);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer id="tou1" name="tou1" left="0" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou2" name="tou2" left="35" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou3" name="tou3" left="70" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou4" name="tou4" left="105" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou5" name="tou5" left="140" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou6" name="tou6" left="175" y="10" width="35" height="0" borderVisible="false"/>
+	<s:BorderContainer id="tou7" name="tou7" left="210" y="10" width="35" height="0" borderVisible="false"/>
+	
+	<s:Label id="total1" name="total1" left="0" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total2" name="total2" left="35" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total3" name="total3" left="70" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total4" name="total4" left="105" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total5" name="total5" left="140" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total6" name="total6" left="175" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	<s:Label id="total7" name="total7" left="210" y="55" width="35" text="" verticalAlign="middle" backgroundColor="#000000" visible="false"/>
+	
+	<!--<mx:Canvas id="liveView" x="0" y="0" width="{this.width}" height="{this.height}" backgroundColor="#FFD6D6" backgroundAlpha="0.0"/>-->
+	<s:BorderContainer id="liveView" x="0" y="0" width="100%" height="100%" borderVisible="false" backgroundColor="#FFD6D6" backgroundAlpha="0.0"/>
+</s:Group>

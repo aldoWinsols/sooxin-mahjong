@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="1024" height="768" 
+		 xmlns:betting="com.amusement.HundredHappy.model.betting.*" 
+		 xmlns:jetton="com.amusement.HundredHappy.model.jetton.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.BettingPanelControl;
+			
+			import mx.events.FlexEvent;
+			
+			/* [Bindable]
+			private var _ConfirmSkin:Class; */
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new BettingPanelControl(this);
+			}
+
+			/* public function set ConfirmSkin(value:Class):void
+			{
+				_ConfirmSkin = value;
+			} */
+
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<!--<mx:Glow id="confirmShine" target="{confirmBtn}" color="#FFD200" repeatCount="0" duration="1000" alphaFrom="0.5" blurXFrom="15" blurYFrom="15"/>-->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" bottom="0" source="../assets/desk/hh_desk_red.jpg"/>
+	<s:Image horizontalCenter="8" bottom="1" source="../assets/hh_refer.jpg" alpha="0.7"/>-->
+	<!--<mx:Image horizontalCenter="0" bottom="0" source="com/amusement/HundredHappy/assets/desk.png"/>-->
+	<betting:BetZhuangDui id="zhuangDui" name="zdB" x="634.75" y="35.35"/>
+	<betting:BetXianDui id="xianDui" name="xdB" x="145" y="35.35"/>
+	<betting:BetZhuang id="zhuang" name="zB" x="390.5" y="35"/>
+	<betting:BetXian id="xian" name="xB" x="390.5" y="118.25"/>
+	<betting:BetHe id="he" name="hB" x="320.5" y="203"/>
+	
+	<!--<s:Image horizontalCenter="-188" verticalCenter="67" source="../assets/jetton/j5.png"/>
+	<s:Image horizontalCenter="-97" verticalCenter="103" source="../assets/jetton/j10.png"/>
+	<s:Image horizontalCenter="8" verticalCenter="117" source="../assets/jetton/j20.png"/>
+	<s:Image horizontalCenter="115" verticalCenter="103" source="../assets/jetton/j50.png"/>
+	<s:Image horizontalCenter="210" verticalCenter="67" source="../assets/jetton/j100.png"/>-->
+	
+	<jetton:BaccaratJetton id="jetton1" name="jetton1" horizontalCenter="-188" verticalCenter="67" value="5"/>
+	<jetton:BaccaratJetton id="jetton2" name="jetton2" horizontalCenter="-97" verticalCenter="103" value="10"/>
+	<jetton:BaccaratJetton id="jetton3" name="jetton3" horizontalCenter="8" verticalCenter="117" value="20"/>
+	<jetton:BaccaratJetton id="jetton4" name="jetton4" horizontalCenter="115" verticalCenter="103" value="50"/>
+	<jetton:BaccaratJetton id="jetton5" name="jetton5" horizontalCenter="210" verticalCenter="67" value="100"/>
+	
+	<s:Button id="confirmBtn" horizontalCenter="84" bottom="158"
+			  skinClass="com.skin.amusement.desk.DeskConfirmButtonSkin"/>
+	<s:Button id="cancelBtn" horizontalCenter="147" bottom="158"
+			  skinClass="com.skin.amusement.desk.DeskCancelButtonSkin"/>
+	<s:Button id="clearBtn" horizontalCenter="231" bottom="158"
+			  skinClass="com.skin.amusement.desk.DeskClearButtonSkin"/>
+	<!--<mx:Button id="confirmBtn" x="652" y="559" width="37" height="21" 
+			   skin="{_ConfirmSkin}" 
+			   downSkin="@Embed(source='../assets/hh_confirm_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_confirm_over.png')"/>
+	<mx:Button id="cancelBtn" x="693" y="559" width="37" height="21"
+			   skin="@Embed(source='../assets/hh_cancel_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_cancel_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_cancel_over.png')"/>
+	<mx:Button id="clearBtn" x="734" y="559" width="65" height="21"
+			   skin="@Embed(source='../assets/hh_clear_btn.png')" 
+			   downSkin="@Embed(source='../assets/hh_clear_down.png')" 
+			   overSkin="@Embed(source='../assets/hh_clear_over.png')"/>-->
+</s:Group>

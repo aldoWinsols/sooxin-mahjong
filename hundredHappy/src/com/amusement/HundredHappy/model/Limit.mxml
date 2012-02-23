@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="344" height="32"
+		 fontFamily="黑体" fontSize="20" color="#776633"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.services.GameHallPanelService;
+			
+			import mx.events.FlexEvent;
+
+			[Embed(source="com/amusement/HundredHappy/assets/limit/hh_limit_def.png")]
+			private var _DefLimitImg:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/limit/hh_limit_over.png")]
+			private var _OverLimitImg:Class;
+			
+			[Bindable]
+			private var _LimitImg:Class;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				_LimitImg = _DefLimitImg;
+				
+				addListeners();
+			}
+			
+			private function addListeners():void{
+				this.addEventListener(MouseEvent.MOUSE_OVER, mouseEventHandler, false, 0, true);
+				this.addEventListener(MouseEvent.MOUSE_OUT, mouseEventHandler, false, 0, true);
+				this.addEventListener(MouseEvent.CLICK, mouseEventHandler, false, 0, true);
+			}
+			
+			private function mouseEventHandler(event:MouseEvent):void{
+				switch(event.type){
+					case MouseEvent.MOUSE_OVER:
+						_LimitImg = _OverLimitImg;
+						break;
+					case MouseEvent.MOUSE_OUT:
+						_LimitImg = _DefLimitImg;
+						break;
+					case MouseEvent.CLICK:
+						_LimitImg = _DefLimitImg;
+						GameHallPanelService.instance.enterRoom(this.maxLabel.text, this.minLabel.text);
+						break;
+				}
+			}
+			
+			public function setLimitValue(maxValue:Number, minValue:Number):void{
+				this.maxLabel.text = maxValue.toString();
+				this.minLabel.text = minValue.toString();
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" verticalCenter="0" source="../assets/limit/hh_limit_def.png"/>-->
+	<!--<mx:Image x="0" y="0" source="com/amusement/HundredHappy/assets/limit/hh_limit_over.png"/>-->
+	<s:Image horizontalCenter="0" verticalCenter="0" source="{_LimitImg}"/>
+	<!--<mx:Image x="0" y="0" source="{_LimitImg}"/>-->
+	<s:Label id="maxLabel" x="77" verticalCenter="0" text="0"/>
+	<s:Label id="minLabel" x="235" verticalCenter="0" text="0"/>
+</s:Group>

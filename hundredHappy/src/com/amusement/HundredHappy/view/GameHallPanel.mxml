@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 creationComplete="group1_creationCompleteHandler(event)"
+		 xmlns:view="com.amusement.HundredHappy.view.*"
+		 xmlns:view2="com.view.*"
+		 width="1024" height="768" xmlns:model="com.amusement.HundredHappy.model.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.GameHallPanelControl;
+			
+			import mx.events.FlexEvent;
+
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new GameHallPanelControl(this);
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image horizontalCenter="0" verticalCenter="0" source="@Embed(source='assets/amusement/hall/game_hall_bg.jpg')"/>
+	<!--<mx:Image x="0" y="0" source="com/amusement/HundredHappy/assets/hh_hall_bg.png"/>
+	<mx:Image x="10" verticalCenter="-252" height="14" source="assets/game_notice.png"/>-->
+	<!--<view2:Notice id="notice" x="75" verticalCenter="-249" txtWidth="507"/>-->
+	<!--<view2:GameNotice id="notice" x="75" verticalCenter="-250" width="507" fontSize="13"/>-->
+	<s:Scroller horizontalCenter="0" verticalCenter="43" width="918" height="604" horizontalScrollPolicy="off">
+		<!--<s:Group width="100%">-->
+			<s:TileGroup id="roomList" horizontalCenter="0" requestedColumnCount="2" horizontalGap="45" verticalGap="36"/>
+		<!--</s:Group>-->
+	</s:Scroller>
+	<!--<mx:Canvas x="10" y="46" width="583" height="450">
+		<s:TileGroup id="roomList" x="10" y="0" verticalGap="20" requestedColumnCount="2"/>
+	</mx:Canvas>-->
+	<s:Button id="exitBtn" right="54" top="85" skinClass="com.skin.amusement.hall.HallExitButtonSkin"/>
+</s:Group>
