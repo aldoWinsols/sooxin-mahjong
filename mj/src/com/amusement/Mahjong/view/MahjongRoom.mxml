@@ -59,6 +59,12 @@
 				this.help.visible = true;
 			}
 			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -115,6 +121,8 @@
 		</view2:Exit>
 		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:Help>
+		<s:Button label="我要支持完整版" alpha="0.5" click="button1_clickHandler(event)" color="#00FF24"
+				  horizontalCenter="-60" verticalCenter="64" visible="false"/>
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
