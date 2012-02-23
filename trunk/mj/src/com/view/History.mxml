@@ -77,8 +77,11 @@
 	</s:DataGrid>
 	<s:Button x="724" y="10" height="40" label="关闭" click="{this.visible = false}"/>
 	
+	<!--
 	<s:BorderContainer x="12" y="61" width="776" height="407" alpha="0">
 	</s:BorderContainer>
+	
 	<s:Label x="180" y="230" color="#FA0000" fontSize="40" fontWeight="bold" text="苹果商店提供完整版下载" visible="false"/>
 	
+	-->
 </s:BorderContainer>

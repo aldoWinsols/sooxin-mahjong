@@ -75,7 +75,7 @@
 	<s:HSlider id="level" x="151" y="170" width="300"
 			   change="MahjongSyncService.instance.level = level.value" maximum="100" minimum="0"
 			   stepSize="1" value="10"/>
-	<s:RadioButton id="boy" x="154" fontSize="20" y="130" label="男生" click="boy_clickHandler(event)"/>
-	<s:RadioButton x="255" y="130" fontSize="20" label="女生" selected="true" click="boy_clickHandler(event)"/>
+	<s:RadioButton id="boy" x="154" fontSize="20" y="130" label="四川方言男生" click="boy_clickHandler(event)"/>
+	<s:RadioButton x="335" y="130" fontSize="20" label="四川方言女生" selected="true" click="boy_clickHandler(event)"/>
 	<s:Label x="35" y="134" fontSize="20" text="出牌声音："/>
 </s:BorderContainer>

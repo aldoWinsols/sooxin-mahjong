@@ -37,10 +37,10 @@ package com.mahjongSyncServer.services
 		{
 			room = new Room();
 			str = "player1!1!1.1.1.1.2.2.2.2.3.3.3.3.4.;player2!2!4.4.4.5.5.5.5.6.6.6.6.7.7.;player3!3!7.7.8.8.8.8.9.9.9.9.17.11.11.;player4!4!11.12.12.12.12.13.13.13.13.14.14.14.14.;beg,125,6,5;get,3,15;sd,1;sd,2;sd,4;din,4,0;din,1,20;din,2,20;din,3,20;put,3,7,0;so,2,hu,peng;huI,2,7,0,1,0,0;get,3,15;so,3,zigang,zigang;gan,3,8,1;get,3,15;so,3,zigang,zigang;gan,3,9,1;get,3,15;so,3,zigang,zigang;gan,3,15,1;get,3,16;put,3,7,0;get,4,16;so,4,zigang;gan,4,12,1;get,4,16;so,4,zigang;gan,4,13,1;get,4,16;so,4,zigang;gan,4,14,1;get,4,11;so,4,zihu;huI,4,11,1,0,0,0;get,1,17;so,1,zigang;gan,1,1,1;get,1,17;so,1,zigang,zihu;gan,1,2,1;get,1,17;so,1,zigang;gan,1,3,1;get,1,18;put,1,4,0;get,3,18;so,3,zihu;huI,3,18,1,0,0,0;";
-			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 1,"张飞"));
-			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 2, "关羽"));
+			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 1,"幺妹儿"));
+			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 2, "三姐"));
 			playerServices.push(new PlayerService(this,PlayerTypeEnum.ONLINE, 3,""));
-			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 4, "刘备"));
+			playerServices.push(new PlayerService(this,PlayerTypeEnum.ANDROID, 4, "胖娃子"));
 			
 			timer = new Timer(100);
 			timer.addEventListener(TimerEvent.TIMER, onTimer);

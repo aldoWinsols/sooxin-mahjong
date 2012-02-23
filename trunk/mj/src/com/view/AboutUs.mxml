@@ -22,7 +22,7 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:Label y="77" color="#FFA800" fontSize="24" horizontalCenter="0" text="四川血战麻将"/>
-	<s:Label y="111" color="#FFA800" fontSize="24" horizontalCenter="0" text="版本：V0.3"/>
+	<s:Label y="111" color="#FFA800" fontSize="24" horizontalCenter="0" text="版本：V0.4"/>
 	<s:Label y="145" color="#FFA800" fontSize="24" horizontalCenter="0" text="开发人员：宋薪 龚珉锐"/>
 	<s:Label y="179" color="#FFA800" fontSize="24" horizontalCenter="0" text="EMAIL：sooxin@163.com"/>
 	<s:Button x="272" y="220" label="确定" click="button1_clickHandler(event)"/>

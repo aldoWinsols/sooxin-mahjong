@@ -263,7 +263,12 @@ package com.amusement.Mahjong.control
 					gprr[i].x = gprr[i-2].x;
 					gprr[i].y = gprr[i-2].y - 18 +5;
 				}else{
-					gprr[i].x = -10 +this._mahjongPlayer.sp.x + (i - int(i / 4)) * 54 + int(i / 4) * 5;
+					if(MainControl.instance.main.applicationDPI == 160){
+						gprr[i].x = -10 +this._mahjongPlayer.sp.x + (i - int(i / 4)) * 53 + int(i / 4) * 5;
+					}else{
+						gprr[i].x = 10+this._mahjongPlayer.sp.x + (i - int(i / 4)) * 53 + int(i / 4) * 5;
+					}
+					
 					gprr[i].y = this._mahjongPlayer.sp.y +3;
 				}
 			}
@@ -271,7 +276,12 @@ package com.amusement.Mahjong.control
 			for(var j:int = 0; j < pprr.length; j ++){
 				pprr[j].show("Pimg180");
 				
-				pprr[j].x = -10 +this._mahjongPlayer.sp.x + (gprr.length / 4) * (3 * 54 + 5) + (j * 54) + int(j / 3) * 5;
+				if(MainControl.instance.main.applicationDPI == 160){
+					pprr[j].x = -10 +this._mahjongPlayer.sp.x + (gprr.length / 4) * (3 * 53 + 5) + (j * 53) + int(j / 3) * 5;
+				}else{
+					pprr[j].x = 10+this._mahjongPlayer.sp.x + (gprr.length / 4) * (3 * 53 + 5) + (j * 53) + int(j / 3) * 5;
+				}
+				
 				pprr[j].y = this._mahjongPlayer.sp.y+5;
 			}
 			
