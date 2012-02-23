@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx" 
+					clipAndEnableScrolling="true">
+	
+	<fx:Script>
+		<![CDATA[
+			override public function prepare(hasBeenRecycled:Boolean):void {
+//				lblData.text = data[column.dataField]
+				lblData.text = data.gameNo;
+//				fileName.label = data.gameNo;
+			} 
+			
+			protected function linkbutton1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest(data.downloadUrl));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Label id="lblData" top="9" left="7"/>
+	<!--<s:Button horizontalCenter="0" verticalCenter="0" label="文件名"/>-->
+	<!--<mx:LinkButton id="fileName" horizontalCenter="0" verticalCenter="0" fontWeight="bold"/>-->
+</s:GridItemRenderer>

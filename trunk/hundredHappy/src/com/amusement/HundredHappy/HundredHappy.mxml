@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="1024" height="768"
+		  creationComplete="module1_creationCompleteHandler(event)"
+		  xmlns:view="com.amusement.HundredHappy.view.*"
+		  xmlns:view1="com.view.*">
+<!--<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" 
+		   layout="absolute" 
+		   width="1024" height="738" fontSize="12" mouseEnabled="false" 
+		   verticalScrollPolicy="off" horizontalScrollPolicy="off" clipContent="false"
+		   creationComplete="module1_creationCompleteHandler(event)" 
+		   xmlns:view="com.amusement.HundredHappy.view.*"
+		   xmlns:view1="com.view.*">-->
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.HundredHappyControl;
+			
+			import mx.events.FlexEvent;
+
+			protected function module1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new HundredHappyControl(this);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<view:GameHallPanel horizontalCenter="0" verticalCenter="0"/>
+	<view:DeskPanel x="0" y="0" visible="false"/>
+	<!--<view1:GameNotice id="notice" x="281" verticalCenter="-168" width="507" fontSize="13"/>-->
+<!--</mx:Module>-->
+</s:Module>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<betting:Betting xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" 
+				 xmlns:betting="com.amusement.HundredHappy.model.betting.*" 
+				 xmlns:betzone="com.amusement.HundredHappy.model.betzone.*"
+				 creationComplete="betting1_creationCompleteHandler(event)"
+				 height="166">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import spark.components.BorderContainer;
+			import spark.components.Label;
+			
+			protected function betting1_creationCompleteHandler(event:FlexEvent):void
+			{
+				_type = "zd";
+				
+				var bc:BorderContainer;
+				var label:Label;
+				for(var i:int = 1; i < 8; i ++){
+					bc = this.getChildByName("tou" + i) as BorderContainer;
+					if(bc){
+						bc.y = 93;
+					}
+					label = this.getChildByName("total" + i) as Label;
+					if(label){
+						label.y = 138;
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<betting:layout>
+		<s:BasicLayout/>
+	</betting:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+</betting:Betting>

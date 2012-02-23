@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 gap="3"
+		 creationComplete="group1_creationCompleteHandler(event)"
+		 xmlns:model="com.amusement.HundredHappy.model.*">
+<!--<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)"
+		 xmlns:model="com.amusement.HundredHappy.model.*">-->
+	<!--<s:layout>
+		<s:BasicLayout/>
+	</s:layout>-->
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.TurntablePanelControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new TurntablePanelControl(this);
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image x="-155" y="-580" source="@Embed(source='../assets/hh_refer.jpg')"/>-->
+	<model:Turntable id="tt1" name="tt001" roomName="001"/>
+	<model:Turntable id="tt2" name="tt002" roomName="002"/>
+	<model:Turntable id="tt3" name="tt003" roomName="003"/>
+	<model:Turntable id="tt4" name="tt004" roomName="004"/>
+<!--</s:Group>-->
+</s:HGroup>

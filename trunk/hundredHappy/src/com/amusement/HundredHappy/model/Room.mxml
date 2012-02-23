@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="422" height="279" 
+		 xmlns:model="com.amusement.HundredHappy.model.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.services.GameHallPanelService;
+			import com.control.GameRuleControl;
+			import com.control.MainSceneControl;
+			
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_01.png")]
+			private var _Room01:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_02.png")]
+			private var _Room02:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_03.png")]
+			private var _Room03:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_04.png")]
+			private var _Room04:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_word.png")]
+			private var _RoomWord:Class;
+			
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_betting.png")]
+			private var _Betable:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_unbetting.png")]
+			private var _Unbet:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_shuffling.png")]
+			private var _Shuffle:Class;
+			
+			[Bindable]
+			private var _RoomNameImg:Class;
+			[Bindable]
+			private var _BettingImg:Class;
+			
+			private var _historyMaxRow:int = 9;
+			private var _historyMaxColumn:int = 19;
+			private var _historySize:Number = 21.5;
+			
+			private var _historyCurrentRow:int = 0;
+			private var _historyCurrentColumn:int = 0;
+			
+			private var _roomName:String;
+			
+			protected function btnOpen_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				GameHallPanelService.instance.hideLimitList();
+				GameHallPanelService.instance.selectRoomNo = _roomName;
+				this.limitList.visible = true;
+//				MessageService.instance.enterRoom(this._roomName);
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				GameRuleControl.instance.show("hh", DisplayObject(MainSceneControl.instance.mainSceneApp));
+			}
+			
+			private function updateRoomNameImg(roomName:String):void{
+				switch(roomName){
+					case "001":
+						_RoomNameImg = _Room01;
+						break;
+					case "002":
+						_RoomNameImg = _Room02;
+						break;
+					case "003":
+						_RoomNameImg = _Room03;
+						break;
+					case "004":
+						_RoomNameImg = _Room04;
+						break;
+					default:
+						_RoomNameImg = _RoomWord;
+						break;
+				}
+			}
+			
+			public function setLimitList(arr:Array):void{
+				this.limitList.setLimits(arr);
+			}
+			
+			public function hideLimitList():void{
+				this.limitList.visible = false;
+			}
+			
+			public function setRoomState(state:int):void{
+				switch(state){
+					case 0:
+						_BettingImg = _Unbet;
+						shuffleImg.visible = false;
+						break;
+					case 1:
+						_BettingImg = _Betable;
+						shuffleImg.visible = false;
+						break;
+					case 2:
+						_BettingImg = _Shuffle;
+						shuffleImg.visible = true;
+						clearRecord();
+						break;
+				}
+			}
+			
+			public function updateCountdown(count:int):void{
+				var str:String = "00" + count.toString();
+				
+				countdownLabel.text = str.substr(-2);
+			}
+			
+			public function addHistory(str:String, type:int):void{
+				if(_historyCurrentRow == _historyMaxRow){
+					if(_historyCurrentColumn == _historyMaxColumn - 1){
+						return;
+					}
+					
+					_historyCurrentColumn ++;
+					_historyCurrentRow = 0;
+				}
+				
+				var history:HistoryBig = new HistoryBig(str, type);
+				this.shu.addElement(history);
+				history.x = _historyCurrentColumn * _historySize;
+				history.y = _historyCurrentRow * _historySize;
+				
+				_historyCurrentRow ++;
+			}
+			
+			public function clearRecord():void{
+				shu.removeAllElements();
+				
+				_historyCurrentColumn = 0;
+				_historyCurrentRow = 0;
+			}
+			
+			//-------------------------------------------------------------------
+			public function get roomName():String
+			{
+				return _roomName;
+			}
+
+			public function set roomName(value:String):void
+			{
+				_roomName = value;
+				
+				updateRoomNameImg(value);
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="0" y="0" source="@Embed(source='com/amusement/HundredHappy/assets/room/hh_room_bg.png')"/>
+	<s:Image horizontalCenter="-153" verticalCenter="-121" source="{_RoomNameImg}"/>
+	<s:Image right="84" verticalCenter="-121" source="{_BettingImg}"/>
+	<!--<mx:Image x="0" y="0" source="@Embed(source='com/amusement/HundredHappy/assets/room/hh_room_bg.png')"/>
+	<mx:Image x="8" y="11.5" width="67" height="16" source="{_RoomNameImg}"/>
+	<mx:Image x="88" y="11" width="101" height="17" source="{_BettingImg}"/>-->
+	<s:Label id="countdownLabel" right="29" verticalCenter="-121" text="00" fontSize="36" fontFamily="黑体" color="#FFD500"/>
+	<s:Group id="shu" horizontalCenter="2" verticalCenter="-4" width="410" height="196"/>
+	<!--<s:BorderContainer id="shu" y="36" horizontalCenter="0" width="260" height="131" backgroundImage="@Embed(source='../assets/room/hh_luzhu.png')" borderColor="#211A0F"/>-->
+	<s:Image id="shuffleImg" horizontalCenter="2" verticalCenter="-6" source="@Embed(source='../assets/room/hh_room_shuffle.jpg')" visible="false"/>
+	<!--<mx:Image id="shuffleImg" y="35.5" horizontalCenter="0" width="260" height="130" source="@Embed(source='com/amusement/HundredHappy/assets/room/hh_shuffle.png')" visible="false"/>-->
+	<model:LimitList id="limitList" verticalCenter="-7" horizontalCenter="0" visible="false"/>
+	<s:Button id="btnOpen" horizontalCenter="-95" bottom="8" click="btnOpen_clickHandler(event)"
+			  skinClass="com.skin.amusement.hall.HallEnterGameButtonSkin"/>
+	<s:Button horizontalCenter="95" bottom="8" click="button1_clickHandler(event)"
+			  skinClass="com.skin.amusement.hall.HallGameRuleButtonSkin"/>
+	<!--<mx:Button id="btnOpen" x="15" y="181" width="115" height="24"
+			   skin="@Embed(source='../assets/room/hh_enter_btn.png')" 
+			   downSkin="@Embed(source='../assets/room/hh_enter_down.png')" 
+			   overSkin="@Embed(source='../assets/room/hh_enter_over.png')"
+			   click="btnOpen_clickHandler(event)"/>
+	<mx:Button x="143" y="181" width="115" height="24"
+				skin="@Embed(source='../assets/room/hh_rule_btn.png')" 
+				downSkin="@Embed(source='../assets/room/hh_rule_down.png')" 
+				overSkin="@Embed(source='../assets/room/hh_rule_over.png')"
+				click="button1_clickHandler(event)"/>-->
+</s:Group>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="636" height="372" fontFamily="黑体" color="#000000" fontSize="12">
+	<!--<s:layout>
+		<s:BasicLayout/>
+	</s:layout>-->
+	<fx:Script>
+		<![CDATA[
+			import com.service.PlayerService;
+			import com.service.RemoteService;
+			
+			import mx.controls.Alert;
+			
+			public function linkbutton2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(event.currentTarget.label != ""){
+					System.setClipboard(event.currentTarget.label);
+					Alert.show("密碼複製成功！");
+				}
+			}
+			
+			public function downloadData(url:String, gameNo:String):void{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest(url));
+				RemoteService.instance.resourceService.recordBjlDownload(PlayerService.instance.player.acctName, gameNo, url);
+			}
+		]]>
+	</fx:Script>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		.dataGridheaderSytle{
+			font-size:14;
+			font-weight:bold;
+			color:#4F2F12;
+			text-align:center;
+		}
+	</fx:Style>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image id="bgImg" horizontalCenter="0" verticalCenter="0" source="@Embed(source='../assets/data/hh_data_bg.png')"/>
+	<!--<mx:Image id="bgImg" horizontalCenter="0" verticalCenter="0" source="@Embed(source='../assets/data/hh_data_bg.png')"/>-->
+	<s:Button id="closeBtn" right="15" top="6" skinClass="com.amusement.HundredHappy.skin.BaccaratDataCloseButtonSkin"/>
+	<!--<mx:Button id="closeBtn" top="10" right="15"
+			   skin="@Embed(source='../assets/data/hh_data_close_btn.png')"
+			   downSkin="@Embed(source='../assets/data/hh_data_close_down.png')"/>-->
+	<s:DataGrid id="dataGrid" horizontalCenter="0" verticalCenter="8" height="324" width="604" borderVisible="false" 
+				chromeColor="#967229" alternatingRowColors="[#54493C, #453B30]" skinClass="com.amusement.HundredHappy.skin.BaccaratDataGridSkin">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="局號" dataField="gameNo" width="120"/>
+				<s:GridColumn headerText="文件名" dataField="downloadUrl" width="160">
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								<mx:LinkButton horizontalCenter="0" verticalCenter="0" fontWeight="bold" label="{data.gameNo}" click="outerDocument.downloadData(data.downloadUrl, data.gameNo)"/>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="密碼" dataField="uncompressPwd">
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								<mx:LinkButton horizontalCenter="0" verticalCenter="0" fontWeight="bold" label="{data.uncompressPwd}" click="outerDocument.linkbutton2_clickHandler(event)"/>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<!--<mx:DataGrid id="dataGrid" horizontalCenter="0" verticalCenter="8" height="324" width="604" borderStyle="none" borderColor="#4F2F12"
+				 headerColors="[#F7E899, #967229]" headerStyleName="dataGridheaderSytle" 
+				 alternatingItemColors="[#54493C, #453B30]" selectionColor="#8C7962" rollOverColor="#594935" verticalGridLineColor="#4F2F12">
+		<mx:columns>
+			<mx:DataGridColumn headerText="局号" dataField="gameNo" width="120"/>
+			<mx:DataGridColumn headerText="文件名" dataField="downloadUrl">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:LinkButton label="{data.gameNo}" click="outerDocument.downloadData(data.downloadUrl)"/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+			<mx:DataGridColumn headerText="密码" dataField="uncompressPwd">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:LinkButton label="{data.uncompressPwd}" click="outerDocument.linkbutton2_clickHandler(event)"/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>-->
+</s:Group>

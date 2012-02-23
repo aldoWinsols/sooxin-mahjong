@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="410" height="196" xmlns:model="com.amusement.HundredHappy.model.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			public function setLimits(arr:Array):void{
+				var limit:Limit;
+				for(var i:int = 0; i < arr.length; i ++){
+					limit = new Limit();
+					this.list.addElement(limit);
+					limit.setLimitValue(arr[i].uperLimit, arr[i].lowerLimit);
+				}
+			}
+			
+			public function clearLLimits():void{
+				this.list.removeAllElements();
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image horizontalCenter="0" verticalCenter="0" source="@Embed(source='../assets/limit/hh_limit_bg.jpg')"/>
+	<!--<mx:Image x="0" y="0" source="@Embed(source='com/amusement/HundredHappy/assets/limit/hh_limit_bg.png')"/>-->
+	<s:Scroller horizontalCenter="23" verticalCenter="-1" width="360" height="193" horizontalScrollPolicy="off">
+		<s:VGroup id="list" x="0" y="0" width="344" gap="-1"/>
+	</s:Scroller>
+	<!--<mx:Canvas x="29" y="0" width="228" height="130">
+		<s:VGroup id="list" x="0" y="0" width="212" gap="-1"/>
+	</mx:Canvas>-->
+</s:Group>

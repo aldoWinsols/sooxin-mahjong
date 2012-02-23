@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<betting:Betting xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" 
+				 xmlns:betting="com.amusement.HundredHappy.model.betting.*" 
+				 xmlns:betzone="com.amusement.HundredHappy.model.betzone.*"
+				 creationComplete="betting1_creationCompleteHandler(event)"
+				 width="383" height="169">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import spark.core.SpriteVisualElement;
+
+			protected function betting1_creationCompleteHandler(event:FlexEvent):void
+			{
+				_type = "h";
+				
+				var a:Number = 180/180*Math.PI/0.01;
+				
+				var hitSp:SpriteVisualElement = new SpriteVisualElement();
+				hitSp.graphics.beginFill(0xff0000, 1);
+//				hitSp.graphics.lineTo(0,0);
+				for (var i:int = 0; i <= a; i ++) {
+					hitSp.graphics.curveTo(Math.cos((i-0.5)*0.01)*this.width/2, Math.sin((i-0.5)*0.01)*this.height, Math.cos(i*0.01)*this.width/2, Math.sin(i*0.01)*this.height);
+				}
+				hitSp.x = this.width/2;
+				this.addElement(hitSp);
+				
+				this.liveView.mask = hitSp;
+				
+				this.tou1.left = 15;//-55;
+				this.tou1.y = 5;
+				this.tou2.left = 45;//-25;
+				this.tou2.y = 65;
+				this.tou3.left = 100//30;
+				this.tou3.y = 100;
+				this.tou4.left = 175;//105;
+				this.tou4.y = 115;
+				this.tou5.left = 250;//180;
+				this.tou5.y = 100;
+				this.tou6.left = 305;//235;
+				this.tou6.y = 65;
+				this.tou7.left = 330;//260;
+				this.tou7.y = 5;
+				
+				this.total1.left = 15;//-55;
+				this.total1.y = 50;
+				this.total2.left = 45;//-25;
+				this.total2.y = 110;
+				this.total3.left = 100;//30;
+				this.total3.y = 145;
+				this.total4.left = 175;//105;
+				this.total4.y = 160;
+				this.total5.left = 250;//180;
+				this.total5.y = 145;
+				this.total6.left = 305;//235;
+				this.total6.y = 110;
+				this.total7.left = 330;//260;
+				this.total7.y = 50;
+			}
+
+		]]>
+	</fx:Script>
+	<betting:layout>
+		<s:BasicLayout/>
+	</betting:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+</betting:Betting>

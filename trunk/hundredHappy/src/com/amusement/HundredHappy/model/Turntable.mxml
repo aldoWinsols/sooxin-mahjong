@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ToggleButton xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				skinClass="com.amusement.HundredHappy.skin.BaccaratTurntableButtonSkin">
+<!--<mx:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx"
+		   width="20" height="21"
+		   skin="{_CurSkin}"
+		   click="button1_clickHandler(event)">	-->
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.services.DeskPanelService;
+			import com.amusement.HundredHappy.services.MessageService;
+			import com.amusement.HundredHappy.skin.BaccaratTurntableButtonSkin;
+			
+			import flash.events.Event;
+			import flash.events.MouseEvent;
+			
+			import mx.events.FlexEvent;
+			
+			/* [Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable1_def.png")]
+			private var _DefSkin1:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable2_def.png")]
+			private var _DefSkin2:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable3_def.png")]
+			private var _DefSkin3:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable4_def.png")]
+			private var _DefSkin4:Class;
+			
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable1_sel.png")]
+			private var _SelSkin1:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable2_sel.png")]
+			private var _SelSkin2:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable3_sel.png")]
+			private var _SelSkin3:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/turntable/hh_turntable4_sel.png")]
+			private var _SelSkin4:Class;
+			
+			private var _DefSkin:Class;
+			private var _SelSkin:Class;
+			
+			[Bindable]
+			private var _CurSkin:Class; */
+			
+			private var _roomName:String;
+			
+			override protected function buttonReleased():void
+			{
+				// TODO Auto Generated method stub
+//				super.buttonReleased();
+				
+				dispatchEvent(new Event(Event.CHANGE));
+			}
+			
+			override protected function clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto Generated method stub
+//				super.clickHandler(event);
+				
+				if(!this.selected && DeskPanelService.instance.selfHundredHappyPlayerService.getPlayerBetTotal() == 0){
+					MessageService.instance.changeRoom(this._roomName);
+				}
+			}
+			
+			/* protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(!this.selected && DeskPanelService.instance.selfHundredHappyPlayerService.getPlayerBetTotal() == 0){
+					MessageService.instance.changeRoom(this._roomName);
+				}
+			} */
+			
+			/* private function initSkin(roomName:String):void{
+				switch(roomName){
+					case "001":
+						_DefSkin = _DefSkin1;
+						_SelSkin = _SelSkin1;
+						break;
+					case "002":
+						_DefSkin = _DefSkin2;
+						_SelSkin = _SelSkin2;
+						break;
+					case "003":
+						_DefSkin = _DefSkin3;
+						_SelSkin = _SelSkin3;
+						break;
+					case "004":
+						_DefSkin = _DefSkin4;
+						_SelSkin = _SelSkin4;
+						break;
+				}
+				_CurSkin = _DefSkin;
+			} */
+
+			//----------------------------------- getter/setter function ------------------------------------
+			/* public override function set selected(value:Boolean):void
+			{
+				//TODO Auto-generated method stub
+				super.selected = value;
+				
+				if(selected){
+					_CurSkin = _SelSkin;
+				}else{
+					_CurSkin = _DefSkin;
+				}
+			} */
+			
+			public function get roomName():String
+			{
+				return _roomName;
+			}
+
+			public function set roomName(value:String):void
+			{
+				_roomName = value;
+				
+				if(this.skin && this.skin is BaccaratTurntableButtonSkin){
+					(this.skin as BaccaratTurntableButtonSkin).updateSkin(value);
+				}
+				
+//				initSkin(_roomName);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+<!--</mx:Button>-->
+</s:ToggleButton>

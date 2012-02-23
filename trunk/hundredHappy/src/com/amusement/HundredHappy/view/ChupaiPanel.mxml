@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)"
+		 width="755" height="265" 
+		 fontFamily="黑体" fontSize="32" color="#7D7041">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.ChupaiPanelControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new ChupaiPanelControl(this);
+			}
+
+		]]>
+	</fx:Script>
+	<!--<s:BorderContainer id="content" x="0" y="0" width="100%" height="100%" backgroundImage="@Embed(source='../assets/hh_chupai_bg.png')"/>-->
+	<s:Image x="0" y="0" source="@Embed(source='../assets/hh_chupai_bg.png')"/>
+	<!--<mx:Image x="0" y="0" source="@Embed(source='../assets/hh_chupai_bg.png')"/>-->
+	<s:Group id="content" x="0" width="755" height="165" bottom="0"/>
+	<!--<mx:VRule y="62" horizontalCenter="0" width="1" height="183"/>-->
+	<s:Label id="xValueTxt" y="21" text="0" horizontalCenter="-292"/>
+	<s:Label id="zValueTxt" y="21" text="0" horizontalCenter="324"/>
+</s:Group>

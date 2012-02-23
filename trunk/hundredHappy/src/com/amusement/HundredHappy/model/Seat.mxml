@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="74" height="28" color="#FFFFFF" textAlign="center"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Embed(source="com/amusement/HundredHappy/assets/seat/playerInfo.png")]
+			private var _PlayerInfo:Class;
+			[Embed(source="com/amusement/HundredHappy/assets/seat/myInfo.png")]
+			private var _MyInfo:Class;
+			
+			[Bindable]
+			private var _SeatBg:Class;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				_SeatBg = _PlayerInfo;
+			}
+			
+			public function reset():void{
+				_SeatBg = _PlayerInfo;
+			}
+			
+			public function setMyInfo():void{
+				_SeatBg = _MyInfo;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" verticalCenter="0" source="../assets/seat/myInfo.png"/>-->
+	<s:Image horizontalCenter="0" verticalCenter="0" source="{_SeatBg}"/>
+	<!--<mx:Image x="0" y="0" source="{_SeatBg}"/>-->
+	<s:Label id="playerName" horizontalCenter="0" y="1.65" height="12" text="" verticalAlign="middle"/>
+	<s:Label id="currentPoint" horizontalCenter="0" y="15.65" height="12" text="" fontSize="13" verticalAlign="middle"/>
+</s:Group>

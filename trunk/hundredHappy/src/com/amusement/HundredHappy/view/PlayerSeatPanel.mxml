@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="1024" height="768" 
+		 xmlns:model="com.amusement.HundredHappy.model.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.PlayerSeatPanelControl;
+			
+			import mx.events.FlexEvent;
+			
+
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new PlayerSeatPanelControl(this);
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" bottom="0" source="@Embed(source='../assets/desk/hh_desk_red.jpg')"/>-->
+	<model:Seat id="seat7" y="211.05" horizontalCenter="237" name="seat7"/>
+	<model:Seat id="seat1" y="211.05" horizontalCenter="-237" name="seat1"/>
+	<model:Seat id="seat6" y="300.2" horizontalCenter="193" name="seat6"/>
+	<model:Seat id="seat2" y="300.2" horizontalCenter="-193" name="seat2"/>
+	<model:Seat id="seat5" y="364.6" horizontalCenter="105" name="seat5"/>
+	<model:Seat id="seat3" y="364.6" horizontalCenter="-105" name="seat3"/>
+	<model:Seat id="seat4" horizontalCenter="0" y="385.9" name="seat4"/>
+</s:Group>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="init()"
+		 width="1024"
+		 height="156">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.HundredHappy.control.HistoryPanelControl;
+
+			private function init():void
+			{
+				new HistoryPanelControl(this);
+			}
+		]]>
+	</fx:Script>
+	<s:Group id="shu" x="16" y="11" width="453" height="130"/>
+	<s:Group id="heng" x="469" y="11" width="544" height="130"/>
+	<!--<s:BorderContainer id="shu" 
+					   x="16"  y="15" width="454"  height="138"
+					   backgroundColor="#544242" borderVisible="false" backgroundAlpha="0.0"/>
+	<s:BorderContainer id="heng" 
+					   x="468.6" y="14" width="544" height="140"
+					   backgroundColor="#544242" borderVisible="false" backgroundAlpha="0.0"/>-->
+</s:Group>
