@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   minWidth="1024" minHeight="768" applicationDPI="160"
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import parts.BezierCurve;
+			import parts.DragPoint;
+			import parts.Marker;
+			
+			import spark.components.Group;
+			
+			private var canvas:Group;
+			private var marker:Marker;
+			private var points:Array;
+			static private const CURVE_NUMBER:uint = 500;
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				canvas = new Group();
+				addElement(canvas);
+				
+				// TODO Auto-generated method stub
+				points = [];
+				addPoint(50, 50);
+				addPoint(400, 50);
+				addPoint(50, 310);
+				addPoint(400, 310);
+				//position marker
+				marker = new Marker();
+				addElement(marker);
+				//listeners
+				addEventListener(Event.ENTER_FRAME, loop);
+				this.addEventListener(MouseEvent.CLICK, mouseHandler);
+			}
+			
+			private function addPoint(xpos:Number, ypos:Number):void
+			{
+				if (points.length<20)
+				{
+					var dp:DragPoint = new DragPoint(this);
+					dp.x = xpos;
+					dp.y = ypos;
+					points.push(addElement(dp));
+				}
+			}
+			
+			public function removePoint(dg:DragPoint):void
+			{
+				var len:uint = points.length;
+				if (len>2)
+				{
+					removeChild(dg);
+					var i:uint = 0;
+					while (i<len)
+					{
+						if (dg==points[++i])
+						{
+							points.splice(i, 1);
+							i = len;
+						}
+					}
+				}
+				else
+					dg.y = stage.stageHeight-40;
+			}
+			
+			private function loop(event:Event):void
+			{
+				var len:uint = points.length;
+				var p:Point;
+				canvas.graphics.clear();
+				//line
+				//			if (cbLine.selected)
+				//			{
+				canvas.graphics.lineStyle(0, 0x990000);
+				canvas.graphics.moveTo(points[0].x, points[0].y);
+				for (var i:uint=1;i<len;i++)
+					canvas.graphics.lineTo(points[i].x, points[i].y);
+				//			}
+				//curve
+				canvas.graphics.lineStyle(3, 0x000000, 1, false, "normal", CapsStyle.SQUARE);
+				canvas.graphics.moveTo(points[0].x, points[0].y);
+				var t:Number = 1/CURVE_NUMBER;
+				var index:uint = 0;
+				while (t<1)
+				{
+					p = BezierCurve.getPoint(t, points);
+					canvas.graphics.lineTo(p.x, p.y);
+					t += 1/CURVE_NUMBER;
+				}
+				canvas.graphics.lineTo(points[len-1].x, points[len-1].y);
+				//show points?
+				for each (var dg:DragPoint in points)
+				//				dg.visible = cbPoints.selected;
+				//marker
+				addElement(marker);
+				//			p = BezierCurve.getPoint(1-vsPosition.value, points);
+				marker.x = p.x;
+				marker.y = p.y;
+				//			lbPosition.text = (1-vsPosition.value).toFixed(2);
+			}
+			
+			private function mouseHandler(event:MouseEvent):void
+			{
+//				if (event.target==stage)
+					addPoint(event.stageX, event.stageY);
+			}
+			
+		]]>
+	</fx:Script>
+</s:Application>

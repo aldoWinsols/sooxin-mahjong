@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   minWidth="1024" minHeight="768" applicationDPI="160"
+			   creationComplete="application1_creationCompleteHandler(event)" backgroundColor="#000000">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			private var array:Array = new Array();
+			private var num:Number = new Number();
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.frameRate = 60;
+				
+				this.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);                
+				this.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				this.graphics.lineStyle(1, 0x00ff00); 
+			}
+			
+			public function onMouseDown(event:MouseEvent):void
+			{                                                
+				array.push(mouseX, mouseY);
+				wutai.graphics.lineStyle(3, 0xff0000); 
+				wutai.graphics.moveTo(mouseX, mouseY);
+				this.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);                        
+			}
+			
+			public function onMouseMove(event:MouseEvent):void
+			{                                                                        
+				array.push(event.stageX, event.stageY);
+				wutai.graphics.lineStyle(3, 0xff0000); 
+				wutai.graphics.moveTo(event.stageX, event.stageY);
+				wutai.graphics.curveTo(mouseX, mouseY,50,50);
+			}
+			
+			public function onMouseUp(event:MouseEvent):void
+			{                        
+				this.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);                        
+				addEventListener(Event.ENTER_FRAME, onEnterFrame);                        
+			}
+			
+			
+			var lastX:Number;
+			var lastY:Number;
+			public function onEnterFrame(event:Event):void
+			{                         
+				lastX = ball.x;
+				lastY = ball.y;
+				
+				ball.x = array[num++];
+				ball.y = array[num++];
+				
+				trace((ball.x-lastX)/(ball.y-lastY));
+				trace(Math.round(Math.atan((ball.x-lastX)/(ball.y-lastY))* 180 / Math.PI))
+				
+				ball.rotationZ = 90 + Math.round(Math.atan2((ball.y-lastY),(ball.x-lastX)) * 180 / Math.PI);
+				
+				if(num >= array.length)
+				{
+					removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="76" y="427" id="ball" source="daodan.png"/>
+	<s:Group id="wutai" width="1024" height="768">
+		
+	</s:Group>
+</s:Application>
