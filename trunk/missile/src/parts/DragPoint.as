@@ -46,8 +46,13 @@ package parts
 		private function init():void
 		{
 			graphics.beginFill(0x990000);
-			graphics.drawCircle(0, 0, 5);
+			graphics.drawCircle(0, 0, 20);
 			addEventListener(MouseEvent.MOUSE_DOWN, mouseHandler);
+			addEventListener(MouseEvent.DOUBLE_CLICK,doubleClickHandler);
+		}
+		
+		private function doubleClickHandler(e:MouseEvent):void{
+			BezierCurveViewer.instance.removePoint(this);
 		}
 		
 		private function mouseHandler(event:MouseEvent):void

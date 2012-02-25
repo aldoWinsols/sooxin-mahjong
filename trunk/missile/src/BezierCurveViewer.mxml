@@ -16,32 +16,31 @@
 			
 			import spark.components.Group;
 			
-			private var canvas:Group;
 			private var marker:Marker;
 			private var points:Array;
 			static private const CURVE_NUMBER:uint = 500;
+			
+			public static var instance:BezierCurveViewer;
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
-				canvas = new Group();
-				addElement(canvas);
+				instance = this;
+				
+				this.doubleClickEnabled = true;
 				
 				// TODO Auto-generated method stub
 				points = [];
 				addPoint(50, 50);
-				addPoint(400, 50);
-				addPoint(50, 310);
-				addPoint(400, 310);
 				//position marker
 				marker = new Marker();
 				addElement(marker);
 				//listeners
 				addEventListener(Event.ENTER_FRAME, loop);
-				this.addEventListener(MouseEvent.CLICK, mouseHandler);
+				addDian.addEventListener(MouseEvent.CLICK, mouseHandler);
 			}
 			
 			private function addPoint(xpos:Number, ypos:Number):void
 			{
-				if (points.length<20)
+				if (points.length<200)
 				{
 					var dp:DragPoint = new DragPoint(this);
 					dp.x = xpos;
@@ -55,7 +54,7 @@
 				var len:uint = points.length;
 				if (len>2)
 				{
-					removeChild(dg);
+					removeElement(dg);
 					var i:uint = 0;
 					while (i<len)
 					{
@@ -74,27 +73,27 @@
 			{
 				var len:uint = points.length;
 				var p:Point;
-				canvas.graphics.clear();
+				miaoDian.graphics.clear();
 				//line
 				//			if (cbLine.selected)
 				//			{
-				canvas.graphics.lineStyle(0, 0x990000);
-				canvas.graphics.moveTo(points[0].x, points[0].y);
+				miaoDian.graphics.lineStyle(0, 0x990000);
+				miaoDian.graphics.moveTo(points[0].x, points[0].y);
 				for (var i:uint=1;i<len;i++)
-					canvas.graphics.lineTo(points[i].x, points[i].y);
+					miaoDian.graphics.lineTo(points[i].x, points[i].y);
 				//			}
 				//curve
-				canvas.graphics.lineStyle(3, 0x000000, 1, false, "normal", CapsStyle.SQUARE);
-				canvas.graphics.moveTo(points[0].x, points[0].y);
+				miaoDian.graphics.lineStyle(3, 0x000000, 1, false, "normal", CapsStyle.SQUARE);
+				miaoDian.graphics.moveTo(points[0].x, points[0].y);
 				var t:Number = 1/CURVE_NUMBER;
 				var index:uint = 0;
 				while (t<1)
 				{
 					p = BezierCurve.getPoint(t, points);
-					canvas.graphics.lineTo(p.x, p.y);
+					miaoDian.graphics.lineTo(p.x, p.y);
 					t += 1/CURVE_NUMBER;
 				}
-				canvas.graphics.lineTo(points[len-1].x, points[len-1].y);
+				miaoDian.graphics.lineTo(points[len-1].x, points[len-1].y);
 				//show points?
 				for each (var dg:DragPoint in points)
 				//				dg.visible = cbPoints.selected;
@@ -108,10 +107,16 @@
 			
 			private function mouseHandler(event:MouseEvent):void
 			{
-//				if (event.target==stage)
 					addPoint(event.stageX, event.stageY);
 			}
 			
 		]]>
 	</fx:Script>
+	<s:Group id="miaoDian" width="768" height="1024">
+		
+	</s:Group>
+	
+	<s:Group id="addDian" width="768" height="1024">
+		
+	</s:Group>
 </s:Application>
