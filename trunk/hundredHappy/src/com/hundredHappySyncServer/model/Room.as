@@ -1,6 +1,9 @@
 package com.hundredHappySyncServer.model
 {
 	import com.hundredHappySyncServer.services.SubRoomService;
+	import com.hundredHappySyncServer.util.Util;
+	
+	import flash.net.dns.AAAARecord;
 
 	public class Room
 	{
@@ -9,10 +12,10 @@ package com.hundredHappySyncServer.model
 		
 		public var subRoomServices:Vector.<SubRoomService> = null;				//所有子房间
 		public var pokers:Vector.<Poker> = null;							//房间里的扑克牌
-		public var historyRecord.<Record> = null;				//本桌在没有重新洗牌的情况下的每一局记录集合
+		public var historyRecord:Vector.<Record> = null;				//本桌在没有重新洗牌的情况下的每一局记录集合
 		
-		public var xPokers:Vector.<Poker> = null;					//闲家牌
 		public var xNum:int = 0;										//闲家点数
+		public var xPokers:Vector.<Poker> = null;					//闲家牌
 		
 		public var zPokers:Vector.<Poker> = null;					//庄家牌
 		public var zNum:int = 0;										//庄家点数
@@ -27,7 +30,7 @@ package com.hundredHappySyncServer.model
 		public var isBetting:Boolean = true;							//是否可以下注
 		
 		public var shuffleTimer:int = 120;								//洗牌时间
-		public var bettingTimer:int = 45;								//下注时间
+		public var bettingTimer:int = 30;								//下注时间
 		
 		public var shuffleStr:String = "";								// g 2011-6-1 9:25   保存洗牌的数组字符串
 		
@@ -38,6 +41,24 @@ package com.hundredHappySyncServer.model
 		public var totalHT:int = 0;									//总的和下注
 		public function Room()
 		{
+			historyRecord = new Vector.<Record>();
+			//---------------------------------------------
+			//一桌有8副牌
+			pokers = new Vector.<Poker>();
+			var i:int = 0;
+			for (i = 0; i < 8; i++) {
+				pokers = pokers.concat(Util.instance.pokers);
+//				pokers.push(Util.instance.pokers);
+			}
+			//----------------------------------------------
+			
+			zPokers = new Vector.<Poker>();
+			xPokers = new Vector.<Poker>();
+			
+			subRoomServices = new Vector.<SubRoomService>();
+			
+			timers = int(Math.round(Math.random() * 20) + 20);
+			roomType = 1;
 		}
 	}
 }

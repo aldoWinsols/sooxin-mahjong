@@ -4,8 +4,10 @@ package com.hundredHappySyncServer.model
 	{
 		public var sort:String = "";
 		public var value:int = 0;
-		public function Poker()
+		public function Poker(sort:String, value:int)
 		{
+			this.sort = sort;
+			this.value = value;
 		}
 	}
 }
