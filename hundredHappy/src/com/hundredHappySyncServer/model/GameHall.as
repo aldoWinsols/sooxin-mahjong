@@ -7,6 +7,9 @@ package com.hundredHappySyncServer.model
 	{
 		public var playerServices:Vector.<PlayerService> = null;
 		public var roomServices:Vector.<RoomService> = null;
+		
+		public var timerNum:Number = 0;
+		
 		public function GameHall()
 		{
 			playerServices = new Vector.<PlayerService>();

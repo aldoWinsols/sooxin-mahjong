@@ -1,5 +1,7 @@
 package com.hundredHappySyncServer.services
 {
+	import com.amusement.HundredHappy.services.MessageService;
+	import com.hundredHappySyncServer.model.Player;
 	import com.hundredHappySyncServer.model.Poker;
 	import com.hundredHappySyncServer.model.Record;
 	import com.hundredHappySyncServer.model.SubRoom;
@@ -17,7 +19,7 @@ package com.hundredHappySyncServer.services
 		 * @param playerService
 		 */
 		public function addPlayerService(playerService:PlayerService):void{
-//			if(playerService.getClass().getSimpleName().equals("AndroidService")){
+			if(playerService.player.playerType == Player.ANDROID){
 				this.subRoom.playerServices.push(playerService);
 				playerService.subRoomService = this; 
 				
@@ -25,13 +27,9 @@ package com.hundredHappySyncServer.services
 				//----------------------------------------------------
 //				addObserver(playerService);
 				//-----------------------------------------------------
-				playerService.player().game = true;
-				
-				
-				playerAddRoomI(playerService);
-				
+				playerService.player.game = true;
 				return;
-//			}
+			}
 			var lastPlayerService:PlayerService = getPlayerServiceByPlayerName(playerService.player.playerName);
 			//		if(lastPlayerService != null){
 			//			lastPlayerService.player.setIserver(playerService.player.getIserver());
@@ -45,7 +43,7 @@ package com.hundredHappySyncServer.services
 			//			addObserver(playerService);
 			//			//-----------------------------------------------------
 			//		}
-			if(playerService.player().game){
+			if(playerService.player.game){
 				return;
 			}
 			
@@ -53,30 +51,31 @@ package com.hundredHappySyncServer.services
 			
 				this.subRoom.playerServices.push(playerService);
 				playerService.subRoomService = this; 
-				playerService.player().haveMoney = 10000;
-				playerService.player().authz = this.getSeatNum(); // 获得方位
+				playerService.player.haveMoney = 10000;
+				playerService.player.authz = getSeatNum(); // 获得方位
 				//----------------------------------------------------
 //				addObserver(playerService);
 				//-----------------------------------------------------
-				playerService.player().game = true;
-//				ArrayList<Object> list = new ArrayList<Object>();
-//				list.add(getAllPlayerInfo());		//当前所有玩家信息
-//				list.add(roomService.getRoom().getHistoryRecord());		//当前台桌的历史记录
-//				list.add(roomService.getRoom().getRoomNo());	//房间编号
-//				list.add(roomService.getRoom().getGameNo() + "-" + (roomService.getRoom().getHistoryRecord().size() + 1));//房间局号
+				playerService.player.game = true;
+//				var list:Vector.<Object> = new Vector.<Object>();
+//				list.push(getAllPlayerInfo());		//当前所有玩家信息
+//				list.push(roomService.room.historyRecord);		//当前台桌的历史记录
+//				list.push(roomService.room.roomNo);	//房间编号
+//				list.push(roomService.room.gameNo + "-" + (roomService.room.historyRecord.length + 1));//房间局号
 //				// 2011-5-19 11:01 如果房间倒计时小于5并且当前状态是可下注状态就改为0（不可下注状态），否则就是正常的
-//				int type = roomService.getRoom().getTimers() <= 5 && roomService.getRoom().getRoomType() == 1 ? 0 : roomService.getRoom().getRoomType(); 
-//				list.add(type);	//房间类型
-//				list.add(playerService.player.getChipGroupItem().getUperLimit());	//玩家上限
-//				list.add(playerService.player.getChipGroupItem().getLowerLimit());	//和下限
-//				list.add(roomService.getRoom().getHundredHappDeskDefinition().getMaxZhuangXianMoney());	//当前台桌的限红
-//				list.add(playerService.player.getChipGroupItem().getChips());			//玩家有多少筹码
-//				playerService.enterRoom(list);
+				var type:int = roomService.room.timers <= 5 && roomService.room.roomType == 1 ? 0 : roomService.room.roomType; 
+//				list.push(type);	//房间类型
+//				list.push(100000);	//玩家上限
+//				list.push(5);	//和下限
+//				list.push(20000000);	//当前台桌的限红
+//				list.push("5,10,20,50,100,500,");			//玩家有多少筹码
+				playerService.enterRoom(getAllPlayerInfo(), roomService.room.historyRecord, roomService.room.roomNo, roomService.room.gameNo + "-" + (roomService.room.historyRecord.length + 1), 
+					type, 100000, 5, 20000000, "100,200,500,1000,10000,");
 //				
 //				playerAddRoomI(playerService);
 				
 				// g 2011-6-23 10:20  玩家进入游戏，发送当前房间的所有玩家的下注情况到客户端
-//				roomService.allPlayerBetting();
+				roomService.allPlayerBetting();
 			}
 			
 		}
@@ -92,6 +91,8 @@ package com.hundredHappySyncServer.services
 //			}
 //			setChanged();
 //			notifyObservers(message);
+			
+			MessageService.instance.stateI(roomService.room.roomType);
 		}
 		/**
 		 * 清楚房间所有用户的下注金额
@@ -109,37 +110,28 @@ package com.hundredHappySyncServer.services
 		 */
 		public function exitRoom(playerName:String):Boolean{
 			var bool:Boolean = false;
+			var isOnlinePlayer:Boolean = false;
 			var playername:String = "";
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				if(subRoom.playerServices[i].player.layerName == playerName){
-					if(subRoom.playerServices[i].checkIsBetting()){
-						subRoom.playerServices[i].clearAllData();
-						playername = subRoom.playerServices[i].player.playerName;
-//						GameHallService.getInstance().getRemoteService().getUserService().enterGame(playername, OnlineStatus.OFF_LINE);
-						//删除观察者
-//						this.deleteObserver(subRoom.playerServices[i]);
-//						//删除玩家
-//						this.subRoom.getPlayerServices().remove(i);
-						
-					}else{
-						//发送阻止消息， “你已经下注，不能退出”
-						subRoom.playerServices[i].showDeterResult("你已经下注，不能退出");
-					}
-					
+				if(subRoom.playerServices[i].player.playerName == playerName){
+					subRoom.playerServices[i].clearAllData();
+					playername = subRoom.playerServices[i].player.playerName;
+
+//					//删除玩家
+					this.subRoom.playerServices.splice(i, 1);;
+					break;
+				}
+				if(subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					isOnlinePlayer = true;
 				}
 			}
 			
 			if(!playername == ""){
 				bool = true;
-				
-				//------------------------------------------------------
-				
-//				message.setHead("exitRoomI");
-//				message.setContent(playerName);
-//				
-//				setChanged();
-//				notifyObservers(message);
+				if(isOnlinePlayer){				
+					MessageService.instance.exitRoomI(playername);
+				}
 			}
 			
 			return bool;
@@ -150,10 +142,7 @@ package com.hundredHappySyncServer.services
 		 * @param str
 		 */
 		public function sendAllPlayerBetting(str:String):void{
-//			message.setHead("allPlayerBettingI");
-//			message.setContent(str);
-//			setChanged();
-//			notifyObservers(message);
+			MessageService.instance.allPlayerBettingI(str);
 		}
 		
 //		/**
@@ -183,18 +172,24 @@ package com.hundredHappySyncServer.services
 		public function playerBetting(playerName:String,zdT:int, xdT:int, zT:int, xT:int, hT:int):void{
 //			message.setHead("playerBettingI");
 			var bool:Boolean = false;
+			var isOnlinePlayer:Boolean = false;
 			var i:int = 0;
+			var betting:String = "";
 			for(i=0; i<this.subRoom.playerServices.length; i++){
 				if(subRoom.playerServices[i].player.playerName == playerName && 
 					subRoom.playerServices[i].checkBetMoney(zdT, xdT, zT, xT, hT)){
 					subRoom.playerServices[i].updateBetting(zdT, xdT, zT, xT, hT);
-//					message.setContent(subRoom.playerServices[i].getBettingToString());
+					betting = subRoom.playerServices[i].getBettingToString();
 					bool = true;
+				}
+				if(subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					isOnlinePlayer = true;
 				}
 			}
 			if(bool){
-//				setChanged();
-//				notifyObservers(message);
+				if(isOnlinePlayer){				
+					MessageService.instance.playerBettingI(betting);
+				}
 			}
 		}
 		
@@ -261,7 +256,9 @@ package com.hundredHappySyncServer.services
 		public function dispensePokers(xPokers:Vector.<Poker>, zPokers:Vector.<Poker>):void{
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				this.subRoom.playerServices[i].dispensePokers(xPokers,zPokers);
+				if(this.subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					this.subRoom.playerServices[i].dispensePokers(xPokers,zPokers);
+				}
 			}
 			
 		}
@@ -277,7 +274,9 @@ package com.hundredHappySyncServer.services
 			}
 			i = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				this.subRoom.playerServices[i].sendGameResult(record);
+				if(this.subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					this.subRoom.playerServices[i].sendGameResult(record);
+				}
 			}
 		}
 		
@@ -290,7 +289,7 @@ package com.hundredHappySyncServer.services
 			var playerService:PlayerService = null;
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				if(subRoom.playerServices[i].player.playerName == (playerName){
+				if(subRoom.playerServices[i].player.playerName == playerName){
 					playerService = subRoom.playerServices[i];
 					break;
 				}
@@ -307,7 +306,7 @@ package com.hundredHappySyncServer.services
 			var playerService:PlayerService = null;
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				if(subRoom.playerServices[i].player.playerName == (playerName){
+				if(subRoom.playerServices[i].player.playerName == playerName){
 					playerService = subRoom.playerServices[i];
 					subRoom.playerServices.splice(i, 1);
 					break;
@@ -317,10 +316,12 @@ package com.hundredHappySyncServer.services
 			return playerService;
 		}
 		
-		public function countDownI(num:int){
+		public function countDownI(num:int):void{
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				subRoom.playerServices[i].countDown(num);
+				if(this.subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					subRoom.playerServices[i].countDown(num);
+				}
 			}
 		}
 	}

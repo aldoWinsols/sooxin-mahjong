@@ -1,8 +1,12 @@
 package com.hundredHappySyncServer.services
 {
-	import com.amusement.HundredHappy.model.poker.Poker;
+	import com.amusement.HundredHappy.services.MessageService;
 	import com.hundredHappySyncServer.model.Player;
+	import com.hundredHappySyncServer.model.Poker;
 	import com.hundredHappySyncServer.model.Record;
+	import com.hundredHappySyncServer.util.Util;
+	
+	import flash.net.dns.AAAARecord;
 
 	public class PlayerService
 	{
@@ -73,7 +77,7 @@ package com.hundredHappySyncServer.services
 		 * @return
 		 */
 		public function getBettingToString():String{
-			return player.playerName + "," + player.zdT + "," + player.xdT + "," + player.zT + "," + player.xT( + "," + player.hT+","+player.haveMoney;
+			return player.playerName + "," + player.zdT + "," + player.xdT + "," + player.zT + "," + player.xT + "," + player.hT + "," + player.haveMoney;
 		}
 		
 		/**
@@ -86,18 +90,18 @@ package com.hundredHappySyncServer.services
 			var resultStr:String = "";
 			resultStr += "闲牌： ";
 			var i:int = 0;
-			for (i = 0; i < subRoomService.getRoomService().getRoom().getxPokers().size(); i++) {
+			for (i = 0; i < subRoomService.roomService.room.xPokers.length; i++) {
 				// g 2011-5-26  10:31  添加的牌的花色
-				resultStr += subRoomService.getRoomService().getRoom().getxPokers().get(i).getSort() + 
-					subRoomService.getRoomService().getRoom().getxPokers().get(i).getValue() + ",";
+				resultStr += subRoomService.roomService.room.xPokers[i].sort + 
+					subRoomService.roomService.room.xPokers[i].value + ",";
 			}
 			
 			resultStr += "庄牌： ";
 			i = 0;
-			for (i = 0; i < subRoomService.getRoomService().getRoom().getzPokers().size(); i++) {
+			for (i = 0; i < subRoomService.roomService.room.zPokers.length; i++) {
 				// g 2011-5-26  10:31  添加的牌的花色
-				resultStr += subRoomService.getRoomService().getRoom().getzPokers().get(i).getSort() + 
-					subRoomService.getRoomService().getRoom().getzPokers().get(i).getValue() + ",";
+				resultStr += subRoomService.roomService.room.zPokers[i].sort + 
+					subRoomService.roomService.room.zPokers[i].value + ",";
 			}
 			
 			if(record.result == "x"){			//结果   “闲”
@@ -112,7 +116,7 @@ package com.hundredHappySyncServer.services
 				notZhuangMoney -= player.hT;
 			}else{										//结果  “和”
 				resultStr += "开局结果：和";
-				notZhuangMoney += player.hT() * 7;
+				notZhuangMoney += player.hT * 7;
 			}
 			
 			if(record.type == 1){					//结果   “闲对”
@@ -135,20 +139,41 @@ package com.hundredHappySyncServer.services
 				+ ",  闲对   " + player.xdT + ",  庄对   " + player.zdT;
 			
 			resultStr += ", " + content;
-			
+			balance(zhuangMoney, notZhuangMoney);
 			clearBetting();
+		}
+		
+		private function balance(zhuangMoney:Number, notZhuangMoney:Number):void{
+			player.winOrlose = 0;
+			if(zhuangMoney > 0){
+				zhuangMoney = zhuangMoney * 0.95;
+				player.winOrlose = zhuangMoney - notZhuangMoney;
+			}else{
+				player.winOrlose = notZhuangMoney + zhuangMoney;
+			}
+			player.haveMoney += player.betMoney;
+			player.haveMoney += player.winOrlose;
 		}
 		
 		/**
 		 * 连接游戏
 		 */
 		public function enterGame():void{
-			//		sendPlayerLimits();
-			
-//			message.setHead("enterGameI");
-//			
-//			message.setContent(GameHallService.getInstance().getRooms());
+//			sendPlayerLimits();
+			if(Player.ANDROID){
+				return;
+			}
+			MessageService.instance.enterGameI(GameHallService.instance.getRooms());
+		}
+		
+		/**
+		 * 发送玩家限制信息
+		 */
+		private function sendPlayerLimits():void{
+//			message.setHead("playerLimitI");
+//			message.setContent(player.getChipGroupItems());
 //			MessageService.instance.send(player.getIserver(), message);
+			
 		}
 		
 		/**
@@ -156,9 +181,6 @@ package com.hundredHappySyncServer.services
 		 * @param str
 		 */
 		public function exitGame(str:String):void{
-//			message.setHead("exitGameI");
-//			message.setContent(str);
-//			MessageService.instance.send(player.getIserver(), message);
 		}
 		
 		/**
@@ -166,20 +188,15 @@ package com.hundredHappySyncServer.services
 		 * @param str
 		 */
 		public function exitRoom(str:String):void{
-//			message.setHead("exitRoomI");
-//			message.setContent(str);
-//			MessageService.instance.send(player.getIserver(), message);
+			MessageService.instance.exitRoomI(str);
 		}
 		
 		/**
 		 * 进入房间显示历史记录
 		 * @param history
 		 */
-		public function enterRoom(obj:Object):void{
-//			message.setHead("enterRoomI");
-//			
-//			message.setContent(obj);
-//			MessageService.instance.send(player.getIserver(), message);
+		public function enterRoom(players:Vector.<String>, historys:Vector.<Record>, deskNo:String, gameNo:String, state:int, limitHong:Number, max:Number, min:Number, valuesStr:String):void{
+			MessageService.instance.enterRoomI(players, historys, deskNo, gameNo, state, limitHong, max, min, valuesStr);
 		}
 		
 		/**
@@ -187,10 +204,8 @@ package com.hundredHappySyncServer.services
 		 * @param xPokers
 		 * @param zPokers
 		 */
-		public function dispensePokers(xPokers:Vector.<Poker>, zPokersVector.<Poker>):void{
-//			message.setHead("dispensePokersI");
-//			message.setContent(Util.changePokersToString(xPokers)+";"+Util.changePokersToString(zPokers));
-//			MessageService.instance.send(player.getIserver(), message);
+		public function dispensePokers(xPokers:Vector.<Poker>, zPokers:Vector.<Poker>):void{
+			MessageService.instance.dispensePokersI(Util.instance.changePokersToString(xPokers)+";"+Util.instance.changePokersToString(zPokers));
 		}
 
 		/**
@@ -198,8 +213,8 @@ package com.hundredHappySyncServer.services
 		 * @param roomNo	房间编号
 		 * @param type		0：不在洗牌中  1:下注状态  2： 在洗牌中
 		 */
-		public function gameHallState(roomNo:String, type:String):void{
-			
+		public function gameHallState(roomNo:String, type:int):void{
+			MessageService.instance.gameHallStateI(roomNo + "," + type);
 		}
 	
 		/**
@@ -207,29 +222,17 @@ package com.hundredHappySyncServer.services
 		 * @param record
 		 */
 		public function gameResult(record:Record):void{
-//			double lastMoney = player.getHaveMoney() + player.getBetMoney();
-//			if(player.getBetMoney() > 0){ 
-//				settlement(record);
-//			}
-			
+			settlement(record);
 		}
 
 		/**
 		 * 发送输赢结果   g 2011-5-24 13:58
 		 */
-		public function sendGameResult(record:Record){
-//			ArrayList<Object> list = new ArrayList<Object>();
-//			list.add(record);
-//			list.add(subRoomService.getAllPlayerMoney());
-//			list.add(subRoomService.getRoomService().getRoom().getGameNo() + "-" 
-//				+ (subRoomService.getRoomService().getRoom().getHistoryRecord().size() + 1));
-//			list.add(new BigDecimal(player.getWinOrlose()).setScale(1, BigDecimal.ROUND_HALF_UP));
-//			message.setHead("gameResultI");
-//			message.setContent(list);
-//			MessageService.instance.send(player.getIserver(), message);
-//			player.setWinOrlose(0);
-//			// 2011-7-14 15:28 g
-//			GameHallService.instance.connectionSqlServer(this);
+		public function sendGameResult(record:Record):void{
+			var list:Vector.<Object> = new Vector.<Object>();
+			var nextGameNo:String = subRoomService.roomService.room.gameNo + "-" 
+				+ (subRoomService.roomService.room.historyRecord.length + 1);
+			MessageService.instance.gameResultI(record.result,record.type, subRoomService.getAllPlayerMoney(),nextGameNo, player.winOrlose);
 		}
 	
 		/**
@@ -238,9 +241,7 @@ package com.hundredHappySyncServer.services
 		 * @param res
 		 */
 		public function hallGameResult(roomNo:String, record:Record):void{
-//			message.setHead("hallGameResultI");
-//			message.setContent(roomNo+","+record.getResult() + "," + record.getType());
-//			MessageService.instance.send(player.getIserver(), message);
+			MessageService.instance.hallGameResultI(roomNo+","+record.result + "," + record.type);
 		}
 
 		/**
@@ -263,9 +264,7 @@ package com.hundredHappySyncServer.services
 		}
 
 		public function countDown(num:int):void{ 
-//			message.setHead("countDownI");
-//			message.setContent(num);
-//			MessageService.instance.send(this.player.getIserver(), message);
+			MessageService.instance.countDownI(num);
 		}
 
 		/**
@@ -273,9 +272,7 @@ package com.hundredHappySyncServer.services
 		 * @param timer
 		 */
 		public function roomTimer( roomNo:String, timer:int):void{
-//			message.setHead("gameHallCountdownI");
-//			message.setContent(roomNo + "," + timer);
-//			MessageService.instance.send(this.player.getIserver(), message);
+			MessageService.instance.gameHallCountdownI(roomNo + "," + timer);
 		}
 	}
 }

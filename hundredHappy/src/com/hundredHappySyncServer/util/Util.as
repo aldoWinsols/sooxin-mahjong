@@ -6,9 +6,11 @@ package com.hundredHappySyncServer.util
 	public class Util
 	{
 		public var pokers:Vector.<Poker> = new Vector.<Poker>();
+		public var zimu:Array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u"
+								,"v","w","x","y","z"];
 		private static var _instance:Util = null;
 		
-		public function set instance():Util{
+		public static function get instance():Util{
 			if(_instance == null){
 				_instance = new Util();
 			}
@@ -88,11 +90,11 @@ package com.hundredHappySyncServer.util
 			var newPokers:Vector.<Poker> = pokers.concat();
 			var randow1:int = 0;
 			var randow2:int = 0;
-			var t:int;
+			var t:Poker;
 			
 			for(var i:int=0; i<1000; i++){
-				randow1 = int(Math.random()* newPokers.length);
-				randow2 = int(Math.random()* newPokers.length)
+				randow1 = Math.random()* newPokers.length;
+				randow2 = Math.random()* newPokers.length;
 				t = newPokers[randow1];
 				newPokers[randow1] = newPokers[randow2];
 				newPokers[randow2] = t;
@@ -120,12 +122,28 @@ package com.hundredHappySyncServer.util
 		 * @return
 		 */
 		public function changePokersToString(arr:Vector.<Poker>):String{
-			var str:int = "";
+			var str:String = "";
 			var i:int = 0;
 			for(i=0; i<arr.length; i++){
 				str += arr[i].sort + arr[i].value + ",";
 			}
 			return str;
+		}
+		
+		public function getRandomName():Vector.<String>{
+			var androidName:Vector.<String> = new Vector.<String>();
+			var i:int = 0;
+			for(i = 0; i < 20; i++){
+				var j:int = 0;
+				var name:String = "";
+				var random1:int = Math.random() * 5 + 4;
+				for(j = 0;j < random1; j ++){
+					var random:int = Math.random() * zimu.length;
+					name += zimu[random];
+				}
+				androidName.push(name);
+			}
+			return androidName;
 		}
 	}
 }
