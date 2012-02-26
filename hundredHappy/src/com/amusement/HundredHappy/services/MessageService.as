@@ -2,12 +2,12 @@ package com.amusement.HundredHappy.services
 {
 	import com.amusement.HundredHappy.control.DeskPanelControl;
 	import com.amusement.HundredHappy.control.GameHallPanelControl;
-	import com.service.PlayerService;
+	import com.hundredHappySyncServer.model.Record;
+	import com.hundredHappySyncServer.services.GameHallService;
 	
 	import flash.net.NetConnection;
 	import flash.net.Responder;
 	
-	import mx.controls.Alert;
 
 	public class MessageService
 	{
@@ -30,9 +30,8 @@ package com.amusement.HundredHappy.services
 		public function serverExcpetion(obj:Object):void{
 			var content:String = obj.content;
 			
-			Alert.show(content);
 			HundredHappySyncService.instance.closeConn();
-			DeskPanelService.instance.playerExitRoom(PlayerService.instance.player.acctName);
+//			DeskPanelService.instance.playerExitRoom(PlayerService.instance.player.acctName);
 		}
 		//----------------------------------------------------------------------------------------------
 		/**
@@ -41,8 +40,7 @@ package com.amusement.HundredHappy.services
 		 * 
 		 */
 		public function enterGameI(obj:Object):void{
-			var content:Array = obj.content;
-			GameHallPanelService.instance.initRoom(content);
+			GameHallPanelService.instance.initRoom(obj as Vector.<String>);
 		}
 		
 		/**
@@ -59,8 +57,7 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function hallGameResultI(obj:Object):void{
-			var content:String = obj.content;
+		public function hallGameResultI(content:String):void{
 			var contents:Array = content.split(",");
 			
 			GameHallPanelService.instance.addHistoryByRoom(contents[0], contents[1], contents[2]);
@@ -71,8 +68,7 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function gameHallStateI(obj:Object):void{
-			var content:String = obj.content;
+		public function gameHallStateI(content:String):void{
 			var contents:Array = content.split(",");
 			
 			GameHallPanelService.instance.updateStateByRoom(contents[1], contents[0]);
@@ -84,7 +80,7 @@ package com.amusement.HundredHappy.services
 		 * 
 		 */
 		public function gameHallCountdownI(obj:Object):void{
-			var content:String = obj.content;
+			var content:String = obj as String;
 			var contents:Array = content.split(",");
 			
 			GameHallPanelService.instance.updateCountdownByRoom(contents[1], contents[0]);
@@ -95,10 +91,10 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function enterRoomI(obj:Object):void{
-			var content:Array = obj.content;
+		public function enterRoomI(players:Vector.<String>, historys:Vector.<Record>, deskNo:String, gameNo:String, state:int, limitHong:Number, max:Number, min:Number, valuesStr:String):void{
+//			var content:Array = obj as Array;
 			GameHallPanelService.instance.resetRoom();
-			DeskPanelService.instance.initRoom(content[0], content[1], content[2], content[3], content[4], content[7], content[5], content[6], content[8]);
+			DeskPanelService.instance.initRoom(players, historys, deskNo, gameNo, state, limitHong, max, min, valuesStr);
 		}
 		
 		/**
@@ -117,8 +113,7 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function exitRoomI(obj:Object):void{
-			var content:String = obj.content;
+		public function exitRoomI(content:String):void{
 			DeskPanelService.instance.playerExitRoom(content);
 		}
 		
@@ -126,7 +121,7 @@ package com.amusement.HundredHappy.services
 		 * 房间倒计时
 		 * */
 		public function countDownI(obj:Object):void{
-			DeskPanelService.instance.updateCountDownV(int(obj.content));
+			DeskPanelService.instance.updateCountDownV(int(obj));
 		}
 		
 		
@@ -135,8 +130,7 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function stateI(obj:Object):void{
-			var content:int = obj.content;
+		public function stateI(content:int):void{
 			DeskPanelService.instance.updateDeskState(content);
 		}
 		
@@ -150,7 +144,7 @@ package com.amusement.HundredHappy.services
 		 * 显示牌
 		 * */
 		public function dispensePokersI(obj:Object):void{
-			var content:String = obj.content;
+			var content:String = obj as String;
 			var pokers:Array = content.split(";");
 			var xPokers:Array = String(pokers[0]).split(",");
 			xPokers.pop();
@@ -164,9 +158,8 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function gameResultI(obj:Object):void{
-			var content:Array = obj.content;
-			DeskPanelService.instance.gameResult(content[0].result, content[0].type, content[1], content[2], content[3]);
+		public function gameResultI(result:String, type:int, arr:Vector.<String>, nextGameNo:String, value:Number):void{
+			DeskPanelService.instance.gameResult(result, type, arr, nextGameNo, value);
 //			DeskPanelService.instance.setGameResult(content[0].result, content[0].type, content[1], content[2]);
 		}
 		
@@ -175,15 +168,13 @@ package com.amusement.HundredHappy.services
 		 * @param obj
 		 * 
 		 */
-		public function playerBettingI(obj:Object):void{
-			var content:String = obj.content;
+		public function playerBettingI(content:String):void{
 			var contents:Array = content.split(",");
 			
 			DeskPanelService.instance.updateTouzhuByPlayerName(contents[0], contents[1], contents[2], contents[3], contents[4], contents[5], contents[6]);
 		}
 		
-		public function allPlayerBettingI(obj:Object):void{
-			var content:String = obj.content;
+		public function allPlayerBettingI(content:String):void{
 			var contents:Array = content.split(",");
 			
 			DeskPanelService.instance.updateRealtimePot(contents[2], contents[3], contents[4], contents[0], contents[1]);
@@ -191,24 +182,26 @@ package com.amusement.HundredHappy.services
 
 		//-----------------------------------------------------------------------------------------------
 		//玩家选择房间调用后台服务
-		public function enterRoom(roomNo:String, max:String, min:String):void{
-			_conn.call("enterRoom", new Responder(onOneMsgResult, onOneMsgStatus), roomNo, PlayerService.instance.player.acctName, max, min);
+		public function enterRoom(roomNo:String):void{
+			GameHallService.instance.enterRoom(roomNo, "g0003", 0, 0);
 		}
 
 		//退出台桌
 		public function exitRoom():void{
-			_conn.call("exitRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, PlayerService.instance.player.acctName);
+//			_conn.call("exitRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, "g0003");
+			GameHallService.instance.exitRoom(DeskPanelService.instance.deskNo, "g0003");
 		}
 		
 		//玩家下注调用后台服务
 		public function updatePlayerBet(zhuangduiT:Number, xianduiT:Number, zhuangT:Number, xianT:Number, heT:Number):void
 		{
-			_conn.call("updatePlayerBet", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, PlayerService.instance.player.acctName, zhuangduiT, xianduiT, zhuangT, xianT, heT);
+			GameHallService.instance.updatePlayerBet(DeskPanelService.instance.deskNo, "g0003", zhuangduiT, xianduiT, zhuangT, xianT, heT);
 		}
 		
 		//转台
 		public function changeRoom(changeRoomNo:String):void{
-			_conn.call("changeRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, PlayerService.instance.player.acctName, changeRoomNo);
+//			_conn.call("changeRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, "g0003", changeRoomNo);
+			GameHallService.instance.changeRoom(DeskPanelService.instance.deskNo, "g0003", changeRoomNo);
 		}
 		
 		//---------------------------------------------------------

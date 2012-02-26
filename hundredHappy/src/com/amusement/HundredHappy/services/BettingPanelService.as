@@ -49,16 +49,16 @@ package com.amusement.HundredHappy.services
 		
 		public function confirmBet():void{
 			if(DeskPanelService.instance.selfHundredHappyPlayerService.getCurrentBetTotal() > 0){
-				if(DeskPanelService.instance.selfHundredHappyPlayerService.checkBelowMin()){
-					//低于下限
-					DeskPanelService.instance.updatePrompt("dyxx");
-					setOperatable(true);
-				}else{
+//				if(DeskPanelService.instance.selfHundredHappyPlayerService.checkBelowMin()){
+//					//低于下限
+//					DeskPanelService.instance.updatePrompt("dyxx");
+//					setOperatable(true);
+//				}else{
 					var hhp:HundredHappyPlayer = DeskPanelService.instance.selfHundredHappyPlayerService.hundredHappyPlayer;
 					MessageService.instance.updatePlayerBet(hhp.zhuangduiC, hhp.xianduiC, hhp.zhuangC, hhp.xianC, hhp.heC);
 					delAllBetRecord();
 					DeskPanelService.instance.selfHundredHappyPlayerService.clearTouC();
-				}
+//				}
 			}else{
 				setOperatable(true);
 			}

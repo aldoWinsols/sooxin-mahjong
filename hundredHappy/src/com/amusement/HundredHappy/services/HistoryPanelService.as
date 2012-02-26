@@ -1,6 +1,7 @@
 package com.amusement.HundredHappy.services
 {
 	import com.amusement.HundredHappy.control.HistoryPanelControl;
+	import com.hundredHappySyncServer.model.Record;
 	
 	public class HistoryPanelService
 	{
@@ -40,7 +41,7 @@ package com.amusement.HundredHappy.services
 			}
 		}
 		
-		public function initHistroy(arr:Array):void{
+		public function initHistroy(arr:Vector.<Record>):void{
 			for(var i:int = 0; i< arr.length; i ++){
 				addHistroy(arr[i].result, arr[i].type);
 			}

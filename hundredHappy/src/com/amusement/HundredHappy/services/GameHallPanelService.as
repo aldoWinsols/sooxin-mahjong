@@ -1,8 +1,6 @@
 package com.amusement.HundredHappy.services
 {
 	import com.amusement.HundredHappy.control.GameHallPanelControl;
-	import com.control.MainSceneControl;
-
 	public class GameHallPanelService
 	{
 		private static var _instance:GameHallPanelService;
@@ -22,7 +20,7 @@ package com.amusement.HundredHappy.services
 			return _instance;
 		}
 		
-		public function initRoom(array:Array):void{
+		public function initRoom(array:Vector.<String>):void{
 			GameHallPanelControl.instance.initRoom(array);
 		}
 		
@@ -43,8 +41,8 @@ package com.amusement.HundredHappy.services
 		}
 		
 		public function enterRoom(max:String, min:String):void{
-			MainSceneControl.instance.setZezhaoVisible(true);
-			MessageService.instance.enterRoom(_selectRoomNo, max, min);
+//			MainSceneControl.instance.setZezhaoVisible(true);
+			MessageService.instance.enterRoom(_selectRoomNo);
 		}
 		
 		public function resetRoom():void{
