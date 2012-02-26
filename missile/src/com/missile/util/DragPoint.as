@@ -26,6 +26,8 @@
  **/
 package com.missile.util
 {
+	import com.missile.model.Missile;
+	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
@@ -36,8 +38,8 @@ package com.missile.util
 
 	public class DragPoint extends SpriteVisualElement
 	{
-		private var dd:BezierCurveViewer;
-		public function DragPoint(dd:BezierCurveViewer)
+		private var dd:Missile;
+		public function DragPoint(dd:Missile)
 		{
 			this.dd = dd;
 			init();
@@ -52,7 +54,7 @@ package com.missile.util
 		}
 		
 		private function doubleClickHandler(e:MouseEvent):void{
-			BezierCurveViewer.instance.removePoint(this);
+			(parent as Missile).removePoint(this);
 		}
 		
 		private function mouseHandler(event:MouseEvent):void
@@ -69,7 +71,7 @@ package com.missile.util
 					removeEventListener(MouseEvent.MOUSE_UP, mouseHandler);
 					stopDrag();
 					if (event.stageY>stage.stageHeight-40 && parent.numChildren>2)
-						(parent as BezierCurveViewer).removePoint(this);
+						(parent as Missile).removePoint(this);
 					else
 						addEventListener(MouseEvent.MOUSE_DOWN, mouseHandler);
 					break;
