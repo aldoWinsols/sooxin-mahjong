@@ -44,6 +44,7 @@
 							var jettonValue:int = jetton.value;
 							if(DeskPanelService.instance.selfHundredHappyPlayerService.updateBet(jettonValue, _type)){
 								BettingPanelService.instance.addBetRecord(_type, jettonValue);
+								BettingPanelService.instance.confirmBet();
 //								BettingPanelService.instance.updateConfirmShine(true);
 							}
 						}

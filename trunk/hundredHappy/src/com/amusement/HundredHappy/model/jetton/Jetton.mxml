@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ToggleButton xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				skinClass="com.amusement.HundredHappy.model.jetton.JettonButtonSkin">
+<!--<mx:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx"
+		   toggle="true"
+		   skin="{_JettonSkin}"
+		   overSkin="{_JettonOver}"
+		   click="button1_clickHandler(event)">-->
+	<fx:Script>
+		<![CDATA[
+			
+			private var _value:int;
+			
+			//------------------------------------- getter/setter function ------------------------------------
+			public function get value():int
+			{
+				return _value;
+			}
+
+			public function set value(value:int):void
+			{
+				_value = value;
+				
+				if(this.skin && this.skin is JettonButtonSkin){
+					(this.skin as JettonButtonSkin).updateSkin(value);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+<!--</mx:Button>-->
+</s:ToggleButton>
