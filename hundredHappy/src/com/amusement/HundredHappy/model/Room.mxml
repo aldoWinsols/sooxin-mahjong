@@ -11,8 +11,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.HundredHappy.services.GameHallPanelService;
-			import com.control.GameRuleControl;
-			import com.control.MainSceneControl;
+			import com.amusement.HundredHappy.services.MessageService;
 			
 			[Embed(source="com/amusement/HundredHappy/assets/room/hh_room_01.png")]
 			private var _Room01:Class;
@@ -49,16 +48,16 @@
 			protected function btnOpen_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				GameHallPanelService.instance.hideLimitList();
-				GameHallPanelService.instance.selectRoomNo = _roomName;
-				this.limitList.visible = true;
-//				MessageService.instance.enterRoom(this._roomName);
+//				GameHallPanelService.instance.hideLimitList();
+//				GameHallPanelService.instance.selectRoomNo = _roomName;
+//				this.limitList.visible = true;
+				MessageService.instance.enterRoom(this._roomName);
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				GameRuleControl.instance.show("hh", DisplayObject(MainSceneControl.instance.mainSceneApp));
+//				GameRuleControl.instance.show("hh", DisplayObject(MainSceneControl.instance.mainSceneApp));
 			}
 			
 			private function updateRoomNameImg(roomName:String):void{

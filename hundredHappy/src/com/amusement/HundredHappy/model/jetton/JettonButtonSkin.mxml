@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for a Spark ToggleButton component.  
+
+     @see spark.components.ToggleButton
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                   xmlns:s="library://ns.adobe.com/flex/spark" 
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="21" minHeight="21" 
+                   alpha.disabledStates="0.5"
+				   creationComplete="sparkbuttonskin1_creationCompleteHandler(event)">
+    
+    <!-- host component -->
+    <fx:Metadata>
+    <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.ToggleButton")]
+    ]]>
+    </fx:Metadata>
+    <fx:Script>
+		<![CDATA[
+			
+			import mx.events.FlexEvent;
+			
+			[Embed(source="assets/amusement/jetton/j5.png")]
+			private var _Skin5:Class;
+			[Embed(source="assets/amusement/jetton/j10.png")]
+			private var _Skin10:Class;
+			[Embed(source="assets/amusement/jetton/j20.png")]
+			private var _Skin20:Class;
+			[Embed(source="assets/amusement/jetton/j50.png")]
+			private var _Skin50:Class;
+			[Embed(source="assets/amusement/jetton/j100.png")]
+			private var _Skin100:Class;
+			[Embed(source="assets/amusement/jetton/j200.png")]
+			private var _Skin200:Class;
+			[Embed(source="assets/amusement/jetton/j500.png")]
+			private var _Skin500:Class;
+			[Embed(source="assets/amusement/jetton/j1000.png")]
+			private var _Skin1000:Class;
+			[Embed(source="assets/amusement/jetton/j5000.png")]
+			private var _Skin5000:Class;
+			[Embed(source="assets/amusement/jetton/j10000.png")]
+			private var _Skin10000:Class;
+			
+			[Embed(source="assets/amusement/jetton/j5_over.png")]
+			private var _Over5:Class;
+			[Embed(source="assets/amusement/jetton/j10_over.png")]
+			private var _Over10:Class;
+			[Embed(source="assets/amusement/jetton/j20_over.png")]
+			private var _Over20:Class;
+			[Embed(source="assets/amusement/jetton/j50_over.png")]
+			private var _Over50:Class;
+			[Embed(source="assets/amusement/jetton/j100_over.png")]
+			private var _Over100:Class;
+			[Embed(source="assets/amusement/jetton/j200_over.png")]
+			private var _Over200:Class;
+			[Embed(source="assets/amusement/jetton/j500_over.png")]
+			private var _Over500:Class;
+			[Embed(source="assets/amusement/jetton/j1000_over.png")]
+			private var _Over1000:Class;
+			[Embed(source="assets/amusement/jetton/j5000_over.png")]
+			private var _Over5000:Class;
+			[Embed(source="assets/amusement/jetton/j10000_over.png")]
+			private var _Over10000:Class;
+			
+			[Embed(source="assets/amusement/jetton/j5_select.png")]
+			private var _Select5:Class;
+			[Embed(source="assets/amusement/jetton/j10_select.png")]
+			private var _Select10:Class;
+			[Embed(source="assets/amusement/jetton/j20_select.png")]
+			private var _Select20:Class;
+			[Embed(source="assets/amusement/jetton/j50_select.png")]
+			private var _Select50:Class;
+			[Embed(source="assets/amusement/jetton/j100_select.png")]
+			private var _Select100:Class;
+			[Embed(source="assets/amusement/jetton/j200_select.png")]
+			private var _Select200:Class;
+			[Embed(source="assets/amusement/jetton/j500_select.png")]
+			private var _Select500:Class;
+			[Embed(source="assets/amusement/jetton/j1000_select.png")]
+			private var _Select1000:Class;
+			[Embed(source="assets/amusement/jetton/j5000_select.png")]
+			private var _Select5000:Class;
+			[Embed(source="assets/amusement/jetton/j10000_select.png")]
+			private var _Select10000:Class;
+			
+			[Bindable]
+			private var _JettonDef:Class;
+			[Bindable]
+			private var _JettonSel:Class;
+			[Bindable]
+			private var _JettonOver:Class;
+			
+			protected function sparkbuttonskin1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(this.hostComponent && this.hostComponent is Jetton){
+					updateSkin((this.hostComponent as Jetton).value);
+				}
+			}
+			
+			public function updateSkin(value:int):void{
+				switch(value){
+					case 5:
+						_JettonDef = _Skin5;
+						_JettonSel = _Select5;
+						_JettonOver = _Over5;
+						break;
+					case 10:
+						_JettonDef = _Skin10;
+						_JettonSel = _Select10;
+						_JettonOver = _Over10;
+						break;
+					case 20:
+						_JettonDef = _Skin20;
+						_JettonSel = _Select20;
+						_JettonOver = _Over20;
+						break;
+					case 50:
+						_JettonDef = _Skin50;
+						_JettonSel = _Select50;
+						_JettonOver = _Over50;
+						break;
+					case 100:
+						_JettonDef = _Skin100;
+						_JettonSel = _Select100;
+						_JettonOver = _Over100;
+						break;
+					case 200:
+						_JettonDef = _Skin200;
+						_JettonSel = _Select200;
+						_JettonOver = _Over200;
+						break;
+					case 500:
+						_JettonDef = _Skin500;
+						_JettonSel = _Select500;
+						_JettonOver = _Over500;
+						break;
+					case 1000:
+						_JettonDef = _Skin1000;
+						_JettonSel = _Select1000;
+						_JettonOver = _Over1000;
+						break;
+					case 5000:
+						_JettonDef = _Skin5000;
+						_JettonSel = _Select5000;
+						_JettonOver = _Over5000;
+						break;
+					case 10000:
+						_JettonDef = _Skin10000;
+						_JettonSel = _Select10000;
+						_JettonOver = _Over10000;
+						break;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+    <fx:Script fb:purpose="styling">
+		/* Define the skin elements that should not be colorized. 
+           For toggle button, the graphics are colorized but the label is not. */
+        static private const exclusions:Array = ["labelDisplay"];
+
+        /**
+         * @private
+         */    
+        override public function get colorizeExclusions():Array {return exclusions;}
+        
+        /**
+         * @private
+         */
+        override protected function initializationComplete():void
+        {
+            useChromeColor = true;
+            super.initializationComplete();
+        }
+        
+        /**
+         * @private
+         */
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+        {
+            var cr:Number = getStyle("cornerRadius");
+            
+            if (cornerRadius != cr)
+            {
+                /* cornerRadius = cr;
+                shadow.radiusX = cornerRadius;
+                fill.radiusX = cornerRadius;
+                lowlight.radiusX = cornerRadius;
+                highlight.radiusX = cornerRadius;
+                border.radiusX = cornerRadius; */
+            }
+            
+            /* if (highlightStroke) highlightStroke.radiusX = cornerRadius;
+            if (hldownstroke1) hldownstroke1.radiusX = cornerRadius;
+            if (hldownstroke2) hldownstroke2.radiusX = cornerRadius; */
+            
+            super.updateDisplayList(unscaledWidth, unscaledHeight);
+        }
+        
+        private var cornerRadius:Number = 2;
+    </fx:Script>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+    
+    <!-- layer 1: shadow -->
+    <!--- @private -->
+    <!--<s:Rect id="shadow" left="-1" right="-1" top="-1" bottom="-1" radiusX="2">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                    <s:GradientEntry color="0x000000" 
+                                   color.downStates="0xFFFFFF"
+                                   alpha="0.01"
+                                   alpha.downStates="0" />
+                    <s:GradientEntry color="0x000000" 
+                                   color.downStates="0xFFFFFF" 
+                                   alpha="0.07"
+                                   alpha.downStates="0.5" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>-->
+    
+    <!-- layer 2: fill -->
+    <!--- @private -->
+    <!--<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF" 
+                               color.selectedUpStates="0xBBBDBD"
+                               color.overStates="0xBBBDBD" 
+                               color.downStates="0xAAAAAA" 
+                               alpha="0.85" 
+                               alpha.overAndSelected="1" />
+                <s:GradientEntry color="0xD8D8D8" 
+                               color.selectedUpStates="0x9FA0A1"
+                               color.over="0x9FA0A1" 
+                               color.overAndSelected="0x8E8F90"
+                               color.downStates="0x929496" 
+                               alpha="0.85"
+                               alpha.overAndSelected="1" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>-->
+    
+    <!-- layer 3: fill lowlight -->
+    <!--- @private -->
+    <!--<s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+        <s:fill>
+            <s:LinearGradient rotation="270">
+                <s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
+                <s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" />
+                <s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>-->
+    
+    <!-- layer 4: fill highlight -->
+    <!--- @private -->
+    <!--<s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.0"
+                                 alpha="0.33" 
+                                 alpha.selectedUpStates="0.22"
+                                 alpha.overStates="0.22" 
+                                 alpha.downStates="0.12"/>
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.48"
+                                 alpha="0.33"
+                                 alpha.selectedUpStates="0.22"
+                                 alpha.overStates="0.22" 
+                                 alpha.downStates="0.12"/>
+                <s:GradientEntry color="0xFFFFFF"
+                                 ratio="0.48001"
+                                 alpha="0" />
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>-->
+    
+    <!-- layer 5: highlight stroke (all states except down) -->
+    <!--- @private -->
+    <!--<s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" radiusX="2" excludeFrom="downStates">
+        <s:stroke>
+            <s:LinearGradientStroke rotation="90" weight="1">
+                <s:GradientEntry color="0xFFFFFF" alpha.overStates="0.22" alpha.selectedUpStates="0.33" />
+                <s:GradientEntry color="0xD8D8D8" alpha.overStates="0.22" alpha.selectedUpStates="0.33" />
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>-->
+    
+    <!-- layer 6: highlight stroke (down state only) -->
+    <!--- @private -->
+    <!--<s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="2"
+            includeIn="downStates, selectedUpStates, overAndSelected">
+        <s:stroke>
+            <s:LinearGradientStroke rotation="90" weight="1">
+                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
+                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.001" />
+                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.0011" />
+                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.965" />
+                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.9651" />
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>-->
+    <!--- @private -->
+    <!--<s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="2"
+            includeIn="downStates, selectedUpStates, overAndSelected">
+        <s:stroke>
+            <s:LinearGradientStroke rotation="90" weight="1">
+                <s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
+                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.0001" />
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>-->
+    
+    <!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
+    <!--- @private -->
+    <!--<s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="2">
+        <s:stroke>
+            <s:LinearGradientStroke rotation="90" weight="1">
+                <s:GradientEntry color="0x000000" 
+                               alpha="0.5625"
+                               alpha.down="0.6375"
+                               alpha.selectedStates="0.6375" />
+                <s:GradientEntry color="0x000000" 
+                               alpha="0.75" 
+                               alpha.down="0.85"
+                               alpha.selectedStates="0.85" />
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>-->
+    
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+    <!--<s:Label id="labelDisplay"
+             textAlign="center"
+             verticalAlign="middle"
+             maxDisplayedLines="1"
+             horizontalCenter="0" verticalCenter="1"
+             left="10" right="10" top="2" bottom="2">
+    </s:Label>-->
+	
+	<s:BitmapImage horizontalCenter="0" verticalCenter="0" source="{_JettonDef}"/>
+	<s:BitmapImage includeIn="over" horizontalCenter="0" verticalCenter="0" source="{_JettonOver}"/>
+	
+	<s:BitmapImage includeIn="selectedStates" horizontalCenter="0" verticalCenter="0" source="{_JettonSel}"/>
+</s:SparkButtonSkin>
