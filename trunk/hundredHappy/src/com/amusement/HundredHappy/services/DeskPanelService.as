@@ -3,12 +3,10 @@ package com.amusement.HundredHappy.services
 	import com.amusement.HundredHappy.control.DeskPanelControl;
 	import com.amusement.HundredHappy.control.HundredHappyControl;
 	import com.amusement.HundredHappy.control.SystemPanelControl;
-	import com.control.MainSceneControl;
-	import com.service.PlayerService;
+	import com.hundredHappySyncServer.model.Record;
 	
 	import flash.net.LocalConnection;
 	
-	import mx.controls.Alert;
 
 	public class DeskPanelService
 	{
@@ -89,8 +87,7 @@ package com.amusement.HundredHappy.services
 					if(selfHundredHappyPlayerService.getPlayerBetTotal() > 0){
 						_noBetCount = 0;
 					}else if(++_noBetCount >= _noBetCountMax){
-						MessageService.instance.exitRoom();
-						Alert.show("您已連續四次未下注，被請出房間！");
+//						MessageService.instance.exitRoom();
 					}
 			}
 			gc();
@@ -104,8 +101,8 @@ package com.amusement.HundredHappy.services
 		 * @param gameNo
 		 * 
 		 */
-		public function initRoom(players:Array, historys:Array, deskNo:String, gameNo:String, state:int, limitHong:Number, max:Number, min:Number, valuesStr:String):void{
-			PlayerService.instance.playerEnterSomeGame("baccarat", deskNo);
+		public function initRoom(players:Vector.<String>, historys:Vector.<Record>, deskNo:String, gameNo:String, state:int, limitHong:Number, max:Number, min:Number, valuesStr:String):void{
+//			PlayerService.instance.playerEnterSomeGame("baccarat", deskNo);
 			
 //			HundredHappyControl.instance.updateNotice(88, -350, 926, 14);
 			
@@ -145,15 +142,15 @@ package com.amusement.HundredHappy.services
 		 * 
 		 */
 		public function playerExitRoom(playerName:String):void{
-			if(PlayerService.instance.player.acctName == playerName){
+//			if(PlayerService.instance.player.acctName == playerName){
 				clearRoom();
 //				HundredHappyControl.instance.updateNotice(281, -168, 507, 13);
-			}else{
-				PlayerSeatPanelService.instance.removePlayer(playerName);
-			}
+//			}else{
+//				PlayerSeatPanelService.instance.removePlayer(playerName);
+//			}
 		}
 		
-		public function gameResult(result:String, type:int, arr:Array, nextGameNo:String, value:Number):void{
+		public function gameResult(result:String, type:int, arr:Vector.<String>, nextGameNo:String, value:Number):void{
 			updatePrompt(result);
 			DeskPanelControl.instance.updateBetResultV(value);
 			
@@ -167,10 +164,10 @@ package com.amusement.HundredHappy.services
 				strArr = str.split(",");
 				PlayerSeatPanelService.instance.updateCurrentPoint(strArr[0], strArr[1]);
 				
-				if(PlayerService.instance.player.acctName == strArr[0]){
-					PlayerService.instance.player.acctMoney = strArr[1];
+//				if(PlayerService.instance.player.acctName == strArr[0]){
+//					PlayerService.instance.player.acctMoney = strArr[1];
 					DeskPanelControl.instance.updateTotal(selfHundredHappyPlayerService.getPlayerBetTotal());
-				}
+//				}
 			}
 			updateRealtimePot();
 			
@@ -267,12 +264,12 @@ package com.amusement.HundredHappy.services
 		public function updateTouzhuByPlayerName(playerName:String, zhuangduiT:Number, xianduiT:Number, zhuangT:Number, xianT:Number, heT:Number, currentPoint:Number):void
 		{
 			PlayerSeatPanelService.instance.updateBetByPlayerName(playerName, zhuangduiT, xianduiT, zhuangT, xianT, heT, currentPoint);
-			if(PlayerService.instance.player.acctName == playerName){
-				PlayerService.instance.player.acctMoney = currentPoint;
+//			if(PlayerService.instance.player.acctName == playerName){
+//				PlayerService.instance.player.acctMoney = currentPoint;
 				DeskPanelControl.instance.updateTotal(selfHundredHappyPlayerService.getPlayerBetTotal());
 				updatePrompt("xzcg");
 				BettingPanelService.instance.setOperatable(true);
-			}
+//			}
 		}
 		
 		/**
@@ -296,7 +293,7 @@ package com.amusement.HundredHappy.services
 			selfHundredHappyPlayerService.restoreLastTou();
 			switch(str){
 				case "zdje":
-					Alert.show("您已達到最大可贏點數！", "提示");
+//					Alert.show("您已達到最大可贏點數！", "提示");
 					break;
 				default:
 					updatePrompt(str);
@@ -324,8 +321,8 @@ package com.amusement.HundredHappy.services
 			HistoryPanelService.instance.clearHistroys();
 			TurntablePanelService.instance.clearSelected();
 			DeskPanelControl.instance.reset();
-			MainSceneControl.instance.setZezhaoVisible(false);
-			PlayerService.instance.playerEnterSomeGame();
+//			MainSceneControl.instance.setZezhaoVisible(false);
+//			PlayerService.instance.playerEnterSomeGame();
 			gc();
 		}
 		

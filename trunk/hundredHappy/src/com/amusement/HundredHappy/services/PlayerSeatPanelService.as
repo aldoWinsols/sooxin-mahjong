@@ -2,7 +2,6 @@ package com.amusement.HundredHappy.services
 {
 	import com.amusement.HundredHappy.control.PlayerSeatPanelControl;
 	import com.amusement.HundredHappy.model.HundredHappyPlayer;
-	import com.service.PlayerService;
 
 	public class PlayerSeatPanelService
 	{
@@ -35,16 +34,16 @@ package com.amusement.HundredHappy.services
 		 * @param arr
 		 * 
 		 */
-		public function initPlayer(arr:Array):void{
+		public function initPlayer(arr:Vector.<String>):void{
 			var strArr:Array;
 			for each(var str:String in arr){
 				strArr = str.split(",");
 				addPlayer(strArr[1], strArr[0], strArr[2]);
 				_hundredHappyPlayerServices[strArr[1]].updateTou(strArr[3], strArr[4], strArr[5], strArr[6], strArr[7], strArr[2]);
-				if(PlayerService.instance.player.acctName == strArr[0]){
+//				if(PlayerService.instance.player.acctName == strArr[0]){
 					DeskPanelService.instance.selfHundredHappyPlayerService = _hundredHappyPlayerServices[strArr[1]];
 					PlayerSeatPanelControl.instance.setSeatMine(strArr[1]);
-				}
+//				}
 			}
 		}
 		

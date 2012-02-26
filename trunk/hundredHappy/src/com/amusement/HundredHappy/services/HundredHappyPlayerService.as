@@ -1,7 +1,6 @@
 package com.amusement.HundredHappy.services
 {
 	import com.amusement.HundredHappy.model.HundredHappyPlayer;
-	import com.service.PlayerService;
 
 	public class HundredHappyPlayerService
 	{
@@ -61,51 +60,51 @@ package com.amusement.HundredHappy.services
 				switch(type){
 					case "zd":
 						total = this._hundredHappyPlayer.zhuangduiT + this._hundredHappyPlayer.zhuangduiC + value;
-						if(total > DeskPanelService.instance.maxBet * 0.2){
-							isAboveMax = true;
-						}else{
+//						if(total > DeskPanelService.instance.maxBet * 0.2){
+//							isAboveMax = true;
+//						}else{
 							this._hundredHappyPlayer.zhuangduiC += value;
-						}
+//						}
 						break;
 					case "xd":
 						total = this._hundredHappyPlayer.xianduiT + this._hundredHappyPlayer.xianduiC + value;
-						if(total > DeskPanelService.instance.maxBet * 0.2){
-							isAboveMax = true;
-						}else{
+//						if(total > DeskPanelService.instance.maxBet * 0.2){
+//							isAboveMax = true;
+//						}else{
 							this._hundredHappyPlayer.xianduiC += value;
-						}
+//						}
 						break;
 					case "z":
-						total = this._hundredHappyPlayer.zhuangT + this._hundredHappyPlayer.zhuangC + value;
-						if(total > DeskPanelService.instance.maxBet){
-							isAboveMax = true;
-						}else{
+//						total = this._hundredHappyPlayer.zhuangT + this._hundredHappyPlayer.zhuangC + value;
+//						if(total > DeskPanelService.instance.maxBet){
+//							isAboveMax = true;
+//						}else{
 							this._hundredHappyPlayer.zhuangC += value;
-						}
+//						}
 						break;
 					case "x":
 						total = this._hundredHappyPlayer.xianT + this._hundredHappyPlayer.xianC + value;
-						if(total > DeskPanelService.instance.maxBet){
-							isAboveMax = true;
-						}else{
+//						if(total > DeskPanelService.instance.maxBet){
+//							isAboveMax = true;
+//						}else{
 							this._hundredHappyPlayer.xianC += value;
-						}
+//						}
 						break;
 					case "h":
 						total = this._hundredHappyPlayer.heT + this._hundredHappyPlayer.heC + value;
-						if(total > DeskPanelService.instance.maxBet * 0.2){
-							isAboveMax = true;
-						}else{
+//						if(total > DeskPanelService.instance.maxBet * 0.2){
+//							isAboveMax = true;
+//						}else{
 							this._hundredHappyPlayer.heC += value;
-						}
+//						}
 						break;		
 				}
 				
-				if(isAboveMax){
-					DeskPanelService.instance.updatePrompt("gysx");
-				}else{
+//				if(isAboveMax){
+//					DeskPanelService.instance.updatePrompt("gysx");
+//				}else{
 					BettingPanelService.instance.updateSmallJettons(type, this._hundredHappyPlayer.authz, total);
-				}
+//				}
 			}
 			return !isAboveMax;
 		}
@@ -180,9 +179,9 @@ package com.amusement.HundredHappy.services
 		
 		//12-02-02 隱藏其他玩家名
 		private function subPlayerName(playerName:String):String{
-			if(playerName != PlayerService.instance.player.acctName){
-				playerName = playerName.substr(0,2) + "****";
-			}
+//			if(playerName != PlayerService.instance.player.acctName){
+//				playerName = playerName.substr(0,2) + "****";
+//			}
 			return playerName;
 		}
 

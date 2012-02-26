@@ -2,10 +2,6 @@ package com.amusement.HundredHappy.services
 {
 	
 	import com.amusement.HundredHappy.control.DeskPanelControl;
-	import com.control.MainSceneControl;
-	import com.service.ConfigService;
-	import com.service.PlayerService;
-	import com.util.GameTypeEvent;
 	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -14,12 +10,7 @@ package com.amusement.HundredHappy.services
 	import flash.net.NetConnection;
 	import flash.net.Responder;
 	import flash.utils.Timer;
-	
-	import mx.controls.Alert;
 
-	/**
-	 * 2012-2-23 9:39 gmr start 添加游戏退出监听事件
-	 * */
 	public class HundredHappySyncService
 	{
 		NetConnection.defaultObjectEncoding=flash.net.ObjectEncoding.AMF3;
@@ -42,10 +33,6 @@ package com.amusement.HundredHappy.services
 			connStateTimer=new Timer(100);
 			connStateTimer.addEventListener(TimerEvent.TIMER, connStateHandler);
 			connStateTimer.start();
-			
-			// 2012-2-23 9:39 gmr start 添加游戏退出监听事件
-			MainSceneControl.instance.mainSceneApp.addEventListener(GameTypeEvent.HUNDREDHAPPY_EXITGAME, onDisconnection);
-			// 2012-2-23 9:39 gmr end
 		}
 		
 		// g 2011-5-17  13:56  是否可以创建
@@ -69,7 +56,7 @@ package com.amusement.HundredHappy.services
 		public function connServer():void{ 
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, statusHandler);
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			_conn.connect(ConfigService.instance.hundredHappy, PlayerService.instance.player.acctName, PlayerService.instance.player.acctPwd, PlayerService.instance.ip); 
+//			_conn.connect(ConfigService.instance.hundredHappy, PlayerService.instance.player.acctName, PlayerService.instance.player.acctPwd, PlayerService.instance.ip); 
 		}
 		
 		public function closeConn():void{
@@ -96,7 +83,6 @@ package com.amusement.HundredHappy.services
 			{
 				// g 2011-6-7  15:58  添加TIMER停止
 				connStateTimer.stop();
-				Alert.show("连接失败！请重新登陆");
 				_connState = "连接失败！请重新登陆";
 			}
 		}
@@ -132,7 +118,6 @@ package com.amusement.HundredHappy.services
 			if(!isResult){
 				if(connTimes % 50 == 0){
 					DeskPanelControl.instance.setNetworkWidth(0);
-					MainSceneControl.instance.mainSceneApp.connState.visible = true;
 					//Alert.show("你当前网络质量差！");
 				}
 			}
@@ -162,7 +147,6 @@ package com.amusement.HundredHappy.services
 		
 		public function asyncErrorHandler(e:AsyncErrorEvent):void
 		{
-			Alert.show("服务器同步发生异常！");
 		}
 
 	}
