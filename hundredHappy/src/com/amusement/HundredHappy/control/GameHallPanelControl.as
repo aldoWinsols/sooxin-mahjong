@@ -5,7 +5,6 @@ package com.amusement.HundredHappy.control
 	import com.amusement.HundredHappy.services.GameHallPanelService;
 	import com.amusement.HundredHappy.services.HundredHappySyncService;
 	import com.amusement.HundredHappy.view.GameHallPanel;
-	import com.service.PlayerService;
 	
 	import flash.events.MouseEvent;
 	
@@ -59,14 +58,20 @@ package com.amusement.HundredHappy.control
 			return null;
 		}
 
-		public function initRoom(array:Array):void{
+		public function initRoom(array:Vector.<String>):void{
 			var history:Array;
 			var strArr:Array;
 			for(var i:int = 0; i < array.length; i ++){
 				var room:Room = new Room();
 				this._gameHallPanel.roomList.addElement(room);
 				
-				room.setLimitList(PlayerService.instance.player.acctLimits);
+				var obj:Object = new Object();
+				obj.uperLimit = 1000;
+				obj.lowerLimit = 5;
+				var arr:Array = new Array();
+				arr.push(obj);
+				
+				room.setLimitList(arr);
 				
 				strArr = array[i].toString().split(",");
 				room.roomName = strArr.shift();
