@@ -4,8 +4,6 @@ package com.amusement.HundredHappy.control
 	import com.amusement.HundredHappy.services.HistoryPanelService;
 	import com.amusement.HundredHappy.services.MessageService;
 	import com.amusement.HundredHappy.view.DeskPanel;
-	import com.control.GameRuleControl;
-	import com.control.MainSceneControl;
 	
 	import flash.display.StageDisplayState;
 	import flash.events.MouseEvent;
@@ -72,15 +70,14 @@ package com.amusement.HundredHappy.control
 			this._deskPanel.askXBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 			
 			this._deskPanel.exitBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._deskPanel.fullScreenBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._deskPanel.helpBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._deskPanel.fullScreenBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._deskPanel.helpBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 			this._deskPanel.systemBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 			
 			this._deskPanel.redBgBtn.addEventListener(MouseEvent.CLICK, changeBgHandler, false, 0, true);
 			this._deskPanel.blueBgBtn.addEventListener(MouseEvent.CLICK, changeBgHandler, false, 0, true);
 			this._deskPanel.greenBgBtn.addEventListener(MouseEvent.CLICK, changeBgHandler, false, 0, true);
 			
-			this._deskPanel.getDataBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 		}
 		
 		private function btnClickHandler(event:MouseEvent):void{
@@ -94,9 +91,6 @@ package com.amusement.HundredHappy.control
 				case "systemBtn":
 					SystemPanelControl.instance.show(this._deskPanel);
 					break;
-				case "helpBtn":
-					GameRuleControl.instance.show("hh", MainSceneControl.instance.mainSceneApp);
-					break;
 				case "fullScreenBtn":
 					try{
 						this._deskPanel.stage.displayState = (this._deskPanel.stage.displayState == StageDisplayState.NORMAL ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL);
@@ -107,9 +101,6 @@ package com.amusement.HundredHappy.control
 					if(DeskPanelService.instance.selfHundredHappyPlayerService.getPlayerBetTotal() == 0){
 						MessageService.instance.exitRoom();
 					}
-					break;
-				case "getDataBtn":
-					ShuffleDataPanelControl.instance.show(this._deskPanel.owner);
 					break;
 			}
 		}
@@ -214,7 +205,7 @@ package com.amusement.HundredHappy.control
 	
 		//g  2011-5-17  11：35  添加的网络质量设置方法
 		public function setNetworkWidth(width:int):void{
-			this._deskPanel.network.setStateWidth(width);
+//			this._deskPanel.network.setStateWidth(width);
 		}
 		
 		//--------------------------------------------------------------------------------------

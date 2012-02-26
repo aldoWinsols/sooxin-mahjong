@@ -3,10 +3,7 @@ package com.amusement.HundredHappy.control
 	import com.amusement.HundredHappy.HundredHappy;
 	import com.amusement.HundredHappy.services.HundredHappySyncService;
 	import com.amusement.HundredHappy.services.PokerService;
-	import com.control.MainSceneControl;
-	import com.control.TopControl;
-	import com.service.PlayerService;
-	import com.util.GameTypeEvent;
+	import com.hundredHappySyncServer.services.GameHallService;
 	
 	import flash.events.MouseEvent;
 
@@ -25,7 +22,8 @@ package com.amusement.HundredHappy.control
 			
 			this._hundredHappy = hundredHappy;
 			
-			HundredHappySyncService.instance.connServer();
+//			HundredHappySyncService.instance.connServer();
+			GameHallService.instance.enterGame("g0003");
 			
 			init();
 		}
@@ -55,15 +53,15 @@ package com.amusement.HundredHappy.control
 		
 		public function unload():void{
 			// 2012-2-23 9:39 gmr start 删除游戏退出监听事件
-			MainSceneControl.instance.mainSceneApp.addEventListener(GameTypeEvent.HUNDREDHAPPY_EXITGAME, HundredHappySyncService.instance.onDisconnection);
-			// 2012-2-23 9:39 gmr end
-			MainSceneControl.instance.mainSceneApp.gameModule.unloadModule();
-			MainSceneControl.instance.mainSceneApp.gameModule.visible=false;
-			MainSceneControl.instance.setZezhaoVisible(false);
-			//导航进入用
-			TopControl.insance.toIndexState(null);
-			
-			PlayerService.instance.playerEnterSomeGame();
+//			MainSceneControl.instance.mainSceneApp.addEventListener(GameTypeEvent.HUNDREDHAPPY_EXITGAME, HundredHappySyncService.instance.onDisconnection);
+//			// 2012-2-23 9:39 gmr end
+//			MainSceneControl.instance.mainSceneApp.gameModule.unloadModule();
+//			MainSceneControl.instance.mainSceneApp.gameModule.visible=false;
+//			MainSceneControl.instance.setZezhaoVisible(false);
+//			//导航进入用
+//			TopControl.insance.toIndexState(null);
+//			
+//			PlayerService.instance.playerEnterSomeGame();
 		}
 		
 		public function resetXY():void{
