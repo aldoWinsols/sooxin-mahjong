@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   xmlns:s="library://ns.adobe.com/flex/spark"
-			   minWidth="1024" minHeight="768" applicationDPI="160"
-			   creationComplete="application1_creationCompleteHandler(event)">
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="768" height="1024" creationComplete="application1_creationCompleteHandler(event)">
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
@@ -10,21 +9,17 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			import parts.BezierCurve;
-			import parts.DragPoint;
-			import parts.Marker;
+			import com.missile.util.BezierCurve;
+			import com.missile.util.DragPoint;
+			import com.missile.util.Marker;
 			
 			import spark.components.Group;
 			
 			private var marker:Marker;
 			private var points:Array;
 			static private const CURVE_NUMBER:uint = 500;
-			
-			public static var instance:BezierCurveViewer;
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
-				instance = this;
-				
 				this.doubleClickEnabled = true;
 				
 				// TODO Auto-generated method stub
@@ -83,7 +78,7 @@
 					miaoDian.graphics.lineTo(points[i].x, points[i].y);
 				//			}
 				//curve
-				miaoDian.graphics.lineStyle(3, 0x000000, 1, false, "normal", CapsStyle.SQUARE);
+				miaoDian.graphics.lineStyle(1.5, 0x000000, 1, false, "normal", CapsStyle.SQUARE);
 				miaoDian.graphics.moveTo(points[0].x, points[0].y);
 				var t:Number = 1/CURVE_NUMBER;
 				var index:uint = 0;
@@ -107,8 +102,9 @@
 			
 			private function mouseHandler(event:MouseEvent):void
 			{
-					addPoint(event.stageX, event.stageY);
+				addPoint(event.stageX, event.stageY);
 			}
+			
 			
 		]]>
 	</fx:Script>
@@ -117,6 +113,14 @@
 	</s:Group>
 	
 	<s:Group id="addDian" width="768" height="1024">
+		<s:BorderContainer x="184" y="856" width="400" height="150" backgroundAlpha="0.5"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:HSlider x="49" y="58"/>
+			<s:Button x="208" y="95" label="引爆" color="#FF0000"/>
+			<s:Label x="10" y="10" color="#24FF00" text="型号 最大飞行距离  剩余飞行距离"/>
+			<s:Button x="145" y="95" label="发射"/>
+			
+		</s:BorderContainer>
 		
 	</s:Group>
-</s:Application>
+</s:Group>
