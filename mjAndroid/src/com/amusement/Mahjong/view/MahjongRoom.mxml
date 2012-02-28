@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:view="com.amusement.Mahjong.view.*"
+		 xmlns:view2="com.view.*"
+		 xmlns:model="com.model.*"
+		 maxWidth="1024" maxHeight="768" creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongPlayerControlD;
+			import com.amusement.Mahjong.control.MahjongPlayerControlU;
+			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.control.MainControl;
+			import com.mahjongSyncServer.services.RoomService;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _MahjongRoomBg:Class;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MahjongRoomControl(this);
+			}
+
+			public function set MahjongRoomBg(value:Class):void
+			{
+				_MahjongRoomBg = value;
+			}
+			
+			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.exit.visible = true;
+			}
+			
+			protected function image2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.system.visible = true;
+			}
+			
+			protected function image3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.aboutus.visible = true;
+				
+			}
+			
+			protected function image4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.help.visible = true;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:Group id="roomTabletop" visible="true" x="0" y="0">
+		
+		<s:Image id="mjRoomBgImg" horizontalCenter="0"
+				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
+		
+		<!--<mx:Image source="com/amusement/Mahjong/assets/tabletop/mj_tabletop_green.jpg"/>-->
+		
+		<view:MahjongPlayerU id="mahjongPlayerU" top="20" horizontalCenter="0"/>
+		<view:MahjongPlayerR id="mahjongPlayerR" right="100" verticalCenter="0">
+		</view:MahjongPlayerR>
+		<view:MahjongPlayerL id="mahjongPlayerL" left="20" verticalCenter="0"/>
+		
+		
+		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
+		<view:MahjongDice visible="false" horizontalCenter="-50" mouseChildren="false"
+						  mouseEnabled="false" verticalCenter="-50"/>
+		<view:MahjongInfo visible="false" x="220" y="451" mouseChildren="false" mouseEnabled="true"/>
+		<view:MahjongPlayerD id="mahjongPlayerD" bottom="-10" horizontalCenter="0"/>
+		<view:MahjongSign visible="false" mouseChildren="false" mouseEnabled="false"/>
+		<view:MahjongDingzhang visible="false" bottom="140" horizontalCenter="0"/>
+		<view:MahjongWord visible="false" x="351" y="192" mouseChildren="false" mouseEnabled="false"/>
+		<view:MahjongOperation id="mahjongOperation" visible="false" right="80" bottom="90"/>
+		<!--<mx:Button id="reConnBtn" x="697" bottom="16" 
+				   skin="@Embed(source='../assets/mj_reConn_btn.png')"
+				   overSkin="@Embed(source='../assets/mj_reConn_over.png')"
+				   downSkin="@Embed(source='../assets/mj_reConn_over.png')"/>-->
+		<s:BorderContainer right="-46" width="129" height="98%" alpha="0.15"
+						   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
+						   verticalCenter="0">
+			
+		</s:BorderContainer>
+		<s:Label id="mahjongsNum" y="353" right="10" color="#FEE300" fontSize="20"/>
+		<s:Image y="44" right="10" alpha="0.5" smooth="true" click="image1_clickHandler(event)" source="@Embed('assets/icon/Prefs.png')"/>
+		<s:Image y="112" right="10" alpha="0.5" smooth="true"
+				 source="@Embed('assets/icon/Safari2.png')" click="image4_clickHandler(event)"/>
+		<s:Image y="253" right="10" alpha="0.5" source="assets/icon/Facebook.png" click="image3_clickHandler(event)"/>
+		<s:Image y="181" right="10" alpha="0.5" source="assets/icon/Settings.png" click="image2_clickHandler(event)"/>
+		
+		<view:MahjongSeat>
+		</view:MahjongSeat>
+		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
+		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
+		<view2:AboutUs id="aboutus" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view2:AboutUs>
+		<view2:System id="system" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view2:System>
+		<view2:Exit id="exit" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view2:Exit>
+		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view2:Help>
+		
+		
+		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
+	</s:Group>
+	
+	<!--</s:BorderContainer>-->
+
+</s:Group>

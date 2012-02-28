@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view:MahjongPlayer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx" 
+					xmlns:view="com.amusement.Mahjong.view.*" 
+					width="780" height="273.65">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongPlayerControlD;
+			
+			import mx.events.FlexEvent;
+			protected override function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MahjongPlayerControlD(this);
+			}
+		]]>
+	</fx:Script>
+	<view:layout>
+		<s:BasicLayout/>
+	</view:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+</view:MahjongPlayer>

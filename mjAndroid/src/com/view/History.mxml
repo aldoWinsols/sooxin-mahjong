@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="800" height="480" backgroundAlpha="0.3" backgroundColor="#000000"
+				   cornerRadius="10">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			public static var history:History = null;
+			
+			public function showHistory(dp:Array):void{
+				this.visible = true;
+				this.dg.dataProvider = new ArrayList(dp);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:DataGrid id="dg" top="61" width="776" height="407" alpha="0.7" color="#000000" fontSize="14"
+				horizontalCenter="1">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="playerName" headerText="用户名"></s:GridColumn>
+				<s:GridColumn dataField="roomNo" headerText="游戏编号"></s:GridColumn>
+				<s:GridColumn dataField="preMoney" headerText="游戏前点数"></s:GridColumn>
+				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢"></s:GridColumn>
+				<s:GridColumn dataField="afterMoney" headerText="游戏后点数"></s:GridColumn>
+				<s:GridColumn dataField="gameTime" headerText="开始时间"></s:GridColumn>
+				<s:GridColumn headerText="操作">
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								
+								<fx:Script>
+									<![CDATA[
+										import com.amusement.Mahjong.control.MahjongApplictionControl;
+										import com.control.HomeControl;
+										import com.mahjongSyncServer.services.RoomService;
+										import com.services.DataService;
+										
+										import mx.managers.PopUpManager;
+										
+										protected function button1_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											HomeControl.instance.home.operation.visible = false;
+											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+											HomeControl.instance.home.visible = false;
+											RoomService.instance.playerVideo(data.gameContent);
+											PopUpManager.removePopUp(outerDocument);
+										}
+										
+										protected function button2_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											DataService.instance.removeGameLog(data.id,data.playerName);
+										}
+										
+									]]>
+								</fx:Script>
+								
+								<s:HGroup>
+									<s:Button label="观看录像" click="button1_clickHandler(event)" />
+									<s:Button label="删除" click="button2_clickHandler(event)" />
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:Button x="724" y="10" height="40" label="关闭" click="{this.visible = false}"/>
+	
+	<s:BorderContainer x="12" y="61" width="776" height="407" alpha="0">
+	</s:BorderContainer>
+	<s:Label x="180" y="230" color="#FA0000" fontSize="40" fontWeight="bold" text="苹果商店提供完整版下载"/>
+	
+</s:BorderContainer>
