@@ -4,6 +4,9 @@ package com.amusement.HundredHappy.services
 	import com.amusement.HundredHappy.control.HundredHappyControl;
 	import com.amusement.HundredHappy.control.SystemPanelControl;
 	import com.hundredHappySyncServer.model.Record;
+	import com.hundredHappySyncServer.services.PlayerService;
+	import com.service.DataService;
+	import com.service.PlayerService;
 	
 	import flash.net.LocalConnection;
 	
@@ -157,6 +160,8 @@ package com.amusement.HundredHappy.services
 			HistoryPanelService.instance.addHistroy(result, type);
 			BettingPanelService.instance.showResult(result, type);
 			HundredHappySoundService.instance.play(result + type);
+			
+			DataService.instance.afterData(com.service.PlayerService.instance.playerName, value);
 			
 			var hundredHappyServiceT:HundredHappyPlayerService;
 			var strArr:Array;

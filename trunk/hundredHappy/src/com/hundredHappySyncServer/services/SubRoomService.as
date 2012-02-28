@@ -51,7 +51,6 @@ package com.hundredHappySyncServer.services
 			
 				this.subRoom.playerServices.push(playerService);
 				playerService.subRoomService = this; 
-				playerService.player.haveMoney = 10000;
 				playerService.player.authz = getSeatNum(); // 获得方位
 				//----------------------------------------------------
 //				addObserver(playerService);
@@ -319,9 +318,9 @@ package com.hundredHappySyncServer.services
 		public function countDownI(num:int):void{
 			var i:int = 0;
 			for(i=0; i<this.subRoom.playerServices.length; i++){
-				if(this.subRoom.playerServices[i].player.playerType == Player.ONLINE){
+//				if(this.subRoom.playerServices[i].player.playerType == Player.ONLINE){
 					subRoom.playerServices[i].countDown(num);
-				}
+//				}
 			}
 		}
 	}

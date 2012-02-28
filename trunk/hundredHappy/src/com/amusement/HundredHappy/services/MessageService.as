@@ -4,6 +4,7 @@ package com.amusement.HundredHappy.services
 	import com.amusement.HundredHappy.control.GameHallPanelControl;
 	import com.hundredHappySyncServer.model.Record;
 	import com.hundredHappySyncServer.services.GameHallService;
+	import com.service.PlayerService;
 	
 	import flash.net.NetConnection;
 	import flash.net.Responder;
@@ -172,6 +173,7 @@ package com.amusement.HundredHappy.services
 			var contents:Array = content.split(",");
 			
 			DeskPanelService.instance.updateTouzhuByPlayerName(contents[0], contents[1], contents[2], contents[3], contents[4], contents[5], contents[6]);
+			PlayerService.instance.haveMoney = contents[6];
 		}
 		
 		public function allPlayerBettingI(content:String):void{
@@ -183,25 +185,25 @@ package com.amusement.HundredHappy.services
 		//-----------------------------------------------------------------------------------------------
 		//玩家选择房间调用后台服务
 		public function enterRoom(roomNo:String):void{
-			GameHallService.instance.enterRoom(roomNo, "g0003", 0, 0);
+			GameHallService.instance.enterRoom(roomNo, PlayerService.instance.playerName, 0, 0);
 		}
 
 		//退出台桌
 		public function exitRoom():void{
 //			_conn.call("exitRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, "g0003");
-			GameHallService.instance.exitRoom(DeskPanelService.instance.deskNo, "g0003");
+			GameHallService.instance.exitRoom(DeskPanelService.instance.deskNo, PlayerService.instance.playerName);
 		}
 		
 		//玩家下注调用后台服务
 		public function updatePlayerBet(zhuangduiT:Number, xianduiT:Number, zhuangT:Number, xianT:Number, heT:Number):void
 		{
-			GameHallService.instance.updatePlayerBet(DeskPanelService.instance.deskNo, "g0003", zhuangduiT, xianduiT, zhuangT, xianT, heT);
+			GameHallService.instance.updatePlayerBet(DeskPanelService.instance.deskNo, PlayerService.instance.playerName, zhuangduiT, xianduiT, zhuangT, xianT, heT);
 		}
 		
 		//转台
 		public function changeRoom(changeRoomNo:String):void{
 //			_conn.call("changeRoom", new Responder(onOneMsgResult, onOneMsgStatus), DeskPanelService.instance.deskNo, "g0003", changeRoomNo);
-			GameHallService.instance.changeRoom(DeskPanelService.instance.deskNo, "g0003", changeRoomNo);
+			GameHallService.instance.changeRoom(DeskPanelService.instance.deskNo, PlayerService.instance.playerName, changeRoomNo);
 		}
 		
 		//---------------------------------------------------------

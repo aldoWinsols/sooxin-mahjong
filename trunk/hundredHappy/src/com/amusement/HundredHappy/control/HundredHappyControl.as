@@ -4,6 +4,7 @@ package com.amusement.HundredHappy.control
 	import com.amusement.HundredHappy.services.HundredHappySyncService;
 	import com.amusement.HundredHappy.services.PokerService;
 	import com.hundredHappySyncServer.services.GameHallService;
+	import com.service.PlayerService;
 	
 	import flash.events.MouseEvent;
 
@@ -21,9 +22,6 @@ package com.amusement.HundredHappy.control
 			_instance = this;
 			
 			this._hundredHappy = hundredHappy;
-			
-//			HundredHappySyncService.instance.connServer();
-			GameHallService.instance.enterGame("g0003");
 			
 			init();
 		}

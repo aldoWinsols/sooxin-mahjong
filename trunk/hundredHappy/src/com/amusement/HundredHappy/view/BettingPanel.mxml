@@ -57,12 +57,12 @@
 	<jetton:BaccaratJetton id="jetton4" name="jetton4" horizontalCenter="115" verticalCenter="103" value="50"/>
 	<jetton:BaccaratJetton id="jetton5" name="jetton5" horizontalCenter="210" verticalCenter="67" value="100"/>
 	
-	<s:Button id="confirmBtn" horizontalCenter="84" bottom="158"
+	<!--<s:Button id="confirmBtn" horizontalCenter="84" bottom="158"
 			  skinClass="com.skin.amusement.desk.DeskConfirmButtonSkin"/>
 	<s:Button id="cancelBtn" horizontalCenter="147" bottom="158"
 			  skinClass="com.skin.amusement.desk.DeskCancelButtonSkin"/>
 	<s:Button id="clearBtn" horizontalCenter="231" bottom="158"
-			  skinClass="com.skin.amusement.desk.DeskClearButtonSkin"/>
+			  skinClass="com.skin.amusement.desk.DeskClearButtonSkin"/>-->
 	<!--<mx:Button id="confirmBtn" x="652" y="559" width="37" height="21" 
 			   skin="{_ConfirmSkin}" 
 			   downSkin="@Embed(source='../assets/hh_confirm_down.png')" 

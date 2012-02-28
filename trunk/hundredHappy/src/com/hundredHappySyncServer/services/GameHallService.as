@@ -69,10 +69,11 @@ package com.hundredHappySyncServer.services
 		 * @param playerName
 		 * @param iserver
 		 */
-		public function enterGame(playerName:String):void {
+		public function enterGame(playerName:String, haveMoney:Number):void {
 			var playerService:PlayerService = new PlayerService();
 			playerService.player.playerName = playerName;
 			playerService.player.playerType = Player.ONLINE;
+			playerService.player.haveMoney = haveMoney;
 			
 			this.gameHall.playerServices.push(playerService);
 			playerService.enterGame(); //玩家进入游戏

@@ -33,12 +33,15 @@ package com.amusement.HundredHappy.control
 			updateBettingLight();
 			
 			addListeners();
+			
+//			BettingPanelService.instance.selectJetton = _bettingPanel.jetton1;
+//			BettingPanelService.instance.selectJetton.selected = true;
 		}
 		
 		private function addListeners():void{
-			this._bettingPanel.confirmBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._bettingPanel.cancelBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._bettingPanel.clearBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._bettingPanel.confirmBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._bettingPanel.cancelBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._bettingPanel.clearBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 		}
 		
 		private function btnClickHandler(event:MouseEvent):void{

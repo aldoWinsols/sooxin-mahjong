@@ -160,7 +160,7 @@ package com.hundredHappySyncServer.services
 				}
 			}
 			
-			trace("倒计时 ： " + room.timers);
+//			trace("倒计时 ： " + room.timers);
 			
 			if(room.roomType == 1){
 				GameHallService.instance.sendRoomTimerNum(room.roomNo, room.timers);
@@ -266,7 +266,7 @@ package com.hundredHappySyncServer.services
 				record.type = Record.ZhuangPair;
 			}
 			
-			trace("最后结果：" + record.result);
+//			trace("最后结果：" + record.result);
 			this.room.historyRecord.push(record);
 		}
 		
