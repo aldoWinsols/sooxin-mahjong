@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="267" height="144"
+		 fontFamily="黑体" fontSize="20" color="#FACA6D" textAlign="center" xmlns:model="com.model.*">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+//			import com.service.PlayerService;
+			
+//			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _value:int = 10;
+			[Bindable]
+			private var _standardPoint:int = 500;
+			
+			protected function enterBtn_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				if(PlayerService.instance.player.acctMoney >= _standardPoint){
+					MahjongApplictionControl.instance.enterGame(_value);
+//				}else{
+//					Alert.show("您的點數不足");
+//				}
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				GameRuleControl.instance.show("mj", DisplayObject(MainSceneControl.instance.mainSceneApp));
+			}
+			
+			public function get value():int
+			{
+				return _value;
+			}
+
+			public function set value(value:int):void
+			{
+				_value = value;
+				
+				switch(_value){
+					case 1:
+						_standardPoint = 35;
+						break;
+					case 5:
+						_standardPoint = 300;
+						break;
+					case 10:
+						_standardPoint = 500;
+						break;
+					case 20:
+						_standardPoint = 1000;
+						break;
+					case 50:
+						_standardPoint = 3000;
+						break;
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer x="0" y="0" width="100%" height="100%" borderVisible="false" backgroundImage="@Embed(source='../assets/mj_room_bg.png')">
+		<!--<mx:Image source="../assets/mj_room_bg.png"/>-->
+		<s:Label horizontalCenter="0" y="42" text="{_value}點桌" verticalAlign="middle"/>
+		<s:Label horizontalCenter="0" y="74" text="准入點數：{_standardPoint}" verticalAlign="middle"/>
+		<model:Button x="18" y="113" click="enterBtn_clickHandler(event)"
+				   skin="@Embed(source='../assets/mj_enter_btn.png')"
+				   downSkin="@Embed(source='../assets/mj_enter_down.png')"
+				   overSkin="@Embed(source='../assets/mj_enter_over.png')"/>
+		<model:Button x="140" y="113" click="button1_clickHandler(event)"
+				   skin="@Embed(source='../assets/mj_rule_btn.png')"
+				   downSkin="@Embed(source='../assets/mj_rule_down.png')"
+				   overSkin="@Embed(source='../assets/mj_rule_over.png')"/>
+	</s:BorderContainer>
+</s:Group>

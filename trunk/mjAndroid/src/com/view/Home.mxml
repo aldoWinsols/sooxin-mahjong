@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 width="820" height="500" creationComplete="bordercontainer1_creationCompleteHandler(event)"
+		 fontSize="18">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.control.HomeControl;
+			import com.mahjongSyncServer.model.Player;
+			import com.mahjongSyncServer.services.RoomService;
+			import com.model.Alert;
+			import com.services.DataService;
+			
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				new HomeControl(this);
+				
+				this.spiner.addEventListener(TouchEvent.TOUCH_TAP,tabHandler);
+				this.spiner.addEventListener(MouseEvent.CLICK,clickHandler);
+				
+			}
+			
+			private function clickHandler(e:MouseEvent):void{
+				operation.visible = true;
+			}
+			
+			private function tabHandler(e:TouchEvent):void{
+				operation.visible = true;
+			}
+			
+			public function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(DataService.players.length == 0){
+					operation.visible = false;
+					Alert.show("请先创建帐户！");
+					return;
+				}
+				
+				operation.visible = false;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				this.visible = false;
+				
+				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
+				
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				operation.visible = false;
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				if(players.selectedIndex == -1){
+					Alert.show("请先创建帐户！");
+					operation.visible = false;
+					return;
+				}
+				// TODO Auto-generated method stub
+				DataService.instance.removePlayer(DataService.getPlayerByIndex(players.selectedIndex).id, DataService.getPlayerByIndex(players.selectedIndex).playerName);
+				operation.visible = false;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				if(players.selectedIndex == -1){
+					Alert.show("请先创建帐户！");
+					operation.visible = false;
+					return;
+				}
+				// TODO Auto-generated method stub
+				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
+				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:BorderContainer id="resultCont" width="100%" borderVisible="false" height="100%" alpha="0.3"
+					   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
+					   horizontalCenter="0" verticalCenter="0">
+		<s:SpinnerListContainer id="spiner" horizontalCenter="0" verticalCenter="0" width="800" height="480" alpha="0.45">
+			<s:SpinnerList id="players" width="100%" height="100%" color="#E8C10B" fontSize="26"
+						   fontWeight="bold" selectedIndex="10">
+
+			</s:SpinnerList>
+		</s:SpinnerListContainer>
+	</s:BorderContainer>	
+		<s:Button id="addPlayerB" x="20" y="18" width="120" height="45" label="添加帐户" alpha="0.5"
+				  chromeColor="#FFC600" color="#000000" fontSize="18"/>
+	
+	<s:BorderContainer id="operation" borderVisible="false" dropShadowVisible="true" visible="false" width="150" height="250" horizontalCenter="0" verticalCenter="0" cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3">
+		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"
+				  horizontalCenter="0"/>
+		<s:Button y="75" width="120" height="45" label="游戏记录" click="button4_clickHandler(event)" enabled="true" horizontalCenter="0"/>
+		<s:Button y="128" width="120" height="45" label="删除档案" click="button3_clickHandler(event)"
+				  horizontalCenter="0"/>
+		<s:Button y="178" width="120" height="45" label="关闭" click="button2_clickHandler(event)"
+				  horizontalCenter="0"/>
+		
+	</s:BorderContainer>
+	<view:PlayerAdd id="playerAdd" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:PlayerAdd>
+	<view:History id="history" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:History>
+</s:Group>
