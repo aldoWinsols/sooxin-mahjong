@@ -39,5 +39,5 @@
 	<!--<mx:Canvas x="10" y="46" width="583" height="450">
 		<s:TileGroup id="roomList" x="10" y="0" verticalGap="20" requestedColumnCount="2"/>
 	</mx:Canvas>-->
-	<s:Button id="exitBtn" right="54" top="85" skinClass="com.skin.amusement.hall.HallExitButtonSkin"/>
+	<s:Button id="exitBtn" right="54" top="85" skinClass="com.skin.amusement.hall.HallExitButtonSkin" visible="false"/>
 </s:Group>

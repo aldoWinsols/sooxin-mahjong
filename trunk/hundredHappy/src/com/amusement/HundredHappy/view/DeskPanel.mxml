@@ -45,7 +45,7 @@
 	<!--<s:Image horizontalCenter="0" bottom="-2" source="@Embed(source='../assets/hh_refer.jpg')" alpha="0.7"/>-->
 	<!--<mx:Image horizontalCenter="0" bottom="0" source="@Embed(source='com/amusement/HundredHappy/assets/desk.jpg')"/>-->
 	<s:Image id="deskBgImg" horizontalCenter="0" bottom="0" source="{_DeskBg}"/>
-	<s:Image right="3" bottom="225" mouseEnabled="false" mouseChildren="false" source="@Embed(source='../assets/hh_logo.png')"/>
+	
 	<!--<mx:Image id="deskBgImg" horizontalCenter="0" bottom="0" source="{_DeskBg}"/>
 	<mx:Image x="778" y="398" mouseEnabled="false" mouseChildren="false" source="@Embed(source='com/amusement/HundredHappy/assets/hh_logo.png')"/>-->
 	<s:Label id="countDownV" horizontalCenter="461" verticalCenter="-305" fontSize="26" fontWeight="bold" fontFamily="Arial" color="#AD9D00" text="0"/>
