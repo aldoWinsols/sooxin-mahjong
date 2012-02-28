@@ -13,6 +13,7 @@
 		<![CDATA[
 			import com.amusement.HundredHappy.control.DeskPanelControl;
 			import com.amusement.HundredHappy.services.DeskPanelService;
+			import com.service.PlayerService;
 
 			[Bindable]
 			private var _DeskBg:Class;
@@ -54,8 +55,8 @@
 	<view:RealtimePotPanel left="12" y="383"/>
 	<view:CurrentBetPanel left="4.5" y="214"/>
 	
-	<!--<s:Label left="235" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.player.acctName}"/>
-	<s:Label left="408" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.player.acctMoney}"/>-->
+	<s:Label left="235" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.playerName}"/>
+	<s:Label left="408" verticalCenter="178" fontSize="14" color="#AD9D00" text="{PlayerService.instance.haveMoney}"/>
 	<s:Label left="551" verticalCenter="178" fontSize="14" color="#AD9D00" text="{DeskPanelService.instance.deskNo}"/>
 	<s:Label left="632" verticalCenter="178" fontSize="14" color="#AD9D00" text="{DeskPanelService.instance.gameNo}"/>
 	<!--g 2011-5-17 11:34 添加的网络质量 -->

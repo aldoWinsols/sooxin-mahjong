@@ -5,6 +5,7 @@ package com.hundredHappySyncServer.services
 	import com.hundredHappySyncServer.model.Poker;
 	import com.hundredHappySyncServer.model.Record;
 	import com.hundredHappySyncServer.util.Util;
+	import com.service.PlayerService;
 	
 	import flash.net.dns.AAAARecord;
 
@@ -153,6 +154,9 @@ package com.hundredHappySyncServer.services
 			}
 			player.haveMoney += player.betMoney;
 			player.haveMoney += player.winOrlose;
+			if(player.playerType == Player.ONLINE){
+				com.service.PlayerService.instance.haveMoney = player.haveMoney;
+			}
 		}
 		
 		/**

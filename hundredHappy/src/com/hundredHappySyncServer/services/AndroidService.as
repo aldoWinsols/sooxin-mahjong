@@ -15,7 +15,7 @@ package com.hundredHappySyncServer.services
 		private var ranNum:int = 0;
 		public function AndroidService()
 		{
-			this.player.haveMoney = Math.random()*100 + ((Math.random()*10)>6?0:1)*20000 + ((Math.random()*10)>7?0:1)*40000;
+			this.player.haveMoney = int(Math.random()*100 + ((Math.random()*10)>6?0:1)*20000 + ((Math.random()*10)>7?0:1)*40000);
 		}
 		
 		private function calBet():void{
@@ -37,64 +37,33 @@ package com.hundredHappySyncServer.services
 			if(this.player.haveMoney > 10000){
 				if((Math.random() * 10) > 3){
 					if((Math.random() * 10) > 5){
-						//						zT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(zT>500){
-						//							zT = Math.round(zT/500)*500;
-						//						}
 						zT = int(Math.random() * 10) * 100;
 					}else{
-						//						xT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(xT>500){
-						//							xT = Math.round(xT/500)*500;
-						//						}
 						xT = int(Math.random() * 10) * 100;
 					}
 				}
 			}else if((this.player.haveMoney <= 10000) && (this.player.haveMoney > 5000)){
 				if((Math.random() * 10) > 3){
 					if((Math.random() * 10) > 5){
-						//						zT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(zT>500){
-						//							zT = Math.round(zT/500)*500;
-						//						}
 						zT = int(Math.random() * 10) * 100;
 					}else{
-						//						xT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(xT>500){
-						//							xT = Math.round(xT/500)*500;
-						//						}
 						xT = int(Math.random() * 10) * 100;
 					}
 				}
 			}else if((this.player.haveMoney <= 5000) && (this.player.haveMoney > 2000)){
 				if((Math.random() * 10) > 3){
 					if((Math.random() * 10) > 5){
-						//						zT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(zT>500){
-						//							zT = Math.round(zT/500)*500;
-						//						}
 						zT = int(Math.random() * 10) * 100;
 					}else{
-						//						xT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(xT>500){
-						//							xT = Math.round(xT/500)*500;
-						//						}
 						xT = int(Math.random() * 10) * 100;
 					}
 				}
 			}else{
 				if((Math.random() * 10) > 3){
 					if((Math.random() * 10) > 5){
-						//						zT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(zT>500){
-						//							zT = Math.round(zT/500)*500;
 						//						}
 						zT = int(Math.random() * 10) * 100;
 					}else{
-						//						xT = (Math.random() * 10)*50 + ((Math.random() * 10)>3?0:1)*500 + ((Math.random() * 10)>3?0:1)*500;
-						//						if(xT>500){
-						//							xT = Math.round(xT/500)*500;
-						//						}
 						xT = int(Math.random() * 10) * 100;
 					}
 				}
@@ -115,8 +84,8 @@ package com.hundredHappySyncServer.services
 			}
 			
 			if(bool){
-				randow1 = 32 + (Math.random() * 10);
-				randow2 = 5 + (Math.random() * 25);
+				randow1 = 10 + (Math.random() * 10);
+				randow2 = 5 + (Math.random() * 15);
 				bool = false;
 			}
 			if(num == randow1){
