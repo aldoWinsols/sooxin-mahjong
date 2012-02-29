@@ -7,14 +7,15 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
-			
 			import com.missile.util.BezierCurve;
 			import com.missile.util.DragPoint;
 			import com.missile.util.Marker;
 			
+			import mx.events.FlexEvent;
+			
 			import spark.components.Group;
 			
+			public var missileName:String;
 			private var marker:Marker;
 			private var points:Array;
 			static private const CURVE_NUMBER:uint = 500;
