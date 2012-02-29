@@ -1,6 +1,7 @@
 package com.service{
 	
 	import com.control.HomeControl;
+	import com.hundredHappySyncServer.services.GameHallService;
 	
 	import flash.data.SQLConnection;
 	import flash.data.SQLResult;
@@ -53,7 +54,7 @@ package com.service{
 		{
 			sqls.sqlConnection = sqlc;
 			
-			sqlStrs.push("CREATE TABLE IF NOT EXISTS players ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, email TEXT, haveMoney DOUBLE);");
+			sqlStrs.push("CREATE TABLE IF NOT EXISTS players ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, haveMoney DOUBLE);");
 			table = "create";
 			resault(null);
 		}
@@ -67,12 +68,20 @@ package com.service{
 			if(table == "player"){
 				players = new ArrayCollection(sqls.getResult().data);
 				
-				var arr:Array = new Array();
-				for(var i:int=0; i<players.length;i++){
-					var pl:Object = players.getItemAt(i);
-					arr.push("ID:"+pl.playerName+"      EMAIL:"+pl.email+"      积分:"+pl.haveMoney);
+				if(players.length == 0){
+					addPlayer("player");
+				}else{
+					
+					PlayerService.instance.playerName = players.getItemAt(0).playerName;
+					PlayerService.instance.haveMoney = players.getItemAt(0).haveMoney;
+
+					if(PlayerService.instance.haveMoney <= 1000){
+						afterData(PlayerService.instance.playerName, 100000);
+						PlayerService.instance.haveMoney += 100000; 
+					}
+					GameHallService.instance.enterGame(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
 				}
-				HomeControl.instance.home.players.dataProvider = new ArrayList(arr);
+				
 			}else if(table == "gamelog"){
 				logs = new ArrayCollection(sqls.getResult().data);
 			}else if(table == "create"){
@@ -92,12 +101,11 @@ package com.service{
 		
 		//-----------------------------------------------------------------------------
 		
-		public function addPlayer(playerName:String,email:String):void{
+		public function addPlayer(playerName:String):void{
 			table = "player";
-			sqls.text = "INSERT INTO players (playerName, email, haveMoney) VALUES('"+playerName+"','"+email+"','10000');";
+			sqls.text = "INSERT INTO players (playerName, haveMoney) VALUES('"+playerName+"','100000');";
 			sqls.execute();
 			refresh();
-			
 		}
 		
 		public function removePlayer(id:Number, playerName:String):void
@@ -122,10 +130,9 @@ package com.service{
 		}
 		
 		public function updatePlayerMoney(playerName:String,changeMoney:int):void{
-			table = "player";
+			table = "";
 			sqlStrs.push("UPDATE players SET haveMoney = haveMoney+"+changeMoney+" where playerName='"+playerName+"'");
 			resault(null);
-			refresh();
 		}
 		
 		public function saveGameHistory(playerName:String, gameContent:String, roomNo:String, gameTime:String, preMoney:Number, winLossMoneyAfterTax:Number, afterMoney:Number):void

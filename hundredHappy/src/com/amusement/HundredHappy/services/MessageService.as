@@ -173,7 +173,6 @@ package com.amusement.HundredHappy.services
 			var contents:Array = content.split(",");
 			
 			DeskPanelService.instance.updateTouzhuByPlayerName(contents[0], contents[1], contents[2], contents[3], contents[4], contents[5], contents[6]);
-			PlayerService.instance.haveMoney = contents[6];
 		}
 		
 		public function allPlayerBettingI(content:String):void{

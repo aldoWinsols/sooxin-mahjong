@@ -234,8 +234,7 @@ package com.hundredHappySyncServer.services
 		 */
 		public function sendGameResult(record:Record):void{
 			var list:Vector.<Object> = new Vector.<Object>();
-			var nextGameNo:String = subRoomService.roomService.room.gameNo + "-" 
-				+ (subRoomService.roomService.room.historyRecord.length + 1);
+			var nextGameNo:String = new Date().time.toString();
 			MessageService.instance.gameResultI(record.result,record.type, subRoomService.getAllPlayerMoney(),nextGameNo, player.winOrlose);
 		}
 	
