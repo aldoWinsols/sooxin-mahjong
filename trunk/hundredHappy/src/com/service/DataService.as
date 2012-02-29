@@ -1,10 +1,8 @@
 package com.service{
 	
-	import com.control.HomeControl;
 	import com.hundredHappySyncServer.services.GameHallService;
 	
 	import flash.data.SQLConnection;
-	import flash.data.SQLResult;
 	import flash.data.SQLStatement;
 	import flash.events.SQLErrorEvent;
 	import flash.events.SQLEvent;
@@ -13,7 +11,6 @@ package com.service{
 	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
-	import mx.collections.ArrayList;
 	
 	
 	public class DataService {
