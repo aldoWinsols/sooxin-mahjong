@@ -4,7 +4,6 @@ package com.amusement.HundredHappy.services
 	import com.amusement.HundredHappy.control.HundredHappyControl;
 	import com.amusement.HundredHappy.control.SystemPanelControl;
 	import com.hundredHappySyncServer.model.Record;
-	import com.hundredHappySyncServer.services.PlayerService;
 	import com.service.DataService;
 	import com.service.PlayerService;
 	
@@ -145,12 +144,12 @@ package com.amusement.HundredHappy.services
 		 * 
 		 */
 		public function playerExitRoom(playerName:String):void{
-//			if(PlayerService.instance.player.acctName == playerName){
+			if(PlayerService.instance.playerName == playerName){
 				clearRoom();
 //				HundredHappyControl.instance.updateNotice(281, -168, 507, 13);
-//			}else{
-//				PlayerSeatPanelService.instance.removePlayer(playerName);
-//			}
+			}else{
+				PlayerSeatPanelService.instance.removePlayer(playerName);
+			}
 		}
 		
 		public function gameResult(result:String, type:int, arr:Vector.<String>, nextGameNo:String, value:Number):void{
@@ -161,18 +160,21 @@ package com.amusement.HundredHappy.services
 			BettingPanelService.instance.showResult(result, type);
 			HundredHappySoundService.instance.play(result + type);
 			
-			DataService.instance.afterData(com.service.PlayerService.instance.playerName, value);
-			
 			var hundredHappyServiceT:HundredHappyPlayerService;
 			var strArr:Array;
 			for each(var str:String in arr){
 				strArr = str.split(",");
 				PlayerSeatPanelService.instance.updateCurrentPoint(strArr[0], strArr[1]);
 				
-//				if(PlayerService.instance.player.acctName == strArr[0]){
-//					PlayerService.instance.player.acctMoney = strArr[1];
+				if(PlayerService.instance.playerName == strArr[0]){
+					if(PlayerService.instance.haveMoney <= 1000){
+						DataService.instance.afterData(PlayerService.instance.playerName, 100000 + value);
+						PlayerService.instance.haveMoney += 100000; 
+					}else{
+						DataService.instance.afterData(PlayerService.instance.playerName, value);
+					}
 					DeskPanelControl.instance.updateTotal(selfHundredHappyPlayerService.getPlayerBetTotal());
-//				}
+				}
 			}
 			updateRealtimePot();
 			
@@ -269,12 +271,13 @@ package com.amusement.HundredHappy.services
 		public function updateTouzhuByPlayerName(playerName:String, zhuangduiT:Number, xianduiT:Number, zhuangT:Number, xianT:Number, heT:Number, currentPoint:Number):void
 		{
 			PlayerSeatPanelService.instance.updateBetByPlayerName(playerName, zhuangduiT, xianduiT, zhuangT, xianT, heT, currentPoint);
-//			if(PlayerService.instance.player.acctName == playerName){
+			if(PlayerService.instance.playerName == playerName){
 //				PlayerService.instance.player.acctMoney = currentPoint;
+				PlayerService.instance.haveMoney = currentPoint;
 				DeskPanelControl.instance.updateTotal(selfHundredHappyPlayerService.getPlayerBetTotal());
 				updatePrompt("xzcg");
 				BettingPanelService.instance.setOperatable(true);
-//			}
+			}
 		}
 		
 		/**

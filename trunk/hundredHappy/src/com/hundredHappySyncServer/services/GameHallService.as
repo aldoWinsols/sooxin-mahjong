@@ -250,9 +250,7 @@ package com.hundredHappySyncServer.services
 		public function gameHallState(roomNo:String, type:int):void{
 			var i:int = 0;
 			for (i = 0; i < gameHall.playerServices.length; i++) {
-				if(gameHall.playerServices[i].player.playerType == Player.ONLINE){
-					this.gameHall.playerServices[i].gameHallState(roomNo, type);
-				}
+				this.gameHall.playerServices[i].gameHallState(roomNo, type);
 			}
 		}
 	}

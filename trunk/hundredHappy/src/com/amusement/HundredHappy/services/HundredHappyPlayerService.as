@@ -54,8 +54,8 @@ package com.amusement.HundredHappy.services
 				+ value;
 			if(total > this._hundredHappyPlayer.currentPoint){
 				//余额不足
-				DeskPanelService.instance.updatePrompt("yebz");
-				isAboveMax = true;
+//				DeskPanelService.instance.updatePrompt("yebz");
+//				isAboveMax = true;
 			}else{
 				switch(type){
 					case "zd":

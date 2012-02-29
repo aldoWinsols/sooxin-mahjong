@@ -4,6 +4,7 @@ package com.amusement.HundredHappy.control
 	import com.amusement.HundredHappy.services.HundredHappySyncService;
 	import com.amusement.HundredHappy.services.PokerService;
 	import com.hundredHappySyncServer.services.GameHallService;
+	import com.service.DataService;
 	import com.service.PlayerService;
 	
 	import flash.events.MouseEvent;
@@ -20,6 +21,7 @@ package com.amusement.HundredHappy.control
 		public function HundredHappyControl(hundredHappy:HundredHappy)
 		{
 			_instance = this;
+			DataService.instance;
 			
 			this._hundredHappy = hundredHappy;
 			

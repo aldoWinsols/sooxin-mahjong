@@ -8,5 +8,4 @@
 	</fx:Declarations>
 	<HundredHappy:HundredHappy x="0" y="0">
 	</HundredHappy:HundredHappy>
-	<view:Home />
 </s:Application>

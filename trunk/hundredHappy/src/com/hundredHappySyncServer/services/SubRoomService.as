@@ -24,25 +24,12 @@ package com.hundredHappySyncServer.services
 				playerService.subRoomService = this; 
 				
 				playerService.player.authz = getSeatNum(); // 获得方位
-				//----------------------------------------------------
-//				addObserver(playerService);
-				//-----------------------------------------------------
+
 				playerService.player.game = true;
 				return;
 			}
 			var lastPlayerService:PlayerService = getPlayerServiceByPlayerName(playerService.player.playerName);
-			//		if(lastPlayerService != null){
-			//			lastPlayerService.player.setIserver(playerService.player.getIserver());
-			//			lastPlayerService.player.setChipGroupItems(playerService.player.getChipGroupItems());
-			//			playerService = lastPlayerService;
-			//		}else{
-			//			this.subRoom.getPlayerServices().add(playerService);
-			//			playerService.setSubRoomService(this);
-			//			playerService.player.setAuthz(this.getSeatNum()); // 获得方位
-			//			//----------------------------------------------------
-			//			addObserver(playerService);
-			//			//-----------------------------------------------------
-			//		}
+
 			if(playerService.player.game){
 				return;
 			}
@@ -52,28 +39,13 @@ package com.hundredHappySyncServer.services
 				this.subRoom.playerServices.push(playerService);
 				playerService.subRoomService = this; 
 				playerService.player.authz = getSeatNum(); // 获得方位
-				//----------------------------------------------------
-//				addObserver(playerService);
-				//-----------------------------------------------------
-				playerService.player.game = true;
-//				var list:Vector.<Object> = new Vector.<Object>();
-//				list.push(getAllPlayerInfo());		//当前所有玩家信息
-//				list.push(roomService.room.historyRecord);		//当前台桌的历史记录
-//				list.push(roomService.room.roomNo);	//房间编号
-//				list.push(roomService.room.gameNo + "-" + (roomService.room.historyRecord.length + 1));//房间局号
-//				// 2011-5-19 11:01 如果房间倒计时小于5并且当前状态是可下注状态就改为0（不可下注状态），否则就是正常的
-				var type:int = roomService.room.timers <= 5 && roomService.room.roomType == 1 ? 0 : roomService.room.roomType; 
-//				list.push(type);	//房间类型
-//				list.push(100000);	//玩家上限
-//				list.push(5);	//和下限
-//				list.push(20000000);	//当前台桌的限红
-//				list.push("5,10,20,50,100,500,");			//玩家有多少筹码
-				playerService.enterRoom(getAllPlayerInfo(), roomService.room.historyRecord, roomService.room.roomNo, roomService.room.gameNo + "-" + (roomService.room.historyRecord.length + 1), 
-					type, 100000, 5, 20000000, "100,200,500,1000,10000,");
-//				
-//				playerAddRoomI(playerService);
 				
-				// g 2011-6-23 10:20  玩家进入游戏，发送当前房间的所有玩家的下注情况到客户端
+				playerService.player.game = true;
+				var type:int = roomService.room.timers <= 5 && roomService.room.roomType == 1 ? 0 : roomService.room.roomType; 
+				var gameNo:String = new Date().time.toString();
+				playerService.enterRoom(getAllPlayerInfo(), roomService.room.historyRecord, roomService.room.roomNo,gameNo , 
+					type, 100000, 5, 20000000, "100,200,500,1000,10000,");
+				
 				roomService.allPlayerBetting();
 			}
 			
@@ -83,15 +55,13 @@ package com.hundredHappySyncServer.services
 		 * 发送洗牌消息给房间玩家
 		 */
 		public function gameState():void{
-//			message.setHead("stateI");
-//			message.setContent(roomService.getRoom().getRoomType());
-//			if(roomService.getRoom().getRoomType() == 1){	//如果是1 ，那么表示可以下注，就清楚当前所有用户上一次的下注情况
-//				clearAllPlayerBetting();
-//			}
-//			setChanged();
-//			notifyObservers(message);
-			
-			MessageService.instance.stateI(roomService.room.roomType);
+			var i:int = 0;
+			for (i = 0; i < subRoom.playerServices.length; i++) {
+				if(subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					MessageService.instance.stateI(roomService.room.roomType);
+					break;
+				}
+			}
 		}
 		/**
 		 * 清楚房间所有用户的下注金额
@@ -141,24 +111,19 @@ package com.hundredHappySyncServer.services
 		 * @param str
 		 */
 		public function sendAllPlayerBetting(str:String):void{
-			MessageService.instance.allPlayerBettingI(str);
+			var isOnlinePlayer:Boolean = false;
+			var i:int = 0;
+			for(i=0; i<this.subRoom.playerServices.length; i++){
+				if(subRoom.playerServices[i].player.playerType == Player.ONLINE){
+					isOnlinePlayer = true;
+					break;
+				}
+			}
+			if(isOnlinePlayer){			
+				MessageService.instance.allPlayerBettingI(str);
+			}
 		}
 		
-//		/**
-//		 * 当新用户进来的时候初始化当前桌子其他玩家情况
-//		 */
-//		public void initPlayers(){
-//			//组合数据
-//			ArrayList<String> arr = new ArrayList<String>();
-//			for(int i=0; i<this.subRoom.getPlayerServices().size(); i++){
-//				arr.add(subRoom.playerServices[i].getBettingToString());
-//			}
-//			
-//			//发送数据
-//			for(int i=0; i<this.subRoom.getPlayerServices().size(); i++){
-//				subRoom.playerServices[i].initPlayers(arr);
-//			}
-//		}
 		/**
 		 * 玩家下注
 		 * @param playerName 				用户名
@@ -169,7 +134,7 @@ package com.hundredHappySyncServer.services
 		 * @param hT 		和
 		 */
 		public function playerBetting(playerName:String,zdT:int, xdT:int, zT:int, xT:int, hT:int):void{
-//			message.setHead("playerBettingI");
+
 			var bool:Boolean = false;
 			var isOnlinePlayer:Boolean = false;
 			var i:int = 0;
