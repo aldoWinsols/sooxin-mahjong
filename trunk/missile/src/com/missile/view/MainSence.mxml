@@ -15,18 +15,17 @@
 				// TODO Auto-generated method stub
 				new MainSenceControl(this);
 			}
-			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<view:Radar x="608" y="10">
-	</view:Radar>
-	<model:Missile x="0" y="0">
-	</model:Missile>
-	<model:Missile x="0" y="0">
-	</model:Missile>
-	<view:StateInfo x="668" y="185">
-	</view:StateInfo>
+	
+	<s:Group id="missileG">
+		
+	</s:Group>
+	
+	<s:Group id="stateG">
+		
+	</s:Group>
 </s:Group>
