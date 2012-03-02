@@ -64,7 +64,7 @@ package com.amusement.HundredHappy.control
 		}
 		
 		private function addListeners():void{
-			this._deskPanel.deskBgImg.addEventListener(MouseEvent.MOUSE_DOWN, dragHandler, false, 0, true);
+//			this._deskPanel.deskBgImg.addEventListener(MouseEvent.MOUSE_DOWN, dragHandler, false, 0, true);
 			
 			this._deskPanel.askZBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 			this._deskPanel.askXBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
