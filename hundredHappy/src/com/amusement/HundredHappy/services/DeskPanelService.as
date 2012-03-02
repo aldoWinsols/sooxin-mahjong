@@ -4,6 +4,7 @@ package com.amusement.HundredHappy.services
 	import com.amusement.HundredHappy.control.HundredHappyControl;
 	import com.amusement.HundredHappy.control.SystemPanelControl;
 	import com.hundredHappySyncServer.model.Record;
+	import com.hundredHappySyncServer.services.GameHallService;
 	import com.service.DataService;
 	import com.service.PlayerService;
 	
@@ -170,6 +171,7 @@ package com.amusement.HundredHappy.services
 					if(PlayerService.instance.haveMoney <= 1000){
 						DataService.instance.afterData(PlayerService.instance.playerName, 100000 + value);
 						PlayerService.instance.haveMoney += 100000; 
+						GameHallService.instance.setHaveMoney(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
 					}else{
 						DataService.instance.afterData(PlayerService.instance.playerName, value);
 					}

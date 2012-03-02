@@ -98,6 +98,10 @@ package com.hundredHappySyncServer.services
 			
 			if(num == randow2){
 				calBet(); //随机投住
+				var allValue:int = zdT + xdT + zT + xT + hT;
+				if(allValue > player.haveMoney){
+					return;
+				}
 				this.subRoomService.playerBetting(player.playerName, zdT, xdT, zT, xT, hT);
 				
 				//更新及时彩池

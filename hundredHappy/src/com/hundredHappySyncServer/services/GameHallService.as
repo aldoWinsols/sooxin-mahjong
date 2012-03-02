@@ -207,6 +207,11 @@ package com.hundredHappySyncServer.services
 			}
 		}
 		
+		public function setHaveMoney(playerName:String, haveMoney:Number):void{
+			var playerService:PlayerService = getPlayerServiceByPlayerName(playerName);
+			playerService.player.haveMoney += haveMoney;
+		}
+		
 		/**
 		 * 根据房间编号获得房间
 		 * 
