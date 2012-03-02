@@ -35,7 +35,7 @@ package com.amusement.Mahjong.service
 		private var _channel:SoundChannel;
 		private var _chucardChannel:SoundChannel;
 		
-		private var _soundSwitch:Boolean = true;
+		public var _soundSwitch:Boolean = true;
 		
 		public var mahjongManVoiceService:MahjongManVoiceService;
 		public var mahjongWomanVoiceService:MahjongWomanVoiceService;

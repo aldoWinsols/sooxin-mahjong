@@ -9,6 +9,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.view.MahjongQuemen;
 	import com.amusement.Mahjong.view.MahjongRoom;
 	import com.control.MainControl;
+	import com.model.Alert;
 	
 	import flash.display.StageDisplayState;
 	import flash.events.MouseEvent;
@@ -208,7 +209,20 @@ package com.amusement.Mahjong.control
 		 * @param obj
 		 * 
 		 */
+		var playNum:int = 0;
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
+			
+			playNum++;
+			if(playNum == 2){
+				MahjongSoundService.instance._soundSwitch = false;
+				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！");
+			}
+			
+			_mahjongRoom.limit.init();
+			
+			if(playNum == 1){
+				_mahjongRoom.limit.visible = false;
+			}
 			
 			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
 			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;

@@ -149,7 +149,7 @@
 	<s:BorderContainer width="395" height="217" alpha="0.75" backgroundColor="#000000"
 					   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
 		<s:TextArea id="contentTxt" y="43" width="354" height="107" borderVisible="false"
-					color="#BD0000" contentBackgroundAlpha="0.0" editable="false" fontSize="20"
+					color="#31FF44" contentBackgroundAlpha="0.0" editable="false" fontSize="20"
 					fontWeight="bold" horizontalCenter="-84" mouseChildren="false"
 					mouseEnabled="false" paddingBottom="0" paddingLeft="0" paddingRight="0"
 					paddingTop="0" selectable="false" text="内容"/>
