@@ -23,6 +23,7 @@
 			protected function toggleswitch1_changeHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 				MahjongSoundService.instance.soundSwitch(soundSwitch.selected);
 			}
 			
@@ -47,6 +48,13 @@
 				MahjongRoomControl.soundType = boy.selected ? 1 : 0;
 			}
 			
+			protected function level_changeHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+				MahjongSyncService.instance.level = level.value;
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -55,7 +63,7 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:ToggleSwitch id="soundSwitch" x="154" y="24" change="toggleswitch1_changeHandler(event)"
-					enabled="true" fontSize="20" selected="true"/>
+					enabled="false" fontSize="20" selected="false"/>
 	<s:ToggleSwitch id="bgSound" x="154" y="78" enabled="true" fontSize="20" change="toggleswitch2_changeHandler(event)" selected="true"/>
 	<s:Label x="67" y="30" fontSize="20" text="声音："/>
 	<s:Label x="35" y="82" fontSize="20" text="背景音乐："/>
@@ -73,8 +81,9 @@
 	<s:Button x="219" y="271" width="102" label="关闭" click="button1_clickHandler(event)"
 			  color="#000000"/>
 	<s:HSlider id="level" x="151" y="170" width="300"
-			   change="MahjongSyncService.instance.level = level.value" maximum="100" minimum="0"
-			   stepSize="1" value="10"/>
+			   change="level_changeHandler(event)"
+			   maximum="100" minimum="0"
+			   stepSize="1" value="10" enabled="false"/>
 	<s:RadioButton id="boy" x="154" fontSize="20" y="130" label="四川方言男生" click="boy_clickHandler(event)"/>
 	<s:RadioButton x="335" y="130" fontSize="20" label="四川方言女生" selected="true" click="boy_clickHandler(event)"/>
 	<s:Label x="35" y="134" fontSize="20" text="出牌声音："/>

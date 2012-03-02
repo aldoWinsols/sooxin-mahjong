@@ -111,6 +111,10 @@
 		
 		<view:MahjongSeat>
 		</view:MahjongSeat>
+		
+		<s:Button label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)" color="#3C3C3C"
+				  horizontalCenter="-60" verticalCenter="64"/>
+		
 		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view2:AboutUs id="aboutus" visible="false" horizontalCenter="0" verticalCenter="0">
@@ -121,8 +125,10 @@
 		</view2:Exit>
 		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:Help>
-		<s:Button label="我要支持完整版" alpha="0.5" click="button1_clickHandler(event)" color="#00FF24"
-				  horizontalCenter="-60" verticalCenter="64" visible="false"/>
+		
+		<view:Limit id="limit" horizontalCenter="0" verticalCenter="0" visible="false">
+		</view:Limit>
+		<s:Label left="10" top="10" color="#FFFFFF" fontSize="30" fontWeight="bold" text="LITE版"/>
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
