@@ -27,7 +27,7 @@ package com.service{
 		private var table:String = "";
 		
 		public function DataService(){
-			var db:File = File.applicationStorageDirectory.resolvePath("hundredHappyData11.db");
+			var db:File = File.applicationStorageDirectory.resolvePath("hundredHappyData2.db");
 			sqlc.openAsync(db);
 			sqlc.addEventListener(SQLEvent.OPEN, db_opened);
 			sqlc.addEventListener(SQLErrorEvent.ERROR, error);
@@ -52,6 +52,7 @@ package com.service{
 			sqls.sqlConnection = sqlc;
 			
 			sqlStrs.push("CREATE TABLE IF NOT EXISTS players ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, haveMoney DOUBLE);");
+			addPlayer("player");
 			table = "create";
 			resault(null);
 		}
@@ -99,10 +100,10 @@ package com.service{
 		//-----------------------------------------------------------------------------
 		
 		public function addPlayer(playerName:String):void{
-			table = "player";
-			sqls.text = "INSERT INTO players (playerName, haveMoney) VALUES('"+playerName+"','100000');";
-			sqls.execute();
-			refresh();
+			table = "create";
+			sqlStrs.push("INSERT INTO players (playerName, haveMoney) VALUES('"+playerName+"','100000');");
+//			sqls.execute();
+//			refresh();
 		}
 		
 		public function removePlayer(id:Number, playerName:String):void
