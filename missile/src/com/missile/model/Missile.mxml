@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="768" height="1024" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.missile.util.BezierCurve;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.core.SpriteVisualElement;
+			
+			
+			private var locusPoints:Vector.<Point> = new Vector.<Point>();
+			private var moveTimer:Timer = new Timer(300);
+			
+			var points_x:Array = new Array();
+			var points_y:Array = new Array();
+			var line:SpriteVisualElement;
+			var line1:SpriteVisualElement;
+			var drawing:Boolean =false;
+			var myTimer:Timer=new Timer(1,0);
+			var step=10;
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.addEventListener(MouseEvent.MOUSE_DOWN,onMsDown);
+				this.addEventListener(MouseEvent.MOUSE_UP,onMsUp);
+			}
+			
+			function reDraw() {
+				var i;
+				line1 =new SpriteVisualElement();
+				line1.graphics.lineStyle(3, 0xFF00FF, 50);
+				line1.graphics.moveTo(Number(points_x[0]), Number(points_y[0]));
+				
+				locusPoints.push(new Point(Number(points_x[0]),Number(points_y[0])));
+				
+				addElement(line1);
+				
+				var num:Number = Math.abs(points_x[0] - points_x[points_x.length -1]);
+				var num1:Number = 1 / num;
+				
+				for (i = 0; i < 1; i=i+num1) {
+//					var xc:Number = (points_x[i] + points_x[i+step]) / 2;
+//					var yc:Number = (points_y[i] + points_y[i+step]) / 2;
+//					line1.graphics.curveTo(points_x[i],points_y[i], xc, yc);
+					var array:Array = new Array();
+					array.push(new Point(points_x[0], points_y[0]));
+					array.push(new Point(points_x[points_x.length -1],points_y[points_x.length -1]));
+					array.push(new Point((points_x[0] + points_x[points_x.length -1]) / 2, (points_y[0] + points_y[points_x.length -1]) / 2));
+					var point:Point = BezierCurve.getPoint(i,array);
+					line1.graphics.lineTo(point.x,point.y);
+					locusPoints.push(point);
+				}
+//				line1.graphics.lineTo(points_x[points_x.length -1],points_y[points_x.length -1] );
+				locusPoints.push(new Point(points_x[points_x.length -1],points_y[points_x.length -1]));
+			}
+			
+			function onMsUp(event:MouseEvent):void {
+				reDraw ();
+				points_x.splice(0);
+				points_y.splice(0);
+				drawing=false;
+				myTimer.stop();
+				removeElement(line);
+			}
+			
+			function onMsDown(event:MouseEvent):void {
+				line =new SpriteVisualElement() ;
+				line.graphics.lineStyle(1, 0, 10);
+				addElement(line);
+				points_x.push(mouseX);
+				points_y.push(mouseY);
+				line.graphics.moveTo(Number(points_x[0]), Number(points_y[0]));
+				drawing=true;
+				myTimer.addEventListener(TimerEvent.TIMER,onMsMove);
+				myTimer.start();
+			}
+			function onMsMove(event:TimerEvent):void {
+				if (drawing) {
+					points_x.push(mouseX);
+					points_y.push(mouseY);
+					line.graphics.lineTo(mouseX,mouseY);
+				}
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				moveTimer.addEventListener(TimerEvent.TIMER,moveHandler);
+				moveTimer.start();
+			}
+			
+			var i:int = -1;
+			private function moveHandler(e:TimerEvent):void{
+				i++;
+				if(i<locusPoints.length){
+					missile.x = locusPoints[i].x;
+					missile.y =locusPoints[i].y;
+				}else{
+					moveTimer.stop();
+					locusPoints = new Vector.<Point>();
+					i = -1;
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image id="missile" x="368" y="935" source="assets/missile.png"/>
+	<s:Button x="685" y="613" label="按钮" click="button1_clickHandler(event)"/>
+</s:Group>
