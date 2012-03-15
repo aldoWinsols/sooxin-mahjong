@@ -6,6 +6,7 @@
 		 fontSize="18">
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.MahjongAppliction;
 			import com.amusement.Mahjong.control.MahjongApplictionControl;
 			import com.control.HomeControl;
 			import com.mahjongSyncServer.model.Player;
@@ -80,6 +81,14 @@
 				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
 			}
 			
+			protected function closeB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+				MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
+				MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -97,6 +106,8 @@
 	</s:BorderContainer>	
 		<s:Button id="addPlayerB" x="20" y="18" width="120" height="45" label="添加帐户" alpha="0.5"
 				  chromeColor="#FFC600" color="#000000" fontSize="18"/>
+	<s:Button id="closeB" x="680" y="18" width="120" height="45" label="返回大厅" alpha="0.5"
+			  chromeColor="#FF0000" color="#000000" fontSize="18" click="closeB_clickHandler(event)"/>
 	
 	<s:BorderContainer id="operation" borderVisible="false" dropShadowVisible="true" visible="false" width="150" height="250" horizontalCenter="0" verticalCenter="0" cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3">
 		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"

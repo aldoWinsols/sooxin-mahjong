@@ -13,11 +13,13 @@
 			import com.amusement.Mahjong.control.MahjongApplictionControl;
 			import com.amusement.Mahjong.view.MahjongRoom;
 			import com.view.Home;
+			import com.view.LianwangHome;
 			
 			import mx.events.FlexEvent;
 			
 			public var mahjongRoom:MahjongRoom = new MahjongRoom();
 			public var home:Home = new Home();
+			public var lianwangHome:LianwangHome = new LianwangHome();
 			
 			protected function module1_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -25,7 +27,11 @@
 				new MahjongApplictionControl(this);
 				this.addElement(mahjongRoom);
 				this.addElement(home);
+				this.addElement(lianwangHome);
 				home.visible = false;
+				lianwangHome.visible = false;
+				lianwangHome.verticalCenter = 0;
+				lianwangHome.horizontalCenter = 0;
 				
 				mahjongRoom.verticalCenter = 0;
 				mahjongRoom.horizontalCenter = 0;
@@ -33,7 +39,7 @@
 				home.verticalCenter = 0;
 				home.horizontalCenter = 0;
 				
-				this.mjRoomBgImg.addEventListener(MouseEvent.CLICK,touchBeginHandler);
+//				this.mjRoomBgImg.addEventListener(MouseEvent.CLICK,touchBeginHandler);
 			}
 			
 			private function touchBeginHandler(e:MouseEvent):void{
@@ -44,6 +50,22 @@
 				}
 			}
 
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				home.visible = true;
+				this.lianwangB.visible = false;
+				this.danjiB.visible = false;
+			}
+			
+			protected function lianwangB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				lianwangHome.visible = true;
+				this.lianwangB.visible = false;
+				this.danjiB.visible = false;
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -52,6 +74,8 @@
 	<s:Group x="0" y="0" width="100%" height="100%">
 		<s:Image id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed('assets/index.jpg')" verticalCenter="0"/>
+		<s:Image id="lianwangB" x="423" y="387" source="assets/but/lianwangB.png" click="lianwangB_clickHandler(event)"/>
+		<s:Image id="danjiB" x="423" y="307" source="assets/but/danjiB.png" click="image1_clickHandler(event)"/>
 	</s:Group>
 
 </s:View>

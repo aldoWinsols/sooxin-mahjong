@@ -63,7 +63,7 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:ToggleSwitch id="soundSwitch" x="154" y="24" change="toggleswitch1_changeHandler(event)"
-					enabled="false" fontSize="20" selected="false"/>
+					fontSize="20" selected="false"/>
 	<s:ToggleSwitch id="bgSound" x="154" y="78" enabled="true" fontSize="20" change="toggleswitch2_changeHandler(event)" selected="true"/>
 	<s:Label x="67" y="30" fontSize="20" text="声音："/>
 	<s:Label x="35" y="82" fontSize="20" text="背景音乐："/>
@@ -83,7 +83,7 @@
 	<s:HSlider id="level" x="151" y="170" width="300"
 			   change="level_changeHandler(event)"
 			   maximum="100" minimum="0"
-			   stepSize="1" value="10" enabled="false"/>
+			   stepSize="1" value="10"/>
 	<s:RadioButton id="boy" x="154" fontSize="20" y="130" label="四川方言男生" click="boy_clickHandler(event)"/>
 	<s:RadioButton x="335" y="130" fontSize="20" label="四川方言女生" selected="true" click="boy_clickHandler(event)"/>
 	<s:Label x="35" y="134" fontSize="20" text="出牌声音："/>
