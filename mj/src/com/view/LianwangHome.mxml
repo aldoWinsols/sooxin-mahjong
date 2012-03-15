@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 width="820" height="500"
+		 fontSize="18">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer id="resultCont" width="100%" borderVisible="false" height="100%" alpha="0.3"
+					   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
+					   horizontalCenter="0" verticalCenter="0">
+		
+		<s:DataGrid x="10" y="162" width="800" height="328">
+			
+		</s:DataGrid>
+		
+		
+		</s:BorderContainer>
+	<s:TextInput id="playerName" x="142" y="93" width="150"/>
+	<s:Label x="83" y="102" color="#FFFFFF" text="用户："/>
+	<s:TextInput id="playerPwd" x="373" y="93" width="150" displayAsPassword="true"/>
+	<s:Label x="314" y="102" color="#FFFFFF" text="密码："/>
+	<s:Button x="531" y="90" width="100" label="登录"/>
+	<s:Button x="638" y="90" width="100" label="注册"/>
+</s:Group>

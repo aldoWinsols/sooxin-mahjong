@@ -52,7 +52,7 @@
 			private function timerHandler(e:TimerEvent):void{
 				var date:Date = new Date();
 				if(date.getMinutes() < 10){
-					time.text = date.getHours()+":"+date.getMinutes()*10;
+					time.text = date.getHours()+":0"+date.getMinutes();
 				}else{
 					time.text = date.getHours()+":"+date.getMinutes();
 				}

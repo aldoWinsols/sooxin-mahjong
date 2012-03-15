@@ -25,8 +25,8 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer id="resultCont" width="100%" height="100%" alpha="0.65"
-					   backgroundColor="#000000" cornerRadius="20" dropShadowVisible="true"
+	<s:Image x="0" y="0" source="com/amusement/Mahjong/assets/jiesuanBg.png"/>
+	<s:BorderContainer id="resultCont" width="100%" height="100%" alpha="0.65" backgroundAlpha="0" borderVisible="false"
 					   fontSize="20" horizontalCenter="0" verticalCenter="0">
 		
 		<s:Label x="55" y="27" color="#FE8206" fontSize="16" fontWeight="bold" text="局号："/>
@@ -51,6 +51,7 @@
 				 verticalAlign="middle"/>
 		<s:Label id="shuying4" x="609" y="277" width="127" color="#FFFC1A" fontSize="20" text="0"
 				 verticalAlign="middle"/>
+		
 	</s:BorderContainer>
 		<s:Button id="continueBtn" x="19.5" y="415" width="120" height="45" label="继续游戏"
 				  fontSize="20"/>
