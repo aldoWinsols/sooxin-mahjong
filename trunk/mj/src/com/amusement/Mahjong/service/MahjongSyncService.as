@@ -30,6 +30,7 @@ package com.amusement.Mahjong.service
 		private var _isResult:Boolean = true;
 		public var playHandSpeed:int = 1;
 		public var level:int = 0; //机器人智能水平
+		public var isNetwork:Boolean = false;
 		
 		public function MahjongSyncService()
 		{
@@ -168,43 +169,74 @@ package com.amusement.Mahjong.service
 		//----------------------------------------------------------------------------------------------------------
 		
 		public function continueGame():void{
-			RoomService.instance.continueGame();
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.continueGame();
+			}else{			
+				RoomService.instance.continueGame();
+			}
 		}
 		
 		public function dealOver():void{
-			RoomService.instance.dealOver();
-			
-			if(MainControl.instance.main.applicationDPI != 160){
-				MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = false;
-				MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = false;
-				MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = false;
-				MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = false;
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.dealOver();
+			}else{
+				RoomService.instance.dealOver();
+				
+				if(MainControl.instance.main.applicationDPI != 160){
+					MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = false;
+					MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = false;
+					MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = false;
+					MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = false;
+				}
 			}
-			
 		}
 		
 		public function dingzhang(dingzhangValue:int):void{
-			RoomService.instance.dingzhang(MahjongRoomControl.instance.playerAzimuth,dingzhangValue);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.dingzhang(dingzhangValue);
+			}else{			
+				RoomService.instance.dingzhang(MahjongRoomControl.instance.playerAzimuth,dingzhangValue);
+			}
 		}
 		
 		public function putOneMahjong(putOneMahjongValue:int, isPutDingzhang:Boolean = false):void{
-			RoomService.instance.putOneMahjong(MahjongRoomControl.instance.playerAzimuth,putOneMahjongValue, isPutDingzhang);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.putOneMahjong(putOneMahjongValue, isPutDingzhang);
+			}else{			
+				RoomService.instance.putOneMahjong(MahjongRoomControl.instance.playerAzimuth,putOneMahjongValue, isPutDingzhang);
+			}
 		}
 		
 		public function peng():void{
-			RoomService.instance.peng(MahjongRoomControl.instance.playerAzimuth);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.peng();
+			}else{
+				RoomService.instance.peng(MahjongRoomControl.instance.playerAzimuth);
+			}
 		}
 		
 		public function gang(gangValue:int, isZigang:Boolean):void{
-			RoomService.instance.gang(MahjongRoomControl.instance.playerAzimuth,gangValue, isZigang);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.gang(gangValue, isZigang);
+			}else{
+				RoomService.instance.gang(MahjongRoomControl.instance.playerAzimuth,gangValue, isZigang);
+			}
 		}
 		
 		public function hu(isZimo:Boolean):void{
-			RoomService.instance.hu(MahjongRoomControl.instance.playerAzimuth,isZimo);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.hu(isZimo);
+			}else{
+				RoomService.instance.hu(MahjongRoomControl.instance.playerAzimuth,isZimo);
+			}
 		}
 		
 		public function xiao(isZimo:Boolean, isZigang:Boolean):void{
-			RoomService.instance.xiao(MahjongRoomControl.instance.playerAzimuth,isZimo,isZigang);
+			if(isNetwork){
+				MahjongSyncNetworkService.instance.xiao(isZimo, isZigang);
+			}else{			
+				RoomService.instance.xiao(MahjongRoomControl.instance.playerAzimuth,isZimo,isZigang);
+			}
 		}
 	}
 }
