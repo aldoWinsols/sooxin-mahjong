@@ -8,6 +8,7 @@
 		<![CDATA[
 			import com.amusement.Mahjong.MahjongAppliction;
 			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.service.MahjongSyncService;
 			import com.control.HomeControl;
 			import com.mahjongSyncServer.model.Player;
 			import com.mahjongSyncServer.services.RoomService;
@@ -46,6 +47,8 @@
 				operation.visible = false;
 				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 				this.visible = false;
+				MahjongSyncService.instance.isNetwork = false;
+//				MahjongSyncService.instance.connServer(DataService.getPlayerByIndex(players.selectedIndex).playerName);
 				
 				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
 				
