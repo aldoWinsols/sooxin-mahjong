@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:view="com.view.*"
 		 width="820" height="500" creationComplete="group1_creationCompleteHandler(event)"
-		 currentState="login" fontSize="18">
+		 currentState="main" fontSize="18">
 	
 	<fx:Script>
 		<![CDATA[
@@ -69,7 +69,7 @@
 			{
 				// TODO Auto-generated method stub
 				MahjongSyncService.instance.isNetwork = true;
-				switch(event.target.id){
+				switch(event.currentTarget.id){
 					case "room10":
 						MahjongSyncNetworkService.instance.connServer("", 10);
 						break;
