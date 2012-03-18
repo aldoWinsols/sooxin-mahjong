@@ -2,25 +2,121 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:view="com.view.*"
-		 width="820" height="500"
-		 fontSize="18">
+		 width="820" height="500" creationComplete="group1_creationCompleteHandler(event)"
+		 currentState="login" fontSize="18">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.model.Alert;
+			import com.model.MainPlayer;
+			import com.services.MainPlayerService;
+			import com.services.RemoteService;
+			import com.util.MD5;
+			
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				MainPlayerService.instance;
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				RemoteService.instance.playerService.regeist(this.playerNameRe.text, MD5.hash(this.playerPwdRe.text));
+				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, regeistResaultHandler);
+			}
+			
+			private function regeistResaultHandler(e:ResultEvent){
+				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT, regeistResaultHandler);
+				if(e.result){
+					Alert.show("注册成功!");
+					this.currentState = "login";
+				}else{
+					Alert.show("注册失败!");
+				}
+			}
+
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "regeist";
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				RemoteService.instance.playerService.login(this.playerName.text,MD5.hash(this.playerPwd.text));
+				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+			}
+			
+			private function loginResultHandler(e:ResultEvent):void{
+				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
+				if(e.result is MainPlayer){
+					MainPlayerService.instance.mainPlayer = e.result as MainPlayer;
+					this.currentState = "main";
+					
+				}else{
+					Alert.show(e.result.toString());
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="regeist"/>
+		<s:State name="main"/>
+	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer id="resultCont" width="100%" borderVisible="false" height="100%" alpha="0.3"
-					   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
-					   horizontalCenter="0" verticalCenter="0">
-		
-		<s:DataGrid x="10" y="162" width="800" height="328">
-			
-		</s:DataGrid>
-		
-		
+	<s:BorderContainer id="resultCont" includeIn="login,main" width="100%" height="100%" alpha="0.3"
+					   backgroundColor="#000000" borderVisible="false" cornerRadius="10"
+					   dropShadowVisible="true" horizontalCenter="0" verticalCenter="0">
+		<s:Label includeIn="main" x="108" y="337" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label includeIn="main" x="186" y="337" color="#1CF000" fontSize="14" text="标签"/>
+		<s:Label includeIn="main" x="265" y="337" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label includeIn="main" x="343" y="337" color="#1CF000" fontSize="14" text="标签"/>
+		<s:Label includeIn="main" x="426" y="337" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label includeIn="main" x="504" y="337" color="#1CF000" fontSize="14" text="标签"/>
+		<s:Label includeIn="main" x="586" y="337" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label includeIn="main" x="664" y="337" color="#1CF000" fontSize="14" text="标签"/>
+		<s:Button includeIn="main" x="258" y="80" label="游戏记录"/>
+		<s:Button includeIn="main" x="364" y="79" label="插件记录"/>
+		<s:Button includeIn="main" x="469" y="79" label="奖品领取记录"/>
+		<s:Button includeIn="main" x="10" y="79" label="获取点卡插件"/>
+		<s:Button includeIn="main" x="153" y="80" label="领取奖品"/>
+		<s:Button includeIn="main" x="612" y="79" label="修改密码"/>
+		<s:Button includeIn="main" x="717" y="79" label="返回"/>
 		</s:BorderContainer>
-	<s:TextInput id="playerName" x="142" y="93" width="150"/>
-	<s:Label x="83" y="102" color="#FFFFFF" text="用户："/>
-	<s:TextInput id="playerPwd" x="373" y="93" width="150" displayAsPassword="true"/>
-	<s:Label x="314" y="102" color="#FFFFFF" text="密码："/>
-	<s:Button x="531" y="90" width="100" label="登录"/>
-	<s:Button x="638" y="90" width="100" label="注册"/>
+	<s:Label includeIn="main" x="26" y="31" color="#FFE400" fontSize="30" fontWeight="bold"
+			 text="ID:"/>
+	<s:Label includeIn="main" x="75" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
+			 text="{MainPlayerService.instance.mainPlayer.playername}"/>
+	<s:Label includeIn="main" x="213" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
+			 text="点数："/>
+	<s:Label includeIn="main" x="311" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
+			 text="{MainPlayerService.instance.mainPlayer.haveMoney}"/>
+	<s:Image includeIn="main" x="105" y="226" source="assets/room/room10.png"/>
+	<s:Image includeIn="main" x="264" y="227" source="assets/room/room20.png"/>
+	<s:Image includeIn="main" x="423" y="227" source="assets/room/room50.png"/>
+	<s:Image includeIn="main" x="582" y="227" source="assets/room/room100.png"/>
+	
+	
+	<s:TextInput id="playerName" includeIn="login" x="142" y="216" width="150"/>
+	<s:Label includeIn="login" x="83" y="225" color="#FFFFFF" text="用户："/>
+	<s:TextInput id="playerPwd" includeIn="login" x="373" y="216" width="150" displayAsPassword="true"/>
+	<s:Label includeIn="login" x="314" y="225" color="#FFFFFF" text="密码："/>
+	<s:Button includeIn="login" x="531" y="213" width="100" label="登录"
+			  click="button3_clickHandler(event)"/>
+	<s:Button includeIn="login" x="638" y="213" width="100" label="注册"
+			  click="button2_clickHandler(event)"/>
+	<s:TextInput id="playerNameRe" includeIn="regeist" x="255" y="118"/>
+	<s:TextInput id="playerPwdRe" includeIn="regeist" x="255" y="174"/>
+	<s:TextInput includeIn="regeist" x="255" y="235"/>
+	<s:Button includeIn="regeist" x="255" y="297" label="按钮" click="button1_clickHandler(event)"/>
 </s:Group>
