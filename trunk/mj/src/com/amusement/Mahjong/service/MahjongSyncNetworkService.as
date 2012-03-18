@@ -51,14 +51,15 @@ package com.amusement.Mahjong.service
 		 * 连接服务 
 		 * 
 		 */
-		public function connServer(playerName:String):void
+		public function connServer(playerName:String, roomType:int):void
 		{
 			this.playerName = playerName;
 			this.playerName = "g0005";
+			var connectStr:String = "rtmp://127.0.0.1/mahjongSyncServer" + roomType;
 			
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler, false, 0, true);
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler, false, 0, true);
-			_conn.connect("rtmp://127.0.0.1/mahjongSyncServer1", this.playerName, "e10adc3949ba59abbe56e057f20f883e", "127.0.0.1");
+			_conn.connect(connectStr, this.playerName, "e10adc3949ba59abbe56e057f20f883e", "127.0.0.1");
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void
