@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ====================================================================== 
+     Date:     2011-6-20_16:40:45
+     
+     Project:  ManagementSys
+     
+     Author:   Pan Jin Feng
+     ====================================================================== -->
+
+
+
+<project name="mainSyncServer" default="all" basedir=".">
+
+	<target name="all" depends="archive,copyDistToFecthHome">
+	</target>
+
+	<condition property="platformSpecificPropertyFile" value="build.win.properties">
+		<os family="windows" />
+	</condition>
+	<condition property="platformSpecificPropertyFile" value="build.unix.properties">
+		<os family="unix" />
+	</condition>
+
+	<property file="./build.properties" />
+	<property file="./${platformSpecificPropertyFile}" />
+
+	<!-- =============== Classpath ==================-->
+	<!--
+		define the classpath, we will use it to compile the java source 
+	-->
+	<path id="classpath">
+		<path>
+			<fileset dir="${lib.home}" />
+		</path>
+	</path>
+
+	<!-- ==================== Clean Target ==================================== -->
+
+	<!--
+	  The "clean" target deletes any previous "build" 、"comm"、"javadoc" and "dist" directory,
+	  so that you can be ensured the application can be built from scratch.
+	-->
+	<target name="clean" description="Delete old build and dist directories">
+		<delete dir="${build.home}" />
+		<delete dir="${dist.home}" />
+		<delete dir="${javadoc.home}" />
+	</target>
+
+	<!-- ==================== Init Target ================================== -->
+
+	<!--
+
+	  The "init" target is used to create the "build" destination directory,
+	  Normally, this task is executed indirectly when needed.
+
+	-->
+	<target name="init" depends="clean" description="Create build directory">
+		<mkdir dir="${build.home}" />
+		<mkdir dir="${dist.home}" />
+		<mkdir dir="${javadoc.home}" />
+	</target>
+
+	<target name="copy-webroot" depends="init">
+		<copydir dest="${build.home}/WebRoot" src="${WebRoot.home}">
+		</copydir>
+	</target>
+
+	<!-- ==================== Compile Target ================================== -->
+
+	<!--
+
+	  The "compile" target transforms source files (from your "src" directory)
+	  into class files in the appropriate location in the build directory.
+	  This example assumes that you will be including your classes in an
+	  unpacked directory hierarchy under "/WEB-INF/classes".
+
+	-->
+	<target name="compile" depends="copy-webroot" description="Compile Java sources">
+		<delete dir="${build.home}/WebRoot/WEB-INF/classes">
+		</delete>
+		<mkdir dir="${build.home}/WebRoot/WEB-INF/classes" />
+
+		<javac encoding="UTF-8" srcdir="${source.home}" destdir="${build.home}/WebRoot/WEB-INF/classes" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" source="1.6" target="1.6">
+
+			<classpath refid="classpath" />
+
+		</javac>
+
+		<!-- copy resource-->
+		<copydir dest="${build.home}/WebRoot/WEB-INF/classes/" src="${source.home}">
+			<exclude name="**/*.java" />
+		</copydir>
+
+		<!--copy lib-->
+		<copydir dest="${build.home}/WebRoot/WEB-INF/lib/" src="${lib.home}">
+			<include name="**/sys.jar" />
+		</copydir>
+
+	</target>
+
+	<!--
+
+	  The "build" target copies all non class files to build directory
+
+	-->
+
+	<target name="javadoc">
+		<mkdir dir="${javadoc.home}/api/" />
+		<javadoc packagenames="com.*" sourcepath="${source.home}" destdir="${javadoc.home}/api/" author="true" version="true" use="true" encoding="UTF-8" docencoding="UTF-8" charset="UTF-8">
+			<classpath refid="classpath" />
+		</javadoc>
+	</target>
+
+	<!-- ==================== Archive Target ================================== -->
+
+	<!--
+
+	  The "archive" target create a binary archive of all files in build.home
+
+	-->
+
+	<target name="archive" depends="compile" description="Create binary archive of all files in dist.home">
+		<jar encoding="UTF-8" jarfile="${dist.home}/${ant.project.name}.war" basedir="${build.home}/WebRoot" />
+		<delete dir="${build.home}" />
+	</target>
+
+	<target name="copyDistToFecthHome" depends="archive">
+		<delete file="${deploy.fecth.home}/${ant.project.name}.war">
+		</delete>
+
+		<copydir dest="${deploy.fecth.home}" src="${dist.home}">
+		</copydir>
+	</target>
+
+	<target name="deploy" depends="archive">
+		<delete file="${deploy.webapp.home}/${ant.project.name}.war">
+		</delete>
+		<copyfile dest="${deploy.webapp.home}/${ant.project.name}.war" src="${dist.home}/${ant.project.name}.war" />
+		<antcall target="clean">
+		</antcall>
+	</target>
+
+</project>
+
