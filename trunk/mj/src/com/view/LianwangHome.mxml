@@ -7,6 +7,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
 			import com.model.Alert;
 			import com.model.MainPlayer;
 			import com.services.MainPlayerService;
@@ -63,6 +65,26 @@
 				}
 			}
 			
+			protected function room_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSyncService.instance.isNetwork = true;
+				switch(event.target.id){
+					case "room10":
+						MahjongSyncNetworkService.instance.connServer("", 10);
+						break;
+					case "room20":
+						MahjongSyncNetworkService.instance.connServer("", 20);
+						break;
+					case "room50":
+						MahjongSyncNetworkService.instance.connServer("", 50);
+						break;
+					case "room100":
+						MahjongSyncNetworkService.instance.connServer("", 100);
+						break;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -101,10 +123,10 @@
 			 text="点数："/>
 	<s:Label includeIn="main" x="311" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
 			 text="{MainPlayerService.instance.mainPlayer.haveMoney}"/>
-	<s:Image includeIn="main" x="105" y="226" source="assets/room/room10.png"/>
-	<s:Image includeIn="main" x="264" y="227" source="assets/room/room20.png"/>
-	<s:Image includeIn="main" x="423" y="227" source="assets/room/room50.png"/>
-	<s:Image includeIn="main" x="582" y="227" source="assets/room/room100.png"/>
+	<s:Image includeIn="main" x="105" y="226" source="assets/room/room10.png" id="room10" click="room_clickHandler(event)"/>
+	<s:Image includeIn="main" x="264" y="227" source="assets/room/room20.png" id="room20" click="room_clickHandler(event)"/>
+	<s:Image includeIn="main" x="423" y="227" source="assets/room/room50.png" id="room50" click="room_clickHandler(event)"/>
+	<s:Image includeIn="main" x="582" y="227" source="assets/room/room100.png" id="room100" click="room_clickHandler(event)"/>
 	
 	
 	<s:TextInput id="playerName" includeIn="login" x="142" y="216" width="150"/>
