@@ -233,6 +233,7 @@ public class GameHallService {
 			}
 			
 			if(!isTheGame){
+				rtmpClientNew.sendRoomNum(UtilProperties.instance.getRoomNo(), gameHall.getPlayerServices().size());
 //				remoteService.getUserService().exitGame(playerService.getPlayer().getPlayerName(), getOnlineStatus());
 //				
 //				// 2012-3-5 11:34 gmr start 玩家账号发生异常，退换扣除的金额
