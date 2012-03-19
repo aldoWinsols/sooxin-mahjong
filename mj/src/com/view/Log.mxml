@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="800" height="480" currentState="game">
+	<s:states>
+		<s:State name="jiangpin"/>
+		<s:State name="chongzhi"/>
+		<s:State name="game"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Button x="10" y="10" label="游戏记录"/>
+	<s:Button x="107" y="10" label="充值记录"/>
+	<s:Button x="204" y="10" label="奖品领取记录"/>
+	
+	
+	<s:DataGrid id="gameHistoryGird" includeIn="jiangpin" x="12" y="61" width="778" height="413"
+				fontSize="13">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
+				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
+				<s:GridColumn id="gameContent" headerText="奖品" dataField="gameContent" width="160"/>
+				<s:GridColumn headerText="联系人" dataField="afterMoney" width="80"/>
+				<s:GridColumn headerText="邮寄地址" dataField="preMoney" width="80"/>
+				<s:GridColumn headerText="联系电话" dataField="winLossMoneyAfterTax" width="60"/>
+				<s:GridColumn headerText="当前状态" dataField="winLossMoneyAfterTax" width="60"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:Button x="735" y="10" label="关闭"/>
+	<s:DataGrid id="gameHistoryGird0" includeIn="chongzhi" x="12" y="61" width="778" height="413"
+				fontSize="13">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
+				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
+				<s:GridColumn headerText="遊戲前點數" dataField="preMoney" width="80"/>
+				<s:GridColumn headerText="充值点数" dataField="winLossMoneyAfterTax" width="60"/>
+				<s:GridColumn headerText="充值后点数" dataField="afterMoney" width="80"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:DataGrid id="gameHistoryGird1" includeIn="game" x="12" y="61" width="778" height="413"
+				fontSize="13">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
+				<s:GridColumn headerText="局號" dataField="gameNo" width="120"/>
+				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
+				<s:GridColumn id="gameContent1" headerText="遊戲內容" dataField="gameContent" width="160"/>
+				<s:GridColumn headerText="遊戲前點數" dataField="preMoney" width="80"/>
+				<s:GridColumn headerText="輸贏" dataField="winLossMoneyAfterTax" width="60"/>
+				<s:GridColumn headerText="遊戲後點數" dataField="afterMoney" width="80"/>
+				<s:GridColumn id="luxiang1" headerText="錄像操作" dataField="luxiang" width="80">
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								<LinkButton horizontalCenter="0" verticalCenter="0" label="查看錄像" fontWeight="bold" click="outerDocument.linkbutton1_clickHandler(event)"/>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+</s:Group>
