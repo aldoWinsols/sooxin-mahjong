@@ -32,5 +32,21 @@ package com.services
 			
 		}
 		
+		public function chongzhi(money:int):void{
+			RemoteService.instance.playerService.chongzhi(mainPlayer.playername, money);
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
+		}
+		
+		private function chongzhiResaultHandler(e:ResultEvent):void{
+			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
+			if(e.result is MainPlayer){
+				Alert.show("充值成功!");
+				this.mainPlayer = e.result as MainPlayer;
+			}
+			else{
+				Alert.show(e.result.toString());
+			}
+		}
+		
 	}
 }
