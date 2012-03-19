@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- spring 远程服务对象配置-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:flex="http://www.springframework.org/schema/flex"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 远程服务对象定义   开始 -->
+
+	<!-- 远程服务对象定义   结束 -->
+
+
+	<!-- 远程对象暴露  开始 -->
+	<bean id="balanceChessGameServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="service">
+			<ref bean="balanceChessGameService" />
+		</property>
+		<!-- 客户端调用时使用的名字 -->
+		<property name="serviceName">
+			<value>balanceChessGameService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.panda.inter.IBalanceChessGameService
+			</value>
+		</property>
+
+	</bean>
+	
+	<bean id="playerServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="service">
+			<ref bean="playerService" />
+		</property>
+		<!-- 客户端调用时使用的名字 -->
+		<property name="serviceName">
+			<value>playerService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.panda.inter.IPlayerService
+			</value>
+		</property>
+
+	</bean>
+	
+	
+
+	<!-- 远程对象暴露  结束 -->
+	
+</beans>

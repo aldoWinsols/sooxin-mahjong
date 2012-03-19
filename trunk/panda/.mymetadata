@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="panda"
+  id="myeclipse.1331798121671"
+  context-root="/panda"
+  j2ee-spec="5.0"
+  archive="panda.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
