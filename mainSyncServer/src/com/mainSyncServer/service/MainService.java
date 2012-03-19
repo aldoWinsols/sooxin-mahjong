@@ -26,7 +26,7 @@ public class MainService {
 	private RemoteService remoteService = null;
 	private Logger log = Red5LoggerFactory
 	.getLogger(MainService.class, "mainSyncServer"); 
-	private Map<String, Integer> roomNums = null;
+	private HashMap<String, Integer> roomNums = null;
 
 	public MainService(){
 		try {
@@ -36,6 +36,11 @@ public class MainService {
 			timer.schedule(timerTaskServer, 1, 1000); 
 //			remoteService = new RemoteService();
 			roomNums = new HashMap<String, Integer>();
+			
+			roomNums.put("10", 5);
+			roomNums.put("20", 8);
+			roomNums.put("50", 3);
+			roomNums.put("100", 10);
 //			red5MainAppStart();
 		} catch (Exception e) {
 			// TODO: handle exception

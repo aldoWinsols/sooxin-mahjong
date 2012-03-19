@@ -120,4 +120,12 @@ public class Application extends ApplicationAdapter {
 		mainService.startWeihu(num, content);
 		return true;
 	}
+	/**
+	 * 获取网络质量
+	 * @return
+	 */
+	public boolean getConnState(){
+		return true;
+	}
+	
 }
