@@ -15,7 +15,7 @@
 	<s:Button x="204" y="10" label="奖品领取记录"/>
 	
 	
-	<s:DataGrid id="gameHistoryGird" includeIn="jiangpin" x="12" y="61" width="778" height="413"
+	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="12" y="61" width="778" height="413"
 				fontSize="13">
 		<s:columns>
 			<s:ArrayList>
@@ -30,19 +30,19 @@
 		</s:columns>
 	</s:DataGrid>
 	<s:Button x="735" y="10" label="关闭"/>
-	<s:DataGrid id="gameHistoryGird0" includeIn="chongzhi" x="12" y="61" width="778" height="413"
+	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="12" y="61" width="778" height="413"
 				fontSize="13">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
 				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
-				<s:GridColumn headerText="遊戲前點數" dataField="preMoney" width="80"/>
-				<s:GridColumn headerText="充值点数" dataField="winLossMoneyAfterTax" width="60"/>
-				<s:GridColumn headerText="充值后点数" dataField="afterMoney" width="80"/>
+				<s:GridColumn headerText="充值前點數" dataField="lastHaveMoney"/>
+				<s:GridColumn headerText="充值點數" dataField="chongzhiMoney"/>
+				<s:GridColumn headerText="充值後點數" dataField="nowHaveMoney"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:DataGrid id="gameHistoryGird1" includeIn="game" x="12" y="61" width="778" height="413"
+	<s:DataGrid id="gameHistoryGird" includeIn="game" x="12" y="61" width="778" height="413"
 				fontSize="13">
 		<s:columns>
 			<s:ArrayList>
