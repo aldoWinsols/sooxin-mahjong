@@ -9,6 +9,14 @@ package com.services
 	public class MainPlayerService
 	{
 		public var mainPlayer:MainPlayer;
+		[Bindable]
+		public var roomNum10:int = 0;
+		[Bindable]
+		public var roomNum20:int = 0;
+		[Bindable]
+		public var roomNum50:int = 0;
+		[Bindable]
+		public var roomNum100:int = 0;
 		private static var _instance:MainPlayerService;
 		public function MainPlayerService()
 		{
@@ -48,5 +56,21 @@ package com.services
 			}
 		}
 		
+		public function setRoomNumByType(roomType:String, roomNum:int){
+			switch(roomType){
+				case "10":
+					roomNum10 = roomNum;
+					break
+				case "20":
+					roomNum20 = roomNum;
+					break
+				case "50":
+					roomNum50 = roomNum;
+					break
+				case "100":
+					roomNum100 = roomNum;
+					break
+			}
+		}
 	}
 }
