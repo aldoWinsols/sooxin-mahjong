@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:flex="http://www.springframework.org/schema/flex"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/sooxin">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/panda/dao/Player.hbm.xml</value>
+				<value>com/panda/dao/Gamehistory.hbm.xml</value>
+				<value>com/panda/dao/Shangpin.hbm.xml</value>
+				<value>com/panda/dao/Duihuanlog.hbm.xml</value>
+				<value>com/panda/dao/Chongzhilog.hbm.xml</value>
+				<value>com/panda/dao/Playlog.hbm.xml</value></list>
+		</property></bean>
+		
+	<!-- spring 事务管理 start-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRES_NEW" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="allservice"
+			expression="execution(public * com.panda.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allservice" />
+	</aop:config>
+	<!-- spring 事务管理 end-->
+	
+	<bean id="PlayerDAO" class="com.panda.dao.PlayerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GamehistoryDAO" class="com.panda.dao.GamehistoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ShangpinDAO" class="com.panda.dao.ShangpinDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="DuihuanlogDAO" class="com.panda.dao.DuihuanlogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChongzhilogDAO" class="com.panda.dao.ChongzhilogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="PlayLogDAO" class="com.panda.dao.PlaylogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	<bean id="chongzhiService"
+		class="com.panda.services.ChongzhiService">
+		<property name="chongzhiDao">
+			<ref bean="ChongzhilogDAO" />
+		</property>
+	</bean>
+	<bean id="duihuanService"
+		class="com.panda.services.DuihuanService">
+		<property name="duihuanlogDao">
+			<ref bean="DuihuanlogDAO" />
+		</property>
+	</bean>
+	<bean id="gameHistoryService"
+		class="com.panda.services.GameHistoryService">
+		<property name="gamehistoryDao">
+			<ref bean="GamehistoryDAO" />
+		</property>
+	</bean>
+	<bean id="playerService"
+		class="com.panda.services.PlayerService">
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+		<property name="chongzhilogDao">
+			<ref bean="ChongzhilogDAO" />
+		</property>
+		<property name="duihuanlogDao">
+			<ref bean="DuihuanlogDAO" />
+		</property>
+	</bean>
+	
+	<bean id="shangpinService"
+		class="com.panda.services.ShangpinService">
+		<property name="shangpinDao">
+			<ref bean="ShangpinDAO" />
+		</property>
+	</bean>
+	
+	<bean id="balanceChessGameService"
+		class="com.panda.services.BalanceChessGameService">
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+		<property name="playLogDao">
+			<ref bean="PlayLogDAO" />
+		</property>
+	</bean>
+	
+	</beans>

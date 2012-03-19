@@ -1,0 +1,24 @@
+#MyEclipse Hibernate Properties
+#Mon Mar 19 16:35:14 CST 2012
+sessionFactoryName=com.panda.util.HibernateSessionFactory
+genBasicCompId=false
+profile=
+daoSFId=sessionFactory
+version=3.3
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=src/applicationContext.xml
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=/WebRoot/WEB-INF/lib
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=sessionFactory
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/panda/src/applicationContext.xml
+createConfigFile=false
+addLibs2Classpath=true
