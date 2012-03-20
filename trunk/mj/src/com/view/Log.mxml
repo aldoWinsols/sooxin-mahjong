@@ -45,7 +45,7 @@
 				<s:GridColumn headerText="奖品" dataField="gameContent" width="160"/>
 				<s:GridColumn headerText="联系人" dataField="afterMoney" width="80"/>
 				<s:GridColumn headerText="邮寄地址" dataField="preMoney" width="80"/>
-				<s:GridColumn headerText="联系电话" dataField="winLossMoneyAfterTax" width="60"/>
+				<s:GridColumn headerText="联系电话" dataField="contactTel" width="60"/>
 				<s:GridColumn headerText="当前状态" dataField="winLossMoneyAfterTax" width="60"/>
 			</s:ArrayList>
 		</s:columns>
