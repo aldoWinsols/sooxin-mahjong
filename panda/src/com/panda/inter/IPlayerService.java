@@ -11,4 +11,5 @@ public interface IPlayerService {
 	
 	public void updateMoney(String playerName, Double changeMoney);
 
+	public boolean checkPlayerNameIsExist(String playerName);
 }
