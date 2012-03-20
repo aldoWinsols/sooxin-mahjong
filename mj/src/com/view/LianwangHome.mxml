@@ -37,8 +37,6 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
-	<view:Log id="log" visible="false" includeIn="main" x="10" y="10">
-	</view:Log>
 		<view:Login includeIn="login" x="0" y="0">
 		</view:Login>
 		<view:Regeist includeIn="regeist" x="210" y="62">
@@ -47,4 +45,5 @@
 	</view:LianwangMain>
 	<view:Log includeIn="log" x="0" y="9">
 	</view:Log>
+	<view:NetworkQuality id="network" x="11" y="471"/>
 </s:BorderContainer>
