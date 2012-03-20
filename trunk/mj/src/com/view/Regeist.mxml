@@ -20,10 +20,13 @@
 	</fx:Declarations>
 	<s:TextInput id="playerNameRe" x="142" y="40"/>
 	<s:TextInput id="playerPwdRe" x="142" y="96" displayAsPassword="true"/>
-	<s:TextInput x="142" y="157" displayAsPassword="true"/>
+	<s:TextInput id="playerPwdSame" x="142" y="157" displayAsPassword="true"/>
 	<s:Button id="regeistCheckB" x="142" y="219" width="100" label="提交"/>
 	<s:Button id="regeistCancelB" x="250" y="218" width="100" label="取消"/>
 	<s:Label x="54" y="49" text="用户名："/>
 	<s:Label x="69" y="106" text="密码："/>
 	<s:Label x="36" y="167" text="重复密码："/>
+	<s:Label id="lblPointOut" x="458" y="47" color="#FF0000" text=""/>
+	<s:Label id="lblPointOutPwd" x="458" y="101" color="#FF0000" text=""/>
+	<s:Label id="lblPointOutPwdSame" x="458" y="162" color="#FF0000" text=""/>
 </s:Group>
