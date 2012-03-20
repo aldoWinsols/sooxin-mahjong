@@ -167,10 +167,10 @@
 	<s:Image id="shuffleImg" horizontalCenter="2" verticalCenter="-6" source="@Embed(source='../assets/room/hh_room_shuffle.jpg')" visible="false"/>
 	<!--<mx:Image id="shuffleImg" y="35.5" horizontalCenter="0" width="260" height="130" source="@Embed(source='com/amusement/HundredHappy/assets/room/hh_shuffle.png')" visible="false"/>-->
 	<model:LimitList id="limitList" verticalCenter="-7" horizontalCenter="0" visible="false"/>
-	<s:Button id="btnOpen" horizontalCenter="-95" bottom="8" click="btnOpen_clickHandler(event)"
+	<s:Button id="btnOpen" horizontalCenter="0" bottom="7" click="btnOpen_clickHandler(event)"
 			  skinClass="com.skin.amusement.hall.HallEnterGameButtonSkin"/>
 	<s:Button horizontalCenter="95" bottom="8" click="button1_clickHandler(event)"
-			  skinClass="com.skin.amusement.hall.HallGameRuleButtonSkin"/>
+			  skinClass="com.skin.amusement.hall.HallGameRuleButtonSkin" visible="false"/>
 	<!--<mx:Button id="btnOpen" x="15" y="181" width="115" height="24"
 			   skin="@Embed(source='../assets/room/hh_enter_btn.png')" 
 			   downSkin="@Embed(source='../assets/room/hh_enter_down.png')" 
