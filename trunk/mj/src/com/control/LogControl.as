@@ -23,6 +23,7 @@ package com.control
 			this.log.currentState="chongzhi";
 			this.log.currentState="game";
 			
+			getGameHistoryClickHandler(null);
 			this.log.gameHistoryB.addEventListener(MouseEvent.CLICK,getGameHistoryClickHandler);
 			this.log.chongzhiHistoryB.addEventListener(MouseEvent.CLICK,getChongzhiHistoryClickHandler);
 			this.log.prizeHistoryB.addEventListener(MouseEvent.CLICK,getPrizeHistoryClickHandler);
@@ -48,7 +49,8 @@ package com.control
 		
 		private function getGameHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.playlogService.removeEventListener(ResultEvent.RESULT,getGameHistoryResult);
-			this.log.gameHistory.dataProvider = e.result as ArrayCollection;
+			var array:ArrayCollection = e.result as ArrayCollection;
+			this.log.gameHistory.dataProvider = array;
 		}
 		private function getChongzhiHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.chongzhiService.removeEventListener(ResultEvent.RESULT,getChongzhiHistoryResult);

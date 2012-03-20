@@ -31,6 +31,8 @@ package com.control
 			
 			this.lianwangMain.dIphoneB.addEventListener(MouseEvent.CLICK,dIphoneBClickHandler);
 			this.lianwangMain.dIpadB.addEventListener(MouseEvent.CLICK,dIpadBClickHandler);
+			this.lianwangMain.check.addEventListener(MouseEvent.CLICK, check_clickHandler);
+			this.lianwangMain.cancel.addEventListener(MouseEvent.CLICK, cancel_clickHandler);
 		}
 		
 		protected function d60BClickHandler(event:MouseEvent):void
@@ -67,6 +69,7 @@ package com.control
 			lianwangMain.duihuan.visible =false;
 //			lianwangMain.jingpinName.text = "";
 			lianwangMain.jiangpinDianshu.text = "";
+			clear();
 		}
 		
 		protected function check_clickHandler(event:MouseEvent):void
@@ -93,7 +96,7 @@ package com.control
 			duihuanlog.duihuanMoney = lianwangMain.jiangpinDianshu.text as Number;
 			duihuanlog.lastHaveMoney = MainPlayerService.getInstance().mainPlayer.haveMoney;
 			duihuanlog.nowHaveMoney = MainPlayerService.getInstance().mainPlayer.haveMoney - duihuanlog.duihuanMoney;
-			duihuanlog.contactName = lianwangMain.contactName.text;;
+			duihuanlog.contactName = lianwangMain.contactName.text;
 			duihuanlog.contactTel = lianwangMain.contactTel.text;
 			duihuanlog.contactAddress = lianwangMain.contactAddress.text;
 			
@@ -105,6 +108,7 @@ package com.control
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,duihuanResultHandler);
 			if(e.result is MainPlayer){
 				Alert.show("奖品领取成功！");
+				clear();
 			}else{
 				Alert.show(e.result.toString());
 			}
@@ -112,8 +116,14 @@ package com.control
 		
 		private function logBClickHandler(e:MouseEvent):void{
 			
-			LogControl.instance.getGameHistoryClickHandler(null);
+//			LogControl.instance.getGameHistoryClickHandler(null);
 			LianwangHomeControl.instance.lianwangHome.currentState = "log";
+		}
+		
+		private function clear():void{
+			lianwangMain.contactName.text = "";
+			lianwangMain.contactTel.text = "";
+			lianwangMain.contactAddress.text = "";
 		}
 	}
 }
