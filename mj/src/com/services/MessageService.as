@@ -38,13 +38,13 @@ package com.services
 			var array:Array = obj.content as Array;
 			
 			for(var key:String in array){
-				MainPlayerService.instance.setRoomNumByType(key, int(array[key]));
+				MainPlayerService.getInstance().setRoomNumByType(key, int(array[key]));
 			}
 		}
 		
 		public function sendRoomNumI(obj:Object):void{
 			var strs:Array = (obj.content as String).split(",");
-			MainPlayerService.instance.setRoomNumByType(strs[0], int(strs[1]));
+			MainPlayerService.getInstance().setRoomNumByType(strs[0], int(strs[1]));
 		}
 		
 		public function restartGame(e:CloseEvent):void{

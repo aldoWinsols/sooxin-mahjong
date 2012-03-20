@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="820" height="500" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.control.LoginControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new LoginControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:TextInput id="playerName" x="142" y="127" width="150"/>
+	<s:Label x="83" y="136" color="#FFFFFF" text="用户："/>
+	<s:TextInput id="playerPwd" x="373" y="127" width="150" displayAsPassword="true"/>
+	<s:Label x="314" y="136" color="#FFFFFF" text="密码："/>
+	<s:Button id="loginB" x="531" y="124" width="100" label="登录"/>
+	<s:Button id="regeistB" x="638" y="124" width="100" label="注册"/>
+	<s:DataGrid id="gameHistory" x="10" y="241" width="800" height="249" fontSize="13" alpha="0.5">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
+				<s:GridColumn headerText="時間" dataField="gameTime" width="130"/>
+				<s:GridColumn headerText="內容" dataField="gameContent" width="160"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+</s:Group>

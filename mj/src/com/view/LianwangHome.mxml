@@ -1,280 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
-				   backgroundColor="#000000" borderVisible="false" cornerRadius="10"
-				   dropShadowVisible="true" horizontalCenter="0" verticalCenter="0" backgroundAlpha="0.3"
-				   width="820" height="500" creationComplete="group1_creationCompleteHandler(event)"
-				   fontSize="18">
-	
+				   xmlns:view="com.view.*"
+				   width="820" height="500" backgroundAlpha="0.3" backgroundColor="#000000"
+				   borderVisible="false" cornerRadius="10"
+				   creationComplete="bordercontainer2_creationCompleteHandler(event)"
+				   currentState="login" dropShadowVisible="true">
+		
 	<fx:Script>
 		<![CDATA[
-			
-			import com.milkmangames.nativeextensions.ios.StoreKit;
-			import com.milkmangames.nativeextensions.ios.StoreKitProduct;
-			import com.milkmangames.nativeextensions.ios.events.StoreKitErrorEvent;
-			import com.milkmangames.nativeextensions.ios.events.StoreKitEvent;
-			import com.model.Alert;
-			import com.model.Duihuanlog;
-			import com.model.MainPlayer;
-			import com.services.MainSyncService;
+			import com.control.LianwangHomeControl;
 			import com.services.MainPlayerService;
-			import com.services.RemoteService;
-			import com.util.MD5;
 			
 			import mx.events.FlexEvent;
-			import mx.rpc.events.ResultEvent;
 			
-			private static const D60_PRODUCT_ID:String="com.sooxin.mahjongM.d60";
-			private static const D250_PRODUCT_ID:String="com.sooxin.mahjongM.d250";
-			private var loadedProducts:Vector.<StoreKitProduct>;
+			import spark.events.ElementExistenceEvent;
 			
-			protected function group1_creationCompleteHandler(event:FlexEvent):void
+
+			
+			protected function bordercontainer2_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				MainPlayerService.instance;
-				
-				StoreKit.create();
-				
-				if (!StoreKit.storeKit.isStoreKitAvailable())
-				{
-					Alert.show("Store is disable on this device.");
-					return;
-				}
-				
-				// add listeners here
-				StoreKit.storeKit.addEventListener(StoreKitEvent.PRODUCT_DETAILS_LOADED,onProductsLoaded);
-				StoreKit.storeKit.addEventListener(StoreKitEvent.PURCHASE_SUCCEEDED,onPurchaseSuccess);
-				StoreKit.storeKit.addEventListener(StoreKitEvent.PURCHASE_CANCELLED,onPurchaseUserCancelled);
-				StoreKit.storeKit.addEventListener(StoreKitEvent.TRANSACTIONS_RESTORED,onTransactionsRestored);
-				
-				// adding error events. always listen for these to avoid your program failing.
-				StoreKit.storeKit.addEventListener(StoreKitErrorEvent.PRODUCT_DETAILS_FAILED,onProductDetailsFailed);
-				StoreKit.storeKit.addEventListener(StoreKitErrorEvent.PURCHASE_FAILED,onPurchaseFailed);
-				StoreKit.storeKit.addEventListener(StoreKitErrorEvent.TRANSACTION_RESTORE_FAILED,onTransactionRestoreFailed);
-				
-				
-				// the list of ids is passed in as an as3 vector (typed Array.)
-				var productIdList:Vector.<String>=new Vector.<String>();
-				productIdList.push(D60_PRODUCT_ID);
-				productIdList.push(D250_PRODUCT_ID);
-				
-				
-				// when this is done, we'll get a PRODUCT_DETAILS_LOADED or PRODUCT_DETAILS_FAILED event and go on from there...
-				StoreKit.storeKit.loadProductDetails(productIdList);		
+				new LianwangHomeControl(this);
 			}
-			
-			public function log(s:String):void{
-				
-			}
-			
-			//----------------------------------------------------
-			private function onProductsLoaded(e:StoreKitEvent):void
-			{
-				log("products loaded.");
-				// save the products that were loaded locally  for later use.
-				this.loadedProducts=e.validProducts;
-				
-				// if any of the product ids we tried to pass in were not found on the server,
-				// we won't be able to by them so something is wrong.
-				if (e.invalidProductIds!=null)
-				{
-					if (e.invalidProductIds.length>0)
-					{
-						log("[ERR]: these products not valid:"+e.invalidProductIds.join(","));
-						return;
-					}
-				}
-			}
-			
-			
-			public function restoreTransactions():void
-			{
-				// apple reccommends you provide a button in your ui to restore purchases,
-				// for users who mightve uninstalled then reinstalled your application, etc.
-				log("requesting transaction restore...");
-				StoreKit.storeKit.restoreTransactions();
-			}
-			
-			//
-			// Events
-			//	
-			
-			
-			private function onProductDetailsFailed(e:StoreKitErrorEvent):void
-			{
-				log("ERR loading products:"+e.text);
-			}
-			
-			private function onPurchaseSuccess(e:StoreKitEvent):void
-			{
-				log("Successful purchase of '"+e.productId+"'");
-				
-				// update our sharedobject with the state of this inventory item.
-				// this is just an example to make the process clear.  you will
-				// want to make your own inventory manager class to handle these
-				// types of things.
-				//				var inventory:Object=sharedObject.data["inventory"];
-				switch(e.productId)
-				{
-					case D60_PRODUCT_ID:
-						MainPlayerService.instance.chongzhi(60);
-						break;
-					case D60_PRODUCT_ID:
-						MainPlayerService.instance.chongzhi(250);
-						break;
-					default:
-						// we don't do anything for unknown items.
-				}
-				
-				// save state!
-				//				sharedObject.flush();
-				
-				// update the message on screen
-				//				updateInventoryMessage();
-			}
-			
-			private function onPurchaseFailed(e:StoreKitErrorEvent):void
-			{
-				log("Failure purchasing '"+e.productId+"', reason:"+e.text);
-			}
-			
-			private function onPurchaseUserCancelled(e:StoreKitEvent):void
-			{
-				log("the user canceled the purchase for '"+e.productId+"'");
-			}
-			
-			private function onTransactionsRestored(e:StoreKitEvent):void
-			{
-				log("transactions restored.");
-				//				updateInventoryMessage();
-			}
-			
-			private function onTransactionRestoreFailed(e:StoreKitErrorEvent):void
-			{
-				log("an error occurred in restore purchases:"+e.text);		
-			}
-			//----------------------------------------------------
-			
-			protected function button1_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				RemoteService.instance.playerService.regeist(this.playerNameRe.text, MD5.hash(this.playerPwdRe.text));
-				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, regeistResaultHandler);
-			}
-			
-			private function regeistResaultHandler(e:ResultEvent){
-				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT, regeistResaultHandler);
-				if(e.result){
-					Alert.show("注册成功!");
-					this.currentState = "login";
-				}else{
-					Alert.show("注册失败!");
-				}
-			}
-			
-			
-			protected function button2_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.currentState = "regeist";
-			}
-			
-			protected function button3_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				RemoteService.instance.playerService.login(this.playerName.text,MD5.hash(this.playerPwd.text));
-				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
-			}
-			
-			private function loginResultHandler(e:ResultEvent):void{
-				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
-				if(e.result is MainPlayer){
-					MainPlayerService.instance.mainPlayer = e.result as MainPlayer;
-					this.currentState = "main";
-					MainSyncService.instance.connServer(MainPlayerService.instance.mainPlayer.playername);
-				}else{
-					Alert.show(e.result.toString());
-				}
-			}
-			
-			protected function button4_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				StoreKit.storeKit.purchaseProduct(D60_PRODUCT_ID,1);
-			}
-			
-			protected function button5_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				StoreKit.storeKit.purchaseProduct(D250_PRODUCT_ID,1);
-			}
-			
-			protected function button6_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.duihuan.visible =true;
-				this.jingpinName.text = "iPhone 4s 16G";
-				this.jiangpinDianshu.text = "7000";
-			}
-			
-			protected function button7_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.duihuan.visible =true;
-				this.jingpinName.text = "iPad2 16G";
-				this.jiangpinDianshu.text = "5000";
-			}
-			
-			protected function cancel_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.duihuan.visible =false;
-				this.jingpinName.text = "";
-				this.jiangpinDianshu.text = "";
-			}
-			
-			protected function check_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				if(this.contactName.text.length <=0){
-					Alert.show("联系人没有填写！");
-					return;
-				}
-				
-				if(this.contactTel.text.length <=0){
-					Alert.show("联系电话没有填写！");
-					return;
-				}
-				
-				if(this.contactAddress.text.length <=0){
-					Alert.show("邮寄地址没有填写！");
-					return;
-				}
-				
-				var duihuanlog:Duihuanlog = new Duihuanlog();
-				duihuanlog.playerName = MainPlayerService.instance.mainPlayer.playername;
-				duihuanlog.itemName = this.jingpinName.text;
-				duihuanlog.duihuanMoney = this.jiangpinDianshu.text as Number;
-				duihuanlog.lastHaveMoney = MainPlayerService.instance.mainPlayer.haveMoney;
-				duihuanlog.nowHaveMoney = MainPlayerService.instance.mainPlayer.haveMoney - duihuanlog.duihuanMoney;
-				duihuanlog.contactName = this.contactName.text;;
-				duihuanlog.contactTel = this.contactTel.text;
-				duihuanlog.contactAddress = this.contactAddress.text;
-				
-				RemoteService.instance.playerService.duihuan(duihuanlog);
-				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,duihuanResultHandler);
-			}
-			
-			private function duihuanResultHandler(e:ResultEvent):void{
-				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,duihuanResultHandler);
-				if(e.result is MainPlayer){
-					Alert.show("奖品领取成功！");
-				}else{
-					Alert.show(e.result.toString());
-				}
-			}
-			
-			
 			
 		]]>
 	</fx:Script>
@@ -283,69 +31,20 @@
 		<s:State name="login"/>
 		<s:State name="regeist"/>
 		<s:State name="main"/>
+		<s:State name="log"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Label includeIn="main" x="109" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label includeIn="main" x="187" y="277" color="#1CF000" fontSize="14" text="{MainPlayerService.instance.roomNum10}"/>
-	<s:Label includeIn="main" x="266" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label includeIn="main" x="344" y="277" color="#1CF000" fontSize="14" text="{MainPlayerService.instance.roomNum20}"/>
-	<s:Label includeIn="main" x="427" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label includeIn="main" x="505" y="277" color="#1CF000" fontSize="14" text="{MainPlayerService.instance.roomNum50}"/>
-	<s:Label includeIn="main" x="587" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label includeIn="main" x="665" y="277" color="#1CF000" fontSize="14" text="{MainPlayerService.instance.roomNum100}"/>
-	<s:Button includeIn="main" x="488" y="84" label="记录"/>
-	<s:Button includeIn="main" x="383" y="84" label="领取奖品"/>
-	<s:Button includeIn="main" x="555" y="84" label="修改密码"/>
-	<s:Button includeIn="main" x="660" y="84" label="返回"/>
-	<s:Button includeIn="main" x="10" y="84" label="60点游戏点卡插件" click="button4_clickHandler(event)"/>
-	<s:Button includeIn="main" x="191" y="84" label="250点游戏点卡插件" click="button5_clickHandler(event)"/>
-	<s:Label includeIn="main" x="26" y="31" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="ID:"/>
-	<s:Label includeIn="main" x="75" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="{MainPlayerService.instance.mainPlayer.playername}"/>
-	<s:Label includeIn="main" x="213" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="点数："/>
-	<s:Label includeIn="main" x="311" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="{MainPlayerService.instance.mainPlayer.haveMoney}"/>
-	<s:Image includeIn="main" x="106" y="166" source="assets/room/room10.png"/>
-	<s:Image includeIn="main" x="265" y="167" source="assets/room/room20.png"/>
-	<s:Image includeIn="main" x="424" y="167" source="assets/room/room50.png"/>
-	<s:Image includeIn="main" x="583" y="167" source="assets/room/room100.png"/>
 	
-	
-	<s:TextInput id="playerName" includeIn="login" x="142" y="216" width="150"/>
-	<s:Label includeIn="login" x="83" y="225" color="#FFFFFF" text="用户："/>
-	<s:TextInput id="playerPwd" includeIn="login" x="373" y="216" width="150" displayAsPassword="true"/>
-	<s:Label includeIn="login" x="314" y="225" color="#FFFFFF" text="密码："/>
-	<s:Button includeIn="login" x="531" y="213" width="100" label="登录"
-			  click="button3_clickHandler(event)"/>
-	<s:Button includeIn="login" x="638" y="213" width="100" label="注册"
-			  click="button2_clickHandler(event)"/>
-	<s:TextInput id="playerNameRe" includeIn="regeist" x="255" y="118"/>
-	<s:TextInput id="playerPwdRe" includeIn="regeist" x="255" y="174"/>
-	<s:TextInput includeIn="regeist" x="255" y="235"/>
-	<s:Button includeIn="regeist" x="255" y="297" label="按钮" click="button1_clickHandler(event)"/>
-	<s:Button includeIn="main" x="256" y="326" width="150" height="150" label="按钮"
-			  icon="assets/iphoneicon.jpg" click="button6_clickHandler(event)"/>
-	<s:Button includeIn="main" x="414" y="326" width="150" height="150" label="按钮"
-			  icon="assets/ipadicon.jpg" click="button7_clickHandler(event)"/>
-	
-	<s:BorderContainer id="duihuan" includeIn="main" visible="true"
-					   x.main="96" y.main="70" width.main="564" height.main="360" cornerRadius="8">
-		<s:TextInput id="contactName" includeIn="main" x="163" y="79"/>
-		<s:TextInput id="contactTel" includeIn="main" x="163" y="132"/>
-		<s:TextInput id="contactAddress" includeIn="main" x="163" y="185"/>
-		<s:Button id="check" includeIn="main" x="237" y="238" width="100" label="提交" click="check_clickHandler(event)"/>
-		<s:Button id="cancel" includeIn="main" x="363" y="238" width="100" label="取消" click="cancel_clickHandler(event)"/>
-		<s:Label includeIn="main" x="83" y="89" text="联系人："/>
-		<s:Label includeIn="main" x="65" y="142" text="联系电话："/>
-		<s:Label includeIn="main" x="65" y="195" text="邮寄地址："/>
-		<s:Label includeIn="main" x="10" y="10" text="奖品名称："/>
-		<s:Label id="jingpinName" includeIn="main" x="108" y="10" text="标签"/>
-		<s:Label includeIn="main" x="241" y="10" text="奖品点数："/>
-		<s:Label id="jiangpinDianshu" includeIn="main" x="339" y="10" text="标签"/>
-		
-	</s:BorderContainer>
+	<view:Log id="log" visible="false" includeIn="main" x="10" y="10">
+	</view:Log>
+		<view:Login includeIn="login" x="0" y="0">
+		</view:Login>
+		<view:Regeist includeIn="regeist" x="210" y="62">
+		</view:Regeist>
+	<view:LianwangMain includeIn="main" x="10" y="10">
+	</view:LianwangMain>
+	<view:Log includeIn="log" x="0" y="9">
+	</view:Log>
 </s:BorderContainer>

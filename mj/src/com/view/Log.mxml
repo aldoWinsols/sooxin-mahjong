@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 width="800" height="480" currentState="game">
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   width="800" height="480" backgroundAlpha="0.5" backgroundColor="#000000"
+				   cornerRadius="8" creationComplete="group1_creationCompleteHandler(event)"
+				   currentState="game">
+	<fx:Script>
+		<![CDATA[
+			import com.control.LogControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new LogControl(this);
+			}
+			
+			private function gameTimeFormat(item:Object, columu:GridColumn):String{
+				return df.format(item.gameTime);
+			}
+			
+		]]>
+	</fx:Script>
 	<s:states>
 		<s:State name="jiangpin"/>
 		<s:State name="chongzhi"/>
 		<s:State name="game"/>
 	</s:states>
 	<fx:Declarations>
+		<s:DateTimeFormatter id="df" dateTimePattern="yyyy/MM/dd HH:mm:ss"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Button x="10" y="10" label="游戏记录"/>
-	<s:Button x="107" y="10" label="充值记录"/>
-	<s:Button x="204" y="10" label="奖品领取记录"/>
+	<s:Button id="gameHistoryB" x="10" y="10" label="游戏记录"/>
+	<s:Button id="chongzhiHistoryB" x="107" y="10" label="充值记录"/>
+	<s:Button id="prizeHistoryB" x="204" y="10" label="奖品领取记录"/>
 	
 	
 	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="12" y="61" width="778" height="413"
@@ -21,7 +42,7 @@
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
 				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
-				<s:GridColumn id="gameContent" headerText="奖品" dataField="gameContent" width="160"/>
+				<s:GridColumn headerText="奖品" dataField="gameContent" width="160"/>
 				<s:GridColumn headerText="联系人" dataField="afterMoney" width="80"/>
 				<s:GridColumn headerText="邮寄地址" dataField="preMoney" width="80"/>
 				<s:GridColumn headerText="联系电话" dataField="winLossMoneyAfterTax" width="60"/>
@@ -29,7 +50,7 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:Button x="735" y="10" label="关闭"/>
+	<s:Button id="closeB" x="735" y="10" label="关闭"/>
 	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="12" y="61" width="778" height="413"
 				fontSize="13">
 		<s:columns>
@@ -42,14 +63,13 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:DataGrid id="gameHistoryGird" includeIn="game" x="12" y="61" width="778" height="413"
+	<s:DataGrid id="gameHistory" includeIn="game" x="12" y="61" width="778" height="413"
 				fontSize="13">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
 				<s:GridColumn headerText="局號" dataField="gameNo" width="120"/>
 				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
-				<s:GridColumn id="gameContent1" headerText="遊戲內容" dataField="gameContent" width="160"/>
 				<s:GridColumn headerText="遊戲前點數" dataField="preMoney" width="80"/>
 				<s:GridColumn headerText="輸贏" dataField="winLossMoneyAfterTax" width="60"/>
 				<s:GridColumn headerText="遊戲後點數" dataField="afterMoney" width="80"/>
@@ -57,7 +77,40 @@
 					<s:itemRenderer>
 						<fx:Component>
 							<s:GridItemRenderer>
-								<LinkButton horizontalCenter="0" verticalCenter="0" label="查看錄像" fontWeight="bold" click="outerDocument.linkbutton1_clickHandler(event)"/>
+								<fx:Script>
+									<![CDATA[
+										import com.amusement.Mahjong.control.MahjongApplictionControl;
+										import com.control.HomeControl;
+										import com.mahjongSyncServer.services.RoomService;
+										import com.services.DataService;
+										
+										import mx.managers.PopUpManager;
+										
+										protected function button1_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											
+//											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+											
+											HomeControl.instance.home.operation.visible = false;
+											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+											HomeControl.instance.home.visible = false;
+											RoomService.instance.playerVideo(data.gameContent);
+											PopUpManager.removePopUp(outerDocument);
+										}
+										
+										protected function button2_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											DataService.instance.removeGameLog(data.id,data.playerName);
+										}
+										
+									]]>
+								</fx:Script>
+								<s:HGroup>
+									<s:Button label="观看录像" click="button1_clickHandler(event)" />
+									<s:Button label="删除" click="button2_clickHandler(event)" />
+								</s:HGroup>
 							</s:GridItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
@@ -65,4 +118,4 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-</s:Group>
+</s:BorderContainer>
