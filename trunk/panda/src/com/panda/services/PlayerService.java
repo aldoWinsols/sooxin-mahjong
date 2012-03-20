@@ -55,6 +55,16 @@ public class PlayerService implements IPlayerService {
 
 	}
 	
+	public boolean checkPlayerNameIsExist(String playerName){
+		Player pl = (Player) getPlayerDao().findByAcctNameUnique(playerName);
+		
+		if(pl != null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	public Object regeist(String playerName, String playerPwd){
 		Player pl = (Player) getPlayerDao().findByAcctNameUnique(playerName);
 		
