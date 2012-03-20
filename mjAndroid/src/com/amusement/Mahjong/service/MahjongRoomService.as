@@ -34,6 +34,7 @@ package com.amusement.Mahjong.service
 		private var _effectTimer:Timer;
 		private var _nowDealPlayerAzimuth:int = 3;
 		
+		
 		public function MahjongRoomService()
 		{
 			initMahjongs();

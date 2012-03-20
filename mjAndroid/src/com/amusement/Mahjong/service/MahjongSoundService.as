@@ -387,7 +387,10 @@ package com.amusement.Mahjong.service
 			if(bgSoundType){
 				_bgChannel = _bg.play(0, 10000);
 			}else{
-				_bgChannel.stop();
+				if(_bgChannel!=null){
+					_bgChannel.stop();
+				}
+				
 			}
 		}
 		
