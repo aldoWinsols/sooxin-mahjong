@@ -11,8 +11,10 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.service.MahjongRoomService;
 			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.control.MainControl;
+			import com.mahjongSyncServer.services.RoomService;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
@@ -20,11 +22,17 @@
 			
 			protected function application1_deactivateHandler(event:Event):void
 			{
-//				NativeApplication.nativeApplication.exit();
-				MahjongSoundService.instance.bgSoundType = false;
-				MahjongSoundService.instance.soundSwitch(false);
-				MahjongSoundService.instance.playBg();
-				
+				if(MahjongSoundService.instance != null){
+//					try{
+						//					NativeApplication.nativeApplication.exit();
+						MahjongSoundService.instance.bgSoundType = false;
+						MahjongSoundService.instance.soundSwitch(false);
+						MahjongSoundService.instance.playBg();
+//					}catch(e:Error){
+//						
+//					}
+
+				}
 			}
 
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
@@ -64,10 +72,14 @@
 			
 			protected function application1_activateHandler(event:Event):void
 			{
-				// TODO Auto-generated method stub
-				MahjongSoundService.instance.bgSoundType = true;
-				MahjongSoundService.instance.soundSwitch(true);
-				MahjongSoundService.instance.playBg();
+				
+				if(RoomService.instance.isGameing){
+					// TODO Auto-generated method stub
+					MahjongSoundService.instance.bgSoundType = true;
+					MahjongSoundService.instance.soundSwitch(true);
+					MahjongSoundService.instance.playBg();
+				}
+				
 			}
 			
 		]]>

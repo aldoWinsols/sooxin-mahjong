@@ -6,6 +6,7 @@ package com.mahjongSyncServer.services
 	import com.amusement.Mahjong.control.MahjongPlayerControlR;
 	import com.amusement.Mahjong.control.MahjongPlayerControlU;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.model.Message;
@@ -33,6 +34,9 @@ package com.mahjongSyncServer.services
 		private var playerAuthz:int = 0;
 		private var roomNo:String = "";
 		private var dataService:DataService = new DataService();
+		
+		public var isGameing:Boolean = false;
+		
 		public function RoomService()
 		{
 			room = new Room();
@@ -69,6 +73,12 @@ package com.mahjongSyncServer.services
 		}
 		
 		public function beginGame(userName:String, haveMoney:Number):void{
+			
+			this.isGameing = true;
+			
+			MahjongSoundService.instance.bgSoundType = true;
+			MahjongSoundService.instance.soundSwitch(true);
+			
 			MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = true;
 			MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = true;
 			MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = true;
@@ -145,6 +155,9 @@ package com.mahjongSyncServer.services
 		}    
 		
 		public function endGame():void{
+			
+			this.isGameing = false;
+			
 			var playerNames:Array = new Array();
 			var playerMahjongValues:Array = new Array();
 			for(var i:int=0;i<4;i++){
