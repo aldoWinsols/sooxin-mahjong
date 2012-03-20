@@ -48,6 +48,22 @@
 	</bean>
 	
 	
+	<bean id="playlogServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="service">
+			<ref bean="playlogService" />
+		</property>
+		<!-- 客户端调用时使用的名字 -->
+		<property name="serviceName">
+			<value>playlogService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.panda.inter.IPlaylogService
+			</value>
+		</property>
+
+	</bean>
+	
+	
 
 	<!-- 远程对象暴露  结束 -->
 	

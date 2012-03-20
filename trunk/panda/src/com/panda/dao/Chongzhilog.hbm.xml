@@ -13,6 +13,9 @@
         <property name="playerName" type="java.lang.String">
             <column name="playerName" length="50" />
         </property>
+        <property name="chongzhiTime" type="java.util.Date">
+            <column name="chongzhiTime" length="0" />
+        </property>
         <property name="chongzhiMoney" type="java.lang.Double">
             <column name="chongzhiMoney" precision="22" scale="0" />
         </property>

@@ -17,7 +17,7 @@ public class DuihuanService implements IDuihuanService {
 		this.duihuanlogDao = duihuanlogDao;
 	}
 	
-	public List findDuizhuanLog(String playerName){
+	public List findDuihuanLog(String playerName){
 		return getDuihuanlogDao().findByPlayerName(playerName);
 	}
 

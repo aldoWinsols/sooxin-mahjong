@@ -1,6 +1,7 @@
 package com.panda.dao;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Duihuanlog entity. @author MyEclipse Persistence Tools
@@ -12,6 +13,7 @@ public class Duihuanlog implements java.io.Serializable {
 
 	private Long id;
 	private String playerName;
+	private Date duihuanTime;
 	private String itemName;
 	private Double duihuanMoney;
 	private Double lastHaveMoney;
@@ -28,10 +30,12 @@ public class Duihuanlog implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Duihuanlog(String playerName, String itemName, Double duihuanMoney,
-			Double lastHaveMoney, Double nowHaveMoney, String contactName,
-			String contactTel, String contactAddress, Timestamp timestamp) {
+	public Duihuanlog(String playerName, Date duihuanTime, String itemName,
+			Double duihuanMoney, Double lastHaveMoney, Double nowHaveMoney,
+			String contactName, String contactTel, String contactAddress,
+			Timestamp timestamp) {
 		this.playerName = playerName;
+		this.duihuanTime = duihuanTime;
 		this.itemName = itemName;
 		this.duihuanMoney = duihuanMoney;
 		this.lastHaveMoney = lastHaveMoney;
@@ -58,6 +62,14 @@ public class Duihuanlog implements java.io.Serializable {
 
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+	}
+
+	public Date getDuihuanTime() {
+		return this.duihuanTime;
+	}
+
+	public void setDuihuanTime(Date duihuanTime) {
+		this.duihuanTime = duihuanTime;
 	}
 
 	public String getItemName() {
