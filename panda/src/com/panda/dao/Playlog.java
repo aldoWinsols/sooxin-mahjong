@@ -25,8 +25,8 @@ public class Playlog implements java.io.Serializable {
 	private Double winLossMoneyAfterTax;
 	private Double afterMoney;
 	private String gameIp;
-	private Timestamp timestamp;
 	private String remarks;
+	private Timestamp timestamp;
 
 	// Constructors
 
@@ -39,8 +39,7 @@ public class Playlog implements java.io.Serializable {
 			String gameName, String gameNo, Timestamp gameTime,
 			String gameContent, Double allTouZhuMoney, Double preMoney,
 			Double winLossMoneyBeforeTax, Double gameTaxaction,
-			Double winLossMoneyAfterTax, Double afterMoney, String gameIp,
-			Timestamp timestamp) {
+			Double winLossMoneyAfterTax, Double afterMoney, String gameIp) {
 		this.playerName = playerName;
 		this.gameClass = gameClass;
 		this.gameSubClass = gameSubClass;
@@ -55,7 +54,6 @@ public class Playlog implements java.io.Serializable {
 		this.winLossMoneyAfterTax = winLossMoneyAfterTax;
 		this.afterMoney = afterMoney;
 		this.gameIp = gameIp;
-		this.timestamp = timestamp;
 	}
 
 	/** full constructor */
@@ -64,7 +62,7 @@ public class Playlog implements java.io.Serializable {
 			String gameContent, Double allTouZhuMoney, Double preMoney,
 			Double winLossMoneyBeforeTax, Double gameTaxaction,
 			Double winLossMoneyAfterTax, Double afterMoney, String gameIp,
-			Timestamp timestamp, String remarks) {
+			String remarks, Timestamp timestamp) {
 		this.playerName = playerName;
 		this.gameClass = gameClass;
 		this.gameSubClass = gameSubClass;
@@ -79,8 +77,8 @@ public class Playlog implements java.io.Serializable {
 		this.winLossMoneyAfterTax = winLossMoneyAfterTax;
 		this.afterMoney = afterMoney;
 		this.gameIp = gameIp;
-		this.timestamp = timestamp;
 		this.remarks = remarks;
+		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -205,20 +203,20 @@ public class Playlog implements java.io.Serializable {
 		this.gameIp = gameIp;
 	}
 
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
-	}
-
 	public String getRemarks() {
 		return this.remarks;
 	}
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }

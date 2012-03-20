@@ -20,7 +20,7 @@
 			value="jdbc:mysql://127.0.0.1:3306/sooxin">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="860426"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -37,7 +37,6 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/panda/dao/Player.hbm.xml</value>
-				<value>com/panda/dao/Gamehistory.hbm.xml</value>
 				<value>com/panda/dao/Shangpin.hbm.xml</value>
 				<value>com/panda/dao/Duihuanlog.hbm.xml</value>
 				<value>com/panda/dao/Chongzhilog.hbm.xml</value>
@@ -69,11 +68,6 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="GamehistoryDAO" class="com.panda.dao.GamehistoryDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
 	<bean id="ShangpinDAO" class="com.panda.dao.ShangpinDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -89,12 +83,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="PlayLogDAO" class="com.panda.dao.PlaylogDAO">
+	<bean id="PlaylogDAO" class="com.panda.dao.PlaylogDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
 	
 	<bean id="chongzhiService"
 		class="com.panda.services.ChongzhiService">
@@ -108,10 +101,10 @@
 			<ref bean="DuihuanlogDAO" />
 		</property>
 	</bean>
-	<bean id="gameHistoryService"
-		class="com.panda.services.GameHistoryService">
-		<property name="gamehistoryDao">
-			<ref bean="GamehistoryDAO" />
+	<bean id="playlogService"
+		class="com.panda.services.PlaylogService">
+		<property name="playlogDao">
+			<ref bean="PlaylogDAO" />
 		</property>
 	</bean>
 	<bean id="playerService"
@@ -140,8 +133,9 @@
 			<ref bean="PlayerDAO" />
 		</property>
 		<property name="playLogDao">
-			<ref bean="PlayLogDAO" />
+			<ref bean="PlaylogDAO" />
 		</property>
 	</bean>
+	
 	
 	</beans>

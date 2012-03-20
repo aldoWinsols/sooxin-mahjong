@@ -1,6 +1,7 @@
 package com.panda.dao;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Chongzhilog entity. @author MyEclipse Persistence Tools
@@ -12,6 +13,7 @@ public class Chongzhilog implements java.io.Serializable {
 
 	private Long id;
 	private String playerName;
+	private Date chongzhiTime;
 	private Double chongzhiMoney;
 	private Double lastHaveMoney;
 	private Double nowHaveMoney;
@@ -24,9 +26,11 @@ public class Chongzhilog implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Chongzhilog(String playerName, Double chongzhiMoney,
-			Double lastHaveMoney, Double nowHaveMoney, Timestamp timestamp) {
+	public Chongzhilog(String playerName, Date chongzhiTime,
+			Double chongzhiMoney, Double lastHaveMoney, Double nowHaveMoney,
+			Timestamp timestamp) {
 		this.playerName = playerName;
+		this.chongzhiTime = chongzhiTime;
 		this.chongzhiMoney = chongzhiMoney;
 		this.lastHaveMoney = lastHaveMoney;
 		this.nowHaveMoney = nowHaveMoney;
@@ -49,6 +53,14 @@ public class Chongzhilog implements java.io.Serializable {
 
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+	}
+
+	public Date getChongzhiTime() {
+		return this.chongzhiTime;
+	}
+
+	public void setChongzhiTime(Date chongzhiTime) {
+		this.chongzhiTime = chongzhiTime;
 	}
 
 	public Double getChongzhiMoney() {
