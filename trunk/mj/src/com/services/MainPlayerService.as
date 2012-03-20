@@ -23,7 +23,7 @@ package com.services
 
 		}
 		
-		public static function get instance():MainPlayerService
+		public static function getInstance():MainPlayerService
 		{
 			if(_instance == null){
 				_instance = new MainPlayerService();

@@ -14,7 +14,7 @@ package com.services
 		
 		public var chongzhiService:RemoteObject;
 		public var duihuanService:RemoteObject;
-		public var gameHistoryService:RemoteObject;
+		public var playlogService:RemoteObject;
 		public var playerService:RemoteObject;
 		public var shangpinService:RemoteObject;
 		
@@ -23,7 +23,7 @@ package com.services
 		{
 			chongzhiService=getConfiguredRO("chongzhiService");
 			duihuanService=getConfiguredRO("duihuanService");
-			gameHistoryService=getConfiguredRO("gameHistoryService");
+			playlogService=getConfiguredRO("playlogService");
 			playerService=getConfiguredRO("playerService");
 			shangpinService=getConfiguredRO("shangpinService");
 		}
@@ -60,7 +60,7 @@ package com.services
 
 		private function faultHandler(e:FaultEvent):void
 		{
-			Alert.show("读取信息失败，请刷新页面！");
+			Alert.show("读取信息失败，请刷新页面！"+e.toString());
 			CursorManager.removeBusyCursor();
 		}
 
