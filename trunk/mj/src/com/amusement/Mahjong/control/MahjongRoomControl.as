@@ -404,7 +404,10 @@ package com.amusement.Mahjong.control
 				
 				
 			}
-				
+			MahjongPlayerControlU.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlD.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlL.instance._mahjongPlayer.pd.visible = true;
+			MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = true;
 			
 			initTabletop(5);
 			

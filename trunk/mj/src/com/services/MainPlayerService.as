@@ -12,6 +12,8 @@ package com.services
 		public var mainPlayer:MainPlayer;
 		
 		[Bindable]
+		public var roomNum5:int = 0;
+		[Bindable]
 		public var roomNum10:int = 0;
 		[Bindable]
 		public var roomNum20:int = 0;
@@ -58,8 +60,11 @@ package com.services
 			}
 		}
 		
-		public function setRoomNumByType(roomType:String, roomNum:int){
+		public function setRoomNumByType(roomType:String, roomNum:int):void{
 			switch(roomType){
+				case "5":
+					roomNum10 = roomNum;
+					break;
 				case "10":
 					roomNum10 = roomNum;
 					break

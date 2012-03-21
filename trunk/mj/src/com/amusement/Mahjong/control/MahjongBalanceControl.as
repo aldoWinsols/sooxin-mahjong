@@ -3,6 +3,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.MahjongAppliction;
 	import com.amusement.Mahjong.model.MahjongBalanceGrid;
 	import com.amusement.Mahjong.service.MahjongBalanceService;
+	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.amusement.Mahjong.view.MahjongBalance;
 	
 	import flash.events.MouseEvent;
@@ -45,8 +46,13 @@ package com.amusement.Mahjong.control
 					this._mahjongRalanceService.continueClickHandler();
 					break;
 				case "exitBtn":
-					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-					MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
+					if(MahjongSyncService.instance.isNetwork){
+						MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+						MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = true;
+					}else{					
+						MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+						MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
+					}
 					MahjongRoomControl.instance.clearTabletop();
 					break;
 			}
