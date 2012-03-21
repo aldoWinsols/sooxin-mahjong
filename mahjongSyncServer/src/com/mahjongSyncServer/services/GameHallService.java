@@ -52,6 +52,8 @@ public class GameHallService {
 		Timer timer = new Timer();
 		TimerTaskServer timerTaskServer = new TimerTaskServer(this);
 		timer.schedule(timerTaskServer, 1000, 1000);
+		
+//		rtmpClientNew.sendRoomNum(UtilProperties.instance.getRoomNo(), gameHall.getPlayerServices().size());
 	}
 	
 	public ArrayList<PlayerService> getWaitPlayers() {
@@ -981,5 +983,9 @@ public class GameHallService {
 		}
 		
 		return list;
+	}
+	
+	public void sendRoomNum(){
+		rtmpClientNew.sendRoomNum(UtilProperties.instance.getRoomNo(), Util.insance.getOnlineNum() + gameHall.getPlayerServices().size());
 	}
 }

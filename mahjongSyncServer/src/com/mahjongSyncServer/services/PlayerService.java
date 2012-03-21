@@ -481,8 +481,7 @@ public class PlayerService implements IPlayerService, Observer {
 				player.getSparr().size() == 7 || player.getSparr().size() == 10 || player.getSparr().size() == 13){
 				
 			if(player.getPlayerType() == 3){
-				if((player.getTransformersWinMoney() < Util.insance.getTransformerWinMaxMoney())
-							&& (Math.random()*100 >Util.insance.getTransformerWinGailv())){
+				if((Math.random()*100 >Util.insance.getTransformerWinGailv())){
 					int valueMP = action.huoDeMP();
 					if(valueMP != 0){
 						value = this.roomService.readyMahjong(valueMP);
@@ -702,6 +701,8 @@ public class PlayerService implements IPlayerService, Observer {
 			list.add(observePlayerService.getPlayer().getAzimuth());
 			if(observePlayerService.getPlayer().getAzimuth() == player.getAzimuth()){
 				list.add(observePlayerService.getNowOperationMahjongValue());				//只给自己保存摸牌值
+				// 发送当前剩余牌的个数
+				list.add(roomService.getRoom().getMahjongList().size());
 				cumulativeOperationNum(observePlayerService.player);
 			}else{
 				lastGang = false;
