@@ -17,5 +17,6 @@
 	<flex:remoting-destination ref="playlogService" />
 	<flex:remoting-destination ref="duihuanService" />
 	<flex:remoting-destination ref="chongzhiService" />
+	<flex:remoting-destination ref="noticeService" />
 
 </beans>
