@@ -26,7 +26,7 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Label x="3" verticalCenter="0" fontSize="14" text="当前网络质量"/>
+	<s:Label x="3" color="#1CF000" fontSize="14" text="当前网络质量" verticalCenter="0"/>
 	<!--<s:Label text="当前网络质量"  fontSize="14" x="3" y="2"/>-->
 	<s:BorderContainer x="97" verticalCenter="0" width="100" height="4" cornerRadius="4" borderColor="#4E595B"/>
 	<s:BorderContainer id="state" x="97" verticalCenter="0" width="100" height="2" cornerRadius="4" borderVisible="false" backgroundColor="#14C9E0"/>

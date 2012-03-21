@@ -1,5 +1,6 @@
 package com.control
 {
+	import com.amusement.Mahjong.control.MahjongApplictionControl;
 	import com.model.Alert;
 	import com.model.MainPlayer;
 	import com.services.MainPlayerService;
@@ -10,21 +11,63 @@ package com.control
 	
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
+	
+	import spark.components.Label;
 
 	public class LoginControl
 	{
 		private var login:Login;
+		public static var instance:LoginControl;
 		public function LoginControl(login:Login)
 		{
 			this.login = login;
+			instance = this;
 			
 			this.login.loginB.addEventListener(MouseEvent.CLICK,loginClickHandler);
 			this.login.regeistB.addEventListener(MouseEvent.CLICK,regeistClickHandler);
+			this.login.cancelB.addEventListener(MouseEvent.CLICK,cancelBClickHandler);
 		}
+		
+		private function cancelBClickHandler(e:MouseEvent):void{
+			LianwangHomeControl.instance.lianwangHome.visible = false;
+			MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
+			MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
+		}
+		
+		public function getNotice():void{
+			RemoteService.instance.noticeService.findAllNotice();
+			RemoteService.instance.noticeService.addEventListener(ResultEvent.RESULT,findAllNoticeResultHandler);
+		}
+		
+		private function findAllNoticeResultHandler(e:ResultEvent):void{
+			RemoteService.instance.noticeService.removeEventListener(ResultEvent.RESULT,findAllNoticeResultHandler);
+			var arr:ArrayCollection = e.result as ArrayCollection;
+			
+			var yv:Number = 0;
+			for(var i:int=0; i<arr.length; i++){
+				var label:Label = new Label();
+				label.text = login.df.format(arr.getItemAt(i).noticeTime)+"  "+arr.getItemAt(i).noticeContent;
+				this.login.notice.addElement(label);
+				label.y = (yv+=20);
+				label.x = 5
+				label.alpha = 0.3;
+			}
+		}
+		
 		
 		protected function loginClickHandler(event:MouseEvent):void
 		{
+			if(this.login.playerName.text.length < 4){
+				Alert.show("您输入用户有误！");
+				return;
+			}
+			if(this.login.playerPwd.text == ""){
+				Alert.show("您还未输入用户密码！");
+				return;
+			}
+			
 			// TODO Auto-generated method stub
 			RemoteService.instance.playerService.login(login.playerName.text,MD5.hash(login.playerPwd.text));
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);

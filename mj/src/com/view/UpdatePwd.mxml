@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   width="600" height="300" cornerRadius="8" creationComplete="bordercontainer1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.control.UpdatePwdControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new UpdatePwdControl(this);	
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:TextInput id="oldPwd" x="131" y="29" displayAsPassword="true"/>
+	<s:TextInput id="newPwd" x="131" y="88" displayAsPassword="true"/>
+	<s:Button id="commitB" x="131" y="213" width="100" label="提交"/>
+	<s:Button id="cancelB" x="253" y="213" width="100" label="取消"/>
+	<s:TextInput id="newPwdRe" x="131" y="150" displayAsPassword="true"/>
+	<s:Label x="38" y="38" text="旧密码："/>
+	<s:Label x="38" y="96" text="新密码："/>
+	<s:Label x="6" y="159" text="确认新密码："/>
+	<s:Label id="oldPwdLab" x="439" y="36" text="标签"/>
+	<s:Label id="newPwdLab" x="439" y="95" text="标签"/>
+	<s:Label id="newPwdReLab" x="439" y="157" text="标签"/>
+</s:BorderContainer>

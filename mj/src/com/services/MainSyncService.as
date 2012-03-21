@@ -2,6 +2,7 @@ package com.services
 {
 	
 	import com.control.LianwangHomeControl;
+	import com.control.LianwangMainControl;
 	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -90,7 +91,7 @@ package com.services
 				_connTimesT = _connTimes;
 				
 				if (_conn == null){
-					LianwangHomeControl.instance.lianwangHome.network.setStateWidth(0);
+					LianwangMainControl.instance.lianwangMain.network.setStateWidth(0);
 				}else{
 					try{
 						_conn.call("getConnState", new Responder(connStateResultHandler, connStateStatusHandler));
@@ -102,7 +103,7 @@ package com.services
 			
 			if(!_isResult){
 				if(_connTimes % 50 == 0){
-					LianwangHomeControl.instance.lianwangHome.network.setStateWidth(0);
+					LianwangMainControl.instance.lianwangMain.network.setStateWidth(0);
 //					MahjongRoomControl.instance.updateNetworkWidth(0);
 //					MainSceneControl.instance.mainSceneApp.connState.visible = true;
 					_isResult = true;
@@ -118,7 +119,7 @@ package com.services
 					width = 0;
 				}
 				
-				LianwangHomeControl.instance.lianwangHome.network.setStateWidth(width);
+				LianwangMainControl.instance.lianwangMain.network.setStateWidth(width);
 //				MahjongRoomControl.instance.updateNetworkWidth(width);
 				
 				_connTimes=0;

@@ -8,7 +8,9 @@ package com.services
 
 	public class MainPlayerService
 	{
+		[Bindable]
 		public var mainPlayer:MainPlayer;
+		
 		[Bindable]
 		public var roomNum10:int = 0;
 		[Bindable]

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="group1_creationCompleteHandler(event)"
-		 width="791" height="504">
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 width="960" height="640" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.control.LianwangMainControl;
@@ -20,41 +21,7 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Label x="109" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label x="187" y="277" color="#1CF000" fontSize="14"
-			 text="{MainPlayerService.getInstance().roomNum10}"/>
-	<s:Label x="266" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label x="344" y="277" color="#1CF000" fontSize="14"
-			 text="{MainPlayerService.getInstance().roomNum20}"/>
-	<s:Label x="427" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label x="505" y="277" color="#1CF000" fontSize="14"
-			 text="{MainPlayerService.getInstance().roomNum50}"/>
-	<s:Label x="587" y="277" color="#1CF000" fontSize="14" text="在线人数："/>
-	<s:Label x="665" y="277" color="#1CF000" fontSize="14"
-			 text="{MainPlayerService.getInstance().roomNum100}"/>
-	<s:Button id="logB" x="488" y="84" label="记录"/>
-	<s:Button x="383" y="84" label="领取奖品"/>
-	<s:Button x="555" y="84" label="修改密码"/>
-	<s:Button x="660" y="84" label="返回"/>
-	<s:Button id="d60B" x="10" y="84" label="60点游戏点卡插件"/>
-	<s:Button id="d250B" x="191" y="84" label="250点游戏点卡插件"/>
-	<s:Label x="26" y="31" color="#FFE400" fontSize="30" fontWeight="bold" text="ID:"/>
-	<s:Label x="75" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.playername}"/>
-	<s:Label x="213" y="30" color="#FFE400" fontSize="30" fontWeight="bold" text="点数："/>
-	<s:Label x="311" y="30" color="#FFE400" fontSize="30" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
-	<s:Image x="106" y="166" source="assets/room/room10.png"/>
-	<s:Image x="265" y="167" source="assets/room/room20.png"/>
-	<s:Image x="424" y="167" source="assets/room/room50.png"/>
-	<s:Image x="583" y="167" source="assets/room/room100.png"/>
-	<s:Button id="dIphoneB" x="256" y="326" width="150" height="150" label="按钮"
-			  icon="assets/iphoneicon.jpg"/>
-	<s:Button id="dIpadB" x="414" y="326" width="150" height="150" label="按钮"
-			  icon="assets/ipadicon.jpg"/>
-	
-	<s:BorderContainer id="duihuan" visible="false"
-					    cornerRadius="8">
+	<s:BorderContainer id="duihuan" visible="false" cornerRadius="8">
 		<s:TextInput id="contactName" x="163" y="79"/>
 		<s:TextInput id="contactTel" x="163" y="132"/>
 		<s:TextInput id="contactAddress" x="163" y="185"/>
@@ -69,4 +36,52 @@
 		<s:Label id="jiangpinDianshu" x="339" y="10" text="标签"/>
 		
 	</s:BorderContainer>
+	<view:UpdatePwd id="updatePwd" visible="false" x="180" y="170">
+	</view:UpdatePwd>
+	
+	<s:BorderContainer x="30" y="395" width="900" height="150" backgroundAlpha="0"
+					   borderVisible="true" cornerRadius="8" borderColor="#ffffff" borderAlpha="0.1">
+		<s:Button id="dIphoneB" x="10" y="24" width="100" height="100" label="按钮"
+				  icon="assets/iphoneicon.jpg"/>
+		<s:Button id="dIpadB" x="138" y="24" width="100" height="100" label="按钮"
+				  icon="assets/ipadicon.jpg"/>
+	</s:BorderContainer>
+	<s:Label x="34" y="376" color="#B9B9B9" fontSize="14" text="奖品领取"/>
+	<s:BorderContainer x="30" y="154" width="900" height="200" backgroundAlpha="0"
+					   borderVisible="true" borderColor="#ffffff" borderAlpha="0.1" cornerRadius="8">
+		<s:Label x="106" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="184" y="146" color="#1CF000" fontSize="14"
+				 text="{MainPlayerService.getInstance().roomNum10}"/>
+		<s:Label x="263" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="341" y="146" color="#1CF000" fontSize="14"
+				 text="{MainPlayerService.getInstance().roomNum20}"/>
+		<s:Label x="424" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="502" y="146" color="#1CF000" fontSize="14"
+				 text="{MainPlayerService.getInstance().roomNum50}"/>
+		<s:Label x="584" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="662" y="146" color="#1CF000" fontSize="14"
+				 text="{MainPlayerService.getInstance().roomNum100}"/>
+		<s:Image x="103" y="35" source="assets/room/room10.png"/>
+		<s:Image x="262" y="36" source="assets/room/room20.png"/>
+		<s:Image x="421" y="36" source="assets/room/room50.png"/>
+		<s:Image x="580" y="36" source="assets/room/room100.png"/>
+	</s:BorderContainer>
+	
+	
+	<s:BorderContainer x="30" y="30" width="900" height="65" backgroundAlpha="0.05"
+					   borderVisible="false" cornerRadius="8">
+		<s:Label x="15" y="25" color="#FFE400" fontSize="20" fontWeight="bold" text="用户:"/>
+		<s:Label x="74" y="25" color="#FFE400" fontSize="20" fontWeight="bold"
+				 text="{MainPlayerService.getInstance().mainPlayer.playername}"/>
+		<s:Label x="172" y="25" color="#FFE400" fontSize="20" fontWeight="bold" text="点数："/>
+		<s:Label x="230" y="25" color="#FFE400" fontSize="20" fontWeight="bold"
+				 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
+		<s:Button id="logB" x="604" y="10" label="日志记录"/>
+		<s:Button id="updatePwdB" x="702" y="10" label="修改密码"/>
+		<s:Button id="exitB" x="800" y="10" label="退出登录"/>
+		<s:Button id="d60B" x="362" y="10" label="60金币插件"/>
+		<s:Button id="d250B" x="478" y="10" label="250金币插件"/>
+	</s:BorderContainer>
+	<s:Label x="37" y="132" color="#B9B9B9" fontSize="14" text="房间列表"/>
+	<view:NetworkQuality id="network" x="121" y="133"/>
 </s:Group>

@@ -33,6 +33,8 @@ package com.control
 			this.lianwangMain.dIpadB.addEventListener(MouseEvent.CLICK,dIpadBClickHandler);
 			this.lianwangMain.check.addEventListener(MouseEvent.CLICK, check_clickHandler);
 			this.lianwangMain.cancel.addEventListener(MouseEvent.CLICK, cancel_clickHandler);
+			this.lianwangMain.exitB.addEventListener(MouseEvent.CLICK,exitBClickHandler);
+			this.lianwangMain.updatePwdB.addEventListener(MouseEvent.CLICK,updatePwdBClickHandler);
 		}
 		
 		protected function d60BClickHandler(event:MouseEvent):void
@@ -124,6 +126,14 @@ package com.control
 			lianwangMain.contactName.text = "";
 			lianwangMain.contactTel.text = "";
 			lianwangMain.contactAddress.text = "";
+		}
+		
+		private function exitBClickHandler(e:MouseEvent):void{
+			LianwangHomeControl.instance.lianwangHome.currentState = "login";
+		}
+		
+		private function updatePwdBClickHandler(e:MouseEvent):void{
+			this.lianwangMain.updatePwd.visible = true;
 		}
 	}
 }
