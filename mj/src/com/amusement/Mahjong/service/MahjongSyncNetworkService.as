@@ -53,8 +53,10 @@ package com.amusement.Mahjong.service
 		 */
 		public function connServer(playerName:String, roomType:int):void
 		{
+			MahjongSyncService.instance.isNetwork = true;
+			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
+			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
-			this.playerName = "g0005";
 			var connectStr:String = "rtmp://127.0.0.1/mahjongSyncServer" + roomType;
 			
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler, false, 0, true);

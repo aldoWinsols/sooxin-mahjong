@@ -21,21 +21,6 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer id="duihuan" visible="false" cornerRadius="8">
-		<s:TextInput id="contactName" x="163" y="79"/>
-		<s:TextInput id="contactTel" x="163" y="132"/>
-		<s:TextInput id="contactAddress" x="163" y="185"/>
-		<s:Button id="check" x="237" y="238" width="100" label="提交"/>
-		<s:Button id="cancel" x="363" y="238" width="100" label="取消"/>
-		<s:Label x="83" y="89" text="联系人："/>
-		<s:Label x="65" y="142" text="联系电话："/>
-		<s:Label x="65" y="195" text="邮寄地址："/>
-		<s:Label x="10" y="10" text="奖品名称："/>
-		<s:Label x="108" y="10" text="标签"/>
-		<s:Label x="241" y="10" text="奖品点数："/>
-		<s:Label id="jiangpinDianshu" x="339" y="10" text="标签"/>
-		
-	</s:BorderContainer>
 	<view:UpdatePwd id="updatePwd" visible="false" x="180" y="170">
 	</view:UpdatePwd>
 	
@@ -49,22 +34,26 @@
 	<s:Label x="34" y="376" color="#B9B9B9" fontSize="14" text="奖品领取"/>
 	<s:BorderContainer x="30" y="154" width="900" height="200" backgroundAlpha="0"
 					   borderVisible="true" borderColor="#ffffff" borderAlpha="0.1" cornerRadius="8">
-		<s:Label x="106" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="184" y="146" color="#1CF000" fontSize="14"
+		<s:Label x="67" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="145" y="148" color="#1CF000" fontSize="14"
+				 text="{MainPlayerService.getInstance().roomNum5}"/>
+		<s:Label x="229" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="307" y="148" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum10}"/>
-		<s:Label x="263" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="341" y="146" color="#1CF000" fontSize="14"
+		<s:Label x="386" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="464" y="148" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum20}"/>
-		<s:Label x="424" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="502" y="146" color="#1CF000" fontSize="14"
+		<s:Label x="547" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="625" y="148" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum50}"/>
-		<s:Label x="584" y="146" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="662" y="146" color="#1CF000" fontSize="14"
+		<s:Label x="707" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="785" y="148" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum100}"/>
-		<s:Image x="103" y="35" source="assets/room/room10.png"/>
-		<s:Image x="262" y="36" source="assets/room/room20.png"/>
-		<s:Image x="421" y="36" source="assets/room/room50.png"/>
-		<s:Image x="580" y="36" source="assets/room/room100.png"/>
+		<s:Image id="room5" x="67" y="37" source="assets/room/room10.png"/>
+		<s:Image id="room10" x="226" y="37" source="assets/room/room10.png"/>
+		<s:Image id="room20" x="385" y="38" source="assets/room/room20.png"/>
+		<s:Image id="room50" x="544" y="38" source="assets/room/room50.png"/>
+		<s:Image id="room100" x="703" y="38" source="assets/room/room100.png"/>
 	</s:BorderContainer>
 	
 	
@@ -84,4 +73,20 @@
 	</s:BorderContainer>
 	<s:Label x="37" y="132" color="#B9B9B9" fontSize="14" text="房间列表"/>
 	<view:NetworkQuality id="network" x="121" y="133"/>
+	
+	<s:BorderContainer id="duihuan" visible="false" cornerRadius="8">
+		<s:TextInput id="contactName" x="163" y="79"/>
+		<s:TextInput id="contactTel" x="163" y="132"/>
+		<s:TextInput id="contactAddress" x="163" y="185"/>
+		<s:Button id="check" x="237" y="238" width="100" label="提交"/>
+		<s:Button id="cancel" x="363" y="238" width="100" label="取消"/>
+		<s:Label x="83" y="89" text="联系人："/>
+		<s:Label x="65" y="142" text="联系电话："/>
+		<s:Label x="65" y="195" text="邮寄地址："/>
+		<s:Label x="10" y="10" text="奖品名称："/>
+		<s:Label id="jingpinName" x="108" y="10" text="标签"/>
+		<s:Label x="241" y="10" text="奖品点数："/>
+		<s:Label id="jiangpinDianshu" x="339" y="10" text="标签"/>
+		
+	</s:BorderContainer>
 </s:Group>
