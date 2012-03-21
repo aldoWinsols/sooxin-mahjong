@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:drag="com.utils.drag.*"
+			   creationComplete="titlewindow1_creationCompleteHandler(event)"
+			   width="864"
+			   height="520">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongSettingControl;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+
+			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
+			{
+				new MahjongSettingControl(this);
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Form>
+		<s:FormItem>
+			<s:HGroup>
+				<s:Label text="5点:"/>
+				<s:Label text="在线人数：" />
+				<s:TextInput id="onlineNum_5" width="65" editable="false"/>
+				<s:Label text="机器人智能："/>
+				<s:HSlider id="winGailv5"
+						   minimum="1"
+						   snapInterval="0.01"
+						   maximum="100"
+						   x="248"
+						   y="47"/>
+				<s:Button id="mahjongB5"
+						  x="570"
+						  y="40"
+						  label="修改"/>
+				<s:CheckBox x="663" y="44" label="IP段开关" id="checkIpEqual5"/>
+			</s:HGroup>
+		</s:FormItem>
+		<s:FormItem>
+			<s:HGroup>
+				<s:Label x="38"
+						 y="84"
+						 text="10点:"/>
+				<s:Label text="在线人数：" />
+				<s:TextInput id="onlineNum_10" width="65" editable="false"/>
+				<s:Label text="机器人智能："/>
+				<s:HSlider id="winGailv10"
+						   minimum="1"
+						   snapInterval="0.01"
+						   maximum="100"
+						   x="248"
+						   y="84"/>
+				<s:Button id="mahjongB10" label="修改"/>
+				<s:CheckBox x="663" y="79" label="IP段开关" id="checkIpEqual10"/>
+			</s:HGroup>
+		</s:FormItem>
+		<s:FormItem>
+			<s:HGroup>
+				<s:Label text="20点:"/>
+				<s:Label text="在线人数：" />
+				<s:TextInput id="onlineNum_20" width="65" editable="false"/>
+				<s:Label text="机器人智能："/>
+				<s:HSlider id="winGailv20" maximum="100" minimum="1" snapInterval="0.01"/>
+				<s:Button id="mahjongB20" label="修改"/>
+				<s:CheckBox id="checkIpEqual20" label="IP段开关"/>
+			</s:HGroup>
+		</s:FormItem>
+		<s:FormItem>
+			<s:HGroup>
+				<s:Label text="50点:"/>
+				<s:Label text="在线人数：" />
+				<s:TextInput id="onlineNum_50" width="65" editable="false"/>
+				<s:Label text="机器人智能："/>
+				<s:HSlider id="winGailv50" maximum="100" minimum="1" snapInterval="0.01"/>
+				<s:Button id="mahjongB50" label="修改"/>
+				<s:CheckBox id="checkIpEqual50" label="IP段开关"/>
+			</s:HGroup>
+		</s:FormItem>
+		<s:FormItem>
+			<s:HGroup>
+				<s:Label text="100点:"/>
+				<s:Label text="在线人数：" />
+				<s:TextInput id="onlineNum_100" width="65" editable="false"/>
+				<s:Label text="机器人智能："/>
+				<s:HSlider id="winGailv100" maximum="100" minimum="1" snapInterval="0.01"/>
+				<s:Button id="mahjongB100" label="修改"/>
+				<s:CheckBox id="checkIpEqual100" label="IP段开关"/>
+			</s:HGroup>
+		</s:FormItem>
+	</s:Form>
+	<mx:HRule alpha="0.5"
+			  x="42"
+			  y="70"
+			  width="798"/>
+	<mx:HRule alpha="0.5"
+			  x="38"
+			  y="104"
+			  width="801"/>
+	<mx:HRule alpha="0.5"
+			  x="37"
+			  y="146"
+			  width="801"/>
+	<mx:HRule alpha="0.5"
+			  x="42"
+			  y="35"
+			  width="798"/>
+</s:BorderContainer>
