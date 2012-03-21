@@ -110,7 +110,6 @@ public class PlayerService implements IPlayerService {
 		}
 		
 		player.setHaveMoney(player.getHaveMoney() - duihuanlog.getDuihuanMoney());
-		
 		getPlayerDao().merge(player);
 		duihuanlogDao.save(duihuanlog);
 
