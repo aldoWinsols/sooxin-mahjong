@@ -6,7 +6,7 @@ package com.model
 	{
 		public var id:Number;
 		public var playerName:String;
-		private var duihuanTime:Date;
+		public var duihuanTime:Date;
 		public var itemName:String;
 		public var duihuanMoney:Number;
 		public var lastHaveMoney:Number;

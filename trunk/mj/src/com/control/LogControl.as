@@ -32,16 +32,19 @@ package com.control
 		}
 		
 		public function getGameHistoryClickHandler(e:MouseEvent):void{
+			this.log.currentState="game";
 			RemoteService.instance.playlogService.findPlayLog(MainPlayerService.getInstance().mainPlayer.playername);
 			RemoteService.instance.playlogService.addEventListener(ResultEvent.RESULT,getGameHistoryResult);
 		}
 		
 		private function getChongzhiHistoryClickHandler(e:MouseEvent):void{
+			this.log.currentState="chongzhi";
 			RemoteService.instance.chongzhiService.findChongzhiLog(MainPlayerService.getInstance().mainPlayer.playername);
 			RemoteService.instance.chongzhiService.addEventListener(ResultEvent.RESULT,getChongzhiHistoryResult);
 		}
 		
 		private function getPrizeHistoryClickHandler(e:MouseEvent):void{
+			this.log.currentState="jiangpin";
 			RemoteService.instance.duihuanService.findDuihuanLog(MainPlayerService.getInstance().mainPlayer.playername);
 			RemoteService.instance.duihuanService.addEventListener(ResultEvent.RESULT,getPrizeHistoryResult);
 		}
@@ -49,20 +52,29 @@ package com.control
 		
 		private function getGameHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.playlogService.removeEventListener(ResultEvent.RESULT,getGameHistoryResult);
-			var array:ArrayCollection = e.result as ArrayCollection;
+			var array:ArrayCollection = changeID(e.result as ArrayCollection);
 			this.log.gameHistory.dataProvider = array;
 		}
 		private function getChongzhiHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.chongzhiService.removeEventListener(ResultEvent.RESULT,getChongzhiHistoryResult);
-			this.log.chongzhiHistory.dataProvider = e.result as ArrayList;
+			this.log.chongzhiHistory.dataProvider = changeID(e.result as ArrayCollection);
 		}
 		private function getPrizeHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.duihuanService.removeEventListener(ResultEvent.RESULT,getPrizeHistoryResult);
-			this.log.prizeHistory.dataProvider = e.result as ArrayList;
+			this.log.prizeHistory.dataProvider = changeID(e.result as ArrayCollection);
 		}
 		
 		private function closeClickHandler(e:MouseEvent):void{
-			this.log.visible = false;
+			LianwangHomeControl.instance.lianwangHome.currentState = "main";
+		}
+		
+		private function changeID(arr:ArrayCollection):ArrayCollection{
+			var n:int = 1;
+			for(var i:int=0; i<arr.length; i++){
+				arr.getItemAt(i).id = n++;
+			}
+			
+			return arr;
 		}
 	}
 }

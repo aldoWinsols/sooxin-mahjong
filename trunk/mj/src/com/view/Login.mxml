@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" width="820" height="500" creationComplete="group1_creationCompleteHandler(event)">
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="960" height="640" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.control.LoginControl;
@@ -17,20 +17,21 @@
 	</fx:Script>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:DateTimeFormatter id="df" dateTimePattern="yyyy/MM/dd"/>
 	</fx:Declarations>
-	<s:TextInput id="playerName" x="142" y="127" width="150"/>
-	<s:Label x="83" y="136" color="#FFFFFF" text="用户："/>
-	<s:TextInput id="playerPwd" x="373" y="127" width="150" displayAsPassword="true"/>
-	<s:Label x="314" y="136" color="#FFFFFF" text="密码："/>
-	<s:Button id="loginB" x="531" y="124" width="100" label="登录"/>
-	<s:Button id="regeistB" x="638" y="124" width="100" label="注册"/>
-	<s:DataGrid id="gameHistory" x="10" y="241" width="800" height="249" fontSize="13" alpha="0.5">
-		<s:columns>
-			<s:ArrayList>
-				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
-				<s:GridColumn headerText="時間" dataField="gameTime" width="130"/>
-				<s:GridColumn headerText="內容" dataField="gameContent" width="160"/>
-			</s:ArrayList>
-		</s:columns>
-	</s:DataGrid>
+	<s:BorderContainer id="notice" y="253" width="700" height="223" backgroundAlpha="0"
+					   borderAlpha="0.1" borderColor="#ffffff" borderVisible="true" color="#5BE300"
+					   cornerRadius="8" horizontalCenter="0">
+	</s:BorderContainer>
+	<s:BorderContainer y="158" width="700" height="82" backgroundAlpha="0" borderAlpha="0.1"
+					   borderColor="#ffffff" borderVisible="true" cornerRadius="8"
+					   horizontalCenter="0">
+		<s:TextInput id="playerName" x="68" y="24" width="150"/>
+		<s:Label x="9" y="33" color="#FFFFFF" text="用户："/>
+		<s:TextInput id="playerPwd" x="299" y="24" width="150" displayAsPassword="true"/>
+		<s:Label x="240" y="33" color="#FFFFFF" text="密码："/>
+		<s:Button id="loginB" x="467" y="21" width="100" label="登录"/>
+		<s:Button id="regeistB" x="574" y="21" width="100" label="注册"/>
+	</s:BorderContainer>
+	<s:Button id="cancelB" x="895" y="10" label="返回"/>
 </s:Group>

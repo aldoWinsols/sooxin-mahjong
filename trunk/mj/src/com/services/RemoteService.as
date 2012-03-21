@@ -17,7 +17,7 @@ package com.services
 		public var playlogService:RemoteObject;
 		public var playerService:RemoteObject;
 		public var shangpinService:RemoteObject;
-		
+		public var noticeService:RemoteObject;		
 
 		public function RemoteService()
 		{
@@ -26,6 +26,7 @@ package com.services
 			playlogService=getConfiguredRO("playlogService");
 			playerService=getConfiguredRO("playerService");
 			shangpinService=getConfiguredRO("shangpinService");
+			noticeService=getConfiguredRO("noticeService");
 		}
 
 		//得到单例
