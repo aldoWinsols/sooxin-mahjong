@@ -10,7 +10,8 @@ public class Playlog implements java.io.Serializable {
 
 	// Fields
 
-	private Long sn;
+	private Long id;
+	private Timestamp timestamp;
 	private String playerName;
 	private Integer gameClass;
 	private Integer gameSubClass;
@@ -26,7 +27,6 @@ public class Playlog implements java.io.Serializable {
 	private Double afterMoney;
 	private String gameIp;
 	private String remarks;
-	private Timestamp timestamp;
 
 	// Constructors
 
@@ -62,7 +62,7 @@ public class Playlog implements java.io.Serializable {
 			String gameContent, Double allTouZhuMoney, Double preMoney,
 			Double winLossMoneyBeforeTax, Double gameTaxaction,
 			Double winLossMoneyAfterTax, Double afterMoney, String gameIp,
-			String remarks, Timestamp timestamp) {
+			String remarks) {
 		this.playerName = playerName;
 		this.gameClass = gameClass;
 		this.gameSubClass = gameSubClass;
@@ -78,17 +78,24 @@ public class Playlog implements java.io.Serializable {
 		this.afterMoney = afterMoney;
 		this.gameIp = gameIp;
 		this.remarks = remarks;
-		this.timestamp = timestamp;
 	}
 
 	// Property accessors
 
-	public Long getSn() {
-		return this.sn;
+	public Long getId() {
+		return this.id;
 	}
 
-	public void setSn(Long sn) {
-		this.sn = sn;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getPlayerName() {
@@ -209,14 +216,6 @@ public class Playlog implements java.io.Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }

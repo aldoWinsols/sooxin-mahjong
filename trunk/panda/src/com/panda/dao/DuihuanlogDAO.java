@@ -1,7 +1,6 @@
 package com.panda.dao;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
@@ -33,6 +32,7 @@ public class DuihuanlogDAO extends HibernateDaoSupport {
 	public static final String CONTACT_NAME = "contactName";
 	public static final String CONTACT_TEL = "contactTel";
 	public static final String CONTACT_ADDRESS = "contactAddress";
+	public static final String STATE = "state";
 
 	protected void initDao() {
 		// do nothing
@@ -128,6 +128,10 @@ public class DuihuanlogDAO extends HibernateDaoSupport {
 
 	public List findByContactAddress(Object contactAddress) {
 		return findByProperty(CONTACT_ADDRESS, contactAddress);
+	}
+
+	public List findByState(Object state) {
+		return findByProperty(STATE, state);
 	}
 
 	public List findAll() {
