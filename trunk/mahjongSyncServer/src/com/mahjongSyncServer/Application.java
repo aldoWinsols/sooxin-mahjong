@@ -120,7 +120,7 @@ public class Application extends ApplicationAdapter {
 	 * @return
 	 */
 	public String getOnlineNum(){
-		return gameHallService.getGameHall().getPlayerServices().size()-20+"--"+gameHallService.getWaitPlayers().size()+"--"+getOnlinePlayersName()+"--"+getWaitPlayersName();
+		return gameHallService.getGameHall().getPlayerServices().size()-20+"--"+Util.insance.getOnlineNum();
 	}
 	/**
 	 * 修改重连时间
@@ -151,18 +151,16 @@ public class Application extends ApplicationAdapter {
 		return str;
 	}
 	public String getTransformerState(){
-		return Util.getInsance().getTransformerWinMaxMoney() + "--" + Util.getInsance().getTransformerWinGailv() + 
-					"--" + gameHallService.getGameHall().getReunionTimer();
+		return Util.getInsance().getTransformerWinGailv() + "";
 	}
 	/**
 	 * 设置机器人的控制参数
 	 * @param transformerWinMaxMoney
 	 * @param transformerWinGailv
 	 */
-	public void updateTransformerState(double transformerWinMaxMoney, double transformerWinGailv, int reunionTimer){
+	public void updateTransformerState(int onlineNum, double transformerWinGailv){
 		Util.getInsance().setTransformerWinGailv(transformerWinGailv);
-		Util.getInsance().setTransformerWinMaxMoney(transformerWinMaxMoney);
-		gameHallService.getGameHall().setReunionTimer(reunionTimer);
+		Util.getInsance().setOnlineNum(onlineNum);
 	}
 	/**
 	 * 更新游戏配置（IP段相同和同一一级代理相同）

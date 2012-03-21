@@ -19,7 +19,7 @@ import com.mahjongSyncServer.services.PlayerService;
 public class Util {
 	
 	private int[] mahjongs = null;				//麻将初始值
-	private double TransformerWinMaxMoney = 300;
+	private int onlineNum = 0;
 	private double TransformerWinGailv = 90;
 	public static Util insance = new Util();
 	private String[] strs = null;
@@ -137,26 +137,20 @@ public class Util {
 		return sb.toString();
 	}
 	
-	/**
-	 * 机器人输赢的最低限额
-	 * @return
-	 */
-	public double getTransformerWinMaxMoney() {
-		return TransformerWinMaxMoney;
+	public int getOnlineNum() {
+		return onlineNum;
 	}
+
+	public void setOnlineNum(int onlineNum) {
+		this.onlineNum = onlineNum;
+	}
+
 	/**
 	 * 机器人执行智能摸牌的概率
 	 * @return
 	 */
 	public double getTransformerWinGailv() {
 		return TransformerWinGailv;
-	}
-	/**
-	 * 设置机器人输赢的最低限额
-	 * @param transformerWinMaxMoney
-	 */
-	public void setTransformerWinMaxMoney(double transformerWinMaxMoney) {
-		TransformerWinMaxMoney = transformerWinMaxMoney;
 	}
 	/**
 	 * 设置机器人执行智能摸牌的概率
