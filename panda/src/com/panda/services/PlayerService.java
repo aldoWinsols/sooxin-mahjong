@@ -65,18 +65,15 @@ public class PlayerService implements IPlayerService {
 		}
 	}
 	
-	public Object regeist(String playerName, String playerPwd){
-		Player pl = (Player) getPlayerDao().findByAcctNameUnique(playerName);
+	public Object regeist(Player player){
+		Player pl = (Player) getPlayerDao().findByAcctNameUnique(player.getPlayername());
 		
 		if(pl != null){
 			return "当前用户名已被使用，请尝试其他名字！";
 		}
 		
-		Player player = new Player();
-		player.setPlayername(playerName);
-		player.setPlayerpwd(playerPwd);
 		getPlayerDao().save(player);
-		return true;
+		return player;
 	}
 	
 	public boolean checkPlayerNameIsHave(String playerName){
@@ -93,7 +90,7 @@ public class PlayerService implements IPlayerService {
 		if(player.getPlayerpwd().equals(playerOldPwd)){
 			player.setPlayerpwd(playerNewPwd);
 			getPlayerDao().merge(player);
-			return true;
+			return player;
 		}else{
 			return "你输入的旧密码不正确!";
 		}

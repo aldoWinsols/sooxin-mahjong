@@ -40,7 +40,8 @@
 				<value>com/panda/dao/Shangpin.hbm.xml</value>
 				<value>com/panda/dao/Duihuanlog.hbm.xml</value>
 				<value>com/panda/dao/Chongzhilog.hbm.xml</value>
-				<value>com/panda/dao/Playlog.hbm.xml</value></list>
+				<value>com/panda/dao/Playlog.hbm.xml</value>
+				<value>com/panda/dao/Notice.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -58,7 +59,7 @@
 
 	<aop:config>
 		<aop:pointcut id="allservice"
-			expression="execution(public * com.panda.service.*.*(..))" />
+			expression="execution(public * com.panda.services.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="allservice" />
 	</aop:config>
 	<!-- spring 事务管理 end-->
@@ -84,6 +85,12 @@
 		</property>
 	</bean>
 	<bean id="PlaylogDAO" class="com.panda.dao.PlaylogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="NoticeDAO" class="com.panda.dao.NoticeDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -137,5 +144,11 @@
 		</property>
 	</bean>
 	
+	<bean id="noticeService"
+		class="com.panda.services.NoticeService">
+		<property name="noticeDao">
+			<ref bean="NoticeDAO" />
+		</property>
+	</bean>
 	
 	</beans>

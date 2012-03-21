@@ -10,6 +10,9 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
+        <version name="timestamp" type="java.sql.Timestamp">
+            <column name="timestamp" length="0" />
+        </version>
         <property name="shangpinName" type="java.lang.String">
             <column name="shangpinName" length="100" />
         </property>
@@ -21,9 +24,6 @@
         </property>
         <property name="imgurl" type="java.lang.String">
             <column name="imgurl" length="50" />
-        </property>
-        <property name="timestamp" type="java.sql.Timestamp">
-            <column name="timestamp" length="0" />
         </property>
     </class>
 </hibernate-mapping>

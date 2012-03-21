@@ -11,11 +11,11 @@ public class Shangpin implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String shangpinName;
 	private Double price;
 	private String introdunce;
 	private String imgurl;
-	private Timestamp timestamp;
 
 	// Constructors
 
@@ -25,12 +25,11 @@ public class Shangpin implements java.io.Serializable {
 
 	/** full constructor */
 	public Shangpin(String shangpinName, Double price, String introdunce,
-			String imgurl, Timestamp timestamp) {
+			String imgurl) {
 		this.shangpinName = shangpinName;
 		this.price = price;
 		this.introdunce = introdunce;
 		this.imgurl = imgurl;
-		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -41,6 +40,14 @@ public class Shangpin implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getShangpinName() {
@@ -73,14 +80,6 @@ public class Shangpin implements java.io.Serializable {
 
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }

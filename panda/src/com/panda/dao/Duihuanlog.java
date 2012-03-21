@@ -1,7 +1,6 @@
 package com.panda.dao;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Duihuanlog entity. @author MyEclipse Persistence Tools
@@ -12,8 +11,9 @@ public class Duihuanlog implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String playerName;
-	private Date duihuanTime;
+	private Timestamp duihuanTime;
 	private String itemName;
 	private Double duihuanMoney;
 	private Double lastHaveMoney;
@@ -21,7 +21,7 @@ public class Duihuanlog implements java.io.Serializable {
 	private String contactName;
 	private String contactTel;
 	private String contactAddress;
-	private Timestamp timestamp;
+	private Integer state;
 
 	// Constructors
 
@@ -30,10 +30,10 @@ public class Duihuanlog implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Duihuanlog(String playerName, Date duihuanTime, String itemName,
-			Double duihuanMoney, Double lastHaveMoney, Double nowHaveMoney,
-			String contactName, String contactTel, String contactAddress,
-			Timestamp timestamp) {
+	public Duihuanlog(String playerName, Timestamp duihuanTime,
+			String itemName, Double duihuanMoney, Double lastHaveMoney,
+			Double nowHaveMoney, String contactName, String contactTel,
+			String contactAddress, Integer state) {
 		this.playerName = playerName;
 		this.duihuanTime = duihuanTime;
 		this.itemName = itemName;
@@ -43,7 +43,7 @@ public class Duihuanlog implements java.io.Serializable {
 		this.contactName = contactName;
 		this.contactTel = contactTel;
 		this.contactAddress = contactAddress;
-		this.timestamp = timestamp;
+		this.state = state;
 	}
 
 	// Property accessors
@@ -56,6 +56,14 @@ public class Duihuanlog implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	public String getPlayerName() {
 		return this.playerName;
 	}
@@ -64,11 +72,11 @@ public class Duihuanlog implements java.io.Serializable {
 		this.playerName = playerName;
 	}
 
-	public Date getDuihuanTime() {
+	public Timestamp getDuihuanTime() {
 		return this.duihuanTime;
 	}
 
-	public void setDuihuanTime(Date duihuanTime) {
+	public void setDuihuanTime(Timestamp duihuanTime) {
 		this.duihuanTime = duihuanTime;
 	}
 
@@ -128,12 +136,12 @@ public class Duihuanlog implements java.io.Serializable {
 		this.contactAddress = contactAddress;
 	}
 
-	public Timestamp getTimestamp() {
-		return this.timestamp;
+	public Integer getState() {
+		return this.state;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+	public void setState(Integer state) {
+		this.state = state;
 	}
 
 }

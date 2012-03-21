@@ -1,7 +1,6 @@
 package com.panda.dao;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Chongzhilog entity. @author MyEclipse Persistence Tools
@@ -12,12 +11,12 @@ public class Chongzhilog implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String playerName;
-	private Date chongzhiTime;
+	private Timestamp chongzhiTime;
 	private Double chongzhiMoney;
 	private Double lastHaveMoney;
 	private Double nowHaveMoney;
-	private Timestamp timestamp;
 
 	// Constructors
 
@@ -26,15 +25,13 @@ public class Chongzhilog implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Chongzhilog(String playerName, Date chongzhiTime,
-			Double chongzhiMoney, Double lastHaveMoney, Double nowHaveMoney,
-			Timestamp timestamp) {
+	public Chongzhilog(String playerName, Timestamp chongzhiTime,
+			Double chongzhiMoney, Double lastHaveMoney, Double nowHaveMoney) {
 		this.playerName = playerName;
 		this.chongzhiTime = chongzhiTime;
 		this.chongzhiMoney = chongzhiMoney;
 		this.lastHaveMoney = lastHaveMoney;
 		this.nowHaveMoney = nowHaveMoney;
-		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -47,6 +44,14 @@ public class Chongzhilog implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	public String getPlayerName() {
 		return this.playerName;
 	}
@@ -55,11 +60,11 @@ public class Chongzhilog implements java.io.Serializable {
 		this.playerName = playerName;
 	}
 
-	public Date getChongzhiTime() {
+	public Timestamp getChongzhiTime() {
 		return this.chongzhiTime;
 	}
 
-	public void setChongzhiTime(Date chongzhiTime) {
+	public void setChongzhiTime(Timestamp chongzhiTime) {
 		this.chongzhiTime = chongzhiTime;
 	}
 
@@ -85,14 +90,6 @@ public class Chongzhilog implements java.io.Serializable {
 
 	public void setNowHaveMoney(Double nowHaveMoney) {
 		this.nowHaveMoney = nowHaveMoney;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }

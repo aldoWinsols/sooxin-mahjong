@@ -10,6 +10,9 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
+        <version name="timestamp" type="java.sql.Timestamp">
+            <column name="timestamp" length="0" />
+        </version>
         <property name="playername" type="java.lang.String">
             <column name="playername" length="50" />
         </property>
@@ -18,9 +21,6 @@
         </property>
         <property name="haveMoney" type="java.lang.Double">
             <column name="haveMoney" precision="22" scale="0" />
-        </property>
-        <property name="timestamp" type="java.sql.Timestamp">
-            <column name="timestamp" length="0" />
         </property>
     </class>
 </hibernate-mapping>
