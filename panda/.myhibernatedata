@@ -1,6 +1,6 @@
 #MyEclipse Hibernate Properties
-#Tue Mar 20 16:56:31 CST 2012
-sessionFactoryName=com.panda.util.HibernateSessionFactory
+#Thu Mar 22 21:34:22 CST 2012
+sessionFactoryName=
 genBasicCompId=false
 profile=
 daoSFId=sessionFactory
@@ -18,7 +18,7 @@ genVersionTag=false
 sessionFactoryId=sessionFactory
 basePersistenceClass=
 genAnnotations=false
-reSettingsFile=
+reSettingsFile=/panda/hibernate.reveng.xml
 configFile=/panda/src/applicationContext.xml
 createConfigFile=false
 addLibs2Classpath=true
