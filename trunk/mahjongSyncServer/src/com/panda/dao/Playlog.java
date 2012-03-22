@@ -10,7 +10,8 @@ public class Playlog implements java.io.Serializable {
 
 	// Fields
 
-	private Long sn;
+	private Long id;
+	private Timestamp timestamp;
 	private String playerName;
 	private Integer gameClass;
 	private Integer gameSubClass;
@@ -25,7 +26,6 @@ public class Playlog implements java.io.Serializable {
 	private Double winLossMoneyAfterTax;
 	private Double afterMoney;
 	private String gameIp;
-	private Timestamp timestamp;
 	private String remarks;
 
 	// Constructors
@@ -39,8 +39,7 @@ public class Playlog implements java.io.Serializable {
 			String gameName, String gameNo, Timestamp gameTime,
 			String gameContent, Double allTouZhuMoney, Double preMoney,
 			Double winLossMoneyBeforeTax, Double gameTaxaction,
-			Double winLossMoneyAfterTax, Double afterMoney, String gameIp,
-			Timestamp timestamp) {
+			Double winLossMoneyAfterTax, Double afterMoney, String gameIp) {
 		this.playerName = playerName;
 		this.gameClass = gameClass;
 		this.gameSubClass = gameSubClass;
@@ -55,7 +54,6 @@ public class Playlog implements java.io.Serializable {
 		this.winLossMoneyAfterTax = winLossMoneyAfterTax;
 		this.afterMoney = afterMoney;
 		this.gameIp = gameIp;
-		this.timestamp = timestamp;
 	}
 
 	/** full constructor */
@@ -64,7 +62,7 @@ public class Playlog implements java.io.Serializable {
 			String gameContent, Double allTouZhuMoney, Double preMoney,
 			Double winLossMoneyBeforeTax, Double gameTaxaction,
 			Double winLossMoneyAfterTax, Double afterMoney, String gameIp,
-			Timestamp timestamp, String remarks) {
+			String remarks) {
 		this.playerName = playerName;
 		this.gameClass = gameClass;
 		this.gameSubClass = gameSubClass;
@@ -79,18 +77,25 @@ public class Playlog implements java.io.Serializable {
 		this.winLossMoneyAfterTax = winLossMoneyAfterTax;
 		this.afterMoney = afterMoney;
 		this.gameIp = gameIp;
-		this.timestamp = timestamp;
 		this.remarks = remarks;
 	}
 
 	// Property accessors
 
-	public Long getSn() {
-		return this.sn;
+	public Long getId() {
+		return this.id;
 	}
 
-	public void setSn(Long sn) {
-		this.sn = sn;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getPlayerName() {
@@ -203,14 +208,6 @@ public class Playlog implements java.io.Serializable {
 
 	public void setGameIp(String gameIp) {
 		this.gameIp = gameIp;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public String getRemarks() {
