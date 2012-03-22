@@ -49,24 +49,24 @@ public class DataService {
 				playerServices.get(i).getPlayer().getPlayLog().setAllTouZhuMoney(0.0);
 				// 2012-3-5 14:09 gmr end
 			}
-//			switch (balanceService.baseNum) {
-//				// V1.8 2011-8-24
-//				case 1:
-//					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(AbstractGameClass.ChessGameClass.MAHJONG_1);
-//					break;
-//				case 5:
-//					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(AbstractGameClass.ChessGameClass.MAHJONG_5);
-//					break;
-//				case 10:
-//					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(AbstractGameClass.ChessGameClass.MAHJONG_10);
-//					break;
-//				case 20:
-//					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(AbstractGameClass.ChessGameClass.MAHJONG_20);
-//					break;
-//				case 50:
-//					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(AbstractGameClass.ChessGameClass.MAHJONG_50);
-//					break;
-//			}
+			switch (balanceService.baseNum) {
+				// V1.8 2011-8-24
+				case 5:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(5);
+					break;
+				case 10:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(10);
+					break;
+				case 20:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(20);
+					break;
+				case 50:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(50);
+					break;
+				case 1:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(100);
+					break;
+			}
 			playerServices.get(i).getPlayer().getPlayLog().setGameName(ConstClass.mahjong + balanceService.baseNum);
 			playerServices.get(i).getPlayer().getPlayLog()
 					.setGameNo(String.valueOf(playerServices.get(i).getPlayer().getRoomNo()));
