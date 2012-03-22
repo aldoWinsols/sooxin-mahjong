@@ -29,6 +29,8 @@
 				<s:Label text="5点:"/>
 				<s:Label text="在线人数：" />
 				<s:TextInput id="onlineNum_5" width="65" editable="false"/>
+				<s:HSlider id="winOnlineNum5" x="248" y="47" maximum="300" minimum="1"
+						   snapInterval="0.01" stepSize="10" value="0"/>
 				<s:Label text="机器人智能："/>
 				<s:HSlider id="winGailv5"
 						   minimum="1"
@@ -50,6 +52,8 @@
 						 text="10点:"/>
 				<s:Label text="在线人数：" />
 				<s:TextInput id="onlineNum_10" width="65" editable="false"/>
+				<s:HSlider id="winOnlineNum10" x="248" y="47" maximum="300" minimum="0"
+						   snapInterval="0.01" stepSize="10" value="0"/>
 				<s:Label text="机器人智能："/>
 				<s:HSlider id="winGailv10"
 						   minimum="1"
@@ -66,6 +70,8 @@
 				<s:Label text="20点:"/>
 				<s:Label text="在线人数：" />
 				<s:TextInput id="onlineNum_20" width="65" editable="false"/>
+				<s:HSlider id="winOnlineNum20" x="248" y="47" maximum="300" minimum="0"
+						   snapInterval="0.01" stepSize="10" value="0"/>
 				<s:Label text="机器人智能："/>
 				<s:HSlider id="winGailv20" maximum="100" minimum="1" snapInterval="0.01"/>
 				<s:Button id="mahjongB20" label="修改"/>
@@ -77,6 +83,8 @@
 				<s:Label text="50点:"/>
 				<s:Label text="在线人数：" />
 				<s:TextInput id="onlineNum_50" width="65" editable="false"/>
+				<s:HSlider id="winOnlineNum50" x="248" y="47" maximum="300" minimum="0"
+						   snapInterval="0.01" stepSize="10" value="0"/>
 				<s:Label text="机器人智能："/>
 				<s:HSlider id="winGailv50" maximum="100" minimum="1" snapInterval="0.01"/>
 				<s:Button id="mahjongB50" label="修改"/>
@@ -88,6 +96,8 @@
 				<s:Label text="100点:"/>
 				<s:Label text="在线人数：" />
 				<s:TextInput id="onlineNum_100" width="65" editable="false"/>
+				<s:HSlider id="winOnlineNum100" x="248" y="47" maximum="300" minimum="0"
+						   snapInterval="0.01" stepSize="10" value="1"/>
 				<s:Label text="机器人智能："/>
 				<s:HSlider id="winGailv100" maximum="100" minimum="1" snapInterval="0.01"/>
 				<s:Button id="mahjongB100" label="修改"/>
