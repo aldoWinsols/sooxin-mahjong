@@ -313,6 +313,12 @@ package com.amusement.Mahjong.control
 				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！");
 			}
 			
+			if(MahjongSyncService.instance.isNetwork){
+				_mahjongRoom.exitImage.enabled = false;
+			}else{
+				_mahjongRoom.exitImage.enabled = true;
+			}
+			
 			_mahjongRoom.limit.init();
 			
 			if(playNum == 1){
