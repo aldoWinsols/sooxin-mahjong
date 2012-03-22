@@ -151,5 +151,13 @@ public class BalanceChessGameService implements IBalanceChessGameService {
 		playLogDao.save(playLog);
 
 	}
+	
+	public void setPlayerOfflineGameNo(String playerName, int offlineGameNo){
+		Player userAcctA = playerDao.findByAcctNameUnique(playerName);
+		if(userAcctA != null){
+			userAcctA.setOfflineGameNo(offlineGameNo);
+		}
+		playerDao.merge(userAcctA);
+	}
 
 }

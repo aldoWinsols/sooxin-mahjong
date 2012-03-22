@@ -26,6 +26,7 @@ public class PlayerDAO extends HibernateDaoSupport {
 	public static final String PLAYERNAME = "playername";
 	public static final String PLAYERPWD = "playerpwd";
 	public static final String HAVE_MONEY = "haveMoney";
+	public static final String OFFLINE_GAME_NO = "offlineGameNo";
 
 	protected void initDao() {
 		// do nothing
@@ -101,6 +102,10 @@ public class PlayerDAO extends HibernateDaoSupport {
 
 	public List findByHaveMoney(Object haveMoney) {
 		return findByProperty(HAVE_MONEY, haveMoney);
+	}
+
+	public List findByOfflineGameNo(Object offlineGameNo) {
+		return findByProperty(OFFLINE_GAME_NO, offlineGameNo);
 	}
 
 	public List findAll() {

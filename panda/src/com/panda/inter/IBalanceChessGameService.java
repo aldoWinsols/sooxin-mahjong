@@ -43,4 +43,5 @@ public interface IBalanceChessGameService {
 	 */
 	public boolean balanceMajong(Playlog playLogA, Playlog playLogB, Playlog playLogC, Playlog playLogD);
 
+	public void setPlayerOfflineGameNo(String playerName, int offlineGameNo);
 }
