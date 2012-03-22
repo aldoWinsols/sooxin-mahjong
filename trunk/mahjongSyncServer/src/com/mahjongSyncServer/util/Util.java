@@ -20,7 +20,7 @@ public class Util {
 	
 	private int[] mahjongs = null;				//麻将初始值
 	private int onlineNum = 0;
-	private double TransformerWinGailv = 0;
+	private double TransformerWinGailv = 90;
 	public static Util insance = new Util();
 	private String[] strs = null;
 	
