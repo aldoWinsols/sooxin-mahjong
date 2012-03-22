@@ -77,9 +77,10 @@ package com.services
 		
 		public function connServer(playerName:String):void
 		{
+			var str:String = ConfigService.instance.mainSyncServerURL;
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, statusHandler); 
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			_conn.connect("rtmp://192.168.1.211/mainSyncServer", playerName);
+			_conn.connect(str, playerName);
 			_connStateTimer.start();
 		}
 		
