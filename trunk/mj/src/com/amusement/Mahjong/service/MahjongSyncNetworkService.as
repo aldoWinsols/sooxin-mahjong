@@ -9,6 +9,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.control.MainControl;
 	import com.mahjongSyncServer.services.RoomService;
+	import com.services.ConfigService;
 	
 	import flash.display.Stage;
 	import flash.events.AsyncErrorEvent;
@@ -57,11 +58,32 @@ package com.amusement.Mahjong.service
 			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
-			var connectStr:String = "rtmp://192.168.1.211/mahjongSyncServer" + roomType;
+			var connectStr:String = getConnectStr(roomType);
 			
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler, false, 0, true);
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler, false, 0, true);
 			_conn.connect(connectStr, this.playerName, "e10adc3949ba59abbe56e057f20f883e", "127.0.0.1");
+		}
+		
+		private function getConnectStr(roomType:int):String{
+			switch(roomType){
+				case 5:
+					return ConfigService.instance.mahjongSyncServerURL5;
+					break;
+				case 10:
+					return ConfigService.instance.mahjongSyncServerURL10;
+					break;
+				case 20:
+					return ConfigService.instance.mahjongSyncServerURL20;
+					break;
+				case 50:
+					return ConfigService.instance.mahjongSyncServerURL50;
+					break;
+				case 100:
+					return ConfigService.instance.mahjongSyncServerURL100;
+					break;
+			}
+			return "";
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void
@@ -168,7 +190,10 @@ package com.amusement.Mahjong.service
 			
 			var msgObj:Object ={};
 			msgObj.playerAzimuthR = content[0];
-			msgObj.getOneMahjongValue = content[1];
+			msgObj.mahjongList = content[1];
+			msgObj.getOneMahjongValue = content[2];
+			
+			MahjongRoomControl.instance._mahjongRoom.mahjongsNum.text = "剩:" + msgObj.mahjongList;
 			
 			MahjongRoomControl.instance.getOneMahjong(msgObj);
 		}
