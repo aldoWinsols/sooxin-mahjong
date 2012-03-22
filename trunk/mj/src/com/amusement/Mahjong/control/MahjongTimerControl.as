@@ -44,10 +44,10 @@ package com.amusement.Mahjong.control
 			addLinsteners();
 			
 			_azimuthDef = new Point(364, 196);
-			_azimuth1 = new Point(364, 46);
-			_azimuth2 = new Point(64, 196);
-			_azimuth3 = new Point(364, 306);
-			_azimuth4 = new Point(674, 196);
+			_azimuth1 = new Point(400, 100);
+			_azimuth2 = new Point(64, 250);
+			_azimuth3 = new Point(400, 500);
+			_azimuth4 = new Point(700, 250);
 			
 			_gameTimer = new Timer(1000,_repeatCount + 1);
 			_gameTimer.addEventListener(TimerEvent.TIMER, timerEventHandler, false, 0, true);
@@ -98,23 +98,26 @@ package com.amusement.Mahjong.control
 		
 		private function setSite(azimuth:int):void{
 			switch(azimuth){
-//				case 1://方位0
+				case 1://方位0
+					this._mahjongTimer.visible = true;
 //					this._mahjongTimer.x = _azimuth1.x;
 //					this._mahjongTimer.y = _azimuth1.y;
-//					break;
-//				case 2://方位270
+					break;
+				case 2://方位270
+					this._mahjongTimer.visible = true;
 //					this._mahjongTimer.x = _azimuth2.x;
 //					this._mahjongTimer.y = _azimuth2.y;
-//					break;
+					break;
 				case 3://方位180
 					this._mahjongTimer.visible = true;
-					this._mahjongTimer.x = _azimuth3.x;
-					this._mahjongTimer.y = _azimuth3.y;
+//					this._mahjongTimer.x = _azimuth3.x;
+//					this._mahjongTimer.y = _azimuth3.y;
 					break;
-//				case 4://方位90
+				case 4://方位90
+					this._mahjongTimer.visible = true;
 //					this._mahjongTimer.x = _azimuth4.x;
 //					this._mahjongTimer.y = _azimuth4.y;
-//					break;
+					break;
 				default:
 					this._mahjongTimer.visible = false;
 					this._mahjongTimer.x = 0;

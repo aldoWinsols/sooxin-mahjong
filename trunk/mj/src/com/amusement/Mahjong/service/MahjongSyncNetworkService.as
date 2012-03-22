@@ -57,7 +57,7 @@ package com.amusement.Mahjong.service
 			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
-			var connectStr:String = "rtmp://127.0.0.1/mahjongSyncServer" + roomType;
+			var connectStr:String = "rtmp://192.168.1.211/mahjongSyncServer" + roomType;
 			
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler, false, 0, true);
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler, false, 0, true);

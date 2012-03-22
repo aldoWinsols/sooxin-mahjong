@@ -11,6 +11,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.control.MahjongRoomControl;
 			import com.amusement.Mahjong.view.MahjongRoom;
 			import com.control.LoginControl;
 			import com.view.Home;
@@ -57,6 +58,10 @@
 				home.visible = true;
 				this.lianwangB.visible = false;
 				this.danjiB.visible = false;
+				
+				MahjongRoomControl.instance._mahjongRoom.type.text = "单机模式";
+				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = true;
+				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = true;
 			}
 			
 			protected function lianwangB_clickHandler(event:MouseEvent):void
@@ -67,6 +72,9 @@
 				this.danjiB.visible = false;
 				
 				LoginControl.instance.getNotice();
+				MahjongRoomControl.instance._mahjongRoom.type.text = "联网模式";
+				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = false;
+				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = false;
 			}
 			
 		]]>
@@ -77,11 +85,13 @@
 	<s:Group x="0" y="0" width="100%" height="100%">
 		<s:Image id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed('assets/index.jpg')" verticalCenter="0"/>
-		<s:Image id="lianwangB" x="533" y="334" source="assets/but/lianwangB.png" click="lianwangB_clickHandler(event)"/>
-		<s:Image id="danjiB" x="312" y="334" source="assets/but/danjiB.png" click="image1_clickHandler(event)"/>
-		<s:Label y="644" color="#B0B0B0" fontSize="14" horizontalCenter="0"
+		<s:Image id="lianwangB" x="526" y="357" click="lianwangB_clickHandler(event)"
+				 source="assets/but/lianwangB.png"/>
+		<s:Image id="danjiB" x="320" y="357" click="image1_clickHandler(event)"
+				 source="assets/but/danjiB.png"/>
+		<s:Label x="250" y="644" color="#B0B0B0" fontSize="14"
 				 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
-		<s:Label y="672" color="#B0B0B0" fontSize="14" horizontalCenter="0" text="如有投诉或建议,请联系我们."/>
+		<s:Label x="424" y="672" color="#B0B0B0" fontSize="14" text="如有投诉或建议,请联系我们."/>
 		
 	</s:Group>
 

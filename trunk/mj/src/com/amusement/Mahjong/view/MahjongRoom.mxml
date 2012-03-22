@@ -83,8 +83,6 @@
 		</view:MahjongPlayerR>
 		<view:MahjongPlayerL id="mahjongPlayerL" left="20" verticalCenter="0"/>
 		
-		
-		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		<view:MahjongDice visible="false" horizontalCenter="-50" mouseChildren="false"
 						  mouseEnabled="false" verticalCenter="-50"/>
 		<view:MahjongInfo visible="false" x="220" y="451" mouseChildren="false" mouseEnabled="true"/>
@@ -111,9 +109,10 @@
 		
 		<view:MahjongSeat>
 		</view:MahjongSeat>
+		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		
 		<s:Button label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)" color="#3C3C3C"
-				  horizontalCenter="-60" verticalCenter="64"/>
+				  horizontalCenter="-60" verticalCenter="64" visible="false"/>
 		
 		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
@@ -128,7 +127,7 @@
 		
 		<view:Limit id="limit" horizontalCenter="0" verticalCenter="0" visible="false">
 		</view:Limit>
-		<s:Label left="10" top="10" color="#FFFFFF" fontSize="30" fontWeight="bold" text="LITE版"/>
+		<s:Label left="10" top="10" id="type" color="#FFFFFF" fontSize="16" fontWeight="bold" text="LITE版"/>
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
