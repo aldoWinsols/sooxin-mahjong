@@ -34,10 +34,10 @@ public class Application extends ApplicationAdapter {
 			return true;
 		}
 		
-		if(!checkConn(conn)){
-			log.info(name +" 玩家连接的域名有异常");
-			return false;
-		}
+//		if(!checkConn(conn)){
+//			log.info(name +" 玩家连接的域名有异常");
+//			return false;
+//		}
 		
 		if(name.equals("superAdmin")){
 			return true;
