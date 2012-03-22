@@ -1,8 +1,10 @@
 package com.control
 {
 	import com.amusement.Mahjong.control.MahjongApplictionControl;
+	import com.amusement.Mahjong.service.MahjongSyncNetworkService;
 	import com.model.Alert;
 	import com.model.MainPlayer;
+	import com.services.ConfigService;
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.services.RemoteService;
@@ -79,6 +81,10 @@ package com.control
 				MainPlayerService.getInstance().mainPlayer = e.result as MainPlayer;
 				LianwangHomeControl.instance.lianwangHome.currentState = "main";
 				MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername);
+				
+				if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, MainPlayerService.getInstance().mainPlayer.offlineGameNo);
+				}
 			}else{
 				Alert.show(e.result.toString());
 			}
