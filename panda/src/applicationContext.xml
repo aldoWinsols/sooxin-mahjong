@@ -20,7 +20,7 @@
 			value="jdbc:mysql://127.0.0.1:3306/sooxin">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="860426"></property>
+		<property name="password" value="root"></property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -41,7 +41,8 @@
 				<value>com/panda/dao/Duihuanlog.hbm.xml</value>
 				<value>com/panda/dao/Chongzhilog.hbm.xml</value>
 				<value>com/panda/dao/Playlog.hbm.xml</value>
-				<value>com/panda/dao/Notice.hbm.xml</value></list>
+				<value>com/panda/dao/Notice.hbm.xml</value>
+				<value>com/panda/dao/Config.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -91,6 +92,12 @@
 	</bean>
 	
 	<bean id="NoticeDAO" class="com.panda.dao.NoticeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="ConfigDAO" class="com.panda.dao.ConfigDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -151,4 +158,10 @@
 		</property>
 	</bean>
 	
-	</beans>
+	<bean id="configService"
+		class="com.panda.services.ConfigService">
+		<property name="configDao">
+			<ref bean="ConfigDAO" />
+		</property>
+	</bean>
+</beans>
