@@ -11,10 +11,11 @@ public class Player implements java.io.Serializable {
 	// Fields
 
 	private Long id;
-	private Timestamp timestamp;
 	private String playername;
 	private String playerpwd;
 	private Double haveMoney;
+	private Integer offlineGameNo;
+	private Timestamp timestamp;
 
 	// Constructors
 
@@ -23,10 +24,13 @@ public class Player implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Player(String playername, String playerpwd, Double haveMoney) {
+	public Player(String playername, String playerpwd, Double haveMoney,
+			Integer offlineGameNo, Timestamp timestamp) {
 		this.playername = playername;
 		this.playerpwd = playerpwd;
 		this.haveMoney = haveMoney;
+		this.offlineGameNo = offlineGameNo;
+		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -37,14 +41,6 @@ public class Player implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public String getPlayername() {
@@ -69,6 +65,22 @@ public class Player implements java.io.Serializable {
 
 	public void setHaveMoney(Double haveMoney) {
 		this.haveMoney = haveMoney;
+	}
+
+	public Integer getOfflineGameNo() {
+		return this.offlineGameNo;
+	}
+
+	public void setOfflineGameNo(Integer offlineGameNo) {
+		this.offlineGameNo = offlineGameNo;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }
