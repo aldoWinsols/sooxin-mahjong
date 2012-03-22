@@ -18,5 +18,6 @@
 	<flex:remoting-destination ref="duihuanService" />
 	<flex:remoting-destination ref="chongzhiService" />
 	<flex:remoting-destination ref="noticeService" />
+	<flex:remoting-destination ref="configService" />
 
 </beans>
