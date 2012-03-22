@@ -40,10 +40,7 @@ public class PlayerService implements IPlayerService {
 	}
 
 	public Object login(String playerName, String playerPwd){
-		Player player;
-		List<Player> players = getPlayerDao().findByPlayername(playerName);
-		player = players.isEmpty() ? null : players.get(0);
-
+		Player player = playerDao.findByAcctNameUnique(playerName);
 		if (player == null) {
 			return "用户名错误";
 		} else {
@@ -56,7 +53,7 @@ public class PlayerService implements IPlayerService {
 	}
 	
 	public boolean checkPlayerNameIsExist(String playerName){
-		Player pl = (Player) getPlayerDao().findByAcctNameUnique(playerName);
+		Player pl = (Player) playerDao.findByAcctNameUnique(playerName);
 		
 		if(pl != null){
 			return true;
@@ -66,18 +63,18 @@ public class PlayerService implements IPlayerService {
 	}
 	
 	public Object regeist(Player player){
-		Player pl = (Player) getPlayerDao().findByAcctNameUnique(player.getPlayername());
+		Player pl = (Player) playerDao.findByAcctNameUnique(player.getPlayername());
 		
 		if(pl != null){
 			return "当前用户名已被使用，请尝试其他名字！";
 		}
 		
-		getPlayerDao().save(player);
+		playerDao.save(player);
 		return player;
 	}
 	
 	public boolean checkPlayerNameIsHave(String playerName){
-		Player player = (Player) getPlayerDao().findByAcctNameUnique(playerName);
+		Player player = (Player) playerDao.findByAcctNameUnique(playerName);
 		if (player == null) {
 			return false;
 		}
@@ -86,10 +83,10 @@ public class PlayerService implements IPlayerService {
 	}
 	
 	public Object changePwd(String playerName, String playerOldPwd, String playerNewPwd){
-		Player player = (Player) getPlayerDao().findByAcctNameUnique(playerName);
+		Player player = (Player) playerDao.findByAcctNameUnique(playerName);
 		if(player.getPlayerpwd().equals(playerOldPwd)){
 			player.setPlayerpwd(playerNewPwd);
-			getPlayerDao().merge(player);
+			playerDao.merge(player);
 			return player;
 		}else{
 			return "你输入的旧密码不正确!";
@@ -97,22 +94,23 @@ public class PlayerService implements IPlayerService {
 	}
 	
 	public void updateMoney(String playerName, Double changeMoney){
-		Player player = (Player) getPlayerDao().findByPlayername(playerName);
+		Player player = (Player) playerDao.findByPlayername(playerName);
 		player.setHaveMoney(player.getHaveMoney() + changeMoney);
-		getPlayerDao().merge(player);
+		playerDao.merge(player);
 	}
 	
 	public Object duihuan(Duihuanlog duihuanlog){
-		Player player = (Player) getPlayerDao().findByAcctNameUnique(duihuanlog.getPlayerName());
+		Player player = (Player) playerDao.findByAcctNameUnique(duihuanlog.getPlayerName());
 		
 		if(player.getHaveMoney() < duihuanlog.getDuihuanMoney()){
 			return "你当前的点数不足，不能兑换奖品！";
 		}
 		
 		player.setHaveMoney(player.getHaveMoney() - duihuanlog.getDuihuanMoney());
-		getPlayerDao().merge(player);
+		
 		duihuanlogDao.save(duihuanlog);
-
+		playerDao.merge(player);
+		
 		return player;
 	}
 	
@@ -120,7 +118,7 @@ public class PlayerService implements IPlayerService {
 	public Object chongzhi(String playerName, Double chongzhiMoney){
 		Player player;
 		try{
-			player = (Player) getPlayerDao().findByPlayername(playerName);
+			player = (Player) playerDao.findByPlayername(playerName);
 			
 			Chongzhilog chongzhilog = new Chongzhilog();
 			chongzhilog.setPlayerName(playerName);
@@ -132,7 +130,7 @@ public class PlayerService implements IPlayerService {
 			player.setHaveMoney(player.getHaveMoney() + chongzhiMoney);
 			
 			chongzhilogDao.save(chongzhilog);
-			getPlayerDao().merge(player);
+			playerDao.merge(player);
 		}catch(Error e){
 			return e.toString();
 		}
