@@ -8,6 +8,7 @@ package com.model
 		public var playername:String;
 		public var playerpwd:String;
 		public var haveMoney:Number = 0;
+		public var offlineGameNo:int = 0;
 		public function MainPlayer()
 		{
 		}
