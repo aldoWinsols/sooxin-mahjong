@@ -127,28 +127,27 @@ package com.amusement.Mahjong.control
 
 		private function mahjongB100Click(e:MouseEvent):void
 		{
-			MahjongSyncServer100.getInstance().updateTransformerState(int(this.mahjongSetting.onlineNum_100.text), this.mahjongSetting.winGailv100.value);
+			MahjongSyncServer100.getInstance().updateTransformerState(int(this.mahjongSetting.winOnlineNum100.value), this.mahjongSetting.winGailv100.value);
 		}
 		
 		private function mahjongB5Click(e:MouseEvent):void
 		{
-			MahjongSyncServer5.getInstance().updateTransformerState(int(this.mahjongSetting.onlineNum_5.text), this.mahjongSetting.winGailv5.value);
+			MahjongSyncServer5.getInstance().updateTransformerState(int(this.mahjongSetting.winOnlineNum5.value), this.mahjongSetting.winGailv5.value);
 		}
 
 		private function mahjongB10Click(e:MouseEvent):void
 		{
-			MahjongSyncServer10.getInstance().updateTransformerState(int(this.mahjongSetting.onlineNum_10.text), this.mahjongSetting.winGailv10.value);
-
+			MahjongSyncServer10.getInstance().updateTransformerState(int(this.mahjongSetting.winOnlineNum10.value), this.mahjongSetting.winGailv10.value);
 		}
 
 		private function mahjongB20Click(e:MouseEvent):void
 		{
-			MahjongSyncServer20.getInstance().updateTransformerState(int(this.mahjongSetting.onlineNum_20.text), this.mahjongSetting.winGailv20.value);
+			MahjongSyncServer20.getInstance().updateTransformerState(int(this.mahjongSetting.winOnlineNum20.value), this.mahjongSetting.winGailv20.value);
 		}
 
 		private function mahjongB50Click(e:MouseEvent):void
 		{
-			MahjongSyncServer50.getInstance().updateTransformerState(int(this.mahjongSetting.onlineNum_50.text), this.mahjongSetting.winGailv50.value);
+			MahjongSyncServer50.getInstance().updateTransformerState(int(this.mahjongSetting.winOnlineNum50.value), this.mahjongSetting.winGailv50.value);
 
 		}
 
@@ -200,22 +199,27 @@ package com.amusement.Mahjong.control
 		//========================================================================
 		public function getOnlineNum1(onlineNumResult : String):void{
 			this.mahjongSetting.onlineNum_100.text = onlineNumResult;
+			this.mahjongSetting.winOnlineNum100.value = Number(onlineNumResult.split("--")[1]);
 		}
 		
 		public function getOnlineNum5(onlineNumResult : String):void{
 			this.mahjongSetting.onlineNum_5.text = onlineNumResult;
+			this.mahjongSetting.winOnlineNum5.value = Number(onlineNumResult.split("--")[1]);
 		}
 		
 		public function getOnlineNum10(onlineNumResult : String):void{
 			this.mahjongSetting.onlineNum_10.text = onlineNumResult;
+			this.mahjongSetting.winOnlineNum10.value = Number(onlineNumResult.split("--")[1]);
 		}
 		
 		public function getOnlineNum20(onlineNumResult : String):void{
 			this.mahjongSetting.onlineNum_20.text = onlineNumResult;
+			this.mahjongSetting.winOnlineNum20.value = Number(onlineNumResult.split("--")[1]);
 		}
 		
 		public function getOnlineNum50(onlineNumResult : String):void{
 			this.mahjongSetting.onlineNum_50.text = onlineNumResult;
+			this.mahjongSetting.winOnlineNum50.value = Number(onlineNumResult.split("--")[1]);
 		}
 		
 		public function serverDisconnectClient(roomNo:String, playerName:String):void{
