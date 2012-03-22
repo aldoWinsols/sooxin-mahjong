@@ -14,6 +14,7 @@
 			import com.amusement.Mahjong.control.MahjongRoomControl;
 			import com.amusement.Mahjong.view.MahjongRoom;
 			import com.control.LoginControl;
+			import com.services.ConfigService;
 			import com.view.Home;
 			import com.view.LianwangHome;
 			
@@ -72,6 +73,8 @@
 				this.danjiB.visible = false;
 				
 				LoginControl.instance.getNotice();
+				ConfigService.instance;
+				
 				MahjongRoomControl.instance._mahjongRoom.type.text = "联网模式";
 				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = false;
 				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = false;
