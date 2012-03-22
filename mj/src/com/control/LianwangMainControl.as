@@ -1,8 +1,8 @@
 package com.control
 {
-	import com.milkmangames.nativeextensions.ios.StoreKit;
 	import com.amusement.Mahjong.model.Mahjong;
 	import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+	import com.milkmangames.nativeextensions.ios.StoreKit;
 	import com.model.Alert;
 	import com.model.Duihuanlog;
 	import com.model.MainPlayer;
@@ -34,6 +34,9 @@ package com.control
 			
 			this.lianwangMain.dIphoneB.addEventListener(MouseEvent.CLICK,dIphoneBClickHandler);
 			this.lianwangMain.dIpadB.addEventListener(MouseEvent.CLICK,dIpadBClickHandler);
+			this.lianwangMain.dIpodB.addEventListener(MouseEvent.CLICK,dIpodBClickHandler);
+			this.lianwangMain.dNanoB.addEventListener(MouseEvent.CLICK,dNanoBClickHandler);
+			
 			this.lianwangMain.check.addEventListener(MouseEvent.CLICK, check_clickHandler);
 			this.lianwangMain.cancel.addEventListener(MouseEvent.CLICK, cancel_clickHandler);
 			this.lianwangMain.exitB.addEventListener(MouseEvent.CLICK,exitBClickHandler);
@@ -142,6 +145,22 @@ package com.control
 			lianwangMain.jiangpinDianshu.text = "5000";
 		}
 		
+		protected function dIpodBClickHandler(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+			lianwangMain.duihuan.visible =true;
+			lianwangMain.jingpinName.text = "iPod touch 4 8G";
+			lianwangMain.jiangpinDianshu.text = "2000";
+		}
+		
+		protected function dNanoBClickHandler(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+			lianwangMain.duihuan.visible =true;
+			lianwangMain.jingpinName.text = "iPod nano 6 8G";
+			lianwangMain.jiangpinDianshu.text = "1500";
+		}
+		
 		protected function cancel_clickHandler(event:MouseEvent):void
 		{
 			// TODO Auto-generated method stub
@@ -172,7 +191,7 @@ package com.control
 			var duihuanlog:Duihuanlog = new Duihuanlog();
 			duihuanlog.playerName = MainPlayerService.getInstance().mainPlayer.playername;
 			duihuanlog.itemName = lianwangMain.jingpinName.text;
-			duihuanlog.duihuanMoney = lianwangMain.jiangpinDianshu.text as Number;
+			duihuanlog.duihuanMoney = Number("7000");
 			duihuanlog.lastHaveMoney = MainPlayerService.getInstance().mainPlayer.haveMoney;
 			duihuanlog.nowHaveMoney = MainPlayerService.getInstance().mainPlayer.haveMoney - duihuanlog.duihuanMoney;
 			duihuanlog.contactName = lianwangMain.contactName.text;
@@ -189,7 +208,10 @@ package com.control
 			if(e.result is MainPlayer){
 				Alert.show("奖品领取成功！");
 				clear();
+				MainPlayerService.getInstance().mainPlayer = e.result as MainPlayer;
+				this.lianwangMain.duihuan.visible = false;
 			}else{
+				trace(e.result.toString());
 				Alert.show(e.result.toString());
 			}
 		}

@@ -23,7 +23,7 @@
 			protected function toggleswitch1_changeHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+//				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 				MahjongSoundService.instance.soundSwitch(soundSwitch.selected);
 			}
 			
@@ -51,7 +51,7 @@
 			protected function level_changeHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+//				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 				MahjongSyncService.instance.level = level.value;
 			}
 			
@@ -63,7 +63,7 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:ToggleSwitch id="soundSwitch" x="154" y="24" change="toggleswitch1_changeHandler(event)"
-					fontSize="20" selected="false"/>
+					fontSize="20" selected="true"/>
 	<s:ToggleSwitch id="bgSound" x="154" y="78" enabled="true" fontSize="20" change="toggleswitch2_changeHandler(event)" selected="true"/>
 	<s:Label x="67" y="30" fontSize="20" text="声音："/>
 	<s:Label x="35" y="82" fontSize="20" text="背景音乐："/>

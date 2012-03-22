@@ -21,15 +21,15 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<view:UpdatePwd id="updatePwd" visible="false" x="180" y="170">
-	</view:UpdatePwd>
 	
 	<s:BorderContainer x="30" y="395" width="900" height="150" backgroundAlpha="0"
 					   borderVisible="true" cornerRadius="8" borderColor="#ffffff" borderAlpha="0.1">
-		<s:Button id="dIphoneB" x="10" y="24" width="100" height="100" label="按钮"
+		<s:Button id="dIphoneB" x="363" y="17" width="100" height="100" label="按钮"
 				  icon="assets/iphoneicon.jpg"/>
-		<s:Button id="dIpadB" x="138" y="24" width="100" height="100" label="按钮"
+		<s:Button id="dIpadB" x="246" y="17" width="100" height="100" label="按钮"
 				  icon="assets/ipadicon.jpg"/>
+		<s:Button id="dNanoB" x="10" y="18" width="100" height="100" icon="assets/nanoicon.jpg"/>
+		<s:Button id="dIpodB" x="128" y="18" width="100" height="100" icon="assets/ipodicon.jpg"/>
 	</s:BorderContainer>
 	<s:Label x="34" y="376" color="#B9B9B9" fontSize="14" text="奖品领取"/>
 	<s:BorderContainer x="30" y="154" width="900" height="200" backgroundAlpha="0"
@@ -49,7 +49,7 @@
 		<s:Label x="707" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
 		<s:Label x="785" y="148" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum100}"/>
-		<s:Image id="room5" x="67" y="37" source="assets/room/room10.png"/>
+		<s:Image id="room5" x="67" y="37" source="assets/room/room5.png"/>
 		<s:Image id="room10" x="226" y="37" source="assets/room/room10.png"/>
 		<s:Image id="room20" x="385" y="38" source="assets/room/room20.png"/>
 		<s:Image id="room50" x="544" y="38" source="assets/room/room50.png"/>
@@ -74,12 +74,13 @@
 	<s:Label x="37" y="132" color="#B9B9B9" fontSize="14" text="房间列表"/>
 	<view:NetworkQuality id="network" x="121" y="133"/>
 	
-	<s:BorderContainer id="duihuan" visible="false" cornerRadius="8">
+	<s:BorderContainer id="duihuan" visible="false" width="553" height="327" cornerRadius="8"
+					   horizontalCenter="0" verticalCenter="0" backgroundAlpha="0.9" borderVisible="false">
 		<s:TextInput id="contactName" x="163" y="79"/>
 		<s:TextInput id="contactTel" x="163" y="132"/>
-		<s:TextInput id="contactAddress" x="163" y="185"/>
-		<s:Button id="check" x="237" y="238" width="100" label="提交"/>
-		<s:Button id="cancel" x="363" y="238" width="100" label="取消"/>
+		<s:TextArea id="contactAddress" x="163" y="185"/>
+		<s:Button id="check" x="237" y="258" width="100" label="提交"/>
+		<s:Button id="cancel" x="363" y="258" width="100" label="取消"/>
 		<s:Label x="83" y="89" text="联系人："/>
 		<s:Label x="65" y="142" text="联系电话："/>
 		<s:Label x="65" y="195" text="邮寄地址："/>
@@ -89,4 +90,7 @@
 		<s:Label id="jiangpinDianshu" x="339" y="10" text="标签"/>
 		
 	</s:BorderContainer>
+	
+	<view:UpdatePwd id="updatePwd" visible="false" x="180" y="170">
+	</view:UpdatePwd>
 </s:Group>

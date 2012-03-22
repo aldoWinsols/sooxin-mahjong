@@ -79,7 +79,7 @@ package com.services
 		{
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, statusHandler); 
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			_conn.connect("rtmp://127.0.0.1/mainSyncServer", playerName);
+			_conn.connect("rtmp://192.168.1.211/mainSyncServer", playerName);
 			_connStateTimer.start();
 		}
 		
