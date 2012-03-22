@@ -177,6 +177,12 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = false;
 			}
 			
+			if(MahjongSyncService.instance.isNetwork){
+				_mahjongRoom.exitImage.enabled = false;
+			}else{
+				_mahjongRoom.exitImage.enabled = true;
+			}
+			
 			this._mahjongRoomService.initRoom(obj.roomNo, obj.playerAzimuth);
 			
 			this._mahjongRoomService.updateMahjongsByDice(obj.diceNum);

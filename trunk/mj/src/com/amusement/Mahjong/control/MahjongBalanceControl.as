@@ -184,18 +184,18 @@ package com.amusement.Mahjong.control
 		 */
 		public function setPlayerName(playerNames:Array):void{
 			if(playerNames){
-				for(var i:int = 0; i < playerNames.length; i ++){
+				for(var i:int = 1; i < playerNames.length; i ++){
 					switch(i){
-						case 0:
+						case 1:
 							this._mahjongRalance.player1.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
 							break;
-						case 1:
+						case 2:
 							this._mahjongRalance.player2.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
 							break;
-						case 2:
+						case 3:
 							this._mahjongRalance.player3.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
 							break;
-						case 3:
+						case 4:
 							this._mahjongRalance.player4.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
 							break;
 					}
