@@ -256,6 +256,7 @@ public class GameHallService {
 	public void setWhereFallline(String playerName, int type){
 		int roomNo = type == 1 ? UtilProperties.instance.getRoomNo() : 0;
 //		remoteService.getUserService().setWhereFallline(playerName, roomNo);
+		remoteService.getBalanceChessGameService().setPlayerOfflineGameNo(playerName, roomNo);
 	}
 	
 	

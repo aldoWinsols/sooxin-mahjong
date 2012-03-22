@@ -698,11 +698,11 @@ public class PlayerService implements IPlayerService, Observer {
 		
 		if(observePlayerService.getPlayer().getNeedOperationName1().equals("getOneMahjong")){
 			ArrayList<Object> list = new ArrayList<Object>(); 
-			list.add(observePlayerService.getPlayer().getAzimuth());
+			list.add(observePlayerService.getPlayer().getAzimuth());			//只给自己保存摸牌值
+			// 发送当前剩余牌的个数
+			list.add(roomService.getRoom().getMahjongList().size());
 			if(observePlayerService.getPlayer().getAzimuth() == player.getAzimuth()){
-				list.add(observePlayerService.getNowOperationMahjongValue());				//只给自己保存摸牌值
-				// 发送当前剩余牌的个数
-				list.add(roomService.getRoom().getMahjongList().size());
+				list.add(observePlayerService.getNowOperationMahjongValue());	
 				cumulativeOperationNum(observePlayerService.player);
 			}else{
 				lastGang = false;
