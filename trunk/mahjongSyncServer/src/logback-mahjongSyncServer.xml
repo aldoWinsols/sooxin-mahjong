@@ -93,4 +93,10 @@
 		<level value="WARN" />
 		<level value="INFO" />
     </logger>
+    
+    <logger name="com.mahjongSyncServer.sockets.RtmpClientNew">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
 </configuration>
