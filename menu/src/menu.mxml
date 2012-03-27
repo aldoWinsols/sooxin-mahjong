@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   creationComplete="application1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.services.DataService;
+			
+			import mx.binding.utils.BindingUtils;
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			public static var instance:menu;
+			//  coldDish -- 冷菜
+			//  hotDish -- 热菜
+			//  beef -- 牛肉类
+			//  mutton -- 羊肉菜
+			//  poultryEggs -- 禽类与蛋类
+			//  elseMeat -- 其他肉类
+			//  mushroomFungus -- 菇与菌
+			//  abalone -- 鲍鱼类
+			//  fin -- 鱼翅类
+			//  seafood -- 海鲜类
+			//  vegetables -- 蔬菜类
+			//  beanCurd -- 豆腐类
+			//  cubilose -- 燕窝
+			//  gippo -- 汤类
+			//  soup -- 羹类
+			//  porridge -- 粥类
+			//  stew -- 煲类
+			//  stapleFoodSnack -- 主食与小吃
+			//  appetizingFood -- 沙拉
+			//  flour -- 面粉类
+			//  bread -- 面包
+			//  dessert -- 甜品
+			//  elseWithFood -- 其他食物
+			//  iceDessert -- 冰淇淋甜品
+			//  liqueur -- 白酒
+			//  riceWineAndBeer -- 米酒和啤酒
+			//  wine -- 葡萄酒
+			//  brandy -- 白兰地酒
+			//  usquebaugh -- 威士忌酒
+			//  vodkaMaguey -- 龙舌兰酒
+			//  liqueurAperitif -- 利口酒
+			//  beerSake -- 啤酒
+			//  cocktailMixedWine -- 鸡尾酒
+			//  champagne -- 香槟酒
+			//  If You -- 法国红酒
+			//  sherris-sack -- 雪利酒
+			//  tea -- 茶
+			//  coffee -- 咖啡
+			//  mineral water -- 矿泉水
+			//  fruit juice -- 果汁
+			//  mineralElseDrink -- 苏打水和其他酒
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				instance = this;
+				DataService.instance;
+				
+				
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var cnname:String = this.txtCnname.text;
+				var usname:String = this.txtUsname.text;
+				
+				var dataArray:ArrayCollection = new ArrayCollection();
+				var i:int = 0;
+				
+				if(list1.selectedItem.name == "wu"){
+					for(i = 0; i < DataService.menus.length; i++){
+						if(String(DataService.menus.getItemAt(i).cnname).indexOf(cnname) != -1 && 
+							String(DataService.menus.getItemAt(i).usname).indexOf(usname) != -1){
+							dataArray.addItem(DataService.menus.getItemAt(i));
+						}
+					}
+				}else{
+					for(i = 0; i < DataService.menus.length; i++){
+						if(DataService.menus.getItemAt(i).sort == list1.selectedItem.name && 
+							String(DataService.menus.getItemAt(i).cnname).indexOf(cnname) != -1 && 
+							String(DataService.menus.getItemAt(i).usname).indexOf(usname) != -1){
+							dataArray.addItem(DataService.menus.getItemAt(i));
+						}
+					}
+				}
+				
+				dg.dataProvider = dataArray;
+			}
+			
+			private function formatSort(item:Object, grid:GridColumn):String{
+				
+				var sortName:String = "";
+				switch(item.sort){
+					case "coldDish":
+						sortName = "冷菜类(coldDish)";
+						break;
+					case "hotDish":
+						sortName = "热菜类(hotDish)";
+						break;
+					case "beef":
+						sortName = "牛肉类(beef)";
+						break;
+					case "mutton":
+						sortName = "羊肉类(mutton)";
+						break;
+					case "poultryEggs":
+						sortName = "禽类与蛋类(poultryEggs)";
+						break;
+					case "elseMeat":
+						sortName = "其他肉类(elseMeat)";
+						break;
+					case "mushroomFungus":
+						sortName = "菇与菌(mushroomFungus)";
+						break;
+					case "abalone":
+						sortName = "鲍鱼类(abalone)";
+						break;
+					case "fin":
+						sortName = "鱼翅类(fin)";
+						break;
+					case "seafood":
+						sortName = "海鲜类(seafood)";
+						break;
+					case "vegetables":
+						sortName = "蔬菜类(vegetables)";
+						break;
+					case "beanCurd":
+						sortName = "豆腐类(beanCurd)";
+						break;
+					case "cubilose":
+						sortName = "燕窝类(cubilose)";
+						break;
+					case "gippo":
+						sortName = "汤类(gippo)";
+						break;
+					case "soup":
+						sortName = "羹类(soup)";
+						break;
+					case "porridge":
+						sortName = "粥类(porridge)";
+						break;
+					case "stew":
+						sortName = "煲类(stew)";
+						break;
+					case "stapleFoodSnack":
+						sortName = "主食与小吃(stapleFoodSnack)";
+						break;
+					case "appetizingFood":
+						sortName = "沙拉类(appetizingFood)";
+						break;
+					case "flour":
+						sortName = "面粉类(flour)";
+						break;
+					case "bread":
+						sortName = "面包类(bread)";
+						break;
+					case "dessert":
+						sortName = "甜品类(dessert)";
+						break;
+					case "elseWithFood":
+						sortName = "其他食物(elseWithFood)";
+						break;
+					case "iceDessert":
+						sortName = "冰淇淋甜品(iceDessert)";
+						break;
+					case "liqueur":
+						sortName = "白酒类(liqueur)";
+						break;
+					case "riceWineAndBeer":
+						sortName = "米酒和啤酒(riceWineAndBeer)";
+						break;
+					case "wine":
+						sortName = "葡萄酒(wine)";
+						break;
+					case "brandy":
+						sortName = "白兰地酒(brandy)";
+						break;
+					case "usquebaugh":
+						sortName = "威士忌酒(usquebaugh)";
+						break;
+					case "vodkaMaguey":
+						sortName = "龙舌兰酒(vodkaMaguey)";
+						break;
+					case "liqueurAperitif":
+						sortName = "利口酒(liqueurAperitif)";
+						break;
+					case "beerSake":
+						sortName = "啤酒(beerSake)";
+						break;
+					case "cocktailMixedWine":
+						sortName = "鸡尾酒(cocktailMixedWine)";
+						break;
+					case "champagne":
+						sortName = "香槟酒(champagne)";
+						break;
+					case "if You":
+						sortName = "法国红酒(if You)";
+						break;
+					case "tea":
+						sortName = "茶(tea)";
+						break;
+					case "coffee":
+						sortName = "咖啡(coffee)";
+						break;
+					case "mineral water":
+						sortName = "矿泉水(mineral water)";
+						break;
+					case "fruit juice":
+						sortName = "果汁(fruit juice)";
+						break;
+					case "mineralElseDrink":
+						sortName = "苏打水和其他酒(mineralElseDrink)";
+						break;
+					case "pork":
+						sortName = "猪肉类(pork)";
+						break;
+				}
+				
+				return sortName;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations> 
+	<s:Label x="21" y="56" text="类型："/>
+	<s:Label x="257" y="28" text="中文名字："/>
+	<s:TextInput id="txtCnname" x="345" y="21" width="163"/>
+	<s:Label x="257" y="76" text="英文名字："/>
+	<s:TextInput id="txtUsname" x="345" y="69" width="163"/>
+	
+	<s:DataGrid id="dg" top="110" width="100%" height="403" alpha="0.7" color="#000000" fontSize="14"
+				horizontalCenter="1" >
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="ID" headerText="ID"></s:GridColumn>
+				<s:GridColumn dataField="sort" headerText="菜系类型" labelFunction="formatSort"></s:GridColumn>
+				<s:GridColumn dataField="cnname" headerText="中文名字"></s:GridColumn>
+				<s:GridColumn dataField="usname" headerText="英文名字"></s:GridColumn>
+				<s:GridColumn dataField="introduce" headerText="介绍"></s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:Button x="622" y="39" width="115" height="44" label="搜索" click="button1_clickHandler(event)"/>
+	<s:SpinnerListContainer id="list" x="77" y="18" width="156" height="80">
+		<s:SpinnerList id="list1" width="100%" height="78" labelField="data" selectedIndex="0">
+			<s:ArrayList>
+				<fx:Object data="无" name = "wu"></fx:Object>
+				<fx:Object data="冷菜类" name = "coldDish"></fx:Object>
+				<fx:Object data="热菜类" name = "hotDish"></fx:Object>
+				<fx:Object data="牛肉类" name = "beef"></fx:Object>
+				<fx:Object data="猪肉类" name = "pork"></fx:Object>
+				<fx:Object data="羊肉菜" name = "mutton"></fx:Object>
+				<fx:Object data="禽类与蛋类" name = "poultryEggs"></fx:Object>
+				<fx:Object data="其他肉类" name = "elseMeat"></fx:Object>
+				<fx:Object data="菇与菌" name = "mushroomFungus"></fx:Object>
+				<fx:Object data="鲍鱼类" name = "abalone"></fx:Object>
+				<fx:Object data="鱼翅类" name = "fin"></fx:Object>
+				<fx:Object data="海鲜类" name = "seafood"></fx:Object>
+				<fx:Object data="蔬菜类" name = "vegetables"></fx:Object>
+				<fx:Object data="豆腐类" name = "beanCurd"></fx:Object>
+				<fx:Object data="燕窝" name = "cubilose"></fx:Object>
+				<fx:Object data="汤类" name = "gippo"></fx:Object>
+				<fx:Object data="羹类" name = "soup"></fx:Object>
+				<fx:Object data="粥类" name = "porridge"></fx:Object>
+				<fx:Object data="煲类" name = "stew"></fx:Object>
+				<fx:Object data="主食与小吃" name = "stapleFoodSnack"></fx:Object>
+				<fx:Object data="沙拉" name = "appetizingFood"></fx:Object>
+				<fx:Object data="面粉类" name = "flour"></fx:Object>
+				<fx:Object data="面包" name = "bread"></fx:Object>
+				<fx:Object data="甜品" name = "dessert"></fx:Object>
+				<fx:Object data="其他食物" name = "elseWithFood"></fx:Object>
+				<fx:Object data="冰淇淋甜品" name = "iceDessert"></fx:Object>
+				<fx:Object data="白酒" name = "liqueur"></fx:Object>
+				<fx:Object data="米酒和啤酒" name = "riceWineAndBeer"></fx:Object>
+				<fx:Object data="葡萄酒" name = "wine"></fx:Object>
+				<fx:Object data="白兰地酒" name = "brandy"></fx:Object>
+				<fx:Object data="威士忌酒" name = "usquebaugh"></fx:Object>
+				<fx:Object data="龙舌兰酒" name = "vodkaMaguey"></fx:Object>
+				<fx:Object data="利口酒" name = "liqueurAperitif"></fx:Object>
+				<fx:Object data="啤酒" name = "beerSake"></fx:Object>
+				<fx:Object data="鸡尾酒" name = "cocktailMixedWine"></fx:Object>
+				<fx:Object data="香槟酒" name = "champagne"></fx:Object>
+				<fx:Object data="法国红酒" name = "if You"></fx:Object>
+				<fx:Object data="雪利酒" name = "sherris-sack"></fx:Object>
+				<fx:Object data="茶" name = "tea"></fx:Object>
+				<fx:Object data="咖啡" name = "coffee"></fx:Object>
+				<fx:Object data="矿泉水" name = "mineral water"></fx:Object>
+				<fx:Object data="果汁" name = "fruit juice"></fx:Object>
+				<fx:Object data="苏打水和其他酒" name = "mineralElseDrink"></fx:Object>
+			</s:ArrayList>
+		</s:SpinnerList>
+	</s:SpinnerListContainer>
+	<s:Label x="516" y="29" text="(模糊搜索)"/>
+	<s:Label x="516" y="77" text="(模糊搜索)"/>
+</s:Application>
