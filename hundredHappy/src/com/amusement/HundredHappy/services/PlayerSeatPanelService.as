@@ -130,5 +130,14 @@ package com.amusement.HundredHappy.services
 			}
 		}
 
+		public function updateHundredHappyMoney(playerName:String, currentPoint:Number):void{
+			for(var i:int = 0; i < _hundredHappyPlayerServices.length; i ++){
+				var hundredHappyService:HundredHappyPlayerService = _hundredHappyPlayerServices[i] as HundredHappyPlayerService;
+				if(hundredHappyService && hundredHappyService.hundredHappyPlayer.acctName/*playerName*/ == playerName){
+					hundredHappyService.hundredHappyPlayer.currentPoint = currentPoint;
+					break;
+				}
+			}
+		}
 	}
 }
