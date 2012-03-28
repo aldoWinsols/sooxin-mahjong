@@ -172,6 +172,7 @@ package com.amusement.HundredHappy.services
 						DataService.instance.afterData(PlayerService.instance.playerName, 100000 + value);
 						PlayerService.instance.haveMoney += 100000; 
 						GameHallService.instance.setHaveMoney(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
+						PlayerSeatPanelService.instance.updateHundredHappyMoney(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
 					}else{
 						DataService.instance.afterData(PlayerService.instance.playerName, value);
 					}
