@@ -25,9 +25,10 @@ package com.service{
 		private var selectPlayerName:String = null;
 		
 		private var table:String = "";
+		private var bool:Boolean = true;
 		
 		public function DataService(){
-			var db:File = File.applicationStorageDirectory.resolvePath("hundredHappyData.db");
+			var db:File = File.applicationStorageDirectory.resolvePath("hundredHappyData13.db");
 			sqlc.openAsync(db);
 			sqlc.addEventListener(SQLEvent.OPEN, db_opened);
 			sqlc.addEventListener(SQLErrorEvent.ERROR, error);
@@ -69,15 +70,17 @@ package com.service{
 				if(players.length == 0){
 					addPlayer("player");
 				}else{
-					
-					PlayerService.instance.playerName = players.getItemAt(0).playerName;
-					PlayerService.instance.haveMoney = players.getItemAt(0).haveMoney;
-
-					if(PlayerService.instance.haveMoney <= 1000){
-						afterData(PlayerService.instance.playerName, 100000);
-						PlayerService.instance.haveMoney += 100000; 
+					if(bool){
+						bool = false;
+						PlayerService.instance.playerName = players.getItemAt(0).playerName;
+						PlayerService.instance.haveMoney = players.getItemAt(0).haveMoney;
+	
+						if(PlayerService.instance.haveMoney <= 1000){
+							afterData(PlayerService.instance.playerName, 100000);
+							PlayerService.instance.haveMoney += 100000; 
+						}
+						GameHallService.instance.enterGame(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
 					}
-					GameHallService.instance.enterGame(PlayerService.instance.playerName, PlayerService.instance.haveMoney);
 				}
 				
 			}else if(table == "gamelog"){
