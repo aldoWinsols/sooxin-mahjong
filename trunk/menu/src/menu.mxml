@@ -216,10 +216,33 @@
 					case "pork":
 						sortName = "猪肉类(pork)";
 						break;
+					case "sherris-sack":
+						sortName = "雪利酒(sherris-sack)";
+						break;
 				}
 				
 				return sortName;
 			}
+			
+			protected function list1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var dataArray:ArrayCollection = new ArrayCollection();
+				var i:int = 0;
+				
+				if(list.selectedItem.name == "wu"){
+					dg.dataProvider = DataService.menus;
+				}else{
+					for(i = 0; i < DataService.menus.length; i++){
+						if(DataService.menus.getItemAt(i).sort == list.selectedItem.name){
+							dataArray.addItem(DataService.menus.getItemAt(i));
+						}
+					}
+					dg.dataProvider = dataArray;
+				}
+				
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -242,8 +265,55 @@
 		<s:TextInput id="keyword" x="724" width="163" verticalCenter="6"/>
 		<s:Button x="905" width="115" height="44" label="搜索" click="button1_clickHandler(event)"
 				  verticalCenter="6"/>
+		<s:List id="list" x="351" y="11" width="222" height="128" selectedIndex="0" click="list1_clickHandler(event)">
+			<s:ArrayList>
+				<fx:Object label="所有" name = "wu"></fx:Object>
+				<fx:Object label="冷菜类(coldDish)" name = "coldDish"></fx:Object>
+				<fx:Object label="热菜类(hotDish)" name = "hotDish"></fx:Object>
+				<fx:Object label="牛肉类(beef)" name = "beef"></fx:Object>
+				<fx:Object label="猪肉类(pork)" name = "pork"></fx:Object>
+				<fx:Object label="羊肉类(mutton)" name = "mutton"></fx:Object>
+				<fx:Object label="禽类与蛋类(poultryEggs)" name = "poultryEggs"></fx:Object>
+				<fx:Object label="其他肉类(elseMeat)" name = "elseMeat"></fx:Object>
+				<fx:Object label="菇与菌(mushroomFungus)" name = "mushroomFungus"></fx:Object>
+				<fx:Object label="鲍鱼类(abalone)" name = "abalone"></fx:Object>
+				<fx:Object label="鱼翅类(fin)" name = "fin"></fx:Object>
+				<fx:Object label="海鲜类(seafood)" name = "seafood"></fx:Object>
+				<fx:Object label="蔬菜类(vegetables)" name = "vegetables"></fx:Object>
+				<fx:Object label="豆腐类(beanCurd)" name = "beanCurd"></fx:Object>
+				<fx:Object label="燕窝类(cubilose)" name = "cubilose"></fx:Object>
+				<fx:Object label="汤类(gippo)" name = "gippo"></fx:Object>
+				<fx:Object label="羹类(soup)" name = "soup"></fx:Object>
+				<fx:Object label="粥类(porridge)" name = "porridge"></fx:Object>
+				<fx:Object label="煲类(stew)" name = "stew"></fx:Object>
+				<fx:Object label="主食与小吃(stapleFoodSnack)" name = "stapleFoodSnack"></fx:Object>
+				<fx:Object label="沙拉类(appetizingFood)" name = "appetizingFood"></fx:Object>
+				<fx:Object label="面粉类(flour)" name = "flour"></fx:Object>
+				<fx:Object label="面包类(bread)" name = "bread"></fx:Object>
+				<fx:Object label="甜品类(dessert)" name = "dessert"></fx:Object>
+				<fx:Object label="其他食物(elseWithFood)" name = "elseWithFood"></fx:Object>
+				<fx:Object label="冰淇淋甜品(iceDessert)" name = "iceDessert"></fx:Object>
+				<fx:Object label="白酒类(liqueur)" name = "liqueur"></fx:Object>
+				<fx:Object label="米酒和啤酒(riceWineAndBeer)" name = "riceWineAndBeer"></fx:Object>
+				<fx:Object label="葡萄酒(wine)" name = "wine"></fx:Object>
+				<fx:Object label="白兰地酒(brandy)" name = "brandy"></fx:Object>
+				<fx:Object label="威士忌酒(usquebaugh)" name = "usquebaugh"></fx:Object>
+				<fx:Object label="龙舌兰酒(vodkaMaguey)" name = "vodkaMaguey"></fx:Object>
+				<fx:Object label="利口酒(liqueurAperitif)" name = "liqueurAperitif"></fx:Object>
+				<fx:Object label="啤酒(beerSake)" name = "beerSake"></fx:Object>
+				<fx:Object label="鸡尾酒(cocktailMixedWine)" name = "cocktailMixedWine"></fx:Object>
+				<fx:Object label="香槟酒(champagne)" name = "champagne"></fx:Object>
+				<fx:Object label="法国红酒(if You)" name = "if You"></fx:Object>
+				<fx:Object label="雪利酒(sherris-sack)" name = "sherris-sack"></fx:Object>
+				<fx:Object label="茶(tea)" name = "tea"></fx:Object>
+				<fx:Object label="咖啡(coffee)" name = "coffee"></fx:Object>
+				<fx:Object label="矿泉水(mineral water)" name = "mineral water"></fx:Object>
+				<fx:Object label="果汁(fruit juice)" name = "fruit juice"></fx:Object>
+				<fx:Object label="苏打水和其他酒(mineralElseDrink)" name = "mineralElseDrink"></fx:Object>
+			</s:ArrayList>
+		</s:List>
 		<s:SpinnerList id="list1" x="446" y="22" width="100%" height="78" labelField="data"
-					   selectedIndex="0">
+					   selectedIndex="0" visible="false">
 			<s:ArrayList>
 				<fx:Object data="所有" name = "wu"></fx:Object>
 				<fx:Object data="冷菜类" name = "coldDish"></fx:Object>
