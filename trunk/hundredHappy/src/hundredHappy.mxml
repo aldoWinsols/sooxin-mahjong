@@ -10,6 +10,7 @@
 			protected function application1_addedToStageHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
+				stage.setOrientation(StageOrientation.ROTATED_LEFT);
 				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
 			}
 			
