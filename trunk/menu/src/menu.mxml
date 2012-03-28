@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:ns1="*"
 			   creationComplete="application1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
@@ -314,7 +315,9 @@
 			</s:ArrayList>
 		</s:SpinnerList>
 		<s:Label x="21" y="35" color="#FFFFFF" fontSize="36" text="Chinese food name"/>
-		<s:Button x="531" y="45" label="按钮"/>
+		<s:Button x="450" y="39" label="冷菜类/coldDish"/>
 		
 	</s:BorderContainer>
+	<ns1:SortSelect x="287" y="205">
+	</ns1:SortSelect>
 </s:Application>
