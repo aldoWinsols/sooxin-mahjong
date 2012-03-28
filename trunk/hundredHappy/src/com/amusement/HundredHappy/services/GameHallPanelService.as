@@ -29,7 +29,7 @@ package com.amusement.HundredHappy.services
 		}
 		
 		public function updateStateByRoom(state:int, roomNo:String):void{
-			trace(roomNo + "---------" + state);
+//			trace(roomNo + "---------" + state);
 			GameHallPanelControl.instance.updateRoomState(state, roomNo);
 		}
 		
