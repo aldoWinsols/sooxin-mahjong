@@ -209,7 +209,7 @@ package com.hundredHappySyncServer.services
 		
 		public function setHaveMoney(playerName:String, haveMoney:Number):void{
 			var playerService:PlayerService = getPlayerServiceByPlayerName(playerName);
-			playerService.player.haveMoney += haveMoney;
+			playerService.player.haveMoney = haveMoney;
 		}
 		
 		/**
@@ -243,6 +243,7 @@ package com.hundredHappySyncServer.services
 			for (i = 0; i < gameHall.playerServices.length; i++) {
 				if(gameHall.playerServices[i].player.playerType == Player.ONLINE){
 					this.gameHall.playerServices[i].hallGameResult(roomNo, record);
+					break;
 				}
 			}
 		}
