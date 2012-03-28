@@ -1,18 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" width="400" height="300">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function radiobutton1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+				menu.instance.sortBtn.label = event.currentTarget.label;
+				menu.instance.dataProvider(event.currentTarget.name);
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:Scroller x="31" y="27" width="290" height="262">
-		<s:VGroup width="100%" height="100%">
-			<s:VGroup>
-				<s:RadioButton label="按钮 1" groupName="radiogroup1"/>
-				<s:RadioButton label="按钮 2" groupName="radiogroup1"/>
-				<s:RadioButton label="juk" groupName="radiogroup1"/>
-				<s:RadioButton label="yuiuyi" groupName="radiogroup1"/>
-			</s:VGroup>
+		<s:VGroup x="10" y="14">
+			<s:RadioButton label="所有菜系(All cuisines)" name = "wu" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="冷菜类(coldDish)" name = "coldDish" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="热菜类(hotDish)" name = "hotDish" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="牛肉类(beef)" name = "beef" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="猪肉类(pork)" name = "pork" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="羊肉类(mutton)" name = "mutton" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="禽类与蛋类(poultryEggs)" name = "poultryEggs" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="其他肉类(elseMeat)" name = "elseMeat" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="菇与菌(mushroomFungus)" name = "mushroomFungus" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="鲍鱼类(abalone)" name = "abalone" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="鱼翅类(fin)" name = "fin" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="海鲜类(seafood)" name = "seafood" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="蔬菜类(vegetables)" name = "vegetables" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="豆腐类(beanCurd)" name = "beanCurd" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="燕窝类(cubilose)" name = "cubilose" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="汤类(gippo)" name = "gippo" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="羹类(soup)" name = "soup" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="粥类(porridge)" name = "porridge" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="煲类(stew)" name = "stew" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="主食与小吃(stapleFoodSnack)" name = "stapleFoodSnack" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="沙拉类(appetizingFood)" name = "appetizingFood" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="面粉类(flour)" name = "flour" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="面包类(bread)" name = "bread" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="甜品类(dessert)" name = "dessert" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="其他食物(elseWithFood)" name = "elseWithFood" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="冰淇淋甜品(iceDessert)" name = "iceDessert" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="白酒类(liqueur)" name = "liqueur" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="米酒和啤酒(riceWineAndBeer)" name = "riceWineAndBeer" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="葡萄酒(wine)" name = "wine" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="白兰地酒(brandy)" name = "brandy" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="威士忌酒(usquebaugh)" name = "usquebaugh" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="龙舌兰酒(vodkaMaguey)" name = "vodkaMaguey" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="利口酒(liqueurAperitif)" name = "liqueurAperitif" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="啤酒(beerSake)" name = "beerSake" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="鸡尾酒(cocktailMixedWine)" name = "cocktailMixedWine" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="香槟酒(champagne)" name = "champagne" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="法国红酒(if You)" name = "if You" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="雪利酒(sherris-sack)" name = "sherris-sack" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="茶(tea)" name = "tea" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="咖啡(coffee)" name = "coffee" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="矿泉水(mineral water)" name = "mineral water" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="果汁(fruit juice)" name = "fruit juice" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
+			<s:RadioButton label="苏打水和其他酒(mineralElseDrink)" name = "mineralElseDrink" groupName="radiogroup1" click="radiobutton1_clickHandler(event)"/>
 		</s:VGroup>
 	</s:Scroller>
 </s:BorderContainer>
