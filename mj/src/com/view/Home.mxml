@@ -88,8 +88,8 @@
 			{
 				// TODO Auto-generated method stub
 				this.visible = false;
-				MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
-				MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
+//				MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
+//				MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
 			}
 			
 		]]>

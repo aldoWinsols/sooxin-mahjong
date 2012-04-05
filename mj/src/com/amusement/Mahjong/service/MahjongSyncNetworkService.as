@@ -9,6 +9,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.control.MainControl;
 	import com.mahjongSyncServer.services.RoomService;
+	import com.model.Alert;
 	import com.services.ConfigService;
 	
 	import flash.display.Stage;
@@ -90,14 +91,14 @@ package com.amusement.Mahjong.service
 		{
 			if(event.info.code != "NetConnection.Connect.Success"){
 				
-				//				Alert.show("連接斷開！請重新進入遊戲。", "提示", Alert.OK, null, alertCloseHandler);
+				Alert.show("連接斷開！請重新進入遊戲。", "提示", Alert.OK);
 			}
 		}
 		
 		private function asyncErrorHandler(e:AsyncErrorEvent):void{
 			//			Alert.okLabel = "確定";
 			//			//			Alert.show(e.error + "\n" + e.text, "提示", Alert.OK);
-			//			Alert.show("網絡連接異常，請嘗試重新連接", "提示", Alert.OK);
+						Alert.show("網絡連接異常，請嘗試重新連接", "提示", Alert.OK);
 		}
 		
 		//---------------------------------------------------------------------------

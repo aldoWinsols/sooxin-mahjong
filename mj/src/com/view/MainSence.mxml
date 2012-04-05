@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 width="1024" height="768" creationComplete="group1_creationCompleteHandler(event)"
+		 currentState="login">
+	<fx:Script>
+		<![CDATA[
+			import com.control.MainSenceControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainSenceControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="lianwangHome"/>
+		<s:State name="danjiHome"/>
+		<s:State name="verifier"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image id="mjRoomBgImg" horizontalCenter="0" source="@Embed('assets/index.jpg')"
+			 verticalCenter="0"/>
+	<s:Button id="verifierCommitB" includeIn="verifier" x="409" y="415" width="100" label="确定"/>
+	<view:Clock x="951" y="0">
+	</view:Clock>
+	<s:Image id="mainButYK" includeIn="login" x="459" y="320"
+			 source="assets/but/mainButYK.png"/>
+	<s:Image id="mainButQQ" includeIn="login" x="325" y="320"
+			 source="assets/but/mainButQQ.png"/>
+	<s:Image id="mainButDJ" includeIn="login" x="594" y="320"
+			 source="assets/but/mainButDJ.png"/>
+	<s:Label includeIn="verifier" y="322" color="#FFFFFF" fontSize="24" horizontalCenter="0"
+			 text="请输入6位授权码"/>
+	<s:TextInput id="verInput" includeIn="verifier" y="363" horizontalCenter="0"/>
+	<s:Button includeIn="verifier" x="516" y="415" width="100" label="取消"/>
+	<s:Button id="lianwangExitB" includeIn="lianwangHome" x="198" y="109" label="注销"/>
+	<view:NetMain includeIn="lianwangHome" x="26" y="34">
+	</view:NetMain>
+</s:Group>
