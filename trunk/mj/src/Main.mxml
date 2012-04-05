@@ -5,14 +5,11 @@
 			   xmlns:view="com.amusement.Mahjong.view.*"
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
 			   maxWidth="1024" maxHeight="768"
-			   splashScreenImage="@Embed('assets/splash.jpg')"
-			   xmlns:view2="com.view.*" creationComplete="application1_creationCompleteHandler(event)" addedToStage="application1_addedToStageHandler(event)"
+			   xmlns:view2="com.view.*" addedToStage="application1_addedToStageHandler(event)"
 			   deactivate="application1_deactivateHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
-			import com.control.MainControl;
-			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
@@ -22,45 +19,11 @@
 //				NativeApplication.nativeApplication.exit();
 				
 			}
-
-			protected function application1_creationCompleteHandler(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-//				var webView:StageWebView = new StageWebView();
-//
-//				webView.stage = this.stage;
-//				webView.viewPort = new Rectangle( 0, 0, 800, 480 );
-//				webView.loadURL( "http://www.qq.com" );
-//				
-//				var ui:Sprite = new Sprite();
-//				this.addChild(ui);
-//				ui.addChild(webView);
-
-				new MainControl(this);
-				trace(this.width);
-				
-				timerHandler(null);
-				var timer:Timer = new Timer(60000);
-				timer.addEventListener(TimerEvent.TIMER,timerHandler);
-				timer.start();
-				
-				Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
-				
-
-			}
-			
-			private function timerHandler(e:TimerEvent):void{
-				var date:Date = new Date();
-				if(date.getMinutes() < 10){
-					time.text = date.getHours()+":0"+date.getMinutes();
-				}else{
-					time.text = date.getHours()+":"+date.getMinutes();
-				}
-			}
 			
 			protected function application1_addedToStageHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
+				stage.setOrientation(StageOrientation.ROTATED_LEFT);
 				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
 			}
 			
@@ -80,8 +43,6 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<Mahjong:MahjongAppliction horizontalCenter="0" verticalCenter="0">
-	</Mahjong:MahjongAppliction>
-	<s:Label id="time" right="12" top="15" alpha="0.7" color="#FFFFFF" fontSize="18" text="标签"/>
-
+	<view2:MainSence x="0" y="0">
+	</view2:MainSence>
 </s:Application>

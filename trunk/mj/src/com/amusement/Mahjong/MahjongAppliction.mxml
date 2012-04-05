@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:s="library://ns.adobe.com/flex/spark"
-				   xmlns:mx="library://ns.adobe.com/flex/mx"
-				   xmlns:view="com.amusement.Mahjong.view.*"
-				   xmlns:view2="com.view.*"
-				   creationComplete="module1_creationCompleteHandler(event)">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:view="com.amusement.Mahjong.view.*"
+		xmlns:view2="com.view.*"
+		xmlns:config="config.*"
+		creationComplete="module1_creationCompleteHandler(event)" currentState="login">
 	<s:states>
-		<s:State name="MahjongRoomState"/>
+		<s:State name="login"/>
+		<s:State name="verifierState"/>
+		<s:State name="lianwangHome"/>
 	</s:states>
 	<fx:Script>
 		<![CDATA[
@@ -42,8 +45,105 @@
 				home.verticalCenter = 0;
 				home.horizontalCenter = 0;
 				
+				viewCreationCompleteHandler();
+				
 //				this.mjRoomBgImg.addEventListener(MouseEvent.CLICK,touchBeginHandler);
 			}
+			
+			//=========================================================================
+			
+			import com.tencent.weibo.api.Authorize;
+			import com.tencent.weibo.operation.IRequestOperation;
+			
+			import config.MobileConfig;
+			
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			import spark.components.ViewNavigator;
+			
+			private var authorizeAPI:Authorize;
+			/**
+			 * 判断是否已经具备授权认证
+			 */	
+			protected function viewCreationCompleteHandler():void
+			{
+				if(MobileConfig.hasAccessToken)
+				{
+					gotoNextView();
+				}
+				else
+				{
+					//获取未授权的Token
+					var request:IRequestOperation;
+					authorizeAPI = new Authorize();
+					request = authorizeAPI.requestToken();
+					request.addEventListener(Event.COMPLETE,requestTokenHandler);
+					request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
+				}
+			}
+			/**
+			 * 跳转到列表视图
+			 */	
+			private function gotoNextView():void
+			{
+//				var viewNavigator:ViewNavigator = FlexGlobals.topLevelApplication.navigator;
+//				viewNavigator.pushView(ListView);
+				this.currentState = "lianwangHome";
+			}
+			/**
+			 * 打开腾讯微博的授权页面
+			 */	
+			protected function image2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				authorizeAPI.openUserAuthPage();
+				this.currentState = "VerifierState";
+			}
+			/**
+			 * 将根据验证码获取AccessToken
+			 */	
+			protected function buttonVerifierHandler(event:MouseEvent):void
+			{
+				if(verInput.text == "" || verInput.text == null)
+					return;
+				var request:IRequestOperation;
+				var oauthVerifier:String = verInput.text;
+				request = authorizeAPI.accessToken(oauthVerifier);
+				request.addEventListener(Event.COMPLETE,accessTokenHandler);
+				request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
+				this.enabled = false;
+			}
+			
+			/**
+			 * 已获取未授权的Token,您需要点击按钮，打开腾讯的授权页面，按照提示进行操作
+			 * @param event
+			 */		
+			private function requestTokenHandler(event:Event):void
+			{
+				this.enabled = true;
+			}
+			
+			/**
+			 * 已获取AccessToken,进入下一个页面
+			 * @param event
+			 */		
+			private function accessTokenHandler(event:Event):void
+			{
+				gotoNextView();
+			}
+			
+			/**
+			 * 当请求失败，打印消息
+			 * @param event
+			 * 
+			 */		
+			private function errorHandler(event:IOErrorEvent):void
+			{
+				trace("获取数据失败或参数错误:"+event.text);
+			}
+			
+			//=========================================================================
 			
 			private function touchBeginHandler(e:MouseEvent):void{
 				if(home.visible){
@@ -56,45 +156,50 @@
 			protected function image1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				home.visible = true;
-				this.lianwangB.visible = false;
-				this.danjiB.visible = false;
-				
-				MahjongRoomControl.instance._mahjongRoom.type.text = "单机模式";
-				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = true;
-				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = true;
+//				home.visible = true;
+//				this.lianwangB.visible = false;
+//				this.danjiB.visible = false;
+//				
+//				MahjongRoomControl.instance._mahjongRoom.type.text = "单机模式";
+//				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = true;
+//				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = true;
 			}
 			
 			protected function lianwangB_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				lianwangHome.visible = true;
-				this.lianwangB.visible = false;
-				this.danjiB.visible = false;
-				
-				LoginControl.instance.getNotice();
-				ConfigService.instance;
-				
-				MahjongRoomControl.instance._mahjongRoom.type.text = "联网模式";
-				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = false;
-				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = false;
+//				lianwangHome.visible = true;
+//				this.lianwangB.visible = false;
+//				this.danjiB.visible = false;
+//				
+//				LoginControl.instance.getNotice();
+//				ConfigService.instance;
+//				
+//				MahjongRoomControl.instance._mahjongRoom.type.text = "联网模式";
+//				MahjongRoomControl.instance._mahjongRoom.system.slider.enabled = false;
+//				MahjongRoomControl.instance._mahjongRoom.system.level.enabled = false;
 			}
+			
 			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
+		<config:MobileConfig/>
 		<!-- 将非可视元素（例如服务、值对象）放在此 处 -->
 	</fx:Declarations>
 	<s:Group x="0" y="0" width="100%" height="100%">
 		<s:Image id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed('assets/index.jpg')" verticalCenter="0"/>
-		<s:Image id="lianwangB" x="526" y="357" click="lianwangB_clickHandler(event)"
-				 source="assets/but/lianwangB.png"/>
-		<s:Image id="danjiB" x="320" y="357" click="image1_clickHandler(event)"
-				 source="assets/but/danjiB.png"/>
+		<s:Label includeIn="verifierState" x="491" y="322" text="请输入6位授权码"/>
+		<s:TextInput id="verInput" includeIn="verifierState" x="365" y="363"/>
+		<s:Button includeIn="verifierState" x="469" y="438" width="222" label="确定"
+				  click="buttonVerifierHandler(event)"/>
 		<s:Label x="250" y="644" color="#B0B0B0" fontSize="14"
 				 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
 		<s:Label x="424" y="672" color="#B0B0B0" fontSize="14" text="如有投诉或建议,请联系我们."/>
+		<s:Image includeIn="login" x="342" y="270" click="image2_clickHandler(event)"
+				 source="assets/but/mainButQQ.png"/>
+		<s:Label includeIn="lianwangHome" x="432" y="330" text="标签"/>
 		
 	</s:Group>
 

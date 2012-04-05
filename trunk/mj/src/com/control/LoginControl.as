@@ -34,8 +34,8 @@ package com.control
 		
 		private function cancelBClickHandler(e:MouseEvent):void{
 			LianwangHomeControl.instance.lianwangHome.visible = false;
-			MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
-			MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
+//			MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
+//			MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
 		}
 		
 		public function getNotice():void{

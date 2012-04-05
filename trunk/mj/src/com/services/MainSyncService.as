@@ -3,6 +3,7 @@ package com.services
 	
 	import com.control.LianwangHomeControl;
 	import com.control.LianwangMainControl;
+	import com.model.Alert;
 	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -174,6 +175,7 @@ package com.services
 				_isConnection = false;
 				
 				_connState="连接失败！请重新登陆";
+				Alert.show("连接失败！请重新登陆!");
 			}
 			
 		}
