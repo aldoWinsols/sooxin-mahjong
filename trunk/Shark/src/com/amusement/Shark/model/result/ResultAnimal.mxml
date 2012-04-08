@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="67" height="179" color="#130A00" fontSize="14">
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_yanzi.png")]
+			private var _YanziClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_gezi.png")]
+			private var _GeziClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_kongque.png")]
+			private var _KongqueClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_laoying.png")]
+			private var _LaoyingClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_feiqin.png")]
+			private var _FeiqinClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_dabaisha.png")]
+			private var _DabaishaClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_zoushou.png")]
+			private var _ZoushouClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_shizi.png")]
+			private var _ShiziClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_laohu.png")]
+			private var _LaohuClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_xiongmao.png")]
+			private var _XiongmaoClass:Class;
+			[Embed(source="com/amusement/Shark/assets/result/shark_result_houzi.png")]
+			private var _HouziClass:Class;
+			
+			[Bindable]
+			protected var _AnimalClass:Class;
+			
+			protected var _animalName:String;
+			
+			public function showLight(value:Boolean):void{
+				this.lightImg.visible = value;
+			}
+			
+			public function get animalName():String
+			{
+				return _animalName;
+			}
+
+			public function set animalName(value:String):void
+			{
+				_animalName = value;
+				
+				switch(value){
+					case "yanzi":
+						_AnimalClass = _YanziClass;
+						break;
+					case "gezi":
+						_AnimalClass = _GeziClass;
+						break;
+					case "kongque":
+						_AnimalClass = _KongqueClass;
+						break;
+					case "laoying":
+						_AnimalClass = _LaoyingClass;
+						break;
+					case "feiqin":
+						_AnimalClass = _FeiqinClass;
+						break;
+					case "dabaisha":
+						_AnimalClass = _DabaishaClass;
+						break;
+					case "zoushou":
+						_AnimalClass = _ZoushouClass;
+						break;
+					case "shizi":
+						_AnimalClass = _ShiziClass;
+						break;
+					case "laohu":
+						_AnimalClass = _LaohuClass;
+						break;
+					case "xiongmao":
+						_AnimalClass = _XiongmaoClass;
+						break;
+					case "houzi":
+						_AnimalClass = _HouziClass;
+						break;
+				}
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="31" verticalCenter="-3" source="../../assets/result/shark_result_bg.png"/>-->
+	<s:Image id="lightImg" horizontalCenter="0" verticalCenter="0" source="@Embed(source='../../assets/result/shark_result_light.png')" visible="false"/>
+	<s:Image id="animalNameImg" horizontalCenter="0" bottom="90" source="{_AnimalClass}"/>
+	<s:Label id="yanzhuNum" horizontalCenter="0" verticalCenter="36"/>
+	<s:Label id="shuyingNum" horizontalCenter="0" verticalCenter="73"/>
+</s:Group>

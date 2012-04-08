@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="570" height="370" 
+		 xmlns:animal="com.amusement.Shark.model.animal.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Shark.control.MainPanControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainPanControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="0" verticalCenter="84" source="../assets/shark_refer.jpg"/>-->
+	<animal:XiongmaoR id="xiongmao1" horizontalCenter="251" verticalCenter="-1"/>
+	<animal:ShiziR id="shizi1" horizontalCenter="239" verticalCenter="49"/>
+	<animal:YanziRB id="yanzi1" horizontalCenter="207" verticalCenter="88"/>
+	<animal:HouziRB id="houzi1" horizontalCenter="163" verticalCenter="116"/>
+	<animal:LaohuR id="laohu1" horizontalCenter="113" verticalCenter="137"/>
+	<animal:KongqueB id="kongque1" horizontalCenter="58" verticalCenter="150"/>
+	
+	<animal:XiongmaoB id="xiongmao2" horizontalCenter="0" verticalCenter="155"/>
+	<animal:GeziB id="gezi1" horizontalCenter="-61" verticalCenter="149"/>
+	<animal:HouziLB id="houzi2" horizontalCenter="-116" verticalCenter="136"/>
+	<animal:YanziLB id="yanzi2" horizontalCenter="-166" verticalCenter="117"/>
+	<animal:ShiziL id="shizi2" horizontalCenter="-210" verticalCenter="88"/>
+	<animal:LaohuL id="laohu2" horizontalCenter="-241" verticalCenter="49"/>
+	
+	<animal:GeziL id="gezi2" horizontalCenter="-252" verticalCenter="-2"/>
+	<animal:LaoyingL id="laoying1" horizontalCenter="-241" verticalCenter="-53"/>
+	<animal:HouziLT id="houzi3" horizontalCenter="-210" verticalCenter="-91"/>
+	<animal:YanziLT id="yanzi3" horizontalCenter="-165" verticalCenter="-119"/>
+	<animal:KongqueL id="kongque2" horizontalCenter="-115" verticalCenter="-139"/>
+	<animal:LaohuT id="laohu3" horizontalCenter="-60" verticalCenter="-150"/>
+	
+	<animal:GeziT id="gezi3" horizontalCenter="-1" verticalCenter="-154"/>
+	<animal:XiongmaoT id="xiongmao3" horizontalCenter="57" verticalCenter="-150"/>
+	<animal:YanziRT id="yanzi4" horizontalCenter="111" verticalCenter="-139"/>
+	<animal:HouziRT id="houzi4" horizontalCenter="162" verticalCenter="-119"/>
+	<animal:LaoyingR id="laoying2" horizontalCenter="206" verticalCenter="-91"/>
+	<animal:KongqueR id="kongque3" horizontalCenter="239" verticalCenter="-53"/>
+	
+	<animal:DabaishaT id="dabaisha1" horizontalCenter="-1" verticalCenter="-69"/>
+	<animal:LieqiangR id="lieqiang1" horizontalCenter="75" verticalCenter="-9"/>
+	<animal:DabaishaB id="dabaisha2" horizontalCenter="-1" verticalCenter="59"/>
+	<animal:LieqiangL id="lieqiang2" horizontalCenter="-74" verticalCenter="-10"/>
+</s:Group>

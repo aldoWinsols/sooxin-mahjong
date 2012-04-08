@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="339" height="232"
+		 fontFamily="黑体" fontSize="12" color="#AD8C49">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image horizontalCenter="0" verticalCenter="0" source="@Embed(source='assets/amusement/systemSet/system_bg.png')"/>
+	<s:ToggleButton id="musicBtn" right="58" verticalCenter="-52" selected="true" 
+					skinClass="com.skin.amusement.system.SystemOpenAndCloseButtonSkin"/>
+	<s:ToggleButton id="soundBtn" right="58" verticalCenter="-2" selected="true" 
+					skinClass="com.skin.amusement.system.SystemOpenAndCloseButtonSkin"/>
+	<s:Label id="musicName" x="154" y="153" width="128" text="Music 1" fontSize="14" textAlign="center"/>
+	<s:Button id="leftBtn" horizontalCenter="-30" verticalCenter="43" skinClass="com.skin.amusement.system.SystemLeftButtonSkin"/>
+	<s:Button id="rightBtn" horizontalCenter="128" verticalCenter="43" skinClass="com.skin.amusement.system.SystemRightButtonSkin"/>
+	<s:Button id="presetBtn" horizontalCenter="-55" bottom="17" skinClass="com.skin.amusement.system.SystemPresetButtonSkin"/>
+	<s:Button id="confirmBtn" horizontalCenter="55" bottom="17" skinClass="com.skin.amusement.system.SystemConfirmButtonSkin"/>
+</s:Group>

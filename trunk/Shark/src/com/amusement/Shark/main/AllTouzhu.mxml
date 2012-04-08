@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="131" height="269" fontSize="14" color="#e5e3da"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			private static var _instance:AllTouzhu;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				_instance = this;
+			}
+			
+			public function updateAllTouzhu(o:Object):void
+			{
+				this.dabaishaAllTxt.text=int(o.dabaishaAll) + "";
+				this.feiqinAllTxt.text=int(o.feiqinAll) + "";
+				this.zoushouAllTxt.text=int(o.zoushouAll) + "";
+				this.yanziAllTxt.text=int(o.yanziAll) + "";
+				this.geziAllTxt.text=int(o.geziAll) + "";
+				this.kongqueAllTxt.text=int(o.kongqueAll) + "";
+				this.laoyingAllTxt.text=int(o.laoyingAll) + "";
+				this.houziAllTxt.text=int(o.houziAll) + "";
+				this.xiongmaoAllTxt.text=int(o.xiongmaoAll) + "";
+				this.laohuAllTxt.text=int(o.laohuAll) + "";
+				this.shiziAllTxt.text=int(o.shiziAll) + "";
+			}
+			
+			public function setZero():void
+			{
+				this.dabaishaAllTxt.text="0";
+				this.feiqinAllTxt.text="0";
+				this.zoushouAllTxt.text="0";
+				this.yanziAllTxt.text="0";
+				this.geziAllTxt.text="0";
+				this.kongqueAllTxt.text="0";
+				this.laoyingAllTxt.text="0";
+				this.houziAllTxt.text="0";
+				this.xiongmaoAllTxt.text="0";
+				this.laohuAllTxt.text="0";
+				this.shiziAllTxt.text="0";
+			}
+
+			//-------------------------- getter/setter function ------------------------------
+			public static function get instance():AllTouzhu
+			{
+				return _instance;
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image right="-2" top="-31" source="../assets/desk/shark_desk_blue.jpg"/>-->
+	<s:Label id="dabaishaAllTxt" left="0" bottom="244" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="feiqinAllTxt" left="0" bottom="219" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="zoushouAllTxt" left="0" bottom="195" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="yanziAllTxt" left="0" bottom="171" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="geziAllTxt" left="0" bottom="146" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="kongqueAllTxt" left="0" bottom="122" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="laoyingAllTxt" left="0" bottom="97" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="houziAllTxt" left="0" bottom="73" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="xiongmaoAllTxt" left="0" bottom="49" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="laohuAllTxt" left="0" bottom="24" height="24" text="0" verticalAlign="middle"/>
+	<s:Label id="shiziAllTxt" left="0" bottom="0" height="24" text="0" verticalAlign="middle"/>
+</s:Group>

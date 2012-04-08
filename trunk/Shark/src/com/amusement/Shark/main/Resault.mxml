@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="880" height="427" fontFamily="黑体" fontSize="12" color="#130A00" 
+		 xmlns:result="com.amusement.Shark.model.result.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Shark.control.ResaultControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new ResaultControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image horizontalCenter="0" verticalCenter="0" source="@Embed(source='../assets/result/shark_result_bg.png')"/>
+	<s:Label x="130" verticalCenter="-119" text="由於網絡延時等情況，實際投注以當局鎖定前服務器接收的投注情況為準！"/>
+	
+	<s:HGroup id="jieguoPan" horizontalCenter="34" verticalCenter="3" gap="-1">
+		<result:ResultAnimal id="jyanzi" animalName="yanzi"/>
+		<result:ResultAnimal id="jgezi" animalName="gezi"/>
+		<result:ResultAnimal id="jkongque" animalName="kongque"/>
+		<result:ResultAnimal id="jlaoying" animalName="laoying"/>
+		<result:ResultAnimal id="jfeiqin" animalName="feiqin"/>
+		<result:ResultAnimal id="jdabaisha" animalName="dabaisha"/>
+		<result:ResultAnimal id="jzoushou" animalName="zoushou"/>
+		<result:ResultAnimal id="jshizi" animalName="shizi"/>
+		<result:ResultAnimal id="jlaohu" animalName="laohu"/>
+		<result:ResultAnimal id="jxiongmao" animalName="xiongmao"/>
+		<result:ResultAnimal id="jhouzi" animalName="houzi"/>
+	</s:HGroup>
+	
+	<s:Label id="zongtouzhu" left="114" verticalCenter="120" fontSize="16" verticalAlign="middle" text=""/>
+	<s:Label id="zongshuying" left="597" verticalCenter="120" fontSize="16" verticalAlign="middle" text=""/>
+	<s:Label id="jiesuanV" left="132" verticalCenter="159" fontSize="18" verticalAlign="middle" text=""/>
+	
+	<s:Button id="fanhui" right="41" bottom="40"
+			  skinClass="com.skin.amusement.desk.DeskCloseButtonSkin"/>
+</s:Group>

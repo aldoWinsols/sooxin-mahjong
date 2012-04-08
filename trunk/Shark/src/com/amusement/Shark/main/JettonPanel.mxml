@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="386" height="90" 
+		 xmlns:jetton="com.amusement.Shark.model.jetton.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Shark.control.JettonPanelControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new JettonPanelControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="-4" bottom="-28" source="../assets/shark_refer.jpg"/>-->
+	<jetton:SharkJetton id="jetton_5" x="0" y="0" value="5"/>
+	<jetton:SharkJetton id="jetton_10" x="75" y="0" value="10"/>
+	<jetton:SharkJetton id="jetton_20" x="149" y="0" value="20"/>
+	<jetton:SharkJetton id="jetton_50" x="223" y="0" value="50"/>
+	<jetton:SharkJetton id="jetton_100" x="296" y="0" value="100"/>
+	
+	<!--<s:Image x="0" y="0" source="assets/amusement/jetton/j10.png"/>
+	<s:Image x="75" y="0" source="assets/amusement/jetton/j20.png"/>
+	<s:Image x="149" y="0" source="assets/amusement/jetton/j50.png"/>
+	<s:Image x="223" y="0" source="assets/amusement/jetton/j100.png"/>
+	<s:Image x="296" y="0" source="assets/amusement/jetton/j500.png"/>-->
+</s:Group>
