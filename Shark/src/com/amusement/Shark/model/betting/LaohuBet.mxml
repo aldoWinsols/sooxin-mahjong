@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<betting:BaseBet xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" 
+				 xmlns:betting="com.amusement.Shark.model.betting.*" 
+				 width="172" height="70"
+				 creationComplete="basebet1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function basebet1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				this._animalName = "laohu";
+				this._animalType = "zoushou";
+				this._maxBetNum = 300;
+				this._pValue = 8;
+				
+				this.tou.horizontalCenter = -19;
+				this.tou.bottom = 70;
+				
+				this.totalTxt.horizontalCenter = -24;
+				this.totalTxt.bottom = 9;
+				
+				_hitSp.graphics.clear();
+				_hitSp.graphics.beginFill(0xff0000, 1);
+				_hitSp.graphics.moveTo(4, 5);
+				_hitSp.graphics.lineTo(165, 5);
+				_hitSp.graphics.lineTo(167, 65);
+				_hitSp.graphics.lineTo(6, 65);
+				_hitSp.graphics.lineTo(4, 5);
+				_hitSp.graphics.endFill();
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="-395" bottom="-165" source="../../assets/shark_refer.jpg"/>
+	<s:Group id="tou" horizontalCenter="-19" bottom="70" width="60" height="0"/>
+	<s:TextInput id="totalTxt" horizontalCenter="-24" bottom="9" width="70" height="17" 
+				 borderAlpha="0.5" contentBackgroundColor="#000000" contentBackgroundAlpha="0.5" color="#FFFFFF"
+				 textAlign="center" visible="true"/>-->
+</betting:BaseBet>

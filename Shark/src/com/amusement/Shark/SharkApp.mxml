@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="1024" height="768"
+		  fontFamily="黑体" fontSize="12" color="#e4ae7a"
+		  creationComplete="module1_creationCompleteHandler(event)" xmlns:view="com.view.*" xmlns:main="com.amusement.Shark.main.*">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Shark.control.SharkControl;
+			import com.service.PlayerService;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _BgImg:Class;
+			
+			protected function module1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new SharkControl(this);
+			}
+
+			public function set BgImg(value:Class):void
+			{
+				_BgImg = value;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer id="jiaodian" horizontalCenter="0" verticalCenter="0" width="100%" height="100%" borderVisible="false" backgroundImage="{_BgImg}">
+		<!--<s:Image horizontalCenter="0" verticalCenter="0" source="./assets/desk/shark_desk_blue.jpg"/>
+		<s:Image horizontalCenter="0" verticalCenter="0" source="./assets/shark_refer.jpg"/>-->
+		
+		<main:AnimalHistory id="animalHistory" left="27" top="31"/>
+		
+		<main:AllTouzhu id="allTouzhu" right="2" top="31"/>
+		
+		<main:MainPan horizontalCenter="0" verticalCenter="-84"/>
+		<s:Label id="countDownNumberV" horizontalCenter="1" verticalCenter="-87" fontFamily="Arial" fontSize="42" color="#EACE00" textAlign="center" verticalAlign="middle" text="60"/>
+		
+		<s:Label left="46" bottom="14" verticalAlign="middle" text="{PlayerService.instance.playerName}"/>
+		<s:Label left="244" bottom="14" verticalAlign="middle" text="{PlayerService.instance.haveMoney.toFixed(2)}"/>
+		<s:Label id="gameNum" left="403" bottom="14" verticalAlign="middle" text="0000000000000"/>
+	</s:BorderContainer>
+	
+	<s:HGroup right="13" verticalCenter="-64" gap="7">
+		<s:Image id="greenBgBtn" source="@Embed(source='./assets/tabletop/shark_bg_green_btn.png')"/>
+		<s:Image id="redBgBtn" source="@Embed(source='./assets/tabletop/shark_bg_red_btn.png')"/>
+		<s:Image id="blueBgBtn" source="@Embed(source='./assets/tabletop/shark_bg_blue_btn.png')"/>
+	</s:HGroup>
+	
+	<main:BetPanel horizontalCenter="0" bottom="0"/>
+	
+	<s:HGroup right="5" bottom="5" gap="4">
+	</s:HGroup>
+	
+	<main:Resault id="res" horizontalCenter="0" verticalCenter="0" visible="false"/>
+</s:Module>

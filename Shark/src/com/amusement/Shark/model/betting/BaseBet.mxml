@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="168" height="66"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Shark.control.BetPanelControl;
+			import com.amusement.Shark.control.JettonPanelControl;
+			import com.component.jetton.small.JettonS;
+			import com.model.Alert;
+			import com.service.JettonService;
+			import com.service.PlayerService;
+			import mx.events.FlexEvent;
+			
+			import spark.core.SpriteVisualElement;
+			
+			protected var _animalName:String;
+			protected var _animalType:String;
+			
+			protected var _maxBetNum:int;
+			
+			protected var _currentBetNum:int;
+			
+			protected var _pValue:int;
+			
+			protected var _hitSp:SpriteVisualElement;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				_hitSp = new SpriteVisualElement();
+				_hitSp.graphics.beginFill(0xff0000, 1);
+				_hitSp.graphics.lineTo(this.width, 0);
+				_hitSp.graphics.lineTo(this.width, this.height);
+				_hitSp.graphics.lineTo(0, this.height);
+				_hitSp.graphics.lineTo(0, 0);
+				_hitSp.graphics.endFill();
+				_hitSp.x = 0;
+				this.addElement(_hitSp);
+				
+				this.liveView.mask = _hitSp;
+				
+				this.liveView.addEventListener(MouseEvent.MOUSE_OVER, mouseEventHandler, false, 0, true);
+				this.liveView.addEventListener(MouseEvent.MOUSE_OUT, mouseEventHandler, false, 0, true);
+				this.liveView.addEventListener(MouseEvent.CLICK, mouseEventHandler, false, 0, true); 
+			}
+			
+			private function mouseEventHandler(event:MouseEvent):void{
+				switch(event.type){
+					case MouseEvent.MOUSE_OVER:
+						this.liveView.setStyle("backgroundAlpha", 0.3);
+						break;
+					case MouseEvent.MOUSE_OUT:
+						this.liveView.setStyle("backgroundAlpha", 0.0);
+						break;
+					case MouseEvent.CLICK:
+						onBetting();
+						break;
+				}
+			}
+			
+			private function onBetting():void{
+				try{
+					if(PlayerService.instance.haveMoney - JettonPanelControl.instance.selectJetton.value < 0){
+						Alert.show("您的餘額不足");
+					}else{
+						if(_currentBetNum + JettonPanelControl.instance.selectJetton.value > _maxBetNum){
+							return;
+						}
+//						if(_currentBetNum + JettonPanelControl.instance.selectJetton.value == _maxBetNum){
+//							PlayerService.instance.betMoney += JettonPanelControl.instance.selectJetton.value;
+//							PlayerService.instance.updateHaveMoney(-(_maxBetNum - _currentBetNum));
+//							_currentBetNum = _maxBetNum;
+//						}else{
+							PlayerService.instance.updateNowMoney(-JettonPanelControl.instance.selectJetton.value);
+							_currentBetNum += JettonPanelControl.instance.selectJetton.value;
+							PlayerService.instance.betMoney += JettonPanelControl.instance.selectJetton.value;
+//						}
+						updateJettons(_currentBetNum);
+						trace("------------------  1");
+						//更新投住到服务器端
+						BetPanelControl.instance.updateBet();
+					}
+				}catch(error:Error){
+					
+				}
+			}
+			
+			private function addJetton(jetton:JettonS):void{
+				if(jetton){
+					jetton.x = 0;
+					jetton.y = - this.tou.numElements * jetton.thick;
+					tou.addElement(jetton);
+				}
+			}
+			
+			private function clearJetton():void{
+				while(tou.numChildren > 0){
+					this.tou.removeElementAt(0);
+				}
+			}
+			
+			private function updateTotal(total:Number):void{
+				totalTxt.text = total.toString();
+				if(total <= 0){
+					totalTxt.visible = false;
+				}else{
+					totalTxt.visible = true;
+				}
+			}
+			
+			private function updateJettons(total:Number):void{
+				clearJetton();
+				var jettons:Array = JettonService.instance.getJettonsByTotal(total);
+				if(jettons){
+					for each(var jetton:JettonS in jettons){
+						addJetton(jetton);
+					}
+				}
+				updateTotal(total);
+			}
+			
+			public function clear():void{
+				_currentBetNum = 0;
+				clearJetton();
+				updateTotal(0);
+			}
+			
+			public function showLight(value:Boolean):void{
+				if(value){
+					this.liveView.setStyle("backgroundAlpha", 0.3);
+				}else{
+					this.liveView.setStyle("backgroundAlpha", 0.0);
+				}
+			}
+			
+			//------------------------------------- getter/setter function ------------------------------------
+			public function get animalName():String
+			{
+				return _animalName;
+			}
+
+			public function get animalType():String
+			{
+				return _animalType;
+			}
+
+			public function get currentBetNum():int
+			{
+				return _currentBetNum;
+			}
+
+			public function set currentBetNum(value:int):void
+			{
+				_currentBetNum = value;
+				updateJettons(_currentBetNum);
+			}
+
+			public function get pValue():int
+			{
+				return _pValue;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:Image horizontalCenter="400" bottom="-85" source="../../assets/shark_refer.jpg"/>-->
+	<s:Group id="tou" horizontalCenter="-30" bottom="71" width="60" height="0"/>
+	<s:TextInput id="totalTxt" visible="false" bottom="-1" width="70" height="23" fontSize="10" color="#FFFFFF"
+				 contentBackgroundAlpha="0.5" contentBackgroundColor="#000000"
+				 horizontalCenter="-35" paddingTop="3" textAlign="center"/>
+	<s:BorderContainer id="liveView" x="0" y="0" width="100%" height="100%" borderVisible="false" backgroundColor="#FFFFFF" backgroundAlpha="0.0"/>
+</s:Group>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animal:BaseAnimal xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" 
+				   xmlns:animal="com.amusement.Shark.model.animal.*"
+				   creationComplete="baseanimal1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function baseanimal1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				_type = "feiqin";
+				_animalName = "laoying";
+				_pvalue = 12;
+				_px = 22;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="0" y="0" source="@Embed(source='../../assets/animal/laoying2.png')"/>
+	<s:Image id="faguang" x="0" y="0" source="@Embed(source='../../assets/animal/laoying2_faguang.png')" visible="false"/>
+</animal:BaseAnimal>

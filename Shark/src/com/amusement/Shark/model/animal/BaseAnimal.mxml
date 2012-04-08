@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			protected var _type:String; //类型，走兽
+			protected var _animalName:String;
+			protected var _pvalue:Number; //赔率
+			protected var _px:int; //排序
+
+			public function showLight(value:Boolean):void{
+				this.faguang.visible = value;
+			}
+			
+			//------------------------------ getter/setter function -----------------------------
+			public function get type():String
+			{
+				return _type;
+			}
+
+			public function get animalName():String
+			{
+				return _animalName;
+			}
+
+			public function get pvalue():Number
+			{
+				return _pvalue;
+			}
+
+			public function get px():int
+			{
+				return _px;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="0" y="0" source=""/>
+	<s:Image id="faguang" x="0" y="0" source="" visible="false"/>
+</s:Group>
