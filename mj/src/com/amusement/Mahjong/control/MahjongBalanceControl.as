@@ -48,10 +48,10 @@ package com.amusement.Mahjong.control
 				case "exitBtn":
 					if(MahjongSyncService.instance.isNetwork){
 						MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-						MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = true;
+//						MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = true;
 					}else{					
 						MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-						MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
+//						MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
 					}
 					MahjongRoomControl.instance.clearTabletop();
 					break;

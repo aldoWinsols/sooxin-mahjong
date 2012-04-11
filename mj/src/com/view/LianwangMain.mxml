@@ -18,61 +18,60 @@
 			
 		]]>
 	</fx:Script>
+	<s:states>
+		<s:State name="State1"/>
+	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
-	<s:BorderContainer x="30" y="395" width="900" height="150" backgroundAlpha="0"
+	<s:BorderContainer x="29" y="491" width="900" height="139" backgroundAlpha="0"
 					   borderVisible="true" cornerRadius="8" borderColor="#ffffff" borderAlpha="0.1">
-		<s:Button id="dIphoneB" x="363" y="17" width="100" height="100" label="按钮"
+		<s:Button id="dIphoneB" x="443" y="18" width="100" height="100" label="按钮"
 				  icon="assets/iphoneicon.jpg"/>
-		<s:Button id="dIpadB" x="246" y="17" width="100" height="100" label="按钮"
+		<s:Button id="dIpadB" x="326" y="18" width="100" height="100" label="按钮"
 				  icon="assets/ipadicon.jpg"/>
-		<s:Button id="dNanoB" x="10" y="18" width="100" height="100" icon="assets/nanoicon.jpg"/>
-		<s:Button id="dIpodB" x="128" y="18" width="100" height="100" icon="assets/ipodicon.jpg"/>
+		<s:Button id="dNanoB" x="90" y="19" width="100" height="100" icon="assets/nanoicon.jpg"/>
+		<s:Button id="dIpodB" x="208" y="19" width="100" height="100" icon="assets/ipodicon.jpg"/>
 	</s:BorderContainer>
-	<s:Label x="34" y="376" color="#B9B9B9" fontSize="14" text="奖品领取"/>
-	<s:BorderContainer x="30" y="154" width="900" height="200" backgroundAlpha="0"
+	<s:BorderContainer x="30" y="104" width="900" height="347" backgroundAlpha="0"
 					   borderVisible="true" borderColor="#ffffff" borderAlpha="0.1" cornerRadius="8">
-		<s:Label x="67" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="145" y="148" color="#1CF000" fontSize="14"
+		<s:Image id="room5" y="10" left="80" source="assets/room/room5_bg.png"/>
+		<s:Image id="room10" y="4" right="80" source="assets/room/room10_bg.png"/>
+		<s:Image id="room20" x="80" y="173" source="assets/room/room20_bg.png"/>
+		<s:Image id="room50" x="487" y="173" source="assets/room/room50_bg.png"/>
+		<s:Label x="110" y="115" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="188" y="115" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum5}"/>
-		<s:Label x="229" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="307" y="148" color="#1CF000" fontSize="14"
+		<s:Label x="522" y="116" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="600" y="116" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum10}"/>
-		<s:Label x="386" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="464" y="148" color="#1CF000" fontSize="14"
+		<s:Label x="110" y="284" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="188" y="284" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum20}"/>
-		<s:Label x="547" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="625" y="148" color="#1CF000" fontSize="14"
+		<s:Label x="522" y="284" color="#1CF000" fontSize="14" text="在线人数："/>
+		<s:Label x="600" y="284" color="#1CF000" fontSize="14"
 				 text="{MainPlayerService.getInstance().roomNum50}"/>
-		<s:Label x="707" y="148" color="#1CF000" fontSize="14" text="在线人数："/>
-		<s:Label x="785" y="148" color="#1CF000" fontSize="14"
-				 text="{MainPlayerService.getInstance().roomNum100}"/>
-		<s:Image id="room5" x="67" y="37" source="assets/room/room5.png"/>
-		<s:Image id="room10" x="226" y="37" source="assets/room/room10.png"/>
-		<s:Image id="room20" x="385" y="38" source="assets/room/room20.png"/>
-		<s:Image id="room50" x="544" y="38" source="assets/room/room50.png"/>
-		<s:Image id="room100" x="703" y="38" source="assets/room/room100.png"/>
+
 	</s:BorderContainer>
 	
 	
-	<s:BorderContainer x="30" y="30" width="900" height="65" backgroundAlpha="0.05"
+	<s:BorderContainer x="32" y="10" width="900" height="65" backgroundAlpha="0.05"
 					   borderVisible="false" cornerRadius="8">
-		<s:Label x="15" y="25" color="#FFE400" fontSize="20" fontWeight="bold" text="用户:"/>
-		<s:Label x="74" y="25" color="#FFE400" fontSize="20" fontWeight="bold"
-				 text="{MainPlayerService.getInstance().mainPlayer.playername}"/>
-		<s:Label x="172" y="25" color="#FFE400" fontSize="20" fontWeight="bold" text="点数："/>
-		<s:Label x="230" y="25" color="#FFE400" fontSize="20" fontWeight="bold"
+		<s:Label x="1" y="25" color="#FFE400" fontSize="16" fontWeight="bold" text="用户:"/>
+		<s:Label x="60" y="25" color="#FFE400" fontSize="16" fontWeight="bold"
+				 text="{MainPlayerService.getInstance().mainPlayer.playerName}"/>
+		<s:Label x="102" y="25" color="#FFE400" fontSize="16" fontWeight="bold" text="点数："/>
+		<s:Label x="160" y="25" color="#FFE400" fontSize="16" fontWeight="bold"
 				 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
-		<s:Button id="logB" x="604" y="10" label="日志记录"/>
-		<s:Button id="updatePwdB" x="702" y="10" label="修改密码"/>
-		<s:Button id="exitB" x="800" y="10" label="退出登录"/>
-		<s:Button id="d60B" x="362" y="10" label="60金币插件"/>
-		<s:Button id="d250B" x="478" y="10" label="250金币插件"/>
+		<s:Image id="lianwang_backB" x="783" y="5" source="assets/but/lianwang_backB.png"/>
+		<s:Image id="logB" x="567" y="6" source="assets/but/lianwang_rizijilu.png"/>
+		<s:Image id="d60B" x="241" y="6" source="assets/but/coin60.png"/>
+		<s:Image id="d250B" x="350" y="6" source="assets/but/coin300.png"/>
+		<s:Image id="d1500B" x="458" y="6" source="assets/but/coin1500.png"/>
+		<s:Image id="lianwang_zhuxiaoB" x="675" y="5" source="assets/but/lianwang_zhuxiaoB.png"/>
 	</s:BorderContainer>
-	<s:Label x="37" y="132" color="#B9B9B9" fontSize="14" text="房间列表"/>
-	<view:NetworkQuality id="network" x="121" y="133"/>
+	<view:NetworkQuality id="network" x="31" y="83"/>
 	
 	<s:BorderContainer id="duihuan" visible="false" width="553" height="327" cornerRadius="8"
 					   horizontalCenter="0" verticalCenter="0" backgroundAlpha="0.9" borderVisible="false">
@@ -93,4 +92,5 @@
 	
 	<view:UpdatePwd id="updatePwd" visible="false" x="180" y="170">
 	</view:UpdatePwd>
+	<s:Label x="32" y="468" color="#B9B9B9" fontSize="14" text="奖品领取"/>
 </s:Group>

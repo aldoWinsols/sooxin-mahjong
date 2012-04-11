@@ -25,12 +25,12 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer id="resultCont" width="100%" height="100%" alpha="0.65" backgroundAlpha="0" borderVisible="false"
+	<s:BorderContainer id="resultCont" width="100%" height="100%" backgroundAlpha="0" borderVisible="false"
 					   fontSize="20" horizontalCenter="0" verticalCenter="0">
 		<s:Image x="0" y="0" source="com/amusement/Mahjong/assets/jiesuanBg.png"/>
-		<s:Label x="55" y="27" color="#FE8206" fontSize="16" fontWeight="bold" text="局号："/>
+		<s:Label x="55" y="97" color="#FE8206" fontSize="16" fontWeight="bold" text="局号："/>
 		
-		<s:Label id="roomNum" x="103" y="25" color="#FE8206" fontSize="20" fontWeight="bold"
+		<s:Label id="roomNum" x="103" y="95" color="#FE8206" fontSize="20" fontWeight="bold"
 				 text="00000000000" textAlign="left" verticalAlign="middle"/>
 		
 		<s:Label id="player1" x="54" y="163" width="99" color="#FFFC1A" fontSize="20" text="一"
@@ -50,11 +50,11 @@
 				 verticalAlign="middle"/>
 		<s:Label id="shuying4" x="609" y="277" width="127" color="#FFFC1A" fontSize="20" text="0"
 				 verticalAlign="middle"/>
+		<s:Button id="showRoHideBtn" x="719" y="6" width="80" height="65" label="显/隐" fontSize="20" alpha="0"/>
 		
 	</s:BorderContainer>
 		<s:Button id="continueBtn" x="19.5" y="415" width="120" height="45" label="继续游戏"
 				  fontSize="20"/>
 		<s:Button id="exitBtn" x="146.5" y="415" width="120" height="45" label="返回大厅" fontSize="20"/>
-		<s:Button id="showRoHideBtn" x="710" y="416" width="80" height="45" label="显/隐" fontSize="20"/>
 		
 </s:Group>

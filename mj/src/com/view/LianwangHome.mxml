@@ -5,7 +5,7 @@
 				   width="960" height="640" backgroundAlpha="0.3" backgroundColor="#000000"
 				   borderVisible="false" cornerRadius="10"
 				   creationComplete="bordercontainer2_creationCompleteHandler(event)"
-				   currentState="login" dropShadowVisible="true">
+				   dropShadowVisible="true">
 		
 	<fx:Script>
 		<![CDATA[
@@ -28,8 +28,6 @@
 	</fx:Script>
 	
 	<s:states>
-		<s:State name="login"/>
-		<s:State name="regeist"/>
 		<s:State name="main"/>
 		<s:State name="log"/>
 	</s:states>
@@ -37,12 +35,8 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
-		<view:Login id="login" includeIn="login" x="0" y="0">
-		</view:Login>
-		<view:Regeist includeIn="regeist" x="210" y="62">
-		</view:Regeist>
 	<view:LianwangMain includeIn="main" x="0" y="0">
 	</view:LianwangMain>
-	<view:Log includeIn="log" x="0" y="9">
+	<view:Log includeIn="log" x="0" y="-1">
 	</view:Log>
 </s:BorderContainer>

@@ -1,5 +1,5 @@
 package com.services{
-	import com.control.HomeControl;
+	import com.control.DanjiHomeControl;
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.model.Message;
 	import com.mahjongSyncServer.model.Player;
@@ -61,6 +61,9 @@ package com.services{
 			
 			sqlStrs.push("CREATE TABLE IF NOT EXISTS players ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, email TEXT, haveMoney DOUBLE);");
 			sqlStrs.push("CREATE TABLE IF NOT EXISTS gamelog ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, roomNo TEXT, gameTime TEXT, preMoney DOUBLE, winLossMoneyAfterTax DOUBLE, afterMoney DOUBLE, gameContent TEXT);");
+			
+			sqlStrs.push("INSERT INTO players (playerName, email, haveMoney) VALUES('player','','10000');");
+			
 			table = "create";
 			resault(null);
 		}
@@ -80,10 +83,10 @@ package com.services{
 					arr.push("ID:"+pl.playerName+"      EMAIL:"+pl.email+"      积分:"+pl.haveMoney);
 				}
 				
-				HomeControl.instance.home.players.dataProvider = new ArrayList(arr);
+				DanjiHomeControl.instance.danjiHome.players.dataProvider = new ArrayList(arr);
 			}else if(table == "gamelog"){
 				logs = new ArrayCollection(sqls.getResult().data);
-				HomeControl.instance.home.history.showHistory(logs.toArray());
+				DanjiHomeControl.instance.danjiHome.history.showHistory(logs.toArray());
 			}else if(table == "create"){
 				sqls.text = sqlStrs.shift();
 				sqls.execute();
@@ -106,7 +109,7 @@ package com.services{
 			sqls.execute();
 			refresh();
 			
-			HomeControl.instance.home.playerAdd.visible = false;
+			DanjiHomeControl.instance.danjiHome.playerAdd.visible = false;
 		}
 		
 		public function removePlayer(id:Number, playerName:String):void

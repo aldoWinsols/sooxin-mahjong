@@ -27,10 +27,8 @@ package com.control
 			instance = this;
 			this.lianwangHome = lianwangHome;
 			
-			this.lianwangHome.currentState = "regeist";
-			this.lianwangHome.currentState = "main";
 			this.lianwangHome.currentState = "log";
-			this.lianwangHome.currentState = "login";
+			this.lianwangHome.currentState = "main";
 			
 			MainPlayerService.getInstance();
 			

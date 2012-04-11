@@ -84,7 +84,7 @@ package com.services
 		private function setEndPoint(ro:RemoteObject):void
 		{
 
-			ro.endpoint="http://127.0.0.1:8080/panda/messagebroker/amf";
+			ro.endpoint="http://s-32472.gotocdn.com:8080/panda/messagebroker/amf";
 			trace(ro.endpoint);
 		}
 

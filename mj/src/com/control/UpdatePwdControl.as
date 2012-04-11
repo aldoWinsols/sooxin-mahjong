@@ -47,8 +47,8 @@ package com.control
 				this.updatePwd.newPwdLab
 			}
 			
-			RemoteService.instance.playerService.changePwd(MainPlayerService.getInstance().mainPlayer.playername,MD5.hash(this.updatePwd.oldPwd.text),MD5.hash(this.updatePwd.newPwd.text));
-			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,updatePwdResultHandler);
+//			RemoteService.instance.playerService.changePwd(MainPlayerService.getInstance().mainPlayer.playername,MD5.hash(this.updatePwd.oldPwd.text),MD5.hash(this.updatePwd.newPwd.text));
+//			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,updatePwdResultHandler);
 		}
 		
 		private function updatePwdResultHandler(e:ResultEvent):void{

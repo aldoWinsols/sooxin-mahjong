@@ -128,6 +128,9 @@
 		<view:Limit id="limit" horizontalCenter="0" verticalCenter="0" visible="false">
 		</view:Limit>
 		<s:Label left="10" top="10" id="type" color="#FFFFFF" fontSize="16" fontWeight="bold" text="LITE版"/>
+		<s:Image x="311" y="354" source="com/amusement/Mahjong/assets/backB.png"/>
+		<s:Image x="433" y="354" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
+		<s:Image x="555" y="355" source="com/amusement/Mahjong/assets/continueB.png"/>
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->

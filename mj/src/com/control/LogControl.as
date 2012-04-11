@@ -33,19 +33,19 @@ package com.control
 		
 		public function getGameHistoryClickHandler(e:MouseEvent):void{
 			this.log.currentState="game";
-			RemoteService.instance.playlogService.findPlayLog(MainPlayerService.getInstance().mainPlayer.playername);
+			RemoteService.instance.playlogService.findPlayLog(MainPlayerService.getInstance().mainPlayer.playerName);
 			RemoteService.instance.playlogService.addEventListener(ResultEvent.RESULT,getGameHistoryResult);
 		}
 		
 		private function getChongzhiHistoryClickHandler(e:MouseEvent):void{
 			this.log.currentState="chongzhi";
-			RemoteService.instance.chongzhiService.findChongzhiLog(MainPlayerService.getInstance().mainPlayer.playername);
+			RemoteService.instance.chongzhiService.findChongzhiLog(MainPlayerService.getInstance().mainPlayer.playerName);
 			RemoteService.instance.chongzhiService.addEventListener(ResultEvent.RESULT,getChongzhiHistoryResult);
 		}
 		
 		private function getPrizeHistoryClickHandler(e:MouseEvent):void{
 			this.log.currentState="jiangpin";
-			RemoteService.instance.duihuanService.findDuihuanLog(MainPlayerService.getInstance().mainPlayer.playername);
+			RemoteService.instance.duihuanService.findDuihuanLog(MainPlayerService.getInstance().mainPlayer.playerName);
 			RemoteService.instance.duihuanService.addEventListener(ResultEvent.RESULT,getPrizeHistoryResult);
 		}
 		
