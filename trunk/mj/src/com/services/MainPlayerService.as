@@ -45,7 +45,7 @@ package com.services
 		}
 		
 		public function chongzhi(money:int):void{
-			RemoteService.instance.playerService.chongzhi(mainPlayer.playername, money);
+			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
 		}
 		

@@ -94,7 +94,7 @@
 								<fx:Script>
 									<![CDATA[
 										import com.amusement.Mahjong.control.MahjongApplictionControl;
-										import com.control.HomeControl;
+										import com.control.DanjiHomeControl;
 										import com.mahjongSyncServer.services.RoomService;
 										import com.services.DataService;
 										
@@ -106,9 +106,9 @@
 											
 //											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 											
-											HomeControl.instance.home.operation.visible = false;
+											DanjiHomeControl.instance.danjiHome.operation.visible = false;
 											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-											HomeControl.instance.home.visible = false;
+											DanjiHomeControl.instance.danjiHome.visible = false;
 											RoomService.instance.playerVideo(data.gameContent);
 											PopUpManager.removePopUp(outerDocument);
 										}

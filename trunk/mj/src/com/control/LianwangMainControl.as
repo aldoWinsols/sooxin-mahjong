@@ -9,10 +9,16 @@ package com.control
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.services.RemoteService;
+	import com.tencent.weibo.api.Account;
+	import com.tencent.weibo.core.WeiboConfig;
+	import com.tencent.weibo.operation.IRequestOperation;
 	import com.view.LianwangMain;
 	
+	import flash.desktop.NativeApplication;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.managers.CursorManager;
 	import mx.rpc.events.ResultEvent;
 	
 	public class LianwangMainControl
@@ -27,6 +33,8 @@ package com.control
 			this.lianwangMain = lianwangMain;
 			instance = this;
 			
+			CursorManager.setBusyCursor();
+			
 			this.lianwangMain.d60B.addEventListener(MouseEvent.CLICK,d60BClickHandler);
 			this.lianwangMain.d250B.addEventListener(MouseEvent.CLICK,d250BClickHandler);
 			
@@ -39,14 +47,71 @@ package com.control
 			
 			this.lianwangMain.check.addEventListener(MouseEvent.CLICK, check_clickHandler);
 			this.lianwangMain.cancel.addEventListener(MouseEvent.CLICK, cancel_clickHandler);
-			this.lianwangMain.exitB.addEventListener(MouseEvent.CLICK,exitBClickHandler);
-			this.lianwangMain.updatePwdB.addEventListener(MouseEvent.CLICK,updatePwdBClickHandler);
+			this.lianwangMain.lianwang_backB.addEventListener(MouseEvent.CLICK,lianwang_backBClickHandler);
+			this.lianwangMain.lianwang_zhuxiaoB.addEventListener(MouseEvent.CLICK,lianwang_zhuxiaoBClickHandler);
+//			this.lianwangMain.updatePwdB.addEventListener(MouseEvent.CLICK,updatePwdBClickHandler);
 			
 			this.lianwangMain.room10.addEventListener(MouseEvent.CLICK, roomClick);
 			this.lianwangMain.room20.addEventListener(MouseEvent.CLICK,roomClick);
 			this.lianwangMain.room50.addEventListener(MouseEvent.CLICK,roomClick);
-			this.lianwangMain.room100.addEventListener(MouseEvent.CLICK,roomClick);
+//			this.lianwangMain.room100.addEventListener(MouseEvent.CLICK,roomClick);
+			
+			
+			var account:Account = new Account();
+			var request:IRequestOperation=account.info();
+			request.addEventListener(Event.COMPLETE, loginHandler);
 		}
+		
+		private function loginHandler(e:Event):void{
+//			MainPlayerService.getInstance().mainPlayer = MainPlayer(e.target.data.data);
+//			trace(MainPlayerService.getInstance().mainPlayer);
+			var mainPlayer:MainPlayer = new MainPlayer();
+			
+			mainPlayer.birthday = e.target.data.data.birth_day;
+			mainPlayer.birthMonth = e.target.data.data.birth_month;
+			mainPlayer.birthYear = e.target.data.data.biryh_year;
+			mainPlayer.cityCode = e.target.data.data.city_code;
+			mainPlayer.countryCode = e.target.data.data.country_code;
+			mainPlayer.edu = e.target.data.data.edu;
+			mainPlayer.email = e.target.data.data.email;
+			mainPlayer.fansNum = e.target.data.data.fansnum;
+			mainPlayer.head = e.target.data.data.head;
+			mainPlayer.idolNum = e.target.data.data.idolnum;
+			mainPlayer.introduction = e.target.data.data.introduction;
+			mainPlayer.isent = e.target.data.data.isent;
+			mainPlayer.isrealName = e.target.data.data.isrealname;
+			mainPlayer.isvip = e.target.data.data.isvip;
+			mainPlayer.location = e.target.data.data.location;
+			mainPlayer.playerName = e.target.data.data.name;
+			mainPlayer.nick = e.target.data.data.nick;
+			mainPlayer.openid = e.target.data.data.openid;
+			mainPlayer.provinceCode = e.target.data.data.province_code;
+			mainPlayer.sex = e.target.data.data.sex;
+			mainPlayer.tag = e.target.data.data.tag;
+			mainPlayer.tweetnum = e.target.data.data.tweetnum;
+			mainPlayer.verifyinfo = e.target.data.data.verifyinfo;
+
+			RemoteService.instance.playerService.login(mainPlayer);
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+		}
+		
+		private function loginResultHandler(e:ResultEvent):void{
+			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
+			if(e.result is MainPlayer){
+				MainPlayerService.getInstance().mainPlayer = e.result as MainPlayer;
+				
+				MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName);
+				
+				if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, MainPlayerService.getInstance().mainPlayer.offlineGameNo);
+				}
+			}else{
+				Alert.show(e.result.toString());
+			}
+			
+			CursorManager.removeBusyCursor();
+		}
+		
 		
 		protected function roomClick(event:MouseEvent):void{
 			if(!checkIsEnter(event.currentTarget.id)){
@@ -54,19 +119,19 @@ package com.control
 			}
 			switch(event.currentTarget.id){
 				case "room5":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, 5);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 5);
 					break;
 				case "room10":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, 10);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 10);
 					break;
 				case "room20":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, 20);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 20);
 					break;
 				case "room50":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, 50);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 50);
 					break;
 				case "room100":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, 100);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 100);
 					break;
 			}
 		}
@@ -189,7 +254,7 @@ package com.control
 			}
 			
 			var duihuanlog:Duihuanlog = new Duihuanlog();
-			duihuanlog.playerName = MainPlayerService.getInstance().mainPlayer.playername;
+			duihuanlog.playerName = MainPlayerService.getInstance().mainPlayer.playerName;
 			duihuanlog.itemName = lianwangMain.jingpinName.text;
 			duihuanlog.duihuanMoney = Number("7000");
 			duihuanlog.lastHaveMoney = MainPlayerService.getInstance().mainPlayer.haveMoney;
@@ -228,9 +293,17 @@ package com.control
 			lianwangMain.contactAddress.text = "";
 		}
 		
-		private function exitBClickHandler(e:MouseEvent):void{
-			LianwangHomeControl.instance.lianwangHome.currentState = "login";
+		private function lianwang_backBClickHandler(e:MouseEvent):void{
+			MainSenceControl.instance.mainSence.currentState = "login";
 		}
+		
+		private function lianwang_zhuxiaoBClickHandler(e:MouseEvent):void{
+			MainSenceControl.hasAccessToken = false;
+			var configObj:WeiboConfig=WeiboConfig.getInstance();
+			configObj.clearCache();
+			MainSenceControl.instance.mainSence.currentState = "login";
+		}
+		
 		
 		private function updatePwdBClickHandler(e:MouseEvent):void{
 			this.lianwangMain.updatePwd.visible = true;

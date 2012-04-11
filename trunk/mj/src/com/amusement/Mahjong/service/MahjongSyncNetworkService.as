@@ -56,7 +56,7 @@ package com.amusement.Mahjong.service
 		public function connServer(playerName:String, roomType:int):void
 		{
 			MahjongSyncService.instance.isNetwork = true;
-			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
+//			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
 			var connectStr:String = getConnectStr(roomType);

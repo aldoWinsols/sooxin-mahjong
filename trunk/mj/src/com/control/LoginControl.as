@@ -27,7 +27,7 @@ package com.control
 			this.login = login;
 			instance = this;
 			
-			this.login.loginB.addEventListener(MouseEvent.CLICK,loginClickHandler);
+//			this.login.loginB.addEventListener(MouseEvent.CLICK,loginClickHandler);
 			this.login.regeistB.addEventListener(MouseEvent.CLICK,regeistClickHandler);
 			this.login.cancelB.addEventListener(MouseEvent.CLICK,cancelBClickHandler);
 		}
@@ -59,19 +59,24 @@ package com.control
 		}
 		
 		
-		protected function loginClickHandler(event:MouseEvent):void
-		{
-			if(this.login.playerName.text.length < 4){
-				Alert.show("您输入用户有误！");
-				return;
-			}
-			if(this.login.playerPwd.text == ""){
-				Alert.show("您还未输入用户密码！");
-				return;
-			}
-			
-			// TODO Auto-generated method stub
-			RemoteService.instance.playerService.login(login.playerName.text,MD5.hash(login.playerPwd.text));
+//		protected function loginClickHandler(event:MouseEvent):void
+//		{
+//			if(this.login.playerName.text.length < 4){
+//				Alert.show("您输入用户有误！");
+//				return;
+//			}
+//			if(this.login.playerPwd.text == ""){
+//				Alert.show("您还未输入用户密码！");
+//				return;
+//			}
+//			
+//			// TODO Auto-generated method stub
+//			RemoteService.instance.playerService.login(login.playerName.text,MD5.hash(login.playerPwd.text));
+//			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+//		}
+		
+		public function playerLogin(playerName:String):void{
+			RemoteService.instance.playerService.login(playerName);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
 		}
 		
@@ -79,11 +84,14 @@ package com.control
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			if(e.result is MainPlayer){
 				MainPlayerService.getInstance().mainPlayer = e.result as MainPlayer;
-				LianwangHomeControl.instance.lianwangHome.currentState = "main";
-				MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername);
+				
+				MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+//				LianwangHomeControl.instance.lianwangHome.currentState = "main";
+				
+				MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName);
 				
 				if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playername, MainPlayerService.getInstance().mainPlayer.offlineGameNo);
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, MainPlayerService.getInstance().mainPlayer.offlineGameNo);
 				}
 			}else{
 				Alert.show(e.result.toString());

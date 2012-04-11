@@ -9,7 +9,8 @@
 			import com.amusement.Mahjong.MahjongAppliction;
 			import com.amusement.Mahjong.control.MahjongApplictionControl;
 			import com.amusement.Mahjong.service.MahjongSyncService;
-			import com.control.HomeControl;
+			import com.control.DanjiHomeControl;
+			import com.control.MainSenceControl;
 			import com.mahjongSyncServer.model.Player;
 			import com.mahjongSyncServer.services.RoomService;
 			import com.model.Alert;
@@ -20,7 +21,7 @@
 			
 			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
 			{
-				new HomeControl(this);
+				new DanjiHomeControl(this);
 				
 				this.spiner.addEventListener(TouchEvent.TOUCH_TAP,tabHandler);
 				this.spiner.addEventListener(MouseEvent.CLICK,clickHandler);
@@ -92,25 +93,40 @@
 //				MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
 			}
 			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
+				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+			}
+			
+			protected function image2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				operation.visible = false;
+				MainSenceControl.instance.mainSence.mahjongAppliction.visible = true;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				this.visible = false;
+				MahjongSyncService.instance.isNetwork = false;
+				//				MahjongSyncService.instance.connServer(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+				
+				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
+				
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<s:BorderContainer id="resultCont" width="100%" borderVisible="false" height="100%" alpha="0.3"
-					   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
-					   horizontalCenter="0" verticalCenter="0">
-		<s:SpinnerListContainer id="spiner" horizontalCenter="0" verticalCenter="0" width="800" height="480" alpha="0.45">
-			<s:SpinnerList id="players" width="100%" height="100%" color="#E8C10B" fontSize="26"
+
+		<s:SpinnerListContainer visible="false" id="spiner" horizontalCenter="0" verticalCenter="-180" width="800" height="0" alpha="0.3">
+			<s:SpinnerList id="players" width="100%" height="182" color="#FFFFFF" fontSize="26"
 						   fontWeight="bold" selectedIndex="10">
 
 			</s:SpinnerList>
 		</s:SpinnerListContainer>
-	</s:BorderContainer>	
-		<s:Button id="addPlayerB" x="20" y="18" width="120" height="45" label="添加帐户" alpha="0.5"
-				  chromeColor="#FFC600" color="#000000" fontSize="18"/>
-	<s:Button id="closeB" x="680" y="18" width="120" height="45" label="返回大厅" alpha="0.5"
-			  chromeColor="#FF0000" color="#000000" fontSize="18" click="closeB_clickHandler(event)"/>
 	
 	<s:BorderContainer id="operation" borderVisible="false" dropShadowVisible="true" visible="false" width="150" height="250" horizontalCenter="0" verticalCenter="0" cornerRadius="10" backgroundColor="#000000" backgroundAlpha="0.3">
 		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"
@@ -122,8 +138,14 @@
 				  horizontalCenter="0"/>
 		
 	</s:BorderContainer>
-	<view:PlayerAdd id="playerAdd" visible="false" horizontalCenter="0" verticalCenter="0">
+	<view:PlayerAdd id="playerAdd" visible="false" horizontalCenter="0" verticalCenter="-300">
 	</view:PlayerAdd>
 	<view:History id="history" visible="false" horizontalCenter="0" verticalCenter="0">
 	</view:History>
+	<s:Image x="240" y="282" click="image2_clickHandler(event)"
+			 source="assets/danji/danji_beginB.png"/>
+	<s:Image x="432" y="282" click="image1_clickHandler(event)" source="assets/danji/danji_logB.png"/>
+	<s:Image id="danji_exitB" x="518" y="195" source="assets/danji/danji_exitB.png" visible="false"/>
+	<s:Image horizontalCenter="0" source="com/amusement/Mahjong/assets/danji_logo.png"
+			 verticalCenter="-70"/>
 </s:Group>

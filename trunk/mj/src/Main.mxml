@@ -5,11 +5,14 @@
 			   xmlns:view="com.amusement.Mahjong.view.*"
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
 			   maxWidth="1024" maxHeight="768"
+			    creationComplete="application1_creationCompleteHandler(event)"
 			   xmlns:view2="com.view.*" addedToStage="application1_addedToStageHandler(event)"
 			   deactivate="application1_deactivateHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
+			import com.control.MainControl;
+			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
@@ -35,6 +38,12 @@
 				{
 					event.preventDefault();
 				}
+			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainControl(this);
 			}
 			
 		]]>

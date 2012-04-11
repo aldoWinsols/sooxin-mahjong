@@ -3,7 +3,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongInfoControl;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.model.MahjongMessage;
-	import com.control.HomeControl;
+	import com.control.DanjiHomeControl;
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
 
@@ -32,8 +32,8 @@ package com.amusement.Mahjong.service
 				case "exitBtn":
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongRoomControl.instance.isVideo = false;
-					HomeControl.instance.home.operation.visible = true;
-					HomeControl.instance.home.visible = true;
+					DanjiHomeControl.instance.danjiHome.operation.visible = true;
+					DanjiHomeControl.instance.danjiHome.visible = true;
 					break;
 			}
 			
@@ -58,8 +58,8 @@ package com.amusement.Mahjong.service
 				case Alert.YES:
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongRoomControl.instance.isVideo = false;
-					HomeControl.instance.home.operation.visible = true;
-					HomeControl.instance.home.visible = true;
+					DanjiHomeControl.instance.danjiHome.operation.visible = true;
+					DanjiHomeControl.instance.danjiHome.visible = true;
 					//退出錄像播放
 //					MahjongVideo.insance.exitVideo();
 					break;

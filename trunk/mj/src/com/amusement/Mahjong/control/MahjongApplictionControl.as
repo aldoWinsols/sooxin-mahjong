@@ -24,8 +24,6 @@ package com.amusement.Mahjong.control
 		}
 		
 		private function init():void{
-			this._mahjongAppliction.currentState = "MahjongRoomState";
-			
 			this._mahjongAppliction.addEventListener(MouseEvent.MOUSE_UP, dragHandler);
 			
 //			if(MahjongVideo.insance && MahjongVideo.insance.isPopUp){
@@ -52,20 +50,20 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function playMahjong():void{
-			this._mahjongAppliction.currentState = "SelectMahjongRoomState";
+//			this._mahjongAppliction.currentState = "SelectMahjongRoomState";
 		}
 		
 		public function enterGame(roomType:int):void{
-			this._mahjongAppliction.currentState = "MahjongRoomState";
+//			this._mahjongAppliction.currentState = "MahjongRoomState";
 			MahjongRoomControl.instance.enterGame(roomType);
 		}
 		
 		public function exitGame():void{
-			this._mahjongAppliction.currentState = "SelectMahjongRoomState";
+//			this._mahjongAppliction.currentState = "SelectMahjongRoomState";
 		}
 		
 		public function playVideo(content:String, money:Number):void{
-			this._mahjongAppliction.currentState = "MahjongRoomState";
+//			this._mahjongAppliction.currentState = "MahjongRoomState";
 			MahjongVideoControl.instance.constructVideo(content, money);
 			MahjongVideoControl.instance.playVideo();
 		}

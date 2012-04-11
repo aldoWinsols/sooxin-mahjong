@@ -39,8 +39,8 @@ package com.control
 			if(checkPlayerNameLenth() && onPlayerPwdReFocus(null) && onPlayerPwdSameFocus(null) && isPlayerNameHave){
 				// TODO Auto-generated method stub
 				var player:MainPlayer = new MainPlayer();
-				player.playername = regeist.playerNameRe.text;
-				player.playerpwd = MD5.hash(regeist.playerPwdRe.text);
+				player.playerName = regeist.playerNameRe.text;
+				player.playerPwd = MD5.hash(regeist.playerPwdRe.text);
 				RemoteService.instance.playerService.regeist(player);
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, regeistResaultHandler);
 			}
