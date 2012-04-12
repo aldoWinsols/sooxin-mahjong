@@ -471,6 +471,7 @@ package com.amusement.Mahjong.control
 				MahjongSoundService.instance._bgChannel.stop();
 			}
 			
+			_mahjongRoom.jiesuanOperation.visible = true;
 			MahjongBalanceControl.instance.show(this.roomNo, obj.result, obj.playerNames);
 		}
 		

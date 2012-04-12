@@ -2,11 +2,8 @@
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				    borderVisible="false"
-					 dropShadowVisible="true"
-				    backgroundColor="#000000"
-					 backgroundAlpha="0.5"
-					  cornerRadius="10"
-				   width="600" height="300">
+					 backgroundAlpha="0"
+				   width="800" height="480">
 	
 	<fx:Script>
 		<![CDATA[
@@ -15,15 +12,24 @@
 				// TODO Auto-generated method stub
 				this.visible = false;
 			}
+			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Label y="77" color="#FFA800" fontSize="24" horizontalCenter="0" text="四川血战麻将"/>
-	<s:Label y="111" color="#FFA800" fontSize="24" horizontalCenter="0" text="版本：V0.4"/>
-	<s:Label y="145" color="#FFA800" fontSize="24" horizontalCenter="0" text="开发人员：宋薪 龚珉锐"/>
-	<s:Label y="179" color="#FFA800" fontSize="24" horizontalCenter="0" text="EMAIL：sooxin@163.com"/>
-	<s:Button x="272" y="220" label="确定" click="button1_clickHandler(event)"/>
+	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
+	<s:Label y="177" color="#FFA800" fontSize="24" horizontalCenter="-3" text="四川血战麻将"/>
+	<s:Label y="211" color="#FFA800" fontSize="24" horizontalCenter="-3" text="版本：V0.5"/>
+	<s:Label y="245" color="#FFA800" fontSize="24" horizontalCenter="-3" text="开发人员：宋薪 龚珉锐"/>
+	<s:Label y="279" color="#FFA800" fontSize="24" horizontalCenter="-3" text="EMAIL：sooxin@163.com"/>
+	
+	<s:Image x="729" y="10" source="assets/closeB.png" click="image1_clickHandler(event)"/>
 </s:BorderContainer>

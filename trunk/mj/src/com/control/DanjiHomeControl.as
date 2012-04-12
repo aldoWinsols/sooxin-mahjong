@@ -26,6 +26,10 @@ package com.control
 //			this.home.addPlayerB.addEventListener(MouseEvent.CLICK,addPlayerBClickHandler);
 		}
 		
+		public function setStateMain():void{
+			this.danjiHome.currentState = "main";
+		}
+		
 		private function danji_exitBClickHandler(e:MouseEvent):void{
 			MainSenceControl.instance.mainSence.currentState = "login";
 		}
