@@ -31,16 +31,16 @@ package com.amusement.Mahjong.control
 		
 		private function addListeners():void{
 			this._mahjongRalance.showRoHideBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._mahjongRalance.continueBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
-			this._mahjongRalance.exitBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._mahjongRalance.continueBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+//			this._mahjongRalance.exitBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
 		}
 		
 		private function btnClickHandler(event:MouseEvent):void{
 			switch(event.currentTarget.id){
 				case "showRoHideBtn":
 					this._mahjongRalance.resultCont.visible = !this._mahjongRalance.resultCont.visible;
-					this._mahjongRalance.continueBtn.visible = !this._mahjongRalance.continueBtn.visible;
-					this._mahjongRalance.exitBtn.visible = !this._mahjongRalance.exitBtn.visible;
+//					this._mahjongRalance.continueBtn.visible = !this._mahjongRalance.continueBtn.visible;
+//					this._mahjongRalance.exitBtn.visible = !this._mahjongRalance.exitBtn.visible;
 					break;
 				case "continueBtn":
 					this._mahjongRalanceService.continueClickHandler();
@@ -58,6 +58,21 @@ package com.amusement.Mahjong.control
 			}
 		}
 		
+		public function showBalance():void{
+			this._mahjongRalance.resultCont.visible = true;
+		}
+		
+		public function back():void{
+			if(MahjongSyncService.instance.isNetwork){
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+				//						MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = true;
+			}else{					
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+				//						MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
+			}
+			MahjongRoomControl.instance.clearTabletop();
+		}
+		
 		/**
 		 * 显示结算条目 
 		 * @param result
@@ -70,7 +85,7 @@ package com.amusement.Mahjong.control
 			for(var i:int = 0; i<result.length; i ++){
 				grid = new MahjongBalanceGrid();
 				this._mahjongRalance.resultCont.addElement(grid);
-				grid.show(result[i], 150 + i*50, 100);
+				grid.show(result[i], 150 + i*50, 150);
 //				grid.show(result[i], 67 + i*52, 42);
 				
 				total[0] += result[i].azimuth1;
@@ -217,11 +232,11 @@ package com.amusement.Mahjong.control
 			}
 			
 			if(MahjongRoomControl.instance.isVideo){
-				this._mahjongRalance.continueBtn.visible = false;
-				this._mahjongRalance.exitBtn.visible = false;
+//				this._mahjongRalance.continueBtn.visible = false;
+//				this._mahjongRalance.exitBtn.visible = false;
 			}else{
-				this._mahjongRalance.continueBtn.visible = true;
-				this._mahjongRalance.exitBtn.visible = true;
+//				this._mahjongRalance.continueBtn.visible = true;
+//				this._mahjongRalance.exitBtn.visible = true;
 			}
 			this._mahjongRalance.resultCont.visible = true;
 			this._mahjongRalance.visible = true;
@@ -230,8 +245,8 @@ package com.amusement.Mahjong.control
 		public function hide():void{
 			this._mahjongRalance.visible = false;
 			this._mahjongRalance.resultCont.visible = true;
-			this._mahjongRalance.continueBtn.visible = true;
-			this._mahjongRalance.exitBtn.visible = true;
+//			this._mahjongRalance.continueBtn.visible = true;
+//			this._mahjongRalance.exitBtn.visible = true;
 			clearResult();
 		}
 		

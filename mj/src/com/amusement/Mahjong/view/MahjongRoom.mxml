@@ -11,9 +11,12 @@
 	</s:layout>
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongBalanceControl;
 			import com.amusement.Mahjong.control.MahjongPlayerControlD;
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
 			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.service.MahjongBalanceService;
+			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
 			import com.mahjongSyncServer.services.RoomService;
 			
@@ -65,6 +68,27 @@
 				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 			}
 			
+			protected function backB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongBalanceControl.instance.back();
+				this.jiesuanOperation.visible = false;
+				DanjiHomeControl.instance.danjiHome.visible = true;
+			}
+			
+			protected function continueB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongBalanceService.instance.continueClickHandler();
+				this.jiesuanOperation.visible = false;
+			}
+			
+			protected function showBalanceB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongBalanceControl.instance.showBalance();
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -100,19 +124,22 @@
 						   verticalCenter="0">
 			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="353" right="10" color="#FEE300" fontSize="20"/>
-		<s:Image id="exitImage" y="44" right="10" alpha="0.5" smooth="true" click="image1_clickHandler(event)" source="@Embed('assets/icon/Prefs.png')"/>
-		<s:Image y="112" right="10" alpha="0.5" smooth="true"
-				 source="@Embed('assets/icon/Safari2.png')" click="image4_clickHandler(event)"/>
-		<s:Image y="253" right="10" alpha="0.5" source="assets/icon/Facebook.png" click="image3_clickHandler(event)"/>
-		<s:Image y="181" right="10" alpha="0.5" source="assets/icon/Settings.png" click="image2_clickHandler(event)"/>
+		<s:Label id="mahjongsNum" y="330" right="10" color="#FEE300" fontSize="20"/>
+		<s:Image id="exitImage" y="21" right="10" alpha="0.5" click="image1_clickHandler(event)"
+				 smooth="true" source="@Embed('assets/icon/Prefs.png')"/>
+		<s:Image y="89" right="10" alpha="0.5" click="image4_clickHandler(event)" smooth="true"
+				 source="@Embed('assets/icon/Safari2.png')"/>
+		<s:Image y="230" right="10" alpha="0.5" click="image3_clickHandler(event)"
+				 source="assets/icon/Facebook.png"/>
+		<s:Image y="158" right="10" alpha="0.5" click="image2_clickHandler(event)"
+				 source="assets/icon/Settings.png"/>
 		
 		<view:MahjongSeat>
 		</view:MahjongSeat>
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		
-		<s:Button label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)" color="#3C3C3C"
-				  horizontalCenter="-60" verticalCenter="64" visible="false"/>
+		<s:Button visible="false" label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)"
+				  color="#3C3C3C" horizontalCenter="-60" verticalCenter="64"/>
 		
 		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
@@ -125,12 +152,19 @@
 		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:Help>
 		
-		<view:Limit id="limit" horizontalCenter="0" verticalCenter="0" visible="false">
+		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view:Limit>
-		<s:Label left="10" top="10" id="type" color="#FFFFFF" fontSize="16" fontWeight="bold" text="LITE版"/>
-		<s:Image x="311" y="354" source="com/amusement/Mahjong/assets/backB.png"/>
-		<s:Image x="433" y="354" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
-		<s:Image x="555" y="355" source="com/amusement/Mahjong/assets/continueB.png"/>
+		<s:Label id="type" left="10" top="10" color="#FFFFFF" fontSize="16" fontWeight="bold"
+				 text="LITE版"/>
+		
+		<s:BorderContainer id="jiesuanOperation" visible="false" width="350" height="100" backgroundAlpha="0"
+						   borderVisible="false" cornerRadius="8"
+						   horizontalCenter="-60" verticalCenter="177">
+			<s:Image id="backB" click="backB_clickHandler(event)" x="39" y="21" source="com/amusement/Mahjong/assets/backB.png"/>
+			<s:Image id="showBalanceB" click="showBalanceB_clickHandler(event)" x="144" y="21" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
+			<s:Image id="continueB" click="continueB_clickHandler(event)" x="249" y="21" source="com/amusement/Mahjong/assets/continueB.png"/>
+		</s:BorderContainer>
+		
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->

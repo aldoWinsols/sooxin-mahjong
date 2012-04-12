@@ -6,8 +6,10 @@ package com.amusement.Mahjong.service
 
 	public class MahjongBalanceService
 	{
+		public static var instance:MahjongBalanceService;
 		public function MahjongBalanceService()
 		{
+			instance = this;
 		}
 		
 		public function continueClickHandler():void{
