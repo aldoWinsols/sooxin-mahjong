@@ -35,7 +35,7 @@ package com.services{
 		private var table:String = "";
 		
 		public function DataService(){
-			var db:File = File.applicationStorageDirectory.resolvePath("data.db");
+			var db:File = File.applicationStorageDirectory.resolvePath("data1.db");
 			sqlc.openAsync(db);
 			sqlc.addEventListener(SQLEvent.OPEN, db_opened);
 			sqlc.addEventListener(SQLErrorEvent.ERROR, error);

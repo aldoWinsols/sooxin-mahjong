@@ -2,8 +2,11 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:view="com.view.*"
+		 xmlns:Mahjong="com.amusement.Mahjong.*"
 		 width="820" height="500" creationComplete="bordercontainer1_creationCompleteHandler(event)"
-		 currentState="main" fontSize="18">
+		 currentState="main" fontSize="18"
+		 width.history="1024" height.history="768"
+		 width.main="1024" height.main="768">
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.MahjongAppliction;
@@ -23,29 +26,29 @@
 			{
 				new DanjiHomeControl(this);
 				
-				this.spiner.addEventListener(TouchEvent.TOUCH_TAP,tabHandler);
-				this.spiner.addEventListener(MouseEvent.CLICK,clickHandler);
+//				this.spiner.addEventListener(TouchEvent.TOUCH_TAP,tabHandler);
+//				this.spiner.addEventListener(MouseEvent.CLICK,clickHandler);
 				
 			}
 			
-			private function clickHandler(e:MouseEvent):void{
-				operation.visible = true;
-			}
-			
-			private function tabHandler(e:TouchEvent):void{
-				operation.visible = true;
-			}
+//			private function clickHandler(e:MouseEvent):void{
+//				operation.visible = true;
+//			}
+//			
+//			private function tabHandler(e:TouchEvent):void{
+//				operation.visible = true;
+//			}
 			
 			public function button1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
 				if(DataService.players.length == 0){
-					operation.visible = false;
+//					operation.visible = false;
 					Alert.show("请先创建帐户！");
 					return;
 				}
 				
-				operation.visible = false;
+//				operation.visible = false;
 				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 				this.visible = false;
 				MahjongSyncService.instance.isNetwork = false;
@@ -58,26 +61,26 @@
 			protected function button2_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				operation.visible = false;
+//				operation.visible = false;
 			}
 			
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
 				if(players.selectedIndex == -1){
 					Alert.show("请先创建帐户！");
-					operation.visible = false;
+//					operation.visible = false;
 					return;
 				}
 				// TODO Auto-generated method stub
 				DataService.instance.removePlayer(DataService.getPlayerByIndex(players.selectedIndex).id, DataService.getPlayerByIndex(players.selectedIndex).playerName);
-				operation.visible = false;
+//				operation.visible = false;
 			}
 			
 			protected function button4_clickHandler(event:MouseEvent):void
 			{
 				if(players.selectedIndex == -1){
 					Alert.show("请先创建帐户！");
-					operation.visible = false;
+//					operation.visible = false;
 					return;
 				}
 				
@@ -108,10 +111,10 @@
 			protected function image2_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				operation.visible = false;
-				MainSenceControl.instance.mainSence.mahjongAppliction.visible = true;
+//				operation.visible = false;
+				mahjongAppliction.visible = true;
 				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-				this.visible = false;
+				this.mainMenu.visible = false;
 				MahjongSyncService.instance.isNetwork = false;
 				//				MahjongSyncService.instance.connServer(DataService.getPlayerByIndex(players.selectedIndex).playerName);
 				
@@ -137,24 +140,12 @@
 			</s:SpinnerList>
 		</s:SpinnerListContainer>
 	
-	<s:BorderContainer id="operation" includeIn="main" visible="false" width="150" height="250"
-					   backgroundAlpha="0.3" backgroundColor="#000000" borderVisible="false"
-					   cornerRadius="10" dropShadowVisible="true" horizontalCenter="0"
-					   verticalCenter="0">
-		<s:Button y="24" width="120" height="45" label="开始游戏" click="button1_clickHandler(event)"
-				  horizontalCenter="0"/>
-		<s:Button y="75" width="120" height="45" label="游戏记录" click="button4_clickHandler(event)" enabled="true" horizontalCenter="0"/>
-		<s:Button y="128" width="120" height="45" label="删除档案" click="button3_clickHandler(event)"
-				  horizontalCenter="0"/>
-		<s:Button y="178" width="120" height="45" label="关闭" click="button2_clickHandler(event)"
-				  horizontalCenter="0"/>
-		
-	</s:BorderContainer>
 	<view:PlayerAdd id="playerAdd" includeIn="main" visible="false" horizontalCenter="0"
 					verticalCenter="-300">
 	</view:PlayerAdd>
-	
-	<s:Group id="main" includeIn="main" horizontalCenter="0" verticalCenter="0">
+	<Mahjong:MahjongAppliction id="mahjongAppliction" includeIn="main,history" horizontalCenter="0" verticalCenter="0">
+	</Mahjong:MahjongAppliction>
+	<s:Group id="mainMenu" includeIn="main" x="154" y="231">
 		
 		<s:Image y="202" left="190" click="image2_clickHandler(event)"
 				 source="assets/danji/danji_beginB.png"/>

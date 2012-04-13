@@ -4,10 +4,12 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:view="com.amusement.Mahjong.view.*"
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
-			   maxWidth="1024" maxHeight="768"
-			    creationComplete="application1_creationCompleteHandler(event)"
-			   xmlns:view2="com.view.*" addedToStage="application1_addedToStageHandler(event)"
-			   deactivate="application1_deactivateHandler(event)">
+			   xmlns:view2="com.view.*"
+			   width="100%" height="100%" addedToStage="application1_addedToStageHandler(event)"
+			   creationComplete="application1_creationCompleteHandler(event)"
+			   deactivate="application1_deactivateHandler(event)"
+			   splashScreenMinimumDisplayTime="50000"
+			   splashScreenImage="@Embed('assets/splash.png')">
 	
 	<fx:Script>
 		<![CDATA[
@@ -28,6 +30,16 @@
 				// TODO Auto-generated method stub
 				stage.setOrientation(StageOrientation.ROTATED_LEFT);
 				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+				
+				if(this.applicationDPI == 320){
+					mainSence.x = -32;
+					mainSence.y = -64;
+				}else{
+					mainSence.x = 0;
+					mainSence.y = 0;
+				}
+//				mainSence.x = (mainSence.width - this.stage.width)/2;
+//				mainSence.y = (mainSence.height -this.stage.height)/2;
 			}
 			
 			private function onOrientationChanging(event:StageOrientationEvent):void 
@@ -37,6 +49,8 @@
 					event.afterOrientation == StageOrientation.DEFAULT)
 				{
 					event.preventDefault();
+//					mainSence.x = (mainSence.width - this.stage.width)/2;
+//					mainSence.y = (mainSence.height -this.stage.height)/2;
 				}
 			}
 			
@@ -52,6 +66,6 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<view2:MainSence x="0" y="0">
+	<view2:MainSence id="mainSence" x="0" y="0">
 	</view2:MainSence>
 </s:Application>
