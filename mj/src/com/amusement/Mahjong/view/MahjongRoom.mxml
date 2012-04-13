@@ -74,6 +74,7 @@
 				MahjongBalanceControl.instance.back();
 				this.jiesuanOperation.visible = false;
 				DanjiHomeControl.instance.danjiHome.visible = true;
+				DanjiHomeControl.instance.danjiHome.mainMenu.visible = true;
 			}
 			
 			protected function continueB_clickHandler(event:MouseEvent):void
@@ -155,11 +156,11 @@
 		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view:Limit>
 		<s:Label id="type" left="10" top="10" color="#FFFFFF" fontSize="16" fontWeight="bold"
-				 text="LITE版"/>
+				 text="LITE版" visible="false"/>
 		
 		<s:BorderContainer id="jiesuanOperation" visible="false" width="350" height="100" backgroundAlpha="0"
 						   borderVisible="false" cornerRadius="8"
-						   horizontalCenter="-60" verticalCenter="177">
+						   horizontalCenter="0" verticalCenter="177">
 			<s:Image id="backB" click="backB_clickHandler(event)" x="39" y="21" source="com/amusement/Mahjong/assets/backB.png"/>
 			<s:Image id="showBalanceB" click="showBalanceB_clickHandler(event)" x="144" y="21" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
 			<s:Image id="continueB" click="continueB_clickHandler(event)" x="249" y="21" source="com/amusement/Mahjong/assets/continueB.png"/>

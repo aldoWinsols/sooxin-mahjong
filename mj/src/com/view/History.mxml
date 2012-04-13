@@ -29,7 +29,7 @@
 			
 		]]>
 	</fx:Script>
-	<s:Image x="0" y="0" source="assets/historyBg.png"/>
+	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
 	<s:DataGrid id="dg" x="10" y="29" width="762" height="441" alpha="0.5" color="#000000"
 				fontSize="15">
 		<s:columns>
@@ -60,11 +60,14 @@
 											
 //											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 											
-											DanjiHomeControl.instance.danjiHome.operation.visible = false;
+											DanjiHomeControl.instance.danjiHome.history.visible = false;
+//											DanjiHomeControl.instance.danjiHome.operation.visible = false;
+											DanjiHomeControl.instance.danjiHome.mahjongAppliction.visible = true;
+//											MahjongApplictionControl.instance._mahjongAppliction.visible = true;
 											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-											DanjiHomeControl.instance.danjiHome.visible = false;
+//											DanjiHomeControl.instance.danjiHome.visible = false;
 											RoomService.instance.playerVideo(data.gameContent);
-											PopUpManager.removePopUp(outerDocument);
+//											PopUpManager.removePopUp(outerDocument);
 										}
 										
 										protected function button2_clickHandler(event:MouseEvent):void

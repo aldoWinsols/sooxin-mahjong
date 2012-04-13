@@ -219,6 +219,12 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function show(roomNum:Number, result:Array, playerNames:Array):void{
+			
+			if(MahjongRoomControl.instance.isVideo){
+				MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
+			}
+			
+			
 			this._mahjongRalance.roomNum.text = roomNum.toString();
 			this.setPlayerName(playerNames);
 			if(result){

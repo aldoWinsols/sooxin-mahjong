@@ -20,7 +20,7 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
-	<s:TextArea x="12" y="32" width="754" height="435" editable="false" fontSize="14"
+	<s:TextArea x="12" y="32" width="754" height="435" editable="false" fontSize="16"
 				text="四川麻将, 又称血战麻将, 采用四川地区流行的麻将打法, 尤其是成都及周边比较盛行。核心是打缺门, 刮风下雨, 成都计番, 流局查叫。一局牌中, 一家胡牌并不结束牌局, 而是未胡的玩家继续打, 直到3家胡牌或剩余的玩家流局。这样先胡的玩家并不一定获利最多, 点炮的玩家也能翻身, 提高了趣味性, 促进了牌局的稳定发展。牌局结束, 一并结算。&#xd;Sichuan Mahjong, also called bloody battle Mahjong, is a kind of Mahjong prevailing in the province of Sichuan, especially in downtown Chengdu and its surrounding areas. In traditional Mahjong with a set of 108 tiles based on Chinese characters and symbols, each player begins by receiving thirteen tiles. In turn players draw and discard tiles until they complete a legal hand using the fourteenth drawn tile to form four groups (melds) and a pair (head). In Sichuan Mahjong however, completing a legal hand doesn't mean the finishing of the game, but requires the remaining losing players to continue playing until all the three remaining players have won. In that case, the one who wins first doesn't mean earning the most credits or money. It is more interesting and makes players composed in playing. Th settlement is done after all is over."/>
 	<s:Image x="729" y="10" source="assets/closeB.png" click="button1_clickHandler(event)"/>
 </s:BorderContainer>

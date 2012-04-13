@@ -33,22 +33,22 @@
 		<s:Label id="roomNum" x="103" y="85" color="#FE3A06" fontSize="20" fontWeight="bold"
 				 text="00000000000" textAlign="left" verticalAlign="middle"/>
 		
-		<s:Label id="player1" x="54" y="213" width="99" color="#4C4C4C" fontSize="20" text="一"
+		<s:Label id="player1" x="54" y="211" width="99" color="#4C4C4C" fontSize="20" text="一"
 				 textAlign="left" verticalAlign="middle"/>
 		<s:Label id="player2" x="54" y="251" width="99" color="#4C4C4C" fontSize="20" text="二"
 				 textAlign="left" verticalAlign="middle"/>
-		<s:Label id="player3" x="54" y="289" width="99" color="#4C4C4C" fontSize="20" text="三"
+		<s:Label id="player3" x="54" y="291" width="99" color="#4C4C4C" fontSize="20" text="三"
 				 textAlign="left" verticalAlign="middle"/>
-		<s:Label id="player4" x="54" y="327" width="99" color="#4C4C4C" fontSize="20" text="四"
+		<s:Label id="player4" x="54" y="331" width="99" color="#4C4C4C" fontSize="20" text="四"
 				 textAlign="left" verticalAlign="middle"/>
 		
-		<s:Label id="shuying1" x="609" y="213" width="127" color="#4C4C4C" fontSize="20" text="0"
+		<s:Label id="shuying1" x="609" y="211" width="127" color="#4C4C4C" fontSize="20" text="0"
 				 verticalAlign="middle"/>
 		<s:Label id="shuying2" x="609" y="251" width="127" color="#4C4C4C" fontSize="20" text="0"
 				 verticalAlign="middle"/>
-		<s:Label id="shuying3" x="609" y="289" width="127" color="#4C4C4C" fontSize="20" text="0"
+		<s:Label id="shuying3" x="609" y="291" width="127" color="#4C4C4C" fontSize="20" text="0"
 				 verticalAlign="middle"/>
-		<s:Label id="shuying4" x="609" y="327" width="127" color="#4C4C4C" fontSize="20" text="0"
+		<s:Label id="shuying4" x="609" y="331" width="127" color="#4C4C4C" fontSize="20" text="0"
 				 verticalAlign="middle"/>
 		<s:Button id="showRoHideBtn" x="719" y="6" width="80" height="65" label="显/隐" fontSize="20" alpha="0"/>
 		

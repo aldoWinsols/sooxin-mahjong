@@ -84,8 +84,15 @@ package com.amusement.Mahjong.control
 		 * 
 		 */
 		public function restartGame(obj:Object):void{
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
+//			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
+//			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
+			if(MainControl.instance.main.applicationDPI == 320){
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 960;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 640;
+			}else{
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 1024;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 768;
+			}
 			
 			if(MainControl.instance.main.applicationDPI == 160){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
@@ -206,8 +213,13 @@ package com.amusement.Mahjong.control
 		 */
 		public function playVideo(obj:Object):void{
 			_isVideo = true;
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
+			if(MainControl.instance.main.applicationDPI == 320){
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 960;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 640;
+			}else{
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 1024;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 768;
+			}
 			if(MainControl.instance.main.applicationDPI == 160){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerD.bottom = 50;
@@ -314,10 +326,10 @@ package com.amusement.Mahjong.control
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
 			
 			playNum++;
-			if(playNum == 2){
-				MahjongSoundService.instance._soundSwitch = false;
-				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！");
-			}
+//			if(playNum == 2){
+//				MahjongSoundService.instance._soundSwitch = false;
+//				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！");
+//			}
 			
 			if(MahjongSyncService.instance.isNetwork){
 				_mahjongRoom.exitImage.enabled = false;
@@ -325,14 +337,20 @@ package com.amusement.Mahjong.control
 				_mahjongRoom.exitImage.enabled = true;
 			}
 			
-			_mahjongRoom.limit.init();
+//			_mahjongRoom.limit.init();
+//			
+//			if(playNum == 1){
+//				_mahjongRoom.limit.visible = false;
+//			}
 			
-			if(playNum == 1){
-				_mahjongRoom.limit.visible = false;
+			if(MainControl.instance.main.applicationDPI == 320){
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 960;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 640;
+			}else{
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = 1024;
+				MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = 768;
 			}
 			
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
-			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
 			
 			if(MainControl.instance.main.applicationDPI == 160){
 				MahjongRoomControl.instance._mahjongRoom.mahjongPlayerU.top = 80;
