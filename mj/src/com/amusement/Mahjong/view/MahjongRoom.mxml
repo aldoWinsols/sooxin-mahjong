@@ -156,7 +156,7 @@
 		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view:Limit>
 		<s:Label id="type" left="10" top="10" color="#FFFFFF" fontSize="16" fontWeight="bold"
-				 text="LITE版" visible="false"/>
+				 text="您的支持可以让我们的产品更加完美！" visible="false"/>
 		
 		<s:BorderContainer id="jiesuanOperation" visible="false" width="350" height="100" backgroundAlpha="0"
 						   borderVisible="false" cornerRadius="8"

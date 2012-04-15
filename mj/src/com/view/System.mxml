@@ -61,10 +61,10 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
-	<s:Image x="4" y="0" source="assets/xiaoBg.png"/>
+	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
 	<s:Image x="729" y="10" source="assets/closeB.png" click="button1_clickHandler(event)"/>
 	<s:ToggleSwitch id="soundSwitch" x="174" y="94" change="toggleswitch1_changeHandler(event)"
-					fontSize="20" selected="true"/>
+					enabled="true" fontSize="20" selected="true"/>
 	<s:ToggleSwitch id="bgSound" x="178" y="168" enabled="true" fontSize="20" change="toggleswitch2_changeHandler(event)" selected="true"/>
 	<s:Label x="87" y="100" fontSize="20" text="声音："/>
 	<s:Label x="59" y="172" fontSize="20" text="背景音乐："/>
@@ -79,11 +79,11 @@
 				  color="#000000"/>
 		
 	</s:BorderContainer>-->
-	<s:HSlider id="level" x="175" y="300" width="300"
-			   change="level_changeHandler(event)"
-			   maximum="100" minimum="0"
-			   stepSize="1" value="10"/>
-	<s:RadioButton id="boy" x="178" fontSize="20" y="240" label="四川方言男生" click="boy_clickHandler(event)"/>
-	<s:RadioButton x="359" y="240" fontSize="20" label="四川方言女生" selected="true" click="boy_clickHandler(event)"/>
+	<s:HSlider id="level" x="175" y="300" width="300" change="level_changeHandler(event)"
+			   liveDragging="false" enabled="true" maximum="100" minimum="0" stepSize="1" value="10"/>
+	<s:RadioButton id="boy" x="178" y="240" label="四川方言男生" click="boy_clickHandler(event)"
+				   enabled="true" fontSize="20"/>
+	<s:RadioButton x="359" y="240" label="四川方言女生" click="boy_clickHandler(event)" enabled="true"
+				   fontSize="20" selected="true"/>
 	<s:Label x="59" y="244" fontSize="20" text="出牌声音："/>
 </s:BorderContainer>

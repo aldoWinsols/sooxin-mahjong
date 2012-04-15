@@ -26,12 +26,14 @@ package com.control
 			this.mainSence = mainSence;
 			instance = this;
 			
-			ConfigService.instance;
+//			ConfigService.instance;
 			
+			this.mainSence.currentState = "login";
+			this.mainSence.currentState = "lianwangHome";
 			this.mainSence.currentState = "verifier";
 			this.mainSence.currentState = "danjiHome";
 			
-			mobileConfig();
+//			mobileConfig();
 			
 			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
 			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);

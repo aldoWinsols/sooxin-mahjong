@@ -44,7 +44,7 @@
 		<s:BorderContainer width="800" height="600" alpha="0.7" backgroundColor="#000000"
 						   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
 			<s:Label y="21" color="#FF0000" fontSize="30" fontWeight="bold" horizontalCenter="0"
-					 text="更多信息请访问：WWW.SOOXIN.NET"/>
+					 text="现在支持完整版的用户，在0.6版本推出的网络版中&#xd;可获赠送价值30元的游戏点卡！"/>
 			
 			
 		</s:BorderContainer>
@@ -52,11 +52,12 @@
 					horizontalCenter="0"
 					text="完整版功能：&#xd;1.界面操作更优化&#xd;2.游戏难度可调节&#xd;3.随时查看游戏录象，回顾游戏总结经验&#xd;4.四川方言配音男女声可选&#xd;&#xd;未来：&#xd;1.连网对战&#xd;2.gameCenter排名&#xd;3.牌型分析处理工具&#xd;4.麻将实战学习提高教程&#xd;5.界面操作优化&#xd;6.更多多功能......"
 					verticalCenter="110"/>
-		<s:Label y="83" color="#36D000" fontSize="20" fontWeight="bold" horizontalCenter="0"
+		<s:Label y="104" color="#36D000" fontSize="20" fontWeight="bold" horizontalCenter="0"
 				 text="此窗口将在         后自动关闭！"/>
-		<s:Button y="137" label="如果您喜欢，点我试试完整版" chromeColor="#f6cb00" click="button1_clickHandler(event)"
-				  color="#FF0000" fontWeight="bold" horizontalCenter="0"/>
-		<s:Label x="376" y="84" color="#FF0000" fontSize="20" fontWeight="bold" text="标签" id="timeNum"/>
+		<s:Button y="143" width="308" height="55" label="如果您喜欢，点我试试完整版" chromeColor="#f6cb00"
+				  click="button1_clickHandler(event)" color="#FF0000" fontSize="20"
+				  fontWeight="bold" horizontalCenter="0"/>
+		<s:Label x="376" y="105" color="#FF0000" fontSize="20" fontWeight="bold" text="标签" id="timeNum"/>
 	</s:Group>
 	
 </s:Group>

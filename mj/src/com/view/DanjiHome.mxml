@@ -102,6 +102,8 @@
 			{
 				// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
+				
+//				Alert.show("请尝试完整版！现在支持完整版的用户，在0.6版本推出的网络版中可获赠送价值30元的游戏点卡！");
 				this.currentState = "history";
 				
 				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
