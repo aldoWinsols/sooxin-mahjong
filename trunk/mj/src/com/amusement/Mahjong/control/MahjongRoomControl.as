@@ -325,10 +325,10 @@ package com.amusement.Mahjong.control
 		var playNum:int = 0;
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
 			
-			playNum++;
+//			playNum++;
 //			if(playNum == 2){
 //				MahjongSoundService.instance._soundSwitch = false;
-//				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！");
+//				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！现在支持完整版的用户，在0.6版本推出的网络版中可获赠送价值30元的游戏点卡！");
 //			}
 			
 			if(MahjongSyncService.instance.isNetwork){
