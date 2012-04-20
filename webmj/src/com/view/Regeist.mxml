@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" borderVisible="true" cornerRadius="8" borderColor="#ffffff" borderAlpha="0.1"
+		 xmlns:s="library://ns.adobe.com/flex/spark" backgroundAlpha="0" width="614" height="300" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.control.RegeistControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub]
+				new RegeistControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:TextInput id="playerNameRe" x="142" y="40" restrict="a-zA-Z0-9" maxChars="10"/>
+	<s:TextInput id="playerPwdRe" x="142" y="96" displayAsPassword="true"/>
+	<s:TextInput id="playerPwdSame" x="142" y="157" displayAsPassword="true"/>
+	<s:Button id="regeistCheckB" x="142" y="219" width="100" label="提交"/>
+	<s:Button id="regeistCancelB" x="250" y="219" width="100" label="取消"/>
+	<s:Label x="54" y="49" color="#FFFFFF" text="用户名："/>
+	<s:Label x="69" y="106" color="#FFFFFF" text="密码："/>
+	<s:Label x="36" y="167" color="#FFFFFF" text="重复密码："/>
+	<s:Label id="lblPointOut" x="458" y="47" color="#FF0000" text=""/>
+	<s:Label id="lblPointOutPwd" x="458" y="101" color="#FF0000" text=""/>
+	<s:Label id="lblPointOutPwdSame" x="458" y="162" color="#FF0000" text=""/>
+</s:BorderContainer>

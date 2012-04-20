@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="204" height="16">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			
+			//  2011-5-17   11:16  修改的网络质量
+			public function setStateWidth(width:int):void{
+				if(width > 100){
+					width = 100;
+				}
+				state.width = width;
+				if(width < 60){
+					
+					//				Alert.show("你当前的网络质量很差！");
+				} 
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Label x="3" color="#B9B9B9" fontSize="14" text="当前网络质量" verticalCenter="0"/>
+	<!--<s:Label text="当前网络质量"  fontSize="14" x="3" y="2"/>-->
+	<s:BorderContainer x="97" verticalCenter="0" width="100" height="4" cornerRadius="4" borderColor="#4E595B"/>
+	<s:BorderContainer id="state" x="97" verticalCenter="0" width="0" height="2" cornerRadius="4" borderVisible="false" backgroundColor="#14C9E0"/>
+	<!--<mx:Canvas x="97" y="6" backgroundColor="#000000" width="100" height="4" cornerRadius="4" borderStyle="solid" borderColor="#4E595B"/>
+	<mx:Canvas id="state" x="97" y="7" backgroundColor="#14C9E0" width="100" height="2" cornerRadius="4"/>-->
+</s:Group>

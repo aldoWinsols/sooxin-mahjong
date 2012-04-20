@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:view="com.view.*"
+				   width="960" height="640" backgroundAlpha="0.3" backgroundColor="#000000"
+				   borderVisible="false" cornerRadius="10"
+				   creationComplete="bordercontainer2_creationCompleteHandler(event)"
+				   dropShadowVisible="true">
+		
+	<fx:Script>
+		<![CDATA[
+			import com.control.LianwangHomeControl;
+			import com.services.MainPlayerService;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.ElementExistenceEvent;
+			
+
+			
+			protected function bordercontainer2_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new LianwangHomeControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="main"/>
+		<s:State name="log"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<view:LianwangMain includeIn="main" x="0" y="0">
+	</view:LianwangMain>
+	<view:Log includeIn="log" x="0" y="-1">
+	</view:Log>
+</s:BorderContainer>

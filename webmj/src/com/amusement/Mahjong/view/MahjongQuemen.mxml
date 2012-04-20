@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx" 
+		  width="90" height="70" 
+		 fontFamily="黑体" fontSize="14" color="#c69600"
+		  title="請選擇" xmlns:model="com.model.*">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<model:Button id="wangBtn" x="0" y="0"
+				  skin="@Embed(source='../assets/quemen/mj_wan_btn.png')"
+				  downSkin="@Embed(source='../assets/quemen/mj_wan_down.png')"
+				  enabled="false"/>
+	<model:Button id="tongBtn" x="30" y="0"
+				  skin="@Embed(source='../assets/quemen/mj_tong_btn.png')"
+				  downSkin="@Embed(source='../assets/quemen/mj_tong_down.png')"
+				  enabled="false"/>
+	<model:Button id="tiaoBtn" x="60" y="0"
+				  skin="@Embed(source='../assets/quemen/mj_tiao_btn.png')"
+				  downSkin="@Embed(source='../assets/quemen/mj_tiao_down.png')"
+				  enabled="false"/>
+</s:Panel>
