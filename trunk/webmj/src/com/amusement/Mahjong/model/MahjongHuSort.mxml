@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="63" height="28"
+		 fontFamily="黑体" fontSize="12" color="#8d3e13">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image x="0" y="0" source="@Embed(source='../assets/huSort/mj_hsort_bg.png')"/>
+	<s:Label id="sortTxt" horizontalCenter="-1" verticalCenter="0" verticalAlign="middle" textAlign="center" fontWeight="bold"/>
+</s:Group>

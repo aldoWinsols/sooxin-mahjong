@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="group1_creationCompleteHandler(event)"
+		 width="800" height="600">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+			}
+			
+			var num:int = 30;
+			public function init():void{
+				num = 30;
+				this.visible = true;
+				timer.start();
+			}
+			var timer:Timer;
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				timer = new Timer(1000);
+				timer.addEventListener(TimerEvent.TIMER,timeHandler);
+			}
+			
+			private function timeHandler(e:TimerEvent):void{
+				num--;
+				this.timeNum.text = num+"";
+				
+				if(num == 0){
+					this.visible = false;
+					timer.stop();
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Group id="lim">
+		<s:BorderContainer width="800" height="600" alpha="0.7" backgroundColor="#000000"
+						   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
+			<s:Label y="21" color="#FF0000" fontSize="30" fontWeight="bold" horizontalCenter="0"
+					 text="现在支持完整版的用户，在0.6版本推出的网络版中&#xd;可获赠送价值30元的游戏点卡！"/>
+			
+			
+		</s:BorderContainer>
+		<s:TextArea width="760" height="338" color="#000000" editable="false" fontSize="20"
+					horizontalCenter="0"
+					text="完整版功能：&#xd;1.界面操作更优化&#xd;2.游戏难度可调节&#xd;3.随时查看游戏录象，回顾游戏总结经验&#xd;4.四川方言配音男女声可选&#xd;&#xd;未来：&#xd;1.连网对战&#xd;2.gameCenter排名&#xd;3.牌型分析处理工具&#xd;4.麻将实战学习提高教程&#xd;5.界面操作优化&#xd;6.更多多功能......"
+					verticalCenter="110"/>
+		<s:Label y="104" color="#36D000" fontSize="20" fontWeight="bold" horizontalCenter="0"
+				 text="此窗口将在         后自动关闭！"/>
+		<s:Button y="143" width="308" height="55" label="如果您喜欢，点我试试完整版" chromeColor="#f6cb00"
+				  click="button1_clickHandler(event)" color="#FF0000" fontSize="20"
+				  fontWeight="bold" horizontalCenter="0"/>
+		<s:Label x="376" y="105" color="#FF0000" fontSize="20" fontWeight="bold" text="标签" id="timeNum"/>
+	</s:Group>
+	
+</s:Group>

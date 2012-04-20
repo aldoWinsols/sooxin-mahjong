@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 xmlns:Mahjong="com.amusement.Mahjong.*"
+		 width="1024" height="768" creationComplete="group1_creationCompleteHandler(event)"
+		 currentState="login">
+	<fx:Script>
+		<![CDATA[
+			import com.control.MainSenceControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainSenceControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="lianwangHome"/>
+		<s:State name="danjiHome"/>
+		<s:State name="verifier"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image id="mjRoomBgImg" horizontalCenter="0" source="@Embed('assets/index.jpg')"
+			 verticalCenter="0"/>
+	<s:Label includeIn="login" x="250" y="584" color="#B0B0B0" fontSize="14"
+			 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
+	<s:Label includeIn="login" x="424" y="612" color="#B0B0B0" fontSize="14" text="如有投诉或建议,请联系我们."/>
+	<s:Image id="verifierCommitB" includeIn="verifier" x="390" y="416" width="120"
+			 source="assets/but/check.png"/>
+	<s:Image id="mainButYK" includeIn="login" x="459" y="320"
+			 source="assets/but/mainButYK.png"/>
+	<s:Image id="mainButQQ" includeIn="login" x="325" y="320"
+			 source="assets/but/mainButQQ.png"/>
+	<s:Image id="mainButDJ" includeIn="login" x="594" y="320"
+			 source="assets/but/mainButDJ.png"/>
+	<s:TextInput id="verInput" includeIn="verifier" y="362" height="45" fontSize="24"
+				 fontWeight="bold" horizontalCenter="0" textAlign="center"/>
+	<s:Image id="verifierCancelB" includeIn="verifier" x="514" y="416" source="assets/but/cancel.png"/>
+	<s:Image includeIn="verifier" x="378" y="310" source="assets/shouquanL.png"/>
+	<view:DanjiHome includeIn="danjiHome" x="0" y="0">
+	</view:DanjiHome>
+</s:Group>
