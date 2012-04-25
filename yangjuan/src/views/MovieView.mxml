@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="view1_creationCompleteHandler(event)" title="Movie enjoy" xmlns:views="views.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			import playVideo.SimpleStageVideo;
+			private var text:TextField;
+			private var ui:UIComponent;
+			private var video:SimpleStageVideo;
+			
+			protected function policyTabButton_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.popView();
+			}
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				ui = new UIComponent();
+				this.addElement(ui);
+				
+				createText("舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。",
+							192,71);
+				createText("中东风格运用大量的旋转以及地方特色的手势，这个舞蹈妩媚性感，情感层次多面时而可爱时而惊讶时而带点调侃意味非常具备观赏性。",
+							192,171);
+				createText("美国部落舞运用多种风格的现代舞蹈元素与肚皮舞相结合，重点用到机械舞蹈的风格对身体肌肉进行控制和打点、卡力等，该风格另类乖张，精神面压抑但是又透露冷艳和孤傲的感觉，整个舞蹈氛围布景应该已深色为主，阴柔之美和力量之美的集合。灯光一般诡异暗淡。",
+							192,271);
+				createText("西班牙的大圆裙舞蹈与肚皮舞的结合风格，舞蹈大气奔放豪迈激情，将女性的独立面个性面展现的很好同时再结合一些细小的埃及特色的修饰性动作的处理是整个画面柔中带刚，娇媚与洒脱并存",
+							192,371);
+				createText("大量的运用大幅度的拉扯、跨越、等动作，加上非常动感的西迷结合现代感时尚感很强的爵士和部落舞的元素整个舞蹈动感帅气",
+							192,471);
+				/* createText("纱巾舞蹈，利用纱巾的飘逸柔顺的感觉塑造柔媚娇羞的女性美，后半段节奏偏快转为西班牙舞的大气与整齐感，鼓舞的身体控制也非常具有特色和观赏性",
+							192,571);
+				createText("适合荤暗的灯光和背景，使用颜色较深的薄纱作为道具，大量的使用旋转和纱巾手上的技巧营造出虚虚实实的梦幻感觉舞者可以加入个人的感情作为主要情绪背景，从复苏到憧憬到挣扎到释然的的情感历程。",
+							192,671);
+				createText("羽毛扇的温润柔软配合舞者的悠然雍懒的舞步称托出小女人的风韵和魅力。。。。一个美丽的女人拿着绒毛的扇子在午后的阳光里悠闲的漫步舞动。",
+							192,771);
+				createText("主要以叙事为主的情感舞蹈，讲述舞者在精力感情的念念不忘、欲罢不能之后跑开忧伤一切从新再来，舞蹈的动作会重点通过一些小动作的刻画来描写出这一感情里程",
+							192,871);
+				createText("传统埃及的SAIDI风格，特有的埃及特色加上一些风情的小动作变换整个风格欢快喜庆但是又很有女人魅力，性感与活泼相结合。",
+							192,971);
+				createText("抒情、忧伤、别离之情，通过舞者如泣如述的舞步和面部表情刻画一个非常唯美的画面",
+							192,1071); */
+			}
+			
+			private function createText(content:String, x:int, y:int):void{
+				text = new TextField();
+				ui.addChild(text);
+				text.x = x;
+				text.y = y;
+				text.multiline = true;
+				text.wordWrap = true;
+				text.width = 393;
+				text.height = 58;
+				
+				text.text = content;
+			}
+			
+			protected function label1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.pushView(VideoView, "apple-iphone4-design_video-us-20100607_848x480.mov");
+			}
+			
+			protected function label2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.pushView(VideoView, "zxy.flv");
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:navigationContent>
+		<s:Button label="BACK" click="policyTabButton_clickHandler(event)"/>
+	</s:navigationContent>
+	
+	<s:Image x="94" y="47" width="81" height="78"/>
+	<s:Label x="184" y="47" text="长扇舞"/>
+	<s:Label x="94" y="47" width="82" height="78" click="label1_clickHandler(event)" fontSize="20"
+			 text="长扇舞" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="147" width="81" height="78"/>
+	<s:Label x="184" y="147" text="埃及舞娘" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="147" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="埃及舞娘" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="247" width="81" height="78"/>
+	<s:Label x="184" y="247" text="迷梦" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="247" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="迷梦" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="347" width="81" height="78"/>
+	<s:Label x="184" y="347" text="Burning rose：弗朗明歌风格" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="347" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="Burning rose：弗朗明歌风格" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="447" width="81" height="78"/>
+	<s:Label x="184" y="447" text="游乐场：爵士肚皮舞" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="447" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="游乐场：爵士肚皮舞" textAlign="center" verticalAlign="middle"/>
+	
+	<!--<s:Image x="94" y="547" width="81" height="78"/>
+	<s:Label x="184" y="547" text="Yalahabibi：中东与西班牙风格" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="547" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="Yalahabibi：中东与西班牙风格" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="647" width="81" height="78"/>
+	<s:Label x="184" y="647" text="Yalahabibi：梦幻土耳其：土耳其纱舞" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="647" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="Yalahabibi：梦幻土耳其：土耳其纱舞" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="747" width="81" height="78"/>
+	<s:Label x="184" y="747" text="扇之魅" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="747" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="扇之魅" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="847" width="81" height="78"/>
+	<s:Label x="184" y="847" text="一切从头" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="847" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="一切从头" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="947" width="81" height="78"/>
+	<s:Label x="184" y="947" text="风情藤杖" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="947" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="风情藤杖" textAlign="center" verticalAlign="middle"/>
+	
+	<s:Image x="94" y="1047" width="81" height="78"/>
+	<s:Label x="184" y="1047" text="离情" click="label2_clickHandler(event)"/>
+	<s:Label x="94" y="1047" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
+			 text="离情" textAlign="center" verticalAlign="middle"/>-->
+	
+	
+	<!--<s:Scroller x="67" y="45" width="584" height="468">
+		<s:VGroup>
+			<views:Info title="长扇舞" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="埃及舞娘" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="迷梦" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="Burning rose：弗朗明歌风格" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="游乐场：爵士肚皮舞" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="Yalahabibi：中东与西班牙风格" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="Yalahabibi：梦幻土耳其：土耳其纱舞" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="扇之魅" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="一切从头" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="风情藤杖" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+			<views:Info title="离情" content="舞蹈飘逸秀美，运用中国舞蹈的风格与肚皮舞相结合，是支创意肚皮舞，舞者突出对道具扇子的运用，尽量旋转盘绕，尽量用扇子的真丝质感渲染舞台。" />
+		</s:VGroup>
+	</s:Scroller>-->
+	
+</s:View>
