@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		actionBarVisible="false" tabBarVisible="false" title="view2">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function policyTabButton_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.popView();
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:ViewNavigator id="policyTab" width="100%" height="100%" title="Movie enjoy">
+		<s:navigationContent>
+			<s:Button id="policyTabButton" label="BACK" click="policyTabButton_clickHandler(event)" />
+		</s:navigationContent>
+	</s:ViewNavigator>
+	<s:Label x="262" y="202" width="235" height="102" fontSize="50" text="View6"/>
+</s:View>

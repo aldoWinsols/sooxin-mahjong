@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+							xmlns:s="library://ns.adobe.com/flex/spark"
+						 addedToStage="viewnavigatorapplication1_addedToStageHandler(event)"
+							firstView="views.MainView">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function viewnavigatorapplication1_addedToStageHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				stage.setOrientation(StageOrientation.ROTATED_LEFT);
+				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+			}
+			
+			private function onOrientationChanging(event:StageOrientationEvent):void 
+			{
+				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
+					event.afterOrientation == StageOrientation.UNKNOWN ||
+					event.afterOrientation == StageOrientation.DEFAULT)
+				{
+					event.preventDefault();
+					//					mainSence.x = (mainSence.width - this.stage.width)/2;
+					//					mainSence.y = (mainSence.height -this.stage.height)/2;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+</s:ViewNavigatorApplication>
