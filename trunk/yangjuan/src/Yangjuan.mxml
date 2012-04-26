@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
 							xmlns:s="library://ns.adobe.com/flex/spark"
-						 addedToStage="viewnavigatorapplication1_addedToStageHandler(event)"
+						 addedToStage="viewnavigatorapplication1_addedToStageHandler(event)" creationComplete="viewnavigatorapplication1_creationCompleteHandler(event)"
 							firstView="views.MainView">
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
+			public static var instance:Yangjuan;
 			protected function viewnavigatorapplication1_addedToStageHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
@@ -24,6 +26,14 @@
 					//					mainSence.y = (mainSence.height -this.stage.height)/2;
 				}
 			}
+			
+			protected function viewnavigatorapplication1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				instance = this;
+				
+			}
+			
 		]]>
 	</fx:Script>
 	

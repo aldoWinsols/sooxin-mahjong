@@ -18,5 +18,5 @@
 	<s:navigationContent>
 		<s:Button label="BACK" click="policyTabButton_clickHandler(event)"/>
 	</s:navigationContent>
-	<s:Label x="262" y="202" width="235" height="102" fontSize="50" text="View7"/>
+	<s:Image horizontalCenter="0" source="@Embed(source='assets/introduce.jpg')" verticalCenter="0"/>
 </s:View>
