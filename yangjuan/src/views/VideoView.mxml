@@ -274,7 +274,7 @@
 						stageVideoInUse = false;
 					classicVideoInUse = true;
 					video.attachNetStream(ns);
-					ui.addChildAt(video, 0);
+					ui.addChild(video);
 				}
 				
 				if ( !played ) 
