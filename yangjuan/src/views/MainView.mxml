@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		actionBarVisible="false" tabBarVisible="false" title="主页视图">
+		actionBarVisible="false" tabBarVisible="false" title="主页视图" addedToStage="view1_addedToStageHandler(event)" creationComplete="view1_creationCompleteHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
@@ -42,13 +43,40 @@
 				navigator.pushView(InformationView);
 			}
 			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(Yangjuan.instance != null){
+					// TODO Auto-generated method stub
+					
+					if(Yangjuan.instance.applicationDPI  == 320){
+						bg.x = -32;
+						bg.y = -64;
+					}
+				}
+			}
+			
+			
+			protected function view1_addedToStageHandler(event:Event):void
+			{
+				if(bg != null){
+					// TODO Auto-generated method stub
+
+					if(Yangjuan.instance.applicationDPI  == 320){
+						bg.x = -32;
+						bg.y = -64;
+					}
+				}
+				
+			}
+			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image horizontalCenter="0" source="@Embed(source='assets/index.jpg')" verticalCenter="0"/>
+	<s:Image id="bg" x="0" y="0" source="@Embed(source='assets/index.jpg')"/>
 	<s:Image right="166" bottom="285" click="button1_clickHandler(event)"
 			 source="@Embed(source='assets/but/bellydanceB.png')"/>
 	<s:Image right="166" bottom="145" click="button2_clickHandler(event)"

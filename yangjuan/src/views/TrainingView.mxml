@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:s="library://ns.adobe.com/flex/spark" title="Belly dance training">
+		xmlns:s="library://ns.adobe.com/flex/spark" title="Belly dance training" creationComplete="view1_creationCompleteHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
 			protected function policyTabButton_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
 				navigator.popView();
 			}
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(Yangjuan.instance.applicationDPI  == 320){
+					bg.x = -32;
+					bg.y = -64;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -18,5 +29,5 @@
 	<s:navigationContent>
 		<s:Button label="BACK" click="policyTabButton_clickHandler(event)"/>
 	</s:navigationContent>
-	<s:Image horizontalCenter="0" source="@Embed(source='assets/introduce.jpg')" verticalCenter="0"/>
+	<s:Image id="bg" x="0" source="@Embed(source='assets/introduce.jpg')" y="0"/>
 </s:View>
