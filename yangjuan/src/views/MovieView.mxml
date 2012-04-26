@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="view1_creationCompleteHandler(event)" title="Movie enjoy" xmlns:views="views.*">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:views="views.*"
+		color="#FFFFFF" creationComplete="view1_creationCompleteHandler(event)" title="Movie enjoy">
 	
 	<fx:Script>
 		<![CDATA[
@@ -46,6 +48,10 @@
 							192,971);
 				createText("抒情、忧伤、别离之情，通过舞者如泣如述的舞步和面部表情刻画一个非常唯美的画面",
 							192,1071); */
+				
+				if(Yangjuan.instance.applicationDPI == 320){
+					this.bg.y = -50;
+				}
 			}
 			
 			private function createText(content:String, x:int, y:int):void{
@@ -64,13 +70,13 @@
 			protected function label1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				navigator.pushView(VideoView, "apple-iphone4-design_video-us-20100607_848x480.mov");
+				navigator.pushView(VideoView, "/video/apple-iphone4-design_video-us-20100607_848x480.mov");
 			}
 			
 			protected function label2_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				navigator.pushView(VideoView, "zxy.flv");
+				navigator.pushView(VideoView, "/video/apple-iphone4-design_video-us-20100607_848x480.mov");
 			}
 			
 		]]>
@@ -82,7 +88,7 @@
 	<s:navigationContent>
 		<s:Button label="BACK" click="policyTabButton_clickHandler(event)"/>
 	</s:navigationContent>
-	
+	<s:Image id="bg" x="0" source="assets/movieBg.jpg" y="0"/>
 	<s:Image x="94" y="47" width="81" height="78"/>
 	<s:Label x="184" y="47" text="长扇舞"/>
 	<s:Label x="94" y="47" width="82" height="78" click="label1_clickHandler(event)" fontSize="20"
@@ -107,6 +113,7 @@
 	<s:Label x="184" y="447" text="游乐场：爵士肚皮舞" click="label2_clickHandler(event)"/>
 	<s:Label x="94" y="447" width="82" height="78" click="label2_clickHandler(event)" fontSize="20"
 			 text="游乐场：爵士肚皮舞" textAlign="center" verticalAlign="middle"/>
+	
 	
 	<!--<s:Image x="94" y="547" width="81" height="78"/>
 	<s:Label x="184" y="547" text="Yalahabibi：中东与西班牙风格" click="label2_clickHandler(event)"/>

@@ -18,5 +18,13 @@
 	<s:navigationContent>
 		<s:Button label="BACK" click="policyTabButton_clickHandler(event)"/>
 	</s:navigationContent>
-	<s:Label x="262" y="202" width="235" height="102" fontSize="50" text="View3"/>
+	<s:BorderContainer width="100%" height="100%" backgroundColor="#cccccc">
+		<s:Label y="240" left="152" fontWeight="normal"
+				 text="Copyright:Panda Technology Co.,Ltd @ 2012"/>
+		<s:Label y="283" left="152" fontWeight="normal" text="Web:www.sooxin.net"/>
+		<s:Label y="326" left="152" fontWeight="normal" text="Email:sooxin@gmail.com"/>
+		<s:Label y="188" left="152" fontWeight="normal" text="Version:0.1"/>
+		
+		
+	</s:BorderContainer>
 </s:View>
