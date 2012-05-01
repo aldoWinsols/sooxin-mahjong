@@ -6,30 +6,83 @@
 	<s:layout>
 		<s:BasicLayout/>
 	</s:layout>
+	
+	
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.control.MahjongSeatControl;
 			
+			import mx.controls.ToolTip;
+			import mx.effects.Zoom;
 			import mx.events.FlexEvent;
+			import mx.events.ToolTipEvent;
+			import mx.managers.ToolTipManager;
 			
+			var chat:Array = new Array();
+			var point:Vector.<Point> = new Vector.<Point>();
+			var showTimer:Timer;
 
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				new MahjongSeatControl(this);
+				
+				chat.push("嘿！自从打了四川麻将，腰不痛了，腿也不酸了，吃饭也吃得香了！");
+				chat.push("一天不打麻将心理发慌");
+				chat.push("两天不打麻将神经紧张");
+				
+				point.push(new Point(50,300));
+				point.push(new Point(650,300));
+				point.push(new Point(350,100));
+				
+				showTimer = new Timer(8000);
+				showTimer.addEventListener(TimerEvent.TIMER,showHandler)
+				showTimer.start();
+				
+				
+//			
+			}
+			
+			
+			public function startShowChat():void{
+				showTimer.start();
+			}
+			
+			var myTip:ToolTip;
+			private function showHandler(e:TimerEvent):void{
+				if(myTip == null){
+					if(Math.round(Math.random()*10)%2 == 0){
+					ToolTipManager.showEffect = fadeIn;
+
+					var len:int = Math.random()*chat.length;
+					var len2:int = Math.random()*point.length;
+						myTip = ToolTipManager.createToolTip(chat[len], point[len2].x, point[len2].y) as ToolTip; 
+						
+					}
+				}else{
+					ToolTipManager.destroyToolTip(myTip);
+					myTip = null;
+				}
+				
 			}
 
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
-		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:Animate id="tipShow" duration="1000">
+			<s:SimpleMotionPath id="tipWidth" property="width" valueFrom="0" valueTo="250" />
+			<s:SimpleMotionPath id="tipHeight" property="height" valueFrom="0" valueTo="250" />
+		</s:Animate>
+		<s:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="10000" />  
 	</fx:Declarations>
+	
 	<s:Image id="oneImg" visible="false" x="0" y="0" name="img1"
-			 source="com/amusement/Mahjong/assets/seat/1.png"/>
-	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2"
+			 source="com/amusement/Mahjong/assets/seat/1.png" toolTip="ggggggggggggggggggggggg"/>
+	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "
 			 source="com/amusement/Mahjong/assets/seat/2.png"/>
-	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3"
+	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "
 			 source="com/amusement/Mahjong/assets/seat/3.png"/>
 	<s:Image id="fourImg" visible="false" x="0" y="0" name="img4"
-			 source="com/amusement/Mahjong/assets/seat/4.png"/>
+			 source="com/amusement/Mahjong/assets/seat/4.png" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "/>
 </s:Group>

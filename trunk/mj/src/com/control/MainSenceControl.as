@@ -26,14 +26,15 @@ package com.control
 			this.mainSence = mainSence;
 			instance = this;
 			
-//			ConfigService.instance;
+			ConfigService.instance;
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";
 			this.mainSence.currentState = "verifier";
 			this.mainSence.currentState = "danjiHome";
+//			this.mainSence.currentState = "login";
 			
-//			mobileConfig();
+			mobileConfig();
 			
 			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
 			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);
@@ -52,18 +53,18 @@ package com.control
 				hasAccessToken = true;
 			}
 				
-			if(hasAccessToken)
-			{
-				this.mainSence.currentState = "lianwangHome";
-			}
-			else
-			{
-				//获取未授权的Token
-				authorizeAPI = new Authorize();
-				var request:IRequestOperation = authorizeAPI.requestToken();
-				request.addEventListener(Event.COMPLETE,requestTokenHandler);
-				request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
-			}
+//			if(hasAccessToken)
+//			{
+//				this.mainSence.currentState = "lianwangHome";
+//			}
+//			else
+//			{
+//				//获取未授权的Token
+//				authorizeAPI = new Authorize();
+//				var request:IRequestOperation = authorizeAPI.requestToken();
+//				request.addEventListener(Event.COMPLETE,requestTokenHandler);
+//				request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
+//			}
 		}
 		
 		private function requestTokenHandler(event:Event):void
