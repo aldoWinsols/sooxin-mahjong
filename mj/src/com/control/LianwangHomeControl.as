@@ -38,7 +38,7 @@ package com.control
 			
 			if (!StoreKit.storeKit.isStoreKitAvailable())
 			{
-				Alert.show("Store is disable on this device.");
+//				Alert.show("Store is disable on this device.");
 				return;
 			}
 			

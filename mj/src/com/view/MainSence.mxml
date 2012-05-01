@@ -47,4 +47,6 @@
 	<s:Image includeIn="verifier" x="378" y="310" source="assets/shouquanL.png"/>
 	<view:DanjiHome includeIn="danjiHome" x="0" y="0">
 	</view:DanjiHome>
+	<view:LianwangHome includeIn="lianwangHome" horizontalCenter="0" verticalCenter="0">
+	</view:LianwangHome>
 </s:Group>

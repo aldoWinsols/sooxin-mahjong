@@ -135,8 +135,7 @@
 		<s:Image y="158" right="10" alpha="0.5" click="image2_clickHandler(event)"
 				 source="assets/icon/Settings.png"/>
 		
-		<view:MahjongSeat>
-		</view:MahjongSeat>
+		
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		
 		<s:Button visible="false" label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)"
@@ -169,6 +168,8 @@
 		
 		
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
+		<view:MahjongSeat>
+		</view:MahjongSeat>
 	</s:Group>
 	
 	<!--</s:BorderContainer>-->

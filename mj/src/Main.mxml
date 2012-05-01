@@ -62,6 +62,24 @@
 			
 		]]>
 	</fx:Script>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		mx|ToolTip {
+			backgroundAlpha: 0.7;
+			backgroundColor: black;
+			paddingTop:10;
+			paddingBottom:10;
+			paddingLeft:10;
+			paddingRight:10;
+			
+			
+			color: white;
+			cornerRadius: 8;
+			fontSize: 14;
+		}
+	</fx:Style>
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
