@@ -63,7 +63,7 @@ package com.services
 
 		private function faultHandler(e:FaultEvent):void
 		{
-			Alert.show("读取信息失败，请刷新页面！"+e.toString());
+//			Alert.show("读取信息失败，请刷新页面！"+e.toString());
 			trace(e.toString());
 			CursorManager.removeBusyCursor();
 		}
