@@ -9,6 +9,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.view.MahjongQuemen;
 	import com.amusement.Mahjong.view.MahjongRoom;
 	import com.control.MainControl;
+	import com.hurlant.math.bi_internal;
 	import com.model.Alert;
 	
 	import flash.display.StageDisplayState;
@@ -325,6 +326,8 @@ package com.amusement.Mahjong.control
 		var playNum:int = 0;
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
 			
+			MahjongSeatControl.instance.startShowChat();
+			
 //			playNum++;
 //			if(playNum == 2){
 //				MahjongSoundService.instance._soundSwitch = false;
@@ -480,6 +483,9 @@ package com.amusement.Mahjong.control
 		 * 
 		 */
 		public function endGame(obj:Object):void{
+			
+			MahjongSeatControl.instance.stopShowChat();
+			
 			if(!_isVideo){
 				MahjongTimerControl.instance.hide();
 				this._mahjongRoomService.cut(obj.playerMahjongValues);
