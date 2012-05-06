@@ -9,7 +9,7 @@
 			   creationComplete="application1_creationCompleteHandler(event)"
 			   deactivate="application1_deactivateHandler(event)"
 			   splashScreenMinimumDisplayTime="3000"
-			   splashScreenImage="@Embed('assets/splash.png')">
+			   splashScreenImage="@Embed('Default-Portrait.png')">
 	
 	<fx:Script>
 		<![CDATA[

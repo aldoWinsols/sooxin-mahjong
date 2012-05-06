@@ -3,6 +3,7 @@ package com.mahjongSyncServer.services{
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.services.PlayerService;
 	import com.mahjongSyncServer.util.HuPai;
+	import com.services.GameCenterService;
 	
 	public class BalanceService {
 		public var baseNum:int = 5;
@@ -197,6 +198,7 @@ package com.mahjongSyncServer.services{
 		// 胡结算
 		public function balanceHu(lastPlayerAzimuth:int, thisPlayerAzimuth:int,
 				huName:String, fanNum:int, playerServices:Vector.<PlayerService>, haveGangHua:Boolean, haveGangPao:Boolean):void {
+			
 			var balance:Balance = new Balance();
 			if(fanNum > maxFunnum){
 				fanNum = maxFunnum;
@@ -326,6 +328,22 @@ package com.mahjongSyncServer.services{
 				}
 			}
 			balanceList.push(balance);
+			
+			
+			//=============================================
+			if(fanNum >= 8){
+				GameCenterService.instance.reportAchievement("jp");
+			}else{
+				if(huName.indexOf("清一色") != -1){
+					GameCenterService.instance.reportAchievement("qys");
+				}
+				if(huName.indexOf("小七对") != -1){
+					GameCenterService.instance.reportAchievement("xqd");
+				}
+				if(huName.indexOf("大对子") != -1){
+					GameCenterService.instance.reportAchievement("ddz");
+				}
+			}
 		}
 	
 		// 赔叫结算

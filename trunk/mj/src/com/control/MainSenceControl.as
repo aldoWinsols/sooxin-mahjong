@@ -2,6 +2,7 @@ package com.control
 {
 	import com.model.Alert;
 	import com.services.ConfigService;
+	import com.services.GameCenterService;
 	import com.services.MainSyncService;
 	import com.tencent.weibo.api.Authorize;
 	import com.tencent.weibo.core.WeiboConfig;
@@ -27,6 +28,7 @@ package com.control
 			instance = this;
 			
 			ConfigService.instance;
+			GameCenterService.getInstance();
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";
