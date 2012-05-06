@@ -19,6 +19,7 @@
 			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
 			import com.mahjongSyncServer.services.RoomService;
+			import com.services.GameCenterService;
 			
 			import mx.events.FlexEvent;
 			
@@ -40,7 +41,8 @@
 			protected function image1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				this.exit.visible = true;
+//				this.exit.visible = true;
+				GameCenterService.instance.showLeaderboard();
 			}
 			
 			protected function image2_clickHandler(event:MouseEvent):void
@@ -127,7 +129,7 @@
 		</s:BorderContainer>
 		<s:Label id="mahjongsNum" y="330" right="10" color="#FEE300" fontSize="20"/>
 		<s:Image id="exitImage" y="21" right="10" alpha="0.5" click="image1_clickHandler(event)"
-				 smooth="true" source="@Embed('assets/icon/Prefs.png')"/>
+				 smooth="true" source="@Embed('assets/icon/jiangbei.png')"/>
 		<s:Image y="89" right="10" alpha="0.5" click="image4_clickHandler(event)" smooth="true"
 				 source="@Embed('assets/icon/Safari2.png')"/>
 		<s:Image y="230" right="10" alpha="0.5" click="image3_clickHandler(event)"

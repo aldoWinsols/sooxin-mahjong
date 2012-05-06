@@ -255,5 +255,6 @@
     </iPhone>
 <extensions>
         <extensionID>com.milkmangames.extensions.StoreKit</extensionID>
+        <extensionID>com.milkmangames.extensions.GameCenter</extensionID>
     </extensions>
 </application>
