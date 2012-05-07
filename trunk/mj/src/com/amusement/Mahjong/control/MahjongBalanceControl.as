@@ -3,8 +3,12 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.MahjongAppliction;
 	import com.amusement.Mahjong.model.MahjongBalanceGrid;
 	import com.amusement.Mahjong.service.MahjongBalanceService;
+	import com.amusement.Mahjong.service.MahjongRoomService;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.amusement.Mahjong.view.MahjongBalance;
+	import com.model.Alert;
+	import com.services.GameCenterService;
+	import com.view.System;
 	
 	import flash.events.MouseEvent;
 
@@ -107,6 +111,7 @@ package com.amusement.Mahjong.control
 			this._mahjongRalance.shuying2.text = result[1].toFixed(2);
 			this._mahjongRalance.shuying3.text = result[2].toFixed(2);
 			this._mahjongRalance.shuying4.text = result[3].toFixed(2);
+			
 		}
 		
 		/**
@@ -234,6 +239,15 @@ package com.amusement.Mahjong.control
 				var zongji:Array = showZongji(total, gongdian);
 				if(!MahjongRoomControl.instance.isVideo){
 					this._mahjongRalanceService.updataPlayerMoney(zongji);
+				}
+			}
+			
+			
+			for(var i:int=0;i<4;i++){
+				if(playerNames[i] == "player"){
+					var gg:Number = total[i]*0.01*MahjongSyncService.instance.level;
+					Alert.show(gg.toString());
+					GameCenterService.instance.changeScore(total[i]*0.01*MahjongSyncService.instance.level);
 				}
 			}
 			

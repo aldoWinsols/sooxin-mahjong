@@ -4,23 +4,18 @@ package com.services
 	import com.milkmangames.nativeextensions.ios.GameCenter;
 	import com.milkmangames.nativeextensions.ios.events.GameCenterErrorEvent;
 	import com.milkmangames.nativeextensions.ios.events.GameCenterEvent;
+	import com.model.Alert;
 	
 	import flash.net.SharedObject;
 
 	public class GameCenterService
 	{
 		public static var instance:GameCenterService;
-		private static const LEADERBOARD_ID:String="sichuanmahjong3";
-		
-		
-		private static const ACHIEVEMENT_JP:String="jp";
-		private static const ACHIEVEMENT_QYS:String="qys";
-		private static const ACHIEVEMENT_XQD:String="xqd";
-		private static const ACHIEVEMENT_DDZ:String="ddz";
+		private static const LEADERBOARD_ID:String="albatross";
 		
 		private var sharedObject:SharedObject;
 		/** Score */
-		private var score:int;
+		private var score:Number;
 		public function GameCenterService()
 		{
 			
@@ -41,7 +36,7 @@ package com.services
 		private function loadScore():void
 		{
 			sharedObject=SharedObject.getLocal("airgc");
-			this.score=sharedObject.data["score"]||0;
+			this.score=sharedObject.data["score"]||1000;
 		}
 		
 		/** Init */
@@ -82,6 +77,10 @@ package com.services
 			
 			log("Game Center is ready.");
 			
+			log("try auth user.");
+			GameCenter.gameCenter.authenticateLocalUser();
+			log("waiting for auth...");
+			
 			// this is the complete suite of supported events.  you may not need to listen to all of them for your app,
 			// however you should always listen for at least the 'failed' error events to avoid your app throwing errors.
 			gameCenter.addEventListener(GameCenterEvent.AUTH_SUCCEEDED,onAuthSucceeded);
@@ -109,7 +108,7 @@ package com.services
 		private function onAchievementReset(e:GameCenterEvent):void
 		{
 			log("achievements reset.");
-			this.score=50000;
+			this.score=1000;
 			saveScore();
 //			this.txtScore.text="Score: "+score;
 		}
@@ -148,6 +147,13 @@ package com.services
 			log("failed to reset:"+e.message);
 		}
 		
+		
+		public function changeScore(changeScore:Number):void{
+			this.score += changeScore;
+			saveScore();
+			reportScore();
+		}
+		
 		/** Save Score */
 		private function saveScore():void
 		{
@@ -155,10 +161,27 @@ package com.services
 			sharedObject.flush();
 		}
 		
+		/** Report score */
+		public function reportScore():void
+		{
+			// we make sure you're logged in before bothering to report the score.
+			// later iOS versions may take care of waiting/resubmitting for you, but earlier ones won't.
+			if (!checkAuthentication()) return;
+			Alert.show(this.score.toString()+"game");
+			GameCenter.gameCenter.reportScoreForCategory(this.score,LEADERBOARD_ID);
+		}
+		
 		/** Log */
 		private function log(msg:String):void
 		{
-			trace("[GameCenterExample] "+msg);
+			try{
+				Alert("[GameCenterExample] "+msg);
+			}catch(e:Error){
+				
+			}
+			
+			MainControl.instance.dd(msg);
+			
 		}
 		
 		/** Check Authentication */

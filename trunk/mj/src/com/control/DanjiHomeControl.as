@@ -2,6 +2,7 @@ package com.control
 {
 	import com.model.Alert;
 	import com.services.DataService;
+	import com.services.GameCenterService;
 	import com.view.DanjiHome;
 	import com.view.PlayerAdd;
 	
@@ -22,6 +23,8 @@ package com.control
 			DataService.instance;
 			
 			this.danjiHome.danji_exitB.addEventListener(MouseEvent.CLICK,danji_exitBClickHandler);
+			
+			GameCenterService.getInstance();
 			
 //			this.home.addPlayerB.addEventListener(MouseEvent.CLICK,addPlayerBClickHandler);
 		}
