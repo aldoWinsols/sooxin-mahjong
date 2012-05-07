@@ -28,7 +28,6 @@ package com.control
 			instance = this;
 			
 			ConfigService.instance;
-			GameCenterService.getInstance();
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";

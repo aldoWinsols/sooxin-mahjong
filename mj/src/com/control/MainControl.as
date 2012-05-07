@@ -9,5 +9,9 @@ package com.control
 			this.main = main;
 			instance = this;
 		}
+		
+		public function dd(s:String):void{
+			this.main.yy.text = s;
+		}
 	}
 }

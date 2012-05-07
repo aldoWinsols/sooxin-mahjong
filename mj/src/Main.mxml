@@ -19,6 +19,8 @@
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
+			public static var ss:String = "";
+			
 			
 			protected function application1_deactivateHandler(event:Event):void
 			{
@@ -63,6 +65,8 @@
 				ChatService.getInstance();
 			}
 			
+			
+			
 		]]>
 	</fx:Script>
 	<fx:Style>
@@ -89,4 +93,5 @@
 	</fx:Declarations>
 	<view2:MainSence id="mainSence" x="0" y="0">
 	</view2:MainSence>
+	<s:TextArea id="yy" x="25" y="43"/>
 </s:Application>
