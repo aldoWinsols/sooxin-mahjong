@@ -4,6 +4,12 @@
 		 creationComplete="group_init(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:GlowFilter id="glow" blurX="12" blurY="12" color="#ffffff" quality="15" 
+					  strength="1"/>  
+		<s:Fade id="fadeEffect" target="{image1}" alphaFrom="1" alphaTo="0"
+				repeatCount="1"/>
+		<s:Fade id="fadeEffect1" target="{image1}" alphaFrom="0" alphaTo="1"
+				repeatCount="1"/>
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
@@ -98,6 +104,12 @@
 			}
 			
 			private function onMouseDown(e:MouseEvent):void{
+				
+				fadeEffect1.play();
+				var filterArr:Array = [];
+				filterArr.push(glow);
+				image1.filters = filterArr;
+				
 				if(_selected){
 					if(selectedUpSkin != null){
 						image.source = selectedUpSkin;
@@ -115,6 +127,10 @@
 			}
 			
 			private function onMouseUp(e:MouseEvent):void{
+				
+				this.filters = null;
+				fadeEffect.play();
+				
 				if(_selected){
 					if(selectedUpSkin != null){
 						image.source = selectedUpSkin;
@@ -162,6 +178,7 @@
 			
 		]]>
 	</fx:Script>
-	<!--<s:Image id="image" source="{skin}" />-->
+	<s:SWFLoader id="image1" source="{skin}" visible="false"/>
 	<s:SWFLoader id="image" source="{skin}" />
+	<!--<s:Image id="image" source="{skin}" />-->
 </s:Group>
