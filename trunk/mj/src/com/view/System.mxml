@@ -80,7 +80,7 @@
 		
 	</s:BorderContainer>-->
 	<s:HSlider id="level" x="175" y="300" width="300" change="level_changeHandler(event)"
-			   liveDragging="false" enabled="true" maximum="100" minimum="0" stepSize="1" value="10"/>
+			   liveDragging="false" enabled="true" maximum="100" minimum="1" stepSize="1" value="10"/>
 	<s:RadioButton id="boy" x="178" y="240" label="四川方言男生" click="boy_clickHandler(event)"
 				   enabled="true" fontSize="20"/>
 	<s:RadioButton x="359" y="240" label="四川方言女生" click="boy_clickHandler(event)" enabled="true"

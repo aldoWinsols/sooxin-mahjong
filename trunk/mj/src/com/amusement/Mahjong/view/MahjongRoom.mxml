@@ -61,7 +61,7 @@
 			protected function image4_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				this.help.visible = true;
+				GameCenterService.instance.showAchievements();
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void
@@ -128,14 +128,14 @@
 			
 		</s:BorderContainer>
 		<s:Label id="mahjongsNum" y="330" right="10" color="#FEE300" fontSize="20"/>
-		<s:Image id="exitImage" y="21" right="10" alpha="0.5" click="image1_clickHandler(event)"
-				 smooth="true" source="@Embed('assets/icon/jiangbei.png')"/>
-		<s:Image y="89" right="10" alpha="0.5" click="image4_clickHandler(event)" smooth="true"
-				 source="@Embed('assets/icon/Safari2.png')"/>
-		<s:Image y="230" right="10" alpha="0.5" click="image3_clickHandler(event)"
-				 source="assets/icon/Facebook.png"/>
-		<s:Image y="158" right="10" alpha="0.5" click="image2_clickHandler(event)"
-				 source="assets/icon/Settings.png"/>
+		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" />
+
+		<model:Button y="89" right="10" click="image4_clickHandler(event)"
+					  skin="@Embed('assets/icon/Safari2.png')"/>
+		<model:Button y="230" right="10" click="image3_clickHandler(event)"
+					  skin="@Embed('assets/icon/Facebook.png')"/>
+		<model:Button y="158" right="10" click="image2_clickHandler(event)"
+					  skin="@Embed('assets/icon/Settings.png')"/>
 		
 		
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
@@ -149,10 +149,6 @@
 		</view2:AboutUs>
 		<view2:System id="system" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:System>
-		<view2:Exit id="exit" visible="false" horizontalCenter="0" verticalCenter="0">
-		</view2:Exit>
-		<view2:Help id="help" visible="false" horizontalCenter="0" verticalCenter="0">
-		</view2:Help>
 		
 		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view:Limit>

@@ -247,7 +247,7 @@ package com.amusement.Mahjong.control
 				if(playerNames[i] == "player"){
 					var gg:Number = total[i]*0.01*MahjongSyncService.instance.level;
 					Alert.show(gg.toString());
-					GameCenterService.instance.changeScore(total[i]*0.01*MahjongSyncService.instance.level);
+					GameCenterService.instance.changeScore(gg);
 				}
 			}
 			

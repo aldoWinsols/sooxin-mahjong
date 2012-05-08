@@ -195,6 +195,23 @@ package com.services
 			return true;
 		}
 		
+		/** Show Achievements */
+		public function showAchievements():void
+		{
+			if (!checkAuthentication()) return;
+			
+			log("showing achievements...");
+			try
+			{
+				GameCenter.gameCenter.showAchievements();
+			}
+			catch (e:Error)
+			{
+				log("ERR showachievements:"+e.message+"/"+e.name+"/"+e.errorID);
+			}
+			
+		}
+		
 		/** Show Leaderboards */
 		public function showLeaderboard():void
 		{

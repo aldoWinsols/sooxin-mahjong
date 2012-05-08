@@ -9,12 +9,13 @@
 			   creationComplete="application1_creationCompleteHandler(event)"
 			   deactivate="application1_deactivateHandler(event)"
 			   splashScreenMinimumDisplayTime="3000"
-			   splashScreenImage="@Embed('Default-Portrait.png')">
+			   splashScreenImage="@Embed('splash.jpg')">
 	
 	<fx:Script>
 		<![CDATA[
 			import com.control.MainControl;
 			import com.services.ChatService;
+			import com.view.MainSence;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
@@ -31,9 +32,11 @@
 			protected function application1_addedToStageHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				stage.setOrientation(StageOrientation.ROTATED_LEFT);
-				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+//				stage.setOrientation(StageOrientation.ROTATED_LEFT);
+//				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
 				
+				var mainSence:MainSence = new MainSence();
+				this.addElement(mainSence);
 				if(this.applicationDPI == 320){
 					mainSence.x = -32;
 					mainSence.y = -64;
@@ -45,24 +48,22 @@
 //				mainSence.y = (mainSence.height -this.stage.height)/2;
 			}
 			
-			private function onOrientationChanging(event:StageOrientationEvent):void 
-			{
-				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
-					event.afterOrientation == StageOrientation.UNKNOWN ||
-					event.afterOrientation == StageOrientation.DEFAULT)
-				{
-					event.preventDefault();
-//					mainSence.x = (mainSence.width - this.stage.width)/2;
-//					mainSence.y = (mainSence.height -this.stage.height)/2;
-				}
-			}
+//			private function onOrientationChanging(event:StageOrientationEvent):void 
+//			{
+//				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
+//					event.afterOrientation == StageOrientation.UNKNOWN ||
+//					event.afterOrientation == StageOrientation.DEFAULT)
+//				{
+//					event.preventDefault();
+////					mainSence.x = (mainSence.width - this.stage.width)/2;
+////					mainSence.y = (mainSence.height -this.stage.height)/2;
+//				}
+//			}
 			
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				new MainControl(this);
-				
-				ChatService.getInstance();
 			}
 			
 			
@@ -91,7 +92,5 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<view2:MainSence id="mainSence" x="0" y="0">
-	</view2:MainSence>
 	<s:TextArea id="yy" x="25" y="43"/>
 </s:Application>
