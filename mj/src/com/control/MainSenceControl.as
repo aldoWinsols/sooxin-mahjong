@@ -1,6 +1,7 @@
 package com.control
 {
 	import com.model.Alert;
+	import com.services.ChatService;
 	import com.services.ConfigService;
 	import com.services.GameCenterService;
 	import com.services.MainSyncService;
@@ -27,6 +28,7 @@ package com.control
 			this.mainSence = mainSence;
 			instance = this;
 			
+			ChatService.getInstance();
 			ConfigService.instance;
 			
 			this.mainSence.currentState = "login";

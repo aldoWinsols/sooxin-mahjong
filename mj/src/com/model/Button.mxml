@@ -4,12 +4,12 @@
 		 creationComplete="group_init(event)">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
-		<s:GlowFilter id="glow" blurX="12" blurY="12" color="#ffffff" quality="15" 
+		<s:GlowFilter id="glow" blurX="50" blurY="50" color="#ffffff" quality="1" 
 					  strength="1"/>  
 		<s:Fade id="fadeEffect" target="{image1}" alphaFrom="1" alphaTo="0"
 				repeatCount="1"/>
-		<s:Fade id="fadeEffect1" target="{image1}" alphaFrom="0" alphaTo="1"
-				repeatCount="1"/>
+		<s:Fade id="fadeEffect1" target="{image1}" alphaFrom="0" alphaTo="1" 
+	duration="1" repeatCount="1"/>
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
@@ -181,4 +181,5 @@
 	<s:SWFLoader id="image1" source="{skin}" visible="false"/>
 	<s:SWFLoader id="image" source="{skin}" />
 	<!--<s:Image id="image" source="{skin}" />-->
+	
 </s:Group>

@@ -6,7 +6,7 @@
 		 width="820" height="500" creationComplete="bordercontainer1_creationCompleteHandler(event)"
 		 currentState="main" fontSize="18"
 		 width.history="1024" height.history="768"
-		 width.main="1024" height.main="768">
+		 width.main="1024" height.main="768" xmlns:model="com.model.*">
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.MahjongAppliction;
@@ -149,10 +149,10 @@
 	</Mahjong:MahjongAppliction>
 	<s:Group id="mainMenu" includeIn="main" x="154" y="231">
 		
-		<s:Image y="202" left="190" click="image2_clickHandler(event)"
-				 source="assets/danji/danji_beginB.png"/>
-		<s:Image y="202" right="170" click="image1_clickHandler(event)"
-				 source="assets/danji/danji_logB.png"/>
+		<model:Button y="202" left="190" click="image2_clickHandler(event)"
+					  skin="@Embed('assets/danji/danji_beginB.png')"/>
+		<model:Button y="202" right="170" click="image1_clickHandler(event)"
+					  skin="@Embed('assets/danji/danji_logB.png')"/>
 		<s:Image id="danji_exitB" x="518" y="195" source="assets/danji/danji_exitB.png" visible="false"/>
 		<s:Image horizontalCenter="-10" source="com/amusement/Mahjong/assets/danji_logo.png"
 				 verticalCenter="-50"/>
