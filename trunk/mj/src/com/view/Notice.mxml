@@ -1,7 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
-				   xmlns:s="library://ns.adobe.com/flex/spark" width="550" height="164">
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="bordercontainer1_creationCompleteHandler(event)" width="534" height="118">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.services.NoticeService;
+			
+			import mx.events.FlexEvent;
+			public static var timer:Timer = new Timer(2000);
+			public static var instance:Notice;
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				instance = this;
+				NoticeService.getInstance();
+				timer.addEventListener(TimerEvent.TIMER,ontimer);
+			}
+			
+			private var index:int = 0;
+			public function startTimer():void{
+				timer.start();
+				label.text = NoticeService.instance.chatList[index].@text;
+			}
+			
+			private function ontimer(timer:TimerEvent):void{
+				
+				label.text = NoticeService.instance.chatList[index].@text;
+				index ++;
+				if(NoticeService.instance.chatList.length() == index){
+					index = 0;
+				}
+				
+				if(!label1.visible){
+					label1.visible = true;
+				}
+				if(label.y == 30){
+					fadeEffect1.target = label;
+					move2.target = label;
+					label.y = 62;
+					
+					fadeEffect.target = label1;
+					move1.target = label1;
+					label1.y = 46;
+				}else{
+					fadeEffect1.target = label1;
+					move2.target = label1;
+					label1.y = 62;
+					
+					fadeEffect.target = label;
+					move1.target = label;
+					label.y = 46;
+				}
+				
+				fadeEffect.play();
+				move1.play();
+				fadeEffect1.play();
+				move2.play();
+			}
+			
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:Fade id="fadeEffect" target="{label1}" alphaFrom="1" alphaTo="0"
+				repeatCount="1"/>
+		<s:Fade id="fadeEffect1" target="{label1}" alphaFrom="0" alphaTo="1"
+				repeatCount="1"/>
+		<s:Move id="move1" target="{label}" yTo="30" />
+		<s:Move id="move2" target="{label1}" yTo="46" />
 	</fx:Declarations>
+	<s:Label id="label" x="61" y="46" width="374" fontSize="20"/>
+	<s:Label id="label1" x="61" y="62" width="374" fontSize="20" visible="false"/>
 </s:BorderContainer>
