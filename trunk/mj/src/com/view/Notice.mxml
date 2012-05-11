@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="bordercontainer1_creationCompleteHandler(event)" width="534" height="118">
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx" borderColor="#ffffff" borderAlpha="0.3"
+				   width="350" height="100" backgroundAlpha="0" cornerRadius="8"
+				   creationComplete="bordercontainer1_creationCompleteHandler(event)" fontSize="13">
 	
 	<fx:Script>
 		<![CDATA[
 			import com.services.NoticeService;
 			
 			import mx.events.FlexEvent;
-			public static var timer:Timer = new Timer(2000);
+			public static var timer:Timer = new Timer(5000);
 			public static var instance:Notice;
 			
 			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
@@ -65,13 +67,12 @@
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
-		<s:Fade id="fadeEffect" target="{label1}" alphaFrom="1" alphaTo="0"
-				repeatCount="1"/>
-		<s:Fade id="fadeEffect1" target="{label1}" alphaFrom="0" alphaTo="1"
-				repeatCount="1"/>
-		<s:Move id="move1" target="{label}" yTo="30" />
-		<s:Move id="move2" target="{label1}" yTo="46" />
+		<s:Fade id="fadeEffect" alphaFrom="1" alphaTo="0" repeatCount="1" target="{label1}"/>
+		<s:Fade id="fadeEffect1" alphaFrom="0" alphaTo="1" repeatCount="1" target="{label1}"/>
+		<s:Move id="move1" target="{label}" yTo="30"/>
+		<s:Move id="move2" target="{label1}" yTo="46"/>
 	</fx:Declarations>
-	<s:Label id="label" x="61" y="46" width="374" fontSize="20"/>
-	<s:Label id="label1" x="61" y="62" width="374" fontSize="20" visible="false"/>
+	<s:Label id="label" y="7" width="330" height="85" alpha="0.3" color="#FFFFFF" fontSize="14"
+			 horizontalCenter="-44"/>
+	<s:Label id="label1" visible="false" x="61" y="62" width="374" fontSize="20"/>
 </s:BorderContainer>
