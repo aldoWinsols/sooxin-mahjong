@@ -146,10 +146,10 @@
 					verticalCenter="-300">
 	</view:PlayerAdd>
 	<Mahjong:MahjongAppliction id="mahjongAppliction" includeIn="main,history" horizontalCenter="0" verticalCenter="0">
-		<view:Notice includeIn="main" x="347" y="480">
+		<view:Notice includeIn="main" x="347" y="490">
 		</view:Notice>
 	</Mahjong:MahjongAppliction>
-	<s:Group id="mainMenu" includeIn="main" x="154" y="191">
+	<s:Group id="mainMenu" includeIn="main" x="154" y="201">
 		
 		<model:Button y="202" left="190" click="image2_clickHandler(event)"
 					  skin="@Embed('assets/danji/danji_beginB.png')"/>

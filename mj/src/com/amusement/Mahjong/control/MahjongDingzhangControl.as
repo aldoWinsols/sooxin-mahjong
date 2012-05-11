@@ -40,12 +40,12 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function show():void{
-			this._mahjongDingzhang.quemenBtn.enabled = false;
+			this._mahjongDingzhang.quemenBtn.visible = false;
 			
 			this._mahjongDingzhang.visible = true;
 			var quemenTypes:Array = MahjongPlayerControlD.instance.checkQuemenMine();
 			if(quemenTypes.length > 0){
-				this._mahjongDingzhang.quemenBtn.enabled = true;
+				this._mahjongDingzhang.quemenBtn.visible = true;
 			}
 			
 			MahjongSoundService.instance.soundPlay("qingdingzhang");
@@ -58,7 +58,7 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function hide():void{
-			this._mahjongDingzhang.quemenBtn.enabled = false;
+			this._mahjongDingzhang.quemenBtn.visible = false;
 			this._mahjongDingzhang.visible = false;
 		}
 

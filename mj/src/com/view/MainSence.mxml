@@ -71,5 +71,5 @@
 	</view:DanjiHome>
 	<view:LianwangHome includeIn="lianwangHome" horizontalCenter="0" verticalCenter="0">
 	</view:LianwangHome>
-	<s:TextArea id="yy" x="25" y="43"/>
+	<s:TextArea id="yy" x="25" y="43" visible="false"/>
 </s:View>

@@ -2,14 +2,17 @@ package com.services
 {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
+	import flash.events.TimerEvent;
 	import flash.net.FileReference;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.utils.Timer;
 
 	public class ChatService
 	{
 		public static var instance:ChatService;
-		public var chatList:XMLList;
+		public var chatList:XMLList = new XMLList();
+		var getTimer:Timer = new Timer(300000);
 		
 		public static function getInstance():ChatService{
 			if(instance == null){
@@ -19,11 +22,13 @@ package com.services
 			return instance;
 		}
 		
-		var fileReference:FileReference;
-		
 		public function ChatService(){
-			fileReference = new FileReference();
-			
+			getTimer.addEventListener(TimerEvent.TIMER,getTimerHandler);
+			getTimer.start();
+			getNetChats();
+		}
+		
+		private function getTimerHandler(e:TimerEvent):void{
 			getNetChats();
 		}
 		

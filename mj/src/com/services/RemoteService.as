@@ -22,13 +22,13 @@ package com.services
 
 		public function RemoteService()
 		{
-			chongzhiService=getConfiguredRO("chongzhiService");
-			duihuanService=getConfiguredRO("duihuanService");
-			playlogService=getConfiguredRO("playlogService");
-			playerService=getConfiguredRO("playerService");
-			shangpinService=getConfiguredRO("shangpinService");
-			noticeService=getConfiguredRO("noticeService");
-			configService=getConfiguredRO("configService");
+//			chongzhiService=getConfiguredRO("chongzhiService");
+//			duihuanService=getConfiguredRO("duihuanService");
+//			playlogService=getConfiguredRO("playlogService");
+//			playerService=getConfiguredRO("playerService");
+//			shangpinService=getConfiguredRO("shangpinService");
+//			noticeService=getConfiguredRO("noticeService");
+//			configService=getConfiguredRO("configService");
 		}
 
 		//得到单例

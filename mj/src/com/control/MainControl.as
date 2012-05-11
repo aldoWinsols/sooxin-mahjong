@@ -11,7 +11,7 @@ package com.control
 		}
 		
 		public function dd(s:String):void{
-			this.main.yy.text = s;
+//			this.main.yy.text = s;
 		}
 	}
 }
