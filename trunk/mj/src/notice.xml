@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<chats>
+		<chat text="提示：你当前网络处于断开状态，不能获取公告信息！" />
+	</chats>
+</config>

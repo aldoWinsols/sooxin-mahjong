@@ -115,7 +115,7 @@
 		<view:MahjongInfo visible="false" x="220" y="451" mouseChildren="false" mouseEnabled="true"/>
 		<view:MahjongPlayerD id="mahjongPlayerD" bottom="-10" horizontalCenter="0"/>
 		<view:MahjongSign visible="false" mouseChildren="false" mouseEnabled="false"/>
-		<view:MahjongDingzhang visible="false" bottom="140" horizontalCenter="0"/>
+		<view:MahjongDingzhang visible="false" bottom="140" horizontalCenter="-50"/>
 		<view:MahjongWord visible="false" x="351" y="192" mouseChildren="false" mouseEnabled="false"/>
 		<view:MahjongOperation id="mahjongOperation" visible="false" right="80" bottom="90"/>
 		<!--<mx:Button id="reConnBtn" x="697" bottom="16" 

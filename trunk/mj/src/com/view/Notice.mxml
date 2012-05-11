@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
-				   xmlns:mx="library://ns.adobe.com/flex/mx" borderColor="#ffffff" borderAlpha="0.3"
-				   width="350" height="100" backgroundAlpha="0" cornerRadius="8"
-				   creationComplete="bordercontainer1_creationCompleteHandler(event)" fontSize="13">
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="350" height="100" backgroundAlpha="0" borderAlpha="0.3"
+				   borderColor="#ffffff" cornerRadius="8"
+				   creationComplete="bordercontainer1_creationCompleteHandler(event)">
 	
 	<fx:Script>
 		<![CDATA[
 			import com.services.NoticeService;
 			
 			import mx.events.FlexEvent;
-			public static var timer:Timer = new Timer(5000);
+			public static var timer:Timer = new Timer(10000);
 			public static var instance:Notice;
 			
 			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
@@ -24,36 +25,40 @@
 			private var index:int = 0;
 			public function startTimer():void{
 				timer.start();
-				label.text = NoticeService.instance.chatList[index].@text;
+				ontimer(null);
 			}
 			
 			private function ontimer(timer:TimerEvent):void{
 				
-				label.text = NoticeService.instance.chatList[index].@text;
-				index ++;
-				if(NoticeService.instance.chatList.length() == index){
-					index = 0;
+				if(NoticeService.instance == null){
+					return;
 				}
 				
 				if(!label1.visible){
 					label1.visible = true;
 				}
-				if(label.y == 30){
+				if(label.y == 20){
+					label.text = NoticeService.instance.chatList[index].@text;
 					fadeEffect1.target = label;
 					move2.target = label;
 					label.y = 62;
 					
 					fadeEffect.target = label1;
 					move1.target = label1;
-					label1.y = 46;
+					label1.y = 40;
 				}else{
+					label1.text = NoticeService.instance.chatList[index].@text;
 					fadeEffect1.target = label1;
 					move2.target = label1;
 					label1.y = 62;
 					
 					fadeEffect.target = label;
 					move1.target = label;
-					label.y = 46;
+					label.y = 40;
+				}
+				index ++;
+				if(NoticeService.instance.chatList.length() == index){
+					index = 0;
 				}
 				
 				fadeEffect.play();
@@ -67,12 +72,11 @@
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
-		<s:Fade id="fadeEffect" alphaFrom="1" alphaTo="0" repeatCount="1" target="{label1}"/>
-		<s:Fade id="fadeEffect1" alphaFrom="0" alphaTo="1" repeatCount="1" target="{label1}"/>
-		<s:Move id="move1" target="{label}" yTo="30"/>
-		<s:Move id="move2" target="{label1}" yTo="46"/>
+		<s:Fade id="fadeEffect" alphaFrom="1" alphaTo="0" repeatCount="1"/>
+		<s:Fade id="fadeEffect1" alphaFrom="0" alphaTo="1" repeatCount="1"/>
+		<s:Move id="move1" target="{label}" yTo="20"/>
+		<s:Move id="move2" target="{label1}" yTo="40"/>
 	</fx:Declarations>
-	<s:Label id="label" y="7" width="330" height="85" alpha="0.3" color="#FFFFFF" fontSize="14"
-			 horizontalCenter="-44"/>
-	<s:Label id="label1" visible="false" x="61" y="62" width="374" fontSize="20"/>
+	<s:Label id="label" x="7" y="16" width="335" alpha="0.3" color="#FFFFFF" fontSize="14"/>
+	<s:Label id="label1" visible="false" x="7" y="56" width="335" color="#FFFFFF" fontSize="14"/>
 </s:BorderContainer>

@@ -78,11 +78,16 @@ package com.amusement.Mahjong.control
 		
 		var myTip:ToolTip;
 		private function showHandler(e:TimerEvent):void{
+			
 			if(myTip == null){
 				if(Math.round(Math.random()*10)%2 == 0){
-					var len:int = Math.random()*ChatService.instance.chatList.length();
-					var len2:int = Math.random()*point.length;
-					myTip = ToolTipManager.createToolTip(ChatService.instance.chatList[len].@text, point[len2].x, point[len2].y,"",this._mahjongSeat) as ToolTip; 
+					try{
+						var len:int = Math.random()*ChatService.instance.chatList.length();
+						var len2:int = Math.random()*point.length;
+						myTip = ToolTipManager.createToolTip(ChatService.instance.chatList[len].@text, point[len2].x, point[len2].y,"",this._mahjongSeat) as ToolTip; 
+					}catch(e:Error){
+						
+					}
 					
 				}
 			}else{

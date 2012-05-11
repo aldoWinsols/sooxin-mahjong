@@ -92,5 +92,4 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:TextArea id="yy" x="25" y="43"/>
 </s:Application>
