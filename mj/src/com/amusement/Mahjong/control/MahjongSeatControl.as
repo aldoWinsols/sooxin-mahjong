@@ -79,6 +79,11 @@ package com.amusement.Mahjong.control
 		var myTip:ToolTip;
 		private function showHandler(e:TimerEvent):void{
 			
+			//如果是录象查看状态，则返回
+			if(MahjongRoomControl.instance.isVideo){
+				return;
+			}
+			
 			if(myTip == null){
 				if(Math.round(Math.random()*10)%2 == 0){
 					try{

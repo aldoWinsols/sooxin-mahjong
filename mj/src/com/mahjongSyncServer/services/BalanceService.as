@@ -3,6 +3,7 @@ package com.mahjongSyncServer.services{
 	import com.mahjongSyncServer.model.Balance;
 	import com.mahjongSyncServer.services.PlayerService;
 	import com.mahjongSyncServer.util.HuPai;
+	import com.model.Alert;
 	import com.services.GameCenterService;
 	
 	public class BalanceService {
@@ -331,19 +332,23 @@ package com.mahjongSyncServer.services{
 			
 			
 			//=============================================
-			if(fanNum >= 8){
-				GameCenterService.instance.reportAchievement("jp");
-			}else{
-				if(huName.indexOf("清一色") != -1){
-					GameCenterService.instance.reportAchievement("qys");
-				}
-				if(huName.indexOf("小七对") != -1){
-					GameCenterService.instance.reportAchievement("xqd");
-				}
-				if(huName.indexOf("大对子") != -1){
-					GameCenterService.instance.reportAchievement("ddz");
+			if(findUserByAzimuth(playerServices, thisPlayerAzimuth).player.playerName == "player"){
+				Alert.show("reportAchievement");
+				if(fanNum >= 8){
+					GameCenterService.instance.reportAchievement("jp");
+				}else{
+					if(huName.indexOf("清一色") != -1){
+						GameCenterService.instance.reportAchievement("qys");
+					}
+					if(huName.indexOf("小七对") != -1){
+						GameCenterService.instance.reportAchievement("xqd");
+					}
+					if(huName.indexOf("大对子") != -1){
+						GameCenterService.instance.reportAchievement("ddz");
+					}
 				}
 			}
+			
 		}
 	
 		// 赔叫结算
