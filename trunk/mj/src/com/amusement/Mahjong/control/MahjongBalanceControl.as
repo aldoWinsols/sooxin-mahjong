@@ -243,12 +243,18 @@ package com.amusement.Mahjong.control
 			}
 			
 			
-			for(var i:int=0;i<4;i++){
-				if(playerNames[i] == "player"){
-					var gg:Number = total[i]*0.01*MahjongSyncService.instance.level;
-					Alert.show(gg.toString());
-					GameCenterService.instance.changeScore(gg);
+			if(!MahjongRoomControl.instance.isVideo){
+				var gg:Number = 0;
+				for(var i:int=0;i<4;i++){
+					if(playerNames[i] == "player"){
+						gg = total[i]*0.01*MahjongSyncService.instance.level;
+						Alert.show(gg.toString());
+						GameCenterService.instance.changeScore(gg);
+					}
 				}
+				
+				this._mahjongRalance.nandu.text = (MahjongSyncService.instance.level*0.01).toString();
+				this._mahjongRalance.jifen.text = gg.toString();
 			}
 			
 			if(MahjongRoomControl.instance.isVideo){
