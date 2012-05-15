@@ -248,8 +248,12 @@ package com.amusement.Mahjong.control
 				for(var i:int=0;i<4;i++){
 					if(playerNames[i] == "player"){
 						gg = total[i]*0.01*MahjongSyncService.instance.level;
-						Alert.show(gg.toString());
-						GameCenterService.instance.changeScore(gg);
+//						Alert.show(gg.toString());
+						try{
+							GameCenterService.instance.changeScore(gg);
+						}catch(e:Error){
+							
+						}
 					}
 				}
 				
