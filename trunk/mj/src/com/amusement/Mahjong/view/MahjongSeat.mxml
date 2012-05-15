@@ -31,11 +31,11 @@
 	</fx:Declarations>
 	
 	<s:Image id="oneImg" visible="false" x="0" y="0" name="img1"
-			 source="com/amusement/Mahjong/assets/seat/1.png" toolTip="ggggggggggggggggggggggg"/>
-	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "
+			 source="com/amusement/Mahjong/assets/seat/1.png"/>
+	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2"
 			 source="com/amusement/Mahjong/assets/seat/2.png"/>
-	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "
+	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3"
 			 source="com/amusement/Mahjong/assets/seat/3.png"/>
 	<s:Image id="fourImg" visible="false" x="0" y="0" name="img4"
-			 source="com/amusement/Mahjong/assets/seat/4.png" toolTip="句计划就就就就可可了饿洋一而期望，看见了句计划就就就就可可了饿洋一而期望，看见了  "/>
+			 source="com/amusement/Mahjong/assets/seat/4.png"/>
 </s:Group>

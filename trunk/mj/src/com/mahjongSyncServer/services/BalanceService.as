@@ -333,7 +333,7 @@ package com.mahjongSyncServer.services{
 			
 			//=============================================
 			if(findUserByAzimuth(playerServices, thisPlayerAzimuth).player.playerName == "player"){
-				Alert.show("reportAchievement");
+//				Alert.show("reportAchievement");
 				if(fanNum >= 8){
 					GameCenterService.instance.reportAchievement("jp");
 				}else{

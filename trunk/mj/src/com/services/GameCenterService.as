@@ -167,8 +167,13 @@ package com.services
 			// we make sure you're logged in before bothering to report the score.
 			// later iOS versions may take care of waiting/resubmitting for you, but earlier ones won't.
 			if (!checkAuthentication()) return;
-			Alert.show(this.score.toString()+"game");
-			GameCenter.gameCenter.reportScoreForCategory(this.score,LEADERBOARD_ID);
+//			Alert.show(this.score.toString()+"game");
+			
+			try{
+				GameCenter.gameCenter.reportScoreForCategory(this.score,LEADERBOARD_ID);
+			}catch(e:Error){
+				
+			}
 		}
 		
 		/** Log */
@@ -224,7 +229,12 @@ package com.services
 			if (!checkAuthentication()) return;
 			
 			// the '1.0' is a float (Number) value from 0.0-100.0 the percent completion of the achievement.
-			GameCenter.gameCenter.reportAchievement(ACHIEVEMENT_ID,100.0);
+			try{
+				GameCenter.gameCenter.reportAchievement(ACHIEVEMENT_ID,100.0);
+			}catch(e:Error){
+				
+			}
+			
 		}
 	}
 }

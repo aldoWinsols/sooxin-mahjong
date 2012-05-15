@@ -73,7 +73,7 @@ package com.amusement.Mahjong.control
 			showTimer.start();
 		}
 		public function stopShowChat():void{
-			showTimer.start();
+			showTimer.stop();
 		}
 		
 		var myTip:ToolTip;
