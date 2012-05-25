@@ -37,13 +37,13 @@ package com.services
 		var localLoader:URLLoader;
 		public function getNetChats():void
 		{
-			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/chat.xml"));
+			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/chatLimt.xml"));
 			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
 			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
 		}
 		
 		private function netErrorHandler(e:IOErrorEvent):void{
-			localLoader = new URLLoader(new URLRequest("chat.xml"));
+			localLoader = new URLLoader(new URLRequest("chatLimt.xml"));
 			localLoader.addEventListener(Event.COMPLETE, localLoadCompleteHandler, false, 0, true);
 		}
 		

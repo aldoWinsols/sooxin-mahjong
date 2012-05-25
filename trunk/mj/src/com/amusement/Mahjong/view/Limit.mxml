@@ -14,9 +14,9 @@
 				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 			}
 			
-			var num:int = 30;
+			var num:int = 10;
 			public function init():void{
-				num = 30;
+				num = 10;
 				this.visible = true;
 				timer.start();
 			}
@@ -50,7 +50,7 @@
 		</s:BorderContainer>
 		<s:TextArea width="760" height="338" color="#000000" editable="false" fontSize="20"
 					horizontalCenter="0"
-					text="完整版功能：&#xd;1.界面操作更优化&#xd;2.游戏难度可调节&#xd;3.随时查看游戏录象，回顾游戏总结经验&#xd;4.四川方言配音男女声可选&#xd;&#xd;未来：&#xd;1.连网对战&#xd;2.gameCenter排名&#xd;3.牌型分析处理工具&#xd;4.麻将实战学习提高教程&#xd;5.界面操作优化&#xd;6.更多多功能......"
+					text="完整版功能：&#xd;1.界面操作更优化&#xd;2.游戏难度可调节&#xd;3.随时查看游戏录象，回顾游戏总结经验&#xd;4.四川方言配音男女声可选&#xd;5.风趣幽默的游戏对话&#xd;6.gameCenter 排行 成就&#xd;&#xd;未来：&#xd;1.连网对战&#xd;2.牌型分析处理工具&#xd;3.麻将实战学习提高教程&#xd;4.界面操作优化&#xd;5.更多多功能......"
 					verticalCenter="110"/>
 		<s:Label y="104" color="#36D000" fontSize="20" fontWeight="bold" horizontalCenter="0"
 				 text="此窗口将在         后自动关闭！"/>
