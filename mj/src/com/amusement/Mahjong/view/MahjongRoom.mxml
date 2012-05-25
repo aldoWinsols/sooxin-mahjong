@@ -19,6 +19,7 @@
 			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
 			import com.mahjongSyncServer.services.RoomService;
+			import com.model.Alert;
 			import com.services.GameCenterService;
 			
 			import mx.events.FlexEvent;
@@ -42,7 +43,8 @@
 			{
 				// TODO Auto-generated method stub
 //				this.exit.visible = true;
-				GameCenterService.instance.showLeaderboard();
+//				GameCenterService.instance.showLeaderboard();
+				Alert.show("想看看自己的战绩排行？来完整版吧！");
 			}
 			
 			protected function image2_clickHandler(event:MouseEvent):void
@@ -61,7 +63,9 @@
 			protected function image4_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				GameCenterService.instance.showAchievements();
+//				GameCenterService.instance.showAchievements();
+				
+				Alert.show("想看看自己获得的荣誉？来完整版吧！");
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void
@@ -102,6 +106,9 @@
 		
 		<s:Image id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
+		<s:Button left="10" top="10" width="308" height="55" label="如果您喜欢，点我试试完整版"
+				  chromeColor="#f6cb00" click="button1_clickHandler(event)" color="#FF0000"
+				  fontSize="20" fontWeight="bold"/>
 		
 		<!--<mx:Image source="com/amusement/Mahjong/assets/tabletop/mj_tabletop_green.jpg"/>-->
 		
