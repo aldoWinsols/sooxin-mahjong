@@ -80,7 +80,6 @@
 								</fx:Script>
 								
 								<s:HGroup>
-									<s:Button label="观看录像" click="button1_clickHandler(event)" />
 									<s:Button label="删除" click="button2_clickHandler(event)" />
 								</s:HGroup>
 							</s:GridItemRenderer>

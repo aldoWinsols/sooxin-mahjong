@@ -24,7 +24,7 @@ package com.control
 			
 			this.danjiHome.danji_exitB.addEventListener(MouseEvent.CLICK,danji_exitBClickHandler);
 			
-			GameCenterService.getInstance();
+//			GameCenterService.getInstance();
 			
 //			this.home.addPlayerB.addEventListener(MouseEvent.CLICK,addPlayerBClickHandler);
 		}
