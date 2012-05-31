@@ -134,14 +134,14 @@
 						   verticalCenter="0">
 			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="330" right="10" color="#FEE300" fontSize="20"/>
-		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" />
+		<s:Label id="mahjongsNum" y="200" right="10" color="#FEE300" fontSize="20"/>
+		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="false" />
 
 		<model:Button y="89" right="10" click="image4_clickHandler(event)"
-					  skin="@Embed('assets/icon/Safari2.png')"/>
-		<model:Button y="230" right="10" click="image3_clickHandler(event)"
+					  skin="@Embed('assets/icon/Safari2.png')" visible="false"/>
+		<model:Button y="100" right="10" click="image3_clickHandler(event)"
 					  skin="@Embed('assets/icon/Facebook.png')"/>
-		<model:Button y="158" right="10" click="image2_clickHandler(event)"
+		<model:Button y="28" right="10" click="image2_clickHandler(event)"
 					  skin="@Embed('assets/icon/Settings.png')"/>
 		
 		

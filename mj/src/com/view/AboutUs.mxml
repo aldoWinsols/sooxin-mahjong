@@ -7,6 +7,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -19,6 +20,12 @@
 				this.visible = false;
 			}
 			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -26,7 +33,15 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
-	<s:Label x="265" y="238" color="#FFA800" fontSize="24" fontWeight="bold" text="四川血战麻将 版本：V0.5"/>
+	<s:Button left="247" top="282" width="308" height="55" label="看看完整版"
+			  chromeColor="#f6cb00" click="button3_clickHandler(event)" color="#FF0000"
+			  fontSize="20" fontWeight="bold"/>
+	<s:Label y="248" color="#FFA800" fontSize="18" fontWeight="bold" horizontalCenter="0"
+			 text="如果您喜欢，请下载完整版！"/>
+	<s:Label y="218" color="#FFA800" fontSize="18" fontWeight="bold" horizontalCenter="0"
+			 text="lite 版仅为玩家体验使用，部分功能有限制，且操作体验相比完整版欠佳！"/>
+	<s:Label y="178" color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="0"
+			 text="四川血战麻将 版本：LITE V0.5"/>
 	
 	<s:Image x="729" y="10" source="assets/closeB.png" click="image1_clickHandler(event)"/>
 </s:BorderContainer>
