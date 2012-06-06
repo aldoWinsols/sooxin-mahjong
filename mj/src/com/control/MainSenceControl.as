@@ -35,7 +35,7 @@ package com.control
 			this.mainSence.currentState = "lianwangHome";
 			this.mainSence.currentState = "verifier";
 			this.mainSence.currentState = "danjiHome";
-//			this.mainSence.currentState = "login";
+			this.mainSence.currentState = "login";
 			
 			mobileConfig();
 			

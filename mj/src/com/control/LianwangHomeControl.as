@@ -4,7 +4,6 @@ package com.control
 	import com.milkmangames.nativeextensions.ios.events.StoreKitErrorEvent;
 	import com.milkmangames.nativeextensions.ios.events.StoreKitEvent;
 	import com.model.Alert;
-	
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.view.LianwangHome;
@@ -63,6 +62,12 @@ package com.control
 			// when this is done, we'll get a PRODUCT_DETAILS_LOADED or PRODUCT_DETAILS_FAILED event and go on from there...
 			StoreKit.storeKit.loadProductDetails(productIdList);
 			//---------------------------------------------------------------------------
+			
+			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
+		}
+		
+		private function backBClickHandler(e:MouseEvent):void{
+			MainSenceControl.instance.mainSence.currentState = "login";
 		}
 		
 		

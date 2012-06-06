@@ -47,5 +47,5 @@
 	</s:TabbedViewNavigator>
 	<s:Image includeIn="main" x="782" y="10" source="assets/main/liwuB.png"/>
 	<s:Image includeIn="main" x="880" y="10" source="assets/main/chongzhiB.png"/>
-	<s:Image includeIn="main" x="880" y="560" source="assets/main/backB.png"/>
+	<s:Image includeIn="main" id="backB" x="880" y="560" source="assets/main/backB.png"/>
 </s:BorderContainer>
