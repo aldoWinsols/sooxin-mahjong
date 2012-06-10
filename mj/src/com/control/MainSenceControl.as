@@ -1,9 +1,15 @@
 package com.control
 {
+	import com.amusement.Mahjong.control.MahjongApplictionControl;
+	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.amusement.Mahjong.service.MahjongSyncService;
+	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
 	import com.services.ChatService;
 	import com.services.ConfigService;
+	import com.services.DataService;
 	import com.services.GameCenterService;
+	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.tencent.weibo.api.Authorize;
 	import com.tencent.weibo.core.WeiboConfig;
@@ -30,20 +36,28 @@ package com.control
 			
 			ChatService.getInstance();
 			ConfigService.instance;
+			GameCenterService.getInstance();
+			DataService.instance;
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";
-			this.mainSence.currentState = "verifier";
+//			this.mainSence.currentState = "verifier";
 			this.mainSence.currentState = "danjiHome";
+			
 			this.mainSence.currentState = "login";
 			
-			mobileConfig();
+//			mobileConfig();
 			
 			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
-			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);
-			this.mainSence.mainButYK.addEventListener(MouseEvent.CLICK,mainButYKClickHandler);
-			this.mainSence.verifierCommitB.addEventListener(MouseEvent.CLICK,verifierCommitBClickHandler);
-			this.mainSence.verifierCancelB.addEventListener(MouseEvent.CLICK,verifierCancelBClickHandler);
+//			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);
+			this.mainSence.mainButLW.addEventListener(MouseEvent.CLICK,mainButLWClickHandler);
+			this.mainSence.logB.addEventListener(MouseEvent.CLICK,logBClickHandler);
+//			this.mainSence.verifierCommitB.addEventListener(MouseEvent.CLICK,verifierCommitBClickHandler);
+//			this.mainSence.verifierCancelB.addEventListener(MouseEvent.CLICK,verifierCancelBClickHandler);
+		}
+		
+		private function logBClickHandler(e:MouseEvent):void{
+			this.mainSence.currentState = "log";
 		}
 		
 		var request:IRequestOperation;
@@ -85,31 +99,38 @@ package com.control
 			this.mainSence.enabled = true;
 		}
 		
-		private function errorHandler(e:IOErrorEvent):void
-		{
-			Alert.show("登录失败，请尝试重新输入或重新授权操作！"+e.toString());
-			this.mainSence.verInput.text = "";
-			this.mainSence.enabled = true;
-		}
-		
-		protected function verifierCommitBClickHandler(event:MouseEvent):void
-		{
-			if(this.mainSence.verInput.text == "" || this.mainSence.verInput.text == null)
-				return;
-			var request:IRequestOperation;
-			var oauthVerifier:String = this.mainSence.verInput.text;
-			request = authorizeAPI.accessToken(oauthVerifier);
-			request.addEventListener(Event.COMPLETE,accessTokenHandler);
-			request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
-			this.mainSence.enabled = false;
-		}
+//		private function errorHandler(e:IOErrorEvent):void
+//		{
+//			Alert.show("登录失败，请尝试重新输入或重新授权操作！"+e.toString());
+//			this.mainSence.verInput.text = "";
+//			this.mainSence.enabled = true;
+//		}
+//		
+//		protected function verifierCommitBClickHandler(event:MouseEvent):void
+//		{
+//			if(this.mainSence.verInput.text == "" || this.mainSence.verInput.text == null)
+//				return;
+//			var request:IRequestOperation;
+//			var oauthVerifier:String = this.mainSence.verInput.text;
+//			request = authorizeAPI.accessToken(oauthVerifier);
+//			request.addEventListener(Event.COMPLETE,accessTokenHandler);
+//			request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
+//			this.mainSence.enabled = false;
+//		}
 		
 		private function verifierCancelBClickHandler(e:MouseEvent):void{
 			this.mainSence.currentState = "login";
 		}
 		
 		private function mainButDJClickHandler(e:MouseEvent):void{
-			this.mainSence.currentState = "danjiHome";
+
+			this.mainSence.menu.visible = false;
+			this.mainSence.mahjongAppliction.visible = true;
+			MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
+			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+			MahjongSyncService.instance.isNetwork = false;
+			RoomService.instance.beginGame("player", 3000);
+			
 		}
 		private function mainButQQClickHandler(e:MouseEvent):void{
 			if(hasAccessToken)
@@ -124,8 +145,9 @@ package com.control
 			}
 			
 		}
-		private function mainButYKClickHandler(e:MouseEvent):void{
-			
+		private function mainButLWClickHandler(e:MouseEvent):void{
+			this.mainSence.currentState = "lianwangHome";
+			MainPlayerService.getInstance();
 		}
 	}
 }

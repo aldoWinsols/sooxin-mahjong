@@ -11,6 +11,7 @@
 	</s:layout>
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.MahjongAppliction;
 			import com.amusement.Mahjong.control.MahjongBalanceControl;
 			import com.amusement.Mahjong.control.MahjongPlayerControlD;
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
@@ -18,6 +19,7 @@
 			import com.amusement.Mahjong.service.MahjongBalanceService;
 			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
+			import com.control.MainSenceControl;
 			import com.mahjongSyncServer.services.RoomService;
 			import com.model.Alert;
 			import com.services.GameCenterService;
@@ -43,8 +45,8 @@
 			{
 				// TODO Auto-generated method stub
 //				this.exit.visible = true;
-//				GameCenterService.instance.showLeaderboard();
-				Alert.show("想看看自己的战绩排行？来完整版吧！");
+				GameCenterService.instance.showLeaderboard();
+//				Alert.show("想看看自己的战绩排行？来完整版吧！");
 			}
 			
 			protected function image2_clickHandler(event:MouseEvent):void
@@ -63,9 +65,9 @@
 			protected function image4_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-//				GameCenterService.instance.showAchievements();
+				GameCenterService.instance.showAchievements();
 				
-				Alert.show("想看看自己获得的荣誉？来完整版吧！");
+//				Alert.show("想看看自己获得的荣誉？来完整版吧！");
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void
@@ -96,6 +98,30 @@
 				MahjongBalanceControl.instance.showBalance();
 			}
 			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.backOperation.visible = true;
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.backOperation.visible = false;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				//				MainSenceControl.instance.mahjongAppliction = new MahjongAppliction();
+				this.backOperation.visible = false;
+				GameCenterService.instance.changeScore(-5);
+				MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
+				MainSenceControl.instance.mainSence.menu.visible = true;
+				RoomService.instance.endGame();
+				MahjongRoomControl.instance.clearTabletop();
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -108,7 +134,7 @@
 				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
 		<s:Button left="10" top="10" width="308" height="55" label="如果您喜欢，点我试试完整版"
 				  chromeColor="#f6cb00" click="button1_clickHandler(event)" color="#FF0000"
-				  fontSize="20" fontWeight="bold"/>
+				  fontSize="20" fontWeight="bold" visible="false"/>
 		
 		<!--<mx:Image source="com/amusement/Mahjong/assets/tabletop/mj_tabletop_green.jpg"/>-->
 		
@@ -133,18 +159,20 @@
 						   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
 						   verticalCenter="0">
 			
+			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="200" right="10" color="#FEE300" fontSize="20"/>
-		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="false" />
+		<s:Label id="mahjongsNum" y="400" right="10" color="#FEE300" fontSize="20"/>
+		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="true" />
 
 		<model:Button y="89" right="10" click="image4_clickHandler(event)"
-					  skin="@Embed('assets/icon/Safari2.png')" visible="false"/>
-		<model:Button y="100" right="10" click="image3_clickHandler(event)"
+					  skin="@Embed('assets/icon/Safari2.png')" visible="true"/>
+		<model:Button y="230" right="10" click="image3_clickHandler(event)"
 					  skin="@Embed('assets/icon/Facebook.png')"/>
-		<model:Button y="28" right="10" click="image2_clickHandler(event)"
+		<model:Button y="158" right="10" click="image2_clickHandler(event)"
 					  skin="@Embed('assets/icon/Settings.png')"/>
 		
-		
+		<model:Button y="300" right="10" click="button2_clickHandler(event)"
+					  skin="@Embed('assets/icon/back.png')"/>
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		
 		<s:Button visible="false" label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)"
@@ -175,6 +203,14 @@
 		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
 		<view:MahjongSeat>
 		</view:MahjongSeat>
+		
+		<s:BorderContainer id="backOperation" visible="false" width="500" height="230" backgroundAlpha="0.7" backgroundColor="#000000"
+						   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
+			<s:Button x="126" y="144" width="100" label="确   定  " click="button4_clickHandler(event)"/>
+			<s:Button x="277" y="144" width="100" label="取   消" click="button3_clickHandler(event)"/>
+			<s:Label x="100" y="75" color="#FFFFFF" fontSize="24" text="中途退出游戏将扣除排行5积分！"/>
+			
+		</s:BorderContainer>
 	</s:Group>
 	
 	<!--</s:BorderContainer>-->

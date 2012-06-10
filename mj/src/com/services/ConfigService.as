@@ -23,8 +23,8 @@ package com.services
 		
 		public function ConfigService()
 		{
-//			RemoteService.instance.configService.getConfig();
-//			RemoteService.instance.configService.addEventListener(ResultEvent.RESULT, getConfigResult);
+			RemoteService.instance.configService.getConfig();
+			RemoteService.instance.configService.addEventListener(ResultEvent.RESULT, getConfigResult);
 		}
 
 		public static function get instance():ConfigService

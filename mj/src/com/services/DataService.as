@@ -83,7 +83,7 @@ package com.services{
 					arr.push("ID:"+pl.playerName+"      EMAIL:"+pl.email+"      积分:"+pl.haveMoney);
 				}
 				
-				DanjiHomeControl.instance.danjiHome.players.dataProvider = new ArrayList(arr);
+//				DanjiHomeControl.instance.danjiHome.players.dataProvider = new ArrayList(arr);
 			}else if(table == "gamelog"){
 				logs = new ArrayCollection(sqls.getResult().data);
 				DanjiHomeControl.instance.danjiHome.history.showHistory(logs.toArray());

@@ -1,31 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" title="">
+	<fx:Script>
+		<![CDATA[
+			import com.control.LianwangHomeControl;
+			
+			import mx.collections.ArrayCollection;
+			
+			import spark.events.GridSelectionEvent;
+			[Bindable]
+			private var rooms:ArrayCollection = new ArrayCollection([
+				{ID:"1", roomName:"西南区5点", fanNum:"5点/番", 
+					joinNum:"50",onlineNum:"300", netQ:"良好", type:"room5"}, 
+				{ID:"2", roomName:"西南区10点", fanNum:"10点/番", 
+					joinNum:"200",onlineNum:"500",  netQ:"良好", type:"room10"}, 
+				{ID:"3", roomName:"西南区20点", fanNum:"20点/番", 
+					joinNum:"500",onlineNum:"1000",  netQ:"良好", type:"room20"}, 
+				{ID:"4", roomName:"西南区50点", fanNum:"50点/番", 
+					joinNum:"1000",onlineNum:"3000",  netQ:"良好", type:"room50"},
+				{ID:"5", roomName:"西南区100点", fanNum:"100点/番", 
+					joinNum:"1000",onlineNum:"6000",  netQ:"良好", type:"room100"}, 
+			]);
+
+			protected function dg_selectionChangeHandler(event:GridSelectionEvent):void
+			{
+				// TODO Auto-generated method stub
+				LianwangHomeControl.instance.roomClick(dg.selectedItem.type);
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:DataGrid id="dg" x="0" y="0" width="100%" height="100%" alpha="0.5" color="#000000"
-				fontSize="15">
+	<s:DataGrid id="dg" x="0" y="0" width="100%" height="100%" alpha="0.7" color="#000000"
+				dataProvider="{rooms}" fontSize="22" fontWeight="bold" rowHeight="80"
+				selectionChange="dg_selectionChangeHandler(event)">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn dataField="playerName" headerText="ID"></s:GridColumn>
-				<s:GridColumn dataField="roomNo" headerText="房间编号"></s:GridColumn>
-				<s:GridColumn dataField="preMoney" headerText="番数"></s:GridColumn>
-				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="入局点数"></s:GridColumn>
-				<s:GridColumn dataField="afterMoney" headerText="创建时间"></s:GridColumn>
-				<s:GridColumn dataField="gameTime" headerText="是否加密"></s:GridColumn>
-				<s:GridColumn headerText="操作">
-					<s:itemRenderer>
-						<fx:Component>
+				<s:GridColumn dataField="ID" headerText="ID" width="50">
+					<s:itemRenderer >
+						<fx:Component> 
 							<s:GridItemRenderer>
-	
-								
-								<s:HGroup>
-
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.ID}"/>
 								</s:HGroup>
 							</s:GridItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="roomName" headerText="房间名称">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.roomName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="fanNum" headerText="番数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.fanNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="joinNum" headerText="入局点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.joinNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="onlineNum" headerText="在线人数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.onlineNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="netQ" headerText="网络质量">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.netQ}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
 				</s:GridColumn>
 			</s:ArrayList>
 		</s:columns>

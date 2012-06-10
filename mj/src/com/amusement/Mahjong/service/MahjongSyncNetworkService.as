@@ -7,6 +7,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongPlayerControlR;
 	import com.amusement.Mahjong.control.MahjongPlayerControlU;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.control.LianwangHomeControl;
 	import com.control.MainControl;
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
@@ -57,7 +58,7 @@ package com.amusement.Mahjong.service
 		{
 			MahjongSyncService.instance.isNetwork = true;
 //			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
-			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+//			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
 			var connectStr:String = getConnectStr(roomType);
 			
@@ -138,6 +139,8 @@ package com.amusement.Mahjong.service
 				msgObj.players[players[i].azimuth] = player;
 			}
 			
+			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+			LianwangHomeControl.instance.lianwangHome.visible = false;
 			MahjongRoomControl.instance.restartGame(msgObj);
 		}
 		
@@ -155,6 +158,9 @@ package com.amusement.Mahjong.service
 					msgObj.playerMahjongValues = content[i][2];
 				}
 			}
+			
+			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+			LianwangHomeControl.instance.lianwangHome.visible = false;
 			MahjongRoomControl.instance.beginGame(msgObj.roomNo,msgObj.diceNum,msgObj.playerAzimuth,msgObj.playerMahjongValues);
 		}
 		

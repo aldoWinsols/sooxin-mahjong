@@ -24,7 +24,7 @@ package com.services
 		private static var _instance:MainPlayerService;
 		public function MainPlayerService()
 		{
-
+			mainPlayer = new MainPlayer();
 		}
 		
 		public static function getInstance():MainPlayerService

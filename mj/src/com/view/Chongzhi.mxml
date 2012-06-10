@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="960" height="100%">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.milkmangames.nativeextensions.ios.StoreKit;
+			
+			import mx.collections.ArrayCollection;
+			
+			import spark.events.GridSelectionEvent;
+			[Bindable]
+			private var chajians:ArrayCollection = new ArrayCollection([
+				{ID:"1", price:"￥6", cNum:"600点", 
+					zNum:"0",productID:"com.sooxin.mahjongM.d6",remark:"点击购买"}, 
+				{ID:"2", price:"￥12", cNum:"1200点", 
+					zNum:"100",productID:"com.sooxin.mahjongM.d12",remark:"点击购买"},
+				{ID:"3", price:"￥18", cNum:"1800点", 
+					zNum:"200",productID:"com.sooxin.mahjongM.d18",remark:"点击购买"},
+				{ID:"4", price:"￥25", cNum:"2500点", 
+					zNum:"500",productID:"com.sooxin.mahjongM.d25",remark:"点击购买"},
+				{ID:"5", price:"￥30", cNum:"3000点", 
+					zNum:"1000",productID:"com.sooxin.mahjongM.d30",remark:"点击购买"},
+				{ID:"6", price:"￥50", cNum:"5000点", 
+					zNum:"2000",productID:"com.sooxin.mahjongM.d50",remark:"点击购买"},
+			]);
+			
+			protected function dg_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:ViewNavigator x="0" y="0" width="100%" height="100%" title="购买插件" />
+	<s:DataGrid id="dg" x="0" y="44" width="960" height="100%" alpha="0.7" color="#000000"
+				dataProvider="{chajians}" fontSize="22" fontWeight="bold" rowHeight="60" 
+				 click="dg_clickHandler(event)">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="ID" headerText="ID" width="50">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.ID}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="price" headerText="价格">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.price}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="cNum" headerText="充值点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.cNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="zNum" headerText="赠送点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.zNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="remark" headerText="备注">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.remark}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:Group>

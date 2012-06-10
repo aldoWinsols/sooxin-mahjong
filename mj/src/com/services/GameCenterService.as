@@ -192,12 +192,18 @@ package com.services
 		/** Check Authentication */
 		private function checkAuthentication():Boolean
 		{
-			if (!GameCenter.gameCenter.isUserAuthenticated())
-			{
-				log("not logged in!");
+			try{
+				if (!GameCenter.gameCenter.isUserAuthenticated())
+				{
+					Alert.show("not logged in!");
+					return false;
+				}
+				return true;
+			}catch(e:Error){
+				Alert.show("this ios version doesn't have gameCenter.");
 				return false;
 			}
-			return true;
+			return false;
 		}
 		
 		/** Show Achievements */

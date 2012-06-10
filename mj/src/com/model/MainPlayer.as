@@ -5,7 +5,7 @@ package com.model
 	public class MainPlayer
 	{
 		public var id:Number;
-		public var playerName:String = "";
+		public var playerName:String = "sooxin";
 		public var playerPwd:String = "";
 		public var haveMoney:Number = 0;;
 		public var birthday:int = 0;;
