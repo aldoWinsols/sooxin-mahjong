@@ -23,10 +23,15 @@ package com.control
 			DataService.instance;
 			
 			this.danjiHome.danji_exitB.addEventListener(MouseEvent.CLICK,danji_exitBClickHandler);
+			this.danjiHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
 			
 //			GameCenterService.getInstance();
 			
 //			this.home.addPlayerB.addEventListener(MouseEvent.CLICK,addPlayerBClickHandler);
+		}
+		
+		private function backBClickHandler(e:MouseEvent):void{
+			MainSenceControl.instance.mainSence.currentState = "login";
 		}
 		
 		public function setStateMain():void{

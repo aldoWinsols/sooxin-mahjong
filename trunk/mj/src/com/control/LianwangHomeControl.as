@@ -1,5 +1,6 @@
 package com.control
 {
+	import com.amusement.Mahjong.service.MahjongSyncNetworkService;
 	import com.milkmangames.nativeextensions.ios.*;
 	import com.milkmangames.nativeextensions.ios.events.StoreKitErrorEvent;
 	import com.milkmangames.nativeextensions.ios.events.StoreKitEvent;
@@ -15,8 +16,6 @@ package com.control
 	public class LianwangHomeControl
 	{
 		public var lianwangHome:LianwangHome;
-		private static const D60_PRODUCT_ID:String="com.sooxin.mahjongM.d60";
-		private static const D250_PRODUCT_ID:String="com.sooxin.mahjongM.d250";
 		private var loadedProducts:Vector.<StoreKitProduct>;
 		
 		public static var instance:LianwangHomeControl;
@@ -26,11 +25,11 @@ package com.control
 			instance = this;
 			this.lianwangHome = lianwangHome;
 			
-			this.lianwangHome.currentState = "log";
 			this.lianwangHome.currentState = "main";
 			
 			MainPlayerService.getInstance();
 			
+			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
 			//-----------------------------------------------------------------
 			
 			StoreKit.create();
@@ -55,15 +54,19 @@ package com.control
 			
 			// the list of ids is passed in as an as3 vector (typed Array.)
 			var productIdList:Vector.<String>=new Vector.<String>();
-			productIdList.push(D60_PRODUCT_ID);
-			productIdList.push(D250_PRODUCT_ID);
+			productIdList.push("com.sooxin.mahjongM.d6");
+			productIdList.push("com.sooxin.mahjongM.d12");
+			productIdList.push("com.sooxin.mahjongM.d18");
+			productIdList.push("com.sooxin.mahjongM.d25");
+			productIdList.push("com.sooxin.mahjongM.d30");
+			productIdList.push("com.sooxin.mahjongM.d50");
 			
 			
 			// when this is done, we'll get a PRODUCT_DETAILS_LOADED or PRODUCT_DETAILS_FAILED event and go on from there...
 			StoreKit.storeKit.loadProductDetails(productIdList);
 			//---------------------------------------------------------------------------
 			
-			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
+			
 		}
 		
 		private function backBClickHandler(e:MouseEvent):void{
@@ -124,11 +127,23 @@ package com.control
 			//				var inventory:Object=sharedObject.data["inventory"];
 			switch(e.productId)
 			{
-				case D60_PRODUCT_ID:
-					MainPlayerService.getInstance().chongzhi(60);
+				case "com.sooxin.mahjongM.d6":
+					MainPlayerService.getInstance().chongzhi(600);
 					break;
-				case D60_PRODUCT_ID:
-					MainPlayerService.getInstance().chongzhi(250);
+				case "com.sooxin.mahjongM.d12":
+					MainPlayerService.getInstance().chongzhi(1300);
+					break;
+				case "com.sooxin.mahjongM.d18":
+					MainPlayerService.getInstance().chongzhi(2000);
+					break;
+				case "com.sooxin.mahjongM.d25":
+					MainPlayerService.getInstance().chongzhi(3000);
+					break;
+				case "com.sooxin.mahjongM.d30":
+					MainPlayerService.getInstance().chongzhi(4000);
+					break;
+				case "com.sooxin.mahjongM.d50":
+					MainPlayerService.getInstance().chongzhi(7000);
 					break;
 				default:
 					// we don't do anything for unknown items.
@@ -162,5 +177,74 @@ package com.control
 			log("an error occurred in restore purchases:"+e.text);		
 		}
 		//----------------------------------------------------
+		
+		public function roomClick(roomName:String):void{
+//			if(!checkIsEnter(roomName)){
+//				return;
+//			}
+			switch(roomName){
+				case "room5":
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 5);
+					break;
+				case "room10":
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 10);
+					break;
+				case "room20":
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 20);
+					break;
+				case "room50":
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 50);
+					break;
+				case "room100":
+					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 100);
+					break;
+			}
+		}
+		
+		private function checkIsEnter(roomName:String):Boolean{
+			switch(roomName){
+				case "room5":
+					if(MainPlayerService.getInstance().roomNum5 >= 300){
+						return false;
+					}
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 300){
+						return false;
+					}
+					break;
+				case "room10":
+					if(MainPlayerService.getInstance().roomNum10 >= 300){
+						return false;
+					}
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 500){
+						return false;
+					}
+					break;
+				case "room20":
+					if(MainPlayerService.getInstance().roomNum20 >= 300){
+						return false;
+					}
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 1000){
+						return false;
+					}
+					break;
+				case "room50":
+					if(MainPlayerService.getInstance().roomNum50 >= 300){
+						return false;
+					}
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 3000){
+						return false;
+					}
+					break;
+				case "room100":
+					if(MainPlayerService.getInstance().roomNum100 >= 300){
+						return false;
+					}
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 6000){
+						return false;
+					}
+					break;
+			}
+			return true;
+		}
 	}
 }

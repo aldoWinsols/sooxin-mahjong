@@ -65,7 +65,7 @@ package com.control
 		}
 		
 		private function closeClickHandler(e:MouseEvent):void{
-			LianwangHomeControl.instance.lianwangHome.currentState = "main";
+			MainSenceControl.instance.mainSence.currentState = "login";
 		}
 		
 		private function changeID(arr:ArrayCollection):ArrayCollection{

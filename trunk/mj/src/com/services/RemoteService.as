@@ -22,13 +22,13 @@ package com.services
 
 		public function RemoteService()
 		{
-//			chongzhiService=getConfiguredRO("chongzhiService");
-//			duihuanService=getConfiguredRO("duihuanService");
-//			playlogService=getConfiguredRO("playlogService");
-//			playerService=getConfiguredRO("playerService");
-//			shangpinService=getConfiguredRO("shangpinService");
-//			noticeService=getConfiguredRO("noticeService");
-//			configService=getConfiguredRO("configService");
+			chongzhiService=getConfiguredRO("chongzhiService");
+			duihuanService=getConfiguredRO("duihuanService");
+			playlogService=getConfiguredRO("playlogService");
+			playerService=getConfiguredRO("playerService");
+			shangpinService=getConfiguredRO("shangpinService");
+			noticeService=getConfiguredRO("noticeService");
+			configService=getConfiguredRO("configService");
 		}
 
 		//得到单例
@@ -84,7 +84,7 @@ package com.services
 		private function setEndPoint(ro:RemoteObject):void
 		{
 
-			ro.endpoint="http://s-32472.gotocdn.com:8080/panda/messagebroker/amf";
+			ro.endpoint="http://127.0.0.1:8080/panda/messagebroker/amf";
 			trace(ro.endpoint);
 		}
 

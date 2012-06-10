@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="960" height="100%">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.milkmangames.nativeextensions.ios.StoreKit;
+			
+			import mx.collections.ArrayCollection;
+			
+			import spark.events.GridSelectionEvent;
+			[Bindable]
+			private var lipins:ArrayCollection = new ArrayCollection([
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+				{ID:"1", icon:"assets/nanoicon.jpg", pName:"nano", 
+					dNum:"6000",remark:"点击购买"}, 
+			]);
+			
+			protected function dg_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:ViewNavigator x="0" y="0" width="100%" height="100%" title="领取礼品" />
+	<s:DataGrid id="dg" x="0" y="44" width="960" height="100%" alpha="0.7" color="#000000"
+				dataProvider="{lipins}" fontSize="22" fontWeight="bold" rowHeight="80" 
+				click="dg_clickHandler(event)">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="删除" >
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:Image source="{data.icon}"/>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="pName" headerText="礼品名称">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.pName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="dNum" headerText="兑换点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.dNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="remark" headerText="备注">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup  verticalCenter="0">
+									<s:Label text="{data.remark}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:Group>

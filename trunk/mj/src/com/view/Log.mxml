@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   width="960" height="640" creationComplete="group1_creationCompleteHandler(event)"
-				   currentState="game">
+				   currentState="game" xmlns:model="com.model.*">
 	<fx:Script>
 		<![CDATA[
 			import com.control.LogControl;
@@ -39,17 +39,24 @@
 		<s:DateTimeFormatter id="df" dateTimePattern="yyyy/MM/dd HH:mm:ss"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Button id="gameHistoryB" x="10" y="10" label="游戏记录"/>
-	<s:Button id="chongzhiHistoryB" x="107" y="10" label="充值记录"/>
-	<s:Button id="prizeHistoryB" x="204" y="10" label="奖品领取记录"/>
+	<s:ViewNavigator x="0" y="80" width="960" height="560"
+					 title.chongzhi="充值记录"
+					 title.game="游戏记录" title.jiangpin="奖品领取记录"/>
+	<model:Button id="gameHistoryB" x="0" y="10"
+			  skin="@Embed('../../assets/log/gameLog.png')"/>
+	<model:Button id="chongzhiHistoryB"
+				  skin="@Embed('../../assets/log/chongzhiLog.png')"
+				  x="167" y="10"/>
+	<model:Button id="prizeHistoryB" skin="@Embed('../../assets/log/jiangpinLog.png')"
+				  x="334" y="10"/>
 	
 	
-	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="10" y="61" width="940" height="569" alpha="0.7"
-				fontSize="13">
+	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="0" y="125" width="100%" height="100%" alpha="0.7"
+				fontSize="18">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="id" width="60"/>
-				<s:GridColumn headerText="時間" dataField="duihuanTime" labelFunction="gameTimeFormatDuihuan"/>
+				<s:GridColumn headerText="时间" dataField="duihuanTime" labelFunction="gameTimeFormatDuihuan"/>
 				<s:GridColumn headerText="奖品" dataField="itemName"/>
 				<s:GridColumn headerText="兑换前点数" dataField="lastHaveMoney"/>
 				<s:GridColumn headerText="兑换点数" dataField="duihuanMoney"/>
@@ -61,33 +68,30 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:Button id="closeB" x="735" y="10" label="关闭"
-			  x.chongzhi="893" y.chongzhi="10"
-			  x.game="893" y.game="10" label.game="返回"
-			  x.jiangpin="896" y.jiangpin="10"/>
-	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="10" y="61" width="940" height="569" alpha="0.7"
-				fontSize="13">
+	<model:Button id="closeB" x="880" y="10" skin="@Embed('../../assets/main/backB.png')" />
+	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="0" y="125" width="100%" height="100%" alpha="0.7"
+				fontSize="18">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="id" width="60"/>
-				<s:GridColumn headerText="時間" dataField="chongzhiTime" labelFunction="gameTimeFormatChongzhi" width="130"/>
-				<s:GridColumn headerText="充值前點數" dataField="lastHaveMoney"/>
-				<s:GridColumn headerText="充值點數" dataField="chongzhiMoney"/>
-				<s:GridColumn headerText="充值後點數" dataField="nowHaveMoney"/>
+				<s:GridColumn headerText="时间" dataField="chongzhiTime" labelFunction="gameTimeFormatChongzhi" width="130"/>
+				<s:GridColumn headerText="充值前点数" dataField="lastHaveMoney"/>
+				<s:GridColumn headerText="充值点数" dataField="chongzhiMoney"/>
+				<s:GridColumn headerText="充值后点数" dataField="nowHaveMoney"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:DataGrid id="gameHistory" includeIn="game" x="10" y="61" width="938" height="567" alpha="0.7"
-				fontSize="13">
+	<s:DataGrid id="gameHistory" includeIn="game" x="0" y="125" width="100%" height="100%"
+				alpha="0.7" fontSize="18">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
-				<s:GridColumn headerText="局號" dataField="gameNo" width="120"/>
-				<s:GridColumn headerText="時間" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
-				<s:GridColumn headerText="遊戲前點數" dataField="preMoney" width="80"/>
-				<s:GridColumn headerText="輸贏" dataField="winLossMoneyAfterTax" width="60"/>
-				<s:GridColumn headerText="遊戲後點數" dataField="afterMoney" width="80"/>
-				<s:GridColumn id="luxiang1" headerText="錄像操作" dataField="luxiang" width="80">
+				<s:GridColumn headerText="局号" dataField="gameNo" width="120"/>
+				<s:GridColumn headerText="时间" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
+				<s:GridColumn headerText="游戏前点数" dataField="preMoney" width="80"/>
+				<s:GridColumn headerText="输赢" dataField="winLossMoneyAfterTax" width="60"/>
+				<s:GridColumn headerText="游戏后点数" dataField="afterMoney" width="80"/>
+				<s:GridColumn id="luxiang1" headerText="操作" dataField="luxiang" width="80">
 					<s:itemRenderer>
 						<fx:Component>
 							<s:GridItemRenderer>
@@ -132,4 +136,5 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
+	
 </s:Group>

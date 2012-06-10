@@ -114,7 +114,7 @@
 			{
 				// TODO Auto-generated method stub
 //				operation.visible = false;
-				mahjongAppliction.visible = true;
+//				mahjongAppliction.visible = true;
 				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 				this.mainMenu.visible = false;
 				MahjongSyncService.instance.isNetwork = false;
@@ -145,10 +145,7 @@
 	<view:PlayerAdd id="playerAdd" includeIn="main" visible="false" horizontalCenter="0"
 					verticalCenter="-300">
 	</view:PlayerAdd>
-	<Mahjong:MahjongAppliction id="mahjongAppliction" includeIn="main,history" horizontalCenter="0" verticalCenter="0">
-		<view:Notice includeIn="main" x="347" y="490">
-		</view:Notice>
-	</Mahjong:MahjongAppliction>
+
 	<s:Group id="mainMenu" includeIn="main" x="154" y="201">
 		
 		<model:Button y="202" left="190" click="image2_clickHandler(event)"
@@ -161,5 +158,8 @@
 	</s:Group>
 	<view:History id="history" includeIn="history" horizontalCenter="0" verticalCenter="0">
 	</view:History>
+	<s:Image id="backB" source="assets/main/backB.png"
+			 x.history="880" y.history="560"
+			 right.main="50" bottom.main="50"/>
 	
 </s:Group>
