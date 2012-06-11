@@ -4,10 +4,11 @@
 				   xmlns:view="com.view.*"
 				   width="960" height="640" backgroundAlpha="0"
 				   borderVisible="false" cornerRadius="10"
-				   creationComplete="bordercontainer2_creationCompleteHandler(event)">
+				   creationComplete="bordercontainer2_creationCompleteHandler(event)" xmlns:model="com.model.*">
 		
 	<fx:Script>
 		<![CDATA[
+			import com.control.DuihuanControl;
 			import com.control.LianwangHomeControl;
 			import com.model.MainPlayer;
 			import com.services.MainPlayerService;
@@ -34,6 +35,12 @@
 			{
 				// TODO Auto-generated method stub
 				this.currentState = "duihuan";
+				try{
+					DuihuanControl.instance.getShangpin();
+				}catch(e:Error){
+					
+				}
+				
 			}
 			
 			protected function image3_clickHandler(event:MouseEvent):void
@@ -57,12 +64,7 @@
 	<s:ViewNavigator width="960" height="550" label="休闲房间" firstView="views.View1" includeIn="main"
 					 icon="assets/main/54.png" title="休闲房间"
 					 x.main="0" y.main="90"/>
-	<s:Image click="image2_clickHandler(event)" source="assets/main/liwuB.png"
-			 x="692" y="10"/>
-	<s:Image click="image1_clickHandler(event)" source="assets/main/chongzhiB.png"
-			 x="790" y="10"/>
-	<s:Image id="backB" source="assets/main/backB.png"
-			 right="10" bottom="560"/>
+	
 	<view:Chongzhi includeIn="chongzhi" x="0" y="90">
 	</view:Chongzhi>
 	<view:Duihuan includeIn="duihuan" x="0" y="90">
@@ -74,6 +76,13 @@
 			 text="{MainPlayerService.getInstance().mainPlayer.playerName}"/>
 	<s:Label id="haveMoney" x="128" y="46" color="#FFFFFF" fontWeight="bold"
 			 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
-	<s:Image click="image3_clickHandler(event)" source="assets/main/roomB.png"
+	
+	<model:Button click="image2_clickHandler(event)" skin="@Embed('assets/main/liwuB.png')"
+			 x="692" y="10"/>
+	<model:Button click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"
+			 x="790" y="10"/>
+	<model:Button id="backB" skin="@Embed('assets/main/backB.png')"
+			 right="10" bottom="560"/>
+	<model:Button click="image3_clickHandler(event)" skin="@Embed('assets/main/roomB.png')"
 			 x="589" y="10"/>
 </s:BorderContainer>

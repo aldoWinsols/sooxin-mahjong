@@ -58,9 +58,7 @@
 				<s:GridColumn headerText="ID" dataField="id" width="60"/>
 				<s:GridColumn headerText="时间" dataField="duihuanTime" labelFunction="gameTimeFormatDuihuan"/>
 				<s:GridColumn headerText="奖品" dataField="itemName"/>
-				<s:GridColumn headerText="兑换前点数" dataField="lastHaveMoney"/>
 				<s:GridColumn headerText="兑换点数" dataField="duihuanMoney"/>
-				<s:GridColumn headerText="兑换后点数" dataField="nowHaveMoney"/>
 				<s:GridColumn headerText="联系人" dataField="contactName"/>
 				<s:GridColumn headerText="联系电话" dataField="contactTel"/>
 				<s:GridColumn headerText="邮寄地址" dataField="contactAddress"/>

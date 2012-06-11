@@ -73,7 +73,7 @@
 	</s:BorderContainer>
 	<view:NetworkQuality id="network" x="31" y="83"/>
 	
-	<s:BorderContainer id="duihuan" visible="false" width="553" height="327" cornerRadius="8"
+	<s:BorderContainer id="duihuan" visible="true" width="553" height="327" cornerRadius="8"
 					   horizontalCenter="0" verticalCenter="0" backgroundAlpha="0.9" borderVisible="false">
 		<s:TextInput id="contactName" x="163" y="79"/>
 		<s:TextInput id="contactTel" x="163" y="132"/>

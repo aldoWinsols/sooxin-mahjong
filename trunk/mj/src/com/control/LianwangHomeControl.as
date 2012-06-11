@@ -25,6 +25,8 @@ package com.control
 			instance = this;
 			this.lianwangHome = lianwangHome;
 			
+			this.lianwangHome.currentState = "duihuan";
+			this.lianwangHome.currentState = "chongzhi";
 			this.lianwangHome.currentState = "main";
 			
 			MainPlayerService.getInstance();

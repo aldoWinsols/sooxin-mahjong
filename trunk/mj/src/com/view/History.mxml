@@ -62,7 +62,7 @@
 											
 											DanjiHomeControl.instance.danjiHome.history.visible = false;
 //											DanjiHomeControl.instance.danjiHome.operation.visible = false;
-											DanjiHomeControl.instance.danjiHome.mahjongAppliction.visible = true;
+//											DanjiHomeControl.instance.danjiHome.mahjongAppliction.visible = true;
 //											MahjongApplictionControl.instance._mahjongAppliction.visible = true;
 											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 //											DanjiHomeControl.instance.danjiHome.visible = false;

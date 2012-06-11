@@ -13,6 +13,8 @@ package com.services
 		public static var instance:GameCenterService;
 		private static const LEADERBOARD_ID:String="albatross";
 		
+		public var playerName:String = "";
+		
 		private var sharedObject:SharedObject;
 		/** Score */
 		private var score:Number;
@@ -103,6 +105,8 @@ package com.services
 		{
 			log("Auth succeeded!");
 //			showFullUI();
+			
+			this.playerName = GameCenter.gameCenter.getPlayerID();
 			log("auth player:"+GameCenter.gameCenter.getPlayerAlias()+"="+GameCenter.gameCenter.getPlayerID()+",underage?"+GameCenter.gameCenter.isPlayerUnderage());
 		}
 		private function onAchievementReset(e:GameCenterEvent):void

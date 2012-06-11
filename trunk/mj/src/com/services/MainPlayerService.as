@@ -44,9 +44,25 @@ package com.services
 			
 		}
 		
+		public function login():void{
+			if(mainPlayer.playerName == ""){
+				var player:MainPlayer = new MainPlayer();
+				player.playerName = GameCenterService.instance.playerName;
+				
+				RemoteService.instance.playerService.login(player);
+				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+			}
+		}
+		
+		private function loginResultHandler(e:ResultEvent):void{
+			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
+			mainPlayer = e.result as MainPlayer;
+		}
+		
 		public function chongzhi(money:int):void{
-			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
-			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
+			this.mainPlayer.haveMoney += money;
+//			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
+//			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
 		}
 		
 		private function chongzhiResaultHandler(e:ResultEvent):void{
