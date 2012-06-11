@@ -38,6 +38,7 @@ package com.control
 			ConfigService.instance;
 			GameCenterService.getInstance();
 			DataService.instance;
+			MainPlayerService.getInstance();
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";
@@ -55,10 +56,7 @@ package com.control
 //			this.mainSence.verifierCommitB.addEventListener(MouseEvent.CLICK,verifierCommitBClickHandler);
 //			this.mainSence.verifierCancelB.addEventListener(MouseEvent.CLICK,verifierCancelBClickHandler);
 		}
-		
-		private function logBClickHandler(e:MouseEvent):void{
-			this.mainSence.currentState = "log";
-		}
+
 		
 		var request:IRequestOperation;
 		public function mobileConfig():void
@@ -145,9 +143,29 @@ package com.control
 			}
 			
 		}
+		
+		
+		private function logBClickHandler(e:MouseEvent):void{
+			
+			if(GameCenterService.instance.playerName == ""){
+				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				return;
+			}
+			
+			this.mainSence.currentState = "log";
+			MainPlayerService.getInstance().login();
+		}
+		
 		private function mainButLWClickHandler(e:MouseEvent):void{
+			
+			if(GameCenterService.instance.playerName == ""){
+				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				return;
+			}
+			
 			this.mainSence.currentState = "lianwangHome";
-			MainPlayerService.getInstance();
+			MainPlayerService.getInstance().login();
+			
 		}
 	}
 }
