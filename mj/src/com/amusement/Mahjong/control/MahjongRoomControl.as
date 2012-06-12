@@ -54,6 +54,10 @@ package com.amusement.Mahjong.control
 		private function init():void{
 //			this._mahjongRoom.notice.start(14);
 			
+			if(MainControl.instance.main.applicationDPI == 160){
+				this._mahjongRoom.mahjongsNumB.visible = false;
+			}
+			
 			addListeners();
 		}
 		

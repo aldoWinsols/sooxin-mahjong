@@ -183,7 +183,7 @@ package com.amusement.Mahjong.service
 		 * @param azimuth
 		 * 
 		 */
-		public function showWord(wordName:String, azimuth:int):void{
+		public function showWord(wordName:String, azimuth:int, isZigang:Boolean):void{
 			_effectTimer.reset();
 			_effectTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, wordHandler);
 			
@@ -191,7 +191,7 @@ package com.amusement.Mahjong.service
 			_effectTimer.repeatCount = 1;
 			_effectTimer.addEventListener(TimerEvent.TIMER_COMPLETE, wordHandler, false, 0, true);
 			
-			MahjongWordControl.instance.show(wordName, azimuth);
+			MahjongWordControl.instance.show(wordName, azimuth, isZigang);
 			
 			_effectTimer.start();
 		}
@@ -541,7 +541,7 @@ package com.amusement.Mahjong.service
 				if(removeLastMahjongByOut(MahjongRoomControl.instance.nowPutPlayerAzimuth, pengValue)){	
 					
 					var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
-					this.showWord("peng", resPlayerAzimuth);
+					this.showWord("peng", resPlayerAzimuth,true);
 					switch (resPlayerAzimuth){
 						case 1:
 							MahjongPlayerControlU.instance.pengV(MahjongRoomControl.instance.nowPutMahjong);
@@ -604,7 +604,7 @@ package com.amusement.Mahjong.service
 			if(mahjong){
 				
 				var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
-				this.showWord("gang", resPlayerAzimuth);
+				this.showWord("gang", resPlayerAzimuth,isZigang);
 				switch (resPlayerAzimuth){
 					case 1:
 						MahjongPlayerControlU.instance.gangV(mahjong, isZigang);
@@ -663,7 +663,7 @@ package com.amusement.Mahjong.service
 			
 			if(mahjong){
 				var resPlayerAzimuth:int = MahjongUtil.getRemotePlayerAzimuth(MahjongRoomControl.instance.playerAzimuth, playerAzimuthR);
-				this.showWord("hu", resPlayerAzimuth);
+				this.showWord("hu", resPlayerAzimuth,true);
 				switch (resPlayerAzimuth){
 					case 1:
 						MahjongPlayerControlU.instance.huV(mahjong, huType, haveHuCount, qiangGangAzimuth);

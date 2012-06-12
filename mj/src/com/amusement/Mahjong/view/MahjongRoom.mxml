@@ -17,6 +17,7 @@
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
 			import com.amusement.Mahjong.control.MahjongRoomControl;
 			import com.amusement.Mahjong.service.MahjongBalanceService;
+			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
 			import com.control.MainSenceControl;
@@ -52,7 +53,7 @@
 			protected function image2_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				this.system.visible = true;
+//				this.system.visible = true;
 			}
 			
 			protected function image3_clickHandler(event:MouseEvent):void
@@ -122,6 +123,30 @@
 				MahjongRoomControl.instance.clearTabletop();
 			}
 			
+			protected function soundClose_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(true);
+				
+				MahjongSoundService.instance.bgSoundType = true;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = true;
+				this.soundClose.visible = false;
+			}
+			
+			protected function soundOpen_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(false);
+				
+				MahjongSoundService.instance.bgSoundType = false;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = false;
+				this.soundClose.visible = true;
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -132,13 +157,19 @@
 		
 		<s:Image id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
+		<s:BorderContainer id="mahjongsNumB" left="113" top="10" width="70" height="35" backgroundAlpha="0.3"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:Label id="mahjongsNum" x="12" y="6" color="#FEE300" fontSize="18" fontWeight="bold"/>
+		</s:BorderContainer>
 		<s:Button left="10" top="10" width="308" height="55" label="如果您喜欢，点我试试完整版"
 				  chromeColor="#f6cb00" click="button1_clickHandler(event)" color="#FF0000"
 				  fontSize="20" fontWeight="bold" visible="false"/>
 		
 		<!--<mx:Image source="com/amusement/Mahjong/assets/tabletop/mj_tabletop_green.jpg"/>-->
 		
-		<view:MahjongPlayerU id="mahjongPlayerU" top="20" horizontalCenter="0"/>
+		<view:MahjongPlayerU id="mahjongPlayerU" top="20" horizontalCenter="0">
+			
+		</view:MahjongPlayerU>
 		<view:MahjongPlayerR id="mahjongPlayerR" right="100" verticalCenter="0">
 		</view:MahjongPlayerR>
 		<view:MahjongPlayerL id="mahjongPlayerL" left="20" verticalCenter="0"/>
@@ -161,15 +192,16 @@
 			
 			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="400" right="10" color="#FEE300" fontSize="20"/>
 		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="true" />
 
 		<model:Button y="89" right="10" click="image4_clickHandler(event)"
 					  skin="@Embed('assets/icon/Safari2.png')" visible="true"/>
 		<model:Button y="230" right="10" click="image3_clickHandler(event)"
 					  skin="@Embed('assets/icon/Facebook.png')"/>
-		<model:Button y="158" right="10" click="image2_clickHandler(event)"
-					  skin="@Embed('assets/icon/Settings.png')"/>
+		<model:Button id="soundOpen" y="158" right="10" click="soundOpen_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundOpen.png')"/>
+		<model:Button id="soundClose" y="158" right="10" visible="false" click="soundClose_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundClose.png')"/>
 		
 		<model:Button y="300" right="10" click="button2_clickHandler(event)"
 					  skin="@Embed('assets/icon/back.png')"/>
@@ -182,8 +214,6 @@
 		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
 		<view2:AboutUs id="aboutus" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view2:AboutUs>
-		<view2:System id="system" visible="false" horizontalCenter="0" verticalCenter="0">
-		</view2:System>
 		
 		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
 		</view:Limit>
@@ -211,6 +241,14 @@
 			<s:Label x="100" y="75" color="#FFFFFF" fontSize="24" text="中途退出游戏将扣除排行5积分！"/>
 			
 		</s:BorderContainer>
+		<s:BorderContainer left="10" top="10" width="100" height="35" backgroundAlpha="0.3"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:Label x="10" y="7" color="#FFFFFF" fontSize="18" fontWeight="bold" text="单机模式"/>
+		</s:BorderContainer>
+		<s:Image id="guafeng" visible="false" horizontalCenter="-66"
+				 source="com/amusement/Mahjong/assets/word/guafeng.png" verticalCenter="120"/>
+		<s:Image id="xiayu" visible="false" horizontalCenter="-61"
+				 source="com/amusement/Mahjong/assets/word/xiayu.png" verticalCenter="120"/>
 	</s:Group>
 	
 	<!--</s:BorderContainer>-->
