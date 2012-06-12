@@ -33,15 +33,12 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
-	<s:Button left="247" top="282" width="308" height="55" label="看看完整版"
-			  chromeColor="#f6cb00" click="button3_clickHandler(event)" color="#FF0000"
-			  fontSize="20" fontWeight="bold"/>
-	<s:Label y="248" color="#FFA800" fontSize="18" fontWeight="bold" horizontalCenter="0"
-			 text="如果您喜欢，请下载完整版！"/>
-	<s:Label y="218" color="#FFA800" fontSize="18" fontWeight="bold" horizontalCenter="0"
-			 text="lite 版仅为玩家体验使用，部分功能有限制，且操作体验相比完整版欠佳！"/>
-	<s:Label y="178" color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="0"
-			 text="四川血战麻将 版本：LITE V0.5"/>
+	<s:Label color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="2" text="客服QQ：2694868635 EMAIL：SOOXIN@163.COM"
+			 verticalCenter="10"/>
+	<s:Label color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="1"
+			 text="四川血战麻将 版本: V0.6" verticalCenter="-27"/>
+	<s:Label color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="1" text="CopyRight@2011"
+			 verticalCenter="41"/>
 	
 	<s:Image x="729" y="10" source="assets/closeB.png" click="image1_clickHandler(event)"/>
 </s:BorderContainer>
