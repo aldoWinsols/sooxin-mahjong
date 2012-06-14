@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 fontFamily="宋体" fontSize="16">
+		 width="450" height="220" fontFamily="宋体" fontSize="16">
 	<fx:Script>
 		<![CDATA[
 			import mx.core.FlexGlobals;
@@ -49,6 +49,7 @@
 				btn = new spark.components.Button();
 				btn.id = btnID;
 				btn.label = btnLabel;
+				btn.width = 100;
 				btn.addEventListener(MouseEvent.CLICK, btnClickHandler);
 				btnGroup.addElement(btn);
 			}
@@ -146,18 +147,19 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer width="395" height="217" alpha="0.75" backgroundColor="#000000"
-					   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
-		<s:TextArea id="contentTxt" y="43" width="354" height="107" borderVisible="false"
-					color="#31FF44" contentBackgroundAlpha="0.0" editable="false" fontSize="20"
-					fontWeight="bold" horizontalCenter="-84" mouseChildren="false"
+	<s:Panel width="450" height="220" alpha="0.8" backgroundColor="#000000" title="提示信息"
+					   horizontalCenter="0" verticalCenter="0">
+		<s:TextArea id="contentTxt" y="23" width="95%" height="107" borderVisible="false"
+					color="#FFF600" contentBackgroundAlpha="0.0" editable="false" fontSize="20"
+					fontWeight="normal" horizontalCenter="0" mouseChildren="false"
 					mouseEnabled="false" paddingBottom="0" paddingLeft="0" paddingRight="0"
 					paddingTop="0" selectable="false" text="内容"/>
 		<s:Label id="titleTxt" x="8" y="12" width="555" color="#FEA629" fontSize="20"
-				 fontWeight="bold" text="标题"/>
+				 fontWeight="bold" text="标题" visible="false"/>
 		
-	</s:BorderContainer>
-	<s:HGroup id="btnGroup" horizontalCenter="8" bottom="20" gap="10" paddingLeft="8" paddingRight="8">
+	</s:Panel>
+	<s:HGroup id="btnGroup" bottom="20" width="100" gap="10" horizontalCenter="0" paddingLeft="8"
+			  paddingRight="8">
 		<!--<s:Button id="yesBtn" label="是" click="btnClickHandler(event)" visible="true"/>
 		<s:Button id="noBtn" label="否" click="btnClickHandler(event)" visible="true"/>
 		<s:Button id="okBtn" label="确定" click="btnClickHandler(event)" visible="true"/>

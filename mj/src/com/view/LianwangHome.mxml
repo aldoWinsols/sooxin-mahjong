@@ -2,9 +2,11 @@
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   xmlns:view="com.view.*"
-				   width="960" height="640" backgroundAlpha="0"
-				   borderVisible="false" cornerRadius="10"
-				   creationComplete="bordercontainer2_creationCompleteHandler(event)" xmlns:model="com.model.*">
+				   xmlns:model="com.model.*"
+				   width="960" height="640" backgroundAlpha="0" borderVisible="false"
+				   cornerRadius="10"
+				   creationComplete="bordercontainer2_creationCompleteHandler(event)"
+				   currentState="main">
 		
 	<fx:Script>
 		<![CDATA[
@@ -49,6 +51,12 @@
 				this.currentState = "main";
 			}
 			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "log";
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -56,14 +64,13 @@
 		<s:State name="main"/>
 		<s:State name="chongzhi"/>
 		<s:State name="duihuan"/>
+		<s:State name="log"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
-	<s:ViewNavigator width="960" height="550" label="休闲房间" firstView="views.View1" includeIn="main"
-					 icon="assets/main/54.png" title="休闲房间"
-					 x.main="0" y.main="90"/>
+	<s:ViewNavigator includeIn="main" x="0" y="90" width="960" height="550" firstView="views.View1" title="休闲房间"/>
 	
 	<view:Chongzhi includeIn="chongzhi" x="0" y="90">
 	</view:Chongzhi>
@@ -81,8 +88,12 @@
 			 x="692" y="10"/>
 	<model:Button click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"
 			 x="790" y="10"/>
-	<model:Button id="backB" skin="@Embed('assets/main/backB.png')"
-			 right="10" bottom="560"/>
-	<model:Button click="image3_clickHandler(event)" skin="@Embed('assets/main/roomB.png')"
+	<model:Button id="backB" x="880" y="10" skin="@Embed('assets/main/backB.png')"
+				  x.log="888" y.log="10"/>
+	<model:Button click="button1_clickHandler(event)" skin="@Embed('assets/main/logB.png')"
 			 x="589" y="10"/>
+	<model:Button x="489" y="10" click="image3_clickHandler(event)"
+				  skin="@Embed('assets/main/roomB.png')"/>
+	<view:Log includeIn="log" x="0" y="90">
+	</view:Log>
 </s:BorderContainer>

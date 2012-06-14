@@ -7,6 +7,7 @@ package com.control
 	import com.model.Alert;
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
+	import com.services.RemoteService;
 	import com.view.LianwangHome;
 	
 	import flash.events.MouseEvent;
@@ -59,9 +60,8 @@ package com.control
 			productIdList.push("com.sooxin.mahjongM.d6");
 			productIdList.push("com.sooxin.mahjongM.d12");
 			productIdList.push("com.sooxin.mahjongM.d18");
-			productIdList.push("com.sooxin.mahjongM.d25");
 			productIdList.push("com.sooxin.mahjongM.d30");
-			productIdList.push("com.sooxin.mahjongM.d50");
+			productIdList.push("com.sooxin.mahjongM.d128");
 			
 			
 			// when this is done, we'll get a PRODUCT_DETAILS_LOADED or PRODUCT_DETAILS_FAILED event and go on from there...
@@ -180,27 +180,11 @@ package com.control
 		}
 		//----------------------------------------------------
 		
-		public function roomClick(roomName:String):void{
+		public function roomClick(connUrl:String):void{
 //			if(!checkIsEnter(roomName)){
 //				return;
 //			}
-			switch(roomName){
-				case "room5":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 5);
-					break;
-				case "room10":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 10);
-					break;
-				case "room20":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 20);
-					break;
-				case "room50":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 50);
-					break;
-				case "room100":
-					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, 100);
-					break;
-			}
+			MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, connUrl);
 		}
 		
 		private function checkIsEnter(roomName:String):Boolean{

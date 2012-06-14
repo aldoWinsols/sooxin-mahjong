@@ -12,6 +12,8 @@ package com.control
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
+	
+	import spark.events.GridSelectionEvent;
 
 	public class DuihuanControl
 	{
@@ -24,7 +26,7 @@ package com.control
 			
 			this.duihuan.currentState = "check";
 			instance = this;
-			this.duihuan.dg.addEventListener(MouseEvent.CLICK,dgClickHandler);
+			this.duihuan.dg.addEventListener(GridSelectionEvent.SELECTION_CHANGE,selectChaneHandler);
 			this.duihuan.cancelB.addEventListener(MouseEvent.CLICK,cancelBClickHandler);
 			this.duihuan.checkB.addEventListener(MouseEvent.CLICK,checkBClickHandler);
 			
@@ -102,7 +104,7 @@ package com.control
 			duihuan.dg.dataProvider = e.result as ArrayCollection;
 		}
 		
-		private function dgClickHandler(e:MouseEvent):void{
+		private function selectChaneHandler(e:GridSelectionEvent):void{
 			this.duihuan.currentState = "check";
 			duihuan.jingpinName.text = duihuan.dg.selectedItem.shangpinName;
 			duihuan.jiangpinDianshu.text = duihuan.dg.selectedItem.price;

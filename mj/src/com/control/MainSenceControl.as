@@ -6,11 +6,11 @@ package com.control
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
 	import com.services.ChatService;
-	import com.services.ConfigService;
 	import com.services.DataService;
 	import com.services.GameCenterService;
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
+	import com.services.RemoteService;
 	import com.tencent.weibo.api.Authorize;
 	import com.tencent.weibo.core.WeiboConfig;
 	import com.tencent.weibo.operation.IRequestOperation;
@@ -35,8 +35,8 @@ package com.control
 			instance = this;
 			
 			ChatService.getInstance();
-			ConfigService.instance;
 			GameCenterService.getInstance();
+			RemoteService.getInstance();
 			DataService.instance;
 			MainPlayerService.getInstance();
 			
@@ -52,7 +52,6 @@ package com.control
 			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
 //			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);
 			this.mainSence.mainButLW.addEventListener(MouseEvent.CLICK,mainButLWClickHandler);
-			this.mainSence.logB.addEventListener(MouseEvent.CLICK,logBClickHandler);
 //			this.mainSence.verifierCommitB.addEventListener(MouseEvent.CLICK,verifierCommitBClickHandler);
 //			this.mainSence.verifierCancelB.addEventListener(MouseEvent.CLICK,verifierCancelBClickHandler);
 		}
@@ -147,10 +146,10 @@ package com.control
 		
 		private function logBClickHandler(e:MouseEvent):void{
 			
-			if(GameCenterService.instance.playerName == ""){
-				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-				return;
-			}
+//			if(GameCenterService.instance.playerName == ""){
+//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+//				return;
+//			}
 			
 			this.mainSence.currentState = "log";
 			MainPlayerService.getInstance().login();
@@ -158,10 +157,10 @@ package com.control
 		
 		private function mainButLWClickHandler(e:MouseEvent):void{
 			
-			if(GameCenterService.instance.playerName == ""){
-				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-				return;
-			}
+//			if(GameCenterService.instance.playerName == ""){
+//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+//				return;
+//			}
 			
 			this.mainSence.currentState = "lianwangHome";
 			MainPlayerService.getInstance().login();
