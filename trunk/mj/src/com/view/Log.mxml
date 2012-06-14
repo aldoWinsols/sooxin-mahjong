@@ -15,16 +15,9 @@
 				new LogControl(this);
 			}
 			
-			private function gameTimeFormat(item:Object, columu:GridColumn):String{
-				return df.format(item.gameTime);
-			}
-			
-			private function gameTimeFormatDuihuan(item:Object, columu:GridColumn):String{
-				return df.format(item.duihuanTime);
-			}
-			
-			private function gameTimeFormatChongzhi(item:Object, columu:GridColumn):String{
-				return df.format(item.chongzhiTime);
+
+			public function timeFormat(time:String):String{
+				return df.format(time);
 			}
 			
 			
@@ -39,57 +32,249 @@
 		<s:DateTimeFormatter id="df" dateTimePattern="yyyy/MM/dd HH:mm:ss"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:ViewNavigator x="0" y="80" width="960" height="560"
-					 title.chongzhi="充值记录"
-					 title.game="游戏记录" title.jiangpin="奖品领取记录"/>
-	<model:Button id="gameHistoryB" x="0" y="10"
-			  skin="@Embed('../../assets/log/gameLog.png')"/>
-	<model:Button id="chongzhiHistoryB"
+	<s:ViewNavigator x="0" y="0" width="960" height="560" contentBackgroundAlpha="0.2"
+					 contentBackgroundColor="#72D2FE"/>
+	<s:BorderContainer width="100%" height="100%" backgroundAlpha="0.3" backgroundColor="#72D2FE"
+					   x="0" y="75"/>
+	<model:Button id="gameHistoryB" x="0" y="10" skin="@Embed('../../assets/log/gameLog.png')"
+				  x.game="2" y.game="1"/>
+	<model:Button id="chongzhiHistoryB" x="167" y="10"
 				  skin="@Embed('../../assets/log/chongzhiLog.png')"
-				  x="167" y="10"/>
-	<model:Button id="prizeHistoryB" skin="@Embed('../../assets/log/jiangpinLog.png')"
-				  x="334" y="10"/>
+				  x.game="119" y.game="1"/>
+	<model:Button id="prizeHistoryB" x="334" y="10" skin="@Embed('../../assets/log/jiangpinLog.png')"
+				  x.game="236" y.game="1"/>
 	
 	
 	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="0" y="125" width="100%" height="100%" alpha="0.7"
-				fontSize="18">
+				fontSize="18" rowHeight="50">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="ID" dataField="id" width="60"/>
-				<s:GridColumn headerText="时间" dataField="duihuanTime" labelFunction="gameTimeFormatDuihuan"/>
-				<s:GridColumn headerText="奖品" dataField="itemName"/>
-				<s:GridColumn headerText="兑换点数" dataField="duihuanMoney"/>
-				<s:GridColumn headerText="联系人" dataField="contactName"/>
-				<s:GridColumn headerText="联系电话" dataField="contactTel"/>
-				<s:GridColumn headerText="邮寄地址" dataField="contactAddress"/>
-				<s:GridColumn headerText="当前状态" dataField="state"/>
+				<s:GridColumn headerText="ID" dataField="id" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn width="180" dataField="duihuanTime" headerText="时间">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.duihuanTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="奖品" dataField="itemName">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.itemName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="兑换点数" dataField="duihuanMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.duihuanMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="联系人" dataField="contactName">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="联系电话" dataField="contactTel">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactTel}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="邮寄地址" dataField="contactAddress">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactAddress}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="状态" dataField="state">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.state}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<model:Button id="closeB" x="880" y="10" skin="@Embed('../../assets/main/backB.png')" />
+	<model:Button id="closeB" includeIn="chongzhi,jiangpin" x="880" y="10"
+				  skin="@Embed('../../assets/main/backB.png')"/>
 	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="0" y="125" width="100%" height="100%" alpha="0.7"
-				fontSize="18">
+				fontSize="18" rowHeight="50">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="ID" dataField="id" width="60"/>
-				<s:GridColumn headerText="时间" dataField="chongzhiTime" labelFunction="gameTimeFormatChongzhi" width="130"/>
-				<s:GridColumn headerText="充值前点数" dataField="lastHaveMoney"/>
-				<s:GridColumn headerText="充值点数" dataField="chongzhiMoney"/>
-				<s:GridColumn headerText="充值后点数" dataField="nowHaveMoney"/>
+				<s:GridColumn headerText="ID" dataField="id" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="chongzhiTime" headerText="时间">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.chongzhiTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值前点数" dataField="lastHaveMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.lastHaveMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值点数" dataField="chongzhiMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.chongzhiMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值后点数" dataField="nowHaveMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.nowHaveMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:DataGrid id="gameHistory" includeIn="game" x="0" y="125" width="100%" height="100%"
-				alpha="0.7" fontSize="18">
+	<s:DataGrid id="gameHistory" includeIn="game" x="0" y="45" width="100%" height="100%"
+				alpha="0.7" fontSize="18" rowHeight="50">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="ID" dataField="sn" width="60"/>
-				<s:GridColumn headerText="局号" dataField="gameNo" width="120"/>
-				<s:GridColumn headerText="时间" dataField="gameTime" labelFunction="gameTimeFormat" width="130"/>
-				<s:GridColumn headerText="游戏前点数" dataField="preMoney" width="80"/>
-				<s:GridColumn headerText="输赢" dataField="winLossMoneyAfterTax" width="60"/>
-				<s:GridColumn headerText="游戏后点数" dataField="afterMoney" width="80"/>
-				<s:GridColumn id="luxiang1" headerText="操作" dataField="luxiang" width="80">
+				<s:GridColumn headerText="ID" dataField="sn" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="局号" dataField="gameNo" width="150">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.gameNo}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="gameTime" headerText="时间" width="180">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.gameTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="preMoney" headerText="游戏前点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.preMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.winLossMoneyAfterTax}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="afterMoney" headerText="游戏后点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.afterMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn id="luxiang1" dataField="luxiang" headerText="操作" width="200">
 					<s:itemRenderer>
 						<fx:Component>
 							<s:GridItemRenderer>
@@ -123,7 +308,7 @@
 										
 									]]>
 								</fx:Script>
-								<s:HGroup>
+								<s:HGroup verticalCenter="0" horizontalCenter="0">
 									<s:Button label="观看录像" click="button1_clickHandler(event)" />
 									<s:Button label="删除" click="button2_clickHandler(event)" />
 								</s:HGroup>

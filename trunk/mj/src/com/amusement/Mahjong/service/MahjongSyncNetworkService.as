@@ -11,7 +11,6 @@ package com.amusement.Mahjong.service
 	import com.control.MainControl;
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
-	import com.services.ConfigService;
 	
 	import flash.display.Stage;
 	import flash.events.AsyncErrorEvent;
@@ -54,38 +53,16 @@ package com.amusement.Mahjong.service
 		 * 连接服务 
 		 * 
 		 */
-		public function connServer(playerName:String, roomType:int):void
+		public function connServer(playerName:String, connUrl:String):void
 		{
 			MahjongSyncService.instance.isNetwork = true;
 //			MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = false;
 //			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			this.playerName = playerName;
-			var connectStr:String = getConnectStr(roomType);
 			
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler, false, 0, true);
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler, false, 0, true);
-			_conn.connect(connectStr, this.playerName, "e10adc3949ba59abbe56e057f20f883e", "127.0.0.1");
-		}
-		
-		private function getConnectStr(roomType:int):String{
-			switch(roomType){
-				case 5:
-					return ConfigService.instance.mahjongSyncServerURL5;
-					break;
-				case 10:
-					return ConfigService.instance.mahjongSyncServerURL10;
-					break;
-				case 20:
-					return ConfigService.instance.mahjongSyncServerURL20;
-					break;
-				case 50:
-					return ConfigService.instance.mahjongSyncServerURL50;
-					break;
-				case 100:
-					return ConfigService.instance.mahjongSyncServerURL100;
-					break;
-			}
-			return "";
+			_conn.connect(connUrl, this.playerName, "e10adc3949ba59abbe56e057f20f883e", "127.0.0.1");
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void

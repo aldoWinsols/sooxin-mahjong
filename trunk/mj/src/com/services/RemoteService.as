@@ -10,7 +10,8 @@ package com.services
 
 	public class RemoteService
 	{
-		private static var _instance:RemoteService;
+		public var mainUrl:String = "http://127.0.0.1:8080/";
+		public static var instance:RemoteService;
 		
 		public var chongzhiService:RemoteObject;
 		public var duihuanService:RemoteObject;
@@ -18,7 +19,10 @@ package com.services
 		public var playerService:RemoteObject;
 		public var shangpinService:RemoteObject;
 		public var noticeService:RemoteObject;		
-		public var configService:RemoteObject;	
+		public var configService:RemoteObject;
+		public var roomService:RemoteObject;
+		
+		public var connState:Boolean = false;
 
 		public function RemoteService()
 		{
@@ -29,15 +33,16 @@ package com.services
 			shangpinService=getConfiguredRO("shangpinService");
 			noticeService=getConfiguredRO("noticeService");
 			configService=getConfiguredRO("configService");
+			roomService=getConfiguredRO("roomService");
 		}
 
 		//得到单例
-		public static function get instance():RemoteService
+		public static function getInstance():RemoteService
 		{
-			if(_instance == null){
-				_instance = new RemoteService();
+			if(instance == null){
+				instance = new RemoteService();
 			}
-			return _instance;
+			return instance;
 		}
 
 		private function resultHandler(e:ResultEvent):void
@@ -63,7 +68,7 @@ package com.services
 
 		private function faultHandler(e:FaultEvent):void
 		{
-//			Alert.show("读取信息失败，请刷新页面！"+e.toString());
+			Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
 			trace(e.toString());
 			CursorManager.removeBusyCursor();
 		}
@@ -84,7 +89,7 @@ package com.services
 		private function setEndPoint(ro:RemoteObject):void
 		{
 
-			ro.endpoint="http://127.0.0.1:8080/panda/messagebroker/amf";
+			ro.endpoint=mainUrl+"panda/messagebroker/amf";
 			trace(ro.endpoint);
 		}
 

@@ -46,7 +46,6 @@
 		<s:State name="login"/>
 		<s:State name="lianwangHome"/>
 		<s:State name="danjiHome"/>
-		<s:State name="log"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
@@ -70,14 +69,11 @@
 		
 		<s:Image includeIn="login" horizontalCenter="40"
 				 source="assets/danji_logo.png" verticalCenter="-80"/>
-		<model:Button id="mainButLW" includeIn="login" x="610" y="400"
+		<model:Button id="mainButLW" includeIn="login" x="498" y="400"
 					  skin="@Embed('assets/but/mainButLW.png')"/>
-		<model:Button id="mainButDJ" includeIn="login" x="440" y="400"
+		<model:Button id="mainButDJ" includeIn="login" x="328" y="400"
 					  skin="@Embed('assets/but/mainButDJ.png')"/>
-		<model:Button id="logB" includeIn="login" x="270" y="400" skin="@Embed('assets/danji/danji_logB.png')"/>
 		<view:Notice includeIn="login" x="287" y="478" alpha="0.5">
 		</view:Notice>
 	</s:Group>
-	<view:Log includeIn="log" horizontalCenter="0" verticalCenter="0">
-	</view:Log>
 </s:View>
