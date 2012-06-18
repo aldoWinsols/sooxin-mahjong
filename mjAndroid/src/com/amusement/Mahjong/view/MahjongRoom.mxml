@@ -14,6 +14,7 @@
 			import com.amusement.Mahjong.control.MahjongPlayerControlD;
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
 			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.control.MainControl;
 			import com.mahjongSyncServer.services.RoomService;
 			
@@ -59,6 +60,30 @@
 				this.help.visible = true;
 			}
 			
+			protected function soundClose_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(true);
+				
+				MahjongSoundService.instance.bgSoundType = true;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = true;
+				this.soundClose.visible = false;
+			}
+			
+			protected function soundOpen_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(false);
+				
+				MahjongSoundService.instance.bgSoundType = false;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = false;
+				this.soundClose.visible = true;
+			}
+			
 		]]>
 	</fx:Script>
 	<fx:Declarations>
@@ -76,7 +101,7 @@
 		<view:MahjongPlayerR id="mahjongPlayerR" right="100" verticalCenter="0">
 		</view:MahjongPlayerR>
 		<view:MahjongPlayerL id="mahjongPlayerL" left="20" verticalCenter="0"/>
-		
+		<view:MahjongDingzhang visible="false" bottom="80" horizontalCenter="-40"/>
 		
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		<view:MahjongDice visible="false" horizontalCenter="-50" mouseChildren="false"
@@ -84,7 +109,7 @@
 		<view:MahjongInfo visible="false" x="220" y="451" mouseChildren="false" mouseEnabled="true"/>
 		<view:MahjongPlayerD id="mahjongPlayerD" bottom="-10" horizontalCenter="0"/>
 		<view:MahjongSign visible="false" mouseChildren="false" mouseEnabled="false"/>
-		<view:MahjongDingzhang visible="false" bottom="140" horizontalCenter="0"/>
+		
 		<view:MahjongWord visible="false" x="351" y="192" mouseChildren="false" mouseEnabled="false"/>
 		<view:MahjongOperation id="mahjongOperation" visible="false" right="80" bottom="90"/>
 		<!--<mx:Button id="reConnBtn" x="697" bottom="16" 
@@ -96,12 +121,20 @@
 						   verticalCenter="0">
 			
 		</s:BorderContainer>
-		<s:Label id="mahjongsNum" y="353" right="10" color="#FEE300" fontSize="20"/>
-		<s:Image y="44" right="10" alpha="0.5" smooth="true" click="image1_clickHandler(event)" source="@Embed('assets/icon/Prefs.png')"/>
-		<s:Image y="112" right="10" alpha="0.5" smooth="true"
-				 source="@Embed('assets/icon/Safari2.png')" click="image4_clickHandler(event)"/>
-		<s:Image y="253" right="10" alpha="0.5" source="assets/icon/Facebook.png" click="image3_clickHandler(event)"/>
-		<s:Image y="181" right="10" alpha="0.5" source="assets/icon/Settings.png" click="image2_clickHandler(event)"/>
+		<s:BorderContainer y="315" right="14" width="50" height="50" backgroundAlpha="0.5"
+						   backgroundColor="#000000" cornerRadius="5">
+			<s:Label id="mahjongsNum" color="#FEE300" fontSize="20" horizontalCenter="0"
+					 verticalCenter="0"/>
+		</s:BorderContainer>
+		
+		<model:Button y="15" right="10" click="image1_clickHandler(event)" skin="@Embed('assets/icon/Prefs.png')"/>
+		<model:Button y="85" right="10"
+					  skin="@Embed('assets/icon/Safari2.png')" click="image4_clickHandler(event)"/>
+		<model:Button y="225" right="10" skin="@Embed('assets/icon/Facebook.png')" click="image3_clickHandler(event)"/>
+		<model:Button id="soundOpen" y="155" right="10" click="soundOpen_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundOpen.png')"/>
+		<model:Button id="soundClose" y="155" right="10" visible="false" click="soundClose_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundClose.png')"/>
 		
 		<view:MahjongSeat>
 		</view:MahjongSeat>

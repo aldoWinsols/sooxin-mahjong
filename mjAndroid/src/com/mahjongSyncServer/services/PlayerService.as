@@ -415,7 +415,7 @@ package com.mahjongSyncServer.services
 			player.nowOperationMahjongValue = value;
 			player.isFangTuiDa = false;
 			
-			MahjongRoomControl.instance._mahjongRoom.mahjongsNum.text = "剩:"+this.roomService.room.mahjongs.length.toString();
+			MahjongRoomControl.instance._mahjongRoom.mahjongsNum.text = this.roomService.room.mahjongs.length.toString();
 				
 			return value;
 		}

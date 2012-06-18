@@ -34,10 +34,10 @@ package com.amusement.Mahjong.control
 		}
 		
 		private function init():void{
-			_azimuth1 = new Point(364, 46);
+			_azimuth1 = new Point(330, 46);
 			_azimuth2 = new Point(64, 196);
-			_azimuth3 = new Point(364, 306);
-			_azimuth4 = new Point(674, 196);
+			_azimuth3 = new Point(330, 306);
+			_azimuth4 = new Point(520, 196);
 		}
 		
 		public function show(wordName:String, azimuth:int):void{
