@@ -74,6 +74,7 @@ package com.amusement.Mahjong.control
 		}
 		public function stopShowChat():void{
 			showTimer.stop();
+			destroyToolTip();
 		}
 		
 		var myTip:ToolTip;
@@ -98,6 +99,16 @@ package com.amusement.Mahjong.control
 			}else{
 				ToolTipManager.destroyToolTip(myTip);
 				myTip = null;
+			}
+			
+		}
+		
+		public function destroyToolTip():void{
+			try{
+				ToolTipManager.destroyToolTip(myTip);
+				myTip = null;
+			}catch(e:Error){
+				
 			}
 			
 		}

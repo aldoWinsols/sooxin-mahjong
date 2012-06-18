@@ -6,6 +6,7 @@ package com.control
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
 	import com.services.ChatService;
+	import com.services.ConfigService;
 	import com.services.DataService;
 	import com.services.GameCenterService;
 	import com.services.MainPlayerService;
@@ -38,6 +39,7 @@ package com.control
 			GameCenterService.getInstance();
 			RemoteService.getInstance();
 			DataService.instance;
+			ConfigService.getInstance();
 			MainPlayerService.getInstance();
 			
 			this.mainSence.currentState = "login";
@@ -121,12 +123,14 @@ package com.control
 		
 		private function mainButDJClickHandler(e:MouseEvent):void{
 
+			MahjongRoomControl.instance.clearTabletop();
+			
 			this.mainSence.menu.visible = false;
 			this.mainSence.mahjongAppliction.visible = true;
 			MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MahjongSyncService.instance.isNetwork = false;
-			RoomService.instance.beginGame("player", 3000);
+			RoomService.instance.beginGame("player", 10000);
 			
 		}
 		private function mainButQQClickHandler(e:MouseEvent):void{
@@ -161,6 +165,11 @@ package com.control
 //				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
 //				return;
 //			}
+			
+			if(ConfigService.instance.config.mainConnUrl == ""){
+				Alert.show("当前网络连接异常，请确认你的网络连接后重新操作，或请联系客服！");
+				return;
+			}
 			
 			this.mainSence.currentState = "lianwangHome";
 			MainPlayerService.getInstance().login();

@@ -31,6 +31,7 @@ package com.control
 			this.lianwangHome.currentState = "main";
 			
 			MainPlayerService.getInstance();
+			MainSyncService.instance;
 			
 			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
 			//-----------------------------------------------------------------

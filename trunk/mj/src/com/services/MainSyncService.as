@@ -2,8 +2,8 @@ package com.services
 {
 	
 	import com.control.LianwangHomeControl;
-	import com.control.LianwangMainControl;
 	import com.model.Alert;
+	import com.view.LianwangHome;
 	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -43,7 +43,7 @@ package com.services
 			MessageService.instance.conn = _conn;
 			_connStateTimer = new Timer(100);
 			_connStateTimer.addEventListener(TimerEvent.TIMER, connTimerHandler, false, 0, true);
-			//connServer();
+			connServer("");
 		}
 		
 		public function get conn():NetConnection
@@ -78,7 +78,7 @@ package com.services
 		
 		public function connServer(playerName:String):void
 		{
-			var str:String = ConfigService.instance.mainSyncServerURL;
+			var str:String = ConfigService.instance.config.mainConnUrl;
 			_conn.addEventListener(NetStatusEvent.NET_STATUS, statusHandler); 
 			_conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
 			_conn.connect(str, playerName);
@@ -93,7 +93,7 @@ package com.services
 				_connTimesT = _connTimes;
 				
 				if (_conn == null){
-					LianwangMainControl.instance.lianwangMain.network.setStateWidth(0);
+					LianwangHomeControl.instance.lianwangHome.network.setStateWidth(0);
 				}else{
 					try{
 						_conn.call("getConnState", new Responder(connStateResultHandler, connStateStatusHandler));
@@ -105,7 +105,7 @@ package com.services
 			
 			if(!_isResult){
 				if(_connTimes % 50 == 0){
-					LianwangMainControl.instance.lianwangMain.network.setStateWidth(0);
+					LianwangHomeControl.instance.lianwangHome.network.setStateWidth(0);
 //					MahjongRoomControl.instance.updateNetworkWidth(0);
 //					MainSceneControl.instance.mainSceneApp.connState.visible = true;
 					_isResult = true;
@@ -121,7 +121,7 @@ package com.services
 					width = 0;
 				}
 				
-				LianwangMainControl.instance.lianwangMain.network.setStateWidth(width);
+				LianwangHomeControl.instance.lianwangHome.network.setStateWidth(width);
 //				MahjongRoomControl.instance.updateNetworkWidth(width);
 				
 				_connTimes=0;
