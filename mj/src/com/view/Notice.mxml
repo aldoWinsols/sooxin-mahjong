@@ -30,41 +30,46 @@
 			
 			private function ontimer(timer:TimerEvent):void{
 				
-				if(NoticeService.instance == null){
-					return;
+				try{
+					if(NoticeService.instance == null){
+						return;
+					}
+					
+					if(!label1.visible){
+						label1.visible = true;
+					}
+					if(label.y == 10){
+						label.text = NoticeService.instance.chatList[index].@text;
+						fadeEffect1.target = label;
+						move2.target = label;
+						label.y = 40;
+						
+						fadeEffect.target = label1;
+						move1.target = label1;
+						label1.y = 15;
+					}else{
+						label1.text = NoticeService.instance.chatList[index].@text;
+						fadeEffect1.target = label1;
+						move2.target = label1;
+						label1.y = 40;
+						
+						fadeEffect.target = label;
+						move1.target = label;
+						label.y = 15;
+					}
+					index ++;
+					if(NoticeService.instance.chatList.length() == index){
+						index = 0;
+					}
+					
+					fadeEffect.play();
+					move1.play();
+					fadeEffect1.play();
+					move2.play();
+				}catch(e:Error){
+					
 				}
 				
-				if(!label1.visible){
-					label1.visible = true;
-				}
-				if(label.y == 10){
-					label.text = NoticeService.instance.chatList[index].@text;
-					fadeEffect1.target = label;
-					move2.target = label;
-					label.y = 40;
-					
-					fadeEffect.target = label1;
-					move1.target = label1;
-					label1.y = 15;
-				}else{
-					label1.text = NoticeService.instance.chatList[index].@text;
-					fadeEffect1.target = label1;
-					move2.target = label1;
-					label1.y = 40;
-					
-					fadeEffect.target = label;
-					move1.target = label;
-					label.y = 15;
-				}
-				index ++;
-				if(NoticeService.instance.chatList.length() == index){
-					index = 0;
-				}
-				
-				fadeEffect.play();
-				move1.play();
-				fadeEffect1.play();
-				move2.play();
 			}
 			
 		]]>

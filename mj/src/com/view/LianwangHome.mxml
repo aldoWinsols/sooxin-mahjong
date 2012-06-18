@@ -12,6 +12,7 @@
 		<![CDATA[
 			import com.control.DuihuanControl;
 			import com.control.LianwangHomeControl;
+			import com.control.RoomListControl;
 			import com.model.MainPlayer;
 			import com.services.MainPlayerService;
 			
@@ -49,6 +50,11 @@
 			{
 				// TODO Auto-generated method stub
 				this.currentState = "main";
+				try{
+					RoomListControl.instance.getRooms();
+				}catch(e:Error){
+					
+				}
 			}
 			
 			protected function button1_clickHandler(event:MouseEvent):void
@@ -69,8 +75,6 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	
-	<s:ViewNavigator includeIn="main" x="0" y="90" width="960" height="550" firstView="views.View1" title="休闲房间"/>
 	
 	<view:Chongzhi includeIn="chongzhi" x="0" y="90">
 	</view:Chongzhi>
@@ -96,4 +100,8 @@
 				  skin="@Embed('assets/main/roomB.png')"/>
 	<view:Log includeIn="log" x="0" y="90">
 	</view:Log>
+	<view:RoomList includeIn="main" x="0" y="90">
+	</view:RoomList>
+	<view:NetworkQuality id="network" includeIn="main" x="750" y="104">
+	</view:NetworkQuality>
 </s:BorderContainer>
