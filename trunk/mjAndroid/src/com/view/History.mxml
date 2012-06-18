@@ -9,6 +9,8 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.control.HomeControl;
+			
 			import mx.managers.PopUpManager;
 			
 			public static var history:History = null;
@@ -18,19 +20,75 @@
 				this.dg.dataProvider = new ArrayList(dp);
 			}
 			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+				HomeControl.instance.home.currentState = "main";
+			}
+			
 		]]>
 	</fx:Script>
-	
-	<s:DataGrid id="dg" top="61" width="776" height="407" alpha="0.7" color="#000000" fontSize="14"
-				horizontalCenter="1">
+	<s:Image x="0" y="0" source="assets/historyBg.png"/>
+	<s:DataGrid id="dg" x="10" y="29" width="761" height="441" alpha="0.7" color="#000000"
+				fontSize="18">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn dataField="playerName" headerText="用户名"></s:GridColumn>
-				<s:GridColumn dataField="roomNo" headerText="游戏编号"></s:GridColumn>
-				<s:GridColumn dataField="preMoney" headerText="游戏前点数"></s:GridColumn>
-				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢"></s:GridColumn>
-				<s:GridColumn dataField="afterMoney" headerText="游戏后点数"></s:GridColumn>
-				<s:GridColumn dataField="gameTime" headerText="开始时间"></s:GridColumn>
+				<s:GridColumn dataField="roomNo" headerText="游戏编号">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.roomNo}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="preMoney" headerText="游戏前点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.preMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.winLossMoneyAfterTax}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="afterMoney" headerText="游戏后点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.afterMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="gameTime" headerText="开始时间">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.gameTime}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
 				<s:GridColumn headerText="操作">
 					<s:itemRenderer>
 						<fx:Component>
@@ -48,7 +106,7 @@
 										protected function button1_clickHandler(event:MouseEvent):void
 										{
 											// TODO Auto-generated method stub
-											HomeControl.instance.home.operation.visible = false;
+//											HomeControl.instance.home.operation.visible = false;
 											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 											HomeControl.instance.home.visible = false;
 											RoomService.instance.playerVideo(data.gameContent);
@@ -64,7 +122,7 @@
 									]]>
 								</fx:Script>
 								
-								<s:HGroup>
+								<s:HGroup verticalCenter="0" horizontalCenter="0">
 									<s:Button label="观看录像" click="button1_clickHandler(event)" />
 									<s:Button label="删除" click="button2_clickHandler(event)" />
 								</s:HGroup>
@@ -75,5 +133,6 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:Button x="724" y="10" height="40" label="关闭" click="{this.visible = false}"/>
+	<s:Image x="737" y="-1" source="assets/closeB.png" click="image1_clickHandler(event)"/>
+	
 </s:BorderContainer>

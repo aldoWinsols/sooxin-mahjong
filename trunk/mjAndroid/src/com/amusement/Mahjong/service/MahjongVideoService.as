@@ -32,7 +32,7 @@ package com.amusement.Mahjong.service
 				case "exitBtn":
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongRoomControl.instance.isVideo = false;
-					HomeControl.instance.home.operation.visible = true;
+//					HomeControl.instance.home.operation.visible = true;
 					HomeControl.instance.home.visible = true;
 					break;
 			}
@@ -58,7 +58,7 @@ package com.amusement.Mahjong.service
 				case Alert.YES:
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongRoomControl.instance.isVideo = false;
-					HomeControl.instance.home.operation.visible = true;
+//					HomeControl.instance.home.operation.visible = true;
 					HomeControl.instance.home.visible = true;
 					//退出錄像播放
 //					MahjongVideo.insance.exitVideo();

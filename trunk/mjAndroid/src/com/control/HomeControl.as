@@ -21,11 +21,6 @@ package com.control
 			
 			DataService.instance;
 			
-			this.home.addPlayerB.addEventListener(MouseEvent.CLICK,addPlayerBClickHandler);
-		}
-
-		private function addPlayerBClickHandler(e:MouseEvent):void{
-			home.playerAdd.visible = true;
 		}
 	}
 }

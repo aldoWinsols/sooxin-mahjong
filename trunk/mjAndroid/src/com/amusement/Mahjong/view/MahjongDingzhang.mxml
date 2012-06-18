@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" 
-		 width="77" height="35"
+		 width="349" height="105"
 		 creationComplete="group1_creationCompleteHandler(event)" xmlns:model="com.model.*">
 	<s:layout>
 		<s:BasicLayout/>
@@ -25,8 +25,9 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<model:Button id="quemenBtn" horizontalCenter="0" verticalCenter="0" enabled="false"
+	<model:Button id="quemenBtn" horizontalCenter="0" verticalCenter="20" enabled="false"
 			   skin="@Embed(source='../assets/dingzhang/mj_quemen_btn.png')"
 			   overSkin="@Embed(source='../assets/dingzhang/mj_quemen_down.png')"
 			   downSkin="@Embed(source='../assets/dingzhang/mj_quemen_down.png')"/>
+	<s:Image x="33" y="5" source="com/amusement/Mahjong/assets/dingzhang/dingzhangwenzi.png"/>
 </s:Group>

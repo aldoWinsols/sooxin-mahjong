@@ -35,7 +35,7 @@ package com.services{
 		private var table:String = "";
 		
 		public function DataService(){
-			var db:File = File.applicationStorageDirectory.resolvePath("data.db");
+			var db:File = File.applicationStorageDirectory.resolvePath("data2.db");
 			sqlc.openAsync(db);
 			sqlc.addEventListener(SQLEvent.OPEN, db_opened);
 			sqlc.addEventListener(SQLErrorEvent.ERROR, error);
@@ -49,18 +49,21 @@ package com.services{
 			}
 			return _instance;
 		}
-
+		
 		public static function set instance(value:DataService):void
 		{
 			_instance = value;
 		}
-
+		
 		private function db_opened(e:SQLEvent):void
 		{
 			sqls.sqlConnection = sqlc;
 			
 			sqlStrs.push("CREATE TABLE IF NOT EXISTS players ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, email TEXT, haveMoney DOUBLE);");
 			sqlStrs.push("CREATE TABLE IF NOT EXISTS gamelog ( id INTEGER PRIMARY KEY AUTOINCREMENT, playerName TEXT, roomNo TEXT, gameTime TEXT, preMoney DOUBLE, winLossMoneyAfterTax DOUBLE, afterMoney DOUBLE, gameContent TEXT);");
+			
+			sqlStrs.push("INSERT INTO players (playerName, email, haveMoney) VALUES('player','','10000');");
+			
 			table = "create";
 			resault(null);
 		}
@@ -80,9 +83,10 @@ package com.services{
 					arr.push("ID:"+pl.playerName+"      EMAIL:"+pl.email+"      积分:"+pl.haveMoney);
 				}
 				
-				HomeControl.instance.home.players.dataProvider = new ArrayList(arr);
+				//				DanjiHomeControl.instance.danjiHome.players.dataProvider = new ArrayList(arr);
 			}else if(table == "gamelog"){
 				logs = new ArrayCollection(sqls.getResult().data);
+				HomeControl.instance.home.currentState = "log";
 				HomeControl.instance.home.history.showHistory(logs.toArray());
 			}else if(table == "create"){
 				sqls.text = sqlStrs.shift();
@@ -106,7 +110,7 @@ package com.services{
 			sqls.execute();
 			refresh();
 			
-			HomeControl.instance.home.playerAdd.visible = false;
+//			DanjiHomeControl.instance.danjiHome.playerAdd.visible = false;
 		}
 		
 		public function removePlayer(id:Number, playerName:String):void
@@ -131,21 +135,21 @@ package com.services{
 		}
 		
 		public function updatePlayerMoney(playerName:String,changeMoney:int):void{
-//			sqls.text = "UPDATE players SET haveMoney = haveMoney+"+changeMoney+" where playerName='"+playerName+"'";
-//			sqls.execute();
-//			table = "create";
-//			sqlStrs.push("UPDATE players SET haveMoney = haveMoney+"+changeMoney+" where playerName='"+playerName+"'");
-//			resault(null);
-//			refresh();
+			//			sqls.text = "UPDATE players SET haveMoney = haveMoney+"+changeMoney+" where playerName='"+playerName+"'";
+			//			sqls.execute();
+			//			table = "create";
+			//			sqlStrs.push("UPDATE players SET haveMoney = haveMoney+"+changeMoney+" where playerName='"+playerName+"'");
+			//			resault(null);
+			//			refresh();
 		}
 		
 		public function saveGameHistory(playerName:String, gameContent:String, roomNo:String, gameTime:String, preMoney:Number, winLossMoneyAfterTax:Number, afterMoney:Number):void
 		{
-//			table = "create";
-//			sqls.text = "INSERT INTO gamelog (playerName, roomNo, gameTime, preMoney, winLossMoneyAfterTax, afterMoney, gameContent) VALUES('"+playerName + "','" + roomNo + "','" + gameTime + "','" + preMoney + "','" + winLossMoneyAfterTax + "','" + afterMoney +"','"+ gameContent +"');";
-//			sqlStrs.push("INSERT INTO gamelog (playerName, roomNo, gameTime, preMoney, winLossMoneyAfterTax, afterMoney, gameContent) VALUES('"+playerName + "','" + roomNo + "','" + gameTime + "','" + preMoney + "','" + winLossMoneyAfterTax + "','" + afterMoney +"','"+ gameContent +"');");
-//			sqls.execute();
-//			refresh();
+			//			table = "create";
+			//			sqls.text = "INSERT INTO gamelog (playerName, roomNo, gameTime, preMoney, winLossMoneyAfterTax, afterMoney, gameContent) VALUES('"+playerName + "','" + roomNo + "','" + gameTime + "','" + preMoney + "','" + winLossMoneyAfterTax + "','" + afterMoney +"','"+ gameContent +"');";
+			//			sqlStrs.push("INSERT INTO gamelog (playerName, roomNo, gameTime, preMoney, winLossMoneyAfterTax, afterMoney, gameContent) VALUES('"+playerName + "','" + roomNo + "','" + gameTime + "','" + preMoney + "','" + winLossMoneyAfterTax + "','" + afterMoney +"','"+ gameContent +"');");
+			//			sqls.execute();
+			//			refresh();
 		}
 		
 		public function afterData(playerName:String,changeMoney:int, gameContent:String, roomNo:String, gameTime:String, preMoney:Number, winLossMoneyAfterTax:Number, afterMoney:Number):void{
@@ -232,8 +236,8 @@ package com.services{
 					str += "din,";
 				}
 				if(!(historyMessages[i].head == "beginGameI") &&
-						!(historyMessages[i].head == "gameOverI") &&
-						!(historyMessages[i].head == "showDingzhangI")){
+					!(historyMessages[i].head == "gameOverI") &&
+					!(historyMessages[i].head == "showDingzhangI")){
 					for (var j:int = 0; j < list.length; j++) {
 						if(j == list.length - 1){
 							str += list[j];
@@ -246,16 +250,16 @@ package com.services{
 					str += ";";
 				}
 			}
-
+			
 			var balanceList:Vector.<Balance> = BalanceService.instance.balanceList;
 			str += "over,";
 			for (var i:int = 0; i < balanceList.length; i++) {
 				if(i == balanceList.length - 1){
 					str += balanceList[i].balanceName + ":" + balanceList[i].azimuth1 + ":" + 
-					balanceList[i].azimuth2 + ":" + balanceList[i].azimuth3 + ":" + balanceList[i].azimuth4 + ";";
+						balanceList[i].azimuth2 + ":" + balanceList[i].azimuth3 + ":" + balanceList[i].azimuth4 + ";";
 				}else{
 					str += balanceList[i].balanceName + ":" + balanceList[i].azimuth1 + ":" + 
-					balanceList[i].azimuth2 + ":" + balanceList[i].azimuth3 + ":" + balanceList[i].azimuth4 + ",";
+						balanceList[i].azimuth2 + ":" + balanceList[i].azimuth3 + ":" + balanceList[i].azimuth4 + ",";
 				}
 			}
 			if(balanceList.length == 0){

@@ -25,7 +25,6 @@
 				new MahjongApplictionControl(this);
 				this.addElement(mahjongRoom);
 				this.addElement(home);
-				home.visible = false;
 				
 				mahjongRoom.verticalCenter = 0;
 				mahjongRoom.horizontalCenter = 0;
@@ -33,16 +32,8 @@
 				home.verticalCenter = 0;
 				home.horizontalCenter = 0;
 				
-				this.mjRoomBgImg.addEventListener(MouseEvent.CLICK,touchBeginHandler);
 			}
 			
-			private function touchBeginHandler(e:MouseEvent):void{
-				if(home.visible){
-					home.visible = false;
-				}else{
-					home.visible = true;
-				}
-			}
 
 		]]>
 	</fx:Script>
