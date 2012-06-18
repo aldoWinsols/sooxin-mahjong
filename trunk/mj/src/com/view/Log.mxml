@@ -34,18 +34,20 @@
 	</fx:Declarations>
 	<s:ViewNavigator x="0" y="0" width="960" height="560" contentBackgroundAlpha="0.2"
 					 contentBackgroundColor="#72D2FE"/>
-	<s:BorderContainer width="100%" height="100%" backgroundAlpha="0.3" backgroundColor="#72D2FE"
-					   x="0" y="75"/>
-	<model:Button id="gameHistoryB" x="0" y="10" skin="@Embed('../../assets/log/gameLog.png')"
-				  x.game="2" y.game="1"/>
-	<model:Button id="chongzhiHistoryB" x="167" y="10"
+	<s:BorderContainer x="0" y="75" width="100%" height="100%" backgroundAlpha="0.3"
+					   backgroundColor="#72D2FE"
+					   y.chongzhi="45"
+					   y.jiangpin="45"/>
+	<model:Button id="gameHistoryB" skin="@Embed('../../assets/log/gameLog.png')"
+				  x="2" y="1"/>
+	<model:Button id="chongzhiHistoryB"
 				  skin="@Embed('../../assets/log/chongzhiLog.png')"
-				  x.game="119" y.game="1"/>
-	<model:Button id="prizeHistoryB" x="334" y="10" skin="@Embed('../../assets/log/jiangpinLog.png')"
-				  x.game="236" y.game="1"/>
+				  x="119" y="1"/>
+	<model:Button id="prizeHistoryB" skin="@Embed('../../assets/log/jiangpinLog.png')"
+				  x="236" y="1"/>
 	
 	
-	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="0" y="125" width="100%" height="100%" alpha="0.7"
+	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="0" y="45" width="100%" height="100%" alpha="0.7"
 				fontSize="18" rowHeight="50">
 		<s:columns>
 			<s:ArrayList>
@@ -140,9 +142,7 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<model:Button id="closeB" includeIn="chongzhi,jiangpin" x="880" y="10"
-				  skin="@Embed('../../assets/main/backB.png')"/>
-	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="0" y="125" width="100%" height="100%" alpha="0.7"
+	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="0" y="45" width="100%" height="100%" alpha="0.7"
 				fontSize="18" rowHeight="50">
 		<s:columns>
 			<s:ArrayList>
