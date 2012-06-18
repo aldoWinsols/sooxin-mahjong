@@ -28,7 +28,7 @@ package com.mahjongSyncServer.services
 		public var playerServices:Vector.<PlayerService> = new Vector.<PlayerService>();
 		public var logicService:LogicService = null;
 		public var str:String = "";
-		private var timer:Timer = null;
+		public var timer:Timer = null;
 		public var userName:String = null;
 		private var haveMoney:Number = 0;
 		private var playerAuthz:int = 0;

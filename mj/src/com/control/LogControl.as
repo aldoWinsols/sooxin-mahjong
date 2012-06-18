@@ -27,7 +27,6 @@ package com.control
 			this.log.gameHistoryB.addEventListener(MouseEvent.CLICK,getGameHistoryClickHandler);
 			this.log.chongzhiHistoryB.addEventListener(MouseEvent.CLICK,getChongzhiHistoryClickHandler);
 			this.log.prizeHistoryB.addEventListener(MouseEvent.CLICK,getPrizeHistoryClickHandler);
-			this.log.closeB.addEventListener(MouseEvent.CLICK,closeClickHandler);
 			
 		}
 		
@@ -62,10 +61,6 @@ package com.control
 		private function getPrizeHistoryResult(e:ResultEvent):void{
 			RemoteService.instance.duihuanService.removeEventListener(ResultEvent.RESULT,getPrizeHistoryResult);
 			this.log.prizeHistory.dataProvider = changeID(e.result as ArrayCollection);
-		}
-		
-		private function closeClickHandler(e:MouseEvent):void{
-			MainSenceControl.instance.mainSence.currentState = "login";
 		}
 		
 		private function changeID(arr:ArrayCollection):ArrayCollection{

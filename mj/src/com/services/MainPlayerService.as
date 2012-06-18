@@ -78,24 +78,6 @@ package com.services
 			}
 		}
 		
-		public function setRoomNumByType(roomType:String, roomNum:int):void{
-			switch(roomType){
-				case "5":
-					roomNum10 = roomNum;
-					break;
-				case "10":
-					roomNum10 = roomNum;
-					break
-				case "20":
-					roomNum20 = roomNum;
-					break
-				case "50":
-					roomNum50 = roomNum;
-					break
-				case "100":
-					roomNum100 = roomNum;
-					break
-			}
-		}
+		
 	}
 }

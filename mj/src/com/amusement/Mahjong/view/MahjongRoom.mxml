@@ -16,6 +16,7 @@
 			import com.amusement.Mahjong.control.MahjongPlayerControlD;
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
 			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.control.MahjongSeatControl;
 			import com.amusement.Mahjong.service.MahjongBalanceService;
 			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.control.DanjiHomeControl;
@@ -115,12 +116,19 @@
 			{
 				// TODO Auto-generated method stub
 				//				MainSenceControl.instance.mahjongAppliction = new MahjongAppliction();
-				this.backOperation.visible = false;
-				GameCenterService.instance.changeScore(-5);
-				MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
-				MainSenceControl.instance.mainSence.menu.visible = true;
-				RoomService.instance.endGame();
-				MahjongRoomControl.instance.clearTabletop();
+				
+				try{
+					RoomService.instance.timer.stop();
+					RoomService.instance.endGame();
+					
+					this.backOperation.visible = false;
+					GameCenterService.instance.changeScore(-5);
+					MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
+					MainSenceControl.instance.mainSence.menu.visible = true;
+				}catch(e:Error){
+					
+				}
+				
 			}
 			
 			protected function soundClose_clickHandler(event:MouseEvent):void
