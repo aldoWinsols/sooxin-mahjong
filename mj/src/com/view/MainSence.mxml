@@ -45,7 +45,7 @@
 	<s:states>
 		<s:State name="login"/>
 		<s:State name="lianwangHome"/>
-		<s:State name="danjiHome"/>
+		<s:State name="gameing"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
@@ -54,8 +54,6 @@
 			 verticalCenter="0"/>
 	
 	<Mahjong:MahjongAppliction id="mahjongAppliction" x="0" y="0">
-		<view:Notice includeIn="lianwangHome,danjiHome" x="347" y="490">
-		</view:Notice>
 	</Mahjong:MahjongAppliction>
 
 	

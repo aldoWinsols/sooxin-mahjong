@@ -81,12 +81,16 @@
 	<view:Duihuan includeIn="duihuan" x="0" y="90">
 	</view:Duihuan>
 	<s:Image x="0" y="10" width="70" height="70" source="assets/head.png"/>
-	<s:Label x="78" y="12" color="#FFFFFF" fontWeight="bold" text="用户："/>
-	<s:Label x="78" y="44" color="#FFFFFF" fontWeight="bold" text="点数："/>
+	<s:Label includeIn="chongzhi,duihuan,log" x="78" y="12" color="#FFFFFF" fontWeight="bold"
+			 text="用户："/>
+	<s:Label includeIn="chongzhi,duihuan,log" x="78" y="44" color="#FFFFFF" fontWeight="bold"
+			 text="点数："/>
 	<s:Label id="playerName" x="128" y="14" color="#FFFFFF" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.playerName}"/>
+			 text="{MainPlayerService.getInstance().mainPlayer.playerName}"
+			 x.main="78" y.main="14"/>
 	<s:Label id="haveMoney" x="128" y="46" color="#FFFFFF" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
+			 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"
+			 x.main="118" y.main="46"/>
 	
 	<model:Button click="image2_clickHandler(event)" skin="@Embed('assets/main/liwuB.png')"
 			 x="692" y="10"/>
@@ -104,4 +108,5 @@
 	</view:RoomList>
 	<view:NetworkQuality id="network" includeIn="main" x="750" y="104">
 	</view:NetworkQuality>
+	<s:Image includeIn="main" x="80" y="40" source="assets/jinbi.png"/>
 </s:BorderContainer>

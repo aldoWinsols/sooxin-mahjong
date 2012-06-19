@@ -9,6 +9,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.control.LianwangHomeControl;
 	import com.control.MainControl;
+	import com.control.MainSenceControl;
 	import com.mahjongSyncServer.services.RoomService;
 	import com.model.Alert;
 	
@@ -117,7 +118,7 @@ package com.amusement.Mahjong.service
 			}
 			
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-			LianwangHomeControl.instance.lianwangHome.visible = false;
+			MainSenceControl.instance.mainSence.currentState = "gameing";
 			MahjongRoomControl.instance.restartGame(msgObj);
 		}
 		
@@ -137,7 +138,7 @@ package com.amusement.Mahjong.service
 			}
 			
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-			LianwangHomeControl.instance.lianwangHome.visible = false;
+			MainSenceControl.instance.mainSence.currentState = "gameing";
 			MahjongRoomControl.instance.beginGame(msgObj.roomNo,msgObj.diceNum,msgObj.playerAzimuth,msgObj.playerMahjongValues);
 		}
 		

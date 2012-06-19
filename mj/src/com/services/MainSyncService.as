@@ -175,7 +175,7 @@ package com.services
 				_isConnection = false;
 				
 				_connState="连接失败！请重新登陆";
-				Alert.show("连接失败！请重新登陆!");
+				Alert.show("同步服务连接失败！请检查网络或联系客服！");
 			}
 			
 		}

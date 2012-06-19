@@ -1,5 +1,7 @@
 package com.control
 {
+	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.amusement.Mahjong.control.MahjongSeatControl;
 	import com.services.RemoteService;
 	import com.view.RoomList;
 	
@@ -28,6 +30,9 @@ package com.control
 		{
 			// TODO Auto-generated method stub
 			LianwangHomeControl.instance.roomClick(roomList.dg.selectedItem.connUrl);
+			MahjongRoomControl.instance._mahjongRoom.gameModel.text = "连网模式";
+			MahjongRoomControl.instance.isNetwork = true;
+			MahjongSeatControl.instance.stopShowChat();
 		}
 		
 		public function getRooms():void
@@ -39,17 +44,29 @@ package com.control
 		
 		private function getRoomsResultHandler(e:ResultEvent):void{
 			RemoteService.instance.roomService.removeEventListener(ResultEvent.RESULT,getRoomsResultHandler);
-			roomList.dg.dataProvider = e.result as ArrayCollection;
-		}
-		
-		public function setRoomNumByType(roomType:String, roomNum:int):void{
-			var arr:ArrayCollection = roomList.dg.dataProvider as ArrayCollection;
+			var arr:ArrayCollection = e.result as ArrayCollection;
 			for(var i:int=0; i<arr.length; i++){
-				if(arr.getItemAt(i).fanNum == roomType){
-					arr.getItemAt(i).onlineNum = roomNum;
+				if(!arr.getItemAt(i).isView){
+					arr.removeItemAt(i);
+					i--;
 				}
 			}
 			roomList.dg.dataProvider = arr;
+		}
+		
+		public function setRoomNumByType(roomType:String, roomNum:int):void{
+			try{
+				var arr:ArrayCollection = roomList.dg.dataProvider as ArrayCollection;
+				for(var i:int=0; i<arr.length; i++){
+					if(arr.getItemAt(i).fanNum == roomType){
+						arr.getItemAt(i).onlineNum = roomNum;
+					}
+				}
+				roomList.dg.dataProvider = arr;
+			}catch(e:Error){
+				
+			}
+			
 		}
 	}
 }
