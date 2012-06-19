@@ -78,15 +78,6 @@
 				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
 			}
 			
-			protected function backB_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				MahjongBalanceControl.instance.back();
-				this.jiesuanOperation.visible = false;
-				DanjiHomeControl.instance.danjiHome.visible = true;
-				DanjiHomeControl.instance.danjiHome.mainMenu.visible = true;
-			}
-			
 			protected function continueB_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -124,7 +115,6 @@
 					this.backOperation.visible = false;
 					GameCenterService.instance.changeScore(-5);
 					MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
-					MainSenceControl.instance.mainSence.menu.visible = true;
 				}catch(e:Error){
 					
 				}
@@ -200,7 +190,7 @@
 			
 			
 		</s:BorderContainer>
-		<model:Button id="exitImage" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="true" />
+		<model:Button id="jiangbei" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="true" />
 
 		<model:Button y="89" right="10" click="image4_clickHandler(event)"
 					  skin="@Embed('assets/icon/Safari2.png')" visible="true"/>
@@ -211,7 +201,7 @@
 		<model:Button id="soundClose" y="158" right="10" visible="false" click="soundClose_clickHandler(event)"
 					  skin="@Embed('assets/icon/soundClose.png')"/>
 		
-		<model:Button y="300" right="10" click="button2_clickHandler(event)"
+		<model:Button y="300" right="10" id="exitImage" click="button2_clickHandler(event)"
 					  skin="@Embed('assets/icon/back.png')"/>
 		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
 		
@@ -231,7 +221,7 @@
 		<s:BorderContainer id="jiesuanOperation" visible="false" width="350" height="100" backgroundAlpha="0"
 						   borderVisible="false" cornerRadius="8"
 						   horizontalCenter="0" verticalCenter="177">
-			<s:Image id="backB" click="backB_clickHandler(event)" x="39" y="21" source="com/amusement/Mahjong/assets/backB.png"/>
+			<s:Image id="backB" x="39" y="21" source="com/amusement/Mahjong/assets/backB.png"/>
 			<s:Image id="showBalanceB" click="showBalanceB_clickHandler(event)" x="144" y="21" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
 			<s:Image id="continueB" click="continueB_clickHandler(event)" x="249" y="21" source="com/amusement/Mahjong/assets/continueB.png"/>
 		</s:BorderContainer>
@@ -251,7 +241,7 @@
 		</s:BorderContainer>
 		<s:BorderContainer left="10" top="10" width="100" height="35" backgroundAlpha="0.3"
 						   backgroundColor="#000000" cornerRadius="8">
-			<s:Label x="10" y="7" color="#FFFFFF" fontSize="18" fontWeight="bold" text="单机模式"/>
+			<s:Label x="10" y="7" id="gameModel" color="#FFFFFF" fontSize="18" fontWeight="bold" text="单机模式"/>
 		</s:BorderContainer>
 		<s:Image id="guafeng" visible="false" horizontalCenter="-66"
 				 source="com/amusement/Mahjong/assets/word/guafeng.png" verticalCenter="120"/>

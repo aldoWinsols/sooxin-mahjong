@@ -23,7 +23,19 @@
 			
 			private var _closeHandler:Function;
 			
+			
+			public static var showText:String = "";
+			public static var isShow:Boolean = false;
+			
 			public static function show(text:String = "", title:String = "", flags:uint = 0x04, parent:DisplayObject = null, closeHandler:Function = null):void{
+				
+				if(isShow && (showText==text)){
+					return;
+				}
+				
+				isShow=true;
+				showText=text;
+				
 				if(parent == null){
 					parent = DisplayObject(FlexGlobals.topLevelApplication);
 				}
@@ -40,8 +52,11 @@
 			
 			private function hide():void{
 				removeBtn();
-				
 				PopUpManager.removePopUp(this);
+				
+				showText = "";
+				isShow = false;
+				
 			}
 			
 			private function creatBtn(btnID:String, btnLabel:String = "按钮"):void{

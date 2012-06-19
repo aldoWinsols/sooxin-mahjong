@@ -37,15 +37,21 @@ package com.control
 			
 			ChatService.getInstance();
 			GameCenterService.getInstance();
+			
 			RemoteService.getInstance();
+			RemoteService.instance.init();
+			
 			DataService.instance;
+			
 			ConfigService.getInstance();
+			ConfigService.instance.getConfig();
+			
 			MainPlayerService.getInstance();
 			
 			this.mainSence.currentState = "login";
 			this.mainSence.currentState = "lianwangHome";
 //			this.mainSence.currentState = "verifier";
-			this.mainSence.currentState = "danjiHome";
+			this.mainSence.currentState = "gameing";
 			
 			this.mainSence.currentState = "login";
 			
@@ -123,11 +129,13 @@ package com.control
 		
 		private function mainButDJClickHandler(e:MouseEvent):void{
 
+			MainSenceControl.instance.mainSence.currentState = "gameing";
+			
 			MahjongRoomControl.instance.clearTabletop();
 			
-			this.mainSence.menu.visible = false;
 			this.mainSence.mahjongAppliction.visible = true;
 			MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
+			MahjongRoomControl.instance.isNetwork = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MahjongSyncService.instance.isNetwork = false;
 			RoomService.instance.beginGame("player", 10000);
@@ -167,7 +175,12 @@ package com.control
 //			}
 			
 			if(ConfigService.instance.config.mainConnUrl == ""){
-				Alert.show("当前网络连接异常，请确认你的网络连接后重新操作，或请联系客服！");
+				RemoteService.instance.init();
+				ConfigService.instance.getConfig();
+			}
+			
+			if(ConfigService.instance.config.mainConnUrl == ""){
+				Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
 				return;
 			}
 			

@@ -9,6 +9,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.view.MahjongQuemen;
 	import com.amusement.Mahjong.view.MahjongRoom;
 	import com.control.MainControl;
+	import com.control.MainSenceControl;
 	import com.hurlant.math.bi_internal;
 	import com.model.Alert;
 	
@@ -64,6 +65,22 @@ package com.amusement.Mahjong.control
 		private function addListeners():void{
 //			this._mahjongRoom.mjRoomBgImg.addEventListener(MouseEvent.MOUSE_DOWN, dragHandler, false, 0, true);
 //			this._mahjongRoom.reConnBtn.addEventListener(MouseEvent.CLICK, btnClickHandler, false, 0, true);
+			
+			this._mahjongRoom.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
+		}
+		
+		
+		public var isNetwork:Boolean = false;
+		private function backBClickHandler(e:MouseEvent):void{
+			MahjongBalanceControl.instance.back();
+			_mahjongRoom.jiesuanOperation.visible = false;
+			
+			if(isNetwork){
+				MainSenceControl.instance.mainSence.currentState ="lianwangHome";
+			}else{
+				MainSenceControl.instance.mainSence.currentState = "login";
+			}
+			
 		}
 		
 		private function dragHandler(event:MouseEvent):void{

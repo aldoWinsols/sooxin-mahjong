@@ -26,6 +26,10 @@ package com.services
 
 		public function RemoteService()
 		{
+			init();
+		}
+		
+		public function init():void{
 			chongzhiService=getConfiguredRO("chongzhiService");
 			duihuanService=getConfiguredRO("duihuanService");
 			playlogService=getConfiguredRO("playlogService");

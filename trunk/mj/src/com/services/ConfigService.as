@@ -10,6 +10,10 @@ package com.services
 		public var config:Config = new Config();
 		public function ConfigService()
 		{
+			getConfig();
+		}
+		
+		public function getConfig():void{
 			RemoteService.instance.configService.getConfig();
 			RemoteService.instance.configService.addEventListener(ResultEvent.RESULT,getConfigHandler);
 		}
