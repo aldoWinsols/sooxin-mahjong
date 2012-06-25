@@ -1,5 +1,6 @@
 package com.services
 {
+	import com.control.MainSenceControl;
 	import com.model.Alert;
 	import com.model.MainPlayer;
 	import com.util.MD5;
@@ -21,7 +22,7 @@ package com.services
 		public var roomNum50:int = 0;
 		[Bindable]
 		public var roomNum100:int = 0;
-		private static var _instance:MainPlayerService;
+		public static var _instance:MainPlayerService;
 		public function MainPlayerService()
 		{
 			mainPlayer = new MainPlayer();
@@ -48,6 +49,7 @@ package com.services
 			if(mainPlayer.playerName == ""){
 				var player:MainPlayer = new MainPlayer();
 				player.playerName = GameCenterService.instance.playerName;
+//				player.playerName = "sooxin";
 				
 				RemoteService.instance.playerService.login(player);
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
@@ -57,14 +59,12 @@ package com.services
 		private function loginResultHandler(e:ResultEvent):void{
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			mainPlayer = e.result as MainPlayer;
-			
-			mainPlayer.playerName = "sooxin";
+			MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 		}
 		
-		public function chongzhi(money:int):void{
-			this.mainPlayer.haveMoney += money;
-//			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
-//			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
+		public function chongzhi(money:Number):void{
+			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
 		}
 		
 		private function chongzhiResaultHandler(e:ResultEvent):void{

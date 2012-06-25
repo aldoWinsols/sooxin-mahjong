@@ -8,6 +8,7 @@ package com.amusement.Mahjong.service
 	import com.amusement.Mahjong.control.MahjongPlayerControlU;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.control.MainControl;
+	import com.control.MainSenceControl;
 	import com.mahjongSyncServer.services.RoomService;
 	
 	import flash.display.Stage;
@@ -50,6 +51,7 @@ package com.amusement.Mahjong.service
 		}
 		public function beginGameI(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void
 		{
+			MainSenceControl.instance.mainSence.waitInfo.visible = false;
 			MahjongRoomControl.instance.beginGame(roomNo,diceNum,playerAzimuth,playerMahjongValues);
 		}
 		

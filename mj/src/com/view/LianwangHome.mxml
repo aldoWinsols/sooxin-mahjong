@@ -81,32 +81,29 @@
 	<view:Duihuan includeIn="duihuan" x="0" y="90">
 	</view:Duihuan>
 	<s:Image x="0" y="10" width="70" height="70" source="assets/head.png"/>
-	<s:Label includeIn="chongzhi,duihuan,log" x="78" y="12" color="#FFFFFF" fontWeight="bold"
+	<s:Label includeIn="chongzhi,duihuan,log,main" x="78" y="12" color="#FFFFFF" fontWeight="bold"
 			 text="用户："/>
-	<s:Label includeIn="chongzhi,duihuan,log" x="78" y="44" color="#FFFFFF" fontWeight="bold"
+	<s:Label includeIn="chongzhi,duihuan,log,main" x="78" y="44" color="#FFFFFF" fontWeight="bold"
 			 text="点数："/>
-	<s:Label id="playerName" x="128" y="14" color="#FFFFFF" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.playerName}"
-			 x.main="78" y.main="14"/>
-	<s:Label id="haveMoney" x="128" y="46" color="#FFFFFF" fontWeight="bold"
-			 text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"
-			 x.main="118" y.main="46"/>
+	<s:Label id="playerName" includeIn="chongzhi,duihuan,log,main" x="128" y="14" color="#FFFFFF"
+			 fontWeight="bold" text="{MainPlayerService.getInstance().mainPlayer.playerName}"/>
+	<s:Label id="haveMoney" includeIn="chongzhi,duihuan,log,main" x="128" y="46" color="#FFFFFF"
+			 fontWeight="bold" text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
 	
 	<model:Button click="image2_clickHandler(event)" skin="@Embed('assets/main/liwuB.png')"
 			 x="692" y="10"/>
 	<model:Button click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"
 			 x="790" y="10"/>
-	<model:Button id="backB" x="880" y="10" skin="@Embed('assets/main/backB.png')"
-				  x.log="888" y.log="10"/>
+	<model:Button id="backB" skin="@Embed('assets/main/backB.png')"
+				  x="888" y="10"/>
 	<model:Button click="button1_clickHandler(event)" skin="@Embed('assets/main/logB.png')"
 			 x="589" y="10"/>
 	<model:Button x="489" y="10" click="image3_clickHandler(event)"
 				  skin="@Embed('assets/main/roomB.png')"/>
-	<view:Log includeIn="log" x="0" y="90">
+	<view:Log includeIn="log" x="0" y="90" height="100%">
 	</view:Log>
 	<view:RoomList includeIn="main" x="0" y="90">
 	</view:RoomList>
 	<view:NetworkQuality id="network" includeIn="main" x="750" y="104">
 	</view:NetworkQuality>
-	<s:Image includeIn="main" x="80" y="40" source="assets/jinbi.png"/>
 </s:BorderContainer>

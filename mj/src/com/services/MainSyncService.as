@@ -2,6 +2,7 @@ package com.services
 {
 	
 	import com.control.LianwangHomeControl;
+	import com.control.MainSenceControl;
 	import com.model.Alert;
 	import com.view.LianwangHome;
 	
@@ -175,7 +176,10 @@ package com.services
 				_isConnection = false;
 				
 				_connState="连接失败！请重新登陆";
-				Alert.show("同步服务连接失败！请检查网络或联系客服！");
+//				MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){
+					Alert.show("同步服务连接失败！请检查网络或联系客服！");
+				}
 			}
 			
 		}

@@ -33,6 +33,9 @@ package com.control
 			MahjongRoomControl.instance._mahjongRoom.gameModel.text = "连网模式";
 			MahjongRoomControl.instance.isNetwork = true;
 			MahjongSeatControl.instance.stopShowChat();
+			
+			MainSenceControl.instance.mainSence.currentState =  "gameing";
+			MainSenceControl.instance.mainSence.waitInfo.visible = true;
 		}
 		
 		public function getRooms():void

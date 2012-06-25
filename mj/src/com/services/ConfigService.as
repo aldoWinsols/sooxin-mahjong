@@ -10,7 +10,7 @@ package com.services
 		public var config:Config = new Config();
 		public function ConfigService()
 		{
-			getConfig();
+	
 		}
 		
 		public function getConfig():void{

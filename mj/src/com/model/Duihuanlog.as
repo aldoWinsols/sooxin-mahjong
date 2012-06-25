@@ -14,6 +14,8 @@ package com.model
 		public var contactName:String;
 		public var contactTel:String;
 		public var contactAddress:String;
+		public var state:String;
+		
 		public function Duihuanlog()
 		{
 		}

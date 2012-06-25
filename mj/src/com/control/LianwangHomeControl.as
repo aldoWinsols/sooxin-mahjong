@@ -140,13 +140,16 @@ package com.control
 					MainPlayerService.getInstance().chongzhi(2000);
 					break;
 				case "com.sooxin.mahjongM.d25":
-					MainPlayerService.getInstance().chongzhi(3000);
+					MainPlayerService.getInstance().chongzhi(2900);
 					break;
 				case "com.sooxin.mahjongM.d30":
-					MainPlayerService.getInstance().chongzhi(4000);
+					MainPlayerService.getInstance().chongzhi(3800);
 					break;
 				case "com.sooxin.mahjongM.d50":
 					MainPlayerService.getInstance().chongzhi(7000);
+					break;
+				case "com.sooxin.mahjongM.d100":
+					MainPlayerService.getInstance().chongzhi(15000);
 					break;
 				default:
 					// we don't do anything for unknown items.
