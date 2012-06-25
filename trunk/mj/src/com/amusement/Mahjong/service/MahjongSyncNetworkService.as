@@ -69,8 +69,12 @@ package com.amusement.Mahjong.service
 		private function netStatusHandler(event:NetStatusEvent):void
 		{
 			if(event.info.code != "NetConnection.Connect.Success"){
+//				MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 				
-				Alert.show("連接斷開！請重新進入遊戲。", "提示", Alert.OK);
+				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){
+					Alert.show("同步服务连接失败！请检查网络或联系客服！");
+				}
+				
 			}
 		}
 		
@@ -119,6 +123,7 @@ package com.amusement.Mahjong.service
 			
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MainSenceControl.instance.mainSence.currentState = "gameing";
+			MainSenceControl.instance.mainSence.waitInfo.visible = false;
 			MahjongRoomControl.instance.restartGame(msgObj);
 		}
 		
@@ -139,6 +144,7 @@ package com.amusement.Mahjong.service
 			
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MainSenceControl.instance.mainSence.currentState = "gameing";
+			MainSenceControl.instance.mainSence.waitInfo.visible = false;
 			MahjongRoomControl.instance.beginGame(msgObj.roomNo,msgObj.diceNum,msgObj.playerAzimuth,msgObj.playerMahjongValues);
 		}
 		

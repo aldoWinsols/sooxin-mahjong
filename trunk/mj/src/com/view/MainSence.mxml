@@ -73,5 +73,12 @@
 					  skin="@Embed('assets/but/mainButDJ.png')"/>
 		<view:Notice includeIn="login" x="287" y="478" alpha="0.5">
 		</view:Notice>
+		
+		<s:BorderContainer includeIn="gameing" id="waitInfo" width="314" height="50" backgroundAlpha="0.5"
+						   backgroundColor="#000000" cornerRadius="8" horizontalCenter="0"
+						   verticalCenter="0">
+			<s:Label x="17" y="14" color="#FFFFFF" fontSize="20" text="稍等，系统正在自动为您配桌..."/>
+			
+		</s:BorderContainer>
 	</s:Group>
 </s:View>

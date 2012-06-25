@@ -183,8 +183,6 @@ package com.control
 				Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
 				return;
 			}
-			
-			this.mainSence.currentState = "lianwangHome";
 			MainPlayerService.getInstance().login();
 			
 		}

@@ -65,6 +65,7 @@ package com.control
 			duihuanlog.contactName = duihuan.contactName.text;
 			duihuanlog.contactTel = duihuan.contactTel.text;
 			duihuanlog.contactAddress = duihuan.contactAddress.text;
+			duihuanlog.state = "等待发货";
 			duihuanlog.duihuanTime = new Date();
 			
 			RemoteService.instance.playerService.duihuan(duihuanlog);

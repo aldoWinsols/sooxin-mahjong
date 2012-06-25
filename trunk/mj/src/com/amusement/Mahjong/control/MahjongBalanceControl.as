@@ -8,6 +8,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.view.MahjongBalance;
 	import com.model.Alert;
 	import com.services.GameCenterService;
+	import com.services.MainPlayerService;
 	import com.view.System;
 	
 	import flash.events.MouseEvent;
@@ -244,21 +245,30 @@ package com.amusement.Mahjong.control
 			
 			
 			if(!MahjongRoomControl.instance.isVideo){
-				var gg:Number = 0;
-				for(var i:int=0;i<4;i++){
-					if(playerNames[i] == "player"){
-						gg = total[i]*0.01*MahjongSyncService.instance.level;
-//						Alert.show(gg.toString());
-						try{
-							GameCenterService.instance.changeScore(gg);
-						}catch(e:Error){
-							
+				
+				if(MahjongRoomControl.instance.isNetwork){
+					MainPlayerService.getInstance().mainPlayer.haveMoney += total[i];
+					this._mahjongRalance.nandu.visible = false;
+					this._mahjongRalance.jifen.visible = false;
+					
+				}else{
+					var gg:Number = 0;
+					for(var i:int=0;i<4;i++){
+						if(playerNames[i] == "player"){
+							gg = total[i]*0.01*MahjongSyncService.instance.level;
+							//						Alert.show(gg.toString());
+							try{
+								GameCenterService.instance.changeScore(gg);
+							}catch(e:Error){
+								
+							}
 						}
 					}
+					
+					this._mahjongRalance.nandu.text = (MahjongSyncService.instance.level*0.01).toString();
+					this._mahjongRalance.jifen.text = gg.toString();
 				}
 				
-				this._mahjongRalance.nandu.text = (MahjongSyncService.instance.level*0.01).toString();
-				this._mahjongRalance.jifen.text = gg.toString();
 			}
 			
 			if(MahjongRoomControl.instance.isVideo){

@@ -33,7 +33,8 @@
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<s:ViewNavigator x="0" y="0" width="960" height="560" contentBackgroundAlpha="0.2"
-					 contentBackgroundColor="#72D2FE"/>
+					 contentBackgroundColor="#72D2FE"
+					 width.game="100%" height.game="100%"/>
 	<s:BorderContainer x="0" y="75" width="100%" height="100%" backgroundAlpha="0.3"
 					   backgroundColor="#72D2FE"
 					   y.chongzhi="45"
@@ -274,48 +275,55 @@
 						</fx:Component>
 					</s:itemRenderer>
 				</s:GridColumn>
+				
+									<!--
 				<s:GridColumn id="luxiang1" dataField="luxiang" headerText="操作" width="200">
-					<s:itemRenderer>
-						<fx:Component>
-							<s:GridItemRenderer>
-								<fx:Script>
-									<![CDATA[
-										import com.amusement.Mahjong.control.MahjongApplictionControl;
-										import com.control.DanjiHomeControl;
-										import com.mahjongSyncServer.services.RoomService;
-										import com.services.DataService;
-										
-										import mx.managers.PopUpManager;
-										
-										protected function button1_clickHandler(event:MouseEvent):void
-										{
-											// TODO Auto-generated method stub
-											
-//											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
-											
-//											DanjiHomeControl.instance.danjiHome.operation.visible = false;
-											MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
-											DanjiHomeControl.instance.danjiHome.visible = false;
-											RoomService.instance.playerVideo(data.gameContent);
-											PopUpManager.removePopUp(outerDocument);
-										}
-										
-										protected function button2_clickHandler(event:MouseEvent):void
-										{
-											// TODO Auto-generated method stub
-											DataService.instance.removeGameLog(data.id,data.playerName);
-										}
-										
-									]]>
-								</fx:Script>
-								<s:HGroup verticalCenter="0" horizontalCenter="0">
+				<s:itemRenderer>
+				<fx:Component>
+				<s:GridItemRenderer>
+				<fx:Script>
+				<![CDATA[
+				import com.amusement.Mahjong.control.MahjongApplictionControl;
+				import com.control.DanjiHomeControl;
+				import com.control.MainSenceControl;
+				import com.mahjongSyncServer.services.RoomService;
+				import com.services.DataService;
+				
+				import mx.managers.PopUpManager;
+				
+				protected function button1_clickHandler(event:MouseEvent):void
+				{
+				// TODO Auto-generated method stub
+				
+				//											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+				
+				//											DanjiHomeControl.instance.danjiHome.operation.visible = false;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				//											DanjiHomeControl.instance.danjiHome.visible = false;
+				RoomService.instance.playerVideo(data.gameContent);
+				PopUpManager.removePopUp(outerDocument);
+				MainSenceControl.instance.mainSence.currentState = "gameing";
+				MainSenceControl.instance.mainSence.waitInfo.visible = false;
+				}
+				
+				protected function button2_clickHandler(event:MouseEvent):void
+				{
+				// TODO Auto-generated method stub
+				DataService.instance.removeGameLog(data.id,data.playerName);
+				}
+				
+				]]>
+				</fx:Script>
+				<s:HGroup verticalCenter="0" horizontalCenter="0">
 									<s:Button label="观看录像" click="button1_clickHandler(event)" />
-									<s:Button label="删除" click="button2_clickHandler(event)" />
-								</s:HGroup>
-							</s:GridItemRenderer>
-						</fx:Component>
-					</s:itemRenderer>
+				</s:HGroup>
+				</s:GridItemRenderer>
+				</fx:Component>
+				</s:itemRenderer>
 				</s:GridColumn>
+									-->
+									
+								
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

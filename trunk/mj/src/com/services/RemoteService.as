@@ -2,6 +2,11 @@ package com.services
 {
 	import com.model.Alert;
 	
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	
 	import mx.managers.CursorManager;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.InvokeEvent;
@@ -10,7 +15,7 @@ package com.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://127.0.0.1:8080/";
+		public var mainUrl:String = "http://192.168.1.1:8080/";
 		public static var instance:RemoteService;
 		
 		public var chongzhiService:RemoteObject;
@@ -24,10 +29,30 @@ package com.services
 		
 		public var connState:Boolean = false;
 
+		
+		private var netLoader:URLLoader;
+		private var localLoader:URLLoader;
+		public var urlList:XMLList;
 		public function RemoteService()
 		{
+			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
+			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
+			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
+		}
+		
+		private function netErrorHandler(e:IOErrorEvent):void{
+			
+		}
+		
+		private function netLoadCompleteHandler(event:Event):void{
+			var loader:URLLoader = URLLoader(event.currentTarget);
+			var configXML:XML = XML(loader.data);
+			urlList = configXML.url.mainUrl;
+			mainUrl = urlList[0].@text;
+			
 			init();
 		}
+		
 		
 		public function init():void{
 			chongzhiService=getConfiguredRO("chongzhiService");
