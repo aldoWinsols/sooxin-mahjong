@@ -2,6 +2,8 @@ package com.control
 {
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.control.MahjongSeatControl;
+	import com.model.Alert;
+	import com.services.MainPlayerService;
 	import com.services.RemoteService;
 	import com.view.RoomList;
 	
@@ -26,9 +28,18 @@ package com.control
 			getRooms();
 		}
 		
+		
+		public var nowJoinRoomNum:int = 0;
 		protected function dg_selectionChangeHandler(event:GridSelectionEvent):void
 		{
 			// TODO Auto-generated method stub
+			
+			if(!checkIsEnter(roomList.dg.selectedItem.fanNum)){
+				Alert.show("您当前的点数少于此房间最小进入点数:"+roomList.dg.selectedItem.joinNum);
+				return;
+			}
+			
+			nowJoinRoomNum = roomList.dg.selectedItem.fanNum;
 			LianwangHomeControl.instance.roomClick(roomList.dg.selectedItem.connUrl);
 			MahjongRoomControl.instance._mahjongRoom.gameModel.text = "连网模式";
 			MahjongRoomControl.instance.isNetwork = true;
@@ -36,6 +47,42 @@ package com.control
 			
 			MainSenceControl.instance.mainSence.currentState =  "gameing";
 			MainSenceControl.instance.mainSence.waitInfo.visible = true;
+			
+			MahjongRoomControl.instance._mahjongRoom.roomName.text = roomList.dg.selectedItem.fanNum + "点/番";
+		}
+		
+		public function reEnterRoom(roomNum:int):void{
+			var url:String = "";
+			var item:Object;
+			
+			for(var i:int=0; i<rooms.length;i++){
+				if(roomNum == rooms.getItemAt(i).fanNum){
+					item = rooms.getItemAt(i);
+					url = rooms.getItemAt(i).connUrl;
+				}
+			}
+			
+			LianwangHomeControl.instance.roomClick(url);
+			MahjongRoomControl.instance._mahjongRoom.gameModel.text = "连网模式";
+			MahjongRoomControl.instance.isNetwork = true;
+			MahjongSeatControl.instance.stopShowChat();
+			
+			MainSenceControl.instance.mainSence.currentState =  "gameing";
+			MainSenceControl.instance.mainSence.waitInfo.visible = true;
+			
+			MahjongRoomControl.instance._mahjongRoom.roomName.text = item.fanNum + "点/番";
+		}
+		
+		public function checkIsEnter(roomNum:int):Boolean{
+			for(var i:int=0; i<rooms.length; i++){
+				if(roomNum == rooms.getItemAt(i).fanNum){
+					if(MainPlayerService.getInstance().mainPlayer.haveMoney < rooms.getItemAt(i).joinNum){
+						return false;
+					}
+				}
+			}
+			
+			return true;
 		}
 		
 		public function getRooms():void
@@ -45,16 +92,21 @@ package com.control
 			RemoteService.instance.roomService.addEventListener(ResultEvent.RESULT,getRoomsResultHandler);
 		}
 		
+		public var rooms:ArrayCollection;
 		private function getRoomsResultHandler(e:ResultEvent):void{
 			RemoteService.instance.roomService.removeEventListener(ResultEvent.RESULT,getRoomsResultHandler);
-			var arr:ArrayCollection = e.result as ArrayCollection;
-			for(var i:int=0; i<arr.length; i++){
-				if(!arr.getItemAt(i).isView){
-					arr.removeItemAt(i);
+			rooms = e.result as ArrayCollection;
+			for(var i:int=0; i<rooms.length; i++){
+				if(!rooms.getItemAt(i).isView){
+					rooms.removeItemAt(i);
 					i--;
 				}
 			}
-			roomList.dg.dataProvider = arr;
+			roomList.dg.dataProvider = rooms;
+			
+			if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
+				reEnterRoom(MainPlayerService.getInstance().mainPlayer.offlineGameNo);
+			}
 		}
 		
 		public function setRoomNumByType(roomType:String, roomNum:int):void{

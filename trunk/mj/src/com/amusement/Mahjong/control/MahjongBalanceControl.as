@@ -204,6 +204,9 @@ package com.amusement.Mahjong.control
 		 * 
 		 */
 		public function setPlayerName(playerNames:Array):void{
+			if(playerNames.length>4){
+				playerNames.shift();
+			}
 			if(playerNames){
 				for(var i:int = 0; i < playerNames.length; i ++){
 					switch(i){
@@ -249,7 +252,9 @@ package com.amusement.Mahjong.control
 				if(MahjongRoomControl.instance.isNetwork){
 					MainPlayerService.getInstance().mainPlayer.haveMoney += total[i];
 					this._mahjongRalance.nandu.visible = false;
+					this._mahjongRalance.nanduL.visible = false;
 					this._mahjongRalance.jifen.visible = false;
+					this._mahjongRalance.jifenL.visible = false;
 					
 				}else{
 					var gg:Number = 0;

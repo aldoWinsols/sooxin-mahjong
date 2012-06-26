@@ -2,7 +2,10 @@ package com.amusement.Mahjong.service
 {
 	import com.amusement.Mahjong.control.MahjongApplictionControl;
 	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.control.MainSenceControl;
+	import com.control.RoomListControl;
 	import com.model.Alert;
+	import com.services.MainPlayerService;
 
 	public class MahjongBalanceService
 	{
@@ -13,12 +16,14 @@ package com.amusement.Mahjong.service
 		}
 		
 		public function continueClickHandler():void{
-			if(checkEnoughPlayerMoney()){
+			if(RoomListControl.instance.checkIsEnter(RoomListControl.instance.nowJoinRoomNum)){
 				MahjongRoomControl.instance.clearTabletop();
 				
 				MahjongSyncService.instance.continueGame();
+				
+				MainSenceControl.instance.mainSence.waitInfo.visible = true;
 			}else{
-				Alert.show("您的遊戲點數不足！");
+				Alert.show("您当前的点数少于此房间最小进入点数");
 			}
 		}
 		
@@ -38,20 +43,20 @@ package com.amusement.Mahjong.service
 		 * 
 		 */
 		public function updataPlayerMoney(zongji:Array):void{
-//			switch(MahjongRoomControl.instance.playerAzimuth){
-//				case 1:
-//					PlayerService.instance.updateHaveMoney(zongji[0]);
-//					break;
-//				case 2:
-//					PlayerService.instance.updateHaveMoney(zongji[1]);
-//					break;
-//				case 3:
-//					PlayerService.instance.updateHaveMoney(zongji[2]);
-//					break;
-//				case 4:
-//					PlayerService.instance.updateHaveMoney(zongji[3]);
-//					break;
-//			}
+			switch(MahjongRoomControl.instance.playerAzimuth){
+				case 1:
+					MainPlayerService.getInstance().mainPlayer.haveMoney += zongji[0];
+					break;
+				case 2:
+					MainPlayerService.getInstance().mainPlayer.haveMoney += zongji[1];
+					break;
+				case 3:
+					MainPlayerService.getInstance().mainPlayer.haveMoney += zongji[2];
+					break;
+				case 4:
+					MainPlayerService.getInstance().mainPlayer.haveMoney += zongji[3];
+					break;
+			}
 		}
 		
 		/**

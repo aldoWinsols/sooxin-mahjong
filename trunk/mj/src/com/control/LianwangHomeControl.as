@@ -185,56 +185,8 @@ package com.control
 		//----------------------------------------------------
 		
 		public function roomClick(connUrl:String):void{
-//			if(!checkIsEnter(roomName)){
-//				return;
-//			}
 			MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, connUrl);
 		}
 		
-		private function checkIsEnter(roomName:String):Boolean{
-			switch(roomName){
-				case "room5":
-					if(MainPlayerService.getInstance().roomNum5 >= 300){
-						return false;
-					}
-					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 300){
-						return false;
-					}
-					break;
-				case "room10":
-					if(MainPlayerService.getInstance().roomNum10 >= 300){
-						return false;
-					}
-					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 500){
-						return false;
-					}
-					break;
-				case "room20":
-					if(MainPlayerService.getInstance().roomNum20 >= 300){
-						return false;
-					}
-					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 1000){
-						return false;
-					}
-					break;
-				case "room50":
-					if(MainPlayerService.getInstance().roomNum50 >= 300){
-						return false;
-					}
-					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 3000){
-						return false;
-					}
-					break;
-				case "room100":
-					if(MainPlayerService.getInstance().roomNum100 >= 300){
-						return false;
-					}
-					if(MainPlayerService.getInstance().mainPlayer.haveMoney < 6000){
-						return false;
-					}
-					break;
-			}
-			return true;
-		}
 	}
 }

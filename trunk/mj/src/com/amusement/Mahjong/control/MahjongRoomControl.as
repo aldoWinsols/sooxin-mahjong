@@ -347,7 +347,9 @@ package com.amusement.Mahjong.control
 		var playNum:int = 0;
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
 			
-			MahjongSeatControl.instance.startShowChat();
+			if(!MahjongRoomControl.instance.isNetwork){
+				MahjongSeatControl.instance.startShowChat();
+			}
 			
 //			playNum++;
 //			if(playNum == 2){
