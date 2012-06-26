@@ -23,9 +23,31 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class PlayerDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(PlayerDAO.class);
 	// property constants
-	public static final String PLAYERNAME = "playername";
-	public static final String PLAYERPWD = "playerpwd";
+	public static final String PLAYER_NAME = "playerName";
+	public static final String PLAYER_PWD = "playerPwd";
 	public static final String HAVE_MONEY = "haveMoney";
+	public static final String BIRTHDAY = "birthday";
+	public static final String BIRTH_MONTH = "birthMonth";
+	public static final String BIRTH_YEAR = "birthYear";
+	public static final String CITY_CODE = "cityCode";
+	public static final String COUNTRY_CODE = "countryCode";
+	public static final String EDU = "edu";
+	public static final String EMAIL = "email";
+	public static final String FANS_NUM = "fansNum";
+	public static final String HEAD = "head";
+	public static final String IDOL_NUM = "idolNum";
+	public static final String INTRODUCTION = "introduction";
+	public static final String ISENT = "isent";
+	public static final String ISREAL_NAME = "isrealName";
+	public static final String ISVIP = "isvip";
+	public static final String LOCATION = "location";
+	public static final String NICK = "nick";
+	public static final String OPENID = "openid";
+	public static final String PROVINCE_CODE = "provinceCode";
+	public static final String SEX = "sex";
+	public static final String TAG = "tag";
+	public static final String TWEETNUM = "tweetnum";
+	public static final String VERIFYINFO = "verifyinfo";
 	public static final String OFFLINE_GAME_NO = "offlineGameNo";
 
 	protected void initDao() {
@@ -92,16 +114,104 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByPlayername(Object playername) {
-		return findByProperty(PLAYERNAME, playername);
+	public List findByPlayerName(Object playerName) {
+		return findByProperty(PLAYER_NAME, playerName);
 	}
 
-	public List findByPlayerpwd(Object playerpwd) {
-		return findByProperty(PLAYERPWD, playerpwd);
+	public List findByPlayerPwd(Object playerPwd) {
+		return findByProperty(PLAYER_PWD, playerPwd);
 	}
 
 	public List findByHaveMoney(Object haveMoney) {
 		return findByProperty(HAVE_MONEY, haveMoney);
+	}
+
+	public List findByBirthday(Object birthday) {
+		return findByProperty(BIRTHDAY, birthday);
+	}
+
+	public List findByBirthMonth(Object birthMonth) {
+		return findByProperty(BIRTH_MONTH, birthMonth);
+	}
+
+	public List findByBirthYear(Object birthYear) {
+		return findByProperty(BIRTH_YEAR, birthYear);
+	}
+
+	public List findByCityCode(Object cityCode) {
+		return findByProperty(CITY_CODE, cityCode);
+	}
+
+	public List findByCountryCode(Object countryCode) {
+		return findByProperty(COUNTRY_CODE, countryCode);
+	}
+
+	public List findByEdu(Object edu) {
+		return findByProperty(EDU, edu);
+	}
+
+	public List findByEmail(Object email) {
+		return findByProperty(EMAIL, email);
+	}
+
+	public List findByFansNum(Object fansNum) {
+		return findByProperty(FANS_NUM, fansNum);
+	}
+
+	public List findByHead(Object head) {
+		return findByProperty(HEAD, head);
+	}
+
+	public List findByIdolNum(Object idolNum) {
+		return findByProperty(IDOL_NUM, idolNum);
+	}
+
+	public List findByIntroduction(Object introduction) {
+		return findByProperty(INTRODUCTION, introduction);
+	}
+
+	public List findByIsent(Object isent) {
+		return findByProperty(ISENT, isent);
+	}
+
+	public List findByIsrealName(Object isrealName) {
+		return findByProperty(ISREAL_NAME, isrealName);
+	}
+
+	public List findByIsvip(Object isvip) {
+		return findByProperty(ISVIP, isvip);
+	}
+
+	public List findByLocation(Object location) {
+		return findByProperty(LOCATION, location);
+	}
+
+	public List findByNick(Object nick) {
+		return findByProperty(NICK, nick);
+	}
+
+	public List findByOpenid(Object openid) {
+		return findByProperty(OPENID, openid);
+	}
+
+	public List findByProvinceCode(Object provinceCode) {
+		return findByProperty(PROVINCE_CODE, provinceCode);
+	}
+
+	public List findBySex(Object sex) {
+		return findByProperty(SEX, sex);
+	}
+
+	public List findByTag(Object tag) {
+		return findByProperty(TAG, tag);
+	}
+
+	public List findByTweetnum(Object tweetnum) {
+		return findByProperty(TWEETNUM, tweetnum);
+	}
+
+	public List findByVerifyinfo(Object verifyinfo) {
+		return findByProperty(VERIFYINFO, verifyinfo);
 	}
 
 	public List findByOfflineGameNo(Object offlineGameNo) {
@@ -159,7 +269,7 @@ public class PlayerDAO extends HibernateDaoSupport {
 	}
 	
 	public Player findByAcctNameUnique(String playerName){
-		List<Player> players = findByPlayername(playerName);
+		List<Player> players = findByPlayerName(playerName);
 		return players.isEmpty() ? null : players.get(0);
 	}
 }

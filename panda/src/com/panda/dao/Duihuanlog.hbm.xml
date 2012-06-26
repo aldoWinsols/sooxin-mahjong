@@ -40,8 +40,8 @@
         <property name="contactAddress" type="java.lang.String">
             <column name="contactAddress" length="65535" />
         </property>
-        <property name="state" type="java.lang.Integer">
-            <column name="state" />
+        <property name="state" type="java.lang.String">
+            <column name="state" length="10" />
         </property>
     </class>
 </hibernate-mapping>

@@ -5,5 +5,5 @@ import java.util.List;
 import com.panda.dao.Config;
 
 public interface IConfigService {
-	public List<Config> getConfig();
+	public Config getConfig();
 }

@@ -29,6 +29,12 @@
 			<value>com.panda.inter.IBalanceChessGameService
 			</value>
 		</property>
+		<property name="registryPort">
+			<value>4199</value>
+		</property>
+		<property name="servicePort">
+			<value>5199</value>
+		</property>
 
 	</bean>
 	
@@ -43,6 +49,12 @@
 		<property name="serviceInterface">
 			<value>com.panda.inter.IPlayerService
 			</value>
+		</property>
+		<property name="registryPort">
+			<value>4199</value>
+		</property>
+		<property name="servicePort">
+			<value>5199</value>
 		</property>
 
 	</bean>
@@ -59,6 +71,12 @@
 		<property name="serviceInterface">
 			<value>com.panda.inter.IPlaylogService
 			</value>
+		</property>
+		<property name="registryPort">
+			<value>4199</value>
+		</property>
+		<property name="servicePort">
+			<value>5199</value>
 		</property>
 
 	</bean>

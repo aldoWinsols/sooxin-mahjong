@@ -22,8 +22,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class ConfigDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(ConfigDAO.class);
 	// property constants
-	public static final String CONNECT_STR = "connectStr";
-	public static final String CONNECT_TYPE = "connectType";
+	public static final String MAIN_CONN_URL = "mainConnUrl";
+	public static final String HIDE_JIANGPIN = "hideJiangpin";
 
 	protected void initDao() {
 		// do nothing
@@ -89,12 +89,12 @@ public class ConfigDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByConnectStr(Object connectStr) {
-		return findByProperty(CONNECT_STR, connectStr);
+	public List findByMainConnUrl(Object mainConnUrl) {
+		return findByProperty(MAIN_CONN_URL, mainConnUrl);
 	}
 
-	public List findByConnectType(Object connectType) {
-		return findByProperty(CONNECT_TYPE, connectType);
+	public List findByHideJiangpin(Object hideJiangpin) {
+		return findByProperty(HIDE_JIANGPIN, hideJiangpin);
 	}
 
 	public List findAll() {

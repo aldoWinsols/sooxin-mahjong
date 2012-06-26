@@ -102,7 +102,7 @@ public class BalanceChessGameService implements IBalanceChessGameService {
 
 	private void updateUserAcct(Playlog playLogD, Player player,
 			double payback) {
-		player.setHaveMoney(player.getHaveMoney() + payback
+		player.setHaveMoney(player.getHaveMoney()
 				+ playLogD.getWinLossMoneyAfterTax());
 		playerDao.merge(player);
 	}
@@ -130,7 +130,7 @@ public class BalanceChessGameService implements IBalanceChessGameService {
 			double taxactoinRate, double payback) {
 		Timestamp gameTime = DateUtil.getTimestamp(new Date());
 		playLog.setGameClass(1);
-		playLog.setPreMoney(player.getHaveMoney() + payback);
+		playLog.setPreMoney(player.getHaveMoney());
 
 		// 如果是贏了要提交公點
 		// -- 公點為負
