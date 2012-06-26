@@ -21,7 +21,7 @@ public class Duihuanlog implements java.io.Serializable {
 	private String contactName;
 	private String contactTel;
 	private String contactAddress;
-	private Integer state;
+	private String state;
 
 	// Constructors
 
@@ -33,7 +33,7 @@ public class Duihuanlog implements java.io.Serializable {
 	public Duihuanlog(String playerName, Timestamp duihuanTime,
 			String itemName, Double duihuanMoney, Double lastHaveMoney,
 			Double nowHaveMoney, String contactName, String contactTel,
-			String contactAddress, Integer state) {
+			String contactAddress, String state) {
 		this.playerName = playerName;
 		this.duihuanTime = duihuanTime;
 		this.itemName = itemName;
@@ -136,11 +136,11 @@ public class Duihuanlog implements java.io.Serializable {
 		this.contactAddress = contactAddress;
 	}
 
-	public Integer getState() {
+	public String getState() {
 		return this.state;
 	}
 
-	public void setState(Integer state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 

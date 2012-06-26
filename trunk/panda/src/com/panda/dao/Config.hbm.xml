@@ -10,13 +10,13 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <property name="connectStr" type="java.lang.String">
-            <column name="connectStr" length="50">
+        <property name="mainConnUrl" type="java.lang.String">
+            <column name="mainConnUrl" length="50">
                 <comment>连接地址</comment>
             </column>
         </property>
-        <property name="connectType" type="java.lang.String">
-            <column name="connectType" length="50">
+        <property name="hideJiangpin" type="java.lang.Boolean">
+            <column name="hideJiangpin">
                 <comment>连接类型</comment>
             </column>
         </property>

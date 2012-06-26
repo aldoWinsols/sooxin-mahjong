@@ -8,9 +8,9 @@ import com.panda.inter.IConfigService;
 
 public class ConfigService implements IConfigService {
 	private ConfigDAO configDao;
-	public List<Config> getConfig() {
+	public Config getConfig() {
 		// TODO Auto-generated method stub
-		return configDao.findAll();
+		return configDao.findById(1);
 	}
 	public ConfigDAO getConfigDao() {
 		return configDao;

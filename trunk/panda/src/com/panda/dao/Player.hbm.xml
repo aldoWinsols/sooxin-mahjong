@@ -10,20 +10,86 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <property name="playername" type="java.lang.String">
-            <column name="playername" length="50" />
+        <version name="timestamp" type="java.sql.Timestamp">
+            <column name="timestamp" length="0" />
+        </version>
+        <property name="playerName" type="java.lang.String">
+            <column name="playerName" length="50" />
         </property>
-        <property name="playerpwd" type="java.lang.String">
-            <column name="playerpwd" length="100" />
+        <property name="playerPwd" type="java.lang.String">
+            <column name="playerPwd" length="100" />
         </property>
         <property name="haveMoney" type="java.lang.Double">
             <column name="haveMoney" precision="22" scale="0" />
         </property>
+        <property name="birthday" type="java.lang.Integer">
+            <column name="birthday" />
+        </property>
+        <property name="birthMonth" type="java.lang.Integer">
+            <column name="birthMonth" />
+        </property>
+        <property name="birthYear" type="java.lang.Integer">
+            <column name="birthYear" />
+        </property>
+        <property name="cityCode" type="java.lang.String">
+            <column name="cityCode" length="6" />
+        </property>
+        <property name="countryCode" type="java.lang.String">
+            <column name="countryCode" length="6" />
+        </property>
+        <property name="edu" type="java.lang.String">
+            <column name="edu" length="65535" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="50" />
+        </property>
+        <property name="fansNum" type="java.lang.Integer">
+            <column name="fansNum" />
+        </property>
+        <property name="head" type="java.lang.String">
+            <column name="head" length="100" />
+        </property>
+        <property name="idolNum" type="java.lang.Integer">
+            <column name="idolNum" />
+        </property>
+        <property name="introduction" type="java.lang.String">
+            <column name="introduction" length="65535" />
+        </property>
+        <property name="isent" type="java.lang.Boolean">
+            <column name="isent" />
+        </property>
+        <property name="isrealName" type="java.lang.Boolean">
+            <column name="isrealName" />
+        </property>
+        <property name="isvip" type="java.lang.Boolean">
+            <column name="isvip" />
+        </property>
+        <property name="location" type="java.lang.String">
+            <column name="location" length="10" />
+        </property>
+        <property name="nick" type="java.lang.String">
+            <column name="nick" length="50" />
+        </property>
+        <property name="openid" type="java.lang.String">
+            <column name="openid" length="50" />
+        </property>
+        <property name="provinceCode" type="java.lang.String">
+            <column name="provinceCode" length="10" />
+        </property>
+        <property name="sex" type="java.lang.Integer">
+            <column name="sex" />
+        </property>
+        <property name="tag" type="java.lang.String">
+            <column name="tag" length="50" />
+        </property>
+        <property name="tweetnum" type="java.lang.Integer">
+            <column name="tweetnum" />
+        </property>
+        <property name="verifyinfo" type="java.lang.String">
+            <column name="verifyinfo" length="65535" />
+        </property>
         <property name="offlineGameNo" type="java.lang.Integer">
             <column name="offlineGameNo" />
-        </property>
-        <property name="timestamp" type="java.sql.Timestamp">
-            <column name="timestamp" length="19" />
         </property>
     </class>
 </hibernate-mapping>

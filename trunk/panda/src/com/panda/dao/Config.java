@@ -9,8 +9,8 @@ public class Config implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String connectStr;
-	private String connectType;
+	private String mainConnUrl;
+	private Boolean hideJiangpin;
 
 	// Constructors
 
@@ -19,9 +19,9 @@ public class Config implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Config(String connectStr, String connectType) {
-		this.connectStr = connectStr;
-		this.connectType = connectType;
+	public Config(String mainConnUrl, Boolean hideJiangpin) {
+		this.mainConnUrl = mainConnUrl;
+		this.hideJiangpin = hideJiangpin;
 	}
 
 	// Property accessors
@@ -34,20 +34,20 @@ public class Config implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public String getConnectStr() {
-		return this.connectStr;
+	public String getMainConnUrl() {
+		return this.mainConnUrl;
 	}
 
-	public void setConnectStr(String connectStr) {
-		this.connectStr = connectStr;
+	public void setMainConnUrl(String mainConnUrl) {
+		this.mainConnUrl = mainConnUrl;
 	}
 
-	public String getConnectType() {
-		return this.connectType;
+	public Boolean getHideJiangpin() {
+		return this.hideJiangpin;
 	}
 
-	public void setConnectType(String connectType) {
-		this.connectType = connectType;
+	public void setHideJiangpin(Boolean hideJiangpin) {
+		this.hideJiangpin = hideJiangpin;
 	}
 
 }
