@@ -69,7 +69,9 @@ package com.amusement.Mahjong.service
 		private function netStatusHandler(event:NetStatusEvent):void
 		{
 			if(event.info.code != "NetConnection.Connect.Success"){
-//				MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+				if(MainSenceControl.instance.mainSence.currentState == "gameing"){
+					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+				}
 				
 				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){
 					Alert.show("同步服务连接失败！请检查网络或联系客服！");
