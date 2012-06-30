@@ -106,4 +106,7 @@
 	</view:RoomList>
 	<view:NetworkQuality id="network" includeIn="main" x="750" y="104">
 	</view:NetworkQuality>
+	<model:Button click="image1_clickHandler(event)"
+				  skin="@Embed('assets/main/chongzhi.png')"
+				  x="183" y="42"/>
 </s:BorderContainer>

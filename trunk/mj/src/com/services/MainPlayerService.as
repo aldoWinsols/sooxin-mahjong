@@ -1,5 +1,6 @@
 package com.services
 {
+	import com.control.ChongzhiControl;
 	import com.control.MainSenceControl;
 	import com.control.RoomListControl;
 	import com.model.Alert;
@@ -47,23 +48,29 @@ package com.services
 		}
 		
 		public function login():void{
-			if(mainPlayer.playerName == ""){
+//			if(mainPlayer.playerName == ""){
 				var player:MainPlayer = new MainPlayer();
 				player.playerName = GameCenterService.instance.playerName;
 				player.playerName = "sooxin";
 				
 				RemoteService.instance.playerService.login(player);
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
-			}
+//			}
 		}
 		
 		private function loginResultHandler(e:ResultEvent):void{
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			mainPlayer = e.result as MainPlayer;
 			MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+
+			if(RoomListControl.instance){
+				RoomListControl.instance.getRooms();
+			}
+			
 		}
 		
 		public function chongzhi(money:Number):void{
+			ChongzhiControl.instance.chongzhi.wait.visible = false;
 			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
 		}

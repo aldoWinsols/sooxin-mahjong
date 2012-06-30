@@ -146,10 +146,10 @@ package com.amusement.Mahjong.control
 		 */
 		private function showZongji(result:Array, gongdian:Array):Array{
 			var zongji:Array = [0, 0, 0, 0];
-			zongji[0] = result[0] - gongdian[0];
-			zongji[1] = result[1] - gongdian[1];
-			zongji[2] = result[2] - gongdian[2];
-			zongji[3] = result[3] - gongdian[3];
+//			zongji[0] = result[0] - gongdian[0];
+//			zongji[1] = result[1] - gongdian[1];
+//			zongji[2] = result[2] - gongdian[2];
+//			zongji[3] = result[3] - gongdian[3];
 			
 //			this._mahjongRalance.zongji1.text = zongji[0].toFixed(2);
 //			this._mahjongRalance.zongji2.text = zongji[1].toFixed(2);
@@ -240,9 +240,9 @@ package com.amusement.Mahjong.control
 				var total:Array = showResult(result);
 				showShuying(total);
 				var gongdian:Array = showGongdian(total);
-				var zongji:Array = showZongji(total, gongdian);
+//				var zongji:Array = showZongji(total, gongdian);
 				if(!MahjongRoomControl.instance.isVideo){
-					this._mahjongRalanceService.updataPlayerMoney(zongji);
+					this._mahjongRalanceService.updataPlayerMoney(total);
 				}
 			}
 			
@@ -250,7 +250,6 @@ package com.amusement.Mahjong.control
 			if(!MahjongRoomControl.instance.isVideo){
 				
 				if(MahjongRoomControl.instance.isNetwork){
-					MainPlayerService.getInstance().mainPlayer.haveMoney += total[i];
 					this._mahjongRalance.nandu.visible = false;
 					this._mahjongRalance.nanduL.visible = false;
 					this._mahjongRalance.jifen.visible = false;

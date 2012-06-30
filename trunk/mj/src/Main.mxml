@@ -7,13 +7,20 @@
 			   xmlns:view2="com.view.*"
 			   width="100%" height="100%" addedToStage="application1_addedToStageHandler(event)"
 			   creationComplete="application1_creationCompleteHandler(event)"
+			   activate="application1_activateHandler(event)"
 			   deactivate="application1_deactivateHandler(event)"
 			   splashScreenMinimumDisplayTime="3000"
 			   splashScreenImage="@Embed('splash.jpg')">
 	
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.service.MahjongSoundService;
+			import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
 			import com.control.MainControl;
+			import com.control.MainSenceControl;
 			import com.services.ChatService;
 			import com.view.MainSence;
 			
@@ -26,6 +33,13 @@
 			protected function application1_deactivateHandler(event:Event):void
 			{
 //				NativeApplication.nativeApplication.exit();
+				if(MahjongSyncService.instance.isNetwork){
+					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MahjongSyncNetworkService.instance._conn.close();
+					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
+					MahjongSoundService.instance._bgChannel.stop();
+				}
 				
 			}
 			
@@ -67,6 +81,15 @@
 			}
 			
 			
+			
+			protected function application1_activateHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
+					MainSenceControl.instance.mainButLWClickHandler(null);
+				}
+				
+			}
 			
 		]]>
 	</fx:Script>
