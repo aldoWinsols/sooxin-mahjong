@@ -206,12 +206,6 @@ package com.amusement.Mahjong.control
 				MahjongPlayerControlR.instance._mahjongPlayer.pd.visible = false;
 			}
 			
-			if(MahjongSyncService.instance.isNetwork){
-				_mahjongRoom.exitImage.enabled = false;
-			}else{
-				_mahjongRoom.exitImage.enabled = true;
-			}
-			
 			this._mahjongRoomService.initRoom(obj.roomNo, obj.playerAzimuth);
 			
 			this._mahjongRoomService.updateMahjongsByDice(obj.diceNum);
@@ -356,12 +350,6 @@ package com.amusement.Mahjong.control
 //				MahjongSoundService.instance._soundSwitch = false;
 //				Alert.show("游戏配音只支持一局播放，如您喜欢，请尝试完整版！现在支持完整版的用户，在0.6版本推出的网络版中可获赠送价值30元的游戏点卡！");
 //			}
-			
-			if(MahjongSyncService.instance.isNetwork){
-				_mahjongRoom.exitImage.enabled = false;
-			}else{
-				_mahjongRoom.exitImage.enabled = true;
-			}
 			
 //			_mahjongRoom.limit.init();
 //			

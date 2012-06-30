@@ -167,7 +167,7 @@ package com.control
 			MainPlayerService.getInstance().login();
 		}
 		
-		private function mainButLWClickHandler(e:MouseEvent):void{
+		public function mainButLWClickHandler(e:MouseEvent):void{
 			
 //			if(GameCenterService.instance.playerName == ""){
 //				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");

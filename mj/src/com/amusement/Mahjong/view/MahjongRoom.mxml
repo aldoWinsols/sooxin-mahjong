@@ -12,6 +12,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.amusement.Mahjong.MahjongAppliction;
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
 			import com.amusement.Mahjong.control.MahjongBalanceControl;
 			import com.amusement.Mahjong.control.MahjongPlayerControlD;
 			import com.amusement.Mahjong.control.MahjongPlayerControlU;
@@ -19,6 +20,8 @@
 			import com.amusement.Mahjong.control.MahjongSeatControl;
 			import com.amusement.Mahjong.service.MahjongBalanceService;
 			import com.amusement.Mahjong.service.MahjongSoundService;
+			import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
 			import com.control.DanjiHomeControl;
 			import com.control.MainControl;
 			import com.control.MainSenceControl;
@@ -95,6 +98,12 @@
 			{
 				// TODO Auto-generated method stub
 				this.backOperation.visible = true;
+				if(MahjongSyncService.instance.isNetwork){
+					this.backInfo.text = "强制退出游戏将会处于系统托管状态，并可能影响你的利益！";
+				}else{
+					this.backInfo.text = "中途退出游戏将扣除排行5积分！";
+					
+				}
 			}
 			
 			protected function button3_clickHandler(event:MouseEvent):void
@@ -108,15 +117,24 @@
 				// TODO Auto-generated method stub
 				//				MainSenceControl.instance.mahjongAppliction = new MahjongAppliction();
 				
-				try{
-					RoomService.instance.timer.stop();
-					RoomService.instance.endGame();
-					
+				if(MahjongSyncService.instance.isNetwork){
+					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MahjongSyncNetworkService.instance._conn.close();
+					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
 					this.backOperation.visible = false;
-					GameCenterService.instance.changeScore(-5);
-					MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
-				}catch(e:Error){
+				}else{
 					
+					try{
+						RoomService.instance.timer.stop();
+						RoomService.instance.endGame();
+						
+						this.backOperation.visible = false;
+						GameCenterService.instance.changeScore(-5);
+						MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
+					}catch(e:Error){
+						
+					}
 				}
 				
 			}
@@ -236,7 +254,8 @@
 						   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
 			<s:Button x="126" y="144" width="100" label="确   定  " click="button4_clickHandler(event)"/>
 			<s:Button x="277" y="144" width="100" label="取   消" click="button3_clickHandler(event)"/>
-			<s:Label x="100" y="75" color="#FFFFFF" fontSize="24" text="中途退出游戏将扣除排行5积分！"/>
+			<s:Label id="backInfo" y="55" width="373" height="79" color="#FFFFFF" fontSize="24"
+					 horizontalCenter="0" text=""/>
 			
 		</s:BorderContainer>
 		<s:BorderContainer left="10" top="10" width="100" height="35" backgroundAlpha="0.3"

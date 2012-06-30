@@ -7,6 +7,7 @@ package com.control
 	import com.services.RemoteService;
 	import com.view.RoomList;
 	
+	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
@@ -24,13 +25,13 @@ package com.control
 			this.roomList = roomList;
 			instance = this;
 			
-			roomList.dg.addEventListener(GridSelectionEvent.SELECTION_CHANGE,dg_selectionChangeHandler);
+			roomList.dg.addEventListener(MouseEvent.CLICK,dg_clickHandler);
 			getRooms();
 		}
 		
 		
 		public var nowJoinRoomNum:int = 0;
-		protected function dg_selectionChangeHandler(event:GridSelectionEvent):void
+		protected function dg_clickHandler(event:MouseEvent):void
 		{
 			// TODO Auto-generated method stub
 			

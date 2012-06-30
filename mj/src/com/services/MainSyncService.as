@@ -1,6 +1,8 @@
 package com.services
 {
 	
+	import com.amusement.Mahjong.control.MahjongRoomControl;
+	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.control.LianwangHomeControl;
 	import com.control.MainSenceControl;
 	import com.model.Alert;
@@ -178,6 +180,9 @@ package com.services
 				_connState="连接失败！请重新登陆";
 				if(MainSenceControl.instance.mainSence.currentState == "gameing"){
 					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
+					MahjongSoundService.instance._bgChannel.stop();
 				}
 				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){
 					Alert.show("同步服务连接失败！请检查网络或联系客服！");

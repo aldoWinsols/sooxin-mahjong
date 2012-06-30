@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"  creationComplete="group1_creationCompleteHandler(event)"
 		 xmlns:s="library://ns.adobe.com/flex/spark" width="960" height="100%">
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.control.ChongzhiControl;
 			import com.milkmangames.nativeextensions.ios.StoreKit;
 			import com.model.Alert;
 			import com.services.MainPlayerService;
 			
 			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
 			
 			import spark.events.GridSelectionEvent;
 			[Bindable]
@@ -35,10 +37,16 @@
 			{
 //				 TODO Auto-generated method stub
 				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
-				Alert.show("请求已经提交，请等待...");
+				this.wait.visible = true;
 				
 //				MainPlayerService.getInstance().chongzhi(600);
 //			}
+			}
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new ChongzhiControl(this);
 			}
 			
 		]]>
@@ -109,5 +117,11 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
+	
+	<s:BorderContainer id="wait" visible="false" width="450" height="150" backgroundAlpha="0.5" backgroundColor="#000000"
+					   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
+		<s:Label x="40" y="62" color="#FFFFFF" fontSize="24" text="请求已经提交，请等待apple反应..."/>
+		
+	</s:BorderContainer>
 	
 </s:Group>

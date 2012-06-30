@@ -64,12 +64,14 @@ package com.control
 		}
 		
 		private function changeID(arr:ArrayCollection):ArrayCollection{
-			var n:int = 1;
-			for(var i:int=0; i<arr.length; i++){
-				arr.getItemAt(i).id = n++;
+			var n:int = arr.length;
+			var arrNew:ArrayCollection = new ArrayCollection();
+			for(var i:int=arr.length-1; i>-1; i--){
+				arr.getItemAt(i).id = n--;
+				arrNew.addItem(arr.getItemAt(i));
 			}
 			
-			return arr;
+			return arrNew;
 		}
 	}
 }

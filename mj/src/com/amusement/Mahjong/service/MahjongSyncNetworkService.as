@@ -30,7 +30,7 @@ package com.amusement.Mahjong.service
 	{
 		private static var _instance:MahjongSyncNetworkService;
 		
-		private var _conn:NetConnection;
+		public var _conn:NetConnection;
 		private var _isResult:Boolean = true;
 		public var playHandSpeed:int = 1;
 		public var level:int = 0; //机器人智能水平
@@ -71,6 +71,14 @@ package com.amusement.Mahjong.service
 			if(event.info.code != "NetConnection.Connect.Success"){
 				if(MainSenceControl.instance.mainSence.currentState == "gameing"){
 					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
+					try{
+						MahjongSoundService.instance._bgChannel.stop();
+					}catch(e:Error){
+						
+					}
+					
 				}
 				
 				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){

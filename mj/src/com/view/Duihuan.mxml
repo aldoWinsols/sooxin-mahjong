@@ -40,7 +40,7 @@
 		
 	</s:BorderContainer>
 	<s:BorderContainer id="duihuan" includeIn="check" visible="true" x="10" y="54" width="925"
-					   height="498" backgroundAlpha="0.5" borderVisible="false" cornerRadius="8">
+					   height="490" backgroundAlpha="0.5" borderVisible="false" cornerRadius="8">
 		<s:TextInput id="contactName" x="161" y="157"/>
 		<s:TextInput id="contactTel" x="161" y="210"/>
 		<s:TextArea id="contactAddress" x="161" y="263" width="506" height="107"/>
