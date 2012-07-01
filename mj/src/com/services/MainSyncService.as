@@ -46,7 +46,7 @@ package com.services
 			MessageService.instance.conn = _conn;
 			_connStateTimer = new Timer(100);
 			_connStateTimer.addEventListener(TimerEvent.TIMER, connTimerHandler, false, 0, true);
-			connServer("");
+//			connServer("");
 		}
 		
 		public function get conn():NetConnection
@@ -162,11 +162,11 @@ package com.services
 				// 2011-5-17  14:29 添加重连机制， 超过5次就不在重新连接
 				connectionNo ++;
 				if(connectionNo >= 6){
-//					NewAlert.show("重连次数超过5次，请检测你的网络！");
+					Alert.show("重连次数超过5次，请检测你的网络！");
 					navigateToURL(new URLRequest("javascript:location.reload();"),"_self");
 				}else{
 					if(_isReconnection){
-//						NewAlert.show("与服务器断开连接！这是第 " + connectionNo + " 次重新连接服务器");
+						Alert.show("与服务器断开连接！这是第 " + connectionNo + " 次重新连接服务器");
 						if(connectionTimer == null){
 							connectionTimer = new Timer(1000, 1);
 							connectionTimer.addEventListener(TimerEvent.TIMER, onConnectionTimer);
@@ -183,9 +183,6 @@ package com.services
 					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();
 					MahjongSoundService.instance._bgChannel.stop();
-				}
-				if(LianwangHomeControl.instance.lianwangHome.currentState == "main"){
-					Alert.show("同步服务连接失败！请检查网络或联系客服！");
 				}
 			}
 			
