@@ -88,7 +88,6 @@ package com.control
 				MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 //				LianwangHomeControl.instance.lianwangHome.currentState = "main";
 				
-				MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName);
 				
 				if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
 					MahjongSyncNetworkService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName, MainPlayerService.getInstance().mainPlayer.offlineGameNo);

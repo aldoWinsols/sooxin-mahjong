@@ -38,7 +38,11 @@
 					MahjongSyncNetworkService.instance._conn.close();
 					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();
-					MahjongSoundService.instance._bgChannel.stop();
+					
+					if(MahjongSoundService.instance._bgChannel){
+						MahjongSoundService.instance._bgChannel.stop();
+					}
+					
 				}
 				
 			}
@@ -85,7 +89,7 @@
 			protected function application1_activateHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				if(MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
+				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
 					MainSenceControl.instance.mainButLWClickHandler(null);
 				}
 				

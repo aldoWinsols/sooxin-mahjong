@@ -3,23 +3,31 @@ package com.control
 	import com.amusement.Mahjong.control.MahjongRoomControl;
 	import com.amusement.Mahjong.control.MahjongSeatControl;
 	import com.model.Alert;
+	import com.model.RoomMenu;
 	import com.services.MainPlayerService;
+	import com.services.MainSyncService;
 	import com.services.RemoteService;
+	import com.tencent.weibo.api.List;
 	import com.view.RoomList;
 	
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
 	
 	import spark.events.GridSelectionEvent;
 
+	[Bindable]
 	public class RoomListControl
 	{
 		private var roomList:RoomList;
 		public static var instance:RoomListControl;
+
+		public var rooms:ArrayCollection = new ArrayCollection();
+		
 		public function RoomListControl(roomList:RoomList)
 		{
 			this.roomList = roomList;
@@ -34,6 +42,11 @@ package com.control
 		protected function dg_clickHandler(event:MouseEvent):void
 		{
 			// TODO Auto-generated method stub
+			
+			if(roomList.dg.selectedItem.onlineNum >= 300){
+				Alert.show("房间人数已满，请稍微尝试！");
+				return;
+			}
 			
 			if(!checkIsEnter(roomList.dg.selectedItem.fanNum)){
 				Alert.show("您当前的点数少于此房间最小进入点数:"+roomList.dg.selectedItem.joinNum);
@@ -93,35 +106,46 @@ package com.control
 			RemoteService.instance.roomService.addEventListener(ResultEvent.RESULT,getRoomsResultHandler);
 		}
 		
-		public var rooms:ArrayCollection;
+		
 		private function getRoomsResultHandler(e:ResultEvent):void{
 			RemoteService.instance.roomService.removeEventListener(ResultEvent.RESULT,getRoomsResultHandler);
-			rooms = e.result as ArrayCollection;
-			for(var i:int=0; i<rooms.length; i++){
-				if(!rooms.getItemAt(i).isView){
-					rooms.removeItemAt(i);
+			var arr:ArrayCollection = e.result as ArrayCollection;
+			for(var i:int=0; i<arr.length; i++){
+				if(!arr.getItemAt(i).isView){
+					arr.removeItemAt(i);
 					i--;
+				}else{
+					rooms.addItem(arr.getItemAt(i) as RoomMenu);
 				}
 			}
-			roomList.dg.dataProvider = rooms;
 			
+			this.roomList.dg.dataProvider = rooms;
+
+			//获取房间列表后再连接主服务
+			MainSyncService.instance.connServer(MainPlayerService.getInstance().mainPlayer.playerName);
+			
+			checkReConn();
+		}
+		
+		public function checkReConn():void{
 			if(MainPlayerService.getInstance().mainPlayer.offlineGameNo != 0){
 				reEnterRoom(MainPlayerService.getInstance().mainPlayer.offlineGameNo);
 			}
 		}
 		
 		public function setRoomNumByType(roomType:String, roomNum:int):void{
-			try{
-				var arr:ArrayCollection = roomList.dg.dataProvider as ArrayCollection;
-				for(var i:int=0; i<arr.length; i++){
-					if(arr.getItemAt(i).fanNum == roomType){
-						arr.getItemAt(i).onlineNum = roomNum;
+//			try{
+//			var arr:ArrayCollection = new ArrayCollection(rooms.toArray());
+				for(var i:int=0; i<rooms.length; i++){
+					if(rooms.getItemAt(i).fanNum == roomType){
+						rooms.getItemAt(i).onlineNum = roomNum;
 					}
 				}
-				roomList.dg.dataProvider = arr;
-			}catch(e:Error){
-				
-			}
+//				rooms = arr;
+//				this.roomList.dg.dataProvider = arr;
+//			}catch(e:Error){
+//				
+//			}
 			
 		}
 	}

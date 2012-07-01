@@ -62,9 +62,9 @@ package com.services
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			mainPlayer = e.result as MainPlayer;
 			MainSenceControl.instance.mainSence.currentState = "lianwangHome";
-
+			
 			if(RoomListControl.instance){
-				RoomListControl.instance.getRooms();
+				RoomListControl.instance.checkReConn();
 			}
 			
 		}

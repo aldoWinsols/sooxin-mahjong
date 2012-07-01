@@ -77,7 +77,7 @@
 		<s:BorderContainer includeIn="gameing" id="waitInfo" width="314" height="50" backgroundAlpha="0.5"
 						   backgroundColor="#000000" cornerRadius="8" horizontalCenter="0"
 						   verticalCenter="0">
-			<s:Label x="17" y="14" color="#FFFFFF" fontSize="20" text="稍等，系统正在自动为您配桌..."/>
+			<s:Label x="37" y="14" color="#FFFFFF" fontSize="20" text="稍等，正在等待进入游戏..."/>
 			
 		</s:BorderContainer>
 	</s:Group>
