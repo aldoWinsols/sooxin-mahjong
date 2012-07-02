@@ -16,15 +16,20 @@ package com.amusement.Mahjong.service
 		}
 		
 		public function continueClickHandler():void{
-			if(RoomListControl.instance.checkIsEnter(RoomListControl.instance.nowJoinRoomNum)){
-				MahjongRoomControl.instance.clearTabletop();
-				
-				MahjongSyncService.instance.continueGame();
-				
-				MainSenceControl.instance.mainSence.waitInfo.visible = true;
+			if(MahjongRoomControl.instance.isNetwork){
+				if(RoomListControl.instance.checkIsEnter(RoomListControl.instance.nowJoinRoomNum)){
+					MahjongRoomControl.instance.clearTabletop();
+					
+					MahjongSyncService.instance.continueGame();
+					
+					MainSenceControl.instance.mainSence.waitInfo.visible = true;
+				}else{
+					Alert.show("您当前的点数少于此房间最小进入点数");
+				}
 			}else{
-				Alert.show("您当前的点数少于此房间最小进入点数");
+				MainSenceControl.instance.mainButDJClickHandler(null);
 			}
+			
 		}
 		
 		public function exitClickHandler():void{

@@ -12,6 +12,7 @@ package com.amusement.Mahjong.control
 	import com.view.System;
 	
 	import flash.events.MouseEvent;
+	import flash.text.FontStyle;
 
 	public class MahjongBalanceControl
 	{
@@ -208,19 +209,35 @@ package com.amusement.Mahjong.control
 				playerNames.shift();
 			}
 			if(playerNames){
+				this._mahjongRalance.player1.setStyle("color", "0x4C4C4C");
+				this._mahjongRalance.player2.setStyle("color", "0x4C4C4C");
+				this._mahjongRalance.player3.setStyle("color", "0x4C4C4C");
+				this._mahjongRalance.player4.setStyle("color", "0x4C4C4C");
 				for(var i:int = 0; i < playerNames.length; i ++){
 					switch(i){
 						case 0:
 							this._mahjongRalance.player1.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
+							if(playerNames[i] == MainPlayerService.getInstance().mainPlayer.playerName){
+								this._mahjongRalance.player1.setStyle("color", "0xff0000");
+							}
 							break;
 						case 1:
 							this._mahjongRalance.player2.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
+							if(playerNames[i] == MainPlayerService.getInstance().mainPlayer.playerName){
+								this._mahjongRalance.player2.setStyle("color", "0xff0000");
+							}
 							break;
 						case 2:
 							this._mahjongRalance.player3.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
+							if(playerNames[i] == MainPlayerService.getInstance().mainPlayer.playerName){
+								this._mahjongRalance.player3.setStyle("color", "0xff0000");
+							}
 							break;
 						case 3:
 							this._mahjongRalance.player4.text = this._mahjongRalanceService.subPlayerName(playerNames[i]);
+							if(playerNames[i] == MainPlayerService.getInstance().mainPlayer.playerName){
+								this._mahjongRalance.player4.setStyle("color", "0xff0000");
+							}
 							break;
 					}
 				}

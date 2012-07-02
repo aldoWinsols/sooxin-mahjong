@@ -1,5 +1,6 @@
 package com.services
 {
+	import com.control.MainSenceControl;
 	import com.model.Config;
 	
 	import mx.rpc.events.ResultEvent;
@@ -22,6 +23,10 @@ package com.services
 		private function getConfigHandler(e:ResultEvent):void{
 			RemoteService.instance.configService.removeEventListener(ResultEvent.RESULT,getConfigHandler);
 			config = e.result as Config;
+			
+			if(MainSenceControl.instance.mainSence.currentState == "login"){
+				MainPlayerService.getInstance().login();
+			}
 		}
 		public static function getInstance():ConfigService{
 			if(instance == null){

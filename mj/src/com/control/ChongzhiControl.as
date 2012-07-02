@@ -10,6 +10,11 @@ package com.control
 		{
 			this.chongzhi = chongzhi;
 			instance = this;
+			
+			if(MainControl.instance.main.applicationDPI == 320){
+				chongzhi.dg.alpha = 1;
+				chongzhi.chongzhiViewNavigator.title="";
+			}
 		}
 	}
 }

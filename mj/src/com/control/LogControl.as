@@ -28,6 +28,11 @@ package com.control
 			this.log.chongzhiHistoryB.addEventListener(MouseEvent.CLICK,getChongzhiHistoryClickHandler);
 			this.log.prizeHistoryB.addEventListener(MouseEvent.CLICK,getPrizeHistoryClickHandler);
 			
+			if(MainControl.instance.main.applicationDPI == 320){
+				log.gameHistory.alpha = 1;
+				log.chongzhiHistory.alpha = 1;
+				log.prizeHistory.alpha = 1;
+			}
 		}
 		
 		public function getGameHistoryClickHandler(e:MouseEvent):void{
