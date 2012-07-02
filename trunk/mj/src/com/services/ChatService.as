@@ -37,7 +37,7 @@ package com.services
 		var localLoader:URLLoader;
 		public function getNetChats():void
 		{
-			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/chatLimt.xml"));
+			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/chat.xml"));
 			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
 			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
 		}

@@ -30,6 +30,10 @@ package com.control
 			this.duihuan.cancelB.addEventListener(MouseEvent.CLICK,cancelBClickHandler);
 			this.duihuan.checkB.addEventListener(MouseEvent.CLICK,checkBClickHandler);
 			
+			if(MainControl.instance.main.applicationDPI == 320){
+				duihuan.dg.alpha = 1;
+				duihuan.duihuaiViewNavigator.title="";
+			}
 			
 			this.duihuan.currentState = "main";
 			getShangpin();

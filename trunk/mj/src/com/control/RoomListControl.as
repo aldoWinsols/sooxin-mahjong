@@ -33,6 +33,11 @@ package com.control
 			this.roomList = roomList;
 			instance = this;
 			
+			if(MainControl.instance.main.applicationDPI == 320){
+				roomList.dg.alpha = 1;
+				roomList.roomListViewNavigator.title="";
+			}
+			
 			roomList.dg.addEventListener(MouseEvent.CLICK,dg_clickHandler);
 			getRooms();
 		}
@@ -62,6 +67,7 @@ package com.control
 			MainSenceControl.instance.mainSence.currentState =  "gameing";
 			MainSenceControl.instance.mainSence.waitInfo.visible = true;
 			
+			MahjongRoomControl.instance._mahjongRoom.roomType.visible = true;
 			MahjongRoomControl.instance._mahjongRoom.roomName.text = roomList.dg.selectedItem.fanNum + "点/番";
 		}
 		

@@ -1,5 +1,6 @@
 package com.services
 {
+	import com.control.MainSenceControl;
 	import com.model.Alert;
 	
 	import flash.events.Event;
@@ -35,9 +36,10 @@ package com.services
 		public var urlList:XMLList;
 		public function RemoteService()
 		{
-			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
-			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
-			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
+//			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
+//			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
+//			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
+			init();
 		}
 		
 		private function netErrorHandler(e:IOErrorEvent):void{
@@ -49,8 +51,6 @@ package com.services
 			var configXML:XML = XML(loader.data);
 			urlList = configXML.url.mainUrl;
 			mainUrl = urlList[0].@text;
-			
-			init();
 		}
 		
 		
@@ -100,6 +100,10 @@ package com.services
 			Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
 			trace(e.toString());
 			CursorManager.removeBusyCursor();
+			
+			if(MainSenceControl.instance.mainSence.loginWaitInfo.visible){
+				MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
+			}
 		}
 
 		private function addFaultEvent(ro:RemoteObject):void

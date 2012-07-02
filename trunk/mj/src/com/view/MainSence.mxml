@@ -80,5 +80,13 @@
 			<s:Label x="37" y="14" color="#FFFFFF" fontSize="20" text="稍等，正在等待进入游戏..."/>
 			
 		</s:BorderContainer>
+		
+		<s:BorderContainer id="loginWaitInfo" visible="false" backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
+						   width.login="400" height.login="100" horizontalCenter.login="0"
+						   verticalCenter.login="0">
+			<s:Label includeIn="login" x="57" y="37" color="#FFFFFF" fontSize="24"
+					 text="正在连接服务器，请等候..."/>
+			
+		</s:BorderContainer>
 	</s:Group>
 </s:View>

@@ -38,13 +38,7 @@ package com.control
 			ChatService.getInstance();
 			GameCenterService.getInstance();
 			
-			RemoteService.getInstance();
-			RemoteService.instance.init();
-			
 			DataService.instance;
-			
-			ConfigService.getInstance();
-			ConfigService.instance.getConfig();
 			
 			MainPlayerService.getInstance();
 			
@@ -127,7 +121,7 @@ package com.control
 			this.mainSence.currentState = "login";
 		}
 		
-		private function mainButDJClickHandler(e:MouseEvent):void{
+		public function mainButDJClickHandler(e:MouseEvent):void{
 
 			MainSenceControl.instance.mainSence.currentState = "gameing";
 			
@@ -136,6 +130,7 @@ package com.control
 			this.mainSence.mahjongAppliction.visible = true;
 			MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
 			MahjongRoomControl.instance.isNetwork = false;
+			MahjongRoomControl.instance._mahjongRoom.roomType.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MahjongSyncService.instance.isNetwork = false;
 			RoomService.instance.beginGame("player", 10000);
@@ -174,16 +169,30 @@ package com.control
 //				return;
 //			}
 			
-			if(ConfigService.instance.config.mainConnUrl == ""){
-				RemoteService.instance.init();
-				ConfigService.instance.getConfig();
-			}
+			mainSence.loginWaitInfo.visible = true;
+			ConfigService.getInstance();
 			
 			if(ConfigService.instance.config.mainConnUrl == ""){
-				Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
-				return;
+				RemoteService.getInstance();
+				ConfigService.instance.getConfig();
+			}else{
+				MainPlayerService.getInstance().login();
 			}
-			MainPlayerService.getInstance().login();
+			
+			
+			
+//			if(ConfigService.instance.config.mainConnUrl == ""){
+//				RemoteService.instance.init();
+//				ConfigService.instance.getConfig();
+//			}
+//			
+//			if(ConfigService.instance.config.mainConnUrl == ""){
+//				Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
+//				return;
+//			}
+			
+			
+//			MainPlayerService.getInstance().login();
 			
 		}
 	}

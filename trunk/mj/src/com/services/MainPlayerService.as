@@ -59,6 +59,7 @@ package com.services
 		}
 		
 		private function loginResultHandler(e:ResultEvent):void{
+			MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			mainPlayer = e.result as MainPlayer;
 			MainSenceControl.instance.mainSence.currentState = "lianwangHome";

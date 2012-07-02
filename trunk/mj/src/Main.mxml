@@ -33,17 +33,17 @@
 			protected function application1_deactivateHandler(event:Event):void
 			{
 //				NativeApplication.nativeApplication.exit();
-				if(MahjongSyncService.instance.isNetwork){
-					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
-					MahjongSyncNetworkService.instance._conn.close();
-					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-					MahjongRoomControl.instance.clearTabletop();
-					
-					if(MahjongSoundService.instance._bgChannel){
-						MahjongSoundService.instance._bgChannel.stop();
-					}
-					
-				}
+//				if(MahjongSyncService.instance.isNetwork){
+//					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+//					MahjongSyncNetworkService.instance._conn.close();
+//					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+//					MahjongRoomControl.instance.clearTabletop();
+//					
+//					if(MahjongSoundService.instance._bgChannel){
+//						MahjongSoundService.instance._bgChannel.stop();
+//					}
+//					
+//				}
 				
 			}
 			
@@ -89,9 +89,9 @@
 			protected function application1_activateHandler(event:Event):void
 			{
 				// TODO Auto-generated method stub
-				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
-					MainSenceControl.instance.mainButLWClickHandler(null);
-				}
+//				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
+//					MainSenceControl.instance.mainButLWClickHandler(null);
+//				}
 				
 			}
 			

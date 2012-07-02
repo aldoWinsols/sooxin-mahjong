@@ -182,7 +182,12 @@ package com.services
 					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();
-					MahjongSoundService.instance._bgChannel.stop();
+					try{
+						MahjongSoundService.instance._bgChannel.stop();
+					}catch(e:Error){
+						
+					}
+					
 				}
 			}
 			
