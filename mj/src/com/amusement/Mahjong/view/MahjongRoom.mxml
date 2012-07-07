@@ -122,6 +122,7 @@
 					MahjongSyncNetworkService.instance._conn.close();
 					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();
+					MahjongSoundService.instance._bgChannel.stop();
 					this.backOperation.visible = false;
 				}else{
 					

@@ -44,7 +44,7 @@
 	<model:Button id="chongzhiHistoryB"
 				  skin="@Embed('../../assets/log/chongzhiLog.png')"
 				  x="119" y="1"/>
-	<model:Button id="prizeHistoryB" skin="@Embed('../../assets/log/jiangpinLog.png')"
+	<model:Button id="prizeHistoryB" visible="false" skin="@Embed('../../assets/log/jiangpinLog.png')"
 				  x="236" y="1"/>
 	
 	

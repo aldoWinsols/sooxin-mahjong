@@ -39,6 +39,8 @@
 				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
 				this.wait.visible = true;
 				
+				dg.selectedItem = null;
+				
 //				MainPlayerService.getInstance().chongzhi(600);
 //			}
 			}

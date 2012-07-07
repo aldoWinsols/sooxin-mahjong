@@ -6,7 +6,7 @@ package com.model
 	{
 		public var id:Number;
 		public var mainConnUrl:String = "";
-		public var hideJiangpin:Boolean = false;
+		public var hideJiangpin:Boolean = true;
 		
 		
 		public function Config()

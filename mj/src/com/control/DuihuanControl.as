@@ -113,6 +113,8 @@ package com.control
 			this.duihuan.currentState = "check";
 			duihuan.jingpinName.text = duihuan.dg.selectedItem.shangpinName;
 			duihuan.jiangpinDianshu.text = duihuan.dg.selectedItem.price;
+			
+			duihuan.dg.selectedItem = null;
 		}
 	}
 }

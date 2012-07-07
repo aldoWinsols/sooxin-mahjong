@@ -69,7 +69,7 @@ package com.amusement.Mahjong.service
 		private function netStatusHandler(event:NetStatusEvent):void
 		{
 			if(event.info.code != "NetConnection.Connect.Success"){
-				if(MainSenceControl.instance.mainSence.currentState == "gameing"){
+				if(MahjongRoomControl.instance.isNetwork && MainSenceControl.instance.mainSence.currentState == "gameing"){
 					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();

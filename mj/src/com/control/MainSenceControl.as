@@ -133,6 +133,7 @@ package com.control
 			MahjongRoomControl.instance._mahjongRoom.roomType.visible = false;
 			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
 			MahjongSyncService.instance.isNetwork = false;
+			MahjongRoomControl.instance._mahjongRoom.gameModel.text = "单机模式";
 			RoomService.instance.beginGame("player", 10000);
 			
 		}

@@ -86,15 +86,17 @@
 	<s:Label id="haveMoney" includeIn="chongzhi,duihuan,log,main" x="128" y="46" color="#FFFFFF"
 			 fontWeight="bold" text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
 	
-	<model:Button click="image2_clickHandler(event)" skin="@Embed('assets/main/liwuB.png')"
-			 x="692" y="10"/>
+	<model:Button id="mainLiwuB" y="10" click="image2_clickHandler(event)"
+				  skin="@Embed('assets/main/liwuB.png')" visible="false"
+				  x="589"/>
 	<model:Button click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"
 			 x="790" y="10"/>
 	<model:Button id="backB" skin="@Embed('assets/main/backB.png')"
 				  x="888" y="10"/>
-	<model:Button click="button1_clickHandler(event)" skin="@Embed('assets/main/logB.png')"
-			 x="589" y="10"/>
-	<model:Button x="489" y="10" click="image3_clickHandler(event)"
+	<model:Button click="button1_clickHandler(event)"
+				  skin="@Embed('assets/main/logB.png')"
+				  x="692" y="10"/>
+	<model:Button id="mainHomeB" x="589" y="10" click="image3_clickHandler(event)"
 				  skin="@Embed('assets/main/roomB.png')"/>
 	<view:Log includeIn="log" x="0" y="90" height="100%">
 	</view:Log>
