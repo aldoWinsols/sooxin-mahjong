@@ -4,6 +4,7 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.model.MahjongBalanceGrid;
 	import com.amusement.Mahjong.service.MahjongBalanceService;
 	import com.amusement.Mahjong.service.MahjongRoomService;
+	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.amusement.Mahjong.service.MahjongSyncService;
 	import com.amusement.Mahjong.view.MahjongBalance;
 	import com.model.Alert;
@@ -69,14 +70,12 @@ package com.amusement.Mahjong.control
 		}
 		
 		public function back():void{
-			if(MahjongSyncService.instance.isNetwork){
-				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-				//						MahjongApplictionControl.instance._mahjongAppliction.lianwangHome.visible = true;
-			}else{					
-				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
-				//						MahjongApplictionControl.instance._mahjongAppliction.home.visible = true;
-			}
+			MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
 			MahjongRoomControl.instance.clearTabletop();
+			try{
+				MahjongSoundService.instance._bgChannel.stop();
+				}catch(e:Error){
+			}
 		}
 		
 		/**

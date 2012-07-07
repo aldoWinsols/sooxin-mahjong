@@ -51,7 +51,7 @@ package com.services
 //			if(mainPlayer.playerName == ""){
 				var player:MainPlayer = new MainPlayer();
 				player.playerName = GameCenterService.instance.playerName;
-				player.playerName = "sooxin";
+				player.playerName = "soooxin";
 				
 				RemoteService.instance.playerService.login(player);
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);

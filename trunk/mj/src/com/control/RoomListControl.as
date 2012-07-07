@@ -12,6 +12,7 @@ package com.control
 	
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
+	import flash.events.TouchEvent;
 	import flash.utils.Timer;
 	
 	import mx.binding.utils.BindingUtils;
@@ -38,23 +39,27 @@ package com.control
 				roomList.roomListViewNavigator.title="";
 			}
 			
-			roomList.dg.addEventListener(MouseEvent.CLICK,dg_clickHandler);
+//			roomList.dg.addEventListener(MouseEvent.CLICK,dg_clickHandler);
+			roomList.dg.selectedItem = null;
+			roomList.dg.addEventListener(GridSelectionEvent.SELECTION_CHANGE,dg_clickHandler);
 			getRooms();
+			
 		}
 		
 		
 		public var nowJoinRoomNum:int = 0;
-		protected function dg_clickHandler(event:MouseEvent):void
+		protected function dg_clickHandler(event:GridSelectionEvent):void
 		{
 			// TODO Auto-generated method stub
-			
 			if(roomList.dg.selectedItem.onlineNum >= 300){
 				Alert.show("房间人数已满，请稍微尝试！");
+				roomList.dg.selectedItem = null;
 				return;
 			}
 			
 			if(!checkIsEnter(roomList.dg.selectedItem.fanNum)){
 				Alert.show("您当前的点数少于此房间最小进入点数:"+roomList.dg.selectedItem.joinNum);
+				roomList.dg.selectedItem = null;
 				return;
 			}
 			
@@ -69,6 +74,8 @@ package com.control
 			
 			MahjongRoomControl.instance._mahjongRoom.roomType.visible = true;
 			MahjongRoomControl.instance._mahjongRoom.roomName.text = roomList.dg.selectedItem.fanNum + "点/番";
+			
+			roomList.dg.selectedItem = null;
 		}
 		
 		public function reEnterRoom(roomNum:int):void{

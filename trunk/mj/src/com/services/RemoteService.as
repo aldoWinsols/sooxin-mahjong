@@ -16,7 +16,7 @@ package com.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://s-40021.gotocdn.com:8080/";
+		public var mainUrl:String = "http://116.255.235.24:8080/";
 		public static var instance:RemoteService;
 		
 		public var chongzhiService:RemoteObject;

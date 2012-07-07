@@ -42,9 +42,9 @@
 	<s:BorderContainer id="duihuan" includeIn="check" visible="true" top="60" width="98%"
 					   height="98%" backgroundAlpha="0.5" borderVisible="false" cornerRadius="8"
 					   horizontalCenter="0">
-		<s:TextInput id="contactName" x="161" y="87" returnKeyLabel="next"/>
-		<s:TextInput id="contactTel" x="161" y="160" returnKeyLabel="next"/>
-		<s:TextArea id="contactAddress" x="161" y="233" width="506" height="107" returnKeyLabel="done"/>
+		<s:TextInput id="contactName" x="161" y="87"/>
+		<s:TextInput id="contactTel" x="161" y="160"/>
+		<s:TextArea id="contactAddress" x="161" y="233" width="506" height="107"/>
 		<s:Button id="checkB" x="161" y="360" width="100" label="提交"/>
 		<s:Label x="81" y="97" text="联系人："/>
 		<s:Label x="63" y="170" text="联系电话："/>

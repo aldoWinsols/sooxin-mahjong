@@ -5,6 +5,7 @@ package com.control
 	import com.milkmangames.nativeextensions.ios.events.StoreKitErrorEvent;
 	import com.milkmangames.nativeextensions.ios.events.StoreKitEvent;
 	import com.model.Alert;
+	import com.services.ConfigService;
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.services.RemoteService;
@@ -34,6 +35,11 @@ package com.control
 			MainSyncService.instance;
 			
 			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
+			
+			if(!ConfigService.instance.config.hideJiangpin){
+				this.lianwangHome.mainLiwuB.visible = true;
+				this.lianwangHome.mainHomeB.x = 489;
+			}
 			//-----------------------------------------------------------------
 			
 			StoreKit.create();

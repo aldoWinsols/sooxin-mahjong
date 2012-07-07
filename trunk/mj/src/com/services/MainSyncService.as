@@ -178,7 +178,7 @@ package com.services
 				_isConnection = false;
 				
 				_connState="连接失败！请重新登陆";
-				if(MainSenceControl.instance.mainSence.currentState == "gameing"){
+				if(MahjongRoomControl.instance.isNetwork && MainSenceControl.instance.mainSence.currentState == "gameing"){
 					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 					MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
 					MahjongRoomControl.instance.clearTabletop();

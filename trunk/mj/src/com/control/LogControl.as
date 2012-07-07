@@ -1,5 +1,6 @@
 package com.control
 {
+	import com.services.ConfigService;
 	import com.services.MainPlayerService;
 	import com.services.RemoteService;
 	import com.view.Log;
@@ -32,6 +33,10 @@ package com.control
 				log.gameHistory.alpha = 1;
 				log.chongzhiHistory.alpha = 1;
 				log.prizeHistory.alpha = 1;
+			}
+			
+			if(!ConfigService.instance.config.hideJiangpin){
+				this.log.prizeHistoryB.visible = true;
 			}
 		}
 		
