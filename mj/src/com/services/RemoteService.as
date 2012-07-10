@@ -36,10 +36,9 @@ package com.services
 		public var urlList:XMLList;
 		public function RemoteService()
 		{
-//			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
-//			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
-//			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
-			init();
+			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
+			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
+			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
 		}
 		
 		private function netErrorHandler(e:IOErrorEvent):void{

@@ -21,6 +21,7 @@
 			import com.amusement.Mahjong.service.MahjongSyncService;
 			import com.control.MainControl;
 			import com.control.MainSenceControl;
+			import com.control.RoomListControl;
 			import com.model.Alert;
 			import com.services.ChatService;
 			import com.view.MainSence;
@@ -91,6 +92,12 @@
 				// TODO Auto-generated method stub
 				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
 					MainSenceControl.instance.mainButLWClickHandler(null);
+				}
+				
+				try{
+					RoomListControl.instance.getRooms();
+				}catch(e:Error){
+					
 				}
 				
 			}

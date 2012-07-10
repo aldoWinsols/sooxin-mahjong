@@ -193,12 +193,12 @@ package com.services
 			
 		}
 		private function onConnectionTimer(e:TimerEvent):void{
-//			_conn.connect(ConfigService.instance.mainSyncServerURL, PlayerService.instance.player.acctName);
+			_conn.connect(ConfigService.instance.config.mainConnUrl, MainPlayerService.getInstance().mainPlayer.playerName);
 		}
 		
 		public function asyncErrorHandler(e:AsyncErrorEvent):void
 		{
-//			Alert.show("服务器同步发生异常！");
+			Alert.show("服务器同步发生异常！");
 		}
 		
 		private function reconnAlertClose(event:CloseEvent):void{

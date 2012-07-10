@@ -33,22 +33,19 @@
 					zNum:"5000",productID:"com.sooxin.mahjongM.d100",remark:"点击购买"},
 			]);
 			
-			protected function dg_clickHandler(event:MouseEvent):void
-			{
-//				 TODO Auto-generated method stub
-				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
-				this.wait.visible = true;
-				
-				dg.selectedItem = null;
-				
-//				MainPlayerService.getInstance().chongzhi(600);
-//			}
-			}
-			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				new ChongzhiControl(this);
+			}
+			
+			protected function dg_selectionChangeHandler(event:GridSelectionEvent):void
+			{
+				// TODO Auto-generated method stub
+				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
+				this.wait.visible = true;
+				
+				dg.selectedItem = null;
 			}
 			
 		]]>
@@ -57,8 +54,7 @@
 	<s:BorderContainer width="100%" height="100%" backgroundAlpha="0.3" backgroundColor="#72D2FE"
 					   x="0" y="75"/>
 	<s:DataGrid id="dg" x="0" y="45" width="960" height="100%" alpha="0.7" color="#000000"
-				dataProvider="{chajians}" fontSize="20" fontWeight="bold" rowHeight="60"
-			   click="dg_clickHandler(event)">
+				dataProvider="{chajians}" fontSize="20" fontWeight="bold" rowHeight="60" selectionChange="dg_selectionChangeHandler(event)">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn dataField="ID" headerText="ID" width="50">

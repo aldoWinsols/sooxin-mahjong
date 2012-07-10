@@ -84,6 +84,7 @@ package com.amusement.Mahjong.service
 			
 			MahjongRoomControl.instance.putState = 0;
 			MahjongRoomControl.instance.selectMahjong = null;
+			MahjongRoomControl.instance._mahjongRoom.jiesuanOperation.visible = false;
 		}
 		
 		/**

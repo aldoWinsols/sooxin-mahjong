@@ -133,7 +133,8 @@
 						
 						this.backOperation.visible = false;
 						GameCenterService.instance.changeScore(-5);
-						MainSenceControl.instance.mainSence.mahjongAppliction.visible = false;
+						MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
+						MahjongRoomControl.instance.clearTabletop();
 					}catch(e:Error){
 						
 					}

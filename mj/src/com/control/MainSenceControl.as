@@ -37,6 +37,7 @@ package com.control
 			
 			ChatService.getInstance();
 			GameCenterService.getInstance();
+			RemoteService.getInstance();
 			
 			DataService.instance;
 			
@@ -154,10 +155,10 @@ package com.control
 		
 		private function logBClickHandler(e:MouseEvent):void{
 			
-//			if(GameCenterService.instance.playerName == ""){
-//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-//				return;
-//			}
+			if(GameCenterService.instance.playerName == ""){
+				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				return;
+			}
 			
 			this.mainSence.currentState = "log";
 			MainPlayerService.getInstance().login();
@@ -165,16 +166,16 @@ package com.control
 		
 		public function mainButLWClickHandler(e:MouseEvent):void{
 			
-//			if(GameCenterService.instance.playerName == ""){
-//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-//				return;
-//			}
+			if(GameCenterService.instance.playerName == ""){
+				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				return;
+			}
 			
 			mainSence.loginWaitInfo.visible = true;
 			ConfigService.getInstance();
 			
 			if(ConfigService.instance.config.mainConnUrl == ""){
-				RemoteService.getInstance();
+				RemoteService.getInstance().init();
 				ConfigService.instance.getConfig();
 			}else{
 				MainPlayerService.getInstance().login();
