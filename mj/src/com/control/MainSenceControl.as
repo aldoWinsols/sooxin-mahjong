@@ -166,10 +166,10 @@ package com.control
 		
 		public function mainButLWClickHandler(e:MouseEvent):void{
 			
-			if(GameCenterService.instance.playerName == ""){
-				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-				return;
-			}
+//			if(GameCenterService.instance.playerName == ""){
+//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+//				return;
+//			}
 			
 			mainSence.loginWaitInfo.visible = true;
 			ConfigService.getInstance();
