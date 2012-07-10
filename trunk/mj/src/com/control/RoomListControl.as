@@ -24,7 +24,7 @@ package com.control
 	[Bindable]
 	public class RoomListControl
 	{
-		private var roomList:RoomList;
+		public var roomList:RoomList;
 		public static var instance:RoomListControl;
 
 		public var rooms:ArrayCollection = new ArrayCollection();
@@ -122,6 +122,7 @@ package com.control
 		
 		private function getRoomsResultHandler(e:ResultEvent):void{
 			RemoteService.instance.roomService.removeEventListener(ResultEvent.RESULT,getRoomsResultHandler);
+			rooms = new ArrayCollection();
 			var arr:ArrayCollection = e.result as ArrayCollection;
 			for(var i:int=0; i<arr.length; i++){
 				if(!arr.getItemAt(i).isView){

@@ -51,7 +51,7 @@ package com.services
 //			if(mainPlayer.playerName == ""){
 				var player:MainPlayer = new MainPlayer();
 				player.playerName = GameCenterService.instance.playerName;
-				player.playerName = "soooxin";
+//				player.playerName = "soooxin";
 				
 				RemoteService.instance.playerService.login(player);
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
@@ -63,6 +63,10 @@ package com.services
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			mainPlayer = e.result as MainPlayer;
 			MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+			
+			if(RoomListControl.instance){
+				RoomListControl.instance.roomList.dg.dataProvider = RoomListControl.instance.rooms;
+			}
 			
 			if(RoomListControl.instance){
 				RoomListControl.instance.checkReConn();
