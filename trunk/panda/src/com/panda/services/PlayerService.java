@@ -1,5 +1,7 @@
 package com.panda.services;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import com.panda.dao.Chongzhilog;
@@ -42,6 +44,7 @@ public class PlayerService implements IPlayerService {
 	public Object login(Player player){
 		Player player1 = playerDao.findByAcctNameUnique(player.getPlayerName());
 		if (player1 == null) {
+			player.setHaveMoney(2500.0);
 			playerDao.save(player);
 			return player;
 		} else {
@@ -146,6 +149,7 @@ public class PlayerService implements IPlayerService {
 			
 			Chongzhilog chongzhilog = new Chongzhilog();
 			chongzhilog.setPlayerName(playerName);
+			chongzhilog.setChongzhiTime(new Timestamp(new Date().getTime()));
 			chongzhilog.setChongzhiMoney(chongzhiMoney);
 			chongzhilog.setLastHaveMoney(player.getHaveMoney());
 			chongzhilog.setNowHaveMoney(player.getHaveMoney() + chongzhiMoney);
