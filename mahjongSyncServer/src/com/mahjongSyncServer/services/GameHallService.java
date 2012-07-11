@@ -69,7 +69,8 @@ public class GameHallService {
 	}
 	
 	public void connectServer(){ 
-		for (int i = 1; i < 4; i++) {
+
+		for (int i = this.gameHall.getAndroidStartNum(); i < this.gameHall.getAndroidStartNum()+20; i++) {
 			
 			String playerName = "";
 			if(i < 10){
@@ -196,6 +197,9 @@ public class GameHallService {
 			if(gameHall.getPlayerServices().get(i).getPlayer().getClientID().equals(iserver.getClient().getId())){
 				playerService = gameHall.getPlayerServices().get(i);
 				gameHall.getPlayerServices().remove(i);
+				
+				rtmpClientNew.sendRoomNum(UtilProperties.instance.getRoomNo(), gameHall.getPlayerServices().size());
+				
 				break;
 			}
 		}
