@@ -63,8 +63,17 @@ public class DataService {
 				case 50:
 					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(50);
 					break;
-				case 1:
+				case 100:
 					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(100);
+					break;
+				case 1000:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(1000);
+					break;
+				case 2000:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(2000);
+					break;
+				case 5000:
+					playerServices.get(i).getPlayer().getPlayLog().setGameSubClass(5000);
 					break;
 			}
 			playerServices.get(i).getPlayer().getPlayLog().setGameName(ConstClass.mahjong + balanceService.baseNum);

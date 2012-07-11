@@ -44,8 +44,7 @@ public class Util {
 							 29, 29, 29, 29};
 		
 		strs = new String[]{
-			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"
-			, "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+			"1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
 		};
 		
 //		mahjongs = new int[]{1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 
@@ -130,11 +129,11 @@ public class Util {
 	 */
 	public String getRandomStr(){
 		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 10; i++) {
 			int romderNum = (int)(Math.random() * strs.length);
 			sb.append(strs[romderNum]);
 		}
-		return sb.toString();
+		return "G:"+sb.toString();
 	}
 	
 	public int getOnlineNum() {
