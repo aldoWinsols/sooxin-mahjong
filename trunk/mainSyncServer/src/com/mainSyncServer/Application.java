@@ -1,5 +1,6 @@
 package com.mainSyncServer;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.red5.logging.Red5LoggerFactory;
@@ -42,8 +43,9 @@ public class Application extends ApplicationAdapter {
 		if(name.equals("superAdmin")){
 			return true;
 		}
-		
+
 		mainService.connection(name, (IServiceCapableConnection)conn);
+		initRoomNum();
 		
 		return true;
 	}
@@ -106,9 +108,33 @@ public class Application extends ApplicationAdapter {
 	 * @param roomNum
 	 */
 	public void sendRoomNum(String roomType, int roomNum){
-		mainService.getRoomNums().put(roomType, roomNum);
-		mainService.sendRoomNum(roomType, roomNum);
+		int initNum = 0;
+		for(int i=0; i<mainService.roomNums.size(); i++){
+			if(mainService.roomNums.get(i).roomNum.equals(roomType)){
+				initNum = mainService.roomNums.get(i).initNum;
+				mainService.roomNums.get(i).onlineNum = initNum+roomNum;
+			}
+		}
+		mainService.sendRoomNum(roomType, initNum+roomNum);
 		log.info("当前房间：" + roomType + "  当前人数： " + roomNum);
+	}
+	
+	public void initRoomNum(){
+		for(int i=0; i<mainService.roomNums.size(); i++){
+			 mainService.sendRoomNum(mainService.roomNums.get(i).roomNum, mainService.roomNums.get(i).initNum+mainService.roomNums.get(i).onlineNum);
+		}
+	}
+	
+	public boolean updateRoomNum(String roomType, int initNum){
+		for(int i=0; i<mainService.roomNums.size(); i++){
+			if(mainService.roomNums.get(i).roomNum.equals(roomType)){
+				mainService.roomNums.get(i).initNum = initNum;
+				mainService.sendRoomNum(roomType, initNum+mainService.roomNums.get(i).onlineNum);
+				System.out.println(roomType+""+(initNum+mainService.roomNums.get(i).onlineNum));
+				return true;
+			}
+		}
+		return true;
 	}
 	
 	/**

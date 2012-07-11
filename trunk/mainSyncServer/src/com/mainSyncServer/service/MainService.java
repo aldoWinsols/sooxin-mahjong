@@ -10,6 +10,7 @@ import org.red5.server.api.service.IServiceCapableConnection;
 import org.slf4j.Logger;
 
 import com.mainSyncServer.model.Message;
+import com.mainSyncServer.model.Room;
 import com.mainSyncServer.util.TimerTaskServer;
 
 /**
@@ -26,7 +27,7 @@ public class MainService {
 	private RemoteService remoteService = null;
 	private Logger log = Red5LoggerFactory
 	.getLogger(MainService.class, "mainSyncServer"); 
-	private HashMap<String, Integer> roomNums = null;
+	public static ArrayList<Room> roomNums = null;
 
 	public MainService(){
 		try {
@@ -35,12 +36,17 @@ public class MainService {
 			timerTaskServer = new TimerTaskServer(this);
 			timer.schedule(timerTaskServer, 1, 1000); 
 //			remoteService = new RemoteService();
-			roomNums = new HashMap<String, Integer>();
 			
-			roomNums.put("10", 5);
-			roomNums.put("20", 8);
-			roomNums.put("50", 3);
-			roomNums.put("100", 10);
+			
+			roomNums = new ArrayList<Room>();
+			roomNums.add(new Room("10", 0));
+			roomNums.add(new Room("20", 0));
+			roomNums.add(new Room("50", 0));
+			roomNums.add(new Room("100", 0));
+			roomNums.add(new Room("1000", 0));
+			roomNums.add(new Room("2000", 0));
+			roomNums.add(new Room("5000", 0));
+			
 //			red5MainAppStart();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -62,10 +68,6 @@ public class MainService {
 
 	public ArrayList<PlayerService> getPlayerServices() {
 		return playerServices;
-	}
-	
-	public Map<String, Integer> getRoomNums(){
-		return roomNums;
 	}
 
 	public void dealTimer(){
@@ -131,7 +133,8 @@ public class MainService {
 			playerService.getPlayer().setIp(iserver.getRemoteAddress());
 //			playerService.getPlayer().setChipGroupItems(remoteService.getUserService().getChipGroupItems(name));
 			
-			playerService.loginPlayer(roomNums);
+//			playerService.loginPlayer(roomNums);
+			
 			// 2012-1-30 10:57 gmr end
 			this.playerServices.add(playerService);
 		}else{
