@@ -3,8 +3,15 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.util.MahjongUtil;
 	import com.amusement.Mahjong.view.MahjongSeat;
 	import com.control.MainControl;
+	import com.services.ChatService;
 	
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.utils.Timer;
+	
+	import mx.controls.ToolTip;
+	import mx.managers.ToolTipManager;
+	import mx.styles.StyleManager;
 	
 	import spark.components.Image;
 	
@@ -19,6 +26,9 @@ package com.amusement.Mahjong.control
 		private var _seatR:Point;
 		private var _seatU:Point;
 		
+		public var point:Vector.<Point> = new Vector.<Point>();
+		public var showTimer:Timer;
+		
 		public function MahjongSeatControl(mahjongSeat:MahjongSeat)
 		{
 			_instance = this;
@@ -29,6 +39,18 @@ package com.amusement.Mahjong.control
 		}
 		
 		private function init():void{
+			if(MainControl.instance.main.applicationDPI == 320){
+				point.push(new Point(50,250));
+				point.push(new Point(600,250));
+				point.push(new Point(300,50));
+			}else{
+				point.push(new Point(50,300));
+				point.push(new Point(650,300));
+				point.push(new Point(350,100));
+			}
+			showTimer = new Timer(8000);
+			showTimer.addEventListener(TimerEvent.TIMER,showHandler)
+				
 			if(MainControl.instance.main.applicationDPI == 160){
 				_seatD = new Point(450, 700);
 				_seatL = new Point(15, 320);
@@ -46,6 +68,52 @@ package com.amusement.Mahjong.control
 				_seatR = new Point(-100, -100);
 				_seatU = new Point(-100, -100);
 			}
+		}
+		
+		var myTip:ToolTip;
+		private function showHandler(e:TimerEvent):void{
+			
+			//如果是录象查看状态，则返回
+			if(MahjongRoomControl.instance.isVideo){
+				return;
+			}
+			
+			if(myTip == null){
+				if(Math.round(Math.random()*10)%2 == 0){
+					try{
+						var len:int = Math.random()*ChatService.instance.chatList.length();
+						var len2:int = Math.random()*point.length;
+						myTip = ToolTipManager.createToolTip(ChatService.instance.chatList[len].@text, point[len2].x, point[len2].y,"",this._mahjongSeat) as ToolTip; 
+						StyleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize","14");
+
+					}catch(e:Error){
+						
+					}
+					
+				}
+			}else{
+				ToolTipManager.destroyToolTip(myTip);
+				myTip = null;
+			}
+			
+		}
+		
+		public function destroyToolTip():void{
+			try{
+				ToolTipManager.destroyToolTip(myTip);
+				myTip = null;
+			}catch(e:Error){
+				
+			}
+			
+		}
+		
+		public function startShowChat():void{
+//			showTimer.start();
+		}
+		public function stopShowChat():void{
+//			showTimer.stop();
+//			destroyToolTip();
 		}
 		
 		public function show():void{

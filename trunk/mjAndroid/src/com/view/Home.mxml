@@ -61,5 +61,7 @@
 	<view:History id="history" includeIn="log" horizontalCenter="0" verticalCenter="0">
 	</view:History>
 	<s:Image includeIn="main" x="230" y="114" source="assets/danji_logo.png"/>
+	<view:Notice includeIn="main" x="190" y="380">
+	</view:Notice>
 
 </s:Group>

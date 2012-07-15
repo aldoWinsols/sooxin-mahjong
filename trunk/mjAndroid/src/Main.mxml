@@ -22,6 +22,8 @@
 			import com.milkmangames.nativeextensions.android.AdMobAlignment;
 			import com.milkmangames.nativeextensions.android.events.AdMobErrorEvent;
 			import com.milkmangames.nativeextensions.android.events.AdMobEvent;
+			import com.services.ChatService;
+			import com.services.NoticeService;
 			
 			import flash.desktop.NativeApplication;
 			import flash.display.Sprite;
@@ -37,9 +39,11 @@
 				if(MahjongSoundService.instance != null){
 //					try{
 						//					NativeApplication.nativeApplication.exit();
-						MahjongSoundService.instance.bgSoundType = false;
 						MahjongSoundService.instance.soundSwitch(false);
-						MahjongSoundService.instance.playBg();
+						
+						if(MahjongSoundService.instance._bgChannel){
+							MahjongSoundService.instance._bgChannel.stop();
+						}
 //					}catch(e:Error){
 //						
 //					}
@@ -201,28 +205,38 @@
 				trace(this.width);
 				
 				
+//				ChatService.getInstance();
+				
 				Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 				
 				intAdService();
 				
-				adTimer = new Timer(10000);
+				adTimer = new Timer(15000);
 				adTimer.addEventListener(TimerEvent.TIMER,adTimerHandler);
-				adTimer.start();
+//				adTimer.start();
 			}
 			
 			private function adTimerHandler(e:TimerEvent):void{
-				refreshAd();
-				toggleAdVisibility();
+				try{
+					refreshAd();
+					toggleAdVisibility();
+				}catch(e:Error){
+					showAd();
+				}
+				
 			}
 			
 			
 			protected function application1_activateHandler(event:Event):void
 			{
 				try{
-					if(MahjongRoomControl.instance._mahjongRoom.soundOpen.visible){
+					if(MahjongRoomControl.instance._mahjongRoom.visible && MahjongRoomControl.instance._mahjongRoom.soundOpen.visible){
 						MahjongSoundService.instance.bgSoundType = true;
 						MahjongSoundService.instance.soundSwitch(true);
 						MahjongSoundService.instance.playBg();
+					}else{
+						MahjongSoundService.instance.soundSwitch(false);
+						MahjongSoundService.instance._bgChannel.stop();
 					}
 				}catch(e:Error){
 					

@@ -63,6 +63,8 @@
 			protected function soundClose_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
+				
+				
 				MahjongSoundService.instance.soundSwitch(true);
 				
 				MahjongSoundService.instance.bgSoundType = true;
@@ -75,10 +77,12 @@
 			protected function soundOpen_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
+				
 				MahjongSoundService.instance.soundSwitch(false);
 				
-				MahjongSoundService.instance.bgSoundType = false;
-				MahjongSoundService.instance.playBg();
+				if(MahjongSoundService.instance._bgChannel){
+					MahjongSoundService.instance._bgChannel.stop();
+				}
 				
 				this.soundOpen.visible = false;
 				this.soundClose.visible = true;
