@@ -4,7 +4,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:view="com.amusement.Mahjong.view.*"
 			   xmlns:Mahjong="com.amusement.Mahjong.*"
-			   xmlns:view2="com.view.*" addedToStage="application1_addedToStageHandler(event)"
+			   xmlns:view2="com.view.*"
 			   maxWidth="1024" maxHeight="768" activate="application1_activateHandler(event)"
 			   creationComplete="application1_creationCompleteHandler(event)"
 			   deactivate="application1_deactivateHandler(event)"
@@ -17,11 +17,20 @@
 			import com.amusement.Mahjong.service.MahjongSoundService;
 			import com.control.MainControl;
 			import com.mahjongSyncServer.services.RoomService;
-			import com.services.AdService;
+			import com.milkmangames.nativeextensions.android.AdMob;
+			import com.milkmangames.nativeextensions.android.AdMobAdType;
+			import com.milkmangames.nativeextensions.android.AdMobAlignment;
+			import com.milkmangames.nativeextensions.android.events.AdMobErrorEvent;
+			import com.milkmangames.nativeextensions.android.events.AdMobEvent;
+			
+			import flash.desktop.NativeApplication;
+			import flash.display.Sprite;
+			import flash.events.Event;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
 			
+			public static const PP_APP_ID:String="32389372";
 			
 			protected function application1_deactivateHandler(event:Event):void
 			{
@@ -37,7 +46,144 @@
 
 				}
 			}
+			
+			private var adIsVisible:Boolean;
+			private static const PUBLISHER_ID:String="a14f0c0279cd978";
+			public function intAdService() 
+			{	
+				adIsVisible=true;
+				
+				if (!AdMob.isSupported)
+				{
+					log("AdMob is not supported on this platform.");
+					return;
+				}
+				
+				log("initializing AdMob...");		
+				AdMob.init(PUBLISHER_ID);
+				log("AdMob Initialized.");
+				
+				AdMob.addEventListener(AdMobErrorEvent.FAILED_TO_RECEIVE_AD,onFailedReceiveAd);
+				AdMob.addEventListener(AdMobEvent.RECEIVED_AD,onReceiveAd);
+				AdMob.addEventListener(AdMobEvent.SCREEN_PRESENTED,onScreenPresented);
+				AdMob.addEventListener(AdMobEvent.SCREEN_DISMISSED,onScreenDismissed);
+				AdMob.addEventListener(AdMobEvent.LEAVE_APPLICATION,onLeaveApplication);
+				
+				showAd();
+				
+			}
+			
+			/** Destroy Ad */
+			public function destroyAd():void
+			{
+				log("Destroying ad.");
+				try
+				{
+					AdMob.destroyAd();
+				}
+				catch (e:Error)
+				{
+					log("ERROR:"+e.message);
+				}
+			}
+			
+			/** Show Ad */
+			public function showAd():void
+			{
+				log("Showing ad.");
+				
+				var testDevices:Vector.<String>;
+				
+				// this is a convenient way to enable test ads on your device- but remember to remove this lin before publishing for release!
+				testDevices=AdMob.getTestDeviceIDs();
+				
+				/** Creates a bottom-left aligned ad of the tablet banner size, specifying testdevices.
+				 * for production, omit the testDevices.
+				 * 
+				 */		
+				try
+				{
+					// shows the banner type ad, bottom left aligned.
+					AdMob.showAd(AdMobAdType.BANNER,AdMobAlignment.LEFT,AdMobAlignment.TOP,testDevices);
+					
+					
+					// optionally, you can set an x and y offset to do pixel perfect positioning.
+					// in these cases, use alignment 'LEFT' and 'TOP' to set exact x and y values-
+					// the following would show the ad at an x and y of 22, 31 pixels.
+					
+					// remember that admob does not know if your stage is being scaled (either by fullscreen mode or 
+					// stage.scaleMode), so these pixel dimensions are relative to the actual size of the screen.  (stage.stageWidth and stage.stageHeight).
+					//AdMob.showAd(AdMobType.IAB_BANNER,AdMobAlignment.LEFT,AdMobAlignment.TOP,testDevices,22,31);
+					
+					
+				}
+				catch (e:Error)
+				{
+					log("ERROR:"+e.message);
+				}
+			}
+			
+			/** Refresh Ad */
+			public function refreshAd():void
+			{
+				log("Refreshing ad.");
+				
+				try
+				{
+					AdMob.refreshAd();
+				}
+				catch (e:Error)
+				{
+					log("ERROR:"+e);
+				}
+			}
+			
+			/** Toggle Ad Visibility */
+			public function toggleAdVisibility():void
+			{
+				adIsVisible=!adIsVisible;
+				AdMob.setVisibility(adIsVisible);
+			}
+			
+			/** On Failed Receive Ad */
+			private function onFailedReceiveAd(e:AdMobErrorEvent):void
+			{
+				log("ERROR receiving ad, reason: '"+e.text+"'");
+			}
+			
+			/** On Receive Ad */
+			private function onReceiveAd(e:AdMobEvent):void
+			{
+				log("Received ad.  Dimensions:"+e.dimensions);
+			}
+			
+			/** On Screen Presented */
+			private function onScreenPresented(e:AdMobEvent):void
+			{
+				log("Screen Presented.");
+			}
+			
+			/** On Screen Dismissed */
+			private function onScreenDismissed(e:AdMobEvent):void
+			{
+				log("Screen Dismissed.");
+			}
+			
+			/** On Leave Application */
+			private function onLeaveApplication(e:AdMobEvent):void
+			{
+				log("Leave Application.");
+			}
+			
+			/** Log */
+			private function log(msg:String):void
+			{
+				trace("[AdMobExample] "+msg);
+			}
+			
+		
 
+			var adTimer:Timer;
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -57,8 +203,16 @@
 				
 				Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 				
+				intAdService();
 				
-
+				adTimer = new Timer(10000);
+				adTimer.addEventListener(TimerEvent.TIMER,adTimerHandler);
+				adTimer.start();
+			}
+			
+			private function adTimerHandler(e:TimerEvent):void{
+				refreshAd();
+				toggleAdVisibility();
 			}
 			
 			
@@ -75,15 +229,6 @@
 				}
 				
 				
-			}
-			
-			protected function application1_addedToStageHandler(event:Event):void
-			{
-				// TODO Auto-generated method stub
-				var adService:AdService = new AdService();
-				adService.createBannerAdTopCenter();
-				adService.adVisibilityOn();
-
 			}
 			
 		]]>
