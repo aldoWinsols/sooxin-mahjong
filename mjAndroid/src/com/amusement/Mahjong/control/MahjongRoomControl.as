@@ -210,6 +210,8 @@ package com.amusement.Mahjong.control
 		 */
 		public function beginGame(roomNo:Number,diceNum:Number,playerAzimuth:int,playerMahjongValues:Array):void{
 			
+			MahjongSeatControl.instance.startShowChat();
+			
 			MahjongRoomControl.instance._mahjongRoom.roomTabletop.width = MainControl.instance.main.width;
 			MahjongRoomControl.instance._mahjongRoom.roomTabletop.height = MainControl.instance.main.height;
 			
@@ -338,6 +340,9 @@ package com.amusement.Mahjong.control
 		 * 
 		 */
 		public function endGame(obj:Object):void{
+			MahjongSeatControl.instance.stopShowChat();
+			
+			
 			if(!_isVideo){
 				MahjongTimerControl.instance.hide();
 				this._mahjongRoomService.cut(obj.playerMahjongValues);
