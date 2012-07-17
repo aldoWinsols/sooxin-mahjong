@@ -213,7 +213,7 @@
 				
 				adTimer = new Timer(15000);
 				adTimer.addEventListener(TimerEvent.TIMER,adTimerHandler);
-//				adTimer.start();
+				adTimer.start();
 			}
 			
 			private function adTimerHandler(e:TimerEvent):void{
