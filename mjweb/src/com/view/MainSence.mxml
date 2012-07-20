@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:view="com.view.*"
+		xmlns:Mahjong="com.amusement.Mahjong.*"
+		xmlns:model="com.model.*"
+		width="1024" height="768" addedToStage="view1_addedToStageHandler(event)"
+		creationComplete="group1_creationCompleteHandler(event)" currentState="login">
+	<fx:Script>
+		<![CDATA[
+			import com.control.MainSenceControl;
+			import com.model.Alert;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainSenceControl(this);
+			}
+			
+			protected function view1_addedToStageHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				
+//				Alert.show(stage.deviceOrientation.toString());
+//				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+//				stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+				
+			}
+			private function onOrientationChanging(event:Event):void 
+			{
+//				Alert.show(event.afterOrientation.toString());
+//				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
+//					event.afterOrientation == StageOrientation.UNKNOWN ||
+//					event.afterOrientation == StageOrientation.DEFAULT)
+//				{
+//					event.preventDefault();
+////					Alert.show("preventDefault");
+//				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="login"/>
+		<s:State name="lianwangHome"/>
+		<s:State name="gameing"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Image id="mjRoomBgImg" horizontalCenter="0" source="@Embed('assets/index.jpg')"
+			 verticalCenter="0"/>
+	
+	<Mahjong:MahjongAppliction id="mahjongAppliction" x="0" y="0">
+	</Mahjong:MahjongAppliction>
+
+	
+	<view:LianwangHome includeIn="lianwangHome" horizontalCenter="0" verticalCenter="0">
+	</view:LianwangHome>
+	
+	<s:Group id="menu" width="100%" height="100%">
+		<s:Label includeIn="login" x="250" y="584" color="#B0B0B0" fontSize="14"
+				 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
+		<s:Label includeIn="login" x="424" y="612" color="#B0B0B0" fontSize="14" text="如有投诉或建议,请联系我们."/>
+		
+		<s:Image includeIn="login" horizontalCenter="40"
+				 source="assets/danji_logo.png" verticalCenter="-80"/>
+		<model:Button id="mainButLW" includeIn="login" x="498" y="400"
+					  skin="@Embed('assets/but/mainButLW.png')"/>
+		<model:Button id="mainButDJ" includeIn="login" x="328" y="400"
+					  skin="@Embed('assets/but/mainButDJ.png')"/>
+		<view:Notice includeIn="login" x="287" y="478" alpha="0.5">
+		</view:Notice>
+		
+		<s:BorderContainer includeIn="gameing" id="waitInfo" width="314" height="50" backgroundAlpha="0.5"
+						   backgroundColor="#000000" cornerRadius="8" horizontalCenter="0"
+						   verticalCenter="0">
+			<s:Label x="37" y="14" color="#FFFFFF" fontSize="20" text="稍等，正在等待进入游戏..."/>
+			
+		</s:BorderContainer>
+		
+		<s:BorderContainer id="loginWaitInfo" visible="false" backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
+						   width.login="400" height.login="100" horizontalCenter.login="0"
+						   verticalCenter.login="0">
+			<s:Label includeIn="login" x="57" y="37" color="#FFFFFF" fontSize="24"
+					 text="正在连接服务器，请等候..."/>
+			
+		</s:BorderContainer>
+	</s:Group>
+</s:Group>

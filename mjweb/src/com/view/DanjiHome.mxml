@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.view.*"
+		 xmlns:Mahjong="com.amusement.Mahjong.*"
+		 width="820" height="500" creationComplete="bordercontainer1_creationCompleteHandler(event)"
+		 currentState="main" fontSize="18"
+		 width.history="1024" height.history="768"
+		 width.main="1024" height.main="768" xmlns:model="com.model.*">
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.MahjongAppliction;
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.service.MahjongSyncService;
+			import com.control.DanjiHomeControl;
+			import com.control.MainSenceControl;
+			import com.mahjongSyncServer.model.Player;
+			import com.mahjongSyncServer.services.RoomService;
+			import com.model.Alert;
+			import com.services.DataService;
+			
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				new DanjiHomeControl(this);
+				
+//				this.spiner.addEventListener(TouchEvent.TOUCH_TAP,tabHandler);
+//				this.spiner.addEventListener(MouseEvent.CLICK,clickHandler);
+				
+			}
+			
+//			private function clickHandler(e:MouseEvent):void{
+//				operation.visible = true;
+//			}
+//			
+//			private function tabHandler(e:TouchEvent):void{
+//				operation.visible = true;
+//			}
+			
+			public function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(DataService.players.length == 0){
+//					operation.visible = false;
+					Alert.show("请先创建帐户！");
+					return;
+				}
+				
+//				operation.visible = false;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				this.visible = false;
+				MahjongSyncService.instance.isNetwork = false;
+//				MahjongSyncService.instance.connServer(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+				
+//				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
+				
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				operation.visible = false;
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+//				if(players.selectedIndex == -1){
+//					Alert.show("请先创建帐户！");
+////					operation.visible = false;
+//					return;
+//				}
+//				// TODO Auto-generated method stub
+//				DataService.instance.removePlayer(DataService.getPlayerByIndex(players.selectedIndex).id, DataService.getPlayerByIndex(players.selectedIndex).playerName);
+//				operation.visible = false;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+//				if(players.selectedIndex == -1){
+//					Alert.show("请先创建帐户！");
+////					operation.visible = false;
+//					return;
+//				}
+//				
+//				
+//				// TODO Auto-generated method stub
+//				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
+//				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+			}
+			
+			protected function closeB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+//				MahjongApplictionControl.instance._mahjongAppliction.danjiB.visible = true;
+//				MahjongApplictionControl.instance._mahjongAppliction.lianwangB.visible = true;
+			}
+			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				
+//				Alert.show("请尝试完整版！现在支持完整版的用户，在0.6版本推出的网络版中可获赠送价值30元的游戏点卡！");
+				this.currentState = "history";
+				
+//				RoomService.instance.userName = DataService.getPlayerByIndex(players.selectedIndex).playerName;
+//				DataService.instance.getGameHistory(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+			}
+			
+			protected function image2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				operation.visible = false;
+//				mahjongAppliction.visible = true;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				this.mainMenu.visible = false;
+				MahjongSyncService.instance.isNetwork = false;
+				//				MahjongSyncService.instance.connServer(DataService.getPlayerByIndex(players.selectedIndex).playerName);
+				
+//				RoomService.instance.beginGame(DataService.getPlayerByIndex(players.selectedIndex).playerName, DataService.getPlayerByIndex(players.selectedIndex).haveMoney);
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="main"/>
+		<s:State name="history"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+		<!--<s:SpinnerListContainer id="spiner" includeIn="main" visible="false" width="800" height="0"
+								alpha="0.3" horizontalCenter="0" verticalCenter="-180">
+			<s:SpinnerList id="players" width="100%" height="182" color="#FFFFFF" fontSize="26"
+						   fontWeight="bold" selectedIndex="10">
+
+			</s:SpinnerList>
+		</s:SpinnerListContainer>-->
+	
+	<view:PlayerAdd id="playerAdd" includeIn="main" visible="false" horizontalCenter="0"
+					verticalCenter="-300">
+	</view:PlayerAdd>
+
+	<s:Group id="mainMenu" includeIn="main" x="154" y="201">
+		
+		<model:Button y="202" left="190" click="image2_clickHandler(event)"
+					  skin="@Embed('assets/danji/danji_beginB.png')"/>
+		<model:Button y="202" right="170" click="image1_clickHandler(event)"
+					  skin="@Embed('assets/danji/danji_logB.png')"/>
+		<s:Image id="danji_exitB" x="518" y="195" source="assets/danji/danji_exitB.png" visible="false"/>
+		<s:Image horizontalCenter="-10" source="com/amusement/Mahjong/assets/danji_logo.png"
+				 verticalCenter="-50"/>
+	</s:Group>
+	<view:History id="history" includeIn="history" horizontalCenter="0" verticalCenter="0">
+	</view:History>
+	<s:Image id="backB" source="assets/main/backB.png"
+			 x.history="880" y.history="560"
+			 right.main="50" bottom.main="50"/>
+	
+</s:Group>

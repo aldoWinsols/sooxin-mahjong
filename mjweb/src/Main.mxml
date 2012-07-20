@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:view="com.amusement.Mahjong.view.*"
+			   xmlns:Mahjong="com.amusement.Mahjong.*"
+			   xmlns:view2="com.view.*"
+			   width="100%" height="100%" addedToStage="application1_addedToStageHandler(event)"
+			   creationComplete="application1_creationCompleteHandler(event)"
+			   activate="application1_activateHandler(event)"
+			   splashScreenMinimumDisplayTime="3000"
+			   splashScreenImage="@Embed('splash.jpg')">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.service.MahjongSoundService;
+			import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
+			import com.control.MainControl;
+			import com.control.MainSenceControl;
+			import com.control.RoomListControl;
+			import com.model.Alert;
+			import com.services.ChatService;
+			import com.view.MainSence;
+			
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			public static var ss:String = "";
+			
+			
+			protected function application1_deactivateHandler(event:Event):void
+			{
+//				NativeApplication.nativeApplication.exit();
+				if(MahjongSyncService.instance.isNetwork){
+					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MahjongSyncNetworkService.instance._conn.close();
+					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
+					
+					if(MahjongSoundService.instance._bgChannel){
+						MahjongSoundService.instance._bgChannel.stop();
+					}			
+				}
+				
+			}
+			
+			protected function application1_addedToStageHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+//				stage.setOrientation(StageOrientation.ROTATED_LEFT);
+//				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+				
+				var mainSence:MainSence = new MainSence();
+				this.addElement(mainSence);
+				if(this.applicationDPI == 320){
+					mainSence.x = -32;
+					mainSence.y = -64;
+				}else{
+					mainSence.x = 0;
+					mainSence.y = 0;
+				}
+//				mainSence.x = (mainSence.width - this.stage.width)/2;
+//				mainSence.y = (mainSence.height -this.stage.height)/2;
+			}
+			
+//			private function onOrientationChanging(event:StageOrientationEvent):void 
+//			{
+//				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
+//					event.afterOrientation == StageOrientation.UNKNOWN ||
+//					event.afterOrientation == StageOrientation.DEFAULT)
+//				{
+//					event.preventDefault();
+////					mainSence.x = (mainSence.width - this.stage.width)/2;
+////					mainSence.y = (mainSence.height -this.stage.height)/2;
+//				}
+//			}
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MainControl(this);
+			}
+			
+			
+			
+			protected function application1_activateHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
+					MainSenceControl.instance.mainButLWClickHandler(null);
+				}
+				
+//				try{
+//					RoomListControl.instance.getRooms();
+//				}catch(e:Error){
+//					
+//				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		mx|ToolTip {
+			backgroundAlpha: 0.7;
+			backgroundColor: black;
+			paddingTop:10;
+			paddingBottom:10;
+			paddingLeft:10;
+			paddingRight:10;
+			
+			
+			color: white;
+			cornerRadius: 8;
+			fontSize: 14;
+		}
+	</fx:Style>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+</s:Application>

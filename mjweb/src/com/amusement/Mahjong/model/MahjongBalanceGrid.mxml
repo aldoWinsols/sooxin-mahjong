@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="50" height="226.75" fontFamily="黑体" fontSize="20" fontWeight="normal">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			public function show(result:Object, px:int, py:int):void{
+				this.x = px;
+				this.y = py;
+				
+				resultName.text = result.balanceName;
+				result1.text = result.azimuth1;
+				result2.text = result.azimuth2;
+				result3.text = result.azimuth3;
+				result4.text = result.azimuth4;
+			}
+			
+			public function clear():void{
+				this.removeAllElements();
+				
+				resultName.text = "";
+				resultName = null;
+				
+				result1.text = "";
+				result1 = null;
+				
+				result2.text = "";
+				result2 = null;
+				
+				result3.text = "";
+				result3 = null;
+				
+				result4.text = "";
+				result4 = null;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Label id="resultName" x="0" y="0.75" width="50" height="66" color="#4C4C4C"
+			 fontWeight="normal" text="Text" textAlign="center"/>
+	<!--<mx:HRule x="0" y="66.75" width="50" height="1" />-->
+	<s:Label id="result1" x="0" y="61" width="50" color="#4C4C4C" text="Label" textAlign="center"/>
+	<!--<mx:HRule x="0" y="106.5" width="50" height="1" />-->
+	<s:Label id="result2" x="0" y="101" width="50" color="#4C4C4C" text="Label" textAlign="center"/>
+	<!--<mx:HRule x="0" y="146.75" width="50" height="1" />-->
+	<s:Label id="result3" x="0" y="141" width="50" color="#4C4C4C" text="Label" textAlign="center"/>
+	<!--<mx:HRule x="0" y="186.25" width="50" height="1" />-->
+	<s:Label id="result4" x="0" y="181" width="50" color="#4C4C4C" text="Label" textAlign="center"/>
+</s:Group>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.control.MahjongSeatControl;
+			
+			import mx.events.FlexEvent;
+
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MahjongSeatControl(this);
+
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Animate id="tipShow" duration="1000">
+			<s:SimpleMotionPath id="tipWidth" property="width" valueFrom="0" valueTo="250" />
+			<s:SimpleMotionPath id="tipHeight" property="height" valueFrom="0" valueTo="250" />
+		</s:Animate>
+		<s:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="10000" />  
+	</fx:Declarations>
+	
+	<s:Image id="oneImg" visible="false" x="0" y="0" name="img1"
+			 source="com/amusement/Mahjong/assets/seat/1.png"/>
+	<s:Image id="twoImg" visible="false" x="0" y="0" name="img2"
+			 source="com/amusement/Mahjong/assets/seat/2.png"/>
+	<s:Image id="threeImg" visible="false" x="0" y="0" name="img3"
+			 source="com/amusement/Mahjong/assets/seat/3.png"/>
+	<s:Image id="fourImg" visible="false" x="0" y="0" name="img4"
+			 source="com/amusement/Mahjong/assets/seat/4.png"/>
+</s:Group>

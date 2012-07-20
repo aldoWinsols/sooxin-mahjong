@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 creationComplete="group_init(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:GlowFilter id="glow" blurX="50" blurY="50" color="#ffffff" quality="1" 
+					  strength="1"/>  
+		<s:Fade id="fadeEffect" target="{image1}" alphaFrom="1" alphaTo="0"
+				repeatCount="1"/>
+		<s:Fade id="fadeEffect1" target="{image1}" alphaFrom="0" alphaTo="1" 
+	duration="1" repeatCount="1"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var skin:Class;
+			[Bindable]
+			public var downSkin:Class;
+			[Bindable]
+			public var overSkin:Class;
+			
+			[Bindable]
+			public var selectedUpSkin:Class;
+			[Bindable]
+			public var selectedOverSkin:Class;
+			[Bindable]
+			public var selectedDownSkin:Class;
+			
+			
+			private var _disabledSkin:Class;
+			
+			protected var _selected:Boolean = false;
+			protected var _toggle:Boolean;
+			
+			[Bindable]
+			public function get disabledSkin():Class
+			{
+				return _disabledSkin;
+			}
+
+			public function set disabledSkin(value:Class):void
+			{
+				_disabledSkin = value;
+				if(!super.enabled){
+					image.source = _disabledSkin;
+				}
+			}
+
+			public function get toggle():Boolean
+			{
+				return _toggle;
+			}
+
+			public function set toggle(value:Boolean):void
+			{
+				_toggle = value;
+			}
+
+			public function get selected():Boolean
+			{
+				return _selected;
+			}
+
+			public function set selected(value:Boolean):void
+			{
+				_selected = value;
+				if(!_selected){
+					image.source = skin;
+				}
+			}
+			
+			public override function set enabled(bool:Boolean):void{
+				super.enabled = bool;
+				if(bool && skin){
+					image.source = skin;
+				}
+			}
+			
+			protected function group_init(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+				this.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				this.addEventListener(MouseEvent.ROLL_OVER, onMouseOver);
+				this.addEventListener(MouseEvent.ROLL_OUT, onMouseOut);
+				this.addEventListener(MouseEvent.CLICK, onClick);
+			}
+			
+			protected function onClick(e:MouseEvent):void{
+				if(!super.enabled){
+					return;
+				}
+				if(toggle){
+					_selected = !_selected;
+				}
+				
+				if(selectedUpSkin != null){
+					image.source = selectedUpSkin;
+				}
+				
+			}
+			
+			private function onMouseDown(e:MouseEvent):void{
+				
+				fadeEffect1.play();
+				var filterArr:Array = [];
+				filterArr.push(glow);
+				image1.filters = filterArr;
+				
+				if(_selected){
+					if(selectedUpSkin != null){
+						image.source = selectedUpSkin;
+						return;
+					}
+				}
+				if(!super.enabled){
+					return;
+				}
+				if(downSkin == null){
+					image.source = skin;
+				}else{					
+					image.source = downSkin;
+				}
+			}
+			
+			private function onMouseUp(e:MouseEvent):void{
+				
+				this.filters = null;
+				fadeEffect.play();
+				
+				if(_selected){
+					if(selectedUpSkin != null){
+						image.source = selectedUpSkin;
+						return;
+					}
+				}
+				
+				if(!super.enabled){
+					return;
+				}
+				image.source = skin;
+			}
+			
+			private function onMouseOver(e:MouseEvent):void{
+				if(_selected){
+					if(selectedUpSkin != null){
+						image.source = selectedUpSkin;
+						return;
+					}
+				}
+				
+				if(!super.enabled){
+					return;
+				}
+				if(overSkin == null){
+					image.source = skin;
+				}else{					
+					image.source = overSkin;
+				}
+			}
+			
+			private function onMouseOut(e:MouseEvent):void{
+				if(_selected){
+					if(selectedUpSkin != null){
+						image.source = selectedUpSkin;
+						return;
+					}
+				}
+				
+				if(!super.enabled){
+					return;
+				}
+				image.source = skin;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:SWFLoader id="image1" source="{skin}" visible="false"/>
+	<s:SWFLoader id="image" source="{skin}" />
+	<!--<s:Image id="image" source="{skin}" />-->
+	
+</s:Group>
