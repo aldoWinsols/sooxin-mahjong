@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration>  
+    <contextName>mahjongSyncServer</contextName>  
+    <jmxConfigurator contextName="newapp" />  
+    <appender name="NEWAPP" class="ch.qos.logback.core.FileAppender">  
+        <File>log/mahjongSyncServer.log</File>
+        <Append>false</Append>
+        <Encoding>UTF-8</Encoding>
+        <BufferedIO>false</BufferedIO>
+        <ImmediateFlush>true</ImmediateFlush>  
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>INFO</level>
+    	</filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <Pattern>%date [%thread] %-5level %logger{35} - %msg%n</Pattern>  
+        </layout>
+    </appender>
+    <appender name="NEWAPP1" class="ch.qos.logback.core.FileAppender">  
+        <File>log/mahjongSyncServerError.log</File>
+        <Append>false</Append>
+        <Encoding>UTF-8</Encoding>
+        <BufferedIO>false</BufferedIO>
+        <ImmediateFlush>true</ImmediateFlush>  
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>ERROR</level>
+    	</filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <Pattern>%date [%thread] %-5level %logger{35} - %msg%n</Pattern>  
+        </layout>
+    </appender>
+    <appender name="NEWAPP2" class="ch.qos.logback.core.FileAppender">  
+        <File>log/mahjongSyncServerPlayerOffline.log</File>
+        <Append>false</Append>
+        <Encoding>UTF-8</Encoding>
+        <BufferedIO>false</BufferedIO>
+        <ImmediateFlush>true</ImmediateFlush>  
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>WARN</level>
+    	</filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <Pattern>%date [%thread] %-5level %logger{35} - %msg%n</Pattern>  
+        </layout>
+    </appender>
+    <root>
+        <appender-ref ref="NEWAPP" />  
+        <appender-ref ref="NEWAPP1" />
+        <appender-ref ref="NEWAPP2" />
+    </root>
+    <logger name="com.mahjongSyncServer.Application">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+	
+	<logger name="com.mahjongSyncServer.services.GameHallService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.services.PlayerService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.services.LogicService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.services.RoomService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.dataServices.DataService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.services.ConfigService">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.util.UtilProperties">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+    
+    <logger name="com.mahjongSyncServer.sockets.RtmpClientNew">
+		<level value="ERROR" />
+		<level value="WARN" />
+		<level value="INFO" />
+    </logger>
+</configuration>
