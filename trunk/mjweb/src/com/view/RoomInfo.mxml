@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   width="400" height="300" currentState="create">
+	<s:states>
+		<s:State name="enter"/>
+		<s:State name="create"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Label x="53" y="20" text="房间名字："
+			 x.enter="58" y.enter="32"/>
+	<s:Label x="53" y="60" text="房间密码："
+			 x.enter="58" y.enter="91"/>
+	<s:Label includeIn="create" x="53" y="141" text="进入点数："/>
+	<s:Label includeIn="create" x="53" y="182" text="最大翻数："/>
+	<s:Label includeIn="create" x="53" y="100" text="房间点数："/>
+	<s:TextInput id="txtRoomNo" x="141" y="11" width="179"
+				 x.enter="146" y.enter="23"/>
+	<s:TextInput id="txtRoomPassword" x="141" y="52" width="179"
+				 x.enter="146" y.enter="83"/>
+	<s:TextInput id="txtRoomNum" includeIn="create" x="141" y="93" width="179" restrict="0-9"/>
+	<s:TextInput id="txtEnterRoomNum" includeIn="create" x="141" y="134" width="179" restrict="0-9"/>
+	<s:TextInput id="txtMaxFanNum" includeIn="create" x="141" y="175" width="179" restrict="0-9"/>
+	<s:Button id="btnOk" includeIn="create" x="149" y="216" width="101" label="确定"/>
+	<s:Button id="btnEnterGame" includeIn="enter" x="142" y="147" width="115" label="进入游戏"/>
+</s:TitleWindow>

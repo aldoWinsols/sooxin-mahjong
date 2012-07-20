@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   width="960" height="640" creationComplete="group1_creationCompleteHandler(event)"
+				   currentState="game" xmlns:model="com.model.*">
+	<fx:Script>
+		<![CDATA[
+			import com.control.LogControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new LogControl(this);
+			}
+			
+
+			public function timeFormat(time:String):String{
+				return df.format(time);
+			}
+			
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="jiangpin"/>
+		<s:State name="chongzhi"/>
+		<s:State name="game"/>
+	</s:states>
+	<fx:Declarations>
+		<s:DateTimeFormatter id="df" dateTimePattern="yyyy/MM/dd HH:mm:ss"/>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:ViewNavigator x="0" y="0" width="960" height="560" contentBackgroundAlpha="0.2"
+					 contentBackgroundColor="#72D2FE"
+					 width.game="100%" height.game="100%"/>-->
+	<s:BorderContainer x="0" y="75" width="100%" height="100%" backgroundAlpha="0.3"
+					   backgroundColor="#72D2FE"
+					   y.chongzhi="45"
+					   y.jiangpin="45"/>
+	<model:Button id="gameHistoryB" skin="@Embed('../../assets/log/gameLog.png')"
+				  x="2" y="1"/>
+	<model:Button id="chongzhiHistoryB"
+				  skin="@Embed('../../assets/log/chongzhiLog.png')"
+				  x="119" y="1"/>
+	<model:Button id="prizeHistoryB" visible="false" skin="@Embed('../../assets/log/jiangpinLog.png')"
+				  x="236" y="1"/>
+	
+	
+	<s:DataGrid id="prizeHistory" includeIn="jiangpin" x="0" y="45" width="100%" height="100%" alpha="0.7"
+				fontSize="18" rowHeight="50">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="id" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn width="180" dataField="duihuanTime" headerText="时间">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.duihuanTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="奖品" dataField="itemName">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.itemName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="兑换点数" dataField="duihuanMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.duihuanMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="联系人" dataField="contactName">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="联系电话" dataField="contactTel">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactTel}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="邮寄地址" dataField="contactAddress">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.contactAddress}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="状态" dataField="state">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.state}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:DataGrid id="chongzhiHistory" includeIn="chongzhi" x="0" y="45" width="100%" height="100%" alpha="0.7"
+				fontSize="18" rowHeight="50">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="id" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="chongzhiTime" headerText="时间">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.chongzhiTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值前点数" dataField="lastHaveMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.lastHaveMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值点数" dataField="chongzhiMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.chongzhiMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="充值后点数" dataField="nowHaveMoney">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.nowHaveMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:DataGrid id="gameHistory" includeIn="game" x="0" y="45" width="100%" height="100%"
+				alpha="0.7" fontSize="18" rowHeight="50">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="ID" dataField="sn" width="60">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn headerText="局号" dataField="gameNo" width="150">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.gameNo}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="gameTime" headerText="时间" width="180">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{outerDocument.timeFormat(data.gameTime)}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="preMoney" headerText="游戏前点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.preMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="winLossMoneyAfterTax" headerText="输赢">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.winLossMoneyAfterTax}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="afterMoney" headerText="游戏后点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.afterMoney}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				
+									<!--
+				<s:GridColumn id="luxiang1" dataField="luxiang" headerText="操作" width="200">
+				<s:itemRenderer>
+				<fx:Component>
+				<s:GridItemRenderer>
+				<fx:Script>
+				<![CDATA[
+				import com.amusement.Mahjong.control.MahjongApplictionControl;
+				import com.control.DanjiHomeControl;
+				import com.control.MainSenceControl;
+				import com.mahjongSyncServer.services.RoomService;
+				import com.services.DataService;
+				
+				import mx.managers.PopUpManager;
+				
+				protected function button1_clickHandler(event:MouseEvent):void
+				{
+				// TODO Auto-generated method stub
+				
+				//											navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+				
+				//											DanjiHomeControl.instance.danjiHome.operation.visible = false;
+				MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = true;
+				//											DanjiHomeControl.instance.danjiHome.visible = false;
+				RoomService.instance.playerVideo(data.gameContent);
+				PopUpManager.removePopUp(outerDocument);
+				MainSenceControl.instance.mainSence.currentState = "gameing";
+				MainSenceControl.instance.mainSence.waitInfo.visible = false;
+				}
+				
+				protected function button2_clickHandler(event:MouseEvent):void
+				{
+				// TODO Auto-generated method stub
+				DataService.instance.removeGameLog(data.id,data.playerName);
+				}
+				
+				]]>
+				</fx:Script>
+				<s:HGroup verticalCenter="0" horizontalCenter="0">
+									<s:Button label="观看录像" click="button1_clickHandler(event)" />
+				</s:HGroup>
+				</s:GridItemRenderer>
+				</fx:Component>
+				</s:itemRenderer>
+				</s:GridColumn>
+									-->
+									
+								
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:Group>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"  creationComplete="group1_creationCompleteHandler(event)"
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="960" height="100%">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.control.ChongzhiControl;
+//			import com.milkmangames.nativeextensions.ios.StoreKit;
+			import com.model.Alert;
+			import com.services.MainPlayerService;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			import spark.events.GridSelectionEvent;
+			[Bindable]
+			private var chajians:ArrayCollection = new ArrayCollection([
+				{ID:"1", price:"￥6", cNum:"600点", 
+					zNum:"0",productID:"com.sooxin.mahjongM.d6",remark:"点击购买"}, 
+				{ID:"2", price:"￥12", cNum:"1200点", 
+					zNum:"100",productID:"com.sooxin.mahjongM.d12",remark:"点击购买"},
+				{ID:"3", price:"￥18", cNum:"1800点", 
+					zNum:"200",productID:"com.sooxin.mahjongM.d18",remark:"点击购买"},
+				{ID:"4", price:"￥25", cNum:"2500点", 
+					zNum:"400",productID:"com.sooxin.mahjongM.d25",remark:"点击购买"},
+				{ID:"5", price:"￥30", cNum:"3000点", 
+					zNum:"800",productID:"com.sooxin.mahjongM.d30",remark:"点击购买"},
+				{ID:"6", price:"￥50", cNum:"5000点", 
+					zNum:"2000",productID:"com.sooxin.mahjongM.d50",remark:"点击购买"},
+				{ID:"6", price:"￥100", cNum:"10000点", 
+					zNum:"5000",productID:"com.sooxin.mahjongM.d100",remark:"点击购买"},
+			]);
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new ChongzhiControl(this);
+			}
+			
+			protected function dg_selectionChangeHandler(event:GridSelectionEvent):void
+			{
+				// TODO Auto-generated method stub
+//				StoreKit.storeKit.purchaseProduct(dg.selectedItem.productID,1);
+				this.wait.visible = true;
+				
+				dg.selectedItem = null;
+			}
+			
+		]]>
+	</fx:Script>
+	<!--<s:ViewNavigator id="chongzhiViewNavigator" x="0" y="0" width="100%" height="100%" title="购买插件" />-->
+	<s:BorderContainer width="100%" height="100%" backgroundAlpha="0.3" backgroundColor="#72D2FE"
+					   x="0" y="75"/>
+	<s:DataGrid id="dg" x="0" y="45" width="960" height="100%" alpha="0.7" color="#000000"
+				dataProvider="{chajians}" fontSize="20" fontWeight="bold" rowHeight="60" selectionChange="dg_selectionChangeHandler(event)">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="ID" headerText="ID" width="50">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.ID}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="price" headerText="价格">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.price}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="cNum" headerText="充值点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.cNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="zNum" headerText="赠送点数">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.zNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="remark" headerText="备注">
+					<s:itemRenderer >
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.remark}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+	<s:BorderContainer id="wait" visible="false" width="450" height="150" backgroundAlpha="0.5" backgroundColor="#000000"
+					   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
+		<s:Label x="40" y="62" color="#FFFFFF" fontSize="24" text="请求已经提交，请等待apple反应..."/>
+		
+	</s:BorderContainer>
+	
+</s:Group>

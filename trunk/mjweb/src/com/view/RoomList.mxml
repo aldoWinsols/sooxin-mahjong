@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="960" height="100%" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.control.RoomListControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new RoomListControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="main"/>
+		<s:State name="roomInfo"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:ViewNavigator id="roomListViewNavigator" x="0" y="0" width="960" height="550" lineHeight="0" title="休闲房间"/>-->
+	<s:BorderContainer x="0" y="45" width="100%" height="100%" backgroundAlpha="0.3"
+					   backgroundColor="#72D2FE">
+		<s:Button includeIn="roomInfo" x="417" y="105" width="124" label="创建房间"/>
+		<s:Button includeIn="roomInfo" x="417" y="177" width="124" label="进入房间"/>
+	</s:BorderContainer>
+	<s:DataGrid id="dg" includeIn="main" x="0" y="45" width="100%" height="100%" alpha="0.7"
+				color="#000000" dataProvider="{RoomListControl.instance.rooms}" fontSize="20"
+				fontWeight="bold" rowHeight="80">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn width="50" dataField="ID" headerText="ID">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.id}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:GridColumn>
+				<s:GridColumn dataField="roomName" headerText="房间名称">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.roomName}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="fanNum" headerText="基数">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.fanNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="fanNum" headerText="最大番数">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.maxFanNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="joinNum" headerText="入局点数">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.joinNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn dataField="onlineNum" headerText="在线人数">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.onlineNum}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+				<s:GridColumn headerText="状态">
+					<s:itemRenderer>
+						<fx:Component> 
+							<s:GridItemRenderer>
+								<s:HGroup left="3" verticalCenter="0">
+									<s:Label text="{data.state}"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer> 
+				</s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+</s:Group>

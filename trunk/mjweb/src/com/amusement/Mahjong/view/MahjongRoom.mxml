@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:view="com.amusement.Mahjong.view.*"
+		 xmlns:view2="com.view.*"
+		 xmlns:model="com.model.*"
+		 maxWidth="1024" maxHeight="768" creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.amusement.Mahjong.MahjongAppliction;
+			import com.amusement.Mahjong.control.MahjongApplictionControl;
+			import com.amusement.Mahjong.control.MahjongBalanceControl;
+			import com.amusement.Mahjong.control.MahjongPlayerControlD;
+			import com.amusement.Mahjong.control.MahjongPlayerControlU;
+			import com.amusement.Mahjong.control.MahjongRoomControl;
+			import com.amusement.Mahjong.control.MahjongSeatControl;
+			import com.amusement.Mahjong.service.MahjongBalanceService;
+			import com.amusement.Mahjong.service.MahjongSoundService;
+			import com.amusement.Mahjong.service.MahjongSyncNetworkService;
+			import com.amusement.Mahjong.service.MahjongSyncService;
+			import com.control.DanjiHomeControl;
+			import com.control.MainControl;
+			import com.control.MainSenceControl;
+			import com.mahjongSyncServer.services.RoomService;
+			import com.model.Alert;
+			import com.services.GameCenterService;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var _MahjongRoomBg:Class;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new MahjongRoomControl(this);
+			}
+
+			public function set MahjongRoomBg(value:Class):void
+			{
+				_MahjongRoomBg = value;
+			}
+			
+			
+			protected function image1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				this.exit.visible = true;
+				GameCenterService.instance.showLeaderboard();
+//				Alert.show("想看看自己的战绩排行？来完整版吧！");
+			}
+			
+			protected function image2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+//				this.system.visible = true;
+			}
+			
+			protected function image3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.aboutus.visible = true;
+				
+			}
+			
+			protected function image4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				GameCenterService.instance.showAchievements();
+				
+//				Alert.show("想看看自己获得的荣誉？来完整版吧！");
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigateToURL(new URLRequest("http://itunes.apple.com/us/app/si-chuan-xue-zhan-ma-jiang/id489426912?l=zh&ls=1&mt=8"),"_blank");
+			}
+			
+			protected function continueB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongBalanceService.instance.continueClickHandler();
+				this.jiesuanOperation.visible = false;
+			}
+			
+			protected function showBalanceB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongBalanceControl.instance.showBalance();
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.backOperation.visible = true;
+				if(MahjongSyncService.instance.isNetwork){
+					this.backInfo.text = "强制退出游戏将会处于系统托管状态，并可能影响你的利益！";
+				}else{
+					this.backInfo.text = "中途退出游戏将扣除排行5积分！";
+					
+				}
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.backOperation.visible = false;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				//				MainSenceControl.instance.mahjongAppliction = new MahjongAppliction();
+				
+				if(MahjongSyncService.instance.isNetwork){
+					MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+					MahjongSyncNetworkService.instance._conn.close();
+					MahjongApplictionControl.instance._mahjongAppliction.mahjongRoom.visible = false;
+					MahjongRoomControl.instance.clearTabletop();
+					MahjongSoundService.instance._bgChannel.stop();
+					this.backOperation.visible = false;
+				}else{
+					
+					try{
+						MainSenceControl.instance.mainSence.currentState = "login";
+						RoomService.instance.timer.stop();
+						RoomService.instance.endGame();
+						
+						this.backOperation.visible = false;
+						GameCenterService.instance.changeScore(-5);
+						MainSenceControl.instance.mainSence.mahjongAppliction.mahjongRoom.visible = false;
+						MahjongRoomControl.instance.clearTabletop();
+					}catch(e:Error){
+						
+					}
+				}
+				
+			}
+			
+			protected function soundClose_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(true);
+				
+				MahjongSoundService.instance.bgSoundType = true;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = true;
+				this.soundClose.visible = false;
+			}
+			
+			protected function soundOpen_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MahjongSoundService.instance.soundSwitch(false);
+				
+				MahjongSoundService.instance.bgSoundType = false;
+				MahjongSoundService.instance.playBg();
+				
+				this.soundOpen.visible = false;
+				this.soundClose.visible = true;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<s:Group id="roomTabletop" visible="true" x="0" y="0">
+		
+		<s:Image id="mjRoomBgImg" horizontalCenter="0"
+				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
+		<s:BorderContainer id="mahjongsNumB" left="113" top="10" width="70" height="35" backgroundAlpha="0.3"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:Label id="mahjongsNum" x="12" y="6" color="#FEE300" fontSize="18" fontWeight="bold"/>
+		</s:BorderContainer>
+		<s:Button left="10" top="10" width="308" height="55" label="如果您喜欢，点我试试完整版"
+				  chromeColor="#f6cb00" click="button1_clickHandler(event)" color="#FF0000"
+				  fontSize="20" fontWeight="bold" visible="false"/>
+		
+		<!--<mx:Image source="com/amusement/Mahjong/assets/tabletop/mj_tabletop_green.jpg"/>-->
+		
+		<view:MahjongPlayerU id="mahjongPlayerU" top="20" horizontalCenter="0">
+			
+		</view:MahjongPlayerU>
+		<view:MahjongPlayerR id="mahjongPlayerR" right="100" verticalCenter="0">
+		</view:MahjongPlayerR>
+		<view:MahjongPlayerL id="mahjongPlayerL" left="20" verticalCenter="0"/>
+		
+		<view:MahjongDice visible="false" horizontalCenter="-50" mouseChildren="false"
+						  mouseEnabled="false" verticalCenter="-50"/>
+		<view:MahjongInfo visible="false" x="220" y="451" mouseChildren="false" mouseEnabled="true"/>
+		<view:MahjongPlayerD id="mahjongPlayerD" bottom="-10" horizontalCenter="0"/>
+		<view:MahjongSign visible="false" mouseChildren="false" mouseEnabled="false"/>
+		<view:MahjongDingzhang visible="false" bottom="140" horizontalCenter="-50"/>
+		<view:MahjongWord visible="false" x="351" y="192" mouseChildren="false" mouseEnabled="false"/>
+		<view:MahjongOperation id="mahjongOperation" visible="false" right="80" bottom="90"/>
+		<!--<mx:Button id="reConnBtn" x="697" bottom="16" 
+				   skin="@Embed(source='../assets/mj_reConn_btn.png')"
+				   overSkin="@Embed(source='../assets/mj_reConn_over.png')"
+				   downSkin="@Embed(source='../assets/mj_reConn_over.png')"/>-->
+		<s:BorderContainer right="-46" width="129" height="98%" alpha="0.15"
+						   backgroundColor="#000000" cornerRadius="10" dropShadowVisible="true"
+						   verticalCenter="0">
+			
+			
+		</s:BorderContainer>
+		<model:Button id="jiangbei" y="21" right="10" skin="@Embed('assets/icon/jiangbei.png')" click="image1_clickHandler(event)" visible="true" />
+
+		<model:Button y="89" right="10" click="image4_clickHandler(event)"
+					  skin="@Embed('assets/icon/Safari2.png')" visible="true"/>
+		<model:Button y="230" right="10" click="image3_clickHandler(event)"
+					  skin="@Embed('assets/icon/Facebook.png')"/>
+		<model:Button id="soundOpen" y="158" right="10" click="soundOpen_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundOpen.png')"/>
+		<model:Button id="soundClose" y="158" right="10" visible="false" click="soundClose_clickHandler(event)"
+					  skin="@Embed('assets/icon/soundClose.png')"/>
+		
+		<model:Button y="300" right="10" id="exitImage" click="button2_clickHandler(event)"
+					  skin="@Embed('assets/icon/back.png')"/>
+		<view:MahjongTimer visible="false" horizontalCenter="-50" verticalCenter="0"/>
+		
+		<s:Button visible="false" label="我要尝试完整版" alpha="0.9" click="button1_clickHandler(event)"
+				  color="#3C3C3C" horizontalCenter="-60" verticalCenter="64"/>
+		
+		<view:MahjongBalance visible="false" horizontalCenter="0" verticalCenter="0"/>
+		<view:MahjongVideo visible="false" horizontalCenter="0" verticalCenter="0"/>
+		<view2:AboutUs id="aboutus" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view2:AboutUs>
+		
+		<view:Limit id="limit" visible="false" horizontalCenter="0" verticalCenter="0">
+		</view:Limit>
+		<s:Label id="type" left="10" top="10" color="#FFFFFF" fontSize="16" fontWeight="bold"
+				 text="您的支持可以让我们的产品更加完美！" visible="false"/>
+		
+		<s:BorderContainer id="jiesuanOperation" visible="false" width="350" height="100" backgroundAlpha="0"
+						   borderVisible="false" cornerRadius="8"
+						   horizontalCenter="0" verticalCenter="177">
+			<s:Image id="backB" x="39" y="21" source="com/amusement/Mahjong/assets/backB.png"/>
+			<s:Image id="showBalanceB" click="showBalanceB_clickHandler(event)" x="144" y="21" source="com/amusement/Mahjong/assets/showBalanceB.png"/>
+			<s:Image id="continueB" click="continueB_clickHandler(event)" x="249" y="21" source="com/amusement/Mahjong/assets/continueB.png"/>
+		</s:BorderContainer>
+		
+		
+		
+		<!--<mx:HRule x="0" y="24" width="1024" height="1"/>-->
+		<view:MahjongSeat>
+		</view:MahjongSeat>
+		
+		<s:BorderContainer id="backOperation" visible="false" width="500" height="230" backgroundAlpha="0.7" backgroundColor="#000000"
+						   cornerRadius="8" horizontalCenter="0" verticalCenter="0">
+			<s:Button x="126" y="144" width="100" label="确   定  " click="button4_clickHandler(event)"/>
+			<s:Button x="277" y="144" width="100" label="取   消" click="button3_clickHandler(event)"/>
+			<s:Label id="backInfo" y="55" width="373" height="79" color="#FFFFFF" fontSize="24"
+					 horizontalCenter="0" text=""/>
+			
+		</s:BorderContainer>
+		<s:BorderContainer left="10" top="10" width="100" height="35" backgroundAlpha="0.3"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:Label x="10" y="7" id="gameModel" color="#FFFFFF" fontSize="18" fontWeight="bold" text="单机模式"/>
+		</s:BorderContainer>
+		<s:BorderContainer id="roomType" left="10" top="47" width="100" height="35" backgroundAlpha="0.3"
+						   backgroundColor="#000000" cornerRadius="8">
+			<s:Label x="10" y="9" id="roomName" color="#FFFFFF" fontSize="18" fontWeight="bold" text="20"/>
+		</s:BorderContainer>
+		<s:Image id="guafeng" visible="false" horizontalCenter="-66"
+				 source="com/amusement/Mahjong/assets/word/guafeng.png" verticalCenter="120"/>
+		<s:Image id="xiayu" visible="false" horizontalCenter="-61"
+				 source="com/amusement/Mahjong/assets/word/xiayu.png" verticalCenter="120"/>
+	</s:Group>
+	
+	<!--</s:BorderContainer>-->
+
+</s:Group>

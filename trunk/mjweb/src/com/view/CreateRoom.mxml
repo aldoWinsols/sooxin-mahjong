@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		creationComplete="view1_creationCompleteHandler(event)"
+		width="960" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import com.control.RoomInfoControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new RoomInfoControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="main"/>
+		<s:State name="create"/>
+		<s:State name="enter"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<!--<s:ViewNavigator id="createRoomViewNavigator" x="0" y="0" width="960" height="550" lineHeight="0" title="自定义房间"/>-->
+	<s:Label includeIn="enter" x="58" y="110" text="房间名字："/>
+	<s:Label includeIn="enter" x="58" y="169" text="房间密码："/>
+	<s:TextInput id="txtRoomNo0" includeIn="enter" x="146" y="101" width="179"/>
+	<s:TextInput id="txtRoomPassword0" includeIn="enter" x="146" y="161" width="179"/>
+	<s:Button id="btnEnterGame" includeIn="enter" x="142" y="225" width="115" label="进入游戏"/>
+	<s:Label includeIn="create" x="75" y="81" text="房间名字："/>
+	<s:Label includeIn="create" x="75" y="121" text="房间密码："/>
+	<s:Label includeIn="create" x="75" y="202" text="进入点数："/>
+	<s:Label includeIn="create" x="75" y="243" text="最大翻数："/>
+	<s:Label includeIn="create" x="75" y="161" text="房间点数："/>
+	<s:TextInput id="txtRoomNo" includeIn="create" x="163" y="72" width="179"/>
+	<s:TextInput id="txtRoomPassword" includeIn="create" x="163" y="113" width="179"/>
+	<s:TextInput id="txtRoomNum" includeIn="create" x="163" y="154" width="179" restrict="0-9"/>
+	<s:TextInput id="txtEnterRoomNum" includeIn="create" x="163" y="195" width="179" restrict="0-9"/>
+	<s:TextInput id="txtMaxFanNum" includeIn="create" x="163" y="236" width="179" restrict="0-9"/>
+	<s:Button id="btnOk" includeIn="create" x="171" y="277" width="101" label="确定"/>
+	<s:Button id="btnCreateRoom" includeIn="main" x="122" y="103" width="165" label="创建房间"/>
+	<s:Button id="btnEnterRoom" includeIn="main" x="122" y="188" width="165" label="进入房间"/>
+	
+</s:Group>
