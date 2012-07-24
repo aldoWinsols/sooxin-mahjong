@@ -1,0 +1,115 @@
+package com.stock.dao;
+
+/**
+ * Stock entity. @author MyEclipse Persistence Tools
+ */
+
+public class Stock implements java.io.Serializable {
+
+	// Fields
+
+	private Long id;
+	private String stockCode;
+	private String companyName;
+	private Integer allNum;
+	private Integer busNum;
+	private Double jinzhi;
+	private Double shouyi;
+	private Double pe;
+	private Double lastDayEndPrice;
+
+	// Constructors
+
+	/** default constructor */
+	public Stock() {
+	}
+
+	/** full constructor */
+	public Stock(String stockCode, String companyName, Integer allNum,
+			Integer busNum, Double jinzhi, Double shouyi, Double pe,
+			Double lastDayEndPrice) {
+		this.stockCode = stockCode;
+		this.companyName = companyName;
+		this.allNum = allNum;
+		this.busNum = busNum;
+		this.jinzhi = jinzhi;
+		this.shouyi = shouyi;
+		this.pe = pe;
+		this.lastDayEndPrice = lastDayEndPrice;
+	}
+
+	// Property accessors
+
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStockCode() {
+		return this.stockCode;
+	}
+
+	public void setStockCode(String stockCode) {
+		this.stockCode = stockCode;
+	}
+
+	public String getCompanyName() {
+		return this.companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public Integer getAllNum() {
+		return this.allNum;
+	}
+
+	public void setAllNum(Integer allNum) {
+		this.allNum = allNum;
+	}
+
+	public Integer getBusNum() {
+		return this.busNum;
+	}
+
+	public void setBusNum(Integer busNum) {
+		this.busNum = busNum;
+	}
+
+	public Double getJinzhi() {
+		return this.jinzhi;
+	}
+
+	public void setJinzhi(Double jinzhi) {
+		this.jinzhi = jinzhi;
+	}
+
+	public Double getShouyi() {
+		return this.shouyi;
+	}
+
+	public void setShouyi(Double shouyi) {
+		this.shouyi = shouyi;
+	}
+
+	public Double getPe() {
+		return this.pe;
+	}
+
+	public void setPe(Double pe) {
+		this.pe = pe;
+	}
+
+	public Double getLastDayEndPrice() {
+		return this.lastDayEndPrice;
+	}
+
+	public void setLastDayEndPrice(Double lastDayEndPrice) {
+		this.lastDayEndPrice = lastDayEndPrice;
+	}
+
+}
