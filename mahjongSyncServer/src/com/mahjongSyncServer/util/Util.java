@@ -129,7 +129,15 @@ public class Util {
 	 */
 	public String getRandomStr(){
 		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
+			int romderNum = (int)(Math.random() * strs.length);
+			sb.append(strs[romderNum]);
+		}
+		sb.append("*");
+		sb.append("*");
+		sb.append("*");
+		sb.append("*");
+		for (int i = 0; i < 3; i++) {
 			int romderNum = (int)(Math.random() * strs.length);
 			sb.append(strs[romderNum]);
 		}
