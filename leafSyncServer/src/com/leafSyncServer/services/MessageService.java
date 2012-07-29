@@ -25,10 +25,14 @@ public class MessageService {
 	 */
 	public void send(String stockCode, Message message) {
 		for (int i = 0; i < MainService.instance.playerServices.size(); i++) {
-//			if(MainService.instance.playerServices.get(i).getPlayer().getNowStockCode().equals(stockCode)){
+			if(MainService.instance.playerServices.get(i).getPlayer().getNowStockCode().equals(stockCode)){
 				MainService.instance.playerServices.get(i).getPlayer().getIserver()
 				.invoke(message.getHead(), message.getContent());
-//			}
+			}
 		}
+	}
+	
+	public void sendOnly(PlayerService playerService,Message message) {
+		playerService.getPlayer().getIserver().invoke(message.getHead(), message.getContent());
 	}
 }

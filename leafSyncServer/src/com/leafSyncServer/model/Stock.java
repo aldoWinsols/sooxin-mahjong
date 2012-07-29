@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Stock {
 	public String stockCode = "";// 股票代码
+	public String stockName = "";//股票名称
 	public int allStockNum = 0;// 总股本
 	public int liutongStockNum = 0;// 流通
 	public double shouyi = 0.0; // 收益
@@ -57,6 +58,14 @@ public class Stock {
 
 	public void setStockCode(String stockCode) {
 		this.stockCode = stockCode;
+	}
+
+	public String getStockName() {
+		return stockName;
+	}
+
+	public void setStockName(String stockName) {
+		this.stockName = stockName;
 	}
 
 	public int getAllStockNum() {
