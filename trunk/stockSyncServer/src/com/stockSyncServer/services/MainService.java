@@ -23,6 +23,7 @@ public class MainService {
 		for (int i = 0; i < stocks.size(); i++) {
 			StockService stockService = new StockService();
 			stockService.stock.setStockCode(stocks.get(i).getStockCode());// 股票代码
+			stockService.stock.setStockName(stocks.get(i).getStockName());// 股票名称
 			stockService.stock.setAllStockNum(stocks.get(i).getAllNum());// 总股本
 			stockService.stock.setLiutongStockNum(stocks.get(i).getBusNum());// 流通股本
 			stockService.stock.setShouyi(stocks.get(i).getShouyi());// 收益
@@ -48,7 +49,7 @@ public class MainService {
 		ArrayList<com.stockSyncServer.model.Stock> stocks = new ArrayList<com.stockSyncServer.model.Stock>();
 		for (int i = 0; i < stockServices.size(); i++) {
 			com.stockSyncServer.model.Stock sk = stockServices.get(i).stock;
-			leafService.initLeaf(new Object[] { sk.stockCode, sk.allStockNum,
+			leafService.initLeaf(new Object[] { sk.stockCode, sk.stockName,sk.allStockNum,
 					sk.liutongStockNum, sk.shouyi, sk.PE, sk.lastDayEndPrice,
 					sk.todayStartPrice, sk.topPrice, sk.bottomPrice,
 					sk.nowPrice, sk.nowCjNum, JSONArray.fromObject(sk.cjhistorys), JSONArray.fromObject(sk.buyOrders),
@@ -81,5 +82,4 @@ public class MainService {
 			}
 		}
 	}
-
 }

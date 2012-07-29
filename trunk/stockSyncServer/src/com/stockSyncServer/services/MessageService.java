@@ -25,7 +25,7 @@ public class MessageService {
 	 *            消息类
 	 * @return
 	 */
-	public void broadcast(Object[] obj) {
+	public synchronized void broadcast(Object[] obj) {
 		for(int i=0; i<MainService.instance.leafServices.size(); i++){
 			MainService.instance.leafServices.get(i).updateJiaoyi(obj);
 		}
