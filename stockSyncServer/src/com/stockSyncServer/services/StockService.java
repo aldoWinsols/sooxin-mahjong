@@ -1,9 +1,11 @@
 package com.stockSyncServer.services;
 
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -13,6 +15,7 @@ import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.Stock;
 import com.stockSyncServer.util.ComparatorAsc;
 import com.stockSyncServer.util.ComparatorDesc;
+import com.stockSyncServer.util.NumberFomart;
 
 public class StockService {
 
@@ -33,6 +36,7 @@ public class StockService {
 
 	private String cjSort = "";
 
+	private ArrayList<Cjhistory> thisCjhistoryS = new ArrayList<Cjhistory>();
 	public synchronized void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
 			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
@@ -46,6 +50,7 @@ public class StockService {
 					cjhistory
 							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
 									.get(0).getWtPrice()) / 2);
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
 					stock.cjhistorys.add(cjhistory);
 
@@ -67,20 +72,7 @@ public class StockService {
 					stock.buyOrders.remove(0);
 					stock.saleOrders.remove(0);
 
-					String cjhistoryS = cjhistory.getCjTime().getHours() + ":"
-							+ cjhistory.getCjTime().getMinutes() + ","
-							+ cjhistory.getCjPrice() + ","
-							+ cjhistory.getCjNum() + ","
-							+ cjhistory.getCjSort();
-					MessageService.instance
-							.broadcast(new Object[] { stock.stockCode,
-									stock.getTopPrice(),
-									stock.getBottomPrice(),
-									stock.getNowPrice(), stock.getNowCjNum(),
-									JSONArray.fromObject(stock.buyOrders),
-									JSONArray.fromObject(stock.saleOrders),
-									cjhistoryS });
-
+					thisCjhistoryS.add(cjhistory);
 					balance();
 				} else if (stock.buyOrders.get(0).getWtNum() > stock.saleOrders
 						.get(0).getWtNum()) {
@@ -91,6 +83,7 @@ public class StockService {
 					cjhistory
 							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
 									.get(0).getWtPrice()) / 2);
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
 					stock.cjhistorys.add(cjhistory);
 
@@ -115,20 +108,7 @@ public class StockService {
 									- stock.saleOrders.get(0).getWtNum());
 					stock.saleOrders.remove(0);
 
-					String cjhistoryS = cjhistory.getCjTime().getHours() + ":"
-							+ cjhistory.getCjTime().getMinutes() + ","
-							+ cjhistory.getCjPrice() + ","
-							+ cjhistory.getCjNum() + ","
-							+ cjhistory.getCjSort();
-					MessageService.instance
-							.broadcast(new Object[] { stock.stockCode,
-									stock.getTopPrice(),
-									stock.getBottomPrice(),
-									stock.getNowPrice(), stock.getNowCjNum(),
-									JSONArray.fromObject(stock.buyOrders),
-									JSONArray.fromObject(stock.saleOrders),
-									cjhistoryS });
-
+					thisCjhistoryS.add(cjhistory);
 					balance();
 				} else {
 
@@ -138,6 +118,7 @@ public class StockService {
 					cjhistory
 							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
 									.get(0).getWtPrice()) / 2);
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
 					stock.cjhistorys.add(cjhistory);
 
@@ -162,40 +143,35 @@ public class StockService {
 									- stock.buyOrders.get(0).getWtNum());
 					stock.buyOrders.remove(0);
 
-					String cjhistoryS = cjhistory.getCjTime().getHours() + ":"
-							+ cjhistory.getCjTime().getMinutes() + ","
-							+ cjhistory.getCjPrice() + ","
-							+ cjhistory.getCjNum() + ","
-							+ cjhistory.getCjSort();
-					MessageService.instance
-							.broadcast(new Object[] { stock.stockCode,
-									stock.getTopPrice(),
-									stock.getBottomPrice(),
-									stock.getNowPrice(), stock.getNowCjNum(),
-									JSONArray.fromObject(stock.buyOrders),
-									JSONArray.fromObject(stock.saleOrders),
-									cjhistoryS });
-
+					thisCjhistoryS.add(cjhistory);
 					balance();
 				}
 			} else {
-				MessageService.instance.broadcast(new Object[] {
-						stock.stockCode, stock.getTopPrice(),
-						stock.getBottomPrice(), stock.getNowPrice(),
-						stock.getNowCjNum(),
+				MessageService.instance
+				.broadcast(new Object[] { stock.stockCode,
+						stock.getTopPrice(),
+						stock.getBottomPrice(),
+						stock.getNowPrice(), stock.getNowCjNum(),
 						JSONArray.fromObject(stock.buyOrders),
-						JSONArray.fromObject(stock.saleOrders), null });
+						JSONArray.fromObject(stock.saleOrders),
+						JSONArray.fromObject(thisCjhistoryS) });
+				thisCjhistoryS.removeAll(thisCjhistoryS);
 			}
 		} else {
-			MessageService.instance.broadcast(new Object[] { stock.stockCode,
-					stock.getTopPrice(), stock.getBottomPrice(),
+			MessageService.instance
+			.broadcast(new Object[] { stock.stockCode,
+					stock.getTopPrice(),
+					stock.getBottomPrice(),
 					stock.getNowPrice(), stock.getNowCjNum(),
 					JSONArray.fromObject(stock.buyOrders),
-					JSONArray.fromObject(stock.saleOrders), null });
+					JSONArray.fromObject(stock.saleOrders),
+					JSONArray.fromObject(thisCjhistoryS) });
+			thisCjhistoryS.removeAll(thisCjhistoryS);
 		}
 	}
 
-	public void buy(String playerName, double wtPrice, int wtNum) {
+	
+	public synchronized void buy(String playerName, double wtPrice, int wtNum) {
 		cjSort = "B";
 
 		Order order = new Order();
@@ -208,7 +184,7 @@ public class StockService {
 		balance();
 	}
 
-	public void sale(String playerName, double wtPrice, int wtNum) {
+	public synchronized void sale(String playerName, double wtPrice, int wtNum) {
 		cjSort = "S";
 
 		Order order = new Order();
