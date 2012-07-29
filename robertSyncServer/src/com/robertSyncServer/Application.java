@@ -1,0 +1,72 @@
+package com.robertSyncServer;
+
+import java.util.ArrayList;
+
+import org.red5.server.adapter.ApplicationAdapter;
+import org.red5.server.api.IConnection;
+import org.red5.server.api.IScope;
+
+import com.robertSyncServer.model.Cjhistory;
+import com.robertSyncServer.model.Order;
+import com.robertSyncServer.services.JobService;
+import com.robertSyncServer.services.MainService;
+import com.robertSyncServer.services.RemoteService;
+
+public class Application extends ApplicationAdapter {
+
+	@Override
+	public synchronized boolean connect(IConnection conn, IScope scope,
+			Object[] params) {
+		// TODO Auto-generated method stub
+		return super.connect(conn, scope, params);
+	}
+
+	@Override
+	public synchronized void disconnect(IConnection conn, IScope scope) {
+		// TODO Auto-generated method stub
+		super.disconnect(conn, scope);
+	}
+
+	@Override
+	public synchronized boolean start(IScope scope) {
+		// TODO Auto-generated method stub
+		MainService.getInstance();
+		RemoteService.getInstance();
+		
+		String id = addScheduledJobAfterDelay(1000, new JobService(),10000);
+		scope.setAttribute("Myjob", id);
+		
+		return super.start(scope);
+	}
+
+	@Override
+	public synchronized void stop(IScope scope) {
+		// TODO Auto-generated method stub
+		String id = (String) scope.getAttribute("Myjob");
+		removeScheduledJob(id);
+		super.stop(scope);
+	}
+	
+	public void initLeaf(String stockCode,String stockName, int allStockNum,
+			int liutongStockNum, double shouyi, double PE,
+			double lastDayEndPrice, double todayStartPrice, double topPrice,
+			double bottomPrice, double nowPrice, double nowCjNum,
+			ArrayList<Cjhistory> cjhistorys, ArrayList<Order> buyOrders,
+			ArrayList<Order> saleOrders) {
+
+		MainService.instance.init(stockCode, stockName,allStockNum, liutongStockNum,
+				shouyi, PE, lastDayEndPrice, todayStartPrice, topPrice,
+				bottomPrice, nowPrice, nowCjNum, cjhistorys, buyOrders,
+				saleOrders);
+
+	}
+	
+	public void updateJiaoyi(String stockCode, double topPrice,
+			double bottomPrice, double nowPrice, double nowCjNum,
+			ArrayList<Order> buyOrders, ArrayList<Order> saleOrders,
+			ArrayList<Cjhistory> thisCjhistoryS) {
+		MainService.instance.updateJiaoyi(stockCode, topPrice, bottomPrice,
+				nowPrice, nowCjNum, buyOrders, saleOrders, thisCjhistoryS);
+	}
+
+}
