@@ -7,8 +7,8 @@ public class RemoteService {
 
 	public boolean handclasp = false;//握手状态
 	
-	String localUrl="http://127.0.0.1:5080/leafSyncServer/gateway";
-	String url = "http://127.0.0.1:5080/stockSyncServer/gateway";
+	String localUrl="http://192.168.1.2:5080/leafSyncServer/gateway";
+	String url = "http://192.168.1.2:5080/stockSyncServer/gateway";
 	RemotingClient client;
 	public static RemoteService instance;
 

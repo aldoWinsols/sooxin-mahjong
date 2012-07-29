@@ -12,15 +12,15 @@ public class JobService implements IScheduledJob {
 			throws CloneNotSupportedException {
 
 		System.out.println("=======================");
-		for (int i = 0; i < MainService.instance.stockServices.size(); i++) {
-			for (int j = 0; j < MainService.instance.playerServices.size(); j++) {
-				if (MainService.instance.stockServices.get(i).stock
-						.getStockCode().equals(
-								MainService.instance.playerServices.get(j)
-										.getPlayer().getNowStockCode())) {
+		for (int j = 0; j < MainService.instance.playerServices.size(); j++) {
+			if(MainService.instance.playerServices.get(j)
+					.getPlayer().getNowStockCode() == ""){
+				for (int i = 0; i < MainService.instance.stockServices.size(); i++) {
 					Message message = new Message();
 					message.setHead("updateI");
 					message.setContent(new Object[] {
+							MainService.instance.stockServices.get(i).stock
+							.getStockCode(),
 							MainService.instance.stockServices.get(i).stock
 									.getTopPrice(),
 							MainService.instance.stockServices.get(i).stock
@@ -34,8 +34,32 @@ public class JobService implements IScheduledJob {
 							.getIserver()
 							.invoke(message.getHead(), message.getContent());
 				}
+			}else{
+				for (int i = 0; i < MainService.instance.stockServices.size(); i++) {
+					if (MainService.instance.stockServices.get(i).stock
+							.getStockCode().equals(
+									MainService.instance.playerServices.get(j)
+											.getPlayer().getNowStockCode())) {
+						Message message = new Message();
+						message.setHead("updateI");
+						message.setContent(new Object[] {
+								MainService.instance.stockServices.get(i).stock
+								.getStockCode(),
+								MainService.instance.stockServices.get(i).stock
+										.getTopPrice(),
+								MainService.instance.stockServices.get(i).stock
+										.getBottomPrice(),
+								MainService.instance.stockServices.get(i).stock
+										.getNowPrice(),
+								MainService.instance.stockServices.get(i).stock
+										.getNowCjNum() });
+
+						MainService.instance.playerServices.get(j).getPlayer()
+								.getIserver()
+								.invoke(message.getHead(), message.getContent());
+					}
+				}
 			}
 		}
 	}
-
 }

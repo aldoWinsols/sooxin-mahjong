@@ -1,9 +1,8 @@
 package com.leafSyncServer;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
-
-import net.sf.json.JSONArray;
 
 import org.red5.server.adapter.ApplicationAdapter;
 import org.red5.server.api.IConnection;
@@ -12,7 +11,6 @@ import org.red5.server.api.service.IServiceCapableConnection;
 
 import com.leafSyncServer.model.Cjhistory;
 import com.leafSyncServer.model.Order;
-import com.leafSyncServer.model.Stock;
 import com.leafSyncServer.services.JobService;
 import com.leafSyncServer.services.MainService;
 import com.leafSyncServer.services.MessageService;
@@ -89,23 +87,27 @@ public class Application extends ApplicationAdapter {
 	public void updateJiaoyi(String stockCode, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Order> buyOrders, ArrayList<Order> saleOrders,
-			String cjhistoryS) {
+			ArrayList<Cjhistory> thisCjhistoryS) {
 		MainService.instance.updateJiaoyi(stockCode, topPrice, bottomPrice,
-				nowPrice, nowCjNum, buyOrders, saleOrders, cjhistoryS);
+				nowPrice, nowCjNum, buyOrders, saleOrders, thisCjhistoryS);
 	}
 
-	public void initLeaf(String stockCode, int allStockNum,
+	public void initLeaf(String stockCode,String stockName, int allStockNum,
 			int liutongStockNum, double shouyi, double PE,
 			double lastDayEndPrice, double todayStartPrice, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Cjhistory> cjhistorys, ArrayList<Order> buyOrders,
 			ArrayList<Order> saleOrders) {
 
-		MainService.instance.init(stockCode, allStockNum, liutongStockNum,
+		MainService.instance.init(stockCode, stockName,allStockNum, liutongStockNum,
 				shouyi, PE, lastDayEndPrice, todayStartPrice, topPrice,
 				bottomPrice, nowPrice, nowCjNum, cjhistorys, buyOrders,
 				saleOrders);
 
+	}
+	
+	public void dealStock(String playerName, String stockCode){
+		MainService.instance.dealStock(playerName, stockCode);
 	}
 
 	public void update() {

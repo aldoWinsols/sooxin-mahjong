@@ -2,6 +2,7 @@ package com.leafSyncServer.services;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.red5.server.api.service.IServiceCapableConnection;
 
@@ -19,7 +20,7 @@ public class MainService {
 		playerServices = new ArrayList<PlayerService>();
 	}
 	
-	public void init(String stockCode, int allStockNum,
+	public void init(String stockCode, String stockName,int allStockNum,
 			int liutongStockNum, double shouyi, double PE,
 			double lastDayEndPrice, double todayStartPrice, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
@@ -28,6 +29,7 @@ public class MainService {
 		
 		StockService stockService = new StockService();
 		stockService.stock.setStockCode(stockCode);
+		stockService.stock.setStockName(stockName);
 		stockService.stock.setAllStockNum(allStockNum);
 		stockService.stock.setLiutongStockNum(liutongStockNum);
 		stockService.stock.setShouyi(shouyi);
@@ -57,9 +59,12 @@ public class MainService {
 		playerService.getPlayer().setPlayerName(playerName);
 		playerService.getPlayer().setIserver(iserver);
 		playerService.getPlayer().setClientID(iserver.getClient().getId());
-		
-		playerService.getPlayer().setNowStockCode("500001");
 		playerServices.add(playerService);
+		
+		Message message = new Message();
+		message.setHead("initI");
+		message.setContent(new Object[]{stockServices});
+		MessageService.instance.sendOnly(playerService, message);
 	}
 
 	public void removePlayerService(IServiceCapableConnection iserver) {
@@ -73,9 +78,8 @@ public class MainService {
 	public void updateJiaoyi(String stockCode, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Order> buyOrders, ArrayList<Order> saleOrders,
-			String cjhistoryS){
-		Cjhistory cjhistory = null;
-		
+			ArrayList<Cjhistory> thisCjhistoryS){
+
 		for(int i=0; i<stockServices.size(); i++){
 			if(stockServices.get(i).stock.stockCode.equals(stockCode)){
 				stockServices.get(i).stock.topPrice = topPrice;
@@ -85,25 +89,35 @@ public class MainService {
 				stockServices.get(i).stock.buyOrders = buyOrders;
 				stockServices.get(i).stock.saleOrders = saleOrders;
 				
-				if(cjhistoryS != null){
-					String[] arr = cjhistoryS.split(",");
-					
-					cjhistory = new Cjhistory();
-					cjhistory.setCjTime(arr[0]);
-					cjhistory.setCjPrice(Double.valueOf(arr[1]));
-					cjhistory.setCjNum(Integer.valueOf(arr[2]));
-					cjhistory.setCjSort(arr[3]);
-					
-					stockServices.get(i).stock.cjhistorys.add(cjhistory);
+				if(thisCjhistoryS.size()>1){
+					stockServices.get(i).stock.cjhistorys.addAll(thisCjhistoryS);
 				}
-				
 			}
 		}
 		
 		Message message = new Message();
 		message.setHead("updateJiaoyiI");
-		message.setContent(new Object[]{buyOrders,saleOrders,cjhistory});
+		message.setContent(new Object[]{buyOrders,saleOrders,thisCjhistoryS});
 		MessageService.instance.send(stockCode, message);
+	}
+	
+	public void dealStock(String playerName, String stockCode){
+		for(int i=0; i<this.playerServices.size(); i++){
+			if(playerServices.get(i).getPlayer().getPlayerName().equals(playerName)){
+				playerServices.get(i).getPlayer().setNowStockCode(stockCode);
+				
+				
+				//初始化
+				for(int j=0; j<stockServices.size();j++){
+					if(stockServices.get(j).stock.getStockCode().equals(stockCode)){
+						Message message = new Message();
+						message.setHead("updateJiaoyiI");
+						message.setContent(new Object[]{stockServices.get(j).stock.buyOrders,stockServices.get(j).stock.saleOrders,stockServices.get(j).stock.cjhistorys});
+						MessageService.instance.send(stockCode, message);
+					}
+				}
+			}
+		}
 	}
 
 }
