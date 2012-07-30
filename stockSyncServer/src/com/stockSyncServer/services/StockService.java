@@ -37,6 +37,8 @@ public class StockService {
 	private String cjSort = "";
 
 	private ArrayList<Cjhistory> thisCjhistoryS = new ArrayList<Cjhistory>();
+	private ArrayList<Cjhistory> msgCjhistoryS = new ArrayList<Cjhistory>();
+	
 	public synchronized void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
 			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
@@ -48,11 +50,10 @@ public class StockService {
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
 					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
 					cjhistory
-							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
-									.get(0).getWtPrice()) / 2);
+							.setCjPrice(stock.saleOrders.get(0).getWtPrice());
 					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-					stock.cjhistorys.add(cjhistory);
+//					stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -79,13 +80,17 @@ public class StockService {
 
 					Cjhistory cjhistory = new Cjhistory();
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
-					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
-					cjhistory
-							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
-									.get(0).getWtPrice()) / 2);
+					cjhistory.setCjNum(stock.saleOrders.get(0).getWtNum());
+					
+					if(cjSort.equals("B")){
+						cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
+					}else{
+						cjhistory.setCjPrice(stock.buyOrders.get(0).getWtPrice());
+					}
+					
 					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-					stock.cjhistorys.add(cjhistory);
+//					stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -114,13 +119,16 @@ public class StockService {
 
 					Cjhistory cjhistory = new Cjhistory();
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
-					cjhistory.setCjNum(stock.saleOrders.get(0).getWtNum());
-					cjhistory
-							.setCjPrice((stock.buyOrders.get(0).getWtPrice() + stock.saleOrders
-									.get(0).getWtPrice()) / 2);
+					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
+					
+					if(cjSort.equals("B")){
+						cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
+					}else{
+						cjhistory.setCjPrice(stock.buyOrders.get(0).getWtPrice());
+					}
 					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-					stock.cjhistorys.add(cjhistory);
+//					stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -147,6 +155,20 @@ public class StockService {
 					balance();
 				}
 			} else {
+				if(thisCjhistoryS.size()>0){
+					msgCjhistoryS.add(new Cjhistory());
+					
+					msgCjhistoryS.get(0).setCjTime(new Timestamp(new Date().getTime()));
+					for(int i=0; i<thisCjhistoryS.size();i++){
+						msgCjhistoryS.get(0).setCjNum(msgCjhistoryS.get(0).getCjNum() + thisCjhistoryS.get(i).getCjNum());
+						msgCjhistoryS.get(0).setCjPrice(thisCjhistoryS.get(i).getCjPrice());
+						msgCjhistoryS.get(0).setCjSort(cjSort);
+					}
+					
+					stock.cjhistorys.add(msgCjhistoryS.get(0));
+					thisCjhistoryS.removeAll(thisCjhistoryS);
+				}
+				
 				MessageService.instance
 				.broadcast(new Object[] { stock.stockCode,
 						stock.getTopPrice(),
@@ -154,10 +176,25 @@ public class StockService {
 						stock.getNowPrice(), stock.getNowCjNum(),
 						JSONArray.fromObject(stock.buyOrders),
 						JSONArray.fromObject(stock.saleOrders),
-						JSONArray.fromObject(thisCjhistoryS) });
-				thisCjhistoryS.removeAll(thisCjhistoryS);
+						JSONArray.fromObject(msgCjhistoryS) });
+				
+				msgCjhistoryS.removeAll(msgCjhistoryS);
 			}
 		} else {
+			if(thisCjhistoryS.size()>0){
+				msgCjhistoryS.add(new Cjhistory());
+				
+				msgCjhistoryS.get(0).setCjTime(new Timestamp(new Date().getTime()));
+				for(int i=0; i<thisCjhistoryS.size();i++){
+					msgCjhistoryS.get(0).setCjNum(msgCjhistoryS.get(0).getCjNum() + thisCjhistoryS.get(i).getCjNum());
+					msgCjhistoryS.get(0).setCjPrice(thisCjhistoryS.get(i).getCjPrice());
+					msgCjhistoryS.get(0).setCjSort(cjSort);
+				}
+				
+				stock.cjhistorys.add(msgCjhistoryS.get(0));
+				thisCjhistoryS.removeAll(thisCjhistoryS);
+			}
+			
 			MessageService.instance
 			.broadcast(new Object[] { stock.stockCode,
 					stock.getTopPrice(),
@@ -165,8 +202,9 @@ public class StockService {
 					stock.getNowPrice(), stock.getNowCjNum(),
 					JSONArray.fromObject(stock.buyOrders),
 					JSONArray.fromObject(stock.saleOrders),
-					JSONArray.fromObject(thisCjhistoryS) });
-			thisCjhistoryS.removeAll(thisCjhistoryS);
+					JSONArray.fromObject(msgCjhistoryS) });
+			
+			msgCjhistoryS.removeAll(msgCjhistoryS);
 		}
 	}
 
