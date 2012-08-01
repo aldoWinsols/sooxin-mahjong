@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				width="200" height="30" creationComplete="itemrenderer1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.events.FlexEvent;
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				cjTimeL.text = data.cjTime.hours+":"+data.cjTime.minutes;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Rect width="100%" height="100%">                              
+		<s:fill>
+			<s:SolidColor color="#000000"/>
+		</s:fill>
+	</s:Rect>
+	<s:Label id="cjTimeL" x="10" y="10" color="#C0C0C0" fontSize="14" fontWeight="bold"
+			 text=""/>
+	<s:Label id="cjPriceL" x="84" y="10" color="#00E600" fontSize="14" fontWeight="bold"
+			 text="{data.cjPrice}"/>
+	<s:Label id="cjNumL" x="135" y="10" color="#C0C000" fontSize="14" fontWeight="bold"
+			 text="{data.cjNum}"/>
+	<s:Label id="cjSortL" x="175" y="10" color="#FF0000" fontSize="14" fontWeight="bold"
+			 text="{data.cjSort}"/>
+	
+</s:ItemRenderer>

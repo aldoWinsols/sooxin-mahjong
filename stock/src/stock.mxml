@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   addedToStage="application1_addedToStageHandler(event)"
+			   xmlns:view="com.stock.view.*">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function application1_addedToStageHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+				stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging );
+				stage.setOrientation(StageOrientation.ROTATED_RIGHT);
+			}
+			
+			private function onOrientationChanging(event:StageOrientationEvent):void 
+			{
+				if(event.afterOrientation == StageOrientation.UPSIDE_DOWN || 
+					event.afterOrientation == StageOrientation.UNKNOWN ||
+					event.afterOrientation == StageOrientation.DEFAULT)
+				{
+					event.preventDefault();
+				}
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<view:Main x="0" y="-1">
+	</view:Main>
+</s:Application>
