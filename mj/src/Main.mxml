@@ -91,7 +91,7 @@
 			{
 				// TODO Auto-generated method stub
 				if(MainSenceControl.instance && MainSenceControl.instance.mainSence.currentState == "lianwangHome"){
-					MainSenceControl.instance.mainButLWClickHandler(null);
+//					MainSenceControl.instance.mainButLWClickHandler(null);
 				}
 				
 				try{

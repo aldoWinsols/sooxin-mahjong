@@ -30,16 +30,18 @@ package com.control
 			this.lianwangHome.currentState = "duihuan";
 			this.lianwangHome.currentState = "chongzhi";
 			this.lianwangHome.currentState = "main";
+			this.lianwangHome.currentState = "reg";
+			this.lianwangHome.currentState = "login";
 			
 			MainPlayerService.getInstance();
 			MainSyncService.instance;
 			
 			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
 			
-			if(!ConfigService.instance.config.hideJiangpin){
-				this.lianwangHome.mainLiwuB.visible = true;
-				this.lianwangHome.mainHomeB.x = 489;
-			}
+//			if(!ConfigService.instance.config.hideJiangpin){
+//				this.lianwangHome.mainLiwuB.visible = true;
+//				this.lianwangHome.mainHomeB.x = 489;
+//			}
 			//-----------------------------------------------------------------
 			
 			StoreKit.create();
@@ -79,7 +81,7 @@ package com.control
 		}
 		
 		private function backBClickHandler(e:MouseEvent):void{
-			MainSenceControl.instance.mainSence.currentState = "login";
+			this.lianwangHome.currentState = "login";
 		}
 		
 		
@@ -137,25 +139,25 @@ package com.control
 			switch(e.productId)
 			{
 				case "com.sooxin.mahjongM.d6":
-					MainPlayerService.getInstance().chongzhi(600);
+					MainPlayerService.getInstance().chongzhi(600,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d12":
-					MainPlayerService.getInstance().chongzhi(1300);
+					MainPlayerService.getInstance().chongzhi(1300,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d18":
-					MainPlayerService.getInstance().chongzhi(2000);
+					MainPlayerService.getInstance().chongzhi(2000,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d25":
-					MainPlayerService.getInstance().chongzhi(2900);
+					MainPlayerService.getInstance().chongzhi(2900,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d30":
-					MainPlayerService.getInstance().chongzhi(3800);
+					MainPlayerService.getInstance().chongzhi(3800,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d50":
-					MainPlayerService.getInstance().chongzhi(7000);
+					MainPlayerService.getInstance().chongzhi(7000,e.receipt);
 					break;
 				case "com.sooxin.mahjongM.d100":
-					MainPlayerService.getInstance().chongzhi(15000);
+					MainPlayerService.getInstance().chongzhi(15000,e.receipt);
 					break;
 				default:
 					// we don't do anything for unknown items.

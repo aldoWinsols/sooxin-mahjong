@@ -42,85 +42,28 @@ package com.control
 			DataService.instance;
 			
 			MainPlayerService.getInstance();
-			
-			this.mainSence.currentState = "login";
+
 			this.mainSence.currentState = "lianwangHome";
 //			this.mainSence.currentState = "verifier";
 			this.mainSence.currentState = "gameing";
 			
-			this.mainSence.currentState = "login";
+			this.mainSence.currentState = "lianwangHome";
+			
+			ConfigService.getInstance();
+			RemoteService.getInstance().init();
+			ConfigService.instance.getConfig();
 			
 //			mobileConfig();
 			
-			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
+//			this.mainSence.mainButDJ.addEventListener(MouseEvent.CLICK,mainButDJClickHandler);
 //			this.mainSence.mainButQQ.addEventListener(MouseEvent.CLICK,mainButQQClickHandler);
-			this.mainSence.mainButLW.addEventListener(MouseEvent.CLICK,mainButLWClickHandler);
+//			this.mainSence.mainButLW.addEventListener(MouseEvent.CLICK,mainButLWClickHandler);
 //			this.mainSence.verifierCommitB.addEventListener(MouseEvent.CLICK,verifierCommitBClickHandler);
 //			this.mainSence.verifierCancelB.addEventListener(MouseEvent.CLICK,verifierCancelBClickHandler);
 		}
 
 		
-		var request:IRequestOperation;
-		public function mobileConfig():void
-		{
-			//配置微博核心参数
-			var configObj:WeiboConfig = WeiboConfig.getInstance();
-			configObj.initialize(appKey,appSecret);
-			if(configObj.oauthToken != null && configObj.oauthSecret != null){
-				hasAccessToken = true;
-			}
-				
-//			if(hasAccessToken)
-//			{
-//				this.mainSence.currentState = "lianwangHome";
-//			}
-//			else
-//			{
-//				//获取未授权的Token
-//				authorizeAPI = new Authorize();
-//				var request:IRequestOperation = authorizeAPI.requestToken();
-//				request.addEventListener(Event.COMPLETE,requestTokenHandler);
-//				request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
-//			}
-		}
 		
-		private function requestTokenHandler(event:Event):void
-		{
-			this.mainSence.enabled = true;
-		}
-		
-		/**
-		 * 已获取AccessToken,进入下一个页面
-		 * @param event
-		 */		
-		private function accessTokenHandler(event:Event):void
-		{
-			this.mainSence.currentState = "lianwangHome";
-			this.mainSence.enabled = true;
-		}
-		
-//		private function errorHandler(e:IOErrorEvent):void
-//		{
-//			Alert.show("登录失败，请尝试重新输入或重新授权操作！"+e.toString());
-//			this.mainSence.verInput.text = "";
-//			this.mainSence.enabled = true;
-//		}
-//		
-//		protected function verifierCommitBClickHandler(event:MouseEvent):void
-//		{
-//			if(this.mainSence.verInput.text == "" || this.mainSence.verInput.text == null)
-//				return;
-//			var request:IRequestOperation;
-//			var oauthVerifier:String = this.mainSence.verInput.text;
-//			request = authorizeAPI.accessToken(oauthVerifier);
-//			request.addEventListener(Event.COMPLETE,accessTokenHandler);
-//			request.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
-//			this.mainSence.enabled = false;
-//		}
-		
-		private function verifierCancelBClickHandler(e:MouseEvent):void{
-			this.mainSence.currentState = "login";
-		}
 		
 		public function mainButDJClickHandler(e:MouseEvent):void{
 
@@ -151,51 +94,6 @@ package com.control
 			}
 			
 		}
-		
-		
-		private function logBClickHandler(e:MouseEvent):void{
-			
-			if(GameCenterService.instance.playerName == ""){
-				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-				return;
-			}
-			
-			this.mainSence.currentState = "log";
-			MainPlayerService.getInstance().login();
-		}
-		
-		public function mainButLWClickHandler(e:MouseEvent):void{
-			
-//			if(GameCenterService.instance.playerName == ""){
-//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-//				return;
-//			}
-			
-			mainSence.loginWaitInfo.visible = true;
-			ConfigService.getInstance();
-			
-			if(ConfigService.instance.config.mainConnUrl == ""){
-				RemoteService.getInstance().init();
-				ConfigService.instance.getConfig();
-			}else{
-				MainPlayerService.getInstance().login();
-			}
-			
-			
-			
-//			if(ConfigService.instance.config.mainConnUrl == ""){
-//				RemoteService.instance.init();
-//				ConfigService.instance.getConfig();
-//			}
-//			
-//			if(ConfigService.instance.config.mainConnUrl == ""){
-//				Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
-//				return;
-//			}
-			
-			
-//			MainPlayerService.getInstance().login();
-			
-		}
+
 	}
 }

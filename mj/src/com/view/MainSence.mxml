@@ -5,7 +5,7 @@
 		xmlns:Mahjong="com.amusement.Mahjong.*"
 		xmlns:model="com.model.*"
 		width="1024" height="768" addedToStage="view1_addedToStageHandler(event)"
-		creationComplete="group1_creationCompleteHandler(event)" currentState="login">
+		creationComplete="group1_creationCompleteHandler(event)" currentState="lianwangHome">
 	<fx:Script>
 		<![CDATA[
 			import com.control.MainSenceControl;
@@ -43,7 +43,6 @@
 		]]>
 	</fx:Script>
 	<s:states>
-		<s:State name="login"/>
 		<s:State name="lianwangHome"/>
 		<s:State name="gameing"/>
 	</s:states>
@@ -61,19 +60,6 @@
 	</view:LianwangHome>
 	
 	<s:Group id="menu" width="100%" height="100%">
-		<s:Label includeIn="login" x="250" y="584" color="#B0B0B0" fontSize="14"
-				 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
-		<s:Label includeIn="login" x="424" y="612" color="#B0B0B0" fontSize="14" text="如有投诉或建议,请联系我们."/>
-		
-		<s:Image includeIn="login" horizontalCenter="40"
-				 source="assets/danji_logo.png" verticalCenter="-80"/>
-		<model:Button id="mainButLW" includeIn="login" x="498" y="400"
-					  skin="@Embed('assets/but/mainButLW.png')"/>
-		<model:Button id="mainButDJ" includeIn="login" x="328" y="400"
-					  skin="@Embed('assets/but/mainButDJ.png')"/>
-		<view:Notice includeIn="login" x="287" y="478" alpha="0.5">
-		</view:Notice>
-		
 		<s:BorderContainer includeIn="gameing" id="waitInfo" width="314" height="50" backgroundAlpha="0.5"
 						   backgroundColor="#000000" cornerRadius="8" horizontalCenter="0"
 						   verticalCenter="0">
@@ -81,12 +67,8 @@
 			
 		</s:BorderContainer>
 		
-		<s:BorderContainer id="loginWaitInfo" visible="false" backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
-						   width.login="400" height.login="100" horizontalCenter.login="0"
-						   verticalCenter.login="0">
-			<s:Label includeIn="login" x="57" y="37" color="#FFFFFF" fontSize="24"
-					 text="正在连接服务器，请等候..."/>
-			
+		<s:BorderContainer id="loginWaitInfo" visible="false" backgroundAlpha="0.7"
+						   backgroundColor="#000000" cornerRadius="8">
 		</s:BorderContainer>
 	</s:Group>
 </s:View>
