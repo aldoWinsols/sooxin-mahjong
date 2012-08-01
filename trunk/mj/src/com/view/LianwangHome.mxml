@@ -6,18 +6,22 @@
 				   width="960" height="640" backgroundAlpha="0" borderVisible="false"
 				   cornerRadius="10"
 				   creationComplete="bordercontainer2_creationCompleteHandler(event)"
-				   currentState="main"
-				   fontSize="16">
+				   currentState="login" fontSize="16">
 		
 	<fx:Script>
 		<![CDATA[
 			import com.control.DuihuanControl;
 			import com.control.LianwangHomeControl;
+			import com.control.MainSenceControl;
 			import com.control.RoomListControl;
+			import com.model.Alert;
 			import com.model.MainPlayer;
 			import com.services.MainPlayerService;
+			import com.services.RemoteService;
+			import com.util.MD5;
 			
 			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.ElementExistenceEvent;
 			
@@ -59,6 +63,138 @@
 				this.currentState = "log";
 			}
 			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "reg";
+			}
+			
+			protected function regB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(this.rPlayerName.text.length<4){
+					Alert.show("用户名长度至少为4位！");
+					return;
+				}
+				if(this.rPlayerName.text.length>10){
+					Alert.show("用户名长度应不超过10位！");
+					return;
+				}
+				if(this.rPlayerPwd.text.length<6){
+					Alert.show("密码长度至少为6位！");
+					return;
+				}
+				
+				if(this.rPlayerPwd.text != this.rCPlayerPwd.text){
+					Alert.show("两次输入的密码不一致！");
+					return;
+				}
+				
+				var player:MainPlayer = new MainPlayer();
+				player.playerName = this.rPlayerName.text;
+				player.playerPwd = MD5.hash(this.rPlayerPwd.text);
+				RemoteService.instance.playerService.regeist(player);
+				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,regeistHandler);
+			}
+			
+			private function regeistHandler(e:ResultEvent):void{
+				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,regeistHandler);
+				if(e.result is MainPlayer){
+					Alert.show("恭喜，注册成功");
+					MainPlayerService.getInstance().login(e.result as MainPlayer);
+				}else{
+					Alert.show(e.result.toString());
+				}
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(this.lPlayerName.text.length<4){
+					Alert.show("您输入的用户名不正确！");
+					return;
+				}
+				if(this.lPlayerPwd.text.length<6){
+					Alert.show("您输入的密码不正确！");
+					return;
+				}
+				
+				var player:MainPlayer = new MainPlayer();
+				player.playerName = this.lPlayerName.text;
+				player.playerPwd = this.lPlayerPwd.text;
+				MainPlayerService.getInstance().login(player);
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MainPlayerService.getInstance().itunesLogin();
+			}
+			
+			protected function backB0_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "login";
+			}
+			
+			protected function button5_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(this.cpPlayerName.text.length<4){
+					Alert.show("您输入的用户名不正确！");
+					return;
+				}
+				if(this.cpPlayerOldPwd.text.length<6){
+					Alert.show("旧密码输入有错误！");
+					return;
+				}
+				if(this.cpPlayerNewPwd.text.length<6){
+					Alert.show("密码必须为6位以上！");
+					return;
+				}
+				if(this.cpPlayerNewPwd.text != this.cpPlayerNewPwdr.text){
+					Alert.show("两次输入的密码不一致！");
+					return;
+				}
+				
+				RemoteService.instance.playerService.changePwd(this.cpPlayerName.text,this.cpPlayerOldPwd.text,this.cpPlayerNewPwd.text);
+				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,changePwdHandler);
+			}
+			
+			private function changePwdHandler(e:ResultEvent):void{
+				RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,changePwdHandler);
+				if(e.result is MainPlayer){
+					Alert.show("密码修改成功！");
+					this.currentState = "login";
+				}else{
+					Alert.show(e.result.toString());
+				}
+			}
+			
+			protected function button6_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "changePwd";
+			}
+			
+			protected function mainButDJ3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function backB1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			protected function mainButIT_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MainPlayerService.getInstance().itunesLogin();
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -67,6 +203,9 @@
 		<s:State name="chongzhi"/>
 		<s:State name="duihuan"/>
 		<s:State name="log"/>
+		<s:State name="login"/>
+		<s:State name="reg"/>
+		<s:State name="changePwd"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
@@ -76,7 +215,8 @@
 	</view:Chongzhi>
 	<view:Duihuan includeIn="duihuan" x="0" y="90">
 	</view:Duihuan>
-	<s:Image x="0" y="10" width="70" height="70" source="assets/head.png"/>
+	<s:Image includeIn="chongzhi,duihuan,log,main" x="0" y="10" width="70" height="70"
+			 source="assets/head.png"/>
 	<s:Label includeIn="chongzhi,duihuan,log,main" x="78" y="12" color="#FFFFFF" fontWeight="bold"
 			 text="用户："/>
 	<s:Label includeIn="chongzhi,duihuan,log,main" x="78" y="44" color="#FFFFFF" fontWeight="bold"
@@ -86,25 +226,96 @@
 	<s:Label id="haveMoney" includeIn="chongzhi,duihuan,log,main" x="128" y="46" color="#FFFFFF"
 			 fontWeight="bold" text="{MainPlayerService.getInstance().mainPlayer.haveMoney}"/>
 	
-	<model:Button id="mainLiwuB" y="10" click="image2_clickHandler(event)"
-				  skin="@Embed('assets/main/liwuB.png')" visible="false"
-				  x="589"/>
-	<model:Button click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"
-			 x="790" y="10"/>
-	<model:Button id="backB" skin="@Embed('assets/main/backB.png')"
-				  x="888" y="10"/>
-	<model:Button click="button1_clickHandler(event)"
-				  skin="@Embed('assets/main/logB.png')"
-				  x="692" y="10"/>
-	<model:Button id="mainHomeB" x="589" y="10" click="image3_clickHandler(event)"
-				  skin="@Embed('assets/main/roomB.png')"/>
+	<model:Button id="mainLiwuB" includeIn="chongzhi,duihuan,log,main" visible="false" x="589" y="10"
+				  click="image2_clickHandler(event)" skin="@Embed('assets/main/liwuB.png')"/>
+	<model:Button includeIn="chongzhi,duihuan,log,main" x="790" y="10"
+				  click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhiB.png')"/>
+	<model:Button id="backB" includeIn="chongzhi,duihuan,log,main" x="888" y="10"
+				  skin="@Embed('assets/main/backB.png')"/>
+	<model:Button includeIn="chongzhi,duihuan,log,main" x="692" y="10"
+				  click="button1_clickHandler(event)" skin="@Embed('assets/main/logB.png')"/>
+	<model:Button id="mainHomeB" includeIn="chongzhi,duihuan,log,main" x="589" y="10"
+				  click="image3_clickHandler(event)" skin="@Embed('assets/main/roomB.png')"/>
 	<view:Log includeIn="log" x="0" y="90" height="100%">
 	</view:Log>
 	<view:RoomList includeIn="main" x="0" y="90">
 	</view:RoomList>
 	<view:NetworkQuality id="network" includeIn="main" x="750" y="104">
 	</view:NetworkQuality>
-	<model:Button click="image1_clickHandler(event)"
-				  skin="@Embed('assets/main/chongzhi.png')"
-				  x="193" y="42"/>
+	<model:Button includeIn="chongzhi,duihuan,log,main" x="193" y="42"
+				  click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhi.png')"/>
+	<s:BorderContainer includeIn="chongzhi,duihuan,log,main,reg" backgroundAlpha="0"
+					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
+					   y.reg="129" width.reg="600" height.reg="300" horizontalCenter.reg="-2">
+		<s:TextInput id="rPlayerName" includeIn="reg" x="211" y="30" width="250" height="40"
+					 restrict="0-9\a-z"/>
+		<s:TextInput id="rPlayerPwd" includeIn="reg" x="212" y="98" width="250" height="40"
+					 displayAsPassword="true"/>
+		<s:TextInput id="rCPlayerPwd" includeIn="reg" x="212" y="167" width="250" height="40"
+					 displayAsPassword="true"/>
+		<s:Image includeIn="reg" x="114" y="33" source="assets/yonghuL.png"/>
+		<s:Image includeIn="reg" x="114" y="97" source="assets/mimaL.png"/>
+		<s:Image includeIn="reg" x="54" y="170" source="assets/checkMima.png"/>
+		<model:Button id="mainButDJ3" includeIn="reg" x="211" y="226" click="regB_clickHandler(event)"
+					   skin="@Embed('assets/but/tijiaoB.png')"/>
+		
+	</s:BorderContainer>
+	<model:Button id="backB0" includeIn="reg,changePwd" x="894" y="34"
+				  click="backB0_clickHandler(event)" skin="@Embed('assets/main/backB.png')"
+				  x.changePwd="864" y.changePwd="34"
+				  x.reg="864" y.reg="34"/>
+	<s:BorderContainer includeIn="changePwd,chongzhi,duihuan,log,main,reg" backgroundAlpha="0"
+					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
+					   x.changePwd="180" y.changePwd="129" width.changePwd="600"
+					   height.changePwd="300"
+					   x.reg="180" y.reg="129" width.reg="600" height.reg="300">
+		<s:TextInput id="cpPlayerName" includeIn="changePwd" x="221" y="30" width="250" height="40"/>
+		<s:TextInput id="cpPlayerOldPwd" includeIn="changePwd" x="221" y="80" width="250" height="40"/>
+		<s:TextInput id="cpPlayerNewPwd" includeIn="changePwd" x="221" y="130" width="250"
+					 height="40"/>
+		<s:TextInput id="cpPlayerNewPwdr" includeIn="changePwd" x="221" y="180" width="250"
+					 height="40"/>
+		<model:Button id="mainButDJ4" includeIn="changePwd" x="216" y="242"
+					  click="button5_clickHandler(event)" skin="@Embed('assets/but/tijiaoB.png')"/>
+		<s:Image includeIn="changePwd" x="153" y="33" source="assets/yonghuL.png"/>
+		<s:Image includeIn="changePwd" x="153" y="83" source="assets/mimaL.png"/>
+		<s:Image includeIn="changePwd" x="111" y="137" source="assets/xinmima.png"/>
+		<s:Image includeIn="changePwd" x="99" y="183" source="assets/checkMima.png"/>
+		</s:BorderContainer>
+	<s:Image includeIn="changePwd,login,reg" x="405" y="521"
+			 source="assets/danji_logo.png"/>
+
+		<s:Label includeIn="changePwd,login,reg" x="392" y="612" color="#B0B0B0"
+				 fontSize="14" text="如有投诉或建议,请联系我们."/>
+		
+		<s:BorderContainer id="loginWaitInfo" visible="false" width="400" height="100"
+						   backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
+						   horizontalCenter="0" verticalCenter="0">
+			<s:Label x="57" y="37" color="#FFFFFF" fontSize="24" text="正在连接服务器，请等候..."/>
+			
+		</s:BorderContainer>
+
+	<s:Label includeIn="changePwd,login,reg" x="218" y="584" color="#B0B0B0"
+			 fontSize="14" text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
+	<s:BorderContainer includeIn="login" y="140" width="600" height="350" backgroundAlpha="0"
+					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
+					   horizontalCenter="-35">
+		<s:TextInput id="lPlayerName" x="183" y="56" width="280" height="40" restrict="0-9\a-z"/>
+		<s:TextInput id="lPlayerPwd" x="183" y="125" width="280" height="40" displayAsPassword="true"/>
+		<model:Button id="mainButDJ" x="313" y="255"
+					  click="MainSenceControl.instance.mainButDJClickHandler(null)"
+					  skin="@Embed('assets/but/mainButDJ.png')"/>
+		<model:Button id="mainButIT" x="127" y="252" click="mainButIT_clickHandler(event)"
+					  skin="@Embed('assets/but/itunesB.png')"/>
+		<s:Image x="109" y="60" source="assets/yonghuL.png"/>
+		<s:Image x="109" y="129" source="assets/mimaL.png"/>
+		<model:Button id="mainButDJ0" x="346" y="180" click="button3_clickHandler(event)"
+					  skin="@Embed('assets/but/denglu.png')"/>
+		<s:CheckBox x="189" y="178" label="保存密码" color="#D9D9D9"/>
+		
+	</s:BorderContainer>
+	<model:Button id="mainButDJ1" includeIn="login" y="30" horizontalCenter="-455"
+				  skin="@Embed('assets/but/zhuce.png')" click="button2_clickHandler(event)"/>
+	<model:Button id="mainButDJ2" includeIn="login" y="30" horizontalCenter="-355"
+				  skin="@Embed('assets/but/gaimi.png')" click="button6_clickHandler(event)"/>
 </s:BorderContainer>

@@ -1,6 +1,7 @@
 package com.services
 {
 	import com.control.ChongzhiControl;
+	import com.control.LianwangHomeControl;
 	import com.control.MainSenceControl;
 	import com.control.RoomListControl;
 	import com.model.Alert;
@@ -47,22 +48,48 @@ package com.services
 			
 		}
 		
-		public function login():void{
-//			if(mainPlayer.playerName == ""){
-				var player:MainPlayer = new MainPlayer();
-				player.playerName = GameCenterService.instance.playerName;
-				player.playerName = "soooxin";
-				
-				RemoteService.instance.playerService.login(player);
-				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+		public function itunesLogin():void{
+//			if(GameCenterService.instance.playerName == ""){
+//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+//				return;
 //			}
+
+			var player:MainPlayer = new MainPlayer();
+			player.playerName = GameCenterService.instance.playerName;
+			player.playerName = "sooooxin";
+			
+			RemoteService.instance.playerService.login(player);
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,itunesLoginResultHandler);
 		}
 		
+		public function login(player:MainPlayer):void{
+			RemoteService.instance.playerService.login(player,0);
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,loginResultHandler);
+		}
 		private function loginResultHandler(e:ResultEvent):void{
-			MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
+			if(e.result is MainPlayer){
+				mainPlayer = e.result as MainPlayer;
+				LianwangHomeControl.instance.lianwangHome.currentState = "main";
+				
+				if(RoomListControl.instance){
+					RoomListControl.instance.roomList.dg.dataProvider = RoomListControl.instance.rooms;
+				}
+				
+				if(RoomListControl.instance){
+					RoomListControl.instance.checkReConn();
+				}
+			}else{
+				Alert.show(e.result.toString());
+			}
+		}
+		
+		private function itunesLoginResultHandler(e:ResultEvent):void{
+			MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
+			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,itunesLoginResultHandler);
 			mainPlayer = e.result as MainPlayer;
-			MainSenceControl.instance.mainSence.currentState = "lianwangHome";
+			
+			LianwangHomeControl.instance.lianwangHome.currentState = "main";
 			
 			if(RoomListControl.instance){
 				RoomListControl.instance.roomList.dg.dataProvider = RoomListControl.instance.rooms;
@@ -74,9 +101,9 @@ package com.services
 			
 		}
 		
-		public function chongzhi(money:Number):void{
+		public function chongzhi(money:Number,receipt:String):void{
 			ChongzhiControl.instance.chongzhi.wait.visible = false;
-			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money);
+			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money, receipt);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);
 		}
 		

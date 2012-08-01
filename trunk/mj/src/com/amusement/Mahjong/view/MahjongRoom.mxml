@@ -127,7 +127,7 @@
 				}else{
 					
 					try{
-						MainSenceControl.instance.mainSence.currentState = "login";
+						MainSenceControl.instance.mainSence.currentState = "lianwangHome";
 						RoomService.instance.timer.stop();
 						RoomService.instance.endGame();
 						

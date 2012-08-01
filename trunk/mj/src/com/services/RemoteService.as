@@ -16,7 +16,7 @@ package com.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://116.255.235.24:8080/";
+		public var mainUrl:String = "http://192.168.1.1:8080/";
 		public static var instance:RemoteService;
 		
 		public var chongzhiService:RemoteObject;
@@ -36,9 +36,9 @@ package com.services
 		public var urlList:XMLList;
 		public function RemoteService()
 		{
-			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
-			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
-			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
+//			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
+//			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
+//			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
 		}
 		
 		private function netErrorHandler(e:IOErrorEvent):void{
