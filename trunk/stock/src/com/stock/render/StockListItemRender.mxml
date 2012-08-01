@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+			 creationComplete="itemrenderer1_creationCompleteHandler(event)"
+				width="1024" height="40" contentBackgroundColor="#000000">
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.ChangeWatcher;
+			import mx.events.FlexEvent;
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+//				this.as.addEventListener(Event.CHANGE,
+			}
+			
+		]]>
+	</fx:Script>
+	<s:BorderContainer width="100%" height="40" borderVisible="false" backgroundColor="#000000">
+		<s:Label x="4" y="10" color="#F0F888" text="{data.stockCode}"/>
+		<s:Label x="93" y="10" color="#F0F888" text="{data.stockName}"/>
+		<s:Label x="188" y="10" color="#FF0000" text="{data.nowPrice}"/>
+		<s:Label x="263" y="10" color="#FF0000" text="{data.zhangfu}"/>
+		<s:Label x="343" y="10" color="#FF0000" text="{data.bottomPrice}"/>
+		<s:Label x="429" y="10" color="#FF0000" text="{data.topPrice}"/>
+		<s:Label x="505" y="10" color="#FF0000" text="{data.lastDayEndPrice}"/>
+		<s:Label x="578" y="10" color="#FF0000" text="{data.todayStartPrice}"/>
+		<s:Label x="655" y="10" color="#FF0000" text="{data.huanshou}"/>
+		<s:Label x="736" y="10" color="#FF0000" text="{data.nowCjNum}"/>
+		<s:Label x="809" y="10" color="#FF0000" text="{data.zhenfu}"/>
+		<s:Label x="890" y="10" color="#FF0000" text="{data.shizhi}"/>
+		<s:Label x="964" y="10" color="#FF0000" text="{data.PE}"/>
+	</s:BorderContainer>
+	
+</s:ItemRenderer>

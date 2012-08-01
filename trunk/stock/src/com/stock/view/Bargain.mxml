@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="200" height="728" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.BargainControl;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]  
+			public var cjHistoryListSP:int;
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new BargainControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer x="823" y="39" width="200" height="40" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label y="10" color="#FFFF00" fontSize="20" horizontalCenter="0" text="500009 金种子酒"
+				 verticalAlign="top"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="39" right="0" width="200" height="30" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label x="5" y="5" color="#C0C0C0" text="委比"/>
+		<s:Label x="101" y="5" color="#C0C0C0" text="委差"/>
+		<s:Label id="weibiL" x="40" y="6" color="#00E600" text="标签"/>
+		<s:Label id="weichaL" x="139" y="6" color="#00E600" text="标签"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="68" right="0" width="200" height="120" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label x="5" y="98" color="#C0C0C0" text="卖①"/>
+		<s:Label x="5" y="74" color="#C0C0C0" text="卖②"/>
+		<s:Label x="5" y="50" color="#C0C0C0" text="卖③"/>
+		<s:Label x="5" y="26" color="#C0C0C0" text="卖④"/>
+		<s:Label x="5" y="2" color="#C0C0C0" text="卖⑤"/>
+		<s:Label id="salePrice1" x="65" y="98" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="salePrice2" x="65" y="74" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="salePrice3" x="65" y="50" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="salePrice4" x="65" y="26" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="salePrice5" x="65" y="2" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="saleNum1" x="145" y="98" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="saleNum2" x="145" y="74" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="saleNum3" x="145" y="50" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="saleNum4" x="145" y="26" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="saleNum5" x="145" y="2" color="#FF3232" fontWeight="bold"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="187" right="0" width="200" height="120" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label x="5" y="98" color="#C0C0C0" text="买⑤"/>
+		<s:Label x="5" y="74" color="#C0C0C0" text="买④"/>
+		<s:Label x="5" y="50" color="#C0C0C0" text="买③"/>
+		<s:Label x="5" y="26" color="#C0C0C0" text="买②"/>
+		<s:Label x="5" y="2" color="#C0C0C0" text="买①"/>
+		<s:Label id="buyPrice5" x="65" y="100" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyPrice4" x="65" y="76" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyPrice3" x="65" y="52" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyPrice2" x="65" y="28" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyPrice1" x="65" y="4" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyNum5" x="145" y="100" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyNum4" x="145" y="76" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyNum3" x="145" y="52" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyNum2" x="145" y="28" color="#FF3232" fontWeight="bold"/>
+		<s:Label id="buyNum1" x="145" y="4" color="#FF3232" fontWeight="bold"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="306" right="0" width="200" height="120" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label x="5" y="98" color="#C0C0C0" text="外盘"/>
+		<s:Label x="5" y="74" color="#C0C0C0" text="总量"/>
+		<s:Label x="5" y="50" color="#C0C0C0" text="涨幅"/>
+		<s:Label x="5" y="26" color="#C0C0C0" text="涨跌"/>
+		<s:Label x="5" y="2" color="#C0C0C0" text="现价"/>
+		<s:Label x="105" y="98" color="#C0C0C0" text="内盘"/>
+		<s:Label x="105" y="74" color="#C0C0C0" text="量比"/>
+		<s:Label x="105" y="50" color="#C0C0C0" text="最低"/>
+		<s:Label x="105" y="26" color="#C0C0C0" text="最高"/>
+		<s:Label x="105" y="2" color="#C0C0C0" text="今开"/>
+		<s:Label id="nowPriceL" x="45" y="4" color="#C0C0C0" text="----"/>
+		<s:Label id="zhangdieL" x="45" y="28" color="#C0C0C0" text="----"/>
+		<s:Label id="zhangfuL" x="45" y="52" color="#C0C0C0" text="----"/>
+		<s:Label id="todayStartPriceL" x="145" y="4" color="#C0C0C0" text="----"/>
+		<s:Label id="topPriceL" x="145" y="28" color="#C0C0C0" text="----"/>
+		<s:Label id="bottomPriceL" x="145" y="52" color="#C0C0C0" text="----"/>
+		<s:Label id="zpanL" x="45" y="74" color="#C0C0C0" text="----"/>
+		<s:Label id="wpanL" x="45" y="98" color="#C0C0C0" text="----"/>
+		<s:Label id="liangbL" x="145" y="74" color="#C0C0C0" text="----"/>
+		<s:Label id="npanL" x="145" y="98" color="#C0C0C0" text="----"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="425" right="0" width="200" height="75" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:Label x="5" y="52" color="#C0C0C0" text="收益"/>
+		<s:Label x="5" y="28" color="#C0C0C0" text="净资"/>
+		<s:Label x="5" y="4" color="#C0C0C0" text="换手"/>
+		<s:Label x="105" y="52" color="#C0C0C0" text="PE"/>
+		<s:Label x="105" y="28" color="#C0C0C0" text="流通"/>
+		<s:Label x="105" y="4" color="#C0C0C0" text="股本"/>
+		<s:Label id="huanshouL" x="45" y="4" color="#C0C0C0" text="----"/>
+		<s:Label id="jinzhiL" x="45" y="28" color="#C0C0C0" text="----"/>
+		<s:Label id="shouyiL" x="45" y="52" color="#C0C0C0" text="----"/>
+		<s:Label id="allStockNumL" x="145" y="4" color="#C0C0C0" text="----"/>
+		<s:Label id="liutongStockNumL" x="145" y="28" color="#C0C0C0" text="----"/>
+		<s:Label id="PEL" x="145" y="52" color="#C0C0C0" text="----"/>
+	</s:BorderContainer>
+	<s:BorderContainer y="499" right="0" width="200" height="228" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<s:List id="cjHistoryList" x="0" y="0" width="200" height="228"
+				itemRenderer="com.stock.render.ChHistoryListItemRender">
+		</s:List>
+	</s:BorderContainer>
+	<s:BorderContainer x="0" y="0" width="200" height="40" backgroundAlpha="0" borderColor="#B00000">
+		<s:Label id="stockCodeL" x="16" y="10" color="#FFFF00" fontSize="20" text="500009"
+				 verticalAlign="top"/>
+		<s:Label id="stockNameL" x="90" y="10" color="#FFFF00" fontSize="20" fontWeight="normal"
+				 text="金种子酒"/>
+	</s:BorderContainer>
+</s:Group>

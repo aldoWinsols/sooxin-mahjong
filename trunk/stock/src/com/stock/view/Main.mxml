@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:view="com.stock.view.*"
+				   xmlns:model="com.stock.model.*"
+				   width="1024" height="768" backgroundColor="#000000" borderColor="#B00000"
+				   creationComplete="bordercontainer1_creationCompleteHandler(event)"
+				   currentState="stockMain">
+	<s:states>
+		<s:State name="stockList"/>
+		<s:State name="stockMain"/>
+		<s:State name="stockKline"/>
+	</s:states>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="radiogroup1"/>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.BargainControl;
+			import com.stock.control.MainControl;
+			import com.stock.control.SunKLineControl;
+			import com.stock.services.StockSyncService;
+			
+			import mx.events.FlexEvent;
+
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+
+				new MainControl(this);
+			}
+
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(buyB.selected){
+					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"ss",Number(this.wtPrice.text),Number(this.wtNum.text));
+				}else{
+					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"ss",Number(this.wtPrice.text),Number(this.wtNum.text));
+				}
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				linechart.scaleX = 1.5;
+				linechart.scaleY = 1.5;
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				SunKLineControl.instance.loaddata();
+			}
+			
+			protected function button5_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "stockMain";
+			}
+			
+			protected function button6_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "stockKline";
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:BorderContainer x="0" y="0" width="100%" height="40" backgroundAlpha="0.1" backgroundColor="#cccccc" borderColor="#B00000"
+					   height.stockList="50">
+		<s:Button includeIn="stockList" x="10" y="0" label="按钮"/>
+		<s:Button includeIn="stockList" x="73" y="0" label="按钮"/>
+		<model:Button includeIn="stockKline" x="-1" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="118" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="237" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="356" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="476" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="595" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="714" y="-1" width="120">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="833" y="-1" width="120">
+		</model:Button>
+		
+	</s:BorderContainer>
+
+	<view:Bargain id="bargain" includeIn="stockKline,stockMain" right="0" bottom="-1">
+	</view:Bargain>
+	<s:TextInput id="wtPrice" includeIn="stockKline,stockMain" x="152" y="637" width="141"/>
+	
+	<s:Button includeIn="stockKline,stockMain" x="423" y="633" label="按钮" click="button2_clickHandler(event)"/>
+	<s:TextInput id="wtNum" includeIn="stockKline,stockMain" x="301" y="637" width="105"/>
+	<view:StockList id="stockList" includeIn="stockList" x="0" y="50">
+	</view:StockList>
+	<view:Linechart id="linechart" includeIn="stockMain" x="0" y="0" scaleX="1" scaleY="1">
+	</view:Linechart>
+	
+	<s:BorderContainer includeIn="stockKline,stockMain" x="-1" y="39" width="824" height="40"
+					   backgroundAlpha="0" borderColor="#B00000">
+		<s:Button x="767" y="0" label="K线" click="button6_clickHandler(event)"/>
+		<s:Button x="704" y="0" label="日线" click="button5_clickHandler(event)"/>
+		<model:Button includeIn="stockKline" x="0" y="5" width="100" height="34">
+		</model:Button>
+		<model:Button includeIn="stockKline" x="105" y="5" width="100" height="34">
+		</model:Button>
+		
+	</s:BorderContainer>
+	
+	<s:VGroup x="43" y="582" color="#FF0000">
+		<s:RadioButton id="buyB" includeIn="stockKline,stockMain" x="75" y="618" label="买" color="#FF0000"
+					   groupName="radiogroup1"/>
+		<s:RadioButton id="saleB" includeIn="stockKline,stockMain" x="75" y="656" label="卖" color="#FF0000"
+					   groupName="radiogroup1"/>
+	</s:VGroup>
+	<s:Button includeIn="stockKline,stockMain" x="535" y="712" label="按钮" click="button3_clickHandler(event)"/>
+	<view:SunKLine includeIn="stockKline" x="0" y="79">
+	</view:SunKLine>
+	<s:Button includeIn="stockMain" x="27" y="480" label="按钮" click="button4_clickHandler(event)"/>
+	
+
+
+</s:BorderContainer>
