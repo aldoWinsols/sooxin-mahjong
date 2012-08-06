@@ -1,5 +1,6 @@
 package com.services
 {
+	import com.control.LianwangHomeControl;
 	import com.control.MainSenceControl;
 	import com.model.Alert;
 	
@@ -16,7 +17,7 @@ package com.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://192.168.1.1:8080/";
+		public var mainUrl:String = "http://116.255.235.91:8080/";
 		public static var instance:RemoteService;
 		
 		public var chongzhiService:RemoteObject;
@@ -36,9 +37,9 @@ package com.services
 		public var urlList:XMLList;
 		public function RemoteService()
 		{
-//			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
-//			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
-//			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
+			netLoader = new URLLoader(new URLRequest("http://www.sooxin.net/config.xml"));
+			netLoader.addEventListener(Event.COMPLETE, netLoadCompleteHandler, false, 0, true);
+			netLoader.addEventListener(IOErrorEvent.IO_ERROR,netErrorHandler);
 		}
 		
 		private function netErrorHandler(e:IOErrorEvent):void{
@@ -97,12 +98,9 @@ package com.services
 		private function faultHandler(e:FaultEvent):void
 		{
 			Alert.show("您的网络连接异常,请检查确认后重新操作,或联系客服!");
-			trace(e.toString());
+			LianwangHomeControl.instance.lianwangHome.loginWaitInfo.visible = false;
+			Alert.show(e.toString());
 			CursorManager.removeBusyCursor();
-			
-			if(MainSenceControl.instance.mainSence.loginWaitInfo.visible){
-				MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
-			}
 		}
 
 		private function addFaultEvent(ro:RemoteObject):void

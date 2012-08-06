@@ -66,9 +66,8 @@
 			<s:Label x="37" y="14" color="#FFFFFF" fontSize="20" text="稍等，正在等待进入游戏..."/>
 			
 		</s:BorderContainer>
-		
-		<s:BorderContainer id="loginWaitInfo" visible="false" backgroundAlpha="0.7"
-						   backgroundColor="#000000" cornerRadius="8">
-		</s:BorderContainer>
 	</s:Group>
+	
+	<view:Weihu includeIn="lianwangHome" horizontalCenter="0" verticalCenter="0" visible="false">
+	</view:Weihu>
 </s:View>

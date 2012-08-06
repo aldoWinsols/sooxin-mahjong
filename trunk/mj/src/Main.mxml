@@ -95,6 +95,7 @@
 				}
 				
 				try{
+					trace("getRooms");
 					RoomListControl.instance.getRooms();
 				}catch(e:Error){
 					

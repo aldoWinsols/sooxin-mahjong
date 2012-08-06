@@ -10,7 +10,6 @@ package com.amusement.Mahjong.control
 	import com.amusement.Mahjong.view.MahjongRoom;
 	import com.control.MainControl;
 	import com.control.MainSenceControl;
-	import com.hurlant.math.bi_internal;
 	import com.model.Alert;
 	
 	import flash.display.StageDisplayState;

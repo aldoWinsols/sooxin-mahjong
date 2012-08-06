@@ -12,9 +12,6 @@ package com.control
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.services.RemoteService;
-	import com.tencent.weibo.api.Authorize;
-	import com.tencent.weibo.core.WeiboConfig;
-	import com.tencent.weibo.operation.IRequestOperation;
 	import com.view.MainSence;
 	
 	import flash.events.Event;
@@ -28,7 +25,6 @@ package com.control
 		public static var hasAccessToken:Boolean = false;
 		private var appKey:String = "801121817";
 		private var appSecret:String = "44e1659a923015c2f4d912a935eacdb2";
-		private var authorizeAPI:Authorize;
 		
 		public function MainSenceControl(mainSence:MainSence)
 		{
@@ -82,16 +78,16 @@ package com.control
 			
 		}
 		private function mainButQQClickHandler(e:MouseEvent):void{
-			if(hasAccessToken)
-			{
-				this.mainSence.currentState = "lianwangHome";
-			}
-			else
-			{
-				//获取未授权的Token
-				authorizeAPI.openUserAuthPage();
-				this.mainSence.currentState = "verifier";
-			}
+//			if(hasAccessToken)
+//			{
+//				this.mainSence.currentState = "lianwangHome";
+//			}
+//			else
+//			{
+//				//获取未授权的Token
+//				authorizeAPI.openUserAuthPage();
+//				this.mainSence.currentState = "verifier";
+//			}
 			
 		}
 
