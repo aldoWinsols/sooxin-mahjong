@@ -31,6 +31,13 @@
 			{
 				// TODO Auto-generated method stub
 				new LianwangHomeControl(this);
+				
+				if(userInfoCookie.data.hasOwnProperty("playerName") && userInfoCookie.data.isRememberPsw && userInfoCookie.data.playerName != "") 
+				{ 					
+					this.lPlayerName.text = userInfoCookie.data.playerName; 
+					this.lPlayerPwd.text = userInfoCookie.data.playerPwd; 
+					this.remberLogin.selected =  true; 
+				} 
 			}
 			
 			protected function image1_clickHandler(event:MouseEvent):void
@@ -107,6 +114,7 @@
 				}
 			}
 			
+			var userInfoCookie:SharedObject = SharedObject.getLocal("userInfoCookie"); 
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -119,9 +127,25 @@
 					return;
 				}
 				
+				if(remberLogin.selected) 
+				{ 
+					userInfoCookie.data.playerName = lPlayerName.text; 
+					userInfoCookie.data.playerPwd = lPlayerPwd.text; 
+					userInfoCookie.data.isRememberPsw = true; 
+				} 
+				else 
+				{ 
+					userInfoCookie.data.playerName = ""; 
+					userInfoCookie.data.playerPwd = ""; 
+					userInfoCookie.data.isRememberPsw = false; 
+				} 
+				userInfoCookie.flush(); 
+				
+				this.loginWaitInfo.visible = true;
+				
 				var player:MainPlayer = new MainPlayer();
 				player.playerName = this.lPlayerName.text;
-				player.playerPwd = this.lPlayerPwd.text;
+				player.playerPwd = MD5.hash(this.lPlayerPwd.text);
 				MainPlayerService.getInstance().login(player);
 			}
 			
@@ -157,7 +181,7 @@
 					return;
 				}
 				
-				RemoteService.instance.playerService.changePwd(this.cpPlayerName.text,this.cpPlayerOldPwd.text,this.cpPlayerNewPwd.text);
+				RemoteService.instance.playerService.changePwd(this.cpPlayerName.text,MD5.hash(this.cpPlayerOldPwd.text),MD5.hash(this.cpPlayerNewPwd.text));
 				RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,changePwdHandler);
 			}
 			
@@ -192,6 +216,7 @@
 			protected function mainButIT_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
+				this.loginWaitInfo.visible = true;
 				MainPlayerService.getInstance().itunesLogin();
 			}
 			
@@ -244,28 +269,32 @@
 	</view:NetworkQuality>
 	<model:Button includeIn="chongzhi,duihuan,log,main" x="193" y="42"
 				  click="image1_clickHandler(event)" skin="@Embed('assets/main/chongzhi.png')"/>
-	<s:BorderContainer includeIn="chongzhi,duihuan,log,main,reg" backgroundAlpha="0"
+	
+	
+	<s:BorderContainer includeIn="reg" backgroundAlpha="0"
 					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
 					   y.reg="129" width.reg="600" height.reg="300" horizontalCenter.reg="-2">
+		<model:Button includeIn="reg" x="212" y="227" click="regB_clickHandler(event)"
+					  skin="@Embed('assets/but/tijiaoB.png')"/>
 		<s:TextInput id="rPlayerName" includeIn="reg" x="211" y="30" width="250" height="40"
 					 restrict="0-9\a-z"/>
 		<s:TextInput id="rPlayerPwd" includeIn="reg" x="212" y="98" width="250" height="40"
 					 displayAsPassword="true"/>
 		<s:TextInput id="rCPlayerPwd" includeIn="reg" x="212" y="167" width="250" height="40"
 					 displayAsPassword="true"/>
-		<s:Image includeIn="reg" x="114" y="33" source="assets/yonghuL.png"/>
-		<s:Image includeIn="reg" x="114" y="97" source="assets/mimaL.png"/>
-		<s:Image includeIn="reg" x="54" y="170" source="assets/checkMima.png"/>
-		<model:Button id="mainButDJ3" includeIn="reg" x="211" y="226" click="regB_clickHandler(event)"
-					   skin="@Embed('assets/but/tijiaoB.png')"/>
+		<s:Image includeIn="reg" x="114" y="33" source="@Embed('assets/yonghuL.png')"/>
+		<s:Image includeIn="reg" x="114" y="97" source="@Embed('assets/mimal.png')"/>
+		<s:Image includeIn="reg" x="54" y="170" source="@Embed('assets/checkMima.png')"/>
 		
 	</s:BorderContainer>
+	
 	<model:Button id="backB0" includeIn="reg,changePwd" x="894" y="34"
 				  click="backB0_clickHandler(event)" skin="@Embed('assets/main/backB.png')"
 				  x.changePwd="864" y.changePwd="34"
 				  x.reg="864" y.reg="34"/>
-	<s:BorderContainer includeIn="changePwd,chongzhi,duihuan,log,main,reg" backgroundAlpha="0"
-					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
+	
+	<s:BorderContainer includeIn="changePwd" backgroundAlpha="0" borderAlpha="0.1"
+					   borderColor="#ffffff" cornerRadius="8"
 					   x.changePwd="180" y.changePwd="129" width.changePwd="600"
 					   height.changePwd="300"
 					   x.reg="180" y.reg="129" width.reg="600" height.reg="300">
@@ -277,45 +306,47 @@
 					 height="40"/>
 		<model:Button id="mainButDJ4" includeIn="changePwd" x="216" y="242"
 					  click="button5_clickHandler(event)" skin="@Embed('assets/but/tijiaoB.png')"/>
-		<s:Image includeIn="changePwd" x="153" y="33" source="assets/yonghuL.png"/>
-		<s:Image includeIn="changePwd" x="153" y="83" source="assets/mimaL.png"/>
-		<s:Image includeIn="changePwd" x="111" y="137" source="assets/xinmima.png"/>
-		<s:Image includeIn="changePwd" x="99" y="183" source="assets/checkMima.png"/>
-		</s:BorderContainer>
-	<s:Image includeIn="changePwd,login,reg" x="405" y="521"
-			 source="assets/danji_logo.png"/>
-
-		<s:Label includeIn="changePwd,login,reg" x="392" y="612" color="#B0B0B0"
-				 fontSize="14" text="如有投诉或建议,请联系我们."/>
-		
-		<s:BorderContainer id="loginWaitInfo" visible="false" width="400" height="100"
-						   backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
-						   horizontalCenter="0" verticalCenter="0">
-			<s:Label x="57" y="37" color="#FFFFFF" fontSize="24" text="正在连接服务器，请等候..."/>
+		<s:Image includeIn="changePwd" x="153" y="33" source="@Embed('assets/yonghuL.png')"/>
+		<s:Image includeIn="changePwd" x="153" y="83" source="@Embed('assets/mimal.png')"/>
+		<s:Image includeIn="changePwd" x="111" y="137" source="@Embed('assets/xinmima.png')"/>
+		<s:Image includeIn="changePwd" x="99" y="183" source="@Embed('assets/checkMima.png')"/>
+	</s:BorderContainer>
+	
+	
+	<s:Image includeIn="changePwd,login,reg" x="405" y="521" source="assets/danji_logo.png"/>
+	<s:Label includeIn="changePwd,login,reg" x="218" y="584" color="#B0B0B0" fontSize="14"
+			 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
+	<s:Label includeIn="login,changePwd,reg" x="392" y="612" color="#B0B0B0" fontSize="14"
+				 text="如有投诉或建议,请联系我们."/>
 			
-		</s:BorderContainer>
-
-	<s:Label includeIn="changePwd,login,reg" x="218" y="584" color="#B0B0B0"
-			 fontSize="14" text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
 	<s:BorderContainer includeIn="login" y="140" width="600" height="350" backgroundAlpha="0"
 					   borderAlpha="0.1" borderColor="#ffffff" cornerRadius="8"
 					   horizontalCenter="-35">
 		<s:TextInput id="lPlayerName" x="183" y="56" width="280" height="40" restrict="0-9\a-z"/>
 		<s:TextInput id="lPlayerPwd" x="183" y="125" width="280" height="40" displayAsPassword="true"/>
-		<model:Button id="mainButDJ" x="313" y="255"
+		<model:Button id="mainButDJ" x="313" y="252"
 					  click="MainSenceControl.instance.mainButDJClickHandler(null)"
 					  skin="@Embed('assets/but/mainButDJ.png')"/>
 		<model:Button id="mainButIT" x="127" y="252" click="mainButIT_clickHandler(event)"
 					  skin="@Embed('assets/but/itunesB.png')"/>
-		<s:Image x="109" y="60" source="assets/yonghuL.png"/>
-		<s:Image x="109" y="129" source="assets/mimaL.png"/>
+		<s:Image x="109" y="60" source="@Embed('assets/yonghuL.png')"/>
+		<s:Image x="109" y="129" source="@Embed('assets/mimal.png')"/>
 		<model:Button id="mainButDJ0" x="346" y="180" click="button3_clickHandler(event)"
 					  skin="@Embed('assets/but/denglu.png')"/>
-		<s:CheckBox x="189" y="178" label="保存密码" color="#D9D9D9"/>
+		<s:CheckBox id="remberLogin" x="183" y="178" label="保存密码" color="#D9D9D9"/>
+		<view:Notice includeIn="login" x="0" y="0">
+		</view:Notice>
+	</s:BorderContainer>
+	
+	<model:Button id="mainButDJ1" includeIn="login" y="30" click="button2_clickHandler(event)"
+				  horizontalCenter="-455" skin="@Embed('assets/but/zhuce.png')"/>
+	<model:Button id="mainButDJ2" includeIn="login" y="30" click="button6_clickHandler(event)"
+				  horizontalCenter="-355" skin="@Embed('assets/but/gaimi.png')"/>
+	
+	<s:BorderContainer id="loginWaitInfo" visible="false" width="400" height="100"
+					   backgroundAlpha="0.7" backgroundColor="#000000" cornerRadius="8"
+					   horizontalCenter="0" verticalCenter="0">
+		<s:Label x="57" y="37" color="#FFFFFF" fontSize="24" text="正在验证帐户，请等候..."/>
 		
 	</s:BorderContainer>
-	<model:Button id="mainButDJ1" includeIn="login" y="30" horizontalCenter="-455"
-				  skin="@Embed('assets/but/zhuce.png')" click="button2_clickHandler(event)"/>
-	<model:Button id="mainButDJ2" includeIn="login" y="30" horizontalCenter="-355"
-				  skin="@Embed('assets/but/gaimi.png')" click="button6_clickHandler(event)"/>
 </s:BorderContainer>

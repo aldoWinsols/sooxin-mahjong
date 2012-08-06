@@ -86,7 +86,8 @@ package com.control
 		
 		
 		public function log(s:String):void{
-			
+			ChongzhiControl.instance.chongzhi.wait.visible = false;
+			Alert.show(s);
 		}
 		
 		//----------------------------------------------------
@@ -129,7 +130,7 @@ package com.control
 		
 		private function onPurchaseSuccess(e:StoreKitEvent):void
 		{
-			log("Successful purchase of '"+e.productId+"'");
+//			log("Successful purchase of '"+e.productId+"'");
 			
 			// update our sharedobject with the state of this inventory item.
 			// this is just an example to make the process clear.  you will
@@ -160,6 +161,7 @@ package com.control
 					MainPlayerService.getInstance().chongzhi(15000,e.receipt);
 					break;
 				default:
+					MainPlayerService.getInstance().chongzhi(10,e.receipt);
 					// we don't do anything for unknown items.
 			}
 			

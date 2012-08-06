@@ -49,14 +49,15 @@ package com.services
 		}
 		
 		public function itunesLogin():void{
-//			if(GameCenterService.instance.playerName == ""){
-//				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
-//				return;
-//			}
+			if(GameCenterService.instance.playerName == ""){
+				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				LianwangHomeControl.instance.lianwangHome.loginWaitInfo.visible = false;
+				return;
+			}
 
 			var player:MainPlayer = new MainPlayer();
 			player.playerName = GameCenterService.instance.playerName;
-			player.playerName = "sooooxin";
+//			player.playerName = "sooooxin";
 			
 			RemoteService.instance.playerService.login(player);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,itunesLoginResultHandler);
@@ -68,6 +69,7 @@ package com.services
 		}
 		private function loginResultHandler(e:ResultEvent):void{
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
+			LianwangHomeControl.instance.lianwangHome.loginWaitInfo.visible = false;
 			if(e.result is MainPlayer){
 				mainPlayer = e.result as MainPlayer;
 				LianwangHomeControl.instance.lianwangHome.currentState = "main";
@@ -85,7 +87,7 @@ package com.services
 		}
 		
 		private function itunesLoginResultHandler(e:ResultEvent):void{
-			MainSenceControl.instance.mainSence.loginWaitInfo.visible = false;
+			LianwangHomeControl.instance.lianwangHome.loginWaitInfo.visible = false;
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,itunesLoginResultHandler);
 			mainPlayer = e.result as MainPlayer;
 			
@@ -102,6 +104,7 @@ package com.services
 		}
 		
 		public function chongzhi(money:Number,receipt:String):void{
+//			Alert.show(receipt);
 			ChongzhiControl.instance.chongzhi.wait.visible = false;
 			RemoteService.instance.playerService.chongzhi(mainPlayer.playerName, money, receipt);
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT, chongzhiResaultHandler);

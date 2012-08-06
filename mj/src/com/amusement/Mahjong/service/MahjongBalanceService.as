@@ -21,8 +21,6 @@ package com.amusement.Mahjong.service
 					MahjongRoomControl.instance.clearTabletop();
 					
 					MahjongSyncService.instance.continueGame();
-					
-					MainSenceControl.instance.mainSence.waitInfo.visible = true;
 				}else{
 					Alert.show("您当前的点数少于此房间最小进入点数");
 				}

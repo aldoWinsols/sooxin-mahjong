@@ -5,6 +5,7 @@ package com.services
 	import com.amusement.Mahjong.service.MahjongSoundService;
 	import com.control.LianwangHomeControl;
 	import com.control.MainSenceControl;
+	import com.control.WeihuControl;
 	import com.model.Alert;
 	import com.view.LianwangHome;
 	
@@ -194,6 +195,11 @@ package com.services
 		}
 		private function onConnectionTimer(e:TimerEvent):void{
 			_conn.connect(ConfigService.instance.config.mainConnUrl, MainPlayerService.getInstance().mainPlayer.playerName);
+		}
+		
+		
+		public function startWeihu():void{
+			WeihuControl.instance.startWeihu();
 		}
 		
 		public function asyncErrorHandler(e:AsyncErrorEvent):void

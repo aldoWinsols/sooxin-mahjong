@@ -7,7 +7,6 @@ package com.control
 	import com.services.MainPlayerService;
 	import com.services.MainSyncService;
 	import com.services.RemoteService;
-	import com.tencent.weibo.api.List;
 	import com.view.RoomList;
 	
 	import flash.events.MouseEvent;
@@ -79,6 +78,7 @@ package com.control
 		}
 		
 		public function reEnterRoom(roomNum:int):void{
+			trace(roomNum);
 			var url:String = "";
 			var item:Object;
 			
