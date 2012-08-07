@@ -2,7 +2,8 @@ package com.stockSyncServer.model;
 
 import java.sql.Timestamp;
 
-public class Cjhistory {
+
+public class Cjhistory implements java.io.Serializable{
 	private Timestamp cjTime;
 	private double cjPrice;
 	private int cjNum;
