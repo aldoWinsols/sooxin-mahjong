@@ -11,7 +11,6 @@ import org.red5.server.api.service.IServiceCapableConnection;
 
 import com.leafSyncServer.model.Cjhistory;
 import com.leafSyncServer.model.Order;
-import com.leafSyncServer.services.JobService;
 import com.leafSyncServer.services.MainService;
 import com.leafSyncServer.services.MessageService;
 import com.leafSyncServer.services.RemoteService;
@@ -41,9 +40,6 @@ public class Application extends ApplicationAdapter {
 	public synchronized boolean start(IScope scope) {
 		// TODO Auto-generated method stub
 
-		String id = addScheduledJob(6000, new JobService());
-		scope.setAttribute("Myjob", id);
-
 		MainService.getInstance();
 		UtilProperties.getInstance("config.properties");
 		// RtmpService.getInstance();
@@ -66,9 +62,6 @@ public class Application extends ApplicationAdapter {
 	@Override
 	public synchronized void stop(IScope scope) {
 		// TODO Auto-generated method stub
-		String id = (String) scope.getAttribute("Myjob");
-		removeScheduledJob(id);
-
 		super.stop(scope);
 	}
 
@@ -108,6 +101,10 @@ public class Application extends ApplicationAdapter {
 	
 	public void dealStock(String playerName, String stockCode){
 		MainService.instance.dealStock(playerName, stockCode);
+	}
+			
+	public void updateFenshi(String timeStr,String stockCode,double topPrice,double bottomwPrice,double nowPrice,double nowCjNum){
+		MainService.instance.updateFenshi(timeStr, stockCode, topPrice, bottomwPrice, nowPrice, nowCjNum);
 	}
 
 	public void update() {

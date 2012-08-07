@@ -9,6 +9,7 @@ import org.red5.server.api.service.IServiceCapableConnection;
 import com.leafSyncServer.model.Cjhistory;
 import com.leafSyncServer.model.Message;
 import com.leafSyncServer.model.Order;
+import com.leafSyncServer.model.Stock;
 
 public class MainService {
 	public ArrayList<PlayerService> playerServices;
@@ -94,10 +95,9 @@ public class MainService {
 				}
 			}
 		}
-		
 		Message message = new Message();
 		message.setHead("updateJiaoyiI");
-		message.setContent(new Object[]{buyOrders,saleOrders,thisCjhistoryS});
+		message.setContent(new Object[]{topPrice,bottomPrice,nowPrice,nowCjNum,buyOrders,saleOrders,thisCjhistoryS});
 		MessageService.instance.send(stockCode, message);
 	}
 	
@@ -112,11 +112,27 @@ public class MainService {
 					if(stockServices.get(j).stock.getStockCode().equals(stockCode)){
 						Message message = new Message();
 						message.setHead("updateJiaoyiI");
-						message.setContent(new Object[]{stockServices.get(j).stock.buyOrders,stockServices.get(j).stock.saleOrders,stockServices.get(j).stock.cjhistorys});
+						Stock stock = stockServices.get(j).stock;
+						message.setContent(new Object[]{stock.topPrice,stock.bottomPrice,stock.nowPrice,stock.nowCjNum,stock.buyOrders,stock.saleOrders,stock.cjhistorys});
 						MessageService.instance.send(stockCode, message);
 					}
 				}
 			}
+		}
+	}
+	
+	
+	public void updateFenshi(String timeStr,String stockCode,double topPrice,double bottomwPrice,double nowPrice,double nowCjNum){
+		for (int i = 0; i < playerServices.size(); i++) {
+			
+			Message message = new Message();
+			message.setHead("updateI");
+			message.setContent(new Object[] { timeStr, stockCode,topPrice,bottomwPrice, nowPrice,
+					nowCjNum });
+
+			playerServices.get(i).getPlayer().getIserver()
+					.invoke(message.getHead(), message.getContent());
+		
 		}
 	}
 
