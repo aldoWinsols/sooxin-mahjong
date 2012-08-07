@@ -68,5 +68,9 @@ public class Application extends ApplicationAdapter {
 		MainService.instance.updateJiaoyi(stockCode, topPrice, bottomPrice,
 				nowPrice, nowCjNum, buyOrders, saleOrders, thisCjhistoryS);
 	}
+	
+	public void updateFenshi(String timeStr,String stockCode,double topPrice,double bottomwPrice,double nowPrice,double nowCjNum){
+//		MainService.instance.updateFenshi(timeStr, stockCode, topPrice, bottomwPrice, nowPrice, nowCjNum);
+	}
 
 }
