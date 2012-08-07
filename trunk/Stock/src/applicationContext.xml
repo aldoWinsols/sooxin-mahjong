@@ -41,7 +41,8 @@
 				<value>com/stock/dao/Cjhistory.hbm.xml</value>
 				<value>com/stock/dao/Stockpricehistory.hbm.xml</value>
 				<value>com/stock/dao/Bag.hbm.xml</value>
-				<value>com/stock/dao/Stock.hbm.xml</value></list>
+				<value>com/stock/dao/Stock.hbm.xml</value>
+				<value>com/stock/dao/Kline.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -96,11 +97,29 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="KlineDAO" class="com.stock.dao.KlineDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	<bean id="stockService"
 		class="com.stock.services.StockService">
 		<property name="stockDao">
 			<ref bean="StockDAO" />
+		</property>
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+		<property name="bshistoryDao">
+			<ref bean="BshistoryDAO" />
+		</property>
+	</bean>
+	
+	<bean id="klineService"
+		class="com.stock.services.KlineService">
+		<property name="klineDao">
+			<ref bean="KlineDAO" />
 		</property>
 	</bean>
 	

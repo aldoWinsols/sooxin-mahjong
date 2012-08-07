@@ -10,7 +10,7 @@ public class Stock implements java.io.Serializable {
 
 	private Long id;
 	private String stockCode;
-	private String companyName;
+	private String stockName;
 	private Integer allNum;
 	private Integer busNum;
 	private Double jinzhi;
@@ -25,11 +25,11 @@ public class Stock implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Stock(String stockCode, String companyName, Integer allNum,
+	public Stock(String stockCode, String stockName, Integer allNum,
 			Integer busNum, Double jinzhi, Double shouyi, Double pe,
 			Double lastDayEndPrice) {
 		this.stockCode = stockCode;
-		this.companyName = companyName;
+		this.stockName = stockName;
 		this.allNum = allNum;
 		this.busNum = busNum;
 		this.jinzhi = jinzhi;
@@ -56,12 +56,12 @@ public class Stock implements java.io.Serializable {
 		this.stockCode = stockCode;
 	}
 
-	public String getCompanyName() {
-		return this.companyName;
+	public String getStockName() {
+		return this.stockName;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setStockName(String stockName) {
+		this.stockName = stockName;
 	}
 
 	public Integer getAllNum() {

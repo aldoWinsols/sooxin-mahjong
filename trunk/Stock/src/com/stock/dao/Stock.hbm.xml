@@ -13,8 +13,8 @@
         <property name="stockCode" type="java.lang.String">
             <column name="stockCode" length="6" />
         </property>
-        <property name="companyName" type="java.lang.String">
-            <column name="companyName" length="20" />
+        <property name="stockName" type="java.lang.String">
+            <column name="stockName" length="20" />
         </property>
         <property name="allNum" type="java.lang.Integer">
             <column name="allNum" />
