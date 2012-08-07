@@ -8,10 +8,10 @@ import org.red5.server.api.IScope;
 import org.red5.server.api.service.IServiceCapableConnection;
 
 import com.stockSyncServer.services.ConfigService;
+import com.stockSyncServer.services.JobService;
 import com.stockSyncServer.services.MainService;
 import com.stockSyncServer.services.MessageService;
 import com.stockSyncServer.services.StockService;
-import com.stockSyncServer.util.TimerTaskServer;
 import com.stockSyncServer.util.UtilProperties;
 
 public class Application extends ApplicationAdapter{
@@ -32,14 +32,14 @@ public class Application extends ApplicationAdapter{
 	@Override
 	public synchronized boolean start(IScope scope) {
 		// TODO Auto-generated method stub
-		Timer timer = new Timer();
-		TimerTaskServer timerTaskServer = new TimerTaskServer();
-		timer.schedule(timerTaskServer, 1000, 1000);
 		
 		UtilProperties.getInstance("config.properties");
 		ConfigService.getInstance();
 		MainService.getInstance();
 		MessageService.getInstance();
+		
+		String id = addScheduledJob(6000, new JobService());
+		scope.setAttribute("Myjob", id);
 		
 		return super.start(scope);
 	}
@@ -47,7 +47,10 @@ public class Application extends ApplicationAdapter{
 	@Override
 	public synchronized void stop(IScope scope) {
 		// TODO Auto-generated method stub
-		System.out.println("============================================");
+		
+		String id = (String) scope.getAttribute("Myjob");
+		removeScheduledJob(id);
+		
 		super.stop(scope);
 	}
 	

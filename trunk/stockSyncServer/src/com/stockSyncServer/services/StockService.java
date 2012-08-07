@@ -66,6 +66,11 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
+					
+					//--------------------------------------------------------------------
+					//结算写数据
+					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					balanceService.start();
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -74,6 +79,8 @@ public class StockService {
 					stock.saleOrders.remove(0);
 
 					thisCjhistoryS.add(cjhistory);
+					
+					
 					balance();
 				} else if (stock.buyOrders.get(0).getWtNum() > stock.saleOrders
 						.get(0).getWtNum()) {
@@ -103,6 +110,11 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
+					
+					//--------------------------------------------------------------------
+					//结算写数据
+					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					balanceService.start();
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -141,6 +153,11 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
+					
+					//--------------------------------------------------------------------
+					//结算写数据
+					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					balanceService.start();
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -170,7 +187,7 @@ public class StockService {
 				}
 				
 				MessageService.instance
-				.broadcast(new Object[] { stock.stockCode,
+				.broadcastJiaoyi(new Object[] { stock.stockCode,
 						stock.getTopPrice(),
 						stock.getBottomPrice(),
 						stock.getNowPrice(), stock.getNowCjNum(),
@@ -196,7 +213,7 @@ public class StockService {
 			}
 			
 			MessageService.instance
-			.broadcast(new Object[] { stock.stockCode,
+			.broadcastJiaoyi(new Object[] { stock.stockCode,
 					stock.getTopPrice(),
 					stock.getBottomPrice(),
 					stock.getNowPrice(), stock.getNowCjNum(),

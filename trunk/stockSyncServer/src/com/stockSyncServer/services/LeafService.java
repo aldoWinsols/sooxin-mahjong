@@ -31,6 +31,11 @@ public class LeafService{
 		client.invokeMethod("updateJiaoyi", obj,callBack);
 	}
 	
+	public void updateFenshi(Object[] obj){
+		IRemotingCallback callBack = new callBackHandler();
+		client.invokeMethod("updateFenshi", obj,callBack);
+	}
+	
 	public void update(){
 		if(client != null){
 			IRemotingCallback callBack = new callBackHandler();
