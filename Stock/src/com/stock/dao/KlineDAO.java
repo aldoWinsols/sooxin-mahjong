@@ -8,35 +8,34 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * A data access object (DAO) providing persistence and search support for Stock
+ * A data access object (DAO) providing persistence and search support for Kline
  * entities. Transaction control of the save(), update() and delete() operations
  * can directly support Spring container-managed transactions or they can be
  * augmented to handle user-managed Spring transactions. Each of these methods
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see com.stock.dao.Stock
+ * @see com.stock.dao.Kline
  * @author MyEclipse Persistence Tools
  */
 
-public class StockDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory.getLogger(StockDAO.class);
+public class KlineDAO extends HibernateDaoSupport {
+	private static final Logger log = LoggerFactory.getLogger(KlineDAO.class);
 	// property constants
 	public static final String STOCK_CODE = "stockCode";
-	public static final String STOCK_NAME = "stockName";
-	public static final String ALL_NUM = "allNum";
-	public static final String BUS_NUM = "busNum";
-	public static final String JINZHI = "jinzhi";
-	public static final String SHOUYI = "shouyi";
-	public static final String PE = "pe";
-	public static final String LAST_DAY_END_PRICE = "lastDayEndPrice";
+	public static final String DATE = "date";
+	public static final String FINIST_NUM = "finistNum";
+	public static final String START_NUM = "startNum";
+	public static final String TOP_NUM = "topNum";
+	public static final String LAST_NUM = "lastNum";
+	public static final String TURNOVER = "turnover";
 
 	protected void initDao() {
 		// do nothing
 	}
 
-	public void save(Stock transientInstance) {
-		log.debug("saving Stock instance");
+	public void save(Kline transientInstance) {
+		log.debug("saving Kline instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -46,8 +45,8 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(Stock persistentInstance) {
-		log.debug("deleting Stock instance");
+	public void delete(Kline persistentInstance) {
+		log.debug("deleting Kline instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -57,11 +56,11 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Stock findById(java.lang.Long id) {
-		log.debug("getting Stock instance with id: " + id);
+	public Kline findById(java.lang.Long id) {
+		log.debug("getting Kline instance with id: " + id);
 		try {
-			Stock instance = (Stock) getHibernateTemplate().get(
-					"com.stock.dao.Stock", id);
+			Kline instance = (Kline) getHibernateTemplate().get(
+					"com.stock.dao.Kline", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -69,8 +68,8 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(Stock instance) {
-		log.debug("finding Stock instance by example");
+	public List findByExample(Kline instance) {
+		log.debug("finding Kline instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
@@ -83,10 +82,10 @@ public class StockDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Stock instance with property: " + propertyName
+		log.debug("finding Kline instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Stock as model where model."
+			String queryString = "from Kline as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
@@ -99,38 +98,34 @@ public class StockDAO extends HibernateDaoSupport {
 		return findByProperty(STOCK_CODE, stockCode);
 	}
 
-	public List findByStockName(Object stockName) {
-		return findByProperty(STOCK_NAME, stockName);
+	public List findByDate(Object date) {
+		return findByProperty(DATE, date);
 	}
 
-	public List findByAllNum(Object allNum) {
-		return findByProperty(ALL_NUM, allNum);
+	public List findByFinistNum(Object finistNum) {
+		return findByProperty(FINIST_NUM, finistNum);
 	}
 
-	public List findByBusNum(Object busNum) {
-		return findByProperty(BUS_NUM, busNum);
+	public List findByStartNum(Object startNum) {
+		return findByProperty(START_NUM, startNum);
 	}
 
-	public List findByJinzhi(Object jinzhi) {
-		return findByProperty(JINZHI, jinzhi);
+	public List findByTopNum(Object topNum) {
+		return findByProperty(TOP_NUM, topNum);
 	}
 
-	public List findByShouyi(Object shouyi) {
-		return findByProperty(SHOUYI, shouyi);
+	public List findByLastNum(Object lastNum) {
+		return findByProperty(LAST_NUM, lastNum);
 	}
 
-	public List findByPe(Object pe) {
-		return findByProperty(PE, pe);
-	}
-
-	public List findByLastDayEndPrice(Object lastDayEndPrice) {
-		return findByProperty(LAST_DAY_END_PRICE, lastDayEndPrice);
+	public List findByTurnover(Object turnover) {
+		return findByProperty(TURNOVER, turnover);
 	}
 
 	public List findAll() {
-		log.debug("finding all Stock instances");
+		log.debug("finding all Kline instances");
 		try {
-			String queryString = "from Stock";
+			String queryString = "from Kline";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -138,10 +133,10 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Stock merge(Stock detachedInstance) {
-		log.debug("merging Stock instance");
+	public Kline merge(Kline detachedInstance) {
+		log.debug("merging Kline instance");
 		try {
-			Stock result = (Stock) getHibernateTemplate().merge(
+			Kline result = (Kline) getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -151,8 +146,8 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(Stock instance) {
-		log.debug("attaching dirty Stock instance");
+	public void attachDirty(Kline instance) {
+		log.debug("attaching dirty Kline instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -162,8 +157,8 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(Stock instance) {
-		log.debug("attaching clean Stock instance");
+	public void attachClean(Kline instance) {
+		log.debug("attaching clean Kline instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -173,7 +168,7 @@ public class StockDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static StockDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (StockDAO) ctx.getBean("StockDAO");
+	public static KlineDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (KlineDAO) ctx.getBean("KlineDAO");
 	}
 }
