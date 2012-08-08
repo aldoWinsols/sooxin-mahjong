@@ -13,6 +13,7 @@ import net.sf.json.JSONObject;
 import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.Stock;
+import com.stockSyncServer.services.thread.Balance;
 import com.stockSyncServer.util.ComparatorAsc;
 import com.stockSyncServer.util.ComparatorDesc;
 import com.stockSyncServer.util.NumberFomart;
@@ -69,7 +70,7 @@ public class StockService {
 					
 					//--------------------------------------------------------------------
 					//结算写数据
-					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
 					balanceService.start();
 					// ------------------------------------------------------------------
 
@@ -113,7 +114,7 @@ public class StockService {
 					
 					//--------------------------------------------------------------------
 					//结算写数据
-					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
 					balanceService.start();
 					// ------------------------------------------------------------------
 
@@ -156,7 +157,7 @@ public class StockService {
 					
 					//--------------------------------------------------------------------
 					//结算写数据
-					BalanceService balanceService = new BalanceService(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
+					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
 					balanceService.start();
 					// ------------------------------------------------------------------
 
