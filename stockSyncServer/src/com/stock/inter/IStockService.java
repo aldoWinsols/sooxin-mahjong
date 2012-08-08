@@ -5,5 +5,8 @@ import java.util.List;
 
 public interface IStockService {
 	public List getStocks();
-	public void blance(String stockNum,String buyPlayerName, String salePlayerName, String cjSort,int cjNum,Double cjPrice,Timestamp cjTime);
+
+	public void blance(String stockNum, String buyPlayerName,
+			String buyOrderNum, String salePlayerName, String saleOrderNum,
+			String cjSort, int cjNum, Double cjPrice, Timestamp cjTime);
 }
