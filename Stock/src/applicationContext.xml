@@ -114,6 +114,9 @@
 		<property name="bshistoryDao">
 			<ref bean="BshistoryDAO" />
 		</property>
+		<property name="bagDao">
+			<ref bean="BagDAO" />
+		</property>
 	</bean>
 	
 	<bean id="klineService"

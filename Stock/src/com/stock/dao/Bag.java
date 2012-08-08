@@ -1,5 +1,7 @@
 package com.stock.dao;
 
+import java.sql.Timestamp;
+
 /**
  * Bag entity. @author MyEclipse Persistence Tools
  */
@@ -11,8 +13,10 @@ public class Bag implements java.io.Serializable {
 	private Long id;
 	private String playerName;
 	private String stockNum;
-	private Double haveNum;
-	private Double evlPrice;
+	private Integer haveNum;
+	private Double elPrice;
+	private Integer clockNum;
+	private Timestamp timestamp;
 
 	// Constructors
 
@@ -21,12 +25,14 @@ public class Bag implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bag(String playerName, String stockNum, Double haveNum,
-			Double evlPrice) {
+	public Bag(String playerName, String stockNum, Integer haveNum,
+			Double elPrice, Integer clockNum, Timestamp timestamp) {
 		this.playerName = playerName;
 		this.stockNum = stockNum;
 		this.haveNum = haveNum;
-		this.evlPrice = evlPrice;
+		this.elPrice = elPrice;
+		this.clockNum = clockNum;
+		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -55,20 +61,36 @@ public class Bag implements java.io.Serializable {
 		this.stockNum = stockNum;
 	}
 
-	public Double getHaveNum() {
+	public Integer getHaveNum() {
 		return this.haveNum;
 	}
 
-	public void setHaveNum(Double haveNum) {
+	public void setHaveNum(Integer haveNum) {
 		this.haveNum = haveNum;
 	}
 
-	public Double getEvlPrice() {
-		return this.evlPrice;
+	public Double getElPrice() {
+		return this.elPrice;
 	}
 
-	public void setEvlPrice(Double evlPrice) {
-		this.evlPrice = evlPrice;
+	public void setElPrice(Double elPrice) {
+		this.elPrice = elPrice;
+	}
+
+	public Integer getClockNum() {
+		return this.clockNum;
+	}
+
+	public void setClockNum(Integer clockNum) {
+		this.clockNum = clockNum;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }

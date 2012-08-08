@@ -1,5 +1,6 @@
 package com.stock.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
@@ -25,7 +26,8 @@ public class BagDAO extends HibernateDaoSupport {
 	public static final String PLAYER_NAME = "playerName";
 	public static final String STOCK_NUM = "stockNum";
 	public static final String HAVE_NUM = "haveNum";
-	public static final String EVL_PRICE = "evlPrice";
+	public static final String EL_PRICE = "elPrice";
+	public static final String CLOCK_NUM = "clockNum";
 
 	protected void initDao() {
 		// do nothing
@@ -103,8 +105,12 @@ public class BagDAO extends HibernateDaoSupport {
 		return findByProperty(HAVE_NUM, haveNum);
 	}
 
-	public List findByEvlPrice(Object evlPrice) {
-		return findByProperty(EVL_PRICE, evlPrice);
+	public List findByElPrice(Object elPrice) {
+		return findByProperty(EL_PRICE, elPrice);
+	}
+
+	public List findByClockNum(Object clockNum) {
+		return findByProperty(CLOCK_NUM, clockNum);
 	}
 
 	public List findAll() {
