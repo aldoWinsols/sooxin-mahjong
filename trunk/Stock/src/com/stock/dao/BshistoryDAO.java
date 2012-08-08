@@ -24,13 +24,16 @@ public class BshistoryDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory
 			.getLogger(BshistoryDAO.class);
 	// property constants
+	public static final String NUM = "num";
 	public static final String PLAYER_NAME = "playerName";
 	public static final String STOCK_NUM = "stockNum";
 	public static final String BS_SORT = "bsSort";
 	public static final String BS_NUM = "bsNum";
-	public static final String BS_PRICE = "bsPrice";
+	public static final String BS_WT_PRICE = "bsWtPrice";
+	public static final String BS_CJ_PRICE = "bsCjPrice";
 	public static final String TAX_STAMP = "taxStamp";
 	public static final String COMMISION = "commision";
+	public static final String STATE = "state";
 
 	protected void initDao() {
 		// do nothing
@@ -96,6 +99,10 @@ public class BshistoryDAO extends HibernateDaoSupport {
 		}
 	}
 
+	public List findByNum(Object num) {
+		return findByProperty(NUM, num);
+	}
+
 	public List findByPlayerName(Object playerName) {
 		return findByProperty(PLAYER_NAME, playerName);
 	}
@@ -112,8 +119,12 @@ public class BshistoryDAO extends HibernateDaoSupport {
 		return findByProperty(BS_NUM, bsNum);
 	}
 
-	public List findByBsPrice(Object bsPrice) {
-		return findByProperty(BS_PRICE, bsPrice);
+	public List findByBsWtPrice(Object bsWtPrice) {
+		return findByProperty(BS_WT_PRICE, bsWtPrice);
+	}
+
+	public List findByBsCjPrice(Object bsCjPrice) {
+		return findByProperty(BS_CJ_PRICE, bsCjPrice);
 	}
 
 	public List findByTaxStamp(Object taxStamp) {
@@ -122,6 +133,10 @@ public class BshistoryDAO extends HibernateDaoSupport {
 
 	public List findByCommision(Object commision) {
 		return findByProperty(COMMISION, commision);
+	}
+
+	public List findByState(Object state) {
+		return findByProperty(STATE, state);
 	}
 
 	public List findAll() {

@@ -11,14 +11,18 @@ public class Bshistory implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private String num;
 	private String playerName;
 	private String stockNum;
 	private String bsSort;
 	private Integer bsNum;
-	private Double bsPrice;
+	private Double bsWtPrice;
+	private Double bsCjPrice;
 	private Double taxStamp;
 	private Double commision;
 	private Timestamp bsTime;
+	private String state;
+	private Timestamp timestamp;
 
 	// Constructors
 
@@ -27,17 +31,22 @@ public class Bshistory implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bshistory(String playerName, String stockNum, String bsSort,
-			Integer bsNum, Double bsPrice, Double taxStamp, Double commision,
-			Timestamp bsTime) {
+	public Bshistory(String num, String playerName, String stockNum,
+			String bsSort, Integer bsNum, Double bsWtPrice, Double bsCjPrice,
+			Double taxStamp, Double commision, Timestamp bsTime, String state,
+			Timestamp timestamp) {
+		this.num = num;
 		this.playerName = playerName;
 		this.stockNum = stockNum;
 		this.bsSort = bsSort;
 		this.bsNum = bsNum;
-		this.bsPrice = bsPrice;
+		this.bsWtPrice = bsWtPrice;
+		this.bsCjPrice = bsCjPrice;
 		this.taxStamp = taxStamp;
 		this.commision = commision;
 		this.bsTime = bsTime;
+		this.state = state;
+		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -48,6 +57,14 @@ public class Bshistory implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNum() {
+		return this.num;
+	}
+
+	public void setNum(String num) {
+		this.num = num;
 	}
 
 	public String getPlayerName() {
@@ -82,12 +99,20 @@ public class Bshistory implements java.io.Serializable {
 		this.bsNum = bsNum;
 	}
 
-	public Double getBsPrice() {
-		return this.bsPrice;
+	public Double getBsWtPrice() {
+		return this.bsWtPrice;
 	}
 
-	public void setBsPrice(Double bsPrice) {
-		this.bsPrice = bsPrice;
+	public void setBsWtPrice(Double bsWtPrice) {
+		this.bsWtPrice = bsWtPrice;
+	}
+
+	public Double getBsCjPrice() {
+		return this.bsCjPrice;
+	}
+
+	public void setBsCjPrice(Double bsCjPrice) {
+		this.bsCjPrice = bsCjPrice;
 	}
 
 	public Double getTaxStamp() {
@@ -112,6 +137,22 @@ public class Bshistory implements java.io.Serializable {
 
 	public void setBsTime(Timestamp bsTime) {
 		this.bsTime = bsTime;
+	}
+
+	public String getState() {
+		return this.state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }
