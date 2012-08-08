@@ -54,9 +54,9 @@
 		<s:Label x="77" y="53" text="兑换点数："/>
 		<s:Label id="jiangpinDianshu" x="175" y="53" text="标签"/>
 		<s:Button id="cancelB" x="293" y="360" width="100" label="取消"/>
-		<s:Label id="contactNameErr" x="469" y="177" styleName=""/>
-		<s:Label id="contactTelErr" x="469" y="230"/>
-		<s:Label id="contactAddressErr" x="161" y="388"/>
+		<s:Label id="contactNameErr" x="469" y="97" styleName=""/>
+		<s:Label id="contactTelErr" x="469" y="170"/>
+		<s:Label id="contactAddressErr" x="675" y="235"/>
 		
 	</s:BorderContainer>
 	<s:DataGrid id="dg" includeIn="main" x="0" y="45" width="960" height="100%" alpha="0.7"

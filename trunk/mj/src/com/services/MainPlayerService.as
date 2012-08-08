@@ -73,6 +73,10 @@ package com.services
 			if(e.result is MainPlayer){
 				mainPlayer = e.result as MainPlayer;
 				LianwangHomeControl.instance.lianwangHome.currentState = "main";
+				if(!ConfigService.instance.config.hideJiangpin){
+					LianwangHomeControl.instance.lianwangHome.mainLiwuB.visible = true;
+					LianwangHomeControl.instance.lianwangHome.mainHomeB.x = 489;
+				}
 				
 				if(RoomListControl.instance){
 					RoomListControl.instance.roomList.dg.dataProvider = RoomListControl.instance.rooms;
@@ -92,6 +96,10 @@ package com.services
 			mainPlayer = e.result as MainPlayer;
 			
 			LianwangHomeControl.instance.lianwangHome.currentState = "main";
+			if(!ConfigService.instance.config.hideJiangpin){
+				LianwangHomeControl.instance.lianwangHome.mainLiwuB.visible = true;
+				LianwangHomeControl.instance.lianwangHome.mainHomeB.x = 489;
+			}
 			
 			if(RoomListControl.instance){
 				RoomListControl.instance.roomList.dg.dataProvider = RoomListControl.instance.rooms;
