@@ -50,7 +50,7 @@ package com.control
 		protected function dg_clickHandler(event:GridSelectionEvent):void
 		{
 			// TODO Auto-generated method stub
-			if(roomList.dg.selectedItem.onlineNum >= 300){
+			if(roomList.dg.selectedItem.onlineNum >= 400){
 				Alert.show("房间人数已满，请稍微尝试！");
 				roomList.dg.selectedItem = null;
 				return;

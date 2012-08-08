@@ -38,10 +38,6 @@ package com.control
 			
 			this.lianwangHome.backB.addEventListener(MouseEvent.CLICK,backBClickHandler);
 			
-//			if(!ConfigService.instance.config.hideJiangpin){
-//				this.lianwangHome.mainLiwuB.visible = true;
-//				this.lianwangHome.mainHomeB.x = 489;
-//			}
 			//-----------------------------------------------------------------
 			
 			StoreKit.create();
