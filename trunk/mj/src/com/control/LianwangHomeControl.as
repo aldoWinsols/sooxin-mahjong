@@ -62,11 +62,13 @@ package com.control
 			
 			// the list of ids is passed in as an as3 vector (typed Array.)
 			var productIdList:Vector.<String>=new Vector.<String>();
-			productIdList.push("com.sooxin.mahjongM.d6");
-			productIdList.push("com.sooxin.mahjongM.d12");
-			productIdList.push("com.sooxin.mahjongM.d18");
-			productIdList.push("com.sooxin.mahjongM.d30");
-			productIdList.push("com.sooxin.mahjongM.d128");
+			productIdList.push("com.sooxin.mahjongLite.d6");
+			productIdList.push("com.sooxin.mahjongLite.d12");
+			productIdList.push("com.sooxin.mahjongLite.d18");
+			productIdList.push("com.sooxin.mahjongLite.d25");
+			productIdList.push("com.sooxin.mahjongLite.d30");
+			productIdList.push("com.sooxin.mahjongLite.d50");
+			productIdList.push("com.sooxin.mahjongLite.d100");
 			
 			
 			// when this is done, we'll get a PRODUCT_DETAILS_LOADED or PRODUCT_DETAILS_FAILED event and go on from there...
@@ -135,29 +137,28 @@ package com.control
 			//				var inventory:Object=sharedObject.data["inventory"];
 			switch(e.productId)
 			{
-				case "com.sooxin.mahjongM.d6":
+				case "com.sooxin.mahjongLite.d6":
 					MainPlayerService.getInstance().chongzhi(600,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d12":
+				case "com.sooxin.mahjongLite.d12":
 					MainPlayerService.getInstance().chongzhi(1300,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d18":
+				case "com.sooxin.mahjongLite.d18":
 					MainPlayerService.getInstance().chongzhi(2000,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d25":
+				case "com.sooxin.mahjongLite.d25":
 					MainPlayerService.getInstance().chongzhi(2900,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d30":
+				case "com.sooxin.mahjongLite.d30":
 					MainPlayerService.getInstance().chongzhi(3800,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d50":
+				case "com.sooxin.mahjongLite.d50":
 					MainPlayerService.getInstance().chongzhi(7000,e.receipt);
 					break;
-				case "com.sooxin.mahjongM.d100":
+				case "com.sooxin.mahjongLite.d100":
 					MainPlayerService.getInstance().chongzhi(15000,e.receipt);
 					break;
 				default:
-					MainPlayerService.getInstance().chongzhi(10,e.receipt);
 					// we don't do anything for unknown items.
 			}
 			
