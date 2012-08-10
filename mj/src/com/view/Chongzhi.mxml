@@ -18,19 +18,19 @@
 			[Bindable]
 			private var chajians:ArrayCollection = new ArrayCollection([
 				{ID:"1", price:"￥6", cNum:"600点", 
-					zNum:"0",productID:"com.sooxin.mahjongM.d6",remark:"点击购买"}, 
+					zNum:"0",productID:"com.sooxin.mahjongLite.d6",remark:"点击购买"}, 
 				{ID:"2", price:"￥12", cNum:"1200点", 
-					zNum:"100",productID:"com.sooxin.mahjongM.d12",remark:"点击购买"},
+					zNum:"100",productID:"com.sooxin.mahjongLite.d12",remark:"点击购买"},
 				{ID:"3", price:"￥18", cNum:"1800点", 
-					zNum:"200",productID:"com.sooxin.mahjongM.d18",remark:"点击购买"},
+					zNum:"200",productID:"com.sooxin.mahjongLite.d18",remark:"点击购买"},
 				{ID:"4", price:"￥25", cNum:"2500点", 
-					zNum:"400",productID:"com.sooxin.mahjongM.d25",remark:"点击购买"},
+					zNum:"400",productID:"com.sooxin.mahjongLite.d25",remark:"点击购买"},
 				{ID:"5", price:"￥30", cNum:"3000点", 
-					zNum:"800",productID:"com.sooxin.mahjongM.d30",remark:"点击购买"},
+					zNum:"800",productID:"com.sooxin.mahjongLite.d30",remark:"点击购买"},
 				{ID:"6", price:"￥50", cNum:"5000点", 
-					zNum:"2000",productID:"com.sooxin.mahjongM.d50",remark:"点击购买"},
+					zNum:"2000",productID:"com.sooxin.mahjongLite.d50",remark:"点击购买"},
 				{ID:"6", price:"￥100", cNum:"10000点", 
-					zNum:"5000",productID:"com.sooxin.mahjongM.d100",remark:"点击购买"},
+					zNum:"5000",productID:"com.sooxin.mahjongLite.d100",remark:"点击购买"},
 			]);
 			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
