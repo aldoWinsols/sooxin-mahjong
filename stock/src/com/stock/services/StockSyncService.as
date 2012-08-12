@@ -71,12 +71,12 @@ package com.stock.services
 			conn.call("dealStock", new Responder(resultHandler, statusHandler), PlayerService.instance.player.playerName,stockCode);
 		}
 		
-		public function updateJiaoyiI(buys:Array,sales:Array,cjhistory:Array){
-			BargainControl.instance.updateJiaoyi(buys,sales,cjhistory);
+		public function updateJiaoyiI(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array){
+			BargainControl.instance.updateJiaoyi(topPrice,bottomPrice,nowPrice,nowCjNum,buys,sales,cjhistory);
 		}
 		
-		public function updateI(stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){
-			MainService.instance.update(stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
+		public function updateI(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){
+			MainService.instance.update(timeStr,stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
 		}
 		
 		public function initI(sks:Array):void{

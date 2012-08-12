@@ -38,9 +38,9 @@
 			{
 				// TODO Auto-generated method stub
 				if(buyB.selected){
-					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"ss",Number(this.wtPrice.text),Number(this.wtNum.text));
+					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
 				}else{
-					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"ss",Number(this.wtPrice.text),Number(this.wtNum.text));
+					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
 				}
 			}
 			
