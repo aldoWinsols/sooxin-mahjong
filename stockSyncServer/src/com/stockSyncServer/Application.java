@@ -13,6 +13,7 @@ import com.stockSyncServer.services.MainService;
 import com.stockSyncServer.services.MessageService;
 import com.stockSyncServer.services.StockService;
 import com.stockSyncServer.services.thread.BalanceService;
+import com.stockSyncServer.services.thread.OrderDataService;
 import com.stockSyncServer.util.UtilProperties;
 
 public class Application extends ApplicationAdapter{
@@ -38,12 +39,16 @@ public class Application extends ApplicationAdapter{
 		ConfigService.getInstance();
 		MainService.getInstance();
 		MessageService.getInstance();
+		OrderDataService.getInstance();
+		OrderDataService.instance.init();
+		
+		BalanceService.getInstance();
 		
 		String id = addScheduledJob(6000, new JobService());
 		scope.setAttribute("Myjob", id);
 		
-		String idBalance = addScheduledJob(1000, new BalanceService());
-		scope.setAttribute("balance", idBalance);
+//		String idBalance = addScheduledJob(1000, new BalanceService());
+//		scope.setAttribute("balance", idBalance);
 		
 		return super.start(scope);
 	}
@@ -55,8 +60,8 @@ public class Application extends ApplicationAdapter{
 		String id = (String) scope.getAttribute("Myjob");
 		removeScheduledJob(id);
 		
-		String idBalance = (String) scope.getAttribute("balance");
-		removeScheduledJob(idBalance);
+//		String idBalance = (String) scope.getAttribute("balance");
+//		removeScheduledJob(idBalance);
 		
 		super.stop(scope);
 	}

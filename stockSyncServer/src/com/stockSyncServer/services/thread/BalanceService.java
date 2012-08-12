@@ -8,16 +8,25 @@ import org.red5.server.api.scheduling.ISchedulingService;
 
 import com.stockSyncServer.model.BalanceTask;
 
-public class BalanceService implements IScheduledJob {
+public class BalanceService {
 	
-	private int num = 100;
+	private int num = 2;
 	ArrayList<Balance> balances = new ArrayList<Balance>();
 	ArrayList<BalanceTask> balanceTasks = new ArrayList<BalanceTask>();
+	public static BalanceService instance;
 	
 	public BalanceService(){
 		for(int i=0; i<num; i++){
 			balances.add(new Balance());
 		}
+	}
+	
+	public static BalanceService getInstance(){
+		if(instance == null){
+			instance = new BalanceService();
+		}
+		
+		return instance;
 	}
 	
 	public void addTask(String stockNum,String buyPlayerName, String buyOrderNum, String salePlayerName,String saleOrderNum, String cjSort,int cjNum,Double cjPrice,Timestamp cjTime){
@@ -33,24 +42,11 @@ public class BalanceService implements IScheduledJob {
 		balanceTask.cjPrice = cjPrice;
 		balanceTask.cjTime = cjTime;
 		
-		balanceTasks.add(balanceTask);
-	}
-	
-	@Override
-	public void execute(ISchedulingService arg0)
-			throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
-		if(balanceTasks.size()<1){
-			return;
-		}
-		
 		for(int i=0; i<balances.size(); i++){
-			if(!balances.get(i).isAlive()){
-				balances.get(i).balanceTask = balanceTasks.get(0);
-				balances.get(i).start();
-				balanceTasks.remove(0);
+			if(balances.get(i).balanceTask == null){
+				balances.get(i).balanceTask = balanceTask;
+				break;
 			}
 		}
 	}
-
 }
