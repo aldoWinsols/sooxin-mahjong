@@ -6,11 +6,12 @@ import net.sf.json.JSONArray;
 
 import com.stock.dao.Stock;
 import com.stockSyncServer.dataServices.RemoteService;
+import com.stockSyncServer.services.thread.OrderDataService;
 
 public class MainService {
 
 	public static MainService instance;
-	ArrayList<StockService> stockServices = new ArrayList<StockService>();
+	public ArrayList<StockService> stockServices = new ArrayList<StockService>();
 	public ArrayList<LeafService> leafServices = new ArrayList<LeafService>();
 
 	public MainService() {
@@ -67,21 +68,15 @@ public class MainService {
 
 	public void buy(String stockCode, String playerName, double wtPrice,
 			int wtNum) {
-		
-		Player player = RemoteService.
-		for (int i = 0; i < stockServices.size(); i++) {
-			if (stockServices.get(i).stock.stockCode.equals(stockCode)) {
-				stockServices.get(i).buy(playerName, wtPrice, wtNum);
-			}
-		}
+		String orderNum = playerName + System.currentTimeMillis();
+		OrderDataService.instance.addTask("buy", stockCode, playerName,
+				orderNum, wtPrice, wtNum);
 	}
 
 	public void sale(String stockCode, String playerName, double wtPrice,
 			int wtNum) {
-		for (int i = 0; i < stockServices.size(); i++) {
-			if (stockServices.get(i).stock.stockCode.equals(stockCode)) {
-				stockServices.get(i).sale(playerName, wtPrice, wtNum);
-			}
-		}
+		String orderNum = playerName + System.currentTimeMillis();
+		OrderDataService.instance.addTask("sale", stockCode, playerName,
+				orderNum, wtPrice, wtNum);
 	}
 }

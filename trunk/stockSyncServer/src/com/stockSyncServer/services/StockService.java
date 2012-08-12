@@ -14,6 +14,7 @@ import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.Stock;
 import com.stockSyncServer.services.thread.Balance;
+import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.util.ComparatorAsc;
 import com.stockSyncServer.util.ComparatorDesc;
 import com.stockSyncServer.util.NumberFomart;
@@ -39,7 +40,7 @@ public class StockService {
 
 	private ArrayList<Cjhistory> thisCjhistoryS = new ArrayList<Cjhistory>();
 	private ArrayList<Cjhistory> msgCjhistoryS = new ArrayList<Cjhistory>();
-	
+
 	public synchronized void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
 			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
@@ -50,11 +51,11 @@ public class StockService {
 					Cjhistory cjhistory = new Cjhistory();
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
 					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
-					cjhistory
-							.setCjPrice(stock.saleOrders.get(0).getWtPrice());
-					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
+					cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-//					stock.cjhistorys.add(cjhistory);
+					// stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -67,11 +68,16 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
-					
-					//--------------------------------------------------------------------
-					//结算写数据
-					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
-					balanceService.start();
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -80,8 +86,7 @@ public class StockService {
 					stock.saleOrders.remove(0);
 
 					thisCjhistoryS.add(cjhistory);
-					
-					
+
 					balance();
 				} else if (stock.buyOrders.get(0).getWtNum() > stock.saleOrders
 						.get(0).getWtNum()) {
@@ -89,16 +94,19 @@ public class StockService {
 					Cjhistory cjhistory = new Cjhistory();
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
 					cjhistory.setCjNum(stock.saleOrders.get(0).getWtNum());
-					
-					if(cjSort.equals("B")){
-						cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
-					}else{
-						cjhistory.setCjPrice(stock.buyOrders.get(0).getWtPrice());
+
+					if (cjSort.equals("B")) {
+						cjhistory.setCjPrice(stock.saleOrders.get(0)
+								.getWtPrice());
+					} else {
+						cjhistory.setCjPrice(stock.buyOrders.get(0)
+								.getWtPrice());
 					}
-					
-					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
+
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-//					stock.cjhistorys.add(cjhistory);
+					// stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -111,11 +119,16 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
-					
-					//--------------------------------------------------------------------
-					//结算写数据
-					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
-					balanceService.start();
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -133,15 +146,18 @@ public class StockService {
 					Cjhistory cjhistory = new Cjhistory();
 					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
 					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
-					
-					if(cjSort.equals("B")){
-						cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
-					}else{
-						cjhistory.setCjPrice(stock.buyOrders.get(0).getWtPrice());
+
+					if (cjSort.equals("B")) {
+						cjhistory.setCjPrice(stock.saleOrders.get(0)
+								.getWtPrice());
+					} else {
+						cjhistory.setCjPrice(stock.buyOrders.get(0)
+								.getWtPrice());
 					}
-					cjhistory.setCjPrice(NumberFomart.for2(cjhistory.getCjPrice()));
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
 					cjhistory.setCjSort(cjSort);
-//					stock.cjhistorys.add(cjhistory);
+					// stock.cjhistorys.add(cjhistory);
 
 					// -----------------------------------------------------------------
 					stock.setNowPrice(cjhistory.getCjPrice());
@@ -154,11 +170,16 @@ public class StockService {
 					if (stock.getNowPrice() < stock.getBottomPrice()) {
 						stock.setBottomPrice(stock.getNowPrice());
 					}
-					
-					//--------------------------------------------------------------------
-					//结算写数据
-					Balance balanceService = new Balance(stock.stockCode,stock.buyOrders.get(0).getPlayerName(), stock.saleOrders.get(0).getPlayerName(), cjhistory.getCjSort(),cjhistory.getCjNum(),cjhistory.getCjPrice(),cjhistory.getCjTime());
-					balanceService.start();
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
 					// ------------------------------------------------------------------
 
 					System.out.println("成交数量："
@@ -173,65 +194,70 @@ public class StockService {
 					balance();
 				}
 			} else {
-				if(thisCjhistoryS.size()>0){
+				if (thisCjhistoryS.size() > 0) {
 					msgCjhistoryS.add(new Cjhistory());
-					
-					msgCjhistoryS.get(0).setCjTime(new Timestamp(new Date().getTime()));
-					for(int i=0; i<thisCjhistoryS.size();i++){
-						msgCjhistoryS.get(0).setCjNum(msgCjhistoryS.get(0).getCjNum() + thisCjhistoryS.get(i).getCjNum());
-						msgCjhistoryS.get(0).setCjPrice(thisCjhistoryS.get(i).getCjPrice());
+
+					msgCjhistoryS.get(0).setCjTime(
+							new Timestamp(new Date().getTime()));
+					for (int i = 0; i < thisCjhistoryS.size(); i++) {
+						msgCjhistoryS.get(0).setCjNum(
+								msgCjhistoryS.get(0).getCjNum()
+										+ thisCjhistoryS.get(i).getCjNum());
+						msgCjhistoryS.get(0).setCjPrice(
+								thisCjhistoryS.get(i).getCjPrice());
 						msgCjhistoryS.get(0).setCjSort(cjSort);
 					}
-					
+
 					stock.cjhistorys.add(msgCjhistoryS.get(0));
 					thisCjhistoryS.removeAll(thisCjhistoryS);
 				}
-				
-				MessageService.instance
-				.broadcastJiaoyi(new Object[] { stock.stockCode,
-						stock.getTopPrice(),
-						stock.getBottomPrice(),
-						stock.getNowPrice(), stock.getNowCjNum(),
+
+				MessageService.instance.broadcastJiaoyi(new Object[] {
+						stock.stockCode, stock.getTopPrice(),
+						stock.getBottomPrice(), stock.getNowPrice(),
+						stock.getNowCjNum(),
 						JSONArray.fromObject(stock.buyOrders),
 						JSONArray.fromObject(stock.saleOrders),
 						JSONArray.fromObject(msgCjhistoryS) });
-				
+
 				msgCjhistoryS.removeAll(msgCjhistoryS);
 			}
 		} else {
-			if(thisCjhistoryS.size()>0){
+			if (thisCjhistoryS.size() > 0) {
 				msgCjhistoryS.add(new Cjhistory());
-				
-				msgCjhistoryS.get(0).setCjTime(new Timestamp(new Date().getTime()));
-				for(int i=0; i<thisCjhistoryS.size();i++){
-					msgCjhistoryS.get(0).setCjNum(msgCjhistoryS.get(0).getCjNum() + thisCjhistoryS.get(i).getCjNum());
-					msgCjhistoryS.get(0).setCjPrice(thisCjhistoryS.get(i).getCjPrice());
+
+				msgCjhistoryS.get(0).setCjTime(
+						new Timestamp(new Date().getTime()));
+				for (int i = 0; i < thisCjhistoryS.size(); i++) {
+					msgCjhistoryS.get(0).setCjNum(
+							msgCjhistoryS.get(0).getCjNum()
+									+ thisCjhistoryS.get(i).getCjNum());
+					msgCjhistoryS.get(0).setCjPrice(
+							thisCjhistoryS.get(i).getCjPrice());
 					msgCjhistoryS.get(0).setCjSort(cjSort);
 				}
-				
+
 				stock.cjhistorys.add(msgCjhistoryS.get(0));
 				thisCjhistoryS.removeAll(thisCjhistoryS);
 			}
-			
-			MessageService.instance
-			.broadcastJiaoyi(new Object[] { stock.stockCode,
-					stock.getTopPrice(),
-					stock.getBottomPrice(),
-					stock.getNowPrice(), stock.getNowCjNum(),
-					JSONArray.fromObject(stock.buyOrders),
+
+			MessageService.instance.broadcastJiaoyi(new Object[] {
+					stock.stockCode, stock.getTopPrice(),
+					stock.getBottomPrice(), stock.getNowPrice(),
+					stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
 					JSONArray.fromObject(stock.saleOrders),
 					JSONArray.fromObject(msgCjhistoryS) });
-			
+
 			msgCjhistoryS.removeAll(msgCjhistoryS);
 		}
 	}
 
-	
-	public synchronized void buy(String playerName, double wtPrice, int wtNum) {
+	public synchronized void buy(String playerName,String orderNum, double wtPrice, int wtNum) {
 		cjSort = "B";
 
 		Order order = new Order();
 		order.setPlayerName(playerName);
+		order.setOrderNum(orderNum);
 		order.setWtPrice(wtPrice);
 		order.setWtNum(wtNum);
 		stock.buyOrders.add(order);
@@ -240,11 +266,12 @@ public class StockService {
 		balance();
 	}
 
-	public synchronized void sale(String playerName, double wtPrice, int wtNum) {
+	public synchronized void sale(String playerName,String orderNum, double wtPrice, int wtNum) {
 		cjSort = "S";
 
 		Order order = new Order();
 		order.setPlayerName(playerName);
+		order.setOrderNum(orderNum);
 		order.setWtPrice(wtPrice);
 		order.setWtNum(wtNum);
 		stock.saleOrders.add(order);
