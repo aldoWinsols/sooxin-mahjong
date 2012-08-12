@@ -54,7 +54,7 @@ package com.stock.services
 			MainControl.instance.main.stockList.height = (sks.length+1)*40;
 		}
 		
-		public function update(stockCode:String, topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number):void{
+		public function update(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number):void{
 			for(var i:int=0; i<stocks.length; i++){
 				if(stocks.getItemAt(i).stockCode == stockCode){
 					stocks.getItemAt(i).topPrice = topPrice;
@@ -67,16 +67,8 @@ package com.stock.services
 				}
 			}
 			
-			if(MainControl.instance.main.currentState == "stockMain" && BargainControl.instance.stock.stockCode == stockCode){
-				BargainControl.instance.stock.topPrice = topPrice;
-				BargainControl.instance.stock.bottomPrice = bottomPrice;
-				BargainControl.instance.stock.nowPrice = nowPrice;
-				BargainControl.instance.stock.nowCjNum = nowCjNum;
-				
-				BargainControl.instance.stock.zhangdie = nowPrice - BargainControl.instance.stock.lastDayEndPrice;
-				BargainControl.instance.stock.zhangfu = ((nowPrice - BargainControl.instance.stock.lastDayEndPrice)/BargainControl.instance.stock.lastDayEndPrice*100).toFixed(2)+"%";
-				
-				LinechartControl.instance.update(Number((nowPrice-5).toFixed(2)));
+			if(MainControl.instance.main.currentState == "stockMain" && BargainControl.instance.stock.stockCode == stockCode){	
+				LinechartControl.instance.update(timeStr,Number((nowPrice-5).toFixed(2)),nowCjNum);
 			}
 		}
 	}

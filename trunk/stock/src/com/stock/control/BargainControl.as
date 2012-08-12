@@ -51,7 +51,7 @@ package com.stock.control
 			BindingUtils.bindProperty(this.bargain.jinzhiL,"text",this.stock,"jinzhi");
 		}
 		
-		public function updateJiaoyi(buys:Array,sales:Array,cjhistory:Array){
+		public function updateJiaoyi(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array){
 			this.buys = buys;
 			this.sales = sales;
 			
@@ -173,6 +173,15 @@ package com.stock.control
 			
 			this.bargain.weibiL.text = ((buyNum-saleNum)/(buyNum+saleNum)*100).toFixed(2)+"%";
 			this.bargain.weichaL.text = (buyNum-saleNum)+"";
+			
+			stock.topPrice = topPrice;
+			stock.bottomPrice = bottomPrice;
+			stock.nowPrice = nowPrice;
+			stock.nowCjNum = nowCjNum;
+			
+			stock.zhangdie = nowPrice - stock.lastDayEndPrice;
+			stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2)+"%";
+			
 //			this.bargain.buyList.dataProvider = new ArrayList(buys);
 		}
 		

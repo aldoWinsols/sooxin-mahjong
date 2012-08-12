@@ -1,9 +1,9 @@
 package com.stock.control
-{	
+{
 	import com.stock.model.DashLine;
+	import com.stock.model.TimeShareData;
 	import com.stock.view.Linechart;
 	
-	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.text.TextField;
@@ -12,22 +12,24 @@ package com.stock.control
 	import mx.core.UIComponent;
 	
 	import spark.components.Group;
-
+	
 	public class LinechartControl
 	{
 		public var linechart:Linechart;
 		public static var instance:LinechartControl;
 		private var x:int = 40;
-		private var y:int = 85;
+		private var y:int = 100;
 		private var spacingX:int = 25;
 		private var spacingY:int = 81;
 		
 		private var wight:int = 650;
-		private var height:int = 350;
+		private var height:int = 500;
 		
 		private var color:uint = 0xFF3232;			//涨颜色
 		private var fallColor:uint = 0x00E600;		//跌颜色
 		private var curveColor:uint = 0xffffff;		//曲线颜色
+		private var makeColor:uint = 0xfff000;		//成交量颜色
+		private var junlineColor:uint = 0xfff000;	//均价颜色
 		
 		private var ui:UIComponent = null;
 		
@@ -43,7 +45,12 @@ package com.stock.control
 		private var timerNum:int = 6;
 		private var zhongdian:int = 0;
 		
-		private var lastNumbers:Vector.<Number> = null;
+		private var averageNumbers:Vector.<Number> = null;
+		
+		private var timeShareDatas:Vector.<TimeShareData> = null;
+		
+		private var maxMake:Number = spacingX;
+		
 		private var group:Group = null;
 		
 		public function LinechartControl(linechart:Linechart)
@@ -59,18 +66,12 @@ package com.stock.control
 			riseArray = new Vector.<TextField>();	
 			fallArray = new Vector.<TextField>();	
 			riseRatioArray = new Vector.<TextField>();	
-			fallRatioArray = new Vector.<TextField>();	
-			lastNumbers = new Vector.<Number>();
+			fallRatioArray = new Vector.<TextField>();
+			averageNumbers = new Vector.<Number>();
+			
+			timeShareDatas = new Vector.<TimeShareData>();
 			
 			graphics();
-
-//			this.linechart.addEventListener(MouseEvent.CLICK,clickHandler);
-		}
-		
-		private function clickHandler(e:MouseEvent):void{
-			MainControl.instance.main.bargain.visible = false;
-			this.linechart.scaleX = 1.5;
-			this.linechart.scaleY = 1.5;
 		}
 		
 		public function graphics():void{
@@ -85,12 +86,14 @@ package com.stock.control
 			this.linechart.graphics.drawRect(x, y, wight, height);
 			
 			var i:int = 0;
-			for(i = 1;i < 14; i ++){
+			for(i = 1;i < 20; i ++){
 				
 				var y1:int = y + spacingX * i;
 				if(i == 7){
 					zhongdian = y1;
 					lastPoint1.y = zhongdian;
+					this.linechart.graphics.lineStyle(2, color);
+				}else if(i == 14){					
 					this.linechart.graphics.lineStyle(2, color);
 				}else{					
 					this.linechart.graphics.lineStyle(1, color);
@@ -275,24 +278,38 @@ package com.stock.control
 				}
 			}
 		}
-		
-		
-		public function init(openingPrice:Number){
-			this.openingPrice = openingPrice;
-		}
-		
-		private var interval:Number = 650 / (4 * 3600.0 / timerNum);
-//		private var interval:Number = 10;
-		public function update(price:Number):void{
-			var number:Number = price;
-			againSetNumber(openingPrice + number);
-			trace(openingPrice + number + " ---");
-			lastNumbers.push(number);
+
+		private var interval:Number = 650 / (4 * 3600.0 / 60);
+		//		private var interval:Number = 10;
+		public function update(timeStr:String,price:Number,turnover:Number){
+			againSetNumber(openingPrice + price);
+			
+			var num:int = int(Math.random() * 5) + 1;
+			
+			if(timeShareDatas.length == 0 || timeShareDatas[timeShareDatas.length - 1].time != timeStr){
+				var timeShareData:TimeShareData = new TimeShareData();
+				timeShareData.time = timeStr;
+				timeShareData.price = price;
+				timeShareData.turnover = turnover;
+				
+				trace(timeStr + " == ");
+				
+				timeShareDatas.push(timeShareData);
+				averageNumbers.push(price + (num / 100));
+			}else{
+				timeShareDatas[timeShareDatas.length - 1].time = timeStr;
+				timeShareDatas[timeShareDatas.length - 1].price = price;
+				timeShareDatas[timeShareDatas.length - 1].turnover += turnover;
+				trace(timeStr + " -- ");
+			}
 			var i:int = 0;
 			
 			this.group.graphics.clear();
+			
 			var lastPoint:Point = null;
-			for(i = 0;i < lastNumbers.length; i++){
+			var junlinePoint:Point = null;
+			
+			for(i = 0;i < timeShareDatas.length; i++){
 				if(lastPoint == null){
 					lastPoint = new Point();
 					lastPoint.x = x;
@@ -300,22 +317,22 @@ package com.stock.control
 				}
 				
 				var y1:int = 0;
-				var cha:Number = lastNumbers[i];
+				var cha:Number = timeShareDatas[i].price;
 				cha = Number(cha.toFixed(2));
 				if(cha > 6 * increase){
 					var sumDengfen:Number = Number(((Number(riseArray[riseArray.length - 1].text) - 
 						Number(riseArray[riseArray.length - 2].text)) * 100).toFixed(2));
-					var dengfen:int = (lastNumbers[i] - 6 * increase) * 100;
+					var dengfen:int = (timeShareDatas[i].price - 6 * increase) * 100;
 					y1 = 6 * spacingX + (spacingX / sumDengfen) * dengfen;
 				}else if(cha < -6 * increase){
 					var sumDengfen:Number = Number(((Number(fallArray[fallArray.length - 1].text) - 
 						Number(fallArray[fallArray.length - 2].text)) * 100).toFixed(2));
 					sumDengfen = Math.abs(sumDengfen);
-					var dengfen:int = (Math.abs(lastNumbers[i]) - 6 * increase) * 100;
+					var dengfen:int = (Math.abs(timeShareDatas[i].price) - 6 * increase) * 100;
 					dengfen = Math.abs(dengfen);
 					y1 = -(6 * spacingX + (spacingX / sumDengfen) * dengfen);
 				}else{
-					y1 = lastNumbers[i] / increase * spacingX;
+					y1 = timeShareDatas[i].price / increase * spacingX;
 				}
 				
 				var newY:Number = zhongdian - y1;
@@ -325,26 +342,84 @@ package com.stock.control
 				point.x = newX;
 				point.y = newY;
 				
-				line(point, lastPoint);
+				line(point, lastPoint, curveColor);
+				
+				for(var j:int = 0;j < timeShareDatas.length; j ++){
+					if(timeShareDatas[j].turnover > maxMake * 6){
+						maxMake = timeShareDatas[j].turnover / 6;
+						maxMake = Number(maxMake.toFixed(2));
+					}
+				}
+				
+				lineMake(timeShareDatas[i].turnover, point);
 				lastPoint = point;
+			}
+			
+			// 平均值
+			for(i = 0;i < averageNumbers.length; i++){
+				if(junlinePoint == null){
+					junlinePoint = new Point();
+					junlinePoint.x = x;
+					junlinePoint.y = zhongdian;
+				}
+				
+				var y1:int = 0;
+				var cha:Number = averageNumbers[i];
+				cha = Number(cha.toFixed(2));
+				if(cha > 6 * increase){
+					var sumDengfen:Number = Number(((Number(riseArray[riseArray.length - 1].text) - 
+						Number(riseArray[riseArray.length - 2].text)) * 100).toFixed(2));
+					var dengfen:int = (averageNumbers[i] - 6 * increase) * 100;
+					y1 = 6 * spacingX + (spacingX / sumDengfen) * dengfen;
+				}else if(cha < -6 * increase){
+					var sumDengfen:Number = Number(((Number(fallArray[fallArray.length - 1].text) - 
+						Number(fallArray[fallArray.length - 2].text)) * 100).toFixed(2));
+					sumDengfen = Math.abs(sumDengfen);
+					var dengfen:int = (Math.abs(averageNumbers[i]) - 6 * increase) * 100;
+					dengfen = Math.abs(dengfen);
+					y1 = -(6 * spacingX + (spacingX / sumDengfen) * dengfen);
+				}else{
+					y1 = averageNumbers[i] / increase * spacingX;
+				}
+				
+				var newY:Number = zhongdian - y1;
+				var newX:Number = junlinePoint.x + interval;
+				
+				var point:Point = new Point();
+				point.x = newX;
+				point.y = newY;
+				
+				line(point, junlinePoint, junlineColor);
+				junlinePoint = point;
 			}
 		}
 		/**
 		 * 画曲线
 		 **/
-		private function line(point:Point, lastPoint:Point):void{
+		private function line(point:Point, lastPoint:Point, color:uint):void{
 			
 			var i:int = 0;
 			var lsatPointInt:int = 0;
 			if(i > 0){
 				lsatPointInt = i - 1;
 			}
-			this.group.graphics.lineStyle(1, curveColor);
+			this.group.graphics.lineStyle(1, color);
 			
 			this.group.graphics.moveTo(lastPoint.x, lastPoint.y);
 			this.group.graphics.lineTo(point.x , point.y);
-			
-			lastPoint = point;
 		}
+		
+		private function lineMake(makeNum:Number, point:Point):void{
+			var num:Number = makeNum / maxMake;
+			makeNum = spacingX * num;
+			if(makeNum > spacingX * 6){
+				makeNum = spacingX * 6;
+			}
+			
+			this.group.graphics.lineStyle(1, makeColor);
+			
+			this.group.graphics.moveTo(point.x, height + y);
+			this.group.graphics.lineTo(point.x , height + y - makeNum);
+		} 
 	}
 }
