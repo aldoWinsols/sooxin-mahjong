@@ -1,9 +1,9 @@
 package com.robertSyncServer.model;
 
 public class Robert {
-	private String robertName="";
-	private double haveMoney=0.0;
-	private String operationType = ""; //²Ù×÷ÀàÐÍ  1£º¶Ì   2£ºÖÐ  3£º³¤
-	private String moneyType=""; //×Ê½ðÀàÐÍ   smallÉ¢»§  middle ´ó»§  big »ú¹¹
+	public String robertName="";
+	public double haveMoney=0.0;
+	public String operationType = ""; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  1ï¿½ï¿½ï¿½ï¿½   2ï¿½ï¿½ï¿½ï¿½  3ï¿½ï¿½ï¿½ï¿½
+	public String moneyType=""; //ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½   smallÉ¢ï¿½ï¿½  middle ï¿½ï¿½  big ï¿½ï¿½
 
 }

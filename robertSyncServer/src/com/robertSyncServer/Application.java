@@ -8,9 +8,11 @@ import org.red5.server.api.IScope;
 
 import com.robertSyncServer.model.Cjhistory;
 import com.robertSyncServer.model.Order;
+import com.robertSyncServer.services.ConfigService;
 import com.robertSyncServer.services.JobService;
 import com.robertSyncServer.services.MainService;
 import com.robertSyncServer.services.RemoteService;
+import com.robertSyncServer.util.UtilProperties;
 
 public class Application extends ApplicationAdapter {
 
@@ -30,6 +32,9 @@ public class Application extends ApplicationAdapter {
 	@Override
 	public synchronized boolean start(IScope scope) {
 		// TODO Auto-generated method stub
+		UtilProperties.getInstance("config.properties");
+		ConfigService.getInstance();
+		
 		MainService.getInstance();
 		RemoteService.getInstance();
 		
