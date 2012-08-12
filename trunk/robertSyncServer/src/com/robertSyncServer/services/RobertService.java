@@ -6,7 +6,7 @@ import com.robertSyncServer.model.Robert;
 import com.robertSyncServer.util.NumberFomart;
 
 public class RobertService {
-	private Robert robert;
+	public Robert robert;
 	public RobertService(){
 		robert = new Robert();
 	}
@@ -31,9 +31,9 @@ public class RobertService {
 
 				
 			if(Math.random()>0.5){
-				RemoteService.instance.buy(stockService.stock.stockCode, "dd",price , (int)(Math.random()*1000));
+				RemoteService.instance.buy(stockService.stock.stockCode, robert.robertName,price , (int)(Math.random()*1000));
 			}else{
-				RemoteService.instance.sale(stockService.stock.stockCode, "dd", price, (int)(Math.random()*1000));
+				RemoteService.instance.sale(stockService.stock.stockCode, robert.robertName, price, (int)(Math.random()*1000));
 			}
 		}
 	}

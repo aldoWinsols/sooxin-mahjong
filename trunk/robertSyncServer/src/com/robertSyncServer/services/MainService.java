@@ -1,14 +1,21 @@
 package com.robertSyncServer.services;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import com.robertSyncServer.model.Cjhistory;
 import com.robertSyncServer.model.Order;
+import com.stock.dao.Player;
+import com.stock.inter.IPlayerService;
 
 public class MainService {
 	public static MainService instance;
 	ArrayList<RobertService> robertServices = new ArrayList<RobertService>();
 	
 	ArrayList<StockService> stockServices = new ArrayList<StockService>();
+	
+	IPlayerService playerService = (IPlayerService) ConfigService
+	.getInstance().getContext().getBean("playerService");
 	
 	public static MainService getInstance(){
 		if(instance == null){
@@ -18,10 +25,18 @@ public class MainService {
 	}
 
 	public MainService(){
-		for(int i=0;i<10000;i++){
+		
+		List roberts = playerService.getRoberts();
+		
+		for(int i=0;i<roberts.size();i++){
+			Player player = (Player) roberts.get(i);
 			RobertService robertService = new RobertService();
+			robertService.robert.robertName = player.getPlayerName();
+			robertService.robert.haveMoney = player.getHaveMoney();
 			robertServices.add(robertService);
 		}
+		
+		
 		
 	}
 	
