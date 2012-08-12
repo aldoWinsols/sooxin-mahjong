@@ -11,6 +11,7 @@ public class Bshistory implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String num;
 	private String playerName;
 	private String stockNum;
@@ -22,7 +23,6 @@ public class Bshistory implements java.io.Serializable {
 	private Double commision;
 	private Timestamp bsTime;
 	private String state;
-	private Timestamp timestamp;
 
 	// Constructors
 
@@ -33,8 +33,7 @@ public class Bshistory implements java.io.Serializable {
 	/** full constructor */
 	public Bshistory(String num, String playerName, String stockNum,
 			String bsSort, Integer bsNum, Double bsWtPrice, Double bsCjPrice,
-			Double taxStamp, Double commision, Timestamp bsTime, String state,
-			Timestamp timestamp) {
+			Double taxStamp, Double commision, Timestamp bsTime, String state) {
 		this.num = num;
 		this.playerName = playerName;
 		this.stockNum = stockNum;
@@ -46,7 +45,6 @@ public class Bshistory implements java.io.Serializable {
 		this.commision = commision;
 		this.bsTime = bsTime;
 		this.state = state;
-		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -57,6 +55,14 @@ public class Bshistory implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getNum() {
@@ -145,14 +151,6 @@ public class Bshistory implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }

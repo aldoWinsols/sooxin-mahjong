@@ -11,12 +11,12 @@ public class Bag implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String playerName;
 	private String stockNum;
 	private Integer haveNum;
 	private Double elPrice;
 	private Integer clockNum;
-	private Timestamp timestamp;
 
 	// Constructors
 
@@ -26,13 +26,12 @@ public class Bag implements java.io.Serializable {
 
 	/** full constructor */
 	public Bag(String playerName, String stockNum, Integer haveNum,
-			Double elPrice, Integer clockNum, Timestamp timestamp) {
+			Double elPrice, Integer clockNum) {
 		this.playerName = playerName;
 		this.stockNum = stockNum;
 		this.haveNum = haveNum;
 		this.elPrice = elPrice;
 		this.clockNum = clockNum;
-		this.timestamp = timestamp;
 	}
 
 	// Property accessors
@@ -43,6 +42,14 @@ public class Bag implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getPlayerName() {
@@ -83,14 +90,6 @@ public class Bag implements java.io.Serializable {
 
 	public void setClockNum(Integer clockNum) {
 		this.clockNum = clockNum;
-	}
-
-	public Timestamp getTimestamp() {
-		return this.timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
 	}
 
 }
