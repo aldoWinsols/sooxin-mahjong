@@ -58,7 +58,12 @@ public class StockService implements IStockService {
 
 	public Object buy(String stockCode, String playerName, String orderNum,
 			double wtPrice, int wtNum) {
-		Player player = (Player) playerDao.findByPlayerName(playerName).get(0);
+		List li = playerDao.findByPlayerName(playerName);
+		if(li.isEmpty()){
+			return "系统无此用户";
+		}
+		
+		Player player = (Player) li.get(0);
 		if ((player.getHaveMoney()-player.getClockMoney()) < (wtPrice * wtNum)) {
 			return "资金不足";
 		} else {

@@ -17,7 +17,7 @@
 
 
 	<!-- 远程对象暴露  开始 -->
-	<bean id="balanceChessGameServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+	<bean id="stockServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
 		<property name="service">
 			<ref bean="stockService" />
 		</property>
@@ -27,6 +27,27 @@
 		</property>
 		<property name="serviceInterface">
 			<value>com.stock.inter.IStockService
+			</value>
+		</property>
+		<property name="registryPort">
+			<value>4199</value>
+		</property>
+		<property name="servicePort">
+			<value>5199</value>
+		</property>
+
+	</bean>
+	
+	<bean id="playerServiceExporter" class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="service">
+			<ref bean="playerService" />
+		</property>
+		<!-- 客户端调用时使用的名字 -->
+		<property name="serviceName">
+			<value>playerService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.stock.inter.IPlayerService
 			</value>
 		</property>
 		<property name="registryPort">

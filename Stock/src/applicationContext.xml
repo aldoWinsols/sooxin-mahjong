@@ -126,4 +126,11 @@
 		</property>
 	</bean>
 	
+	<bean id="playerService"
+		class="com.stock.services.PlayerService">
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+	</bean>
+	
 	</beans>
