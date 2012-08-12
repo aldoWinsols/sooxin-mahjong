@@ -59,10 +59,10 @@ public class StockService implements IStockService {
 	public Object buy(String stockCode, String playerName, String orderNum,
 			double wtPrice, int wtNum) {
 		Player player = (Player) playerDao.findByPlayerName(playerName).get(0);
-		if (player.getHaveMoney() < wtPrice * wtNum) {
+		if ((player.getHaveMoney()-player.getClockMoney()) < (wtPrice * wtNum)) {
 			return "×Ê½ð²»×ã";
 		} else {
-			player.setHaveMoney(player.getHaveMoney() - wtPrice * wtNum);
+			player.setClockMoney(wtPrice * wtNum);
 
 			Bshistory buyBshistory = new Bshistory();
 			buyBshistory.setNum(orderNum);
@@ -186,6 +186,7 @@ public class StockService implements IStockService {
 		// --------------------------------------------------------------------------
 
 		buyPlayer.setHaveMoney(buyPlayer.getHaveMoney() - cjMoney);
+		buyPlayer.setClockMoney(buyPlayer.getClockMoney() - cjMoney);
 		salePlayer.setHaveMoney(salePlayer.getHaveMoney() + cjMoney);
 
 		bshistoryDao.merge(buyBshistory);
