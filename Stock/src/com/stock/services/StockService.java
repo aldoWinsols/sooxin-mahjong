@@ -79,7 +79,7 @@ public class StockService implements IStockService {
 			buyBshistory.setTaxStamp(0.0);
 			buyBshistory.setCommision(0.0);
 
-			playerDao.save(player);
+			playerDao.merge(player);
 			bshistoryDao.save(buyBshistory);
 			return true;
 		}
@@ -175,16 +175,21 @@ public class StockService implements IStockService {
 
 		Bag saleBag = null;
 		Bag bagSaleExample = new Bag();
-		bagSaleExample.setPlayerName(buyPlayerName);
+		bagSaleExample.setPlayerName(salePlayerName);
 		bagSaleExample.setStockNum(stockNum);
 
 		saleBag = (Bag) bagDao.findByExample(bagSaleExample).get(0);
 
-		saleBag
-				.setElPrice(((buyBag.getHaveNum() * buyBag.getElPrice()) - (cjNum * cjPrice))
-						/ (buyBag.getHaveNum() - cjNum));
-		saleBag.setHaveNum(buyBag.getHaveNum() - cjNum);
-		saleBag.setClockNum(buyBag.getClockNum() - cjNum);
+		if(buyBag.getHaveNum() == cjNum){
+			saleBag.setElPrice(0.0);
+		}else{
+			saleBag
+			.setElPrice(((saleBag.getHaveNum() * saleBag.getElPrice()) - (cjNum * cjPrice))
+					/ (saleBag.getHaveNum() - cjNum));
+		}
+		
+		saleBag.setHaveNum(saleBag.getHaveNum() - cjNum);
+		saleBag.setClockNum(saleBag.getClockNum() - cjNum);
 
 		bagDao.merge(saleBag);
 

@@ -1,5 +1,7 @@
 package com.stock.dao;
 
+import java.sql.Timestamp;
+
 /**
  * Kline entity. @author MyEclipse Persistence Tools
  */
@@ -9,6 +11,7 @@ public class Kline implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String stockCode;
 	private String date;
 	private Double finistNum;
@@ -43,6 +46,14 @@ public class Kline implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getStockCode() {

@@ -131,6 +131,9 @@
 		<property name="playerDao">
 			<ref bean="PlayerDAO" />
 		</property>
+		<property name="bagDao">
+			<ref bean="BagDAO" />
+		</property>
 	</bean>
 	
 	</beans>
