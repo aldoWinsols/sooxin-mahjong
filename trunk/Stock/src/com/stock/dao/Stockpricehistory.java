@@ -11,6 +11,7 @@ public class Stockpricehistory implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String stockNum;
 	private Double price;
 	private Timestamp priceTime;
@@ -36,6 +37,14 @@ public class Stockpricehistory implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getStockNum() {

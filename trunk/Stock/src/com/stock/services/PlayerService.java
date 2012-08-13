@@ -2,12 +2,15 @@ package com.stock.services;
 
 import java.util.List;
 
+import com.stock.dao.Bag;
+import com.stock.dao.BagDAO;
 import com.stock.dao.Player;
 import com.stock.dao.PlayerDAO;
 import com.stock.inter.IPlayerService;
 
 public class PlayerService implements IPlayerService {
 	private PlayerDAO playerDao;
+	private BagDAO bagDao;
 
 	public PlayerDAO getPlayerDao() {
 		return playerDao;
@@ -17,6 +20,14 @@ public class PlayerService implements IPlayerService {
 		this.playerDao = playerDao;
 	}
 	
+	public BagDAO getBagDao() {
+		return bagDao;
+	}
+
+	public void setBagDao(BagDAO bagDao) {
+		this.bagDao = bagDao;
+	}
+
 	public List getRoberts(){
 		return playerDao.findBySort(0);
 	}
@@ -41,5 +52,9 @@ public class PlayerService implements IPlayerService {
 			playerDao.save(player);
 		}
 		return player;
+	}
+	
+	public List<Bag> getBagsByPlayerName(String playerName){
+		return bagDao.findByPlayerName(playerName);
 	}
 }

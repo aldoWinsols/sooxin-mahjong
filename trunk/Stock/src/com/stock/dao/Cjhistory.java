@@ -11,6 +11,7 @@ public class Cjhistory implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String stockNum;
 	private String cjSort;
 	private Integer cjNum;
@@ -41,6 +42,14 @@ public class Cjhistory implements java.io.Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	public String getStockNum() {
