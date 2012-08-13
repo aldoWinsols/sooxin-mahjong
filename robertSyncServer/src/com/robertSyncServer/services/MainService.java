@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.robertSyncServer.model.Cjhistory;
 import com.robertSyncServer.model.Order;
+import com.stock.dao.Bag;
 import com.stock.dao.Player;
 import com.stock.inter.IPlayerService;
 
@@ -28,16 +29,28 @@ public class MainService {
 		
 		List roberts = playerService.getRoberts();
 		
-		for(int i=0;i<roberts.size();i++){
+		for(int i=0;i<10;i++){
 			Player player = (Player) roberts.get(i);
 			RobertService robertService = new RobertService();
 			robertService.robert.robertName = player.getPlayerName();
 			robertService.robert.haveMoney = player.getHaveMoney();
+			
+			robertService.robert.bags = playerService.getBagsByPlayerName(player.getPlayerName());
 			robertServices.add(robertService);
 		}
+	}
+	
+	public StockService findStockServiceByStockCode(String stockCode){
+		StockService stockService = null;
 		
+		for(int i=0;i<stockServices.size();i++){
+			if(stockServices.get(i).stock.stockCode.equals(stockCode)){
+				stockService = stockServices.get(i);
+				break;
+			}
+		}
 		
-		
+		return stockService;
 	}
 	
 	public void doTimer(){
