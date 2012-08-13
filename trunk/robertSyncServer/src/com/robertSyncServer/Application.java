@@ -38,7 +38,7 @@ public class Application extends ApplicationAdapter {
 		MainService.getInstance();
 		RemoteService.getInstance();
 		
-		String id = addScheduledJobAfterDelay(1000, new JobService(),10000);
+		String id = addScheduledJobAfterDelay(1000, new JobService(),1000);
 		scope.setAttribute("Myjob", id);
 		
 		return super.start(scope);

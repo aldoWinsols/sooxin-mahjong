@@ -10,7 +10,6 @@ public class Player implements java.io.Serializable {
 
 	// Fields
 
-	
 	private Long id;
 	private Timestamp timestamp;
 	private String playerName;
