@@ -2,6 +2,7 @@ package com.stockSyncServer.services.thread;
 
 import org.slf4j.Logger;
 
+import com.stock.inter.IPlayerService;
 import com.stock.inter.IStockService;
 import com.stockSyncServer.model.OrderTask;
 import com.stockSyncServer.services.ConfigService;
@@ -13,6 +14,9 @@ public class OrderData extends Thread implements Runnable {
 	private Logger log = null;
 	private IStockService stockService = (IStockService) ConfigService
 			.getInstance().getContext().getBean("stockService");
+	
+//	IPlayerService playerService = (IPlayerService) ConfigService
+//	.getInstance().getContext().getBean("playerService");
 
 	private boolean isRunning = true;
 	OrderDataService orderDataService;
@@ -36,7 +40,6 @@ public class OrderData extends Thread implements Runnable {
 				}
 			}
 			if (orderTask != null) {
-				
 				if (orderTask.orderSort.equals("buy")) {
 					Object bool = stockService.buy(orderTask.stockCode,
 							orderTask.playerName, orderTask.orderNum,

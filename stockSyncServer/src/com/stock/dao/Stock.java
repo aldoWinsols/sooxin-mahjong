@@ -1,5 +1,7 @@
 package com.stock.dao;
 
+import java.sql.Timestamp;
+
 /**
  * Stock entity. @author MyEclipse Persistence Tools
  */
@@ -9,6 +11,7 @@ public class Stock implements java.io.Serializable {
 	// Fields
 
 	private Long id;
+	private Timestamp timestamp;
 	private String stockCode;
 	private String stockName;
 	private Integer allNum;
@@ -48,6 +51,14 @@ public class Stock implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public Timestamp getTimestamp() {
+		return this.timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	public String getStockCode() {
 		return this.stockCode;
 	}
@@ -57,7 +68,7 @@ public class Stock implements java.io.Serializable {
 	}
 
 	public String getStockName() {
-		return stockName;
+		return this.stockName;
 	}
 
 	public void setStockName(String stockName) {

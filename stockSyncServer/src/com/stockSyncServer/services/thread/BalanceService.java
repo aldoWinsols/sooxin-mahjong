@@ -10,7 +10,7 @@ import com.stockSyncServer.model.BalanceTask;
 
 public class BalanceService {
 	
-	private int num = 2;
+	private int num = 100;
 	ArrayList<Balance> balances = new ArrayList<Balance>();
 	ArrayList<BalanceTask> balanceTasks = new ArrayList<BalanceTask>();
 	public static BalanceService instance;

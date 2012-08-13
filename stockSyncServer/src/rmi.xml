@@ -19,4 +19,13 @@
 			<value>com.stock.inter.IStockService</value>
 		</property>
 	</bean>
+	
+	<bean id="playerService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${rmi.url}/playerService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.stock.inter.IPlayerService</value>
+		</property>
+	</bean>
 </beans>

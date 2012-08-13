@@ -11,7 +11,7 @@ import com.stockSyncServer.services.MainService;
 
 public class OrderDataService {
 
-	private int num = 2;
+	private int num = 100;
 	ArrayList<OrderData> orderDatas = new ArrayList<OrderData>();
 	ArrayList<OrderTask> orderTasks;
 	public static OrderDataService instance;
