@@ -56,18 +56,21 @@ public class StockService implements IStockService {
 		this.bagDao = bagDao;
 	}
 
-	public Object buy(String stockCode, String playerName, String orderNum,
-			double wtPrice, int wtNum) {
+	public synchronized Object buy(String stockCode, String playerName,
+			String orderNum, double wtPrice, int wtNum) {
 		List li = playerDao.findByPlayerName(playerName);
-		if(li.isEmpty()){
+		if (li.isEmpty()) {
 			return "系统无此用户";
 		}
-		
+
 		Player player = (Player) li.get(0);
-		if ((player.getHaveMoney()-player.getClockMoney()) < (wtPrice * wtNum)) {
+		li = null;
+		
+		if ((player.getHaveMoney() - player.getClockMoney()) < (wtPrice * wtNum * 100)) {
 			return "资金不足";
 		} else {
-			player.setClockMoney(wtPrice * wtNum);
+			player.setClockMoney(player.getClockMoney()
+					+ (wtPrice * wtNum * 100));
 
 			Bshistory buyBshistory = new Bshistory();
 			buyBshistory.setNum(orderNum);
@@ -78,6 +81,7 @@ public class StockService implements IStockService {
 			buyBshistory.setBsWtPrice(wtPrice);
 			buyBshistory.setTaxStamp(0.0);
 			buyBshistory.setCommision(0.0);
+			buyBshistory.setHaveCjNum(0);
 
 			playerDao.merge(player);
 			bshistoryDao.save(buyBshistory);
@@ -85,8 +89,8 @@ public class StockService implements IStockService {
 		}
 	}
 
-	public Object sale(String stockCode, String playerName, String orderNum,
-			double wtPrice, int wtNum) {
+	public synchronized Object sale(String stockCode, String playerName,
+			String orderNum, double wtPrice, int wtNum) {
 
 		Bag bagExample = new Bag();
 		bagExample.setPlayerName(playerName);
@@ -98,6 +102,7 @@ public class StockService implements IStockService {
 		}
 
 		Bag bag = (Bag) list.get(0);
+		list = null;
 
 		if ((bag.getHaveNum() - bag.getClockNum()) < wtNum) {
 			return "您可卖的股票数不足！";
@@ -111,20 +116,21 @@ public class StockService implements IStockService {
 			saleBshistory.setBsWtPrice(wtPrice);
 			saleBshistory.setTaxStamp(0.0);
 			saleBshistory.setCommision(0.0);
+			saleBshistory.setHaveCjNum(0);
 
 			bshistoryDao.save(saleBshistory);
 			return true;
 		}
 	}
 
-	public void blance(String stockNum, String buyPlayerName,
+	public synchronized void blance(String stockNum, String buyPlayerName,
 			String buyOrderNum, String salePlayerName, String saleOrderNum,
 			String cjSort, int cjNum, Double cjPrice, Timestamp cjTime) {
 		Player buyPlayer = (Player) playerDao.findByPlayerName(buyPlayerName)
 				.get(0);
 		Player salePlayer = (Player) playerDao.findByPlayerName(salePlayerName)
 				.get(0);
-		Double cjMoney = cjPrice * cjNum;
+		Double cjMoney = cjPrice * cjNum * 100;
 
 		Bshistory buyBshistory = (Bshistory) bshistoryDao
 				.findByNum(buyOrderNum).get(0);
@@ -132,12 +138,7 @@ public class StockService implements IStockService {
 				saleOrderNum).get(0);
 
 		// --------------------------------------------------------------------------
-
-		if (buyBshistory.getBsNum() == cjNum) {
-			buyBshistory.setState("全部成交");
-		} else {
-			buyBshistory.setState("部分成交");
-		}
+		buyBshistory.setHaveCjNum(buyBshistory.getHaveCjNum()+cjNum);
 		buyBshistory.setBsCjPrice(cjPrice);
 
 		Bag buyBag = null;
@@ -160,17 +161,13 @@ public class StockService implements IStockService {
 					.setElPrice(((buyBag.getHaveNum() * buyBag.getElPrice()) + (cjNum * cjPrice))
 							/ (buyBag.getHaveNum() + cjNum));
 			buyBag.setHaveNum(buyBag.getHaveNum() + cjNum);
-			buyBag.setClockNum(cjNum);
+			buyBag.setClockNum(buyBag.getClockNum()+cjNum);
 		}
-		bagDao.merge(buyBag);
+		bagDao.save(buyBag);
 
 		// --------------------------------------------------------------------------
 
-		if (saleBshistory.getBsNum() == cjNum) {
-			saleBshistory.setState("全部成交");
-		} else {
-			saleBshistory.setState("部分成交");
-		}
+		saleBshistory.setHaveCjNum(saleBshistory.getHaveCjNum()+cjNum);
 		saleBshistory.setBsCjPrice(cjPrice);
 
 		Bag saleBag = null;
@@ -180,29 +177,30 @@ public class StockService implements IStockService {
 
 		saleBag = (Bag) bagDao.findByExample(bagSaleExample).get(0);
 
-		if(buyBag.getHaveNum() == cjNum){
+		if (saleBag.getHaveNum() == cjNum) {
 			saleBag.setElPrice(0.0);
-		}else{
+		} else {
 			saleBag
-			.setElPrice(((saleBag.getHaveNum() * saleBag.getElPrice()) - (cjNum * cjPrice))
-					/ (saleBag.getHaveNum() - cjNum));
+					.setElPrice(((saleBag.getHaveNum() * saleBag.getElPrice()) - (cjNum * cjPrice))
+							/ (saleBag.getHaveNum() - cjNum));
 		}
-		
-		saleBag.setHaveNum(saleBag.getHaveNum() - cjNum);
-		saleBag.setClockNum(saleBag.getClockNum() - cjNum);
 
-		bagDao.merge(saleBag);
+		saleBag.setHaveNum(saleBag.getHaveNum() - cjNum);
+
+		bagDao.save(saleBag);
 
 		// --------------------------------------------------------------------------
 
 		buyPlayer.setHaveMoney(buyPlayer.getHaveMoney() - cjMoney);
-		buyPlayer.setClockMoney(buyPlayer.getClockMoney() - cjMoney);
+		buyPlayer.setClockMoney(buyPlayer.getClockMoney()
+				- buyBshistory.getBsWtPrice() * cjNum * 100);
+
 		salePlayer.setHaveMoney(salePlayer.getHaveMoney() + cjMoney);
 
-		bshistoryDao.merge(buyBshistory);
-		bshistoryDao.merge(saleBshistory);
-		playerDao.merge(buyPlayer);
-		playerDao.merge(salePlayer);
+		bshistoryDao.save(buyBshistory);
+		bshistoryDao.save(saleBshistory);
+		playerDao.save(buyPlayer);
+		playerDao.save(salePlayer);
 	}
 
 }

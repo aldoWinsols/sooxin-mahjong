@@ -22,7 +22,7 @@ public class Bshistory implements java.io.Serializable {
 	private Double taxStamp;
 	private Double commision;
 	private Timestamp bsTime;
-	private String state;
+	private Integer haveCjNum;
 
 	// Constructors
 
@@ -33,7 +33,8 @@ public class Bshistory implements java.io.Serializable {
 	/** full constructor */
 	public Bshistory(String num, String playerName, String stockNum,
 			String bsSort, Integer bsNum, Double bsWtPrice, Double bsCjPrice,
-			Double taxStamp, Double commision, Timestamp bsTime, String state) {
+			Double taxStamp, Double commision, Timestamp bsTime,
+			Integer haveCjNum) {
 		this.num = num;
 		this.playerName = playerName;
 		this.stockNum = stockNum;
@@ -44,7 +45,7 @@ public class Bshistory implements java.io.Serializable {
 		this.taxStamp = taxStamp;
 		this.commision = commision;
 		this.bsTime = bsTime;
-		this.state = state;
+		this.haveCjNum = haveCjNum;
 	}
 
 	// Property accessors
@@ -145,12 +146,12 @@ public class Bshistory implements java.io.Serializable {
 		this.bsTime = bsTime;
 	}
 
-	public String getState() {
-		return this.state;
+	public Integer getHaveCjNum() {
+		return this.haveCjNum;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setHaveCjNum(Integer haveCjNum) {
+		this.haveCjNum = haveCjNum;
 	}
 
 }
