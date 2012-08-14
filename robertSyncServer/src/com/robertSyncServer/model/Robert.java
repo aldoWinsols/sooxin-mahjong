@@ -12,10 +12,14 @@ public class Robert {
 	public String moneyType="";
 	public List<Bag> bags;
 	
-	public double chichangLv = 0.5; //持仓比例
+	public double chichang = 0.0; //持仓市值
+	
+	public double chichangLv = 0.5; //计划持仓比例
 	
 	public int operationNum = 10;//多久做一次操作  决定 断 中 长线玩家
 	public double winLv = 0.3; //赢利多少后卖出
 	public double lossLv = 0.3; //亏了多少后卖出
+	
+	public double xinxinLv = 0.5; //信心指数
 
 }

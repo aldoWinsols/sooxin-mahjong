@@ -29,13 +29,18 @@ public class MainService {
 		
 		List roberts = playerService.getRoberts();
 		
-		for(int i=0;i<10;i++){
+		for(int i=0;i<100;i++){
 			Player player = (Player) roberts.get(i);
 			RobertService robertService = new RobertService();
 			robertService.robert.robertName = player.getPlayerName();
 			robertService.robert.haveMoney = player.getHaveMoney();
 			
 			robertService.robert.bags = playerService.getBagsByPlayerName(player.getPlayerName());
+			
+			for(int t=0; t<robertService.robert.bags.size();t++){
+				robertService.robert.chichang += robertService.robert.bags.get(t).getElPrice()*robertService.robert.bags.get(t).getHaveNum()*100;
+			}
+
 			robertServices.add(robertService);
 		}
 	}
