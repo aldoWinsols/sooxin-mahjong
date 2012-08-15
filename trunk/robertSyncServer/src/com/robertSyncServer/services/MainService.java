@@ -29,11 +29,12 @@ public class MainService {
 		
 		List roberts = playerService.getRoberts();
 		
-		for(int i=0;i<100;i++){
+		for(int i=0;i<10000;i++){
 			Player player = (Player) roberts.get(i);
 			RobertService robertService = new RobertService();
 			robertService.robert.robertName = player.getPlayerName();
 			robertService.robert.haveMoney = player.getHaveMoney();
+			robertService.robert.operationNum = (int) (Math.random()*3600);
 			
 			robertService.robert.bags = playerService.getBagsByPlayerName(player.getPlayerName());
 			
@@ -68,7 +69,7 @@ public class MainService {
 	
 	public void init(String stockCode, String stockName,int allStockNum,
 			int liutongStockNum, double shouyi, double PE,
-			double lastDayEndPrice, double todayStartPrice, double topPrice,
+			double lastDayEndPrice,double xinxinLv, double todayStartPrice, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Cjhistory> cjhistorys, ArrayList<Order> buyOrders,
 			ArrayList<Order> saleOrders){
@@ -81,6 +82,7 @@ public class MainService {
 		stockService.stock.setShouyi(shouyi);
 		stockService.stock.setPE(PE);
 		stockService.stock.setLastDayEndPrice(lastDayEndPrice);
+		stockService.stock.setXinxinLv(xinxinLv);
 		stockService.stock.setTodayStartPrice(todayStartPrice);
 		stockService.stock.setTopPrice(topPrice);
 		stockService.stock.setBottomPrice(bottomPrice);

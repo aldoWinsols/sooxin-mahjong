@@ -54,13 +54,13 @@ public class Application extends ApplicationAdapter {
 	
 	public void initLeaf(String stockCode,String stockName, int allStockNum,
 			int liutongStockNum, double shouyi, double PE,
-			double lastDayEndPrice, double todayStartPrice, double topPrice,
+			double lastDayEndPrice,double xinxinLv, double todayStartPrice, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Cjhistory> cjhistorys, ArrayList<Order> buyOrders,
 			ArrayList<Order> saleOrders) {
 
 		MainService.instance.init(stockCode, stockName,allStockNum, liutongStockNum,
-				shouyi, PE, lastDayEndPrice, todayStartPrice, topPrice,
+				shouyi, PE, lastDayEndPrice,xinxinLv, todayStartPrice, topPrice,
 				bottomPrice, nowPrice, nowCjNum, cjhistorys, buyOrders,
 				saleOrders);
 
