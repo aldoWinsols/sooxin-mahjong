@@ -14,7 +14,7 @@ public class RobertService {
 		robert = new Robert();
 	}
 
-	public void todo() {
+	public synchronized void todo() {
 		n++;
 		if (n % robert.operationNum == 0) {
 
@@ -29,6 +29,11 @@ public class RobertService {
 
 					StockService stockService = MainService.instance
 							.findStockServiceByStockCode(bag.getStockNum());
+					
+					//判断股票本身向好率
+					if(Math.random() < stockService.stock.getXinxinLv()){
+						break;
+					}
 
 					if (stockService.stock.nowPrice > bag.getElPrice()) {
 						if ((stockService.stock.nowPrice - bag.getElPrice())
@@ -81,8 +86,8 @@ public class RobertService {
 						return;
 					}
 
-				} else if (robert.chichang
-						/ (robert.chichang + robert.haveMoney) < robert.chichangLv) {
+				} else if ((robert.chichang
+						/ (robert.chichang + robert.haveMoney)) < robert.chichangLv) {
 					StockService stockService = MainService.instance.stockServices
 							.get((int) (Math.random() * MainService.instance.stockServices
 									.size()));
