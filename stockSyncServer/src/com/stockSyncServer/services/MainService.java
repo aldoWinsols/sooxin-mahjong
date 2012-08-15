@@ -31,6 +31,7 @@ public class MainService {
 			stockService.stock.setPE(stocks.get(i).getPe());// 市赢率
 			stockService.stock.setLastDayEndPrice(stocks.get(i)
 					.getLastDayEndPrice());// 昨日收盘价
+			stockService.stock.setXinxinLv(stocks.get(i).getXinxinLv());//股票本身向好率
 			stockServices.add(stockService);
 		}
 	}
@@ -51,7 +52,7 @@ public class MainService {
 		for (int i = 0; i < stockServices.size(); i++) {
 			com.stockSyncServer.model.Stock sk = stockServices.get(i).stock;
 			leafService.initLeaf(new Object[] { sk.stockCode, sk.stockName,sk.allStockNum,
-					sk.liutongStockNum, sk.shouyi, sk.PE, sk.lastDayEndPrice,
+					sk.liutongStockNum, sk.shouyi, sk.PE, sk.lastDayEndPrice,sk.xinxinLv,
 					sk.todayStartPrice, sk.topPrice, sk.bottomPrice,
 					sk.nowPrice, sk.nowCjNum, JSONArray.fromObject(sk.cjhistorys), JSONArray.fromObject(sk.buyOrders),
 							JSONArray.fromObject(sk.saleOrders) });

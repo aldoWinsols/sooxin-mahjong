@@ -4,8 +4,19 @@ import com.stock.inter.IStockService;
 import com.stockSyncServer.services.ConfigService;
 
 public class RemoteService {
+	public IStockService stockService;
+	public static RemoteService instance;
+	
 	public RemoteService() {
+		stockService = getStockService();
+	}
+	
+	public static RemoteService getInstance(){
+		if(instance ==null){
+			instance = new RemoteService();
+		}
 		
+		return instance;
 	}
 
 //	public IUserService getUserService() {
