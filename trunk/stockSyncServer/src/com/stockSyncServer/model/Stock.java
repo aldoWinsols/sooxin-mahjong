@@ -16,6 +16,8 @@ public class Stock {
 	public double bottomPrice = 0.0; // 当日最低价
 	public double nowPrice = 5.0;// 当前价格
 	public double nowCjNum = 0.0;// 当前成交量
+	
+	public double xinxinLv = 0.0;//股票本身向好率
 
 	public ArrayList<Cjhistory> cjhistorys = new ArrayList<Cjhistory>();// 成交笔
 
@@ -140,6 +142,14 @@ public class Stock {
 
 	public void setSaleOrders(ArrayList<Order> saleOrders) {
 		this.saleOrders = saleOrders;
+	}
+
+	public double getXinxinLv() {
+		return xinxinLv;
+	}
+
+	public void setXinxinLv(double xinxinLv) {
+		this.xinxinLv = xinxinLv;
 	}
 
 }

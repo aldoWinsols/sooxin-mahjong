@@ -6,19 +6,21 @@ import java.util.ArrayList;
 import org.red5.server.api.scheduling.IScheduledJob;
 import org.red5.server.api.scheduling.ISchedulingService;
 
+import com.stock.inter.IStockService;
+import com.stockSyncServer.dataServices.RemoteService;
 import com.stockSyncServer.model.BalanceTask;
+import com.stockSyncServer.model.OrderTask;
 
-public class BalanceService {
+public class BalanceService extends Thread implements Runnable{
 	
-	private int num = 100;
-	ArrayList<Balance> balances = new ArrayList<Balance>();
 	ArrayList<BalanceTask> balanceTasks = new ArrayList<BalanceTask>();
+	private IStockService stockService;
 	public static BalanceService instance;
 	
 	public BalanceService(){
-		for(int i=0; i<num; i++){
-			balances.add(new Balance());
-		}
+		balanceTasks = new ArrayList<BalanceTask>();
+		stockService = RemoteService.instance.stockService;
+		this.start();
 	}
 	
 	public static BalanceService getInstance(){
@@ -42,11 +44,25 @@ public class BalanceService {
 		balanceTask.cjPrice = cjPrice;
 		balanceTask.cjTime = cjTime;
 		
-		for(int i=0; i<balances.size(); i++){
-			if(balances.get(i).balanceTask == null){
-				balances.get(i).balanceTask = balanceTask;
-				break;
+		balanceTasks.add(balanceTask);
+	}
+	
+	BalanceTask balanceTask;
+	public void run() {
+		while (true) {
+			synchronized (balanceTasks) {
+				while (balanceTasks.isEmpty()) {
+				}
 			}
+
+			balanceTask = balanceTasks.get(0);
+			stockService.blance(balanceTask.stockNum,
+					balanceTask.buyPlayerName, balanceTask.buyOrderNum,
+					balanceTask.salePlayerName, balanceTask.saleOrderNum,
+					balanceTask.cjSort, balanceTask.cjNum, balanceTask.cjPrice,
+					balanceTask.cjTime);
+
+			balanceTasks.remove(0);
 		}
 	}
 }

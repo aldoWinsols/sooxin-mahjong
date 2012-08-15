@@ -7,6 +7,7 @@ import org.red5.server.api.IConnection;
 import org.red5.server.api.IScope;
 import org.red5.server.api.service.IServiceCapableConnection;
 
+import com.stockSyncServer.dataServices.RemoteService;
 import com.stockSyncServer.services.ConfigService;
 import com.stockSyncServer.services.JobService;
 import com.stockSyncServer.services.MainService;
@@ -37,10 +38,13 @@ public class Application extends ApplicationAdapter{
 		
 		UtilProperties.getInstance("config.properties");
 		ConfigService.getInstance();
+		
+		RemoteService.getInstance();
+		
 		MainService.getInstance();
 		MessageService.getInstance();
 		OrderDataService.getInstance();
-		OrderDataService.instance.init();
+		
 		
 		BalanceService.getInstance();
 		
