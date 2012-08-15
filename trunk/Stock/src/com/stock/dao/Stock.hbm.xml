@@ -37,5 +37,8 @@
         <property name="lastDayEndPrice" type="java.lang.Double">
             <column name="lastDayEndPrice" precision="22" scale="0" />
         </property>
+        <property name="xinxinLv" type="java.lang.Double">
+            <column name="xinxinLv" precision="22" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>
