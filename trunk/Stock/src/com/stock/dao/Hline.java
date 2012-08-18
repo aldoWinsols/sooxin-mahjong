@@ -3,17 +3,17 @@ package com.stock.dao;
 import java.sql.Timestamp;
 
 /**
- * Kline entity. @author MyEclipse Persistence Tools
+ * Hline entity. @author MyEclipse Persistence Tools
  */
 
-public class Kline implements java.io.Serializable {
+public class Hline implements java.io.Serializable {
 
 	// Fields
 
 	private Long id;
 	private Timestamp timestamp;
 	private String stockCode;
-	private String date;
+	private Timestamp buildDate;
 	private Double finistNum;
 	private Double startNum;
 	private Double topNum;
@@ -23,14 +23,14 @@ public class Kline implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Kline() {
+	public Hline() {
 	}
 
 	/** full constructor */
-	public Kline(String stockCode, String date, Double finistNum,
+	public Hline(String stockCode, Timestamp buildDate, Double finistNum,
 			Double startNum, Double topNum, Double lastNum, Double turnover) {
 		this.stockCode = stockCode;
-		this.date = date;
+		this.buildDate = buildDate;
 		this.finistNum = finistNum;
 		this.startNum = startNum;
 		this.topNum = topNum;
@@ -64,12 +64,12 @@ public class Kline implements java.io.Serializable {
 		this.stockCode = stockCode;
 	}
 
-	public String getDate() {
-		return this.date;
+	public Timestamp getBuildDate() {
+		return this.buildDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setBuildDate(Timestamp buildDate) {
+		this.buildDate = buildDate;
 	}
 
 	public Double getFinistNum() {
