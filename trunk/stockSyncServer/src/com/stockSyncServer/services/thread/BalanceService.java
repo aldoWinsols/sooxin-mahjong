@@ -1,15 +1,9 @@
 package com.stockSyncServer.services.thread;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
-
-import org.red5.server.api.scheduling.IScheduledJob;
-import org.red5.server.api.scheduling.ISchedulingService;
-
 import com.stock.inter.IStockService;
-import com.stockSyncServer.dataServices.RemoteService;
 import com.stockSyncServer.model.BalanceTask;
-import com.stockSyncServer.model.OrderTask;
+import com.stockSyncServer.services.ConfigService;
 
 public class BalanceService extends Thread implements Runnable{
 	
@@ -19,7 +13,8 @@ public class BalanceService extends Thread implements Runnable{
 	
 	public BalanceService(){
 		balanceTasks = new ArrayList<BalanceTask>();
-		stockService = RemoteService.instance.stockService;
+		stockService = (IStockService) ConfigService.getInstance().getContext()
+		.getBean("stockService");
 		this.start();
 	}
 	
@@ -31,7 +26,7 @@ public class BalanceService extends Thread implements Runnable{
 		return instance;
 	}
 	
-	public void addTask(String stockNum,String buyPlayerName, String buyOrderNum, String salePlayerName,String saleOrderNum, String cjSort,int cjNum,Double cjPrice,Timestamp cjTime){
+	public void addTask(String stockNum,String buyPlayerName, String buyOrderNum, String salePlayerName,String saleOrderNum, String cjSort,int cjNum,Double cjPrice,String cjTime){
 		BalanceTask balanceTask = new BalanceTask();
 		
 		balanceTask.stockNum = stockNum;

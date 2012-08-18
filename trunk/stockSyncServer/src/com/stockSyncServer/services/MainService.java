@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import net.sf.json.JSONArray;
 
 import com.stock.dao.Stock;
-import com.stockSyncServer.dataServices.RemoteService;
+import com.stock.inter.IStockService;
 import com.stockSyncServer.services.thread.OrderDataService;
 
 public class MainService {
@@ -13,13 +13,14 @@ public class MainService {
 	public static MainService instance;
 	public ArrayList<StockService> stockServices = new ArrayList<StockService>();
 	public ArrayList<LeafService> leafServices = new ArrayList<LeafService>();
-
+	private IStockService stockService;
 	public MainService() {
 		// addLeafs("http://127.0.0.1:5080/leafSyncServer/gateway");
 
-		RemoteService remoteService = new RemoteService();
-		ArrayList<Stock> stocks = (ArrayList<Stock>) remoteService
-				.getStockService().getStocks();
+		stockService = (IStockService) ConfigService.getInstance().getContext()
+		.getBean("stockService");
+		
+		ArrayList<Stock> stocks = (ArrayList<Stock>) stockService.getStocks();
 
 		for (int i = 0; i < stocks.size(); i++) {
 			StockService stockService = new StockService();

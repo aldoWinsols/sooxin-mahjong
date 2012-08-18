@@ -1,6 +1,8 @@
 package com.stockSyncServer.services;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -11,6 +13,7 @@ import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.Stock;
 import com.stockSyncServer.services.thread.BalanceService;
+import com.stockSyncServer.services.thread.CjhistoryDataService;
 import com.stockSyncServer.util.ComparatorAsc;
 import com.stockSyncServer.util.ComparatorDesc;
 import com.stockSyncServer.util.NumberFomart;
@@ -36,8 +39,10 @@ public class StockService {
 
 	private ArrayList<Cjhistory> thisCjhistoryS = new ArrayList<Cjhistory>();
 	private ArrayList<Cjhistory> msgCjhistoryS = new ArrayList<Cjhistory>();
+	
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss");
 
-	public synchronized void balance() {
+	public void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
 			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
 					.getWtPrice()) {
@@ -45,7 +50,7 @@ public class StockService {
 						.get(0).getWtNum()) {
 
 					Cjhistory cjhistory = new Cjhistory();
-					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
+					cjhistory.setCjTime(dateFormat.format(new Date()));
 					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
 					cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
 					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
@@ -88,7 +93,7 @@ public class StockService {
 						.get(0).getWtNum()) {
 
 					Cjhistory cjhistory = new Cjhistory();
-					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
+					cjhistory.setCjTime(dateFormat.format(new Date()));
 					cjhistory.setCjNum(stock.saleOrders.get(0).getWtNum());
 
 					if (cjSort.equals("B")) {
@@ -140,7 +145,7 @@ public class StockService {
 				} else {
 
 					Cjhistory cjhistory = new Cjhistory();
-					cjhistory.setCjTime(new Timestamp(new Date().getTime()));
+					cjhistory.setCjTime(dateFormat.format(new Date()));
 					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
 
 					if (cjSort.equals("B")) {
@@ -193,8 +198,8 @@ public class StockService {
 				if (thisCjhistoryS.size() > 0) {
 					msgCjhistoryS.add(new Cjhistory());
 
-					msgCjhistoryS.get(0).setCjTime(
-							new Timestamp(new Date().getTime()));
+					msgCjhistoryS.get(0).setStockCode(this.stock.stockCode);
+					msgCjhistoryS.get(0).setCjTime(dateFormat.format(new Date()));
 					for (int i = 0; i < thisCjhistoryS.size(); i++) {
 						msgCjhistoryS.get(0).setCjNum(
 								msgCjhistoryS.get(0).getCjNum()
@@ -215,6 +220,10 @@ public class StockService {
 						JSONArray.fromObject(stock.buyOrders),
 						JSONArray.fromObject(stock.saleOrders),
 						JSONArray.fromObject(msgCjhistoryS) });
+				
+				if(msgCjhistoryS.size()>0){
+					CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
+				}
 
 				msgCjhistoryS.removeAll(msgCjhistoryS);
 			}
@@ -222,8 +231,8 @@ public class StockService {
 			if (thisCjhistoryS.size() > 0) {
 				msgCjhistoryS.add(new Cjhistory());
 
-				msgCjhistoryS.get(0).setCjTime(
-						new Timestamp(new Date().getTime()));
+				msgCjhistoryS.get(0).setStockCode(this.stock.stockCode);
+				msgCjhistoryS.get(0).setCjTime(dateFormat.format(new Date()));
 				for (int i = 0; i < thisCjhistoryS.size(); i++) {
 					msgCjhistoryS.get(0).setCjNum(
 							msgCjhistoryS.get(0).getCjNum()
@@ -243,6 +252,10 @@ public class StockService {
 					stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
 					JSONArray.fromObject(stock.saleOrders),
 					JSONArray.fromObject(msgCjhistoryS) });
+			
+			if(msgCjhistoryS.size()>0){
+				CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
+			}
 
 			msgCjhistoryS.removeAll(msgCjhistoryS);
 		}
