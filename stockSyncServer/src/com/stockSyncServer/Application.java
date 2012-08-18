@@ -1,19 +1,16 @@
 package com.stockSyncServer;
 
-import java.util.Timer;
-
 import org.red5.server.adapter.ApplicationAdapter;
 import org.red5.server.api.IConnection;
 import org.red5.server.api.IScope;
-import org.red5.server.api.service.IServiceCapableConnection;
 
-import com.stockSyncServer.dataServices.RemoteService;
 import com.stockSyncServer.services.ConfigService;
 import com.stockSyncServer.services.JobService;
 import com.stockSyncServer.services.MainService;
 import com.stockSyncServer.services.MessageService;
-import com.stockSyncServer.services.StockService;
 import com.stockSyncServer.services.thread.BalanceService;
+import com.stockSyncServer.services.thread.CjhistoryDataService;
+import com.stockSyncServer.services.thread.LineDataService;
 import com.stockSyncServer.services.thread.OrderDataService;
 import com.stockSyncServer.util.UtilProperties;
 
@@ -39,16 +36,16 @@ public class Application extends ApplicationAdapter{
 		UtilProperties.getInstance("config.properties");
 		ConfigService.getInstance();
 		
-		RemoteService.getInstance();
-		
 		MainService.getInstance();
 		MessageService.getInstance();
 		OrderDataService.getInstance();
+		CjhistoryDataService.getInstance();
+		LineDataService.getInstance();
 		
 		
 		BalanceService.getInstance();
 		
-		String id = addScheduledJob(6000, new JobService());
+		String id = addScheduledJob(1000, new JobService());
 		scope.setAttribute("Myjob", id);
 		
 //		String idBalance = addScheduledJob(1000, new BalanceService());
