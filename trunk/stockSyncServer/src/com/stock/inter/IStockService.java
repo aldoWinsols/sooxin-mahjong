@@ -14,5 +14,5 @@ public interface IStockService {
 
 	public void blance(String stockNum, String buyPlayerName,
 			String buyOrderNum, String salePlayerName, String saleOrderNum,
-			String cjSort, int cjNum, Double cjPrice, Timestamp cjTime);
+			String cjSort, int cjNum, Double cjPrice, String cjTime);
 }
