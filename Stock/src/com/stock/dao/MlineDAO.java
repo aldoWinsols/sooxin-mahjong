@@ -9,34 +9,30 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * A data access object (DAO) providing persistence and search support for Kline
+ * A data access object (DAO) providing persistence and search support for Mline
  * entities. Transaction control of the save(), update() and delete() operations
  * can directly support Spring container-managed transactions or they can be
  * augmented to handle user-managed Spring transactions. Each of these methods
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see com.stock.dao.Kline
+ * @see com.stock.dao.Mline
  * @author MyEclipse Persistence Tools
  */
 
-public class KlineDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory.getLogger(KlineDAO.class);
+public class MlineDAO extends HibernateDaoSupport {
+	private static final Logger log = LoggerFactory.getLogger(MlineDAO.class);
 	// property constants
 	public static final String STOCK_CODE = "stockCode";
-	public static final String DATE = "date";
-	public static final String FINIST_NUM = "finistNum";
-	public static final String START_NUM = "startNum";
-	public static final String TOP_NUM = "topNum";
-	public static final String LAST_NUM = "lastNum";
+	public static final String PRICE = "price";
 	public static final String TURNOVER = "turnover";
 
 	protected void initDao() {
 		// do nothing
 	}
 
-	public void save(Kline transientInstance) {
-		log.debug("saving Kline instance");
+	public void save(Mline transientInstance) {
+		log.debug("saving Mline instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -46,8 +42,8 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(Kline persistentInstance) {
-		log.debug("deleting Kline instance");
+	public void delete(Mline persistentInstance) {
+		log.debug("deleting Mline instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -57,11 +53,11 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Kline findById(java.lang.Long id) {
-		log.debug("getting Kline instance with id: " + id);
+	public Mline findById(java.lang.Long id) {
+		log.debug("getting Mline instance with id: " + id);
 		try {
-			Kline instance = (Kline) getHibernateTemplate().get(
-					"com.stock.dao.Kline", id);
+			Mline instance = (Mline) getHibernateTemplate().get(
+					"com.stock.dao.Mline", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -69,8 +65,8 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(Kline instance) {
-		log.debug("finding Kline instance by example");
+	public List findByExample(Mline instance) {
+		log.debug("finding Mline instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
@@ -83,10 +79,10 @@ public class KlineDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Kline instance with property: " + propertyName
+		log.debug("finding Mline instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Kline as model where model."
+			String queryString = "from Mline as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
@@ -99,24 +95,8 @@ public class KlineDAO extends HibernateDaoSupport {
 		return findByProperty(STOCK_CODE, stockCode);
 	}
 
-	public List findByDate(Object date) {
-		return findByProperty(DATE, date);
-	}
-
-	public List findByFinistNum(Object finistNum) {
-		return findByProperty(FINIST_NUM, finistNum);
-	}
-
-	public List findByStartNum(Object startNum) {
-		return findByProperty(START_NUM, startNum);
-	}
-
-	public List findByTopNum(Object topNum) {
-		return findByProperty(TOP_NUM, topNum);
-	}
-
-	public List findByLastNum(Object lastNum) {
-		return findByProperty(LAST_NUM, lastNum);
+	public List findByPrice(Object price) {
+		return findByProperty(PRICE, price);
 	}
 
 	public List findByTurnover(Object turnover) {
@@ -124,9 +104,9 @@ public class KlineDAO extends HibernateDaoSupport {
 	}
 
 	public List findAll() {
-		log.debug("finding all Kline instances");
+		log.debug("finding all Mline instances");
 		try {
-			String queryString = "from Kline";
+			String queryString = "from Mline";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -134,10 +114,10 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Kline merge(Kline detachedInstance) {
-		log.debug("merging Kline instance");
+	public Mline merge(Mline detachedInstance) {
+		log.debug("merging Mline instance");
 		try {
-			Kline result = (Kline) getHibernateTemplate().merge(
+			Mline result = (Mline) getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -147,8 +127,8 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(Kline instance) {
-		log.debug("attaching dirty Kline instance");
+	public void attachDirty(Mline instance) {
+		log.debug("attaching dirty Mline instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -158,8 +138,8 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(Kline instance) {
-		log.debug("attaching clean Kline instance");
+	public void attachClean(Mline instance) {
+		log.debug("attaching clean Mline instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -169,7 +149,7 @@ public class KlineDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static KlineDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (KlineDAO) ctx.getBean("KlineDAO");
+	public static MlineDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (MlineDAO) ctx.getBean("MlineDAO");
 	}
 }

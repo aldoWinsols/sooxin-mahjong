@@ -42,7 +42,10 @@
 				<value>com/stock/dao/Stockpricehistory.hbm.xml</value>
 				<value>com/stock/dao/Bag.hbm.xml</value>
 				<value>com/stock/dao/Stock.hbm.xml</value>
-				<value>com/stock/dao/Kline.hbm.xml</value></list>
+				<value>com/stock/dao/Dline.hbm.xml</value>
+				<value>com/stock/dao/Mline.hbm.xml</value>
+				<value>com/stock/dao/Wline.hbm.xml</value>
+				<value>com/stock/dao/Hline.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -97,7 +100,22 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	<bean id="KlineDAO" class="com.stock.dao.KlineDAO">
+	<bean id="DlineDAO" class="com.stock.dao.DlineDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MlineDAO" class="com.stock.dao.MlineDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="WlineDAO" class="com.stock.dao.WlineDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="HlineDAO" class="com.stock.dao.HlineDAO">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -119,10 +137,19 @@
 		</property>
 	</bean>
 	
-	<bean id="klineService"
-		class="com.stock.services.KlineService">
-		<property name="klineDao">
-			<ref bean="KlineDAO" />
+	<bean id="lineService"
+		class="com.stock.services.LineService">
+		<property name="mlineDao">
+			<ref bean="MlineDAO" />
+		</property>
+		<property name="hlineDao">
+			<ref bean="HlineDAO" />
+		</property>
+		<property name="dlineDao">
+			<ref bean="DlineDAO" />
+		</property>
+		<property name="wlineDao">
+			<ref bean="WlineDAO" />
 		</property>
 	</bean>
 	
@@ -133,6 +160,13 @@
 		</property>
 		<property name="bagDao">
 			<ref bean="BagDAO" />
+		</property>
+	</bean>
+	
+	<bean id="cjhistoryService"
+		class="com.stock.services.CjhistoryService">
+		<property name="cjhistoryDao">
+			<ref bean="CjhistoryDAO" />
 		</property>
 	</bean>
 	

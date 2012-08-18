@@ -125,7 +125,7 @@ public class StockService implements IStockService {
 
 	public synchronized void blance(String stockNum, String buyPlayerName,
 			String buyOrderNum, String salePlayerName, String saleOrderNum,
-			String cjSort, int cjNum, Double cjPrice, Timestamp cjTime) {
+			String cjSort, int cjNum, Double cjPrice, String cjTime) {
 		Player buyPlayer = (Player) playerDao.findByPlayerName(buyPlayerName)
 				.get(0);
 		Player salePlayer = (Player) playerDao.findByPlayerName(salePlayerName)
