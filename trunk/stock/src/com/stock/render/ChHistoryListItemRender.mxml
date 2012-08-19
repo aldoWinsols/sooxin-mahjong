@@ -10,7 +10,7 @@
 			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				cjTimeL.text = data.cjTime.hours+":"+data.cjTime.minutes;
+				cjTimeL.text = (data.cjTime as String).substr(11,5);
 			}
 			
 		]]>
