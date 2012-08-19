@@ -170,4 +170,17 @@
 		</property>
 	</bean>
 	
+	<bean id="bshistoryService"
+		class="com.stock.services.BshistoryService">
+		<property name="bshistoryDao">
+			<ref bean="BshistoryDAO" />
+		</property>
+	</bean>
+	<bean id="bagService"
+		class="com.stock.services.BagService">
+		<property name="bagDao">
+			<ref bean="BagDAO" />
+		</property>
+	</bean>
+	
 	</beans>
