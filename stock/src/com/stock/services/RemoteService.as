@@ -19,6 +19,8 @@ package com.stock.services
 		public static var instance:RemoteService;
 		
 		public var klineService:RemoteObject;
+		public var bshistoryService:RemoteObject;
+		public var bagService:RemoteObject;
 		
 		public var connState:Boolean = false;
 
@@ -29,6 +31,8 @@ package com.stock.services
 		public function RemoteService()
 		{
 			klineService=getConfiguredRO("klineService");
+			bshistoryService=getConfiguredRO("bshistoryService");
+			bagService=getConfiguredRO("bagService");
 		}
 
 		//得到单例

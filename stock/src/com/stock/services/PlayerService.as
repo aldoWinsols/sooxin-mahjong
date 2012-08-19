@@ -5,6 +5,8 @@ package com.stock.services
 	public class PlayerService
 	{
 		public static var instance:PlayerService;
+		
+		[Bindable]
 		public var player:Player;
 		public function PlayerService()
 		{
