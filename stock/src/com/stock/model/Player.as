@@ -1,11 +1,14 @@
 package com.stock.model
 {
+	[Bindable]
+	[RemoteClass(alias="com.stock.dao.Player")]
 	public class Player
 	{
-		[Bindable]
+
 		public var playerName:String = "";
-		[Bindable]
 		public var haveMoney:Number= 0;
+		private var clockMoney:Number= 0;
+
 		public function Player()
 		{
 		}

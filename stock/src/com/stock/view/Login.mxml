@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:model="com.stock.model.*" creationComplete="group1_creationCompleteHandler(event)"
+		 width="450" height="250">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.LoginControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new LoginControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer x="0" y="0" width="450" height="250" backgroundAlpha="0.1"
+					   cornerRadius="5">
+		<s:TextInput id="playerName" x="128" y="45" width="250" restrict="0-9\a-z"/>
+		<s:TextInput id="playerPwd" x="130" y="105" width="250" displayAsPassword="true"
+					 restrict="0-9\a-z"/>
+		<model:Button id="registB" x="172" y="156" label="注  册"/>
+		<model:Button id="loginB" x="280" y="156" label="登  录"/>
+		<s:Label x="69" y="52" color="#CCCCCC" text="用户："/>
+		<s:Label x="69" y="112" color="#CCCCCC" text="密码："/>
+		
+	</s:BorderContainer>
+</s:Group>
