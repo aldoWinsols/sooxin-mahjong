@@ -15,9 +15,10 @@ package com.stock.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://192.168.1.2:8080/";
+		public var mainUrl:String = "http://127.0.0.1:8080/";
 		public static var instance:RemoteService;
 		
+		public var playerService:RemoteObject;
 		public var klineService:RemoteObject;
 		public var bshistoryService:RemoteObject;
 		public var bagService:RemoteObject;
@@ -30,6 +31,7 @@ package com.stock.services
 		public var urlList:XMLList;
 		public function RemoteService()
 		{
+			playerService=getConfiguredRO("playerService");
 			klineService=getConfiguredRO("klineService");
 			bshistoryService=getConfiguredRO("bshistoryService");
 			bagService=getConfiguredRO("bagService");

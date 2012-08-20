@@ -13,6 +13,7 @@
 		<s:State name="bshistory"/>
 		<s:State name="bag"/>
 		<s:State name="login"/>
+		<s:State name="regist"/>
 	</s:states>
 	<fx:Declarations>
 		<s:RadioButtonGroup id="radiogroup1"/>
@@ -75,39 +76,46 @@
 				this.currentState = "stockKline";
 			}
 			
+			protected function backB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "login";
+			}
+			
 		]]>
 	</fx:Script>
 
 	<s:BorderContainer id="menuButton" includeIn="bag,bshistory,stockKline,stockList,stockMain" x="0"
 					   y="0" width="100%" height="50" backgroundAlpha="0.1"
 					   backgroundColor="#cccccc" borderColor="#B00000">
-		<s:BorderContainer backgroundColor="#000000"
-						   x="0" y="2" width="362" cornerRadius="3"
-						   height="40">
+		<s:BorderContainer includeIn="bag,bshistory,stockKline,stockMain" x="0" y="2" width="362"
+						   height="40" backgroundColor="#000000" cornerRadius="3">
 			<s:BitmapImage alpha="0.9" x="2" source="assets/logo.png" verticalCenter="0"/>
 			<s:Label alpha="0.7" x="154" y="5" color="#CCCCCC" fontSize="12" text="帐户："/>
 			<s:Label alpha="0.7" x="154" y="22" color="#CCCCCC" fontSize="12" text="资产："/>
-			<s:Label includeIn="bshistory" x="188" y="5" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.playerName}"/>
-			<s:Label includeIn="bshistory" x="188" y="22" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.haveMoney}"/>
+			<s:Label x="188" y="5" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.playerName}"/>
+			<s:Label x="188" y="22" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.haveMoney}"/>
 		</s:BorderContainer>
-		<model:Button id="indexB" label="主  页"
-					  x="370" y="2">
+		<model:Button id="indexB" includeIn="bag,bshistory,stockKline,stockMain" x="370" y="2"
+					  label="主  页">
 		</model:Button>
-		<model:Button id="accountB" label="帐  户"
-					  x="480" y="2">
+		<model:Button id="accountB" includeIn="bag,bshistory,stockKline,stockMain" x="480" y="2"
+					  label="帐  户">
 		</model:Button>
-		<model:Button id="zhijinB" label="资金股份"
-					  x="590" y="2">
+		<model:Button id="zhijinB" includeIn="bag,bshistory,stockKline,stockMain" x="590" y="2"
+					  label="资金股份">
 		</model:Button>
-		<model:Button id="weituoB" label="委托成交"
-					  x="700" y="2">
+		<model:Button id="weituoB" includeIn="bag,bshistory,stockKline,stockMain" x="700" y="2"
+					  label="委托成交">
 		</model:Button>
-		<model:Button id="bankB" label="银  行"
-					  x="810" y="2">
+		<model:Button id="bankB" includeIn="bag,bshistory,stockKline,stockMain" x="810" y="2"
+					  label="银  行">
 		</model:Button>
-		<model:Button id="chongzhiB" label="帐户充值"
-					  x="920" y="2">
+		<model:Button id="chongzhiB" includeIn="bag,bshistory,stockKline,stockMain" x="920" y="2"
+					  label="帐户充值">
 		</model:Button>
+		<view:Menu includeIn="stockList" x="0" y="0">
+		</view:Menu>
 		
 	</s:BorderContainer>
 
@@ -151,15 +159,11 @@
 	</view:Bag>
 	
 	<s:Image includeIn="login" x="0" y="0" source="assets/bg.png"/>
-	<s:BorderContainer includeIn="login" cornerRadius="5" backgroundAlpha="0.1" x="286" y="206" width="500" height="300">
-		<s:TextInput x="99" y="42"/>
-		<s:TextInput x="101" y="102"/>
-		<model:Button x="194" y="163" label="注  册" selected="true"/>
-		<model:Button x="302" y="163" label="登  录"/>
-		<s:Label x="41" y="41" color="#CCCCCC" text="用户："/>
-		<s:Label x="41" y="101" color="#CCCCCC" text="密码："/>
-		
-	</s:BorderContainer>
+	<view:Login includeIn="login" horizontalCenter="0" verticalCenter="0">
+	</view:Login>
+	<view:Regist includeIn="regist" horizontalCenter="0" verticalCenter="0">
+	</view:Regist>
+	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回" click="backB_clickHandler(event)"/>
 	
 
 
