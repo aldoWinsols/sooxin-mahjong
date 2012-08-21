@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:model="com.stock.model.*" creationComplete="group1_creationCompleteHandler(event)"
-		 width="450" height="250">
+		 width="500" height="300">
 	<fx:Script>
 		<![CDATA[
 			import com.stock.control.LoginControl;
@@ -20,15 +20,21 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer x="0" y="0" width="450" height="250" backgroundAlpha="0.1"
+	<s:BorderContainer x="0" y="0" width="500" height="300" backgroundAlpha="0.1"
 					   cornerRadius="5">
-		<s:TextInput id="playerName" x="128" y="45" width="250" restrict="0-9\a-z"/>
-		<s:TextInput id="playerPwd" x="130" y="105" width="250" displayAsPassword="true"
+		<s:BorderContainer x="-1" y="-1" width="500" height="40" backgroundAlpha="0.3"
+						   cornerRadius="5">
+			<model:Button id="registB" x="413" y="4" width="80" height="30" label="注  册" selected="true" alpha="0.9"/>
+			</s:BorderContainer>
+		
+		<s:TextInput id="playerName" x="153" y="81" width="250" height="40" restrict="0-9\a-z"/>
+		<s:TextInput id="playerPwd" x="155" y="141" width="250" height="40" displayAsPassword="true"
 					 restrict="0-9\a-z"/>
-		<model:Button id="registB" x="172" y="156" label="注  册"/>
-		<model:Button id="loginB" x="280" y="156" label="登  录"/>
-		<s:Label x="69" y="52" color="#CCCCCC" text="用户："/>
-		<s:Label x="69" y="112" color="#CCCCCC" text="密码："/>
+		<model:Button id="loginB" x="305" y="199" label="登  录"/>
+		<s:Label x="94" y="93" color="#CCCCCC" fontWeight="bold" text="用户："/>
+		<s:Label x="94" y="154" color="#CCCCCC" fontWeight="bold" text="密码："/>
+		<s:Label x="10" y="11" color="#FF0000" text="股票大亨 WELCOME！"/>
+		<s:CheckBox id="remberLogin" x="155" y="204" label="保存密码" color="#D9D9D9"/>
 		
 	</s:BorderContainer>
 </s:Group>
