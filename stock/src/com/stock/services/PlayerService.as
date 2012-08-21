@@ -41,8 +41,7 @@ package com.stock.services
 				Alert.show(e.result.toString());
 			}
 		}
-		
-		
+
 		public function regist(playerName:String,playerPwd:String):void{
 			RemoteService.instance.playerService.regist(playerName,MD5.hash(playerPwd));
 			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,registResultHandler);
@@ -53,6 +52,22 @@ package com.stock.services
 			if(e.result is Player){
 				this.player = e.result as Player;
 				MainControl.instance.main.currentState = "stockList";
+			}else{
+				Alert.show(e.result.toString());
+			}
+		}
+		
+		public function updatePwd(oldPlayerPwd:String,newPlayerPwd:String):void{
+			RemoteService.instance.playerService.updatePlayerPwd(this.player.playerName,MD5.hash(oldPlayerPwd),MD5.hash(newPlayerPwd));
+			RemoteService.instance.playerService.addEventListener(ResultEvent.RESULT,updatePwdResultHandler);
+		}
+		
+		private function updatePwdResultHandler(e:ResultEvent):void{
+			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,updatePwdResultHandler);
+			if(e.result is Player){
+				this.player = e.result as Player;
+				MainControl.instance.main.currentState = "stockList";
+				Alert.show("密码修改成功！");
 			}else{
 				Alert.show(e.result.toString());
 			}

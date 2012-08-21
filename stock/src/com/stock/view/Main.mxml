@@ -14,6 +14,7 @@
 		<s:State name="bag"/>
 		<s:State name="login"/>
 		<s:State name="regist"/>
+		<s:State name="account"/>
 	</s:states>
 	<fx:Declarations>
 		<s:RadioButtonGroup id="radiogroup1"/>
@@ -80,6 +81,12 @@
 			{
 				// TODO Auto-generated method stub
 				this.currentState = "login";
+			}
+			
+			protected function updatePwdBackB_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.currentState = "stockList";
 			}
 			
 		]]>
@@ -158,12 +165,20 @@
 	<view:Bag includeIn="bag" x="0" y="50" alpha="0.7">
 	</view:Bag>
 	
-	<s:Image includeIn="login" x="0" y="0" source="assets/bg.png"/>
+	<s:Image includeIn="login,regist,account" x="0" y="0" source="assets/bg.png"/>
+	<s:Label includeIn="login" y="584" color="#B0B0B0" fontSize="14" horizontalCenter="0"
+			 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
+	<s:Label includeIn="login" y="612" color="#B0B0B0" fontSize="14" horizontalCenter="0"
+			 text="如有投诉或建议,请联系我们."/>
+	<model:Button id="updatePwdBackB" includeIn="account" x="853" y="53" label="返  回" selected="true"
+				  click="updatePwdBackB_clickHandler(event)"/>
 	<view:Login includeIn="login" horizontalCenter="0" verticalCenter="0">
 	</view:Login>
 	<view:Regist includeIn="regist" horizontalCenter="0" verticalCenter="0">
 	</view:Regist>
-	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回" click="backB_clickHandler(event)"/>
+	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回" selected="true" click="backB_clickHandler(event)"/>
+	<view:Account includeIn="account" horizontalCenter="0" verticalCenter="0">
+	</view:Account>
 	
 
 

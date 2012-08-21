@@ -21,16 +21,20 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer x="0" y="0" width="500" height="300" backgroundAlpha="0" borderAlpha="0.1"
-					   borderColor="#ffffff" cornerRadius="8">
-		<s:TextInput id="rPlayerName" x="211" y="30" width="250" height="40" restrict="0-9\a-z"/>
-		<s:TextInput id="rPlayerPwd" x="212" y="98" width="250" height="40" displayAsPassword="true"/>
-		<s:TextInput id="rCPlayerPwd" x="212" y="167" width="250" height="40"
+	<s:BorderContainer x="0" y="0" width="500" height="300" backgroundAlpha="0.1" cornerRadius="5">
+		<s:BorderContainer x="-1" y="-1" width="500" height="40" backgroundAlpha="0.3"
+						   cornerRadius="5">
+		</s:BorderContainer>
+		<s:TextInput id="rPlayerName" x="161" y="57" width="250" height="40" restrict="0-9\a-z"/>
+		<s:TextInput id="rPlayerPwd" x="162" y="115" width="250" height="40" displayAsPassword="true"/>
+		<s:TextInput id="rCPlayerPwd" x="162" y="174" width="250" height="40"
 					 displayAsPassword="true"/>
-		<model2:Button id="registB" x="315" y="237" label="注  册"/>
-		<s:Label x="49" y="30" text="标签"/>
-		<s:Label x="49" y="98" text="标签"/>
-		<s:Label x="49" y="191" text="标签"/>
+		<model2:Button id="registB" x="312" y="233" label="提  交"/>
+		<s:Label x="95" y="69" color="#CCCCCC" fontWeight="bold" text="用户："/>
+		<s:Label x="95" y="126" color="#CCCCCC" fontWeight="bold" text="密码："/>
+		<s:Label x="64" y="183" color="#CCCCCC" fontWeight="bold" text="确认密码："/>
+		<s:Label x="10" y="11" color="#FF0000" text="注册帐户"/>
+		
 		
 	</s:BorderContainer>
 </s:Group>

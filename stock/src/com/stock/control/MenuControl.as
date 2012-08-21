@@ -23,7 +23,7 @@ package com.stock.control
 			
 		}
 		private function accountBClickHandler(e:MouseEvent):void{
-			
+			MainControl.instance.main.currentState = "account";
 		}
 		private function zhijinBClickHandler(e:MouseEvent):void{
 			initMenuB();
