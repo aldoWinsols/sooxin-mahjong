@@ -12,6 +12,7 @@ import net.sf.json.JSONArray;
 import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.Stock;
+import com.stockSyncServer.services.thread.BalanceJingjiaService;
 import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.services.thread.CjhistoryDataService;
 import com.stockSyncServer.util.ComparatorAsc;
@@ -41,7 +42,7 @@ public class StockService {
 	private ArrayList<Cjhistory> msgCjhistoryS = new ArrayList<Cjhistory>();
 	
 	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss");
-
+	
 	public void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
 			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
@@ -260,6 +261,230 @@ public class StockService {
 			msgCjhistoryS.removeAll(msgCjhistoryS);
 		}
 	}
+	
+	//产生集合竞价
+	public void balanceJingjia() {
+		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
+			if (stock.buyOrders.get(0).getWtPrice() >= stock.saleOrders.get(0)
+					.getWtPrice()) {
+				if (stock.buyOrders.get(0).getWtNum() == stock.saleOrders
+						.get(0).getWtNum()) {
+
+					Cjhistory cjhistory = new Cjhistory();
+					cjhistory.setCjTime(dateFormat.format(new Date()));
+					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
+					cjhistory.setCjPrice(stock.saleOrders.get(0).getWtPrice());
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
+					cjhistory.setCjSort(cjSort);
+					// stock.cjhistorys.add(cjhistory);
+
+					// -----------------------------------------------------------------
+					stock.setNowPrice(cjhistory.getCjPrice());
+					stock.setNowCjNum(stock.getNowCjNum()
+							+ cjhistory.getCjNum() * cjhistory.getCjPrice());
+
+					if (stock.getNowPrice() > stock.getTopPrice()) {
+						stock.setTopPrice(stock.getNowPrice());
+					}
+					if (stock.getNowPrice() < stock.getBottomPrice()) {
+						stock.setBottomPrice(stock.getNowPrice());
+					}
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceJingjiaService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
+					// ------------------------------------------------------------------
+
+					System.out.println("成交数量："
+							+ stock.buyOrders.get(0).getWtNum());
+					stock.buyOrders.remove(0);
+					stock.saleOrders.remove(0);
+
+					thisCjhistoryS.add(cjhistory);
+
+					balanceJingjia();
+				} else if (stock.buyOrders.get(0).getWtNum() > stock.saleOrders
+						.get(0).getWtNum()) {
+
+					Cjhistory cjhistory = new Cjhistory();
+					cjhistory.setCjTime(dateFormat.format(new Date()));
+					cjhistory.setCjNum(stock.saleOrders.get(0).getWtNum());
+
+					if (cjSort.equals("B")) {
+						cjhistory.setCjPrice(stock.saleOrders.get(0)
+								.getWtPrice());
+					} else {
+						cjhistory.setCjPrice(stock.buyOrders.get(0)
+								.getWtPrice());
+					}
+
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
+					cjhistory.setCjSort(cjSort);
+					// stock.cjhistorys.add(cjhistory);
+
+					// -----------------------------------------------------------------
+					stock.setNowPrice(cjhistory.getCjPrice());
+					stock.setNowCjNum(stock.getNowCjNum()
+							+ cjhistory.getCjNum() * cjhistory.getCjPrice());
+
+					if (stock.getNowPrice() > stock.getTopPrice()) {
+						stock.setTopPrice(stock.getNowPrice());
+					}
+					if (stock.getNowPrice() < stock.getBottomPrice()) {
+						stock.setBottomPrice(stock.getNowPrice());
+					}
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceJingjiaService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
+					// ------------------------------------------------------------------
+
+					System.out.println("成交数量："
+							+ stock.saleOrders.get(0).getWtNum());
+
+					stock.buyOrders.get(0).setWtNum(
+							stock.buyOrders.get(0).getWtNum()
+									- stock.saleOrders.get(0).getWtNum());
+					stock.saleOrders.remove(0);
+
+					thisCjhistoryS.add(cjhistory);
+					balanceJingjia();
+				} else {
+
+					Cjhistory cjhistory = new Cjhistory();
+					cjhistory.setCjTime(dateFormat.format(new Date()));
+					cjhistory.setCjNum(stock.buyOrders.get(0).getWtNum());
+
+					if (cjSort.equals("B")) {
+						cjhistory.setCjPrice(stock.saleOrders.get(0)
+								.getWtPrice());
+					} else {
+						cjhistory.setCjPrice(stock.buyOrders.get(0)
+								.getWtPrice());
+					}
+					cjhistory.setCjPrice(NumberFomart.for2(cjhistory
+							.getCjPrice()));
+					cjhistory.setCjSort(cjSort);
+					// stock.cjhistorys.add(cjhistory);
+
+					// -----------------------------------------------------------------
+					stock.setNowPrice(cjhistory.getCjPrice());
+					stock.setNowCjNum(stock.getNowCjNum()
+							+ cjhistory.getCjNum() * cjhistory.getCjPrice());
+
+					if (stock.getNowPrice() > stock.getTopPrice()) {
+						stock.setTopPrice(stock.getNowPrice());
+					}
+					if (stock.getNowPrice() < stock.getBottomPrice()) {
+						stock.setBottomPrice(stock.getNowPrice());
+					}
+
+					// --------------------------------------------------------------------
+					// 添加结算写数据任务
+					BalanceJingjiaService.instance.addTask(stock.stockCode, stock.buyOrders
+							.get(0).getPlayerName(), stock.buyOrders.get(0)
+							.getOrderNum(), stock.saleOrders.get(0)
+							.getPlayerName(), stock.saleOrders.get(0)
+							.getOrderNum(), cjSort, cjhistory.getCjNum(),
+							cjhistory.getCjPrice(), cjhistory.getCjTime());
+
+					// ------------------------------------------------------------------
+
+					System.out.println("成交数量："
+							+ stock.buyOrders.get(0).getWtNum());
+
+					stock.saleOrders.get(0).setWtNum(
+							stock.saleOrders.get(0).getWtNum()
+									- stock.buyOrders.get(0).getWtNum());
+					stock.buyOrders.remove(0);
+
+					thisCjhistoryS.add(cjhistory);
+					balanceJingjia();
+				}
+			} else {
+				if (thisCjhistoryS.size() > 0) {
+					msgCjhistoryS.add(new Cjhistory());
+
+					msgCjhistoryS.get(0).setStockCode(this.stock.stockCode);
+					msgCjhistoryS.get(0).setCjTime(dateFormat.format(new Date()));
+					for (int i = 0; i < thisCjhistoryS.size(); i++) {
+						msgCjhistoryS.get(0).setCjNum(
+								msgCjhistoryS.get(0).getCjNum()
+										+ thisCjhistoryS.get(i).getCjNum());
+						msgCjhistoryS.get(0).setCjPrice(
+								thisCjhistoryS.get(i).getCjPrice());
+						msgCjhistoryS.get(0).setCjSort(cjSort);
+					}
+
+					stock.cjhistorys.add(msgCjhistoryS.get(0));
+					thisCjhistoryS.removeAll(thisCjhistoryS);
+				}
+
+				MessageService.instance.broadcastJiaoyi(new Object[] {
+						stock.stockCode, stock.getTopPrice(),
+						stock.getBottomPrice(), stock.getNowPrice(),
+						stock.getNowCjNum(),
+						JSONArray.fromObject(stock.buyOrders),
+						JSONArray.fromObject(stock.saleOrders),
+						JSONArray.fromObject(msgCjhistoryS) });
+				
+				BalanceJingjiaService.instance.start();// 结算集合竞价
+				
+				if(msgCjhistoryS.size()>0){
+					CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
+				}
+
+				msgCjhistoryS.removeAll(msgCjhistoryS);
+			}
+		} else {
+			if (thisCjhistoryS.size() > 0) {
+				msgCjhistoryS.add(new Cjhistory());
+
+				msgCjhistoryS.get(0).setStockCode(this.stock.stockCode);
+				msgCjhistoryS.get(0).setCjTime(dateFormat.format(new Date()));
+				for (int i = 0; i < thisCjhistoryS.size(); i++) {
+					msgCjhistoryS.get(0).setCjNum(
+							msgCjhistoryS.get(0).getCjNum()
+									+ thisCjhistoryS.get(i).getCjNum());
+					msgCjhistoryS.get(0).setCjPrice(
+							thisCjhistoryS.get(i).getCjPrice());
+					msgCjhistoryS.get(0).setCjSort(cjSort);
+				}
+
+				stock.cjhistorys.add(msgCjhistoryS.get(0));
+				thisCjhistoryS.removeAll(thisCjhistoryS);
+			}
+
+			MessageService.instance.broadcastJiaoyi(new Object[] {
+					stock.stockCode, stock.getTopPrice(),
+					stock.getBottomPrice(), stock.getNowPrice(),
+					stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
+					JSONArray.fromObject(stock.saleOrders),
+					JSONArray.fromObject(msgCjhistoryS) });
+			
+			BalanceJingjiaService.instance.start();// 结算集合竞价
+			
+			if(msgCjhistoryS.size()>0){
+				CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
+			}
+
+			msgCjhistoryS.removeAll(msgCjhistoryS);
+		}
+	}
 
 	public synchronized void buy(String playerName,String orderNum, double wtPrice, int wtNum) {
 		cjSort = "B";
@@ -272,7 +497,10 @@ public class StockService {
 		stock.buyOrders.add(order);
 
 		Collections.sort(stock.buyOrders, comparatorAsc);
-		balance();
+		
+		if(!MainService.instance.isJingjia){
+			balance();
+		}
 	}
 
 	public synchronized void sale(String playerName,String orderNum, double wtPrice, int wtNum) {
@@ -286,6 +514,9 @@ public class StockService {
 		stock.saleOrders.add(order);
 
 		Collections.sort(stock.saleOrders, comparatorDesc);
-		balance();
+		
+		if(!MainService.instance.isJingjia){
+			balance();
+		}
 	}
 }

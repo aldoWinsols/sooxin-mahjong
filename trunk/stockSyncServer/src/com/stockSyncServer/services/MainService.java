@@ -11,6 +11,8 @@ import com.stockSyncServer.services.thread.OrderDataService;
 public class MainService {
 
 	public static MainService instance;
+	public boolean isJingjia = true;
+	
 	public ArrayList<StockService> stockServices = new ArrayList<StockService>();
 	public ArrayList<LeafService> leafServices = new ArrayList<LeafService>();
 	private IStockService stockService;
