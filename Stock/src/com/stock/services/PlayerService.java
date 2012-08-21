@@ -7,6 +7,7 @@ import com.stock.dao.BagDAO;
 import com.stock.dao.Player;
 import com.stock.dao.PlayerDAO;
 import com.stock.inter.IPlayerService;
+import com.stock.util.Util;
 
 public class PlayerService implements IPlayerService {
 	private PlayerDAO playerDao;
@@ -41,8 +42,24 @@ public class PlayerService implements IPlayerService {
 		return null;
 	}
 	
-	public Object regeist(String playerName,String playerPwd){
+	public Object login(String playerName,String playerPwd){
+		Player player = (Player) findPlayerByPlayerName(playerName);
+		if(player == null){
+			return "用户名或密码错误!";
+		}
+		
+		if(!player.getPlayerPwd().equals(playerPwd)){
+			return "用户名或密码错误!";
+		}
+		
+		return player;
+	}
+	
+	public Object regist(String playerName,String playerPwd){
 		Player player = null;
+		if(Util.isContainChinese(playerName)){
+			return "用户名中不能包含中文！";
+		}
 		if(findPlayerByPlayerName(playerName) == null){
 			player = new Player();
 			player.setPlayerName(playerName);
@@ -50,11 +67,25 @@ public class PlayerService implements IPlayerService {
 			player.setHaveMoney(1000000.0);
 			player.setSort(0);
 			playerDao.save(player);
+		}else{
+			return "此用户名已经被使用!";
 		}
 		return player;
 	}
 	
-	public List<Bag> getBagsByPlayerName(String playerName){
-		return bagDao.findByPlayerName(playerName);
+	public Object updatePlayerPwd(String playerName,String oldPlayerPwd,String newPlayerPwd){
+		Player player = (Player) findPlayerByPlayerName(playerName);
+		if(player == null){
+			return "系统查找无此用户！";
+		}
+		
+		if(!player.getPlayerPwd().equals(oldPlayerPwd)){
+			return "您输入的旧密码错误！";
+		}
+		
+		player.setPlayerPwd(newPlayerPwd);
+		playerDao.merge(player);
+		return player;
 	}
+	
 }
