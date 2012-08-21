@@ -8,6 +8,7 @@ import com.stockSyncServer.services.ConfigService;
 import com.stockSyncServer.services.JobService;
 import com.stockSyncServer.services.MainService;
 import com.stockSyncServer.services.MessageService;
+import com.stockSyncServer.services.thread.BalanceJingjiaService;
 import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.services.thread.CjhistoryDataService;
 import com.stockSyncServer.services.thread.LineDataService;
@@ -42,7 +43,7 @@ public class Application extends ApplicationAdapter{
 		CjhistoryDataService.getInstance();
 		LineDataService.getInstance();
 		
-		
+		BalanceJingjiaService.getInstance();
 		BalanceService.getInstance();
 		
 		String id = addScheduledJob(1000, new JobService());
