@@ -23,6 +23,17 @@ public class JobService implements IScheduledJob {
 	public void execute(ISchedulingService arg0)
 			throws CloneNotSupportedException {
 		n++;
+		
+		//集合竞价9：25 结束
+		if(MainService.instance.isJingjia){
+			Date date = new Date();
+			if(date.getHours()==9 && date.getMinutes()==25){
+				for(int i=0; i<MainService.instance.stockServices.size();i++){
+					MainService.instance.stockServices.get(i).balanceJingjia();
+				}
+				MainService.instance.isJingjia = false;
+			}
+		}
 
 		if (n % 6 == 0) {
 			Date date = new Date();
@@ -46,21 +57,21 @@ public class JobService implements IScheduledJob {
 				}
 				
 				if(n%3600==0){
-					Hline hline = new Hline();
-					hline.setStockCode(stock.getStockCode());
-					hline.setBuildDate(new Timestamp(new Date().getTime()));
-					hline.setPrice(stock.getNowPrice());
-					hline.setTurnover(stock.getNowCjNum());
-					LineDataService.instance.addHTask(hline);
+//					Hline hline = new Hline();
+//					hline.setStockCode(stock.getStockCode());
+//					hline.setBuildDate(new Timestamp(new Date().getTime()));
+//					hline.setPrice(stock.getNowPrice());
+//					hline.setTurnover(stock.getNowCjNum());
+//					LineDataService.instance.addHTask(hline);
 				}
 				
 				if(n%3600*4==0){
-					Dline dline = new Dline();
-					dline.setStockCode(stock.getStockCode());
-					dline.setBuildDate(new Timestamp(new Date().getTime()));
-					dline.setPrice(stock.getNowPrice());
-					dline.setTurnover(stock.getNowCjNum());
-					LineDataService.instance.addDTask(dline);
+//					Dline dline = new Dline();
+//					dline.setStockCode(stock.getStockCode());
+//					dline.setBuildDate(new Timestamp(new Date().getTime()));
+//					dline.setPrice(stock.getNowPrice());
+//					dline.setTurnover(stock.getNowCjNum());
+//					LineDataService.instance.addDTask(dline);
 				}
 			}
 		}
