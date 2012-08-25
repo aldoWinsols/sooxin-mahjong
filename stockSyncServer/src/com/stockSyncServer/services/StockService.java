@@ -11,7 +11,7 @@ import net.sf.json.JSONArray;
 
 import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
-import com.stockSyncServer.model.Stock;
+import com.stockSyncServer.model.StockLocal;
 import com.stockSyncServer.services.thread.BalanceJingjiaService;
 import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.services.thread.CjhistoryDataService;
@@ -21,7 +21,7 @@ import com.stockSyncServer.util.NumberFomart;
 
 public class StockService {
 
-	public Stock stock;
+	public StockLocal stock;
 
 	private ComparatorAsc comparatorAsc = new ComparatorAsc(); // 升序
 	private ComparatorDesc comparatorDesc = new ComparatorDesc(); // 降序
@@ -33,7 +33,7 @@ public class StockService {
 	}
 
 	public StockService() {
-		stock = new Stock();
+		stock = new StockLocal();
 	}
 
 	private String cjSort = "";
@@ -442,7 +442,7 @@ public class StockService {
 						JSONArray.fromObject(stock.saleOrders),
 						JSONArray.fromObject(msgCjhistoryS) });
 				
-				BalanceJingjiaService.instance.start();// 结算集合竞价
+//				BalanceJingjiaService.instance.start();// 结算集合竞价
 				
 				if(msgCjhistoryS.size()>0){
 					CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
@@ -476,7 +476,7 @@ public class StockService {
 					JSONArray.fromObject(stock.saleOrders),
 					JSONArray.fromObject(msgCjhistoryS) });
 			
-			BalanceJingjiaService.instance.start();// 结算集合竞价
+//			BalanceJingjiaService.instance.start();// 结算集合竞价
 			
 			if(msgCjhistoryS.size()>0){
 				CjhistoryDataService.instance.addTask(msgCjhistoryS.get(0));
