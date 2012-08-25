@@ -2,7 +2,7 @@ package com.stockSyncServer.model;
 
 import java.util.ArrayList;
 
-public class Stock {
+public class StockLocal {
 	public String stockCode = "";// 股票代码
 	public String stockName = "";//股票名称
 	public int allStockNum = 0;// 总股本
