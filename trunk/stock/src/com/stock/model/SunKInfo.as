@@ -9,7 +9,8 @@ package com.stock.model
 		public var min:Number = 0;
 		public var turnover:Number = 0;
 		
-		public function SunKInfo(date:String, kaipan:Number, shoupan:Number, max:Number, min:Number, turnover:Number)
+		public function SunKInfo(date:String = "", kaipan:Number = 0, 
+								 shoupan:Number = 0, max:Number = 0, min:Number = 0, turnover:Number = 0)
 		{
 			this.date = date;
 			this.kaipan = Number(kaipan.toFixed(2));

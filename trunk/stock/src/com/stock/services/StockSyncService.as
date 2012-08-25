@@ -1,6 +1,7 @@
 package com.stock.services
 {
 	import com.stock.control.BargainControl;
+	import com.stock.control.StockListControl;
 	import com.stock.model.Alert;
 	import com.stock.model.Stock;
 	
@@ -76,11 +77,11 @@ package com.stock.services
 		}
 		
 		public function updateI(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){
-			MainService.instance.update(timeStr,stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
+			StockListControl.instance.update(timeStr,stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
 		}
 		
 		public function initI(sks:Array):void{
-			MainService.instance.init(sks);
+			StockListControl.instance.init(sks);
 		}
 		
 		private function resultHandler(obj:Object):void{

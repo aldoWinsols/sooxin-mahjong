@@ -6,8 +6,18 @@
 				   width="1024" height="768" backgroundColor="#000000" borderColor="#B00000"
 				   creationComplete="bordercontainer1_creationCompleteHandler(event)"
 				   currentState="login">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function button21_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.operation.visible = true;
+			}
+		]]>
+	</fx:Script>
+	
 	<s:states>
-		<s:State name="stockList"/>
 		<s:State name="stockMain"/>
 		<s:State name="stockKline"/>
 		<s:State name="bshistory"/>
@@ -41,17 +51,6 @@
 				new MainControl(this);
 			}
 
-			
-			protected function button2_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				if(buyB.selected){
-					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
-				}else{
-					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
-				}
-			}
-			
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -92,74 +91,36 @@
 		]]>
 	</fx:Script>
 
-	<s:BorderContainer id="menuButton" includeIn="bag,bshistory,stockKline,stockList,stockMain" x="0"
-					   y="0" width="100%" height="50" backgroundAlpha="0.1"
-					   backgroundColor="#cccccc" borderColor="#B00000">
-		<s:BorderContainer includeIn="bag,bshistory,stockKline,stockMain" x="0" y="2" width="362"
-						   height="40" backgroundColor="#000000" cornerRadius="3">
-			<s:BitmapImage alpha="0.9" x="2" source="assets/logo.png" verticalCenter="0"/>
-			<s:Label alpha="0.7" x="154" y="5" color="#CCCCCC" fontSize="12" text="帐户："/>
-			<s:Label alpha="0.7" x="154" y="22" color="#CCCCCC" fontSize="12" text="资产："/>
-			<s:Label x="188" y="5" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.playerName}"/>
-			<s:Label x="188" y="22" color="#CCCCCC" fontSize="12" text="{PlayerService.instance.player.haveMoney}"/>
+	<s:BorderContainer id="menuButton" includeIn="bag,bshistory,stockKline,stockMain" x="0" y="0"
+					   width="100%" height="50" backgroundAlpha="0.1" backgroundColor="#cccccc"
+					   borderColor="#B00000">
+		<s:BorderContainer x="0" y="2" width="362" height="40" backgroundColor="#000000"
+						   borderColor="#ff0000" cornerRadius="3">
+			<s:BitmapImage x="2" alpha="0.9" source="assets/logo.png" verticalCenter="0"/>
+			<s:Label x="154" y="5" alpha="0.7" color="#CCCCCC" fontSize="12" text="帐户："/>
+			<s:Label x="154" y="22" alpha="0.7" color="#CCCCCC" fontSize="12" text="资产："/>
+			<s:Label x="188" y="5" color="#CCCCCC" fontSize="12"
+					 text="{PlayerService.instance.player.playerName}"/>
+			<s:Label x="188" y="22" color="#CCCCCC" fontSize="12"
+					 text="{PlayerService.instance.player.haveMoney}"/>
 		</s:BorderContainer>
-		<model:Button id="indexB" includeIn="bag,bshistory,stockKline,stockMain" x="370" y="2"
-					  label="主  页">
+		<model:Button id="indexB" x="370" y="2" label="主  页">
 		</model:Button>
-		<model:Button id="accountB" includeIn="bag,bshistory,stockKline,stockMain" x="480" y="2"
-					  label="帐  户">
+		<model:Button id="accountB" x="480" y="2" label="帐  户">
 		</model:Button>
-		<model:Button id="zhijinB" includeIn="bag,bshistory,stockKline,stockMain" x="590" y="2"
-					  label="资金股份">
+		<model:Button id="zhijinB" x="590" y="2" label="资金股份">
 		</model:Button>
-		<model:Button id="weituoB" includeIn="bag,bshistory,stockKline,stockMain" x="700" y="2"
-					  label="委托成交">
+		<model:Button id="weituoB" x="700" y="2" label="委托成交">
 		</model:Button>
-		<model:Button id="bankB" includeIn="bag,bshistory,stockKline,stockMain" x="810" y="2"
-					  label="银  行">
+		<model:Button id="bankB" x="810" y="2" label="银  行">
 		</model:Button>
-		<model:Button id="chongzhiB" includeIn="bag,bshistory,stockKline,stockMain" x="920" y="2"
-					  label="帐户充值">
+		<model:Button id="chongzhiB" x="920" y="2" label="帐户充值">
 		</model:Button>
-		<view:Menu includeIn="stockList" x="0" y="0">
-		</view:Menu>
 		
 	</s:BorderContainer>
 
-	<view:Bargain id="bargain" includeIn="stockKline,stockMain" right="0" bottom="-1">
-	</view:Bargain>
-	<s:TextInput id="wtPrice" includeIn="stockKline,stockMain" x="152" y="637" width="141"/>
-	
-	<s:Button includeIn="stockKline,stockMain" x="423" y="633" label="按钮"
-			  click="button2_clickHandler(event)"/>
-	<s:TextInput id="wtNum" includeIn="stockKline,stockMain" x="301" y="637" width="105"/>
-	<view:StockList id="stockList" includeIn="stockList" x="0" y="50">
-	</view:StockList>
-	<view:Linechart id="linechart" includeIn="stockMain" x="0" y="0" scaleX="1" scaleY="1">
-	</view:Linechart>
-	
-	<s:BorderContainer includeIn="stockKline,stockMain" x="-1" y="39" width="824" height="40"
-					   backgroundAlpha="0" borderColor="#B00000">
-		<s:Button x="767" y="0" label="K线" click="button6_clickHandler(event)"/>
-		<s:Button x="704" y="0" label="日线" click="button5_clickHandler(event)"/>
-		<model:Button includeIn="stockKline" x="0" y="5" width="100" height="34">
-		</model:Button>
-		<model:Button includeIn="stockKline" x="105" y="5" width="100" height="34">
-		</model:Button>
-		
-	</s:BorderContainer>
-	
-	<s:VGroup includeIn="stockKline,stockList,stockMain" x="43" y="582" color="#FF0000">
-		<s:RadioButton id="buyB" includeIn="stockKline,stockMain" x="75" y="618" label="买"
-					   color="#FF0000" groupName="radiogroup1"/>
-		<s:RadioButton id="saleB" includeIn="stockKline,stockMain" x="75" y="656" label="卖"
-					   color="#FF0000" groupName="radiogroup1"/>
-	</s:VGroup>
-	<s:Button includeIn="stockKline,stockMain" x="535" y="712" label="按钮"
-			  click="button3_clickHandler(event)"/>
 	<view:SunKLine includeIn="stockKline" x="0" y="79">
 	</view:SunKLine>
-	<s:Button includeIn="stockMain" x="27" y="480" label="按钮" click="button4_clickHandler(event)"/>
 	<view:Bshistory includeIn="bshistory" x="0" y="50" alpha="0.7" fontSize="18">
 	</view:Bshistory>
 	<view:Bag includeIn="bag" x="0" y="50" alpha="0.7">
@@ -170,16 +131,50 @@
 			 text="客服QQ:2694868635   EMAIL:SOOXIN@163.COM  WEBSITE:WWW.SOOXIN.NET"/>
 	<s:Label includeIn="login" y="612" color="#B0B0B0" fontSize="14" horizontalCenter="0"
 			 text="如有投诉或建议,请联系我们."/>
-	<model:Button id="updatePwdBackB" includeIn="account" x="853" y="53" label="返  回" selected="true"
-				  click="updatePwdBackB_clickHandler(event)"/>
+	<model:Button id="updatePwdBackB" includeIn="account" x="853" y="53" label="返  回"
+				  click="updatePwdBackB_clickHandler(event)" selected="true"/>
 	<view:Login includeIn="login" horizontalCenter="0" verticalCenter="0">
 	</view:Login>
 	<view:Regist includeIn="regist" horizontalCenter="0" verticalCenter="0">
 	</view:Regist>
-	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回" selected="true" click="backB_clickHandler(event)"/>
+	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回"
+				  click="backB_clickHandler(event)" selected="true"/>
 	<view:Account includeIn="account" horizontalCenter="0" verticalCenter="0">
 	</view:Account>
 	
-
-
+	<view:StockList id="stockList" includeIn="stockMain" visible="true" x="0" y="50">
+	</view:StockList>
+	
+		
+	
+	<s:BorderContainer id="stockMenu" includeIn="stockKline,stockMain" visible="true" x="0" y="49"
+					   width="824" height="40" backgroundAlpha="0" borderColor="#B00000">
+		<model:Button2 x="744" y="-1" label="K线" click="button6_clickHandler(event)"/>
+		<model:Button2 x="665" y="-1" label="分时" click="button5_clickHandler(event)"/>
+		<s:Label x="10" y="13" color="#FF0000" text="公告：股票大亨即将上市！"/>
+		<model:Button2 x="586" y="-1" label="买/卖" click="button21_clickHandler(event)"/>
+	</s:BorderContainer>
+	<view:Linechart id="linechart" includeIn="stockMain" visible="false" x="0" y="0" scaleX="1.1"
+					scaleY="1.2">
+	</view:Linechart>
+	<view:Bargain id="bargain" includeIn="stockKline,stockMain" visible="true" x="824" y="49">
+	</view:Bargain>
+	<view:Operation id="operation" includeIn="stockMain" visible="false" x="115" y="249">
+	</view:Operation>
+	
+	<s:BorderContainer id="bottomMenu" includeIn="stockKline,stockMain" x="0" y="700" width="824"
+					   height="40" backgroundAlpha="0" borderColor="#ff0000">
+		<model:Button2 x="744" y="-1" width="120" label="K线" click="button6_clickHandler(event)"
+					   x.stockMain="594" y.stockMain="-1"/>
+		<model:Button2 x="665" y="-1" width="120" label="分时" click="button5_clickHandler(event)"
+					   x.stockMain="475" y.stockMain="-1"/>
+		<model:Button2 x="586" y="-1" width="120" label="买/卖" click="button21_clickHandler(event)"
+					   x.stockMain="356" y.stockMain="-1"/>
+		<model:Button2 width="120" x="744" y="-1" label="K线" click="button6_clickHandler(event)"
+					   x.stockMain="237" y.stockMain="-1"/>
+		<model:Button2 width="120" x="665" y="-1" label="分时" click="button5_clickHandler(event)"
+					   x.stockMain="118" y.stockMain="-1"/>
+		<model:Button2 width="120" x="586" y="-1" label="买/卖" click="button21_clickHandler(event)"
+					   x.stockMain="-1" y.stockMain="-1"/>
+	</s:BorderContainer>
 </s:BorderContainer>

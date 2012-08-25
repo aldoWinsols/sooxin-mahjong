@@ -17,8 +17,8 @@ package com.stock.control
 	{
 		public var linechart:Linechart;
 		public static var instance:LinechartControl;
-		private var x:int = 40;
-		private var y:int = 100;
+		private var x:int = 38;
+		private var y:int = 85;
 		private var spacingX:int = 25;
 		private var spacingY:int = 81;
 		
@@ -51,6 +51,9 @@ package com.stock.control
 		
 		private var maxMake:Number = spacingX;
 		
+		private var makeLeftTests:Vector.<TextField> = null;
+		private var makeRightTests:Vector.<TextField> = null;
+		
 		private var group:Group = null;
 		
 		public function LinechartControl(linechart:Linechart)
@@ -69,6 +72,9 @@ package com.stock.control
 			fallRatioArray = new Vector.<TextField>();
 			averageNumbers = new Vector.<Number>();
 			
+			makeLeftTests = new Vector.<TextField>();
+			makeRightTests = new Vector.<TextField>();
+			
 			timeShareDatas = new Vector.<TimeShareData>();
 			
 			graphics();
@@ -81,6 +87,7 @@ package com.stock.control
 			
 			addLeftTextField();
 			addRightTextField();
+			addMakeText();
 			
 			this.linechart.graphics.lineStyle(1, color);
 			this.linechart.graphics.drawRect(x, y, wight, height);
@@ -145,7 +152,7 @@ package com.stock.control
 				riseArray.push(text);
 			}
 			
-			for(i = 8;i < 15; i ++){
+			for(i = 8;i < 14; i ++){
 				y1 = y + spacingX * i;
 				
 				text = new TextField();
@@ -190,7 +197,7 @@ package com.stock.control
 				riseRatioArray.push(text);
 			}
 			
-			for(i = 8;i < 15; i ++){
+			for(i = 8;i < 14; i ++){
 				y1 = y + spacingX * i;
 				x1 = wight + spacingX;
 				
@@ -409,6 +416,12 @@ package com.stock.control
 			this.group.graphics.lineTo(point.x , point.y);
 		}
 		
+		/**
+		 * 画成交量的线
+		 * @param makeNum
+		 * @param point
+		 * 
+		 */
 		private function lineMake(makeNum:Number, point:Point):void{
 			var num:Number = makeNum / maxMake;
 			makeNum = spacingX * num;
@@ -420,6 +433,78 @@ package com.stock.control
 			
 			this.group.graphics.moveTo(point.x, height + y);
 			this.group.graphics.lineTo(point.x , height + y - makeNum);
+			
+			updateMakeText();
 		} 
+		
+		/**
+		 * 添加成交量的text
+		 * 
+		 */
+		private function addMakeText():void{
+			var i:int = 14;
+			var text:TextField = null;
+			var xControl:int = 0;
+			var yControl:int = 0;
+			
+			for(i = 14; i < 20; i++){
+				text = new TextField();
+				text.selectable = false;
+				
+				yControl = y + spacingX * i;
+				
+				text.text = "000";
+				text.textColor = makeColor;
+				
+				ui.addChild(text);
+				text.x = x - text.textWidth - 10;
+				text.y = yControl - int(text.textHeight / 2) - 2;
+				makeLeftTests.push(text);
+			}
+			
+			
+			for(i = 14; i < 20; i++){
+				text = new TextField();
+				text.selectable = false;
+				
+				yControl = y + spacingX * i;
+				xControl = wight + spacingX;
+				
+				text.text = "000";
+				text.textColor = makeColor;
+				
+				ui.addChild(text);
+				text.x = xControl + text.textWidth + 10;
+				text.y = yControl - int(text.textHeight / 2) - 2;
+				makeRightTests.push(text);
+			}
+		}
+		
+		/**
+		 * 修改成交量的坐标 
+		 * 
+		 */
+		private function updateMakeText():void{
+			var i:int = 0;
+			var j:int = 7;
+			var number:int = maxMake / j;
+			
+			for(i = 0; i < makeLeftTests.length; i++){
+				makeLeftTests[i].text = number * j + "";
+				makeRightTests[i].text = number * j + "";
+				j --;
+			}
+		}
+		
+		/**
+		 * 重置所有数据
+		 * 
+		 */
+		private function clearData():void{
+			timeShareDatas = new Vector.<TimeShareData>();
+			averageNumbers = new Vector.<Number>();
+			maxMake = spacingX;
+			this.group.graphics.clear();
+		}
 	}
 }
