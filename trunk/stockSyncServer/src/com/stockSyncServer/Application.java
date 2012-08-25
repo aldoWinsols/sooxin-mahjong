@@ -1,5 +1,7 @@
 package com.stockSyncServer;
 
+import java.util.Timer;
+
 import org.red5.server.adapter.ApplicationAdapter;
 import org.red5.server.api.IConnection;
 import org.red5.server.api.IScope;
@@ -49,9 +51,6 @@ public class Application extends ApplicationAdapter{
 		String id = addScheduledJob(1000, new JobService());
 		scope.setAttribute("Myjob", id);
 		
-//		String idBalance = addScheduledJob(1000, new BalanceService());
-//		scope.setAttribute("balance", idBalance);
-		
 		return super.start(scope);
 	}
 
@@ -59,8 +58,8 @@ public class Application extends ApplicationAdapter{
 	public synchronized void stop(IScope scope) {
 		// TODO Auto-generated method stub
 		
-		String id = (String) scope.getAttribute("Myjob");
-		removeScheduledJob(id);
+//		String id = (String) scope.getAttribute("Myjob");
+//		removeScheduledJob(id);
 		
 //		String idBalance = (String) scope.getAttribute("balance");
 //		removeScheduledJob(idBalance);
@@ -78,11 +77,15 @@ public class Application extends ApplicationAdapter{
 //	}
 	
 	public void buy(String stockCode,String playerName, double wtPrice, int wtNum) {
-		MainService.instance.buy(stockCode,playerName, wtPrice, wtNum);
+		if(MainService.instance.isOpen){
+			MainService.instance.buy(stockCode,playerName, wtPrice, wtNum);
+		}
 	}
 
 	public void sale(String stockCode,String playerName, double wtPrice, int wtNum) {
-		MainService.instance.sale(stockCode, playerName, wtPrice, wtNum);
+		if(MainService.instance.isOpen){
+			MainService.instance.sale(stockCode, playerName, wtPrice, wtNum);
+		}
 	}
 	
 	public void sendRoomNum(){
