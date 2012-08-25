@@ -9,23 +9,24 @@ public class BalanceJingjiaService extends Thread implements Runnable{
 	
 	ArrayList<BalanceTask> balanceTasks = new ArrayList<BalanceTask>();
 	private IStockService stockService;
-	public static BalanceService instance;
+	public static BalanceJingjiaService instance;
 	
 	public BalanceJingjiaService(){
+		
 		balanceTasks = new ArrayList<BalanceTask>();
 		stockService = (IStockService) ConfigService.getInstance().getContext()
 		.getBean("stockService");
 	}
 	
-	public static BalanceService getInstance(){
+	public static BalanceJingjiaService getInstance(){
 		if(instance == null){
-			instance = new BalanceService();
+			instance = new BalanceJingjiaService();
 		}
 		
 		return instance;
 	}
 	
-	public void addTask(String stockNum,String buyPlayerName, String buyOrderNum, String salePlayerName,String saleOrderNum, String cjSort,int cjNum,Double cjPrice,String cjTime){
+	public synchronized void addTask(String stockNum,String buyPlayerName, String buyOrderNum, String salePlayerName,String saleOrderNum, String cjSort,int cjNum,Double cjPrice,String cjTime){
 		BalanceTask balanceTask = new BalanceTask();
 		
 		balanceTask.stockNum = stockNum;
