@@ -22,9 +22,6 @@ package com.stock.control
 			RemoteService.getInstance();
 			PlayerService.getInstance();
 			MainService.getInstance();
-			StockSyncService.getInstance();
-			
-			
 			
 			this.main.currentState = "login";
 		}

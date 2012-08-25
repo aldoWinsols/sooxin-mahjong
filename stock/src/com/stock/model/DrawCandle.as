@@ -56,19 +56,24 @@ package com.stock.model
 				if(rectHeight == 0){
 					rectHeight ++;
 				}
-				rectObj.graphics.beginFill(0x00eaff,1);
-				rectObj.graphics.drawRect(0,0,candleWidth,rectHeight);
-				rectObj.graphics.endFill();
+				var yControl:Number = h - o;
 				
 				rectObj.graphics.lineStyle(1,0x00eaff); // 定义画线样式
 				rectObj.graphics.moveTo(lineX,0);
-				rectObj.graphics.lineTo(lineX,-(h - o)); // // 绘制当天最高价(线条高等于最高价减去开盘价)跌
+				rectObj.graphics.lineTo(lineX,yControl); // // 绘制当天最高价(线条高等于最高价减去开盘价)跌
+				
+				rectObj.graphics.beginFill(0x00eaff,1);
+				rectObj.graphics.drawRect(0,yControl,candleWidth,rectHeight);
+				rectObj.graphics.endFill();
+				
+				rectHeight += yControl;
 				
 				rectObj.graphics.moveTo(lineX,rectHeight);
 				rectObj.graphics.lineTo(lineX,rectHeight + Math.abs(c - l)); // 绘制当天最低价(线条高等于收盘价减去最低价)
 			}
 			this.height = rectObj.height;
 			this.width = rectObj.width;
+			
 			addChild(rectObj);
 		}
 	}

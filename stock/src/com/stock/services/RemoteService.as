@@ -19,7 +19,7 @@ package com.stock.services
 		public static var instance:RemoteService;
 		
 		public var playerService:RemoteObject;
-		public var klineService:RemoteObject;
+		public var lineService:RemoteObject;
 		public var bshistoryService:RemoteObject;
 		public var bagService:RemoteObject;
 		
@@ -32,7 +32,7 @@ package com.stock.services
 		public function RemoteService()
 		{
 			playerService=getConfiguredRO("playerService");
-			klineService=getConfiguredRO("klineService");
+			lineService=getConfiguredRO("lineService");
 			bshistoryService=getConfiguredRO("bshistoryService");
 			bagService=getConfiguredRO("bagService");
 		}

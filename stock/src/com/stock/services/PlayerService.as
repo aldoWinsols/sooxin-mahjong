@@ -36,7 +36,8 @@ package com.stock.services
 			RemoteService.instance.playerService.removeEventListener(ResultEvent.RESULT,loginResultHandler);
 			if(e.result is Player){
 				this.player = e.result as Player;
-				MainControl.instance.main.currentState = "stockList";
+				MainControl.instance.main.currentState = "stockMain";
+				StockSyncService.getInstance();
 			}else{
 				Alert.show(e.result.toString());
 			}

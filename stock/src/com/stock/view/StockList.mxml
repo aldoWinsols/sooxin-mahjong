@@ -1,48 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="group1_creationCompleteHandler(event)"
-		 width="1024" height="40">
+		 width="1024" height="718">
 	
 	<fx:Script>
 		<![CDATA[
-			import com.stock.control.BargainControl;
-			import com.stock.control.MainControl;
-			import com.stock.model.Stock;
-			import com.stock.services.MainService;
-			import com.stock.services.StockSyncService;
+			import com.stock.control.StockListControl;
 			
-			import mx.binding.utils.BindingUtils;
 			import mx.events.FlexEvent;
-			protected function list_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				MainControl.instance.main.currentState = "stockMain";
-				StockSyncService.getInstance().dealStock(this.list.selectedItem.stockCode);
-				
-				for(var i:int =0;i<MainService.instance.stocks.length;i++){
-					if(MainService.instance.stocks.getItemAt(i).stockCode == this.list.selectedItem.stockCode){
-						var sk:Stock = MainService.instance.stocks.getItemAt(i) as Stock;
-						BargainControl.instance.stock.stockCode = sk.stockCode;
-						BargainControl.instance.stock.stockName = sk.stockName;
-						
-						BargainControl.instance.stock.jinzhi = sk.jinzhi;
-						BargainControl.instance.stock.allStockNum = sk.allStockNum;
-						BargainControl.instance.stock.liutongStockNum = sk.liutongStockNum;
-						BargainControl.instance.stock.lastDayEndPrice = sk.lastDayEndPrice;
-
-						BargainControl.instance.stock.PE = sk.PE;
-						
-					}
-				}
-				
-				this.list.selectedItem = null;
-				
-			}
+	
 			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				BindingUtils.bindProperty(this.list,"dataProvider",MainService.instance,"stocks");
+				new StockListControl(this);
 			}
 			
 		]]>
@@ -51,9 +22,9 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:List id="list" x="0" y="40" width="100%" height="100%" click="list_clickHandler(event)"
+	<s:List id="list" x="0" y="40" width="100%" height="100%"
 			itemRenderer="com.stock.render.StockListItemRender"></s:List>
-	<s:BorderContainer width="1024" height="718" backgroundColor="#000000">
+	<s:BorderContainer width="1024" height="40" backgroundColor="#000000">
 		<s:Label x="4" y="10" color="#C0C0C0" text="证券代码"/>
 		<s:Label x="93" y="10" color="#C0C0C0" text="证券名称"/>
 		<s:Label x="188" y="10" color="#C0C0C0" text="最新价"/>

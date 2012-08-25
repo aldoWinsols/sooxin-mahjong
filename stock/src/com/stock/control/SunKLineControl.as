@@ -9,13 +9,17 @@ package com.stock.control
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.text.TextField;
+	import flash.utils.Timer;
 	
-	import mx.collections.ArrayCollection;
-	import mx.collections.ArrayList;
+	import mx.core.UIComponent;
 	import mx.rpc.events.ResultEvent;
+	
+	import spark.components.Button;
 
 	public class SunKLineControl
 	{
@@ -32,10 +36,20 @@ package com.stock.control
 		private var fiveDayPoint:Point = null;
 		private var tenDayPoint:Point = null;
 		private var twentyFiveDayPoint:Point = null;
-		private var dayHeight:int = 438;
-		private var makeHeight:int = 538;
+		private var dayHeight:int = 480;
+		private var makeHeight:int = 580;
+		private var x:Number = 750;
+		private var interval:int = 8;
+		private var lineColor:uint = 0xff0000;
 		
 		private var minTurnover:Number = 0;
+		private var maxTurnover:Number = 0;
+		private var makeNum:Number = 0;
+		private var makeInterval:Number = 4;
+		
+		private var todaySunKInfo:SunKInfo = null;
+		
+		private var timer:Timer = null;
 		
 		public static var instance:SunKLineControl;
 		
@@ -51,20 +65,19 @@ package com.stock.control
 			tenDayPoint = new Point();
 			twentyFiveDayPoint = new Point();
 			
-//			arrays = RemoteService.getInstance().klineService.getKlinesByStockCode("500001");
-//			
 //			loaderXml();
+//			initTimer();
 			loaddata();
 		}
 		
 		public function loaddata(){
-			RemoteService.getInstance().klineService.getKlinesByStockCode("500001");
-			RemoteService.instance.klineService.addEventListener(ResultEvent.RESULT,resultHandler);
+			RemoteService.getInstance().lineService.getKlinesByStockCode("500001");
+			RemoteService.instance.lineService.addEventListener(ResultEvent.RESULT,resultHandler);
 			
 		}
 		
 		private function resultHandler(e:ResultEvent):void{
-			RemoteService.instance.klineService.removeEventListener(ResultEvent.RESULT,resultHandler);
+			RemoteService.instance.lineService.removeEventListener(ResultEvent.RESULT,resultHandler);
 			
 			var arr = e.result;
 			for each(var obj:Object in arr){
@@ -96,20 +109,46 @@ package com.stock.control
 			}
 			
 			graphicsLazhu();
+			
+			var btn:Button = new Button();
+			btn.label = "clear";
+			btn.addEventListener(MouseEvent.CLICK, onMouse);
+			sunKLine.addElement(btn);
+			
+			var btn:Button = new Button();
+			btn.label = "data";
+			btn.x = 30;
+			btn.addEventListener(MouseEvent.CLICK, onMouse1);
+			sunKLine.addElement(btn);
+		}
+		
+		private function onMouse(e:MouseEvent):void{
+			clearData();
+		}
+		
+		private function onMouse1(e:MouseEvent):void{
+			graphicsLazhu();
 		}
 		
 		public function graphicsLazhu():void{
-			sunKLine.border.graphics.lineStyle(1 ,0xff0000, 1);
-			sunKLine.border.graphics.moveTo(0, dayHeight);
-			sunKLine.border.graphics.lineTo(823, dayHeight);
-			sunKLine.border.graphics.lineStyle(1 ,0xff0000, 1);
-			sunKLine.border.graphics.moveTo(0, makeHeight);
-			sunKLine.border.graphics.lineTo(823, makeHeight);
+//			timer.start();
+			
+			sunKLine.border.graphics.lineStyle(1 ,lineColor, 1);
+			sunKLine.border.graphics.moveTo(5, dayHeight);
+			sunKLine.border.graphics.lineTo(x, dayHeight);
+			sunKLine.border.graphics.lineStyle(1 ,lineColor, 1);
+			sunKLine.border.graphics.moveTo(5, makeHeight);
+			sunKLine.border.graphics.lineTo(x, makeHeight);
+			
+			sunKLine.border.graphics.lineStyle(1 ,lineColor, 1);
+			sunKLine.border.graphics.moveTo(x, 0);
+			sunKLine.border.graphics.lineTo(x, makeHeight);
 			
 			sunKLine.addEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
 			this.lowest = arrays[0].min;
 			this.max = arrays[0].min;
 			this.minTurnover = arrays[0].turnover;
+			this.maxTurnover = arrays[0].turnover;
 			for(var i:int = 0;i < arrays.length; i++){
 				if(arrays[i].min < lowest){
 					lowest = arrays[i].min;
@@ -119,6 +158,9 @@ package com.stock.control
 				}
 				if(arrays[i].turnover < minTurnover){
 					minTurnover = arrays[i].turnover;
+				}
+				if(arrays[i].turnover > maxTurnover){
+					maxTurnover = arrays[i].turnover;
 				}
 			}
 			
@@ -132,14 +174,56 @@ package com.stock.control
 			}else if(num >= 3 && num < 4){
 				multiple = 0.5;
 			}else{
-				multiple = 0.2;
+				multiple = 0.1;
 			}
+			graphicsScale();
+			
+			makeNum = maxTurnover / (this.makeHeight - this.dayHeight);
+			
+			graphicsMakeScale();
 			
 			for(var i:int = 0;i < arrays.length; i++){
 				graphics(i, arrays[i]);
 				graphicsMake(i, arrays[i]);
 			}
 			trace(lowest);
+		}
+		
+		private function graphicsScale():void{
+			
+			var num:Number = max - lowest;
+			num = num / interval;
+			var text:TextField = null;
+			var ui:UIComponent = new UIComponent();
+			sunKLine.border1.addElement(ui);
+			
+			text = new TextField();
+			text.selectable = false;
+			text.text = Number(lowest).toFixed(2);
+			text.textColor = lineColor;
+			text.x = x + 20;
+			text.y = dayHeight - text.textHeight / 2;
+			ui.addChild(text);
+			
+			var i:int = 0;
+			for(i = 1;i <= interval; i++){
+				
+				var yControl:Number = dayHeight - num * i;
+				yControl = dayHeight - num * i * 100 * multiple;
+				
+				sunKLine.border.graphics.lineStyle(1 ,lineColor, 1);
+				sunKLine.border.graphics.moveTo(x, yControl);
+				sunKLine.border.graphics.lineTo(x + 5, yControl);
+				
+				text = new TextField();
+				text.selectable = false;
+				text.text = Number(lowest + num * i).toFixed(2);
+				text.textColor = lineColor;
+				text.x = x + 20;
+				text.y = yControl - text.textHeight / 2;
+				
+				ui.addChild(text);
+			}
 		}
 		
 		private function graphics(i:Number, sunkInfo:SunKInfo):void{
@@ -155,7 +239,7 @@ package com.stock.control
 			}
 			
 			var draw:DrawCandle = new DrawCandle(sunkInfo.kaipan, sunkInfo.shoupan, sunkInfo.max, sunkInfo.min);
-			draw.x = i * 9;
+			draw.x = i * 9 + 10;
 			draw.y = yControl - draw.height;
 			sunKLine.border1.addElement(draw);
 			
@@ -227,21 +311,92 @@ package com.stock.control
 		}
 		
 		private function graphicsMake(i:int, sunkInfo:SunKInfo):void{
-			var drawRect:DrawRect = new DrawRect(sunkInfo, minTurnover);
+			var num:Number = sunkInfo.turnover / makeNum;
+			
+			var drawRect:DrawRect = new DrawRect(sunkInfo, num);
 			
 			drawRect.x = i * 9;
 			drawRect.y = this.makeHeight - drawRect.height;
 			sunKLine.border1.addElement(drawRect);
 		}
 		
+		private function graphicsMakeScale():void{
+			var num:Number = (this.makeHeight - this.dayHeight) / makeInterval;
+			var text:TextField = null;
+			var ui:UIComponent = new UIComponent();
+			sunKLine.border1.addElement(ui);
+			
+			var i:int = 0;
+			for(i = 1;i < makeInterval; i++){
+				
+				var yControl:Number = makeHeight - num * i;
+				
+				sunKLine.border.graphics.lineStyle(1 ,lineColor, 1);
+				sunKLine.border.graphics.moveTo(x, yControl);
+				sunKLine.border.graphics.lineTo(x + 5, yControl);
+				
+				text = new TextField();
+				text.selectable = false;
+				text.text = Number(makeNum * i * num).toFixed(0);
+				text.textColor = lineColor;
+				text.x = x + 20;
+				text.y = yControl - text.textHeight / 2;
+				
+				ui.addChild(text);
+			}
+		}
+		
 		public function onWheel(e:MouseEvent):void{
 			if(e.delta > 0){
 				sunKLine.border1.scaleX += 0.1;
-				sunKLine.border1.scaleY += 0.1;
+//				sunKLine.border1.scaleY += 0.1;
 			}else{
 				sunKLine.border1.scaleX -= 0.1;
-				sunKLine.border1.scaleY -= 0.1;
+//				sunKLine.border1.scaleY -= 0.1;
 			}
+		}
+		
+		/**
+		 * 初始化timer
+		 * 
+		 */
+		private function initTimer():void{
+			timer = new Timer(6000, 0);
+			timer.addEventListener(TimerEvent.TIMER, onTimer);
+		}
+		
+		private function onTimer(e:TimerEvent):void{
+			if(todaySunKInfo == null){
+				var sk:SunKInfo = arrays[arrays.length - 1];
+				todaySunKInfo = new SunKInfo("", sk.kaipan, sk.shoupan, sk.max, sk.min);
+				arrays.push(todaySunKInfo);
+			}else{
+				var num = 0.1;
+				if(int(Math.random() * 10) > 5){
+					num = num * -1;
+				}
+				todaySunKInfo.kaipan += num;
+				todaySunKInfo.shoupan += num;
+				todaySunKInfo.max += num;
+				todaySunKInfo.min += num;
+				sunKLine.border1.removeElementAt(sunKLine.border1.numElements - 1);
+			}
+			
+			graphics(arrays.length - 1, todaySunKInfo);
+		}
+		
+		/**
+		 * 清楚所有数据
+		 * 
+		 */
+		private function clearData():void{
+//			arrays = new Vector.<SunKInfo>();
+			fiveDayPoint = new Point();
+			tenDayPoint = new Point();
+			twentyFiveDayPoint = new Point();
+			sunKLine.border1.removeAllElements();
+			sunKLine.border1.graphics.clear();
+			timer.stop();
 		}
 	}
 }

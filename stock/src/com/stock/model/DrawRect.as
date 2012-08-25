@@ -9,17 +9,17 @@ package com.stock.model
 		private var rectObj:Sprite;
 		private const candleWidth:int = 7; // 每个矩形8个像素宽
 		
-		public function DrawRect(sunkInfo:SunKInfo, minTurnover:Number)
+		public function DrawRect(sunkInfo:SunKInfo, num:Number)
 		{
-			var beishu:int = 0;
-			
-			beishu = minTurnover / 3000000 * 50*150;
-//			beishu = 300000;
+//			var beishu:int = 0;
+//			
+//			beishu = minTurnover / 3000000 * 50*150;
+////			beishu = 300000;
 			rectObj = new Sprite();
-			var num:Number = (sunkInfo.turnover - minTurnover) / 50 / beishu;
-			if(num == 0){
-				num == 1;
-			}
+//			var num:Number = (sunkInfo.turnover - minTurnover) / 50 / beishu;
+//			if(num == 0){
+//				num == 1;
+//			}
 			num = Number(num.toFixed(2));
 			
 			if(sunkInfo.shoupan > sunkInfo.kaipan){

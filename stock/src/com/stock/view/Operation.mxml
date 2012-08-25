@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" width="600" height="300">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.BargainControl;
+			import com.stock.services.StockSyncService;
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(buyB.selected){
+					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
+				}else{
+					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:TextInput id="wtPrice" x="183" y="133" width="141"/>
+	<s:Button x="454" y="129" label="按钮" click="button2_clickHandler(event)"/>
+	<s:TextInput id="wtNum" x="332" y="133" width="105"/>
+	<s:RadioButton id="buyB" x="106" y="114" label="买" color="#FF0000" groupName="radiogroup1"/>
+	<s:RadioButton id="saleB" x="106" y="152" label="卖" color="#FF0000" groupName="radiogroup1"/>
+</s:Group>
