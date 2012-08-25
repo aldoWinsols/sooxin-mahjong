@@ -28,4 +28,22 @@
 			<value>com.stock.inter.IPlayerService</value>
 		</property>
 	</bean>
+	
+	<bean id="cjhistoryService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${rmi.url}/cjhistoryService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.stock.inter.ICjhistoryService</value>
+		</property>
+	</bean>
+	
+	<bean id="lineService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${rmi.url}/lineService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>com.stock.inter.ILineService</value>
+		</property>
+	</bean>
 </beans>
