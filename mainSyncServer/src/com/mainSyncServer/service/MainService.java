@@ -30,6 +30,7 @@ public class MainService {
 	public static ArrayList<Room> roomNums = null;
 
 	public MainService(){
+		
 		try {
 			playerServices = new ArrayList<PlayerService>();
 			timer = new Timer();
@@ -43,9 +44,9 @@ public class MainService {
 			roomNums.add(new Room("20", 0));
 			roomNums.add(new Room("50", 0));
 			roomNums.add(new Room("100", 0));
+			roomNums.add(new Room("200", 0));
+			roomNums.add(new Room("500", 0));
 			roomNums.add(new Room("1000", 0));
-			roomNums.add(new Room("2000", 0));
-			roomNums.add(new Room("5000", 0));
 			
 //			red5MainAppStart();
 		} catch (Exception e) {

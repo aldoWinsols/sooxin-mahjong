@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 
 import com.mainSyncServer.model.Message;
 import com.mainSyncServer.service.ConfigService;
+import com.mainSyncServer.service.JobService;
 import com.mainSyncServer.service.MainService;
 import com.mainSyncServer.service.MessageService;
 import com.mainSyncServer.util.ReadConfig;
@@ -65,6 +66,10 @@ public class Application extends ApplicationAdapter {
 		MessageService.getInstance();
 		readConfig = new ReadConfig();
 		log.info("服务器启动了");
+		
+		String id = addScheduledJob(10000, new JobService());
+		scope.setAttribute("Myjob", id);
+		
 		return super.start(scope);
 	}
 
@@ -88,6 +93,9 @@ public class Application extends ApplicationAdapter {
 	@Override
 	public synchronized void stop(IScope scope) {
 		// TODO Auto-generated method stub
+		String id = (String) scope.getAttribute("Myjob");
+		removeScheduledJob(id);
+		
 		super.stop(scope);
 	}
 	
@@ -121,7 +129,7 @@ public class Application extends ApplicationAdapter {
 	
 	public void initRoomNum(){
 		for(int i=0; i<mainService.roomNums.size(); i++){
-			 mainService.sendRoomNum(mainService.roomNums.get(i).roomNum, mainService.roomNums.get(i).initNum+mainService.roomNums.get(i).onlineNum);
+			 mainService.sendRoomNum(mainService.roomNums.get(i).roomNum, mainService.roomNums.get(i).onlineNum);
 		}
 	}
 	
