@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="group1_creationCompleteHandler(event)"
+		 width="800" height="450" xmlns:model="com.stock.model.*">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.UpdatePwdControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new UpdatePwdControl(this);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer visible="true" x="0" y="85" width="800" height="300" backgroundAlpha="0.1"
+					   cornerRadius="5">
+		<s:TextInput id="oldPwd" x="161" y="66" width="250" height="40"/>
+		<s:TextInput id="newPwd" x="161" y="116" width="250" height="40" displayAsPassword="true"/>
+		<s:TextInput id="cNewPwd" x="161" y="166" width="250" height="40" displayAsPassword="true"/>
+		<model:Button id="updatePwdB" x="311" y="225" label="提  交"/>
+		<s:Label x="78" y="77" color="#CCCCCC" fontWeight="bold" text="旧密码："/>
+		<s:Label x="78" y="128" color="#CCCCCC" fontWeight="bold" text="新密码："/>
+		<s:Label x="61" y="180" color="#CCCCCC" fontWeight="bold" text="确认密码："/>
+		<s:Label x="10" y="11" color="#FF0000" text="修改密码"/>
+		
+	</s:BorderContainer>
+</s:Group>
