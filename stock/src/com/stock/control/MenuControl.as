@@ -1,5 +1,6 @@
 package com.stock.control
 {
+	import com.stock.services.BagService;
 	import com.stock.view.Menu;
 	
 	import flash.events.MouseEvent;
@@ -23,7 +24,7 @@ package com.stock.control
 			
 		}
 		private function accountBClickHandler(e:MouseEvent):void{
-			MainControl.instance.main.currentState = "account";
+			MainControl.instance.main.account.visible = true;
 		}
 		private function zhijinBClickHandler(e:MouseEvent):void{
 			initMenuB();
@@ -31,7 +32,7 @@ package com.stock.control
 			MainControl.instance.main.currentState = "bag";
 			
 			if(BagControl.instance != null){
-				BagControl.instance.getBags();
+				BagService.instance.getBags();
 			}
 		}
 		private function weituoBClickHandler(e:MouseEvent):void{

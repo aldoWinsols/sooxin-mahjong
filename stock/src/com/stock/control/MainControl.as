@@ -3,6 +3,7 @@ package com.stock.control
 	import com.stock.services.MainService;
 	import com.stock.services.PlayerService;
 	import com.stock.services.RemoteService;
+	import com.stock.services.StockListService;
 	import com.stock.services.StockSyncService;
 	import com.stock.view.Main;
 	
@@ -22,6 +23,7 @@ package com.stock.control
 			RemoteService.getInstance();
 			PlayerService.getInstance();
 			MainService.getInstance();
+			StockListService.getInstance();
 			
 			this.main.currentState = "login";
 		}

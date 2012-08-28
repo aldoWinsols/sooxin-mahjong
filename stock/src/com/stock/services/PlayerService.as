@@ -73,5 +73,12 @@ package com.stock.services
 				Alert.show(e.result.toString());
 			}
 		}
+		
+		public function updateZhichan():void{
+			player.zhichan = player.haveMoney;
+			for each(var obj:Object in BagService.instance.bags){
+				player.zhichan += obj.haveNum * StockListService.instance.getPriceByStockCode(obj.stockNum);
+			}
+		}
 	}
 }

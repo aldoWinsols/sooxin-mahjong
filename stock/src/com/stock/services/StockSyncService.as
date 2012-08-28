@@ -77,11 +77,11 @@ package com.stock.services
 		}
 		
 		public function updateI(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){
-			StockListControl.instance.update(timeStr,stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
+			StockListService.instance.update(timeStr,stockCode,topPrice,bottomPrice,nowPrice,nowCjNum);
 		}
 		
 		public function initI(sks:Array):void{
-			StockListControl.instance.init(sks);
+			StockListService.instance.init(sks);
 		}
 		
 		private function resultHandler(obj:Object):void{

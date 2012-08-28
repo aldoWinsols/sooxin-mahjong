@@ -1,9 +1,11 @@
 package com.stock.control
 {
+	import com.stock.services.BagService;
 	import com.stock.services.PlayerService;
 	import com.stock.services.RemoteService;
 	import com.stock.view.Bag;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
 
@@ -16,17 +18,7 @@ package com.stock.control
 			this.bag = bag;
 			instance = this;
 			
-			getBags();
-		}
-		
-		public function getBags(){
-			RemoteService.instance.bagService.getBagsByPlayerName(PlayerService.instance.player.playerName);
-			RemoteService.instance.bagService.addEventListener(ResultEvent.RESULT,getBagsResultHandler);
-		}
-		
-		public function getBagsResultHandler(e:ResultEvent):void{
-			RemoteService.instance.bagService.removeEventListener(ResultEvent.RESULT,getBagsResultHandler);
-			this.bag.dg.dataProvider = e.result as ArrayCollection;
+			BindingUtils.bindProperty(this.bag.dg,"dataProvider",BagService.getInstance(),"bags");
 		}
 	}
 }

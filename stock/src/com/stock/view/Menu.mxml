@@ -32,13 +32,13 @@
 	</s:BorderContainer>
 	<model:Button id="indexB" x="370" y="2" label="主  页">
 	</model:Button>
-	<model:Button id="accountB" x="480" y="2" label="帐  户">
+	<model:Button id="accountB" x="480" y="2" label="资金帐户">
 	</model:Button>
 	<model:Button id="zhijinB" x="590" y="2" label="资金股份">
 	</model:Button>
-	<model:Button id="weituoB" x="700" y="2" label="委托成交">
+	<model:Button id="weituoB" x="700" y="2" label="银  行">
 	</model:Button>
-	<model:Button id="bankB" x="810" y="2" label="银  行">
+	<model:Button id="bankB" x="810" y="2" label="帮  助">
 	</model:Button>
 	<model:Button id="chongzhiB" x="920" y="2" label="帐户充值">
 	</model:Button>
