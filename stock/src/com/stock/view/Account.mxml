@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:model="com.stock.model.*"
 		 xmlns:view="com.stock.view.*"
-		 width="800" height="500" backgroundAlpha="0.7"
+		 width="800" height="500" alpha="0.9"
 		 creationComplete="group1_creationCompleteHandler(event)" currentState="operation">
 	<fx:Script>
 		<![CDATA[
@@ -24,27 +24,31 @@
 		<s:State name="bag"/>
 		<s:State name="bshistory"/>
 		<s:State name="updatePwd"/>
+		<s:State name="nowWeituo"/>
 	</s:states>
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:controlBarContent/>
-	
-	<view:Operation includeIn="operation" x="0" y="0">
+	<view:Operation id="operation" includeIn="operation" x="0" y="0">
 	</view:Operation>
-	<model:Button includeIn="bshistory" x="869" y="-27" height="20" label="帐户资金"/>
 	<view:Bag includeIn="bag" x="0" y="0">
 	</view:Bag>
 	<view:Bshistory includeIn="bshistory" x="0" y="0">
 	</view:Bshistory>
+	
 	<s:Button id="operationB" x="1" y="-30" width="100" height="30"
 			  label="买卖操作"/>
-	<s:Button id="bshistoryB" x="111" y="-30" width="100" height="30"
-			  label="历史委托"/>
-	<s:Button id="bagB" x="221" y="-30" width="100" height="30" label="资金股份"/>
-	<s:Button id="updatePwdB" x="331" y="-30" width="100" height="30"
-			  label="修改密码"/>
+	<s:Button id="bshistoryB" width="100" height="30" label="历史委托"
+			  x="221" y="-30"/>
+	<s:Button id="nowWeituoB" height="30" x="111" y="-30" width="100"
+			  label="当前委托"/>
+	<s:Button id="bagB" width="100" height="30" label="资金股份"
+			  x="331" y="-30"/>
+	<s:Button id="updatePwdB" width="100" height="30" label="修改密码"
+			  x="441" y="-30"/>
 	<s:Button id="closeB" x="716" y="-30" width="80" height="30" label="退出"/>
 	<view:UpdatePwd includeIn="updatePwd" x="0" y="0">
 	</view:UpdatePwd>
+	<view:NowWeituo includeIn="nowWeituo" x="0" y="0">
+	</view:NowWeituo>
 </s:Panel>

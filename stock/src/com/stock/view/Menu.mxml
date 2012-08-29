@@ -21,24 +21,24 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:BorderContainer x="0" y="2" width="362" height="40" backgroundColor="#000000" cornerRadius="3">
+	<s:BorderContainer x="0" y="2" width="362" height="40" backgroundColor="#000000" borderColor="#ff0000" cornerRadius="3">
 		<s:BitmapImage x="2" alpha="0.9" source="assets/logo.png" verticalCenter="0"/>
 		<s:Label x="154" y="5" alpha="0.7" color="#CCCCCC" fontSize="12" text="帐户："/>
 		<s:Label x="154" y="22" alpha="0.7" color="#CCCCCC" fontSize="12" text="资产："/>
 		<s:Label x="188" y="5" color="#CCCCCC" fontSize="12"
 				 text="{PlayerService.instance.player.playerName}"/>
 		<s:Label x="188" y="22" color="#CCCCCC" fontSize="12"
-				 text="{PlayerService.instance.player.haveMoney}"/>
+				 text="{PlayerService.instance.player.zhichan}"/>
 	</s:BorderContainer>
-	<model:Button id="indexB" x="370" y="2" label="主  页">
+	<model:Button id="indexB" x="370" y="2" label="股  票">
 	</model:Button>
 	<model:Button id="accountB" x="480" y="2" label="资金帐户">
 	</model:Button>
-	<model:Button id="zhijinB" x="590" y="2" label="资金股份">
+	<model:Button id="ipoB" x="590" y="2" label="IPO">
 	</model:Button>
-	<model:Button id="weituoB" x="700" y="2" label="银  行">
+	<model:Button id="bankB" x="700" y="2" label="银  行">
 	</model:Button>
-	<model:Button id="bankB" x="810" y="2" label="帮  助">
+	<model:Button id="helpB" x="810" y="2" label="帮  助">
 	</model:Button>
 	<model:Button id="chongzhiB" x="920" y="2" label="帐户充值">
 	</model:Button>

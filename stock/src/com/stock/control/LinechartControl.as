@@ -18,7 +18,7 @@ package com.stock.control
 		public var linechart:Linechart;
 		public static var instance:LinechartControl;
 		private var x:int = 38;
-		private var y:int = 85;
+		private var y:int = 50;
 		private var spacingX:int = 25;
 		private var spacingY:int = 81;
 		

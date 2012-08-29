@@ -7,16 +7,6 @@
 				   creationComplete="bordercontainer1_creationCompleteHandler(event)"
 				   currentState="login">
 	
-	<fx:Script>
-		<![CDATA[
-			protected function button21_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.operation.visible = true;
-			}
-		]]>
-	</fx:Script>
-	
 	<s:states>
 		<s:State name="stockMain"/>
 		<s:State name="stockKline"/>
@@ -26,23 +16,14 @@
 		<s:State name="regist"/>
 	</s:states>
 	<fx:Declarations>
-		<s:RadioButtonGroup id="radiogroup1"/>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			import com.stock.control.BagControl;
-			import com.stock.control.BargainControl;
-			import com.stock.control.BshistoryControl;
 			import com.stock.control.MainControl;
-			import com.stock.control.SunKLineControl;
-			import com.stock.services.PlayerService;
-			import com.stock.services.StockSyncService;
 			
 			import mx.events.FlexEvent;
-
-			
 			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -50,54 +31,14 @@
 				new MainControl(this);
 			}
 
-			protected function button3_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				linechart.scaleX = 1.5;
-				linechart.scaleY = 1.5;
-			}
-			
-			protected function button4_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				SunKLineControl.instance.loaddata();
-			}
-			
-			protected function button5_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.currentState = "stockMain";
-			}
-			
-			protected function button6_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.currentState = "stockKline";
-			}
-			
 			protected function backB_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				this.currentState = "login";
-			}
-			
-			protected function updatePwdBackB_clickHandler(event:MouseEvent):void
-			{
-				// TODO Auto-generated method stub
-				this.currentState = "stockList";
+				
 			}
 			
 		]]>
 	</fx:Script>
-
-
-
-	<view:SunKLine includeIn="stockKline" x="0" y="79">
-	</view:SunKLine>
-	<view:Bshistory includeIn="bshistory" x="0" y="50" alpha="0.7" fontSize="18">
-	</view:Bshistory>
-	<view:Bag includeIn="bag" x="0" y="50" alpha="0.7">
-	</view:Bag>
 	
 	<s:Image includeIn="login,regist" x="0" y="0" source="assets/bg.png"/>
 	<s:Label includeIn="login" y="584" color="#B0B0B0" fontSize="14" horizontalCenter="0"
@@ -113,41 +54,10 @@
 	
 	<view:StockList id="stockList" includeIn="stockMain" visible="true" x="0" y="50">
 	</view:StockList>
-	
-		
-	
-	<s:BorderContainer id="stockMenu" includeIn="stockKline,stockMain" visible="true" x="0" y="49"
-					   width="824" height="40" backgroundAlpha="0" borderColor="#B00000">
-		<model:Button2 x="744" y="-1" label="K线" click="button6_clickHandler(event)"/>
-		<model:Button2 x="665" y="-1" label="分时" click="button5_clickHandler(event)"/>
-		<s:Label x="10" y="13" color="#FF0000" text="公告：股票大亨即将上市！"/>
-		<model:Button2 x="586" y="-1" label="买/卖" click="button21_clickHandler(event)"/>
-	</s:BorderContainer>
-	<view:Linechart id="linechart" includeIn="stockMain" visible="false" x="0" y="0" scaleX="1.1"
-					scaleY="1.2">
-	</view:Linechart>
-	<view:Bargain id="bargain" includeIn="stockKline,stockMain" visible="true" x="824" y="49">
-	</view:Bargain>
-	<view:Operation id="operation" includeIn="stockMain" visible="false" x="115" y="249">
-	</view:Operation>
-	
-	<s:BorderContainer id="bottomMenu" includeIn="stockKline,stockMain" x="0" y="700" width="824"
-					   height="40" backgroundAlpha="0" borderColor="#ff0000">
-		<model:Button2 x="744" y="-1" width="120" label="K线" click="button6_clickHandler(event)"
-					   x.stockMain="594" y.stockMain="-1"/>
-		<model:Button2 x="665" y="-1" width="120" label="分时" click="button5_clickHandler(event)"
-					   x.stockMain="475" y.stockMain="-1"/>
-		<model:Button2 x="586" y="-1" width="120" label="买/卖" click="button21_clickHandler(event)"
-					   x.stockMain="356" y.stockMain="-1"/>
-		<model:Button2 width="120" x="744" y="-1" label="K线" click="button6_clickHandler(event)"
-					   x.stockMain="237" y.stockMain="-1"/>
-		<model:Button2 width="120" x="665" y="-1" label="分时" click="button5_clickHandler(event)"
-					   x.stockMain="118" y.stockMain="-1"/>
-		<model:Button2 width="120" x="586" y="-1" label="买/卖" click="button21_clickHandler(event)"
-					   x.stockMain="-1" y.stockMain="-1"/>
-	</s:BorderContainer>
-	<view:Account id="account" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
-	</view:Account>
 	<view:Menu includeIn="stockMain,stockKline" x="0" y="0">
 	</view:Menu>
+	<view:StockMain includeIn="stockMain" id="stockMain" visible="false" left="0" bottom="0">
+	</view:StockMain>
+	<view:Account id="account" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:Account>
 </s:BorderContainer>

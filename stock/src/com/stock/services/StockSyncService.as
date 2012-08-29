@@ -73,7 +73,7 @@ package com.stock.services
 		}
 		
 		public function updateJiaoyiI(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array){
-			BargainControl.instance.updateJiaoyi(topPrice,bottomPrice,nowPrice,nowCjNum,buys,sales,cjhistory);
+			BargainService.instance.updateJiaoyi(topPrice,bottomPrice,nowPrice,nowCjNum,buys,sales,cjhistory);
 		}
 		
 		public function updateI(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){

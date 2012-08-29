@@ -7,6 +7,7 @@ package com.stock.services
 	import com.stock.model.Stock;
 	
 	import mx.binding.utils.BindingUtils;
+	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
 	
 	import org.flexunit.internals.matchers.Each;
@@ -14,13 +15,13 @@ package com.stock.services
 	public class StockListService
 	{
 		[Bindable]
-		public var stocks:ArrayList;
+		public var stocks:ArrayCollection;
 		
 		public static var instance:StockListService;
 		
 		public function StockListService()
 		{
-			stocks = new ArrayList();
+			stocks = new ArrayCollection();
 		}
 		
 		public static function getInstance():StockListService{
@@ -84,9 +85,11 @@ package com.stock.services
 				}
 			}
 			
-			if(MainControl.instance.main.currentState == "stockMain" && BargainControl.instance.stock.stockCode == stockCode){	
+			if(MainControl.instance.main.currentState == "stockMain" && BargainService.instance.stock.stockCode == stockCode){	
 				LinechartControl.instance.update(timeStr,Number((nowPrice-5).toFixed(2)),nowCjNum);
 			}
+			
+			PlayerService.instance.updateZhichan();
 		}
 	}
 }
