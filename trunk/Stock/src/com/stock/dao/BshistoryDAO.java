@@ -34,6 +34,7 @@ public class BshistoryDAO extends HibernateDaoSupport {
 	public static final String TAX_STAMP = "taxStamp";
 	public static final String COMMISION = "commision";
 	public static final String HAVE_CJ_NUM = "haveCjNum";
+	public static final String STATE = "state";
 
 	protected void initDao() {
 		// do nothing
@@ -137,6 +138,10 @@ public class BshistoryDAO extends HibernateDaoSupport {
 
 	public List findByHaveCjNum(Object haveCjNum) {
 		return findByProperty(HAVE_CJ_NUM, haveCjNum);
+	}
+
+	public List findByState(Object state) {
+		return findByProperty(STATE, state);
 	}
 
 	public List findAll() {
