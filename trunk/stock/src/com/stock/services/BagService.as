@@ -10,7 +10,7 @@ package com.stock.services
 		public static var instance:BagService;
 		public function BagService()
 		{
-			getBags();
+
 		}
 		
 		public static function getInstance():BagService{
@@ -28,6 +28,8 @@ package com.stock.services
 		public function getBagsResultHandler(e:ResultEvent):void{
 			RemoteService.instance.bagService.removeEventListener(ResultEvent.RESULT,getBagsResultHandler);
 			bags = e.result as ArrayCollection;
+			
+			PlayerService.instance.updateZhichan();
 		}
 	}
 }

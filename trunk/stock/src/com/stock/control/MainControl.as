@@ -1,5 +1,6 @@
 package com.stock.control
 {
+	import com.stock.services.BargainService;
 	import com.stock.services.MainService;
 	import com.stock.services.PlayerService;
 	import com.stock.services.RemoteService;
@@ -21,9 +22,11 @@ package com.stock.control
 			instance = this;
 			
 			RemoteService.getInstance();
-			PlayerService.getInstance();
+			BargainService.getInstance();
 			MainService.getInstance();
 			StockListService.getInstance();
+			
+			PlayerService.getInstance();
 			
 			this.main.currentState = "login";
 		}

@@ -38,6 +38,9 @@ package com.stock.services
 				this.player = e.result as Player;
 				MainControl.instance.main.currentState = "stockMain";
 				StockSyncService.getInstance();
+				
+				BagService.getInstance().getBags();
+
 			}else{
 				Alert.show(e.result.toString());
 			}
@@ -76,7 +79,7 @@ package com.stock.services
 		
 		public function updateZhichan():void{
 			player.zhichan = player.haveMoney;
-			for each(var obj:Object in BagService.instance.bags){
+			for each(var obj:Object in BagService.getInstance().bags){
 				player.zhichan += obj.haveNum * StockListService.instance.getPriceByStockCode(obj.stockNum);
 			}
 		}

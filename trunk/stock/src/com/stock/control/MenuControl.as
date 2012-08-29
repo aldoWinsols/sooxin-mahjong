@@ -14,35 +14,24 @@ package com.stock.control
 			
 			this.menu.indexB.addEventListener(MouseEvent.CLICK,indexBClickHandler);
 			this.menu.accountB.addEventListener(MouseEvent.CLICK,accountBClickHandler);
-			this.menu.zhijinB.addEventListener(MouseEvent.CLICK,zhijinBClickHandler);
-			this.menu.weituoB.addEventListener(MouseEvent.CLICK,weituoBClickHandler);
+			this.menu.ipoB.addEventListener(MouseEvent.CLICK,ipoBClickHandler);
+			this.menu.helpB.addEventListener(MouseEvent.CLICK,helpBClickHandler);
 			this.menu.bankB.addEventListener(MouseEvent.CLICK,bankBClickHandler);
 			this.menu.chongzhiB.addEventListener(MouseEvent.CLICK,chongzhiBClickHandler);
 		}
 		
 		private function indexBClickHandler(e:MouseEvent):void{
-			
+			MainControl.instance.main.currentState = "stockMain";
+			MainControl.instance.main.stockList.visible = true;
+			MainControl.instance.main.stockMain.visible = false;
 		}
 		private function accountBClickHandler(e:MouseEvent):void{
 			MainControl.instance.main.account.visible = true;
 		}
-		private function zhijinBClickHandler(e:MouseEvent):void{
-			initMenuB();
-			this.menu.zhijinB.selected = true;
-			MainControl.instance.main.currentState = "bag";
-			
-			if(BagControl.instance != null){
-				BagService.instance.getBags();
-			}
+		private function ipoBClickHandler(e:MouseEvent):void{
 		}
-		private function weituoBClickHandler(e:MouseEvent):void{
-			initMenuB();
-			this.menu.weituoB.selected = true;
-			MainControl.instance.main.currentState = "bshistory";
-			
-			if(BshistoryControl.instance != null){
-				BshistoryControl.instance.getBshistory();
-			}
+		private function helpBClickHandler(e:MouseEvent):void{
+
 		}
 		private function bankBClickHandler(e:MouseEvent):void{
 			
@@ -54,8 +43,8 @@ package com.stock.control
 		public function initMenuB(){
 			this.menu.indexB.selected = false;
 			this.menu.accountB.selected = false;
-			this.menu.zhijinB.selected = false;
-			this.menu.weituoB.selected = false;
+			this.menu.helpB.selected = false;
+			this.menu.ipoB.selected = false;
 			this.menu.bankB.selected = false;
 			this.menu.chongzhiB.selected = false;
 		}

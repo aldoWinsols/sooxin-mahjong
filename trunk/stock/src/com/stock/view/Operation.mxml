@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 width="800" height="450" fontSize="20">
-	
+		 width="800" height="450" creationComplete="group1_creationCompleteHandler(event)"
+		 fontSize="16">
 	<fx:Script>
 		<![CDATA[
-			import com.stock.control.BargainControl;
-			import com.stock.services.StockSyncService;
-			protected function button2_clickHandler(event:MouseEvent):void
+			import com.stock.control.OperationControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				if(buyB.selected){
-					StockSyncService.getInstance().buy(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
-				}else{
-					StockSyncService.getInstance().sale(BargainControl.instance.stock.stockCode,"sooxin",Number(this.wtPrice.text),Number(this.wtNum.text));
-				}
+				new OperationControl(this);
 			}
+			
 		]]>
 	</fx:Script>
+	
 	
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:TextInput id="wtPrice" x="167" width="141" verticalCenter="-79"/>
-	<s:Button x="64" width="100" label="提交" click="button2_clickHandler(event)" verticalCenter="140"/>
-	<s:TextInput id="wtNum" x="166" width="105" verticalCenter="-2"/>
-	
-	<s:RadioButton id="buyB" x="66" y="74" label="买" color="#FF0000" groupName="radiogroup1"
-				   selected="true"/>
-	<s:RadioButton id="saleB" x="137" y="74" label="卖" color="#FF0000" groupName="radiogroup1"/>
-	<s:CheckBox x="65" label="五挡及时成交" verticalCenter="58"/>
-	<s:Label x="66" text="股票代码：" verticalCenter="-79"/>
-	<s:Label x="315" text="标签" verticalCenter="-78"/>
-	<s:Label x="66" text="委托价格：" verticalCenter="-2"/>
-	<s:Label x="10" y="21" text="总资产："/>
-	<s:Label x="78" y="21" text="标签"/>
-	<s:Label x="140" y="21" text="总资金："/>
-	<s:Label x="208" y="21" text="标签"/>
-	<s:Label x="270" y="21" text="锁定资金："/>
-	<s:Label x="348" y="21" text="标签"/>
-	<s:Label x="400" y="21" text="可用资金："/>
-	<s:Label x="478" y="21" text="标签"/>
+	<s:TextInput id="wtPrice" x="155" width="100" verticalCenter="7" restrict="0-9\."/>
+	<s:Button id="operationB" x="64" width="100" label="提交" verticalCenter="160"/>
+	<s:TextInput id="wtNum" x="155" width="100" restrict="0-9" verticalCenter="76"/>
+	<s:RadioButton id="buyB" x="153" y="147" label="买" color="#FF0000" fontWeight="bold"
+				   groupName="radiogroup1" selected="false"/>
+	<s:RadioButton id="saleB" x="254" y="147" label="卖" color="#00D938" fontWeight="bold"
+				   groupName="radiogroup1"/>
+	<s:CheckBox x="263" label="五挡及时成交" verticalCenter="8"/>
+	<s:Label x="97" text="股票：" verticalCenter="-126"/>
+	<s:Label id="stockCode" x="166" text="==" verticalCenter="-125"/>
+	<s:Label x="66" text="委托价格：" verticalCenter="8"/>
+	<s:Label x="10" y="20" fontSize="16" text="总资产："/>
+	<s:Label id="zhichan" x="78" y="20" fontSize="16" text="标签"/>
+	<s:Label x="170" y="20" fontSize="16" text="总资金："/>
+	<s:Label id="haveMoney" x="238" y="20" fontSize="16" text="标签"/>
+	<s:Label x="330" y="20" fontSize="16" text="锁定资金："/>
+	<s:Label id="clockMoney" x="408" y="20" fontSize="16" text="标签"/>
+	<s:Label x="510" y="20" fontSize="16" text="可用资金："/>
+	<s:Label id="useMoney" x="588" y="20" fontSize="16" text="标签"/>
+	<s:Label id="stockName" x="236" y="93" text="=="/>
+	<s:Label x="66" text="委托数量：" verticalCenter="78"/>
+	<s:Label x="96" text="操作：" verticalCenter="-62"/>
 </s:Group>

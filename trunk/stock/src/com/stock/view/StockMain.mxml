@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:view="com.stock.view.*"
+		 xmlns:model="com.stock.model.*"
+		 width="1024" height="718">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.AccountControl;
+			import com.stock.control.BargainControl;
+			import com.stock.control.MainControl;
+			protected function button21_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.sunKline.visible = true;
+				this.linechart.visible = false;
+			}
+			
+			protected function button22_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.sunKline.visible = false;
+				this.linechart.visible = true;
+			}
+			
+			protected function button23_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MainControl.instance.main.account.visible = true;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<view:Linechart id="linechart" x="0" y="0" scaleX="1.1" scaleY="1.2">
+	</view:Linechart>
+	<view:SunKLine id="sunKline" visible="false" x="0" y="40">
+	</view:SunKLine>
+	<view:Bargain id="bargain" x="824" y="0">
+	</view:Bargain>
+	
+	<s:BorderContainer id="bottomMenu" x="0" bottom="0" width="824" height="40" backgroundAlpha="0"
+					   borderColor="#ff0000">
+		<model:Button2 x="744" y="-1" width="120" label="K线"/>
+
+	</s:BorderContainer>
+	
+	<s:BorderContainer id="stockMenu" x="0" y="0" width="824" height="40" backgroundAlpha="0"
+					   borderColor="#B00000">
+		<model:Button2 x="744" y="-1" label="K线" click="button21_clickHandler(event)"/>
+		<model:Button2 x="665" y="-1" label="分时" click="button22_clickHandler(event)"/>
+		<model:Button2 x="586" y="-1" label="买/卖" click="button23_clickHandler(event)"/>
+		
+		<s:Label x="10" y="13" color="#FF0000" text="公告：股票大亨即将上市！"/>
+	</s:BorderContainer>
+</s:Group>
