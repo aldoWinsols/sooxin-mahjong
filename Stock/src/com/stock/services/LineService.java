@@ -66,4 +66,8 @@ public class LineService implements ILineService {
 		wlineDao.save(wline);
 	}
 	
+	public List getKlinesByStockCode(String stockCode){
+		return dlineDao.findByStockCode(stockCode);
+	}
+	
 }

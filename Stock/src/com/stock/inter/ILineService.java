@@ -1,5 +1,7 @@
 package com.stock.inter;
 
+import java.util.List;
+
 import com.stock.dao.Dline;
 import com.stock.dao.Hline;
 import com.stock.dao.Mline;
@@ -14,5 +16,7 @@ public interface ILineService {
 	public void addDline(Dline dline);
 
 	public void addWline(Wline wline);
+	
+	public List getKlinesByStockCode(String stockCode);
 
 }

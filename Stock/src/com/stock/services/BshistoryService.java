@@ -23,4 +23,11 @@ public class BshistoryService {
 	public List getBshistoryByPlayerName(String playerName){
 		return bshistoryDao.findByPlayerName(playerName);
 	}
+	
+	public List getNowWeituoByPlayerName(String playerName){
+		Bshistory bsEg = new Bshistory();
+		bsEg.setPlayerName(playerName);
+		bsEg.setState(0);
+		return bshistoryDao.findByExample(bsEg);
+	}
 }
