@@ -1,6 +1,9 @@
 package com.stock.services
 {
 	import com.stock.control.BargainControl;
+	import com.stock.control.LinechartControl;
+	import com.stock.control.MainControl;
+	import com.stock.control.SunKLineControl;
 	import com.stock.model.Stock;
 	
 	import mx.binding.utils.BindingUtils;
@@ -31,7 +34,7 @@ package com.stock.services
 			return instance;
 		}
 		
-		public function updateJiaoyi(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array){
+		public function updateJiaoyi(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array,mlines:Array){
 			this.buys = buys;
 			this.sales = sales;
 			
@@ -162,6 +165,14 @@ package com.stock.services
 			stock.zhangdie = nowPrice - stock.lastDayEndPrice;
 			stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2)+"%";
 			
+			SunKLineControl.instance.update(5,nowPrice,topPrice,5,nowCjNum);
+			
+			if(MainControl.instance.main.currentState == "stockMain"){
+				for each(var obj:Object in mlines){
+					LinechartControl.instance.update(obj.buildDate,Number((obj.price-5).toFixed(2)),obj.turnover);
+				}
+				
+			}
 			//			BargainControl.instance.bargain.buyList.dataProvider = new ArrayList(buys);
 		}
 		

@@ -500,7 +500,7 @@ package com.stock.control
 		 * 重置所有数据
 		 * 
 		 */
-		private function clearData():void{
+		public function clearData():void{
 			timeShareDatas = new Vector.<TimeShareData>();
 			averageNumbers = new Vector.<Number>();
 			maxMake = spacingX;

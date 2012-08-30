@@ -360,25 +360,25 @@ package com.stock.control
 		 * 初始化timer
 		 * 
 		 */
-		private function initTimer():void{
-			timer = new Timer(6000, 0);
-			timer.addEventListener(TimerEvent.TIMER, onTimer);
-		}
+//		private function initTimer():void{
+//			timer = new Timer(6000, 0);
+//			timer.addEventListener(TimerEvent.TIMER, onTimer);
+//		}
 		
-		private function onTimer(e:TimerEvent):void{
+		public function update(startPrice:Number, nowPrice:Number, topPrice:Number, bottomPrice:Number, turnover:Number):void{
 			if(todaySunKInfo == null){
-				var sk:SunKInfo = arrays[arrays.length - 1];
-				todaySunKInfo = new SunKInfo("", sk.kaipan, sk.shoupan, sk.max, sk.min);
+				todaySunKInfo = new SunKInfo("", startPrice, nowPrice, topPrice, bottomPrice);
 				arrays.push(todaySunKInfo);
 			}else{
-				var num = 0.1;
-				if(int(Math.random() * 10) > 5){
-					num = num * -1;
-				}
-				todaySunKInfo.kaipan += num;
-				todaySunKInfo.shoupan += num;
-				todaySunKInfo.max += num;
-				todaySunKInfo.min += num;
+//				var num = 0.1;
+//				if(int(Math.random() * 10) > 5){
+//					num = num * -1;
+//				}
+				todaySunKInfo.kaipan = startPrice;
+				todaySunKInfo.shoupan = nowPrice;
+				todaySunKInfo.max = topPrice;
+				todaySunKInfo.min = bottomPrice;
+				todaySunKInfo.turnover = turnover;
 				sunKLine.border1.removeElementAt(sunKLine.border1.numElements - 1);
 			}
 			

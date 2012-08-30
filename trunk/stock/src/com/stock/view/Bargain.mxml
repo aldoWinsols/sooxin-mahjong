@@ -5,6 +5,8 @@
 	<fx:Script>
 		<![CDATA[
 			import com.stock.control.BargainControl;
+			import com.stock.control.FenshihistoryControl;
+			import com.stock.control.MainControl;
 			
 			import mx.events.FlexEvent;
 			
@@ -14,6 +16,13 @@
 			{
 				// TODO Auto-generated method stub
 				new BargainControl(this);
+			}
+			
+			protected function cjHistoryList_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				MainControl.instance.main.stockMain.fenshiHistory.visible = true;
+				FenshihistoryControl.instance.init();
 			}
 			
 		]]>
@@ -110,7 +119,7 @@
 	<s:BorderContainer y="499" right="0" width="200" height="228" backgroundAlpha="0"
 					   borderColor="#B00000">
 		<s:List id="cjHistoryList" x="0" y="0" width="200" height="228"
-				itemRenderer="com.stock.render.ChHistoryListItemRender">
+				itemRenderer="com.stock.render.ChHistoryListItemRender" click="cjHistoryList_clickHandler(event)">
 		</s:List>
 	</s:BorderContainer>
 	<s:BorderContainer x="0" y="0" width="200" height="40" backgroundAlpha="0" borderColor="#B00000">
