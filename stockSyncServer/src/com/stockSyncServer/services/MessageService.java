@@ -36,6 +36,12 @@ public class MessageService {
 			MainService.instance.leafServices.get(i).updateFenshi(obj);
 		}
 	}
+	
+	public synchronized void broadcastMline(Object[] obj) {
+		for(int i=0; i<MainService.instance.leafServices.size(); i++){
+			MainService.instance.leafServices.get(i).broadcastMline(obj);
+		}
+	}
 
 	/**
 	 * 发送消息

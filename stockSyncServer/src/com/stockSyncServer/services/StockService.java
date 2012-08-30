@@ -15,6 +15,7 @@ import com.stockSyncServer.model.StockLocal;
 import com.stockSyncServer.services.thread.BalanceJingjiaService;
 import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.services.thread.CjhistoryDataService;
+import com.stockSyncServer.services.thread.OrderCancelService;
 import com.stockSyncServer.util.ComparatorAsc;
 import com.stockSyncServer.util.ComparatorDesc;
 import com.stockSyncServer.util.NumberFomart;
@@ -517,6 +518,44 @@ public class StockService {
 		
 		if(!MainService.instance.isJingjia){
 			balance();
+		}
+	}
+	
+	public synchronized void cancel(String orderNum){
+		for(int i=0; i<stock.buyOrders.size();i++){
+			if(stock.buyOrders.get(i).getOrderNum().equals(orderNum)){
+				stock.buyOrders.remove(i);
+				
+				//修改数据库
+				OrderCancelService.instance.orderCancelTasks.add(orderNum);
+				
+				MessageService.instance.broadcastJiaoyi(new Object[] {
+						stock.stockCode, stock.getTopPrice(),
+						stock.getBottomPrice(), stock.getNowPrice(),
+						stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
+						JSONArray.fromObject(stock.saleOrders),
+						JSONArray.fromObject(msgCjhistoryS) });
+				
+				return;
+			}
+		}
+		
+		for(int i=0; i<stock.saleOrders.size();i++){
+			if(stock.saleOrders.get(i).getOrderNum().equals(orderNum)){
+				stock.saleOrders.remove(i);
+				
+				//修改数据库
+				OrderCancelService.instance.orderCancelTasks.add(orderNum);
+				
+				MessageService.instance.broadcastJiaoyi(new Object[] {
+						stock.stockCode, stock.getTopPrice(),
+						stock.getBottomPrice(), stock.getNowPrice(),
+						stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
+						JSONArray.fromObject(stock.saleOrders),
+						JSONArray.fromObject(msgCjhistoryS) });
+				
+				return;
+			}
 		}
 	}
 }

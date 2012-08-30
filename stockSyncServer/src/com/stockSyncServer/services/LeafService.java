@@ -36,6 +36,11 @@ public class LeafService{
 		client.invokeMethod("updateFenshi", obj,callBack);
 	}
 	
+	public void broadcastMline(Object[] obj){
+		IRemotingCallback callBack = new callBackHandler();
+		client.invokeMethod("broadcastMline", obj,callBack);
+	}
+	
 	public void update(){
 		if(client != null){
 			IRemotingCallback callBack = new callBackHandler();
