@@ -1,6 +1,7 @@
 package com.stockSyncServer.services;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public class MainService {
 	public static MainService instance;
 
 	public boolean isJingjia = false;// 当前是否竞价状态
-	public boolean isOpen = false;// 当前是否开放投住
+	public boolean isOpen = true;// 当前是否开放投住
 
 	public boolean aa = false;// 当前是否竞价状态
 
@@ -63,8 +64,14 @@ public class MainService {
 		n++;
 		
 		Timestamp timestamp = new Timestamp(new Date().getTime());
-		int hour = Integer.valueOf(timestamp.toLocaleString().substring(9,11).replace(" ", ""));
-		int minute = Integer.valueOf(timestamp.toLocaleString().substring(12,14).replace(" ", ""));
+		
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateStr = sdf.format(timestamp); //转为字符串	
+		
+		System.out.println(dateStr);
+		
+		int hour = Integer.valueOf(dateStr.substring(11,13).replace(" ", ""));
+		int minute = Integer.valueOf(dateStr.substring(14,16).replace(" ", ""));
 		
 		if (hour == 9 && minute == 15) {
 			if (!isOpen) {
@@ -124,6 +131,12 @@ public class MainService {
 					mline.setPrice(stock.getNowPrice());
 					mline.setTurnover(stock.getNowCjNum());
 					LineDataService.instance.addMTask(mline);
+					
+					stock.mlines.add(mline);
+
+					Date date = new Date();
+					String t = date.getHours()+";"+date.getMinutes();
+					MessageService.instance.broadcastMline(new Object[]{stock.stockCode,stock.nowPrice,stock.getNowCjNum(),t});
 				}
 
 				if (n % 3600 == 0) {
@@ -184,5 +197,13 @@ public class MainService {
 		String orderNum = playerName + System.currentTimeMillis();
 		OrderDataService.instance.addTask("sale", stockCode, playerName,
 				orderNum, wtPrice, wtNum);
+	}
+	
+	public void cancel(String stockCode, String orderNum){
+		for(int i=0; i<stockServices.size();i++){
+			if(stockServices.get(i).stock.stockCode.equals(stockCode)){
+				stockServices.get(i).cancel(orderNum);
+			}
+		}
 	}
 }

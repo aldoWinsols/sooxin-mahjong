@@ -2,6 +2,8 @@ package com.stockSyncServer.model;
 
 import java.util.ArrayList;
 
+import com.stock.dao.Mline;
+
 public class StockLocal {
 	public String stockCode = "";// 股票代码
 	public String stockName = "";//股票名称
@@ -23,6 +25,8 @@ public class StockLocal {
 
 	public ArrayList<Order> buyOrders = new ArrayList<Order>();// 买单
 	public ArrayList<Order> saleOrders = new ArrayList<Order>();// 卖单
+	
+	public ArrayList<Mline> mlines = new ArrayList<Mline>();
 
 	public String getStockCode() {
 		return stockCode;

@@ -14,6 +14,7 @@ import com.stockSyncServer.services.thread.BalanceJingjiaService;
 import com.stockSyncServer.services.thread.BalanceService;
 import com.stockSyncServer.services.thread.CjhistoryDataService;
 import com.stockSyncServer.services.thread.LineDataService;
+import com.stockSyncServer.services.thread.OrderCancelService;
 import com.stockSyncServer.services.thread.OrderDataService;
 import com.stockSyncServer.util.UtilProperties;
 
@@ -42,6 +43,7 @@ public class Application extends ApplicationAdapter{
 		MainService.getInstance();
 		MessageService.getInstance();
 		OrderDataService.getInstance();
+		OrderCancelService.getInstance();
 		CjhistoryDataService.getInstance();
 		LineDataService.getInstance();
 		
@@ -86,6 +88,10 @@ public class Application extends ApplicationAdapter{
 		if(MainService.instance.isOpen){
 			MainService.instance.sale(stockCode, playerName, wtPrice, wtNum);
 		}
+	}
+	
+	public void cancel(String stockCode, String orderNum){
+		MainService.instance.cancel(stockCode, orderNum);
 	}
 	
 	public void sendRoomNum(){
