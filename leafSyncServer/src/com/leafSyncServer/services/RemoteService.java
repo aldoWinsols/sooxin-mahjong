@@ -39,6 +39,11 @@ public class RemoteService {
 		client.invokeMethod("sale", new Object[]{stockCode, playerName,wtPrice,wtNum},callBack);
 	}
 	
+	public void cancel(String stockCode, String orderNum){
+		IRemotingCallback callBack = new callBackHandler();
+		client.invokeMethod("cancel", new Object[]{stockCode,orderNum},callBack);
+	}
+	
 	public void sendRoomNum(){
 		IRemotingCallback callBack = new callBackHandler();
 		client.invokeMethod("sendRoomNum", null,callBack);

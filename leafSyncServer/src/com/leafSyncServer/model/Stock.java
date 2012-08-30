@@ -21,6 +21,8 @@ public class Stock {
 
 	public ArrayList<Order> buyOrders = new ArrayList<Order>();// 买单
 	public ArrayList<Order> saleOrders = new ArrayList<Order>();// 卖单
+	
+	public ArrayList<Mline> mlines = new ArrayList<Mline>();
 
 	public Stock(){
 		

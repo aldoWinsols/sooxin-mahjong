@@ -8,6 +8,7 @@ import org.red5.server.api.service.IServiceCapableConnection;
 
 import com.leafSyncServer.model.Cjhistory;
 import com.leafSyncServer.model.Message;
+import com.leafSyncServer.model.Mline;
 import com.leafSyncServer.model.Order;
 import com.leafSyncServer.model.Stock;
 
@@ -79,7 +80,7 @@ public class MainService {
 	public void updateJiaoyi(String stockCode, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Order> buyOrders, ArrayList<Order> saleOrders,
-			ArrayList<Cjhistory> thisCjhistoryS){
+			ArrayList<Cjhistory> msgCjhistoryS){
 
 		for(int i=0; i<stockServices.size(); i++){
 			if(stockServices.get(i).stock.stockCode.equals(stockCode)){
@@ -90,14 +91,14 @@ public class MainService {
 				stockServices.get(i).stock.buyOrders = buyOrders;
 				stockServices.get(i).stock.saleOrders = saleOrders;
 				
-				if(thisCjhistoryS.size()>1){
-					stockServices.get(i).stock.cjhistorys.addAll(thisCjhistoryS);
+				if(msgCjhistoryS.size()>0){
+					stockServices.get(i).stock.cjhistorys.addAll(msgCjhistoryS);
 				}
 			}
 		}
 		Message message = new Message();
 		message.setHead("updateJiaoyiI");
-		message.setContent(new Object[]{topPrice,bottomPrice,nowPrice,nowCjNum,buyOrders,saleOrders,thisCjhistoryS});
+		message.setContent(new Object[]{topPrice,bottomPrice,nowPrice,nowCjNum,buyOrders,saleOrders,msgCjhistoryS,null});
 		MessageService.instance.send(stockCode, message);
 	}
 	
@@ -113,7 +114,7 @@ public class MainService {
 						Message message = new Message();
 						message.setHead("updateJiaoyiI");
 						Stock stock = stockServices.get(j).stock;
-						message.setContent(new Object[]{stock.topPrice,stock.bottomPrice,stock.nowPrice,stock.nowCjNum,stock.buyOrders,stock.saleOrders,stock.cjhistorys});
+						message.setContent(new Object[]{stock.topPrice,stock.bottomPrice,stock.nowPrice,stock.nowCjNum,stock.buyOrders,stock.saleOrders,stock.cjhistorys,stock.mlines});
 						MessageService.instance.send(stockCode, message);
 					}
 				}
@@ -133,6 +134,19 @@ public class MainService {
 			playerServices.get(i).getPlayer().getIserver()
 					.invoke(message.getHead(), message.getContent());
 		
+		}
+	}
+	
+	public void broadcastMline(String stockCode,double price,double turnover,String buildDate){
+		for (int i = 0; i < this.stockServices.size(); i++) {
+			if(stockServices.get(i).stock.stockCode.equals(stockCode)){
+				Mline mline = new Mline();
+				mline.setPrice(price);
+				mline.setTurnover(turnover);
+				mline.setBuildDate(buildDate);
+				stockServices.get(i).stock.mlines.add(mline);
+				break;
+			}
 		}
 	}
 

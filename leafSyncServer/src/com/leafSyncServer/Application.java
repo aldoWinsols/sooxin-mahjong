@@ -1,5 +1,6 @@
 package com.leafSyncServer;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -80,9 +81,9 @@ public class Application extends ApplicationAdapter {
 	public void updateJiaoyi(String stockCode, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Order> buyOrders, ArrayList<Order> saleOrders,
-			ArrayList<Cjhistory> thisCjhistoryS) {
+			ArrayList<Cjhistory> msgCjhistoryS) {
 		MainService.instance.updateJiaoyi(stockCode, topPrice, bottomPrice,
-				nowPrice, nowCjNum, buyOrders, saleOrders, thisCjhistoryS);
+				nowPrice, nowCjNum, buyOrders, saleOrders, msgCjhistoryS);
 	}
 
 	public void initLeaf(String stockCode,String stockName, int allStockNum,
@@ -105,6 +106,14 @@ public class Application extends ApplicationAdapter {
 			
 	public void updateFenshi(String timeStr,String stockCode,double topPrice,double bottomwPrice,double nowPrice,double nowCjNum){
 		MainService.instance.updateFenshi(timeStr, stockCode, topPrice, bottomwPrice, nowPrice, nowCjNum);
+	}
+	
+	public void broadcastMline(String stockCode,double price,double turnover,String buildDate){
+		MainService.instance.broadcastMline(stockCode, price, turnover,buildDate);
+	}
+	
+	public void cancel(String stockCode, String orderNum){
+		RemoteService.instance.cancel(stockCode,orderNum);
 	}
 
 	public void update() {
