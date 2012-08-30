@@ -45,7 +45,8 @@
 				<value>com/stock/dao/Dline.hbm.xml</value>
 				<value>com/stock/dao/Mline.hbm.xml</value>
 				<value>com/stock/dao/Wline.hbm.xml</value>
-				<value>com/stock/dao/Hline.hbm.xml</value></list>
+				<value>com/stock/dao/Hline.hbm.xml</value>
+				<value>com/stock/dao/Tenplayer.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -120,6 +121,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="TenplayerDAO" class="com.stock.dao.TenplayerDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	<bean id="stockService"
 		class="com.stock.services.StockService">
@@ -182,5 +188,10 @@
 			<ref bean="BagDAO" />
 		</property>
 	</bean>
-	
+	<bean id="tenPlayerService"
+		class="com.stock.services.TenPlayerService">
+		<property name="tenplayerDao">
+			<ref bean="TenplayerDAO" />
+		</property>
+	</bean>
 	</beans>
