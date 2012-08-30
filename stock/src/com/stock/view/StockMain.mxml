@@ -10,6 +10,7 @@
 			import com.stock.control.AccountControl;
 			import com.stock.control.BargainControl;
 			import com.stock.control.MainControl;
+			import com.stock.control.TenPlayerControl;
 			protected function button21_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
@@ -30,6 +31,13 @@
 				MainControl.instance.main.account.visible = true;
 			}
 			
+			protected function button24_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.tenPlayer.visible = true;
+				TenPlayerControl.instance.getTenPlayers();
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -43,9 +51,15 @@
 	<view:Bargain id="bargain" x="824" y="0">
 	</view:Bargain>
 	
-	<s:BorderContainer id="bottomMenu" x="0" bottom="0" width="824" height="40" backgroundAlpha="0"
+	<s:BorderContainer id="bottomMenu" x="-1" bottom="40" width="824" height="40" backgroundAlpha="0"
 					   borderColor="#ff0000">
-		<model:Button2 x="744" y="-1" width="120" label="K线"/>
+		<model:Button2 x="3" y="-1" width="120" label="十大股东" click="button24_clickHandler(event)"/>
+		<model:Button2 x="120" y="-1" width="120" label="公告信息" click="button24_clickHandler(event)"/>
+		<model:Button2 x="240" y="-1" width="120" label="业绩指标" click="button24_clickHandler(event)"/>
+		<model:Button2 x="360" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
+		<model:Button2 x="480" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
+		<model:Button2 x="600" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
+		
 
 	</s:BorderContainer>
 	
@@ -57,4 +71,8 @@
 		
 		<s:Label x="10" y="13" color="#FF0000" text="公告：股票大亨即将上市！"/>
 	</s:BorderContainer>
+	<view:TenPlayer id="tenPlayer" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:TenPlayer>
+	<view:Fenshihistory id="fenshiHistory" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:Fenshihistory>
 </s:Group>

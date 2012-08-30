@@ -22,6 +22,7 @@ package com.stock.services
 		public var lineService:RemoteObject;
 		public var bshistoryService:RemoteObject;
 		public var bagService:RemoteObject;
+		public var tenPlayerService:RemoteObject;
 		
 		public var connState:Boolean = false;
 
@@ -35,6 +36,7 @@ package com.stock.services
 			lineService=getConfiguredRO("lineService");
 			bshistoryService=getConfiguredRO("bshistoryService");
 			bagService=getConfiguredRO("bagService");
+			tenPlayerService=getConfiguredRO("tenPlayerService");
 		}
 
 		//得到单例

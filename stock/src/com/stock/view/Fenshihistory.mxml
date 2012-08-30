@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="panel1_creationCompleteHandler(event)"
+		 width="800" height="500" title="十大股东">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.FenshihistoryControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function panel1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new FenshihistoryControl(this);
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:DataGrid id="dg" x="0" y="0" width="200" height="100%" color="#000000" fontSize="14">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="cjPrice" headerText="价格"></s:GridColumn>
+				<s:GridColumn dataField="cjNum" headerText="数量"></s:GridColumn>
+				<s:GridColumn dataField="cjSort" headerText="类型"></s:GridColumn>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:Button x="717" y="-30" width="80" height="30" label="关 闭" click="button1_clickHandler(event)"/>
+</s:Panel>

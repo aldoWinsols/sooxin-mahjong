@@ -72,8 +72,8 @@ package com.stock.services
 			conn.call("dealStock", new Responder(resultHandler, statusHandler), PlayerService.instance.player.playerName,stockCode);
 		}
 		
-		public function updateJiaoyiI(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array){
-			BargainService.instance.updateJiaoyi(topPrice,bottomPrice,nowPrice,nowCjNum,buys,sales,cjhistory);
+		public function updateJiaoyiI(topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number,buys:Array,sales:Array,cjhistory:Array,mlines:Array){
+			BargainService.instance.updateJiaoyi(topPrice,bottomPrice,nowPrice,nowCjNum,buys,sales,cjhistory,mlines);
 		}
 		
 		public function updateI(timeStr:String,stockCode:String,topPrice:Number,bottomPrice:Number,nowPrice:Number,nowCjNum:Number){
@@ -82,6 +82,10 @@ package com.stock.services
 		
 		public function initI(sks:Array):void{
 			StockListService.instance.init(sks);
+		}
+		
+		public function cancel(stockCode:String,orderNum:String):void{
+			conn.call("cancel", new Responder(resultHandler, statusHandler),stockCode, orderNum);
 		}
 		
 		private function resultHandler(obj:Object):void{

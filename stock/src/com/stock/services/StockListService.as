@@ -4,6 +4,7 @@ package com.stock.services
 	import com.stock.control.LinechartControl;
 	import com.stock.control.MainControl;
 	import com.stock.control.StockListControl;
+	import com.stock.control.SunKLineControl;
 	import com.stock.model.Stock;
 	
 	import mx.binding.utils.BindingUtils;
@@ -89,6 +90,7 @@ package com.stock.services
 				LinechartControl.instance.update(timeStr,Number((nowPrice-5).toFixed(2)),nowCjNum);
 			}
 			
+			SunKLineControl.instance.update(5,nowPrice,topPrice,5,nowCjNum);
 			PlayerService.instance.updateZhichan();
 		}
 	}

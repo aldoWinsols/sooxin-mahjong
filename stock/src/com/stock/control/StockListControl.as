@@ -50,6 +50,7 @@ package com.stock.control
 				}
 			}
 			
+			LinechartControl.instance.clearData();
 			MainControl.instance.main.stockList.visible = false;
 			MainControl.instance.main.stockMain.visible = true;
 			stockList.list.selectedItem = null;

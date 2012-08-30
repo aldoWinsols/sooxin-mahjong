@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 xmlns:view="com.stock.view.*" creationComplete="group1_creationCompleteHandler(event)"
-		 width="100%" height="100%">
+		 xmlns:view="com.stock.view.*"
+		 width="100%" height="100%" creationComplete="group1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.stock.control.NowWeituoControl;
@@ -33,7 +33,25 @@
 				<s:GridColumn dataField="haveCjNum" headerText="成交数量"></s:GridColumn>
 				<s:GridColumn dataField="bsCjPrice" headerText="成交价格"></s:GridColumn>
 				<s:GridColumn dataField="bsTime" headerText="操作">
-					
+					<s:itemRenderer>
+						<fx:Component>
+							<s:GridItemRenderer>
+								<fx:Script>
+									<![CDATA[
+										import com.stock.services.StockSyncService;
+										protected function button3_clickHandler(event:MouseEvent):void
+										{
+											// TODO Auto-generated method stub
+											StockSyncService.getInstance().cancel(data.stockNum,data.num);
+										}
+									]]>
+								</fx:Script>
+								<s:HGroup>
+									<s:Button label="撤  单" width="80" height="35" click="button3_clickHandler(event)"/>
+								</s:HGroup>
+							</s:GridItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
 				</s:GridColumn>
 			</s:ArrayList>
 		</s:columns>
