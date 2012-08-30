@@ -1,11 +1,18 @@
 package com.leafSyncServer.model;
 
-public class Cjhistory {
+public class Cjhistory{
+	private String stockCode;
 	private String cjTime;
 	private double cjPrice;
 	private int cjNum;
 	private String cjSort;
-
+	
+	public String getStockCode() {
+		return stockCode;
+	}
+	public void setStockCode(String stockCode) {
+		this.stockCode = stockCode;
+	}
 	public String getCjTime() {
 		return cjTime;
 	}
