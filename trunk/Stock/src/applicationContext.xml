@@ -46,7 +46,12 @@
 				<value>com/stock/dao/Mline.hbm.xml</value>
 				<value>com/stock/dao/Wline.hbm.xml</value>
 				<value>com/stock/dao/Hline.hbm.xml</value>
-				<value>com/stock/dao/Tenplayer.hbm.xml</value></list>
+				<value>com/stock/dao/Tenplayer.hbm.xml</value>
+				<value>com/stock/dao/News.hbm.xml</value>
+				<value>com/stock/dao/Achievement.hbm.xml</value>
+				<value>com/stock/dao/Profit.hbm.xml</value>
+				<value>com/stock/dao/Notice.hbm.xml</value>
+				<value>com/stock/dao/Companyinfo.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -142,6 +147,31 @@
 			<ref bean="BagDAO" />
 		</property>
 	</bean>
+	<bean id="NewsDAO" class="com.stock.dao.NewsDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="AchievementDAO" class="com.stock.dao.AchievementDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="ProfitDAO" class="com.stock.dao.ProfitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="NoticeDAO" class="com.stock.dao.NoticeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="CompanyinfoDAO" class="com.stock.dao.CompanyinfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
 	
 	<bean id="lineService"
 		class="com.stock.services.LineService">
@@ -188,10 +218,25 @@
 			<ref bean="BagDAO" />
 		</property>
 	</bean>
-	<bean id="tenPlayerService"
-		class="com.stock.services.TenPlayerService">
+	<bean id="stockInfoService"
+		class="com.stock.services.StockInfoService">
 		<property name="tenplayerDao">
 			<ref bean="TenplayerDAO" />
+		</property>
+		<property name="noticeDao">
+			<ref bean="NoticeDAO" />
+		</property>
+		<property name="newsDao">
+			<ref bean="NewsDAO" />
+		</property>
+		<property name="profitDao">
+			<ref bean="ProfitDAO" />
+		</property>
+		<property name="achievementDao">
+			<ref bean="AchievementDAO" />
+		</property>
+		<property name="companyinfoDao">
+			<ref bean="CompanyinfoDAO" />
 		</property>
 	</bean>
 	</beans>
