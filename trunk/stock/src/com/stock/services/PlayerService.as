@@ -38,7 +38,7 @@ package com.stock.services
 				this.player = e.result as Player;
 				MainControl.instance.main.currentState = "stockMain";
 				StockSyncService.getInstance();
-				
+				NoticeService.getInstance();
 				BagService.getInstance().getBags();
 
 			}else{

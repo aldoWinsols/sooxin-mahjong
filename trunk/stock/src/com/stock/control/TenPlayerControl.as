@@ -18,14 +18,14 @@ package com.stock.control
 		}
 		
 		public function getTenPlayers(){
-			RemoteService.instance.tenPlayerService.getTenPlayers(BargainService.instance.stock.stockCode);
-			RemoteService.instance.tenPlayerService.addEventListener(ResultEvent.RESULT,getTenPlayersResultHandler);
+			RemoteService.instance.stockInfoService.getTenPlayers(BargainService.instance.stock.stockCode);
+			RemoteService.instance.stockInfoService.addEventListener(ResultEvent.RESULT,getTenPlayersResultHandler);
 		}
 		
 		protected function getTenPlayersResultHandler(event:ResultEvent):void
 		{
 			// TODO Auto-generated method stub
-			RemoteService.instance.tenPlayerService.removeEventListener(ResultEvent.RESULT,getTenPlayersResultHandler);
+			RemoteService.instance.stockInfoService.removeEventListener(ResultEvent.RESULT,getTenPlayersResultHandler);
 			this.tenPlayer.dg.dataProvider = event.result as ArrayCollection;
 		}
 	}

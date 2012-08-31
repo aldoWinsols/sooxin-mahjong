@@ -8,8 +8,10 @@
 	<fx:Script>
 		<![CDATA[
 			import com.stock.control.AccountControl;
+			import com.stock.control.AchievementControl;
 			import com.stock.control.BargainControl;
 			import com.stock.control.MainControl;
+			import com.stock.control.ProfitControl;
 			import com.stock.control.TenPlayerControl;
 			protected function button21_clickHandler(event:MouseEvent):void
 			{
@@ -38,6 +40,34 @@
 				TenPlayerControl.instance.getTenPlayers();
 			}
 			
+			protected function button25_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.achievement.visible = true;
+				AchievementControl.instance.getAchievements();
+			}
+			
+			protected function button26_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.profit.visible = true;
+				ProfitControl.instance.getProfits();
+			}
+			
+			protected function button27_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.companyInfo.visible = true;
+				companyInfo.getCompanyInfo();
+			}
+			
+			protected function button28_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.companyNews.visible = true;
+				companyNews.getCompanyNews();
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -51,28 +81,42 @@
 	<view:Bargain id="bargain" x="824" y="0">
 	</view:Bargain>
 	
-	<s:BorderContainer id="bottomMenu" x="-1" bottom="40" width="824" height="40" backgroundAlpha="0"
-					   borderColor="#ff0000">
-		<model:Button2 x="3" y="-1" width="120" label="十大股东" click="button24_clickHandler(event)"/>
-		<model:Button2 x="120" y="-1" width="120" label="公告信息" click="button24_clickHandler(event)"/>
-		<model:Button2 x="240" y="-1" width="120" label="业绩指标" click="button24_clickHandler(event)"/>
-		<model:Button2 x="360" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
-		<model:Button2 x="480" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
-		<model:Button2 x="600" y="-1" width="120" label="分红扩股" click="button24_clickHandler(event)"/>
+	<s:BorderContainer id="bottomMenu" x="-1" bottom="40" width="826" height="30" backgroundAlpha="0" borderVisible="false">
+		<model:Button2 x="0" y="0" width="120" height="30" label="公司概况"
+					   click="button27_clickHandler(event)"/>
+		<model:Button2 x="119" y="0" width="120" height="30" label="十大股东"
+					   click="button24_clickHandler(event)"/>
+		<model:Button2 x="238" y="0" width="120" height="30" label="公告信息"
+					   click="button28_clickHandler(event)"/>
+		<model:Button2 x="357" y="0" width="120" height="30" label="业绩指标"
+					   click="button25_clickHandler(event)"/>
+		<model:Button2 x="476" y="0" width="120" height="30" label="公司利润"
+					   click="button26_clickHandler(event)"/>
+		<model:Button2 x="595" y="0" width="120" height="30" label="分红扩股"
+					   click="button24_clickHandler(event)"/>
+		<model:Button2 x="714" y="0" width="112" height="30" label=""/>
 		
 
 	</s:BorderContainer>
 	
-	<s:BorderContainer id="stockMenu" x="0" y="0" width="824" height="40" backgroundAlpha="0"
+	<s:BorderContainer id="stockMenu" x="0" y="0" width="825" height="40" backgroundAlpha="0" borderWeight="1"
 					   borderColor="#B00000">
 		<model:Button2 x="744" y="-1" label="K线" click="button21_clickHandler(event)"/>
 		<model:Button2 x="665" y="-1" label="分时" click="button22_clickHandler(event)"/>
 		<model:Button2 x="586" y="-1" label="买/卖" click="button23_clickHandler(event)"/>
-		
-		<s:Label x="10" y="13" color="#FF0000" text="公告：股票大亨即将上市！"/>
+		<view:Notice x="4" y="-4">
+		</view:Notice>
 	</s:BorderContainer>
 	<view:TenPlayer id="tenPlayer" visible="false" horizontalCenter="0" verticalCenter="0">
 	</view:TenPlayer>
 	<view:Fenshihistory id="fenshiHistory" visible="false" horizontalCenter="0" verticalCenter="0">
 	</view:Fenshihistory>
+	<view:Achievement id="achievement" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:Achievement>
+	<view:Profit id="profit" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:Profit>
+	<view:CompanInfo id="companyInfo" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:CompanInfo>
+	<view:CompanyNews id="companyNews" visible="false" horizontalCenter="0" verticalCenter="0">
+	</view:CompanyNews>
 </s:Group>

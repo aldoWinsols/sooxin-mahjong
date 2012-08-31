@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="panel1_creationCompleteHandler(event)"
-		 width="800" height="500" title="十大股东">
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="800" height="500" 
+		 creationComplete="panel1_creationCompleteHandler(event)" fontWeight="bold" title="十大股东">
 	<fx:Script>
 		<![CDATA[
 			import com.stock.control.TenPlayerControl;
@@ -25,8 +26,8 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:DataGrid id="dg" x="0" y="0" width="100%" height="100%" color="#000000" fontSize="14"
-				rowHeight="40">
+	<s:DataGrid id="dg" x="0" y="0" width="100%" height="100%" alpha="1" color="#000000"
+				fontSize="14" fontWeight="normal" rowHeight="40">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn dataField="ID" headerText="id"></s:GridColumn>

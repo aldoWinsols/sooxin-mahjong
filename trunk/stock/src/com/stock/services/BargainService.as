@@ -24,7 +24,12 @@ package com.stock.services
 		
 		public function BargainService()
 		{
-			
+			bargainShowCjhistorys.addItem(new Object());
+			bargainShowCjhistorys.addItem(new Object());
+			bargainShowCjhistorys.addItem(new Object());
+			bargainShowCjhistorys.addItem(new Object());
+			bargainShowCjhistorys.addItem(new Object());
+			bargainShowCjhistorys.addItem(new Object());
 		}
 		
 		public static function getInstance():BargainService{
@@ -42,7 +47,7 @@ package com.stock.services
 				this.cjhistorys.addItem(cjhistory[i]);
 				
 				bargainShowCjhistorys.addItem(cjhistory[i]);
-				if(bargainShowCjhistorys.length > 8){
+				if(bargainShowCjhistorys.length > 6){
 					bargainShowCjhistorys.removeItemAt(0);
 				}
 			}

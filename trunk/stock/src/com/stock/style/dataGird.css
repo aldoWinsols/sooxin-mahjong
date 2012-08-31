@@ -1,0 +1,11 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+
+
+s|DataGrid
+{
+	color: #FF0000;
+	fontSize: 16;
+	fontWeight: bold;
+}
+	
