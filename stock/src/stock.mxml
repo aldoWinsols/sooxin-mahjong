@@ -3,6 +3,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   addedToStage="application1_addedToStageHandler(event)"
 			   xmlns:view="com.stock.view.*">
+	<fx:Style source="com/stock/style/dataGird.css"/>
 	
 	<fx:Script>
 		<![CDATA[

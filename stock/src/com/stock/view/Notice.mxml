@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   width="498" height="45" backgroundAlpha="0" borderAlpha="0"
+				   borderColor="#ffffff" cornerRadius="8"
+				   creationComplete="bordercontainer1_creationCompleteHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.stock.services.NoticeService;
+			
+			import mx.events.FlexEvent;
+			public static var timer:Timer = new Timer(10000);
+			public static var instance:Notice;
+			
+			protected function bordercontainer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				instance = this;
+				NoticeService.getInstance();
+				timer.addEventListener(TimerEvent.TIMER,ontimer);
+				
+				startTimer();
+			}
+			
+			private var index:int = 0;
+			public function startTimer():void{
+				timer.start();
+				ontimer(null);
+			}
+			
+			private function ontimer(timer:TimerEvent):void{
+				
+				try{
+					if(NoticeService.instance == null){
+						return;
+					}
+					
+					if(!label1.visible){
+						label1.visible = true;
+					}
+					if(label.y == 10){
+						label.text = NoticeService.instance.notices.getItemAt(index).title;
+						fadeEffect1.target = label;
+						move2.target = label;
+						label.y = 30;
+						
+						fadeEffect.target = label1;
+						move1.target = label1;
+						label1.y = 15;
+					}else{
+						label1.text = NoticeService.instance.notices.getItemAt(index).title;
+						fadeEffect1.target = label1;
+						move2.target = label1;
+						label1.y = 30;
+						
+						fadeEffect.target = label;
+						move1.target = label;
+						label.y = 15;
+					}
+					index ++;
+					if(NoticeService.instance.notices.length == index){
+						index = 0;
+					}
+					
+					fadeEffect.play();
+					move1.play();
+					fadeEffect1.play();
+					move2.play();
+				}catch(e:Error){
+					
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<s:Fade id="fadeEffect" alphaFrom="1" alphaTo="0" repeatCount="1"/>
+		<s:Fade id="fadeEffect1" alphaFrom="0" alphaTo="1" repeatCount="1"/>
+		<s:Move id="move1" target="{label}" yTo="10"/>
+		<s:Move id="move2" target="{label1}" yTo="15"/>
+	</fx:Declarations>
+	<s:Label id="label" x="45" y="5" width="430" alpha="0.3" color="#FFFFFF" fontSize="14"/>
+	<s:Label id="label1" visible="false" x="45" y="30" width="430" color="#FFFFFF" fontSize="14"/>
+	<s:Label x="1" y="15" color="#FFFF00" fontSize="14" text="公告："/>
+</s:BorderContainer>

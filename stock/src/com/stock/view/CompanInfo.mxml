@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="800" height="500" 
+		 fontWeight="bold" title="公司概况">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.AchievementControl;
+			import com.stock.services.BargainService;
+			import com.stock.services.RemoteService;
+			
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+			
+			public function getCompanyInfo(){
+				RemoteService.instance.stockInfoService.getCompanyInfo(BargainService.instance.stock.stockCode);
+				RemoteService.instance.stockInfoService.addEventListener(ResultEvent.RESULT,getCompanyInfoResultHandler);
+			}
+			
+			public var companyInfo:Object = null;
+			public function getCompanyInfoResultHandler(event:ResultEvent):void
+			{
+				// TODO Auto-generated method stub
+				RemoteService.instance.stockInfoService.removeEventListener(ResultEvent.RESULT,getCompanyInfoResultHandler);
+				companyInfo = event.result;
+				this.companyName.text = companyInfo.companyName;
+				this.hangyeSort.text = companyInfo.hangyeSort;
+				this.startTime.text = companyInfo.startTime;
+				this.jyContent.text = companyInfo.jyContent;
+				this.mostJy.text = companyInfo.mostJy;
+				this.introdunce.text = companyInfo.introdunce;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Button x="717" y="-30" width="80" height="30" label="关 闭" click="button1_clickHandler(event)"/>
+	<s:Label x="30" y="30" fontSize="14" fontWeight="bold" text="公司名称："/>
+	<s:Label id="companyName" x="110" y="30" fontSize="14" text=""/>
+	<s:Label x="30" y="70" fontSize="14" fontWeight="bold" text="所属行业："/>
+	<s:Label id="hangyeSort" x="110" y="70" fontSize="14" text=""/>
+	<s:Label x="30" y="110" fontSize="14" fontWeight="bold" text="上市时间："/>
+	<s:Label id="startTime" x="110" y="110" fontSize="14" text=""/>
+	<s:Label x="30" y="150" fontSize="14" fontWeight="bold" text="经营范围："/>
+	<s:Label id="jyContent" x="110" y="150" width="679" height="42" fontSize="14" text=""/>
+	<s:Label x="30" y="200" fontSize="14" fontWeight="bold" text="主营业务："/>
+	<s:Label id="mostJy" x="110" y="200" fontSize="14" text=""/>
+	<s:Label x="30" y="240" fontSize="14" fontWeight="bold" text="公司简介："/>
+	<s:Label id="introdunce" x="110" y="240" width="678" height="177" fontSize="14" text=""/>
+</s:Panel>

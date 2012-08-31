@@ -2,6 +2,7 @@ package com.stock.control
 {
 	import com.stock.services.BargainService;
 	import com.stock.services.MainService;
+	import com.stock.services.NoticeService;
 	import com.stock.services.PlayerService;
 	import com.stock.services.RemoteService;
 	import com.stock.services.StockListService;
