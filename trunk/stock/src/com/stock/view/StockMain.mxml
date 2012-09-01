@@ -12,12 +12,15 @@
 			import com.stock.control.BargainControl;
 			import com.stock.control.MainControl;
 			import com.stock.control.ProfitControl;
+			import com.stock.control.SunKLineControl;
 			import com.stock.control.TenPlayerControl;
 			protected function button21_clickHandler(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
 				this.sunKline.visible = true;
 				this.linechart.visible = false;
+				
+				SunKLineControl.instance.loaddata();
 			}
 			
 			protected function button22_clickHandler(event:MouseEvent):void

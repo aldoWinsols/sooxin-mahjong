@@ -18,6 +18,18 @@
 				{
 					
 				}
+				
+				if(cjSortL.text == "B"){
+					cjSortL.setStyle("color","#ff0000");
+				}else{
+					cjSortL.setStyle("color","#00E600");
+				}
+				
+				if(Number(cjNumL.text) > 499){
+					cjNumL.setStyle("color","#C000C0");
+				}else{
+					cjNumL.setStyle("color","#C0C000");
+				}	
 			}
 			
 		]]>
@@ -30,9 +42,9 @@
 	</s:Rect>
 	<s:Label id="cjTimeL" x="10" y="10" color="#C0C0C0" fontSize="14" fontWeight="bold"
 			 text=""/>
-	<s:Label id="cjPriceL" x="84" y="10" color="#00E600" fontSize="14" fontWeight="bold"
+	<s:Label id="cjPriceL" x="70" y="10" color="#FF0000" fontSize="14" fontWeight="bold"
 			 text="{data.cjPrice}"/>
-	<s:Label id="cjNumL" x="135" y="10" color="#C0C000" fontSize="14" fontWeight="bold"
+	<s:Label id="cjNumL" x="125" y="10" color="#C0C000" fontSize="14" fontWeight="bold"
 			 text="{data.cjNum}"/>
 	<s:Label id="cjSortL" x="175" y="10" color="#FF0000" fontSize="14" fontWeight="bold"
 			 text="{data.cjSort}"/>

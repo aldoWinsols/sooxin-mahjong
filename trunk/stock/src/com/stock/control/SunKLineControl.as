@@ -3,6 +3,7 @@ package com.stock.control
 	import com.stock.model.DrawCandle;
 	import com.stock.model.DrawRect;
 	import com.stock.model.SunKInfo;
+	import com.stock.services.BargainService;
 	import com.stock.services.RemoteService;
 	import com.stock.view.SunKLine;
 	
@@ -67,11 +68,11 @@ package com.stock.control
 			
 //			loaderXml();
 //			initTimer();
-			loaddata();
+//			loaddata();
 		}
 		
 		public function loaddata(){
-			RemoteService.getInstance().lineService.getKlinesByStockCode("500001");
+			RemoteService.getInstance().lineService.getKlinesByStockCode(BargainService.instance.stock.stockCode);
 			RemoteService.instance.lineService.addEventListener(ResultEvent.RESULT,resultHandler);
 			
 		}

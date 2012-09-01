@@ -52,7 +52,7 @@
 	<model:Button id="backB" includeIn="regist" x="853" y="53" label="返  回"
 				  click="backB_clickHandler(event)" selected="true"/>
 	
-	<view:StockList id="stockList" includeIn="stockMain" visible="true" x="0" y="50">
+	<view:StockList id="stockList" includeIn="stockMain" visible="true" x="-1" y="50">
 	</view:StockList>
 	<view:Menu includeIn="stockMain,stockKline" x="0" y="0">
 	</view:Menu>
