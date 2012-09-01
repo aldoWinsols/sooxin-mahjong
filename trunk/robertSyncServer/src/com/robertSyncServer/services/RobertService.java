@@ -127,7 +127,7 @@ public class RobertService {
 					* (Math.random() > 0.5 ? 1 : -1);
 		}
 
-		return NumberFomart.for2(price);
+		return NumberFomart.for2(stockService.stock.getNowPrice());
 	}
 
 }
