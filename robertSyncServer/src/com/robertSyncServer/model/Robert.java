@@ -16,7 +16,7 @@ public class Robert {
 	
 	public double chichangLv = 0.5; //计划持仓比例
 	
-	public int operationNum = 10;//多久做一次操作  决定 断 中 长线玩家
+	public int operationNum = 1;//多久做一次操作  决定 断 中 长线玩家 1代表10秒
 	public double winLv = 0.3; //赢利多少后卖出
 	public double lossLv = 0.3; //亏了多少后卖出
 	
