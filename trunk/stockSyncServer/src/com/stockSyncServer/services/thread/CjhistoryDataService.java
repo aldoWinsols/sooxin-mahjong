@@ -13,8 +13,8 @@ public class CjhistoryDataService extends Thread implements Runnable {
 
 	public CjhistoryDataService() {
 		cjhistoryTasks = new ArrayList<Cjhistory>();
-		cjhistoryService = (ICjhistoryService) ConfigService.getInstance().getContext()
-		.getBean("cjhistoryService");
+		cjhistoryService = (ICjhistoryService) ConfigService.getInstance()
+				.getContext().getBean("cjhistoryService");
 		this.start();
 	}
 
@@ -33,17 +33,16 @@ public class CjhistoryDataService extends Thread implements Runnable {
 
 	public void run() {
 		while (true) {
-			synchronized (cjhistoryTasks) {
-
-				while (cjhistoryTasks.isEmpty()) {
-					try {
-						sleep(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			while (cjhistoryTasks.isEmpty()) {
+				try {
+					sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+			}
 
+			synchronized (cjhistoryTasks) {
 				cjhistory = cjhistoryTasks.get(0);
 
 				try {

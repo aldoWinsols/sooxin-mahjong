@@ -47,6 +47,7 @@ public class MainService {
 			stockService.stock.setLastDayEndPrice(stocks.get(i)
 					.getLastDayEndPrice());// 昨日收盘价
 			stockService.stock.setXinxinLv(stocks.get(i).getXinxinLv());// 股票本身向好率
+			stockService.stockService = this.stockService;
 			stockServices.add(stockService);
 		}
 	}
@@ -87,6 +88,7 @@ public class MainService {
 				
 				for (int i = 0; i < stockServices.size(); i++) {
 					stockServices.get(i).balanceJingjia();
+					stockServices.get(i).statJiaoyi();
 				}
 				
 				BalanceJingjiaService.instance.start();// 结算集合竞价
@@ -110,6 +112,9 @@ public class MainService {
 		if (hour == 15 && minute == 0) {
 			if (isOpen) {
 				isOpen = false;
+			}
+			for (int i = 0; i < stockServices.size(); i++) {
+				stockServices.get(i).end();
 			}
 		}
 
@@ -137,6 +142,9 @@ public class MainService {
 					Date date = new Date();
 					String t = date.getHours()+";"+date.getMinutes();
 					MessageService.instance.broadcastMline(new Object[]{stock.stockCode,stock.nowPrice,stock.getNowCjNum(),t});
+					
+					stock.allCjNum += stock.nowCjNum;
+					stock.nowCjNum = 0;
 				}
 
 				if (n % 3600 == 0) {

@@ -27,12 +27,16 @@ public class OrderCancelService extends Thread implements Runnable {
 	private String orderNum;
 	public void run() {
 		while (true) {
-			synchronized (orderCancelTasks) {
-
-				while (orderCancelTasks.isEmpty()) {
-
+			while (orderCancelTasks.isEmpty()) {
+				try {
+					this.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				
+			}
+			
+			synchronized (orderCancelTasks) {
 				orderNum = orderCancelTasks.remove(0);
 				stockService.cancel(orderNum);
 			}

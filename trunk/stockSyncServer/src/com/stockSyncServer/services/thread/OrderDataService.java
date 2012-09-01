@@ -45,12 +45,15 @@ public class OrderDataService extends Thread implements Runnable {
 
 	public void run() {
 		while (true) {
-			synchronized (orderTasks) {
-
-				while (orderTasks.isEmpty()) {
-
+			while (orderTasks.isEmpty()) {
+				try {
+					this.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-
+			}
+			synchronized (orderTasks) {
 				orderTask = orderTasks.get(0);
 				if (orderTask.orderSort.equals("buy")) {
 					Object bool = stockService.buy(orderTask.stockCode,

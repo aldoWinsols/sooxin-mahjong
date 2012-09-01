@@ -16,4 +16,6 @@ public interface IStockService {
 			String buyOrderNum, String salePlayerName, String saleOrderNum,
 			String cjSort, int cjNum, Double cjPrice, String cjTime);
 	public void cancel(String orderNum);
+	
+	public void end(String orderNums);
 }

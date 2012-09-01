@@ -18,6 +18,7 @@ public class StockLocal {
 	public double bottomPrice = 0.0; // 当日最低价
 	public double nowPrice = 5.0;// 当前价格
 	public double nowCjNum = 0.0;// 当前成交量
+	public double allCjNum = 0.0;// 当天总成交量
 	
 	public double xinxinLv = 0.0;//股票本身向好率
 
