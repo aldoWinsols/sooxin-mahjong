@@ -60,8 +60,8 @@ public class Application extends ApplicationAdapter{
 	public synchronized void stop(IScope scope) {
 		// TODO Auto-generated method stub
 		
-//		String id = (String) scope.getAttribute("Myjob");
-//		removeScheduledJob(id);
+		String id = (String) scope.getAttribute("Myjob");
+		removeScheduledJob(id);
 		
 //		String idBalance = (String) scope.getAttribute("balance");
 //		removeScheduledJob(idBalance);

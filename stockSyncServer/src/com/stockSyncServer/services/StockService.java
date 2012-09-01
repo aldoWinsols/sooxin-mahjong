@@ -9,6 +9,7 @@ import java.util.Date;
 
 import net.sf.json.JSONArray;
 
+import com.stock.inter.IStockService;
 import com.stockSyncServer.model.Cjhistory;
 import com.stockSyncServer.model.Order;
 import com.stockSyncServer.model.StockLocal;
@@ -26,11 +27,12 @@ public class StockService {
 
 	private ComparatorAsc comparatorAsc = new ComparatorAsc(); // 升序
 	private ComparatorDesc comparatorDesc = new ComparatorDesc(); // 降序
+	
+	public IStockService stockService;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		StockService stockService = new StockService();
-		// stockService.balance();
+
 	}
 
 	public StockService() {
@@ -43,6 +45,13 @@ public class StockService {
 	private ArrayList<Cjhistory> msgCjhistoryS = new ArrayList<Cjhistory>();
 	
 	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss");
+	
+	//竞价结束，开始交易
+	public void statJiaoyi(){
+		stock.todayStartPrice = stock.nowPrice;
+		stock.topPrice = stock.nowPrice;
+		stock.bottomPrice = stock.nowPrice;
+	}
 	
 	public void balance() {
 		if (stock.buyOrders.size() > 0 && stock.saleOrders.size() > 0) {
@@ -557,5 +566,28 @@ public class StockService {
 				return;
 			}
 		}
+	}
+	
+	public void end(){
+		String orderNums = null;
+		
+		for(int i=0; i<stock.buyOrders.size();i++){
+			orderNums += stock.buyOrders.get(i).getOrderNum() + ",";
+		}
+		for(int i=0; i<stock.saleOrders.size();i++){
+			orderNums += stock.saleOrders.get(i).getOrderNum() + ",";
+		}
+		
+		stockService.end(orderNums);
+		
+		stock.buyOrders.clear();
+		stock.saleOrders.clear();
+		
+		MessageService.instance.broadcastJiaoyi(new Object[] {
+				stock.stockCode, stock.getTopPrice(),
+				stock.getBottomPrice(), stock.getNowPrice(),
+				stock.getNowCjNum(), JSONArray.fromObject(stock.buyOrders),
+				JSONArray.fromObject(stock.saleOrders),
+				JSONArray.fromObject(msgCjhistoryS) });
 	}
 }
