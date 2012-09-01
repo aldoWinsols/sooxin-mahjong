@@ -82,16 +82,34 @@ package com.stock.services
 					stock.nowCjNum = nowCjNum;
 					
 					stock.zhangdie = nowPrice - stock.lastDayEndPrice;
-					stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2)+"%";
+					stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2);
+					
+					var zhanghuL:Number = ee(stock.topPrice-stock.lastDayEndPrice) + ee(stock.lastDayEndPrice-stock.bottomPrice);
+					stock.zhenfu = (zhanghuL/stock.lastDayEndPrice*100).toFixed(2);
+					
+					var cjNum:int = 0;
+					for(var i:int=0;i<BargainService.instance.cjhistorys.length;i++){
+						cjNum += BargainService.instance.cjhistorys.getItemAt(i).cjNum;
+					}
+					stock.huanshou = (cjNum/stock.allStockNum*100).toFixed(2);
+					
+					stock.shizhi = Number(stock.allStockNum*stock.nowPrice/100000000).toFixed(2);
 				}
 			}
 			
 			if(MainControl.instance.main.currentState == "stockMain" && BargainService.instance.stock.stockCode == stockCode){	
 				LinechartControl.instance.update(timeStr,Number((nowPrice-5).toFixed(2)),nowCjNum);
+				SunKLineControl.instance.update(5,nowPrice,topPrice,5,nowCjNum);
 			}
 			
-			SunKLineControl.instance.update(5,nowPrice,topPrice,5,nowCjNum);
 			PlayerService.instance.updateZhichan();
+		}
+		
+		private function ee(num:Number):Number{
+			if(num<0){
+				return 0;
+			}
+			return num;
 		}
 	}
 }

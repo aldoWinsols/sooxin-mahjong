@@ -38,9 +38,9 @@
 	<s:BorderContainer y="39" right="0" width="200" height="30" backgroundAlpha="0"
 					   borderColor="#B00000">
 		<s:Label x="5" y="5" color="#C0C0C0" text="委比"/>
-		<s:Label x="101" y="5" color="#C0C0C0" text="委差"/>
+		<s:Label x="105" y="5" color="#C0C0C0" text="委差"/>
 		<s:Label id="weibiL" x="40" y="6" color="#00E600" text="标签"/>
-		<s:Label id="weichaL" x="139" y="6" color="#00E600" text="标签"/>
+		<s:Label id="weichaL" x="143" y="6" color="#00E600" text="标签"/>
 	</s:BorderContainer>
 	<s:BorderContainer y="68" right="0" width="200" height="120" backgroundAlpha="0"
 					   borderColor="#B00000">
