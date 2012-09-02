@@ -31,19 +31,20 @@
 		]]>
 	</fx:Script>
 	<s:BorderContainer width="100%" height="40" borderVisible="false" backgroundColor="#000000">
-		<s:Label x="4" y="10" color="#F0F888" text="{data.stockCode}"/>
-		<s:Label x="93" y="10" color="#F0F888" text="{data.stockName}"/>
-		<s:Label id="nowPrice" x="188" y="10" color="#FF0000" text="{data.nowPrice}"/>
-		<s:Label id="zhangfuL" x="263" y="10" color="#FF0000" text="{data.zhangfu}"/>
-		<s:Label x="343" y="10" color="#00E600" text="{data.bottomPrice}"/>
-		<s:Label x="429" y="10" color="#FF0000" text="{data.topPrice}"/>
-		<s:Label x="505" y="10" color="#C0C000" text="{data.lastDayEndPrice}"/>
-		<s:Label x="578" y="10" color="#FF0000" text="{data.todayStartPrice}"/>
-		<s:Label x="655" y="10" color="#C0C000" text="{data.huanshou}"/>
-		<s:Label x="736" y="10" color="#C0C000" text="{data.nowCjNum}"/>
-		<s:Label x="809" y="10" color="#FF0000" text="{data.zhenfu}"/>
-		<s:Label x="890" y="10" color="#C0C000" text="{data.shizhi}"/>
-		<s:Label x="964" y="10" color="#C0C000" text="{data.PE}"/>
+		<s:Label x="4" y="10" color="#F0F888" fontWeight="bold" text="{data.stockCode}"/>
+		<s:Label x="93" y="10" color="#F0F888" fontWeight="bold" text="{data.stockName}"/>
+		<s:Label id="nowPrice" x="188" y="10" color="#FF0000" fontWeight="bold"
+				 text="{data.nowPrice}"/>
+		<s:Label id="zhangfuL" x="263" y="10" color="#FF0000" fontWeight="bold" text="{data.zhangfu}"/>
+		<s:Label x="343" y="10" color="#00E600" fontWeight="bold" text="{data.bottomPrice}"/>
+		<s:Label x="429" y="10" color="#FF0000" fontWeight="bold" text="{data.topPrice}"/>
+		<s:Label x="505" y="10" color="#C0C000" fontWeight="bold" text="{data.lastDayEndPrice}"/>
+		<s:Label x="578" y="10" color="#FF0000" fontWeight="bold" text="{data.todayStartPrice}"/>
+		<s:Label x="655" y="10" color="#C0C000" fontWeight="bold" text="{data.huanshou}"/>
+		<s:Label x="736" y="10" color="#C0C000" fontWeight="bold" text="{data.nowCjNum}"/>
+		<s:Label x="809" y="10" color="#FF0000" fontWeight="bold" text="{data.zhenfu}"/>
+		<s:Label x="890" y="10" color="#C0C000" fontWeight="bold" text="{data.shizhi}"/>
+		<s:Label x="964" y="10" color="#C0C000" fontWeight="bold" text="{data.PE}"/>
 	</s:BorderContainer>
 	
 </s:ItemRenderer>

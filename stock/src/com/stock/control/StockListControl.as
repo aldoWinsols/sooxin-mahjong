@@ -39,9 +39,12 @@ package com.stock.control
 					BargainService.instance.stock.stockName = sk.stockName;
 					
 					BargainService.instance.stock.jinzhi = sk.jinzhi;
+					BargainService.instance.stock.shouyi = sk.shouyi;
+					BargainService.instance.stock.huanshou = sk.huanshou+"%";
 					BargainService.instance.stock.allStockNum = sk.allStockNum;
 					BargainService.instance.stock.liutongStockNum = sk.liutongStockNum;
 					BargainService.instance.stock.lastDayEndPrice = sk.lastDayEndPrice;
+					BargainService.instance.stock.lastDayCjshou = sk.lastDayCjshou;
 					
 					BargainService.instance.stock.PE = sk.PE;
 					

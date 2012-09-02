@@ -25,19 +25,19 @@
 	<s:List id="list" x="0" y="40" width="100%" height="100%"
 			itemRenderer="com.stock.render.StockListItemRender"></s:List>
 	<s:BorderContainer width="1024" height="40" backgroundColor="#000000" borderColor="#ff0000">
-		<s:Label x="4" y="10" color="#C0C0C0" text="证券代码"/>
-		<s:Label x="93" y="10" color="#C0C0C0" text="证券名称"/>
-		<s:Label x="188" y="10" color="#C0C0C0" text="最新价"/>
-		<s:Label x="263" y="10" color="#C0C0C0" text="涨幅％"/>
-		<s:Label x="343" y="10" color="#C0C0C0" text="最低价"/>
-		<s:Label x="429" y="10" color="#C0C0C0" text="最高价"/>
-		<s:Label x="505" y="10" color="#C0C0C0" text="昨收盘"/>
-		<s:Label x="578" y="10" color="#C0C0C0" text="今开盘"/>
-		<s:Label x="655" y="10" color="#C0C0C0" text="换手％"/>
-		<s:Label x="736" y="10" color="#C0C0C0" text="成交额"/>
-		<s:Label x="809" y="10" color="#C0C0C0" text="振幅％"/>
-		<s:Label x="890" y="10" color="#C0C0C0" text="市值(亿)"/>
-		<s:Label x="964" y="10" color="#C0C0C0" text="市盈率"/>
+		<s:Label x="4" y="10" color="#C0C0C0" fontWeight="bold" text="证券代码"/>
+		<s:Label x="93" y="10" color="#C0C0C0" fontWeight="bold" text="证券名称"/>
+		<s:Label x="188" y="10" color="#C0C0C0" fontWeight="bold" text="最新价"/>
+		<s:Label x="263" y="10" color="#C0C0C0" fontWeight="bold" text="涨幅％"/>
+		<s:Label x="343" y="10" color="#C0C0C0" fontWeight="bold" text="最低价"/>
+		<s:Label x="429" y="10" color="#C0C0C0" fontWeight="bold" text="最高价"/>
+		<s:Label x="505" y="10" color="#C0C0C0" fontWeight="bold" text="昨收盘"/>
+		<s:Label x="578" y="10" color="#C0C0C0" fontWeight="bold" text="今开盘"/>
+		<s:Label x="655" y="10" color="#C0C0C0" fontWeight="bold" text="换手％"/>
+		<s:Label x="736" y="10" color="#C0C0C0" fontWeight="bold" text="成交额"/>
+		<s:Label x="809" y="10" color="#C0C0C0" fontWeight="bold" text="振幅％"/>
+		<s:Label x="890" y="10" color="#C0C0C0" fontWeight="bold" text="市值(亿)"/>
+		<s:Label x="964" y="10" color="#C0C0C0" fontWeight="bold" text="市盈率"/>
 		
 	</s:BorderContainer>
 </s:Group>
