@@ -51,7 +51,9 @@ package com.stock.services
 				stock.stockName = sks[i].stock.stockName;
 				stock.allStockNum = sks[i].stock.allStockNum;
 				stock.liutongStockNum = sks[i].stock.liutongStockNum;
+				stock.jinzhi = sks[i].stock.jinzhi;
 				stock.shouyi = sks[i].stock.shouyi;
+				stock.lastDayCjshou = sks[i].stock.lastDayCjshou;
 				stock.PE = sks[i].stock.PE;
 				
 				stock.lastDayEndPrice = sks[i].stock.lastDayEndPrice;

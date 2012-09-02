@@ -14,6 +14,7 @@ package com.stock.model
 		public var liutongStockNum:int = 0;// 流通
 		public var jinzhi:Number = 0.0; // 收益
 		public var shouyi:Number = 0.0; // 净资
+		public var lastDayCjshou:int = 0; // 昨日成交笔数
 		public var PE:Number = 0.0;// 市赢率
 		
 		public var lastDayEndPrice:Number = 0.0; // 昨日收盘价格

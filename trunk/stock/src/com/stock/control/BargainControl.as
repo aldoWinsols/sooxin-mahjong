@@ -3,7 +3,10 @@ package com.stock.control
 	import com.stock.services.BargainService;
 	import com.stock.view.Bargain;
 	
+	import flash.events.Event;
+	
 	import mx.binding.utils.BindingUtils;
+	import mx.binding.utils.ChangeWatcher;
 
 	public class BargainControl
 	{
@@ -38,6 +41,103 @@ package com.stock.control
 			
 			BindingUtils.bindProperty(bargain.huanshouL,"text",BargainService.instance.stock,"huanshou");
 			BindingUtils.bindProperty(bargain.jinzhiL,"text",BargainService.instance.stock,"jinzhi");
+			
+			ChangeWatcher.watch(BargainService.instance.stock, "todayStartPrice", todayStartPriceWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "topPrice", topPriceWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "bottomPrice", bottomPriceWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "nowPrice", nowPriceWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "zhangdie", zhangdieWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "liangb", liangbWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "zhangfu", zhangfuWatcherListener);
+			
+			ChangeWatcher.watch(BargainService.instance.stock, "allStockNum",allStockNumWatcherListener);
+			ChangeWatcher.watch(BargainService.instance.stock, "liutongStockNum", liutongStockNumWatcherListener);
+		}
+		
+		private function liutongStockNumWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			bargain.liutongStockNumL.text = BargainService.instance.stock.liutongStockNum/100000000 + "亿";
+		}
+		
+		private function allStockNumWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			bargain.allStockNumL.text = BargainService.instance.stock.allStockNum/100000000 + "亿";
+		}
+		
+		private function liangbWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.liangb < 1){
+				bargain.liangbL.setStyle("color","#00E600");
+				bargain.liangbL.text = BargainService.instance.stock.liangb.toFixed(2);
+			}else{
+				bargain.liangbL.setStyle("color","#ff0000");
+				bargain.liangbL.text = BargainService.instance.stock.liangb.toFixed(2);
+			}
+		}
+		
+		private function zhangdieWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.zhangdie < 0){
+				bargain.zhangdieL.setStyle("color","#00E600");
+			}else{
+				bargain.zhangdieL.setStyle("color","#ff0000");
+			}
+		}
+		
+		private function nowPriceWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.nowPrice < BargainService.instance.stock.lastDayEndPrice){
+				bargain.nowPriceL.setStyle("color","#00E600");
+			}else{
+				bargain.nowPriceL.setStyle("color","#ff0000");
+			}
+		}
+		
+		private function bottomPriceWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.bottomPrice < BargainService.instance.stock.lastDayEndPrice){
+				bargain.bottomPriceL.setStyle("color","#00E600");
+			}else{
+				bargain.bottomPriceL.setStyle("color","#ff0000");
+			}
+		}
+		
+		private function topPriceWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.topPrice < BargainService.instance.stock.lastDayEndPrice){
+				bargain.topPriceL.setStyle("color","#00E600");
+			}else{
+				bargain.topPriceL.setStyle("color","#ff0000");
+			}
+		}
+		
+		private function todayStartPriceWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(BargainService.instance.stock.todayStartPrice < BargainService.instance.stock.lastDayEndPrice){
+				bargain.todayStartPriceL.setStyle("color","#00E600");
+			}else{
+				bargain.todayStartPriceL.setStyle("color","#ff0000");
+			}
+		}
+		
+		private function zhangfuWatcherListener(event:Event):void
+		{
+			// TODO Auto Generated method stub
+			if(Number(BargainService.instance.stock.zhangfu)<0){
+				bargain.zhangfuL.setStyle("color","#00E600");
+				bargain.zhangfuL.text = BargainService.instance.stock.zhangfu+"%";
+			}else{
+				bargain.zhangfuL.setStyle("color","#ff0000");
+				bargain.zhangfuL.text = BargainService.instance.stock.zhangfu+"%";
+			}
 		}
 	}
 }

@@ -106,44 +106,104 @@ package com.stock.services
 			if(buys[0] != null){
 				BargainControl.instance.bargain.buyNum1.text = buys[0].wtNum;
 				BargainControl.instance.bargain.buyPrice1.text = buys[0].wtPrice;
+				
+				if(buys[0].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.buyPrice1.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.buyPrice1.setStyle("color","#ff0000");
+				}
 			}
 			if(buys[1] != null){
 				BargainControl.instance.bargain.buyNum2.text = buys[1].wtNum;
 				BargainControl.instance.bargain.buyPrice2.text = buys[1].wtPrice;
+				
+				if(buys[1].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.buyPrice2.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.buyPrice2.setStyle("color","#ff0000");
+				}
 			}
 			if(buys[2] != null){
 				BargainControl.instance.bargain.buyNum3.text = buys[2].wtNum;
 				BargainControl.instance.bargain.buyPrice3.text = buys[2].wtPrice;
+				
+				if(buys[2].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.buyPrice3.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.buyPrice3.setStyle("color","#ff0000");
+				}
 			}
 			if(buys[3] != null){
 				BargainControl.instance.bargain.buyNum4.text = buys[3].wtNum;
 				BargainControl.instance.bargain.buyPrice4.text = buys[3].wtPrice;
+				
+				if(buys[3].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.buyPrice4.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.buyPrice4.setStyle("color","#ff0000");
+				}
 			}
 			if(buys[4] != null){
 				BargainControl.instance.bargain.buyNum5.text = buys[4].wtNum;
 				BargainControl.instance.bargain.buyPrice5.text = buys[4].wtPrice;
+				
+				if(buys[4].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.buyPrice5.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.buyPrice5.setStyle("color","#ff0000");
+				}
 			}
 			
 			//sales
 			if(sales[0] != null){
 				BargainControl.instance.bargain.saleNum1.text = sales[0].wtNum;
 				BargainControl.instance.bargain.salePrice1.text = sales[0].wtPrice;
+				
+				if(sales[0].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.salePrice1.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.salePrice1.setStyle("color","#ff0000");
+				}
 			}
 			if(sales[1] != null){
 				BargainControl.instance.bargain.saleNum2.text = sales[1].wtNum;
 				BargainControl.instance.bargain.salePrice2.text = sales[1].wtPrice;
+				
+				if(sales[1].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.salePrice2.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.salePrice2.setStyle("color","#ff0000");
+				}
 			}
 			if(sales[2] != null){
 				BargainControl.instance.bargain.saleNum3.text = sales[2].wtNum;
 				BargainControl.instance.bargain.salePrice3.text = sales[2].wtPrice;
+				
+				if(sales[2].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.salePrice3.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.salePrice3.setStyle("color","#ff0000");
+				}
 			}
 			if(sales[3] != null){
 				BargainControl.instance.bargain.saleNum4.text = sales[3].wtNum;
 				BargainControl.instance.bargain.salePrice4.text = sales[3].wtPrice;
+				
+				if(sales[3].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.salePrice4.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.salePrice4.setStyle("color","#ff0000");
+				}
 			}
 			if(sales[4] != null){
 				BargainControl.instance.bargain.saleNum5.text = sales[4].wtNum;
 				BargainControl.instance.bargain.salePrice5.text = sales[4].wtPrice;
+				
+				if(sales[4].wtPrice < this.stock.lastDayEndPrice){
+					BargainControl.instance.bargain.salePrice5.setStyle("color","#00E600");
+				}else{
+					BargainControl.instance.bargain.salePrice5.setStyle("color","#ff0000");
+				}
 			}
 			
 			var buyNum:int = 0;
@@ -168,7 +228,14 @@ package com.stock.services
 			stock.nowCjNum = nowCjNum;
 			
 			stock.zhangdie = nowPrice - stock.lastDayEndPrice;
-			stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2)+"%";
+			stock.zhangfu = ((nowPrice - stock.lastDayEndPrice)/stock.lastDayEndPrice*100).toFixed(2);
+			
+			//计算量比
+			var cjNum:int = 0;
+			for(var i:int=0;i<cjhistorys.length;i++){
+				cjNum += BargainService.instance.cjhistorys.getItemAt(i).cjNum;
+			}
+			stock.liangb = Number(cjNum/stock.lastDayCjshou);
 			
 			SunKLineControl.instance.update(5,nowPrice,topPrice,5,nowCjNum);
 			
