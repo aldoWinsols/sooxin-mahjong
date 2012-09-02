@@ -23,7 +23,7 @@ public class MainService {
 	}
 	
 	public void init(String stockCode, String stockName,int allStockNum,
-			int liutongStockNum, double shouyi, double PE,
+			int liutongStockNum, double jinzhi, double shouyi, int lastDayCjshou, double PE,
 			double lastDayEndPrice, double todayStartPrice, double topPrice,
 			double bottomPrice, double nowPrice, double nowCjNum,
 			ArrayList<Cjhistory> cjhistorys, ArrayList<Order> buyOrders,
@@ -34,7 +34,9 @@ public class MainService {
 		stockService.stock.setStockName(stockName);
 		stockService.stock.setAllStockNum(allStockNum);
 		stockService.stock.setLiutongStockNum(liutongStockNum);
+		stockService.stock.setJinzhi(jinzhi);
 		stockService.stock.setShouyi(shouyi);
+		stockService.stock.setLastDayCjshou(lastDayCjshou);
 		stockService.stock.setPE(PE);
 		stockService.stock.setLastDayEndPrice(lastDayEndPrice);
 		stockService.stock.setTodayStartPrice(todayStartPrice);

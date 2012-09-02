@@ -7,7 +7,9 @@ public class Stock {
 	public String stockName = "";//股票名称
 	public int allStockNum = 0;// 总股本
 	public int liutongStockNum = 0;// 流通
+	public double jinzhi = 0.0; // 净资
 	public double shouyi = 0.0; // 收益
+	public int lastDayCjshou = 0; // 昨日成交笔数
 	public double PE = 0.0;// 市赢率
 
 	public double lastDayEndPrice = 0.0; // 昨日收盘价格
@@ -84,6 +86,14 @@ public class Stock {
 
 	public void setLiutongStockNum(int liutongStockNum) {
 		this.liutongStockNum = liutongStockNum;
+	}
+
+	public double getJinzhi() {
+		return jinzhi;
+	}
+
+	public void setJinzhi(double jinzhi) {
+		this.jinzhi = jinzhi;
 	}
 
 	public double getShouyi() {
@@ -174,4 +184,13 @@ public class Stock {
 		this.saleOrders = saleOrders;
 	}
 
+	public int getLastDayCjshou() {
+		return lastDayCjshou;
+	}
+
+	public void setLastDayCjshou(int lastDayCjshou) {
+		this.lastDayCjshou = lastDayCjshou;
+	}
+
+	
 }
