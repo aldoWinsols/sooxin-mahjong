@@ -51,7 +51,9 @@
 				<value>com/stock/dao/Achievement.hbm.xml</value>
 				<value>com/stock/dao/Profit.hbm.xml</value>
 				<value>com/stock/dao/Notice.hbm.xml</value>
-				<value>com/stock/dao/Companyinfo.hbm.xml</value></list>
+				<value>com/stock/dao/Companyinfo.hbm.xml</value>
+				<value>com/stock/dao/Bank.hbm.xml</value>
+				<value>com/stock/dao/Config.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -239,4 +241,13 @@
 			<ref bean="CompanyinfoDAO" />
 		</property>
 	</bean>
-	</beans>
+	<bean id="BankDAO" class="com.stock.dao.BankDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ConfigDAO" class="com.stock.dao.ConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean></beans>

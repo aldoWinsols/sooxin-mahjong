@@ -20,6 +20,7 @@ public class Stock implements java.io.Serializable {
 	private Double shouyi;
 	private Double pe;
 	private Double lastDayEndPrice;
+	private Integer lastDayCjshou;
 	private Double xinxinLv;
 
 	// Constructors
@@ -31,7 +32,7 @@ public class Stock implements java.io.Serializable {
 	/** full constructor */
 	public Stock(String stockCode, String stockName, Integer allNum,
 			Integer busNum, Double jinzhi, Double shouyi, Double pe,
-			Double lastDayEndPrice, Double xinxinLv) {
+			Double lastDayEndPrice, Integer lastDayCjshou, Double xinxinLv) {
 		this.stockCode = stockCode;
 		this.stockName = stockName;
 		this.allNum = allNum;
@@ -40,6 +41,7 @@ public class Stock implements java.io.Serializable {
 		this.shouyi = shouyi;
 		this.pe = pe;
 		this.lastDayEndPrice = lastDayEndPrice;
+		this.lastDayCjshou = lastDayCjshou;
 		this.xinxinLv = xinxinLv;
 	}
 
@@ -123,6 +125,14 @@ public class Stock implements java.io.Serializable {
 
 	public void setLastDayEndPrice(Double lastDayEndPrice) {
 		this.lastDayEndPrice = lastDayEndPrice;
+	}
+
+	public Integer getLastDayCjshou() {
+		return this.lastDayCjshou;
+	}
+
+	public void setLastDayCjshou(Integer lastDayCjshou) {
+		this.lastDayCjshou = lastDayCjshou;
 	}
 
 	public Double getXinxinLv() {

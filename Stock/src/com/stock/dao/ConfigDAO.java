@@ -1,6 +1,5 @@
 package com.stock.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.slf4j.Logger;
@@ -10,32 +9,28 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Player entities. Transaction control of the save(), update() and delete()
+ * Config entities. Transaction control of the save(), update() and delete()
  * operations can directly support Spring container-managed transactions or they
  * can be augmented to handle user-managed Spring transactions. Each of these
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see com.stock.dao.Player
+ * @see com.stock.dao.Config
  * @author MyEclipse Persistence Tools
  */
 
-public class PlayerDAO extends HibernateDaoSupport {
-	private static final Logger log = LoggerFactory.getLogger(PlayerDAO.class);
+public class ConfigDAO extends HibernateDaoSupport {
+	private static final Logger log = LoggerFactory.getLogger(ConfigDAO.class);
 	// property constants
-	public static final String PLAYER_NAME = "playerName";
-	public static final String PLAYER_PWD = "playerPwd";
-	public static final String HAVE_MONEY = "haveMoney";
-	public static final String CLOCK_MONEY = "clockMoney";
-	public static final String SORT = "sort";
-	public static final String XINYONG_LV = "xinyongLv";
+	public static final String DAY_LOAN_LV = "dayLoanLv";
+	public static final String DAY_DEPOSIT_LV = "dayDepositLv";
 
 	protected void initDao() {
 		// do nothing
 	}
 
-	public void save(Player transientInstance) {
-		log.debug("saving Player instance");
+	public void save(Config transientInstance) {
+		log.debug("saving Config instance");
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -45,8 +40,8 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void delete(Player persistentInstance) {
-		log.debug("deleting Player instance");
+	public void delete(Config persistentInstance) {
+		log.debug("deleting Config instance");
 		try {
 			getHibernateTemplate().delete(persistentInstance);
 			log.debug("delete successful");
@@ -56,11 +51,11 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Player findById(java.lang.Long id) {
-		log.debug("getting Player instance with id: " + id);
+	public Config findById(java.lang.Long id) {
+		log.debug("getting Config instance with id: " + id);
 		try {
-			Player instance = (Player) getHibernateTemplate().get(
-					"com.stock.dao.Player", id);
+			Config instance = (Config) getHibernateTemplate().get(
+					"com.stock.dao.Config", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -68,8 +63,8 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByExample(Player instance) {
-		log.debug("finding Player instance by example");
+	public List findByExample(Config instance) {
+		log.debug("finding Config instance by example");
 		try {
 			List results = getHibernateTemplate().findByExample(instance);
 			log.debug("find by example successful, result size: "
@@ -82,10 +77,10 @@ public class PlayerDAO extends HibernateDaoSupport {
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Player instance with property: " + propertyName
+		log.debug("finding Config instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
-			String queryString = "from Player as model where model."
+			String queryString = "from Config as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
 		} catch (RuntimeException re) {
@@ -94,34 +89,18 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public List findByPlayerName(Object playerName) {
-		return findByProperty(PLAYER_NAME, playerName);
+	public List findByDayLoanLv(Object dayLoanLv) {
+		return findByProperty(DAY_LOAN_LV, dayLoanLv);
 	}
 
-	public List findByPlayerPwd(Object playerPwd) {
-		return findByProperty(PLAYER_PWD, playerPwd);
-	}
-
-	public List findByHaveMoney(Object haveMoney) {
-		return findByProperty(HAVE_MONEY, haveMoney);
-	}
-
-	public List findByClockMoney(Object clockMoney) {
-		return findByProperty(CLOCK_MONEY, clockMoney);
-	}
-
-	public List findBySort(Object sort) {
-		return findByProperty(SORT, sort);
-	}
-
-	public List findByXinyongLv(Object xinyongLv) {
-		return findByProperty(XINYONG_LV, xinyongLv);
+	public List findByDayDepositLv(Object dayDepositLv) {
+		return findByProperty(DAY_DEPOSIT_LV, dayDepositLv);
 	}
 
 	public List findAll() {
-		log.debug("finding all Player instances");
+		log.debug("finding all Config instances");
 		try {
-			String queryString = "from Player";
+			String queryString = "from Config";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
@@ -129,10 +108,10 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public Player merge(Player detachedInstance) {
-		log.debug("merging Player instance");
+	public Config merge(Config detachedInstance) {
+		log.debug("merging Config instance");
 		try {
-			Player result = (Player) getHibernateTemplate().merge(
+			Config result = (Config) getHibernateTemplate().merge(
 					detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -142,8 +121,8 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachDirty(Player instance) {
-		log.debug("attaching dirty Player instance");
+	public void attachDirty(Config instance) {
+		log.debug("attaching dirty Config instance");
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -153,8 +132,8 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public void attachClean(Player instance) {
-		log.debug("attaching clean Player instance");
+	public void attachClean(Config instance) {
+		log.debug("attaching clean Config instance");
 		try {
 			getHibernateTemplate().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -164,7 +143,7 @@ public class PlayerDAO extends HibernateDaoSupport {
 		}
 	}
 
-	public static PlayerDAO getFromApplicationContext(ApplicationContext ctx) {
-		return (PlayerDAO) ctx.getBean("PlayerDAO");
+	public static ConfigDAO getFromApplicationContext(ApplicationContext ctx) {
+		return (ConfigDAO) ctx.getBean("ConfigDAO");
 	}
 }

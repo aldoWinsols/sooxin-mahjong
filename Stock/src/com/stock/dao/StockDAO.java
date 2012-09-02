@@ -31,6 +31,7 @@ public class StockDAO extends HibernateDaoSupport {
 	public static final String SHOUYI = "shouyi";
 	public static final String PE = "pe";
 	public static final String LAST_DAY_END_PRICE = "lastDayEndPrice";
+	public static final String LAST_DAY_CJSHOU = "lastDayCjshou";
 	public static final String XINXIN_LV = "xinxinLv";
 
 	protected void initDao() {
@@ -127,6 +128,10 @@ public class StockDAO extends HibernateDaoSupport {
 
 	public List findByLastDayEndPrice(Object lastDayEndPrice) {
 		return findByProperty(LAST_DAY_END_PRICE, lastDayEndPrice);
+	}
+
+	public List findByLastDayCjshou(Object lastDayCjshou) {
+		return findByProperty(LAST_DAY_CJSHOU, lastDayCjshou);
 	}
 
 	public List findByXinxinLv(Object xinxinLv) {

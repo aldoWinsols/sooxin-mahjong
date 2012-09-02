@@ -227,5 +227,12 @@ public class StockService implements IStockService {
 		bshistoryDao.merge(bshistory);
 		playerDao.merge(player);
 	}
+	
+	public void end(String orderNums){
+		String[] arr = orderNums.split(",");
+		for (int i = 0; i < arr.length; i++) {
+			cancel(arr[i]);
+		}
+	}
 
 }
