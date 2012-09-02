@@ -87,5 +87,10 @@ public class PlayerService implements IPlayerService {
 		playerDao.merge(player);
 		return player;
 	}
+
+	public List<Bag> getBagsByPlayerName(String playerName) {
+		// TODO Auto-generated method stub
+		return bagDao.findByPlayerName(playerName);
+	}
 	
 }

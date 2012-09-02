@@ -28,5 +28,8 @@
         <property name="sort" type="java.lang.Integer">
             <column name="sort" />
         </property>
+        <property name="xinyongLv" type="java.lang.Double">
+            <column name="xinyongLv" precision="22" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>
