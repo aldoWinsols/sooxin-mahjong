@@ -42,7 +42,9 @@ public class MainService {
 			stockService.stock.setStockName(stocks.get(i).getStockName());// 股票名称
 			stockService.stock.setAllStockNum(stocks.get(i).getAllNum());// 总股本
 			stockService.stock.setLiutongStockNum(stocks.get(i).getBusNum());// 流通股本
+			stockService.stock.setJinzhi(stocks.get(i).getJinzhi());
 			stockService.stock.setShouyi(stocks.get(i).getShouyi());// 收益
+			stockService.stock.setLastDayCjshou(stocks.get(i).getLastDayCjshou());// 昨日成交笔数
 			stockService.stock.setPE(stocks.get(i).getPe());// 市赢率
 			stockService.stock.setLastDayEndPrice(stocks.get(i)
 					.getLastDayEndPrice());// 昨日收盘价
@@ -176,7 +178,7 @@ public class MainService {
 		for (int i = 0; i < stockServices.size(); i++) {
 			com.stockSyncServer.model.StockLocal sk = stockServices.get(i).stock;
 			leafService.initLeaf(new Object[] { sk.stockCode, sk.stockName,
-					sk.allStockNum, sk.liutongStockNum, sk.shouyi, sk.PE,
+					sk.allStockNum, sk.liutongStockNum, sk.jinzhi, sk.shouyi,sk.lastDayCjshou, sk.PE,
 					sk.lastDayEndPrice, sk.xinxinLv, sk.todayStartPrice,
 					sk.topPrice, sk.bottomPrice, sk.nowPrice, sk.nowCjNum,
 					JSONArray.fromObject(sk.cjhistorys),
