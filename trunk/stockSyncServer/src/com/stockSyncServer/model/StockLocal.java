@@ -9,10 +9,13 @@ public class StockLocal {
 	public String stockName = "";//股票名称
 	public int allStockNum = 0;// 总股本
 	public int liutongStockNum = 0;// 流通
+	public Double jinzhi; //净资
 	public double shouyi = 0.0; // 收益
 	public double PE = 0.0;// 市赢率
 
 	public double lastDayEndPrice = 0.0; // 昨日收盘价格
+	public int lastDayCjshou = 0; // 昨日成交笔数
+	
 	public double todayStartPrice = 0.0;// 今日开盘价格
 	public double topPrice = 0.0;// 当日最高价格
 	public double bottomPrice = 0.0; // 当日最低价
@@ -156,5 +159,23 @@ public class StockLocal {
 	public void setXinxinLv(double xinxinLv) {
 		this.xinxinLv = xinxinLv;
 	}
+
+	public Double getJinzhi() {
+		return jinzhi;
+	}
+
+	public void setJinzhi(Double jinzhi) {
+		this.jinzhi = jinzhi;
+	}
+
+	public int getLastDayCjshou() {
+		return lastDayCjshou;
+	}
+
+	public void setLastDayCjshou(int lastDayCjshou) {
+		this.lastDayCjshou = lastDayCjshou;
+	}
+	
+	
 
 }
