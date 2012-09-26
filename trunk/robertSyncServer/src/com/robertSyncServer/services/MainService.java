@@ -34,7 +34,7 @@ public class MainService {
 			RobertService robertService = new RobertService();
 			robertService.robert.robertName = player.getPlayerName();
 			robertService.robert.haveMoney = player.getHaveMoney();
-			robertService.robert.operationNum = (int) (Math.random()*3600);
+			robertService.robert.operationNum = (int) (Math.random()*3600)+1;
 			
 			robertService.robert.bags = playerService.getBagsByPlayerName(player.getPlayerName());
 			
