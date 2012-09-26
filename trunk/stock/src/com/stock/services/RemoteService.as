@@ -15,7 +15,7 @@ package com.stock.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://127.0.0.1:8080/";
+		public var mainUrl:String = "http://116.255.247.46:8080/";
 		public static var instance:RemoteService;
 		
 		public var playerService:RemoteObject;

@@ -38,7 +38,7 @@ package com.stock.services
 //			var str:String = ConfigService.instance.config.mainConnUrl;
 			conn.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler); 
 			conn.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			conn.connect("rtmp://192.168.1.2/leafSyncServer", playerName);
+			conn.connect("rtmp://116.255.247.46/leafSyncServer", playerName);
 		}
 		
 		private function netStatusHandler(evt:NetStatusEvent):void
