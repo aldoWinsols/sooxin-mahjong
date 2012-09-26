@@ -77,5 +77,9 @@ public class Application extends ApplicationAdapter {
 	public void updateFenshi(String timeStr,String stockCode,double topPrice,double bottomwPrice,double nowPrice,double nowCjNum){
 //		MainService.instance.updateFenshi(timeStr, stockCode, topPrice, bottomwPrice, nowPrice, nowCjNum);
 	}
+	
+	public void broadcastMline(String stockCode,double price,double turnover,String buildDate){
+//		MainService.instance.broadcastMline(stockCode, price, turnover,buildDate);
+	}
 
 }

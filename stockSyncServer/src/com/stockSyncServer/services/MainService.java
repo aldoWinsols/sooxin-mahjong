@@ -35,6 +35,8 @@ public class MainService {
 				.getBean("stockService");
 
 		ArrayList<Stock> stocks = (ArrayList<Stock>) stockService.getStocks();
+		
+		System.out.println("stockslengstockslengstockslengstockslengstocksleng"+stocks.size());
 
 		for (int i = 0; i < stocks.size(); i++) {
 			StockService stockService = new StockService();

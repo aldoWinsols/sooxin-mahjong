@@ -8,6 +8,10 @@ import java.sql.Timestamp;
 
 public class Stock implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6472701910397751162L;
 	// Fields
 
 	private Long id;

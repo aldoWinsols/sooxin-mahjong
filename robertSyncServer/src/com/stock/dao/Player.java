@@ -8,8 +8,12 @@ import java.sql.Timestamp;
 
 public class Player implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7332106664882653333L;
 	// Fields
-
+	
 	private Long id;
 	private Timestamp timestamp;
 	private String playerName;
@@ -17,6 +21,7 @@ public class Player implements java.io.Serializable {
 	private Double haveMoney;
 	private Double clockMoney;
 	private Integer sort;
+	private Double xinyongLv;
 
 	// Constructors
 
@@ -26,12 +31,13 @@ public class Player implements java.io.Serializable {
 
 	/** full constructor */
 	public Player(String playerName, String playerPwd, Double haveMoney,
-			Double clockMoney, Integer sort) {
+			Double clockMoney, Integer sort, Double xinyongLv) {
 		this.playerName = playerName;
 		this.playerPwd = playerPwd;
 		this.haveMoney = haveMoney;
 		this.clockMoney = clockMoney;
 		this.sort = sort;
+		this.xinyongLv = xinyongLv;
 	}
 
 	// Property accessors
@@ -90,6 +96,14 @@ public class Player implements java.io.Serializable {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+
+	public Double getXinyongLv() {
+		return this.xinyongLv;
+	}
+
+	public void setXinyongLv(Double xinyongLv) {
+		this.xinyongLv = xinyongLv;
 	}
 
 }
