@@ -10,6 +10,10 @@ public class Bag implements java.io.Serializable {
 
 	// Fields
 
+	private static final long serialVersionUID = -8664024255362713025L;
+	/**
+	 * 
+	 */
 	private Long id;
 	private Timestamp timestamp;
 	private String playerName;
