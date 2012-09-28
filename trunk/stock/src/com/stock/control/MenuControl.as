@@ -1,6 +1,7 @@
 package com.stock.control
 {
 	import com.stock.services.BagService;
+	import com.stock.services.ConfigService;
 	import com.stock.view.Menu;
 	
 	import flash.events.MouseEvent;
@@ -15,9 +16,16 @@ package com.stock.control
 			this.menu.indexB.addEventListener(MouseEvent.CLICK,indexBClickHandler);
 			this.menu.accountB.addEventListener(MouseEvent.CLICK,accountBClickHandler);
 			this.menu.ipoB.addEventListener(MouseEvent.CLICK,ipoBClickHandler);
-			this.menu.helpB.addEventListener(MouseEvent.CLICK,helpBClickHandler);
+			this.menu.aboutusB.addEventListener(MouseEvent.CLICK,aboutusBClickHandler);
 			this.menu.bankB.addEventListener(MouseEvent.CLICK,bankBClickHandler);
+			this.menu.newsB.addEventListener(MouseEvent.CLICK,newsBClickHandler);
 			this.menu.chongzhiB.addEventListener(MouseEvent.CLICK,chongzhiBClickHandler);
+		}
+		
+		protected function chongzhiBClickHandler(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+			MainControl.instance.main.chongzhi.visible = true;
 		}
 		
 		private function indexBClickHandler(e:MouseEvent):void{
@@ -30,23 +38,26 @@ package com.stock.control
 		}
 		private function ipoBClickHandler(e:MouseEvent):void{
 		}
-		private function helpBClickHandler(e:MouseEvent):void{
+		private function aboutusBClickHandler(e:MouseEvent):void{
+			MainControl.instance.main.aboutus.visible = true;
 
 		}
 		private function bankBClickHandler(e:MouseEvent):void{
-			
+			MainControl.instance.main.bank.visible = true;
+			MainControl.instance.main.bank.lilvV.text = ConfigService.instance.config.dayLoanLv.toString();
 		}
-		private function chongzhiBClickHandler(e:MouseEvent):void{
-			
+		private function newsBClickHandler(e:MouseEvent):void{
+			MainControl.instance.main.news.visible = true;
+			MainControl.instance.main.news.getNews();
 		}
 		
 		public function initMenuB(){
 			this.menu.indexB.selected = false;
 			this.menu.accountB.selected = false;
-			this.menu.helpB.selected = false;
+			this.menu.aboutusB.selected = false;
 			this.menu.ipoB.selected = false;
 			this.menu.bankB.selected = false;
-			this.menu.chongzhiB.selected = false;
+			this.menu.newsB.selected = false;
 		}
 	}
 }

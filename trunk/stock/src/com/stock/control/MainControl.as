@@ -1,6 +1,7 @@
 package com.stock.control
 {
 	import com.stock.services.BargainService;
+	import com.stock.services.ConfigService;
 	import com.stock.services.MainService;
 	import com.stock.services.NoticeService;
 	import com.stock.services.PlayerService;
@@ -26,6 +27,7 @@ package com.stock.control
 			BargainService.getInstance();
 			MainService.getInstance();
 			StockListService.getInstance();
+			ConfigService.getInstance();
 			
 			PlayerService.getInstance();
 			

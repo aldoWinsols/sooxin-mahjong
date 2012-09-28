@@ -15,7 +15,7 @@ package com.stock.services
 
 	public class RemoteService
 	{
-		public var mainUrl:String = "http://116.255.247.46:8080/";
+		public var mainUrl:String = "http://127.0.0.1:8080/";
 		public static var instance:RemoteService;
 		
 		public var playerService:RemoteObject;
@@ -23,6 +23,9 @@ package com.stock.services
 		public var bshistoryService:RemoteObject;
 		public var bagService:RemoteObject;
 		public var stockInfoService:RemoteObject;
+		public var bankService:RemoteObject;
+		public var newsService:RemoteObject;
+		public var configService:RemoteObject;
 		
 		public var connState:Boolean = false;
 
@@ -37,6 +40,9 @@ package com.stock.services
 			bshistoryService=getConfiguredRO("bshistoryService");
 			bagService=getConfiguredRO("bagService");
 			stockInfoService=getConfiguredRO("stockInfoService");
+			bankService=getConfiguredRO("bankService");
+			configService=getConfiguredRO("configService");
+			newsService=getConfiguredRO("newsService");
 		}
 
 		//得到单例
