@@ -20,7 +20,13 @@
 				this.sunKline.visible = true;
 				this.linechart.visible = false;
 				
-				SunKLineControl.instance.loaddata();
+				try{
+					SunKLineControl.instance.clearData();
+					SunKLineControl.instance.loaddata();
+				}catch(e:Error){
+					
+				}
+				
 			}
 			
 			protected function button22_clickHandler(event:MouseEvent):void

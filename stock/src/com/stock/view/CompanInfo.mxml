@@ -5,7 +5,6 @@
 		 fontWeight="bold" title="公司概况">
 	<fx:Script>
 		<![CDATA[
-			import com.stock.control.AchievementControl;
 			import com.stock.services.BargainService;
 			import com.stock.services.RemoteService;
 			

@@ -60,4 +60,12 @@
 	</view:StockMain>
 	<view:Account id="account" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
 	</view:Account>
+	<view:Bank id="bank" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:Bank>
+	<view:News id="news" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:News>
+	<view:Aboutus id="aboutus" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:Aboutus>
+	<view:Chongzhi id="chongzhi" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:Chongzhi>
 </s:BorderContainer>

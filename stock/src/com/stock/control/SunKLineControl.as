@@ -390,7 +390,7 @@ package com.stock.control
 		 * 清楚所有数据
 		 * 
 		 */
-		private function clearData():void{
+		public function clearData():void{
 //			arrays = new Vector.<SunKInfo>();
 			fiveDayPoint = new Point();
 			tenDayPoint = new Point();

@@ -29,6 +29,11 @@
 				 text="{PlayerService.instance.player.playerName}"/>
 		<s:Label x="188" y="22" color="#CCCCCC" fontSize="12"
 				 text="{PlayerService.instance.player.zhichan}"/>
+		<s:BorderContainer id="chongzhiB" x="296" y="4" width="60" height="30" backgroundAlpha="0.9" cornerRadius="3" borderVisible="false" backgroundColor="#ff0000">
+			<s:Label color="#FFFFFF" fontSize="14" horizontalCenter="0" text="充  值"
+					 verticalCenter="0"/>
+		</s:BorderContainer>
+		
 	</s:BorderContainer>
 	<model:Button id="indexB" x="370" y="2" label="股  票">
 	</model:Button>
@@ -38,8 +43,8 @@
 	</model:Button>
 	<model:Button id="bankB" x="700" y="2" label="银  行">
 	</model:Button>
-	<model:Button id="helpB" x="810" y="2" label="帮  助">
+	<model:Button id="newsB" x="810" y="2" label="市场信息">
 	</model:Button>
-	<model:Button id="chongzhiB" x="920" y="2" label="帐户充值">
+	<model:Button id="aboutusB" x="920" y="2" label="关于我们">
 	</model:Button>
 </s:Group>

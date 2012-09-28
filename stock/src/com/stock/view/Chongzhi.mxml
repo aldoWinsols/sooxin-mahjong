@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="450" height="150" title="在线充值 ">
+	<fx:Script>
+		<![CDATA[
+			import com.milkmangames.nativeextensions.ios.StoreKit;
+			import com.stock.services.RemoteService;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				StoreKit.storeKit.purchaseProduct("",Number(num.text));
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Button x="367" y="-30" width="80" height="30" label="关 闭" click="button1_clickHandler(event)"/>
+	<s:Button x="270" y="42" width="120" height="50" label="提  交" click="button2_clickHandler(event)"/>
+	<s:TextInput x="82" y="42" width="180" height="50" fontSize="30" text="10"/>
+	<s:Label id="num" x="16" y="56" fontSize="20" text="数量："/>
+	<s:Label x="10" y="9" color="#FF0000" text="注意：一个数量为人民币6元，兑换股票大亨金币60000"/>
+</s:Panel>
