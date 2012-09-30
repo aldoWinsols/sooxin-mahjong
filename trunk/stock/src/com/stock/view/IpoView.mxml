@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 width="800" height="500" creationComplete="panel1_creationCompleteHandler(event)"
+		 currentState="loan" title="新股申购">
+	<fx:Script>
+		<![CDATA[
+			import com.stock.control.BankControl;
+			import com.stock.control.IpoControl;
+			
+			import mx.events.FlexEvent;
+			
+			protected function panel1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				new IpoControl(this);
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.visible = false;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="loan"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer x="10" y="10" width="778" height="365" cornerRadius="5">
+		<s:Label id="lilvV" x="10" y="20" fontWeight="bold" text="股票名称："/>
+		<s:Label id="lilvV0" x="195" y="20" fontWeight="bold" text="股票代码："/>
+		<s:Label id="lilvV2" x="10" y="68" fontWeight="bold" text="总股本："/>
+		<s:Label id="lilvV3" x="195" y="65" fontWeight="bold" text="流通："/>
+		<s:Label id="lilvV4" x="10" y="116" fontWeight="bold" text="净资："/>
+		<s:Label id="lilvV5" x="195" y="116" fontWeight="bold" text="收益："/>
+		<s:Label id="stockNameV" x="103" y="20" text="标签"/>
+		<s:Label id="stockCodeV" x="283" y="20" text="标签"/>
+		<s:Label id="allNumV" x="87" y="68" text="标签"/>
+		<s:Label id="busNumV" x="251" y="65" text="标签"/>
+		<s:Label id="jinzhiV" x="73" y="117" text="标签"/>
+		<s:Label id="shouyiV" x="251" y="116" text="标签"/>
+		<s:Label id="lilvV1" x="10" y="217" text="公司介绍："/>
+		<s:Label id="introdunceV" x="37" y="241" width="628" height="112" text="标签"/>
+		<s:Label id="lilvV8" x="10" y="166" fontWeight="bold" text="申购日期："/>
+		<s:Label id="lilvV9" x="325" y="166" fontWeight="bold" text="上市日期："/>
+		<s:Label id="startBuyV" x="98" y="166" width="207" text="标签"/>
+		<s:Label id="startSaleV" x="413" y="166" text="标签"/>
+		
+	</s:BorderContainer>
+	<s:Button x="717" y="-30" width="80" height="30" label="关 闭" click="button1_clickHandler(event)"/>
+	<s:BorderContainer x="11" y="382" width="777" height="72" cornerRadius="5">
+		<s:Label id="lilvV7" x="146" y="28" text="申购数量："/>
+		<s:Label id="lilvV6" x="9" y="26" text="订价："/>
+		<s:TextInput id="num" x="234" y="22" width="120"/>
+		<s:Label id="priceV" x="61" y="26" text="标签"/>
+		<s:Button id="commit" x="382" y="17" width="90" label="提交"/>
+		
+	</s:BorderContainer>
+</s:Panel>
