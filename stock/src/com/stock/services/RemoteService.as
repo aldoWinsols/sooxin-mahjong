@@ -26,6 +26,7 @@ package com.stock.services
 		public var bankService:RemoteObject;
 		public var newsService:RemoteObject;
 		public var configService:RemoteObject;
+		public var ipoService:RemoteObject;
 		
 		public var connState:Boolean = false;
 
@@ -43,6 +44,7 @@ package com.stock.services
 			bankService=getConfiguredRO("bankService");
 			configService=getConfiguredRO("configService");
 			newsService=getConfiguredRO("newsService");
+			ipoService=getConfiguredRO("ipoService");
 		}
 
 		//得到单例

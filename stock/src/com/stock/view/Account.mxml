@@ -3,7 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:model="com.stock.model.*"
 		 xmlns:view="com.stock.view.*"
-		 width="800" height="500" alpha="0.9"
+		 width="800" height="500"
 		 creationComplete="group1_creationCompleteHandler(event)" currentState="operation">
 	<fx:Script>
 		<![CDATA[

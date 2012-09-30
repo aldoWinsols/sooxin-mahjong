@@ -37,6 +37,7 @@ package com.stock.control
 			MainControl.instance.main.account.visible = true;
 		}
 		private function ipoBClickHandler(e:MouseEvent):void{
+			MainControl.instance.main.ipo.visible = true;
 		}
 		private function aboutusBClickHandler(e:MouseEvent):void{
 			MainControl.instance.main.aboutus.visible = true;

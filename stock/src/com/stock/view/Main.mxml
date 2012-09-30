@@ -68,4 +68,6 @@
 	</view:Aboutus>
 	<view:Chongzhi id="chongzhi" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
 	</view:Chongzhi>
+	<view:IpoView id="ipo" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:IpoView>
 </s:BorderContainer>
