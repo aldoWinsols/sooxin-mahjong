@@ -30,6 +30,9 @@ package com.stock.control
 		protected function listClickHandler(event:MouseEvent):void
 		{
 			// TODO Auto-generated method stub
+			if(stockList.list.selectedItem == null){
+				return;
+			}
 			MainControl.instance.main.stockList.visible = false;
 			StockSyncService.getInstance().dealStock(stockList.list.selectedItem.stockCode);
 			for each(var stock:Stock in StockListService.instance.stocks){

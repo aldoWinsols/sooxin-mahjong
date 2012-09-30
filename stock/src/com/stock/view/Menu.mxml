@@ -45,6 +45,6 @@
 	</model:Button>
 	<model:Button id="newsB" x="810" y="2" label="市场信息">
 	</model:Button>
-	<model:Button id="aboutusB" x="920" y="2" label="关于我们">
+	<model:Button id="paihangB" x="920" y="2" label="游戏 排行">
 	</model:Button>
 </s:Group>
