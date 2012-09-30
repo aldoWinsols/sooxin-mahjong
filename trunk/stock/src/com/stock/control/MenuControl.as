@@ -16,7 +16,7 @@ package com.stock.control
 			this.menu.indexB.addEventListener(MouseEvent.CLICK,indexBClickHandler);
 			this.menu.accountB.addEventListener(MouseEvent.CLICK,accountBClickHandler);
 			this.menu.ipoB.addEventListener(MouseEvent.CLICK,ipoBClickHandler);
-			this.menu.aboutusB.addEventListener(MouseEvent.CLICK,aboutusBClickHandler);
+			this.menu.paihangB.addEventListener(MouseEvent.CLICK,paihangBClickHandler);
 			this.menu.bankB.addEventListener(MouseEvent.CLICK,bankBClickHandler);
 			this.menu.newsB.addEventListener(MouseEvent.CLICK,newsBClickHandler);
 			this.menu.chongzhiB.addEventListener(MouseEvent.CLICK,chongzhiBClickHandler);
@@ -39,8 +39,9 @@ package com.stock.control
 		private function ipoBClickHandler(e:MouseEvent):void{
 			MainControl.instance.main.ipo.visible = true;
 		}
-		private function aboutusBClickHandler(e:MouseEvent):void{
-			MainControl.instance.main.aboutus.visible = true;
+		private function paihangBClickHandler(e:MouseEvent):void{
+			MainControl.instance.main.paihang.visible = true;
+			MainControl.instance.main.paihang.init();
 
 		}
 		private function bankBClickHandler(e:MouseEvent):void{
@@ -55,7 +56,7 @@ package com.stock.control
 		public function initMenuB(){
 			this.menu.indexB.selected = false;
 			this.menu.accountB.selected = false;
-			this.menu.aboutusB.selected = false;
+			this.menu.paihangB.selected = false;
 			this.menu.ipoB.selected = false;
 			this.menu.bankB.selected = false;
 			this.menu.newsB.selected = false;

@@ -64,8 +64,8 @@
 	</view:Bank>
 	<view:News id="news" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
 	</view:News>
-	<view:Aboutus id="aboutus" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
-	</view:Aboutus>
+	<view:Paihang id="paihang" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
+	</view:Paihang>
 	<view:Chongzhi id="chongzhi" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
 	</view:Chongzhi>
 	<view:IpoView id="ipo" visible="false" includeIn="stockMain" horizontalCenter="0" verticalCenter="0">
