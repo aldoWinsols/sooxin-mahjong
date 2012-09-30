@@ -47,6 +47,22 @@ public class BankService implements IBankService{
 		this.configDao = configDao;
 	}
 
+	public StockDAO getStockDao() {
+		return stockDao;
+	}
+
+	public void setStockDao(StockDAO stockDao) {
+		this.stockDao = stockDao;
+	}
+
+	public BagDAO getBagDao() {
+		return bagDao;
+	}
+
+	public void setBagDao(BagDAO bagDao) {
+		this.bagDao = bagDao;
+	}
+
 	public Object loan(String playerName, double money, int days) {
 		// TODO Auto-generated method stub
 		Bank eg = new Bank();
@@ -121,7 +137,7 @@ public class BankService implements IBankService{
 
 	public List getBanks(String playerName) {
 		// TODO Auto-generated method stub
-		return null;
+		return bankDao.findByPlayerName(playerName);
 	}
 
 	

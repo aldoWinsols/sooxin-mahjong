@@ -1,17 +1,30 @@
 package com.stock.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.stock.dao.Bag;
 import com.stock.dao.BagDAO;
+import com.stock.dao.Chongzhilog;
+import com.stock.dao.ChongzhilogDAO;
 import com.stock.dao.Player;
 import com.stock.dao.PlayerDAO;
+import com.stock.dao.Stock;
+import com.stock.dao.StockDAO;
 import com.stock.inter.IPlayerService;
+import com.stock.util.ComparatorDesc;
 import com.stock.util.Util;
 
 public class PlayerService implements IPlayerService {
+	
 	private PlayerDAO playerDao;
 	private BagDAO bagDao;
+	
+	private ChongzhilogDAO chongzhilogDao;
+	private StockDAO stockDao;
 
 	public PlayerDAO getPlayerDao() {
 		return playerDao;
@@ -27,6 +40,22 @@ public class PlayerService implements IPlayerService {
 
 	public void setBagDao(BagDAO bagDao) {
 		this.bagDao = bagDao;
+	}
+
+	public ChongzhilogDAO getChongzhilogDao() {
+		return chongzhilogDao;
+	}
+
+	public void setChongzhilogDao(ChongzhilogDAO chongzhilogDao) {
+		this.chongzhilogDao = chongzhilogDao;
+	}
+
+	public StockDAO getStockDao() {
+		return stockDao;
+	}
+
+	public void setStockDao(StockDAO stockDao) {
+		this.stockDao = stockDao;
 	}
 
 	public List getRoberts(){
@@ -91,6 +120,41 @@ public class PlayerService implements IPlayerService {
 	public List<Bag> getBagsByPlayerName(String playerName) {
 		// TODO Auto-generated method stub
 		return bagDao.findByPlayerName(playerName);
+	}
+	
+	public void buildPaihang() {
+		// TODO Auto-generated method stub
+		ArrayList<Player> players = (ArrayList<Player>) playerDao.findAll();
+		for (Player player : players) {
+			double zichan = 0.0;
+			List<Bag> bags =  bagDao.findByPlayerName(player.getPlayerName());
+			for (Bag bag : bags) {
+				Stock stock = (Stock) stockDao.findByStockCode(bag.getStockNum());
+				zichan += bag.getHaveNum()*stock.getLastDayEndPrice();
+			}
+			
+			List<Chongzhilog> chongzhilogs = chongzhilogDao.findByPlayerName(player.getPlayerName());
+			for (Chongzhilog chongzhilog : chongzhilogs) {
+				zichan -= chongzhilog.getChongzhiMoney();
+			}
+			
+			player.setRealMoney(zichan+player.getHaveMoney());
+			playerDao.merge(player);
+		}
+	}
+
+	ComparatorDesc comparatorDesc = new ComparatorDesc(); // 降序
+	@SuppressWarnings("unchecked")
+	public List getPaihang() {
+		// TODO Auto-generated method stub
+		List list = playerDao.findAll();	
+		Collections.sort(list, comparatorDesc);
+		
+		ArrayList<Object> listR = new ArrayList<Object>();
+		for (int i = 0; i < 100; i++) {
+			listR.add(list.get(i));
+		}
+		return listR;
 	}
 	
 }

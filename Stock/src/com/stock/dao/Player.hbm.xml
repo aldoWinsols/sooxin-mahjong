@@ -25,6 +25,9 @@
         <property name="clockMoney" type="java.lang.Double">
             <column name="clockMoney" precision="22" scale="0" />
         </property>
+        <property name="realMoney" type="java.lang.Double">
+            <column name="realMoney" precision="22" scale="0" />
+        </property>
         <property name="sort" type="java.lang.Integer">
             <column name="sort" />
         </property>

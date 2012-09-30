@@ -101,7 +101,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-jdbc-3.0.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-jdbc.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-jms-3.0.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-orm.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-orm.jar" sourcepath="C:/Documents and Settings/Administrator/.m2/repository/org/springframework/spring-orm/2.5.6/spring-orm-2.5.6-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-security-config-3.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-security-core-3.0.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-security-web-3.0.1.RELEASE.jar"/>
