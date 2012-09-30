@@ -27,6 +27,7 @@ public class PlayerDAO extends HibernateDaoSupport {
 	public static final String PLAYER_PWD = "playerPwd";
 	public static final String HAVE_MONEY = "haveMoney";
 	public static final String CLOCK_MONEY = "clockMoney";
+	public static final String REAL_MONEY = "realMoney";
 	public static final String SORT = "sort";
 	public static final String XINYONG_LV = "xinyongLv";
 
@@ -108,6 +109,10 @@ public class PlayerDAO extends HibernateDaoSupport {
 
 	public List findByClockMoney(Object clockMoney) {
 		return findByProperty(CLOCK_MONEY, clockMoney);
+	}
+
+	public List findByRealMoney(Object realMoney) {
+		return findByProperty(REAL_MONEY, realMoney);
 	}
 
 	public List findBySort(Object sort) {

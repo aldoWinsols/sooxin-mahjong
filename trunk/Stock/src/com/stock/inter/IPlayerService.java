@@ -11,4 +11,7 @@ public interface IPlayerService {
 	public Object login(String playerName,String playerPwd);
 	public Object updatePlayerPwd(String playerName,String oldPlayerPwd,String newPlayerPwd);
 	public List<Bag> getBagsByPlayerName(String playerName);
+	
+	public List getPaihang();
+	public void buildPaihang();
 }

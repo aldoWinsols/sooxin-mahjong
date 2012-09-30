@@ -53,7 +53,9 @@
 				<value>com/stock/dao/Notice.hbm.xml</value>
 				<value>com/stock/dao/Companyinfo.hbm.xml</value>
 				<value>com/stock/dao/Bank.hbm.xml</value>
-				<value>com/stock/dao/Config.hbm.xml</value></list>
+				<value>com/stock/dao/Config.hbm.xml</value>
+				<value>com/stock/dao/Ipo.hbm.xml</value>
+				<value>com/stock/dao/Chongzhilog.hbm.xml</value></list>
 		</property></bean>
 		
 	<!-- spring 事务管理 start-->
@@ -174,6 +176,26 @@
 			<ref bean="sessionFactory"></ref>
 		</property>
 	</bean>
+	<bean id="BankDAO" class="com.stock.dao.BankDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ConfigDAO" class="com.stock.dao.ConfigDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IpoDAO" class="com.stock.dao.IpoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChongzhilogDAO" class="com.stock.dao.ChongzhilogDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
 	<bean id="lineService"
 		class="com.stock.services.LineService">
@@ -199,6 +221,12 @@
 		<property name="bagDao">
 			<ref bean="BagDAO" />
 		</property>
+		<property name="chongzhilogDao">
+			<ref bean="ChongzhilogDAO" />
+		</property>
+		<property name="stockDao">
+			<ref bean="StockDAO" />
+		</property>	
 	</bean>
 	
 	<bean id="cjhistoryService"
@@ -241,13 +269,49 @@
 			<ref bean="CompanyinfoDAO" />
 		</property>
 	</bean>
-	<bean id="BankDAO" class="com.stock.dao.BankDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
+	
+	<bean id="bankService"
+		class="com.stock.services.BankService">
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+		<property name="bankDao">
+			<ref bean="BankDAO" />
+		</property>
+		<property name="configDao">
+			<ref bean="ConfigDAO" />
+		</property>
+		<property name="stockDao">
+			<ref bean="StockDAO" />
+		</property>
+		<property name="bagDao">
+			<ref bean="BagDAO" />
 		</property>
 	</bean>
-	<bean id="ConfigDAO" class="com.stock.dao.ConfigDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
+	
+	<bean id="newsService"
+		class="com.stock.services.NewsService">
+		<property name="newsDao">
+			<ref bean="NewsDAO" />
+		</property>
+	</bean>
+	
+	<bean id="configService"
+		class="com.stock.services.ConfigService">
+		<property name="configDao">
+			<ref bean="ConfigDAO" />
+		</property>
+	</bean>
+	
+	<bean id="ipoService"
+		class="com.stock.services.IpoService">
+		<property name="ipoDao">
+			<ref bean="IpoDAO" />
+		</property>
+		<property name="playerDao">
+			<ref bean="PlayerDAO" />
+		</property>
+		<property name="bagDao">
+			<ref bean="BagDAO" />
 		</property>
 	</bean></beans>

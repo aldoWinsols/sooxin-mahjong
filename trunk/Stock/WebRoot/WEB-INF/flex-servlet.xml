@@ -17,5 +17,9 @@
 	<flex:remoting-destination ref="lineService" />
 	<flex:remoting-destination ref="bshistoryService" />
 	<flex:remoting-destination ref="stockInfoService" />
+	<flex:remoting-destination ref="newsService" />
+	<flex:remoting-destination ref="configService" />
+	<flex:remoting-destination ref="bankService" />
+	<flex:remoting-destination ref="ipoService" />
 
 </beans>
