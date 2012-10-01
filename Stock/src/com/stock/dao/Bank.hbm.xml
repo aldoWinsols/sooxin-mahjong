@@ -28,8 +28,14 @@
         <property name="days" type="java.lang.Integer">
             <column name="days" />
         </property>
-        <property name="changeMoney" type="java.lang.Double">
-            <column name="changeMoney" precision="22" scale="0" />
+        <property name="loanDate" type="java.sql.Timestamp">
+            <column name="loanDate" length="0" />
+        </property>
+        <property name="returnDate" type="java.sql.Timestamp">
+            <column name="returnDate" length="0" />
+        </property>
+        <property name="returnMoney" type="java.lang.Double">
+            <column name="returnMoney" precision="22" scale="0" />
         </property>
         <property name="state" type="java.lang.Integer">
             <column name="state" />

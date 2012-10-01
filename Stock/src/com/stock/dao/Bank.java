@@ -17,7 +17,9 @@ public class Bank implements java.io.Serializable {
 	private Double money;
 	private Double lv;
 	private Integer days;
-	private Double changeMoney;
+	private Timestamp loanDate;
+	private Timestamp returnDate;
+	private Double returnMoney;
 	private Integer state;
 
 	// Constructors
@@ -28,13 +30,16 @@ public class Bank implements java.io.Serializable {
 
 	/** full constructor */
 	public Bank(String playerName, String sort, Double money, Double lv,
-			Integer days, Double changeMoney, Integer state) {
+			Integer days, Timestamp loanDate, Timestamp returnDate,
+			Double returnMoney, Integer state) {
 		this.playerName = playerName;
 		this.sort = sort;
 		this.money = money;
 		this.lv = lv;
 		this.days = days;
-		this.changeMoney = changeMoney;
+		this.loanDate = loanDate;
+		this.returnDate = returnDate;
+		this.returnMoney = returnMoney;
 		this.state = state;
 	}
 
@@ -96,12 +101,28 @@ public class Bank implements java.io.Serializable {
 		this.days = days;
 	}
 
-	public Double getChangeMoney() {
-		return this.changeMoney;
+	public Timestamp getLoanDate() {
+		return this.loanDate;
 	}
 
-	public void setChangeMoney(Double changeMoney) {
-		this.changeMoney = changeMoney;
+	public void setLoanDate(Timestamp loanDate) {
+		this.loanDate = loanDate;
+	}
+
+	public Timestamp getReturnDate() {
+		return this.returnDate;
+	}
+
+	public void setReturnDate(Timestamp returnDate) {
+		this.returnDate = returnDate;
+	}
+
+	public Double getReturnMoney() {
+		return this.returnMoney;
+	}
+
+	public void setReturnMoney(Double returnMoney) {
+		this.returnMoney = returnMoney;
 	}
 
 	public Integer getState() {

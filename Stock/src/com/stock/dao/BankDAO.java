@@ -28,7 +28,7 @@ public class BankDAO extends HibernateDaoSupport {
 	public static final String MONEY = "money";
 	public static final String LV = "lv";
 	public static final String DAYS = "days";
-	public static final String CHANGE_MONEY = "changeMoney";
+	public static final String RETURN_MONEY = "returnMoney";
 	public static final String STATE = "state";
 
 	protected void initDao() {
@@ -115,8 +115,8 @@ public class BankDAO extends HibernateDaoSupport {
 		return findByProperty(DAYS, days);
 	}
 
-	public List findByChangeMoney(Object changeMoney) {
-		return findByProperty(CHANGE_MONEY, changeMoney);
+	public List findByReturnMoney(Object returnMoney) {
+		return findByProperty(RETURN_MONEY, returnMoney);
 	}
 
 	public List findByState(Object state) {
