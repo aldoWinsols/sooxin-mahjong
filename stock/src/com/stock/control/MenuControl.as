@@ -46,6 +46,7 @@ package com.stock.control
 		}
 		private function bankBClickHandler(e:MouseEvent):void{
 			MainControl.instance.main.bank.visible = true;
+			BankControl.instance.getBanks();
 			MainControl.instance.main.bank.lilvV.text = ConfigService.instance.config.dayLoanLv.toString();
 		}
 		private function newsBClickHandler(e:MouseEvent):void{
