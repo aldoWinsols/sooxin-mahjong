@@ -10,6 +10,6 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image x="0" y="0" source="@Embed(source='../assets/huSort/mj_hsort_bg.png')"/>
+	<s:BitmapImage x="0" y="0" source="@Embed(source='../assets/huSort/mj_hsort_bg.png')"/>
 	<s:Label id="sortTxt" horizontalCenter="-1" verticalCenter="0" verticalAlign="middle" textAlign="center" fontWeight="bold"/>
 </s:Group>

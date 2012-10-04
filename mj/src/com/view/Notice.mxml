@@ -82,6 +82,8 @@
 		<s:Move id="move1" target="{label}" yTo="10"/>
 		<s:Move id="move2" target="{label1}" yTo="15"/>
 	</fx:Declarations>
-	<s:Label id="label" x="5" y="5" width="430" alpha="0.3" color="#FFFFFF" fontSize="14"/>
-	<s:Label id="label1" visible="false" x="5" y="40" width="430" color="#FFFFFF" fontSize="14"/>
+	<s:Label id="label" x="5" y="5" width="430" alpha="0.3" color="#FFF600" fontSize="15"
+			 fontWeight="bold"/>
+	<s:Label id="label1" visible="false" x="5" y="40" width="430" color="#FFF600" fontSize="15"
+			 fontWeight="bold"/>
 </s:BorderContainer>

@@ -19,7 +19,7 @@ package com.amusement.Mahjong.service
 			if(MahjongRoomControl.instance.isNetwork){
 				if(RoomListControl.instance.checkIsEnter(RoomListControl.instance.nowJoinRoomNum)){
 					MahjongRoomControl.instance.clearTabletop();
-					
+					MainSenceControl.instance.mainSence.waitInfo.visible = true;
 					MahjongSyncService.instance.continueGame();
 				}else{
 					Alert.show("您当前的点数少于此房间最小进入点数");

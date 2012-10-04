@@ -26,7 +26,7 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image horizontalCenter="0" y="2" source="@Embed(source='../assets/timer/mj_timer_bg.png')"/>
+	<s:BitmapImage horizontalCenter="0" y="2" source="@Embed(source='../assets/timer/mj_timer_bg.png')"/>
 	<s:Label id="timerTxt" color="#FF5A00" fontFamily="黑体" fontSize="36" fontWeight="bold"
 			 horizontalCenter="0" text="20" textAlign="center" verticalAlign="middle"
 			 verticalCenter="6"/>

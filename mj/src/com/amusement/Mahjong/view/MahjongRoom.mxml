@@ -174,7 +174,7 @@
 	
 	<s:Group id="roomTabletop" visible="true" x="0" y="0">
 		
-		<s:Image id="mjRoomBgImg" horizontalCenter="0"
+		<s:BitmapImage id="mjRoomBgImg" horizontalCenter="0"
 				 source="@Embed(source='com/amusement/Mahjong/assets/bg.jpg')" verticalCenter="0"/>
 		<s:BorderContainer id="mahjongsNumB" left="113" top="10" width="70" height="35" backgroundAlpha="0.3"
 						   backgroundColor="#000000" cornerRadius="8">
@@ -269,9 +269,9 @@
 						   backgroundColor="#000000" cornerRadius="8">
 			<s:Label x="10" y="9" id="roomName" color="#FFFFFF" fontSize="18" fontWeight="bold" text="20"/>
 		</s:BorderContainer>
-		<s:Image id="guafeng" visible="false" horizontalCenter="-66"
+		<s:BitmapImage id="guafeng" visible="false" horizontalCenter="-66"
 				 source="com/amusement/Mahjong/assets/word/guafeng.png" verticalCenter="120"/>
-		<s:Image id="xiayu" visible="false" horizontalCenter="-61"
+		<s:BitmapImage id="xiayu" visible="false" horizontalCenter="-61"
 				 source="com/amusement/Mahjong/assets/word/xiayu.png" verticalCenter="120"/>
 	</s:Group>
 	

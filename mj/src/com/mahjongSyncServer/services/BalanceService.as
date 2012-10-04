@@ -332,23 +332,29 @@ package com.mahjongSyncServer.services{
 			
 			
 			//=============================================
-			if(findUserByAzimuth(playerServices, thisPlayerAzimuth).player.playerName == "player"){
-//				Alert.show("reportAchievement");
-				if(fanNum >= 8){
-					GameCenterService.instance.reportAchievement("jp");
-				}else{
-					if(huName.indexOf("清一色") != -1){
-						GameCenterService.instance.reportAchievement("qys");
-					}
-					if(huName.indexOf("小七对") != -1){
-						GameCenterService.instance.reportAchievement("xqd");
-					}
-					if(huName.indexOf("大对子") != -1){
-						GameCenterService.instance.reportAchievement("ddz");
+			try
+			{
+				if(findUserByAzimuth(playerServices, thisPlayerAzimuth).player.playerName == "player"){
+					//				Alert.show("reportAchievement");
+					if(fanNum >= 8){
+						GameCenterService.instance.reportAchievement("jp");
+					}else{
+						if(huName.indexOf("清一色") != -1){
+							GameCenterService.instance.reportAchievement("qys");
+						}
+						if(huName.indexOf("小七对") != -1){
+							GameCenterService.instance.reportAchievement("xqd");
+						}
+						if(huName.indexOf("大对子") != -1){
+							GameCenterService.instance.reportAchievement("ddz");
+						}
 					}
 				}
+			} 
+			catch(error:Error) 
+			{
+				Alert.show(error.getStackTrace());
 			}
-			
 		}
 	
 		// 赔叫结算

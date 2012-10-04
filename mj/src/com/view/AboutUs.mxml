@@ -32,7 +32,7 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
+	<s:BitmapImage x="0" y="0" source="assets/xiaoBg.png"/>
 	<s:Label color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="2" text="客服QQ：2694868635 EMAIL：SOOXIN@163.COM"
 			 verticalCenter="10"/>
 	<s:Label color="#FFA800" fontSize="24" fontWeight="bold" horizontalCenter="1"

@@ -10,7 +10,6 @@ package com.amusement.Mahjong.control
 	import com.model.Alert;
 	import com.services.GameCenterService;
 	import com.services.MainPlayerService;
-	import com.view.System;
 	
 	import flash.events.MouseEvent;
 	import flash.text.FontStyle;

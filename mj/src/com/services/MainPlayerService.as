@@ -7,6 +7,7 @@ package com.services
 	import com.model.Alert;
 	import com.model.MainPlayer;
 	import com.util.MD5;
+	import com.view.MainSence;
 	
 	import mx.rpc.events.ResultEvent;
 
@@ -50,7 +51,7 @@ package com.services
 		
 		public function itunesLogin():void{
 			if(GameCenterService.instance.playerName == ""){
-				Alert.show("您当前系统itunes帐户没有登录，请登录后再进行操作！");
+				Alert.show("您当前系统没有APPLE帐户登录，请登录后再进行操作！具体步骤为：设置→Store→登录→");
 				LianwangHomeControl.instance.lianwangHome.loginWaitInfo.visible = false;
 				return;
 			}

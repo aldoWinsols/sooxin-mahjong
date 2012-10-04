@@ -12,18 +12,10 @@
 			import com.amusement.Mahjong.view.MahjongRoom;
 			
 			import mx.events.FlexEvent;
-			
-			public var mahjongRoom:MahjongRoom = new MahjongRoom();
-			
 			protected function module1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				new MahjongApplictionControl(this);
-				this.addElement(mahjongRoom);
-				
-				mahjongRoom.verticalCenter = 0;
-				mahjongRoom.horizontalCenter = 0;
-				mahjongRoom.visible = false;
 			}
 
 		]]>
@@ -32,5 +24,7 @@
 		<config:MobileConfig/>
 		<!-- 将非可视元素（例如服务、值对象）放在此 处 -->
 	</fx:Declarations>
+	<view:MahjongRoom  id="mahjongRoom" verticalCenter="0" horizontalCenter="0" visible="false">
+	</view:MahjongRoom>
 
 </s:Group>

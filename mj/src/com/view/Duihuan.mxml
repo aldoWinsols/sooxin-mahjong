@@ -73,7 +73,7 @@
 									]]>
 								</fx:Script>
 								<s:HGroup left="3" verticalCenter="0">
-									<s:Image source="{RemoteService.instance.mainUrl+'panda/'+data.imgurl}"/>
+									<s:BitmapImage source="{RemoteService.instance.mainUrl+'panda/'+data.imgurl}"/>
 								</s:HGroup>
 							</s:GridItemRenderer>
 						</fx:Component>
