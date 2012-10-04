@@ -62,7 +62,7 @@ package com.control
 		
 		
 		public function mainButDJClickHandler(e:MouseEvent):void{
-
+			
 			MainSenceControl.instance.mainSence.currentState = "gameing";
 			
 			MahjongRoomControl.instance.clearTabletop();

@@ -29,7 +29,7 @@
 			
 		]]>
 	</fx:Script>
-	<s:Image x="0" y="0" source="assets/xiaoBg.png"/>
+	<s:BitmapImage x="0" y="0" source="assets/xiaoBg.png"/>
 	<s:DataGrid id="dg" x="10" y="29" width="762" height="441" alpha="0.5" color="#000000"
 				fontSize="15">
 		<s:columns>

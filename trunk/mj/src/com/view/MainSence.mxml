@@ -8,15 +8,18 @@
 		creationComplete="group1_creationCompleteHandler(event)" currentState="lianwangHome">
 	<fx:Script>
 		<![CDATA[
+			import com.amusement.Mahjong.MahjongAppliction;
 			import com.control.MainSenceControl;
 			import com.model.Alert;
 			
 			import mx.events.FlexEvent;
 			
+			public static var instance:MainSence;
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
 				new MainSenceControl(this);
+				instance = this;
 			}
 			
 			protected function view1_addedToStageHandler(event:Event):void
@@ -49,12 +52,11 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image id="mjRoomBgImg" horizontalCenter="0" source="@Embed('assets/index.jpg')"
+	<s:BitmapImage id="mjRoomBgImg" horizontalCenter="0" source="@Embed('assets/index.jpg')"
 			 verticalCenter="0"/>
 	
-	<Mahjong:MahjongAppliction id="mahjongAppliction" x="0" y="0">
+	<Mahjong:MahjongAppliction id="mahjongAppliction" verticalCenter="0" horizontalCenter="0">
 	</Mahjong:MahjongAppliction>
-
 	
 	<view:LianwangHome includeIn="lianwangHome" horizontalCenter="0" verticalCenter="0">
 	</view:LianwangHome>

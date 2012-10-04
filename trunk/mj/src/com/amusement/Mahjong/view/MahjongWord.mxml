@@ -31,5 +31,5 @@
 	<fx:Declarations>
 		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
 	</fx:Declarations>
-	<s:Image x="0" y="0" width="98" height="97" source="{_WordImg}"/>
+	<s:BitmapImage x="0" y="0" width="98" height="97" source="{_WordImg}"/>
 </s:Group>

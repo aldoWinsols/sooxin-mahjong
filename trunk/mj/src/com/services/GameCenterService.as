@@ -176,7 +176,7 @@ package com.services
 			try{
 				GameCenter.gameCenter.reportScoreForCategory(this.score,LEADERBOARD_ID);
 			}catch(e:Error){
-				
+				Alert.show(e.getStackTrace());
 			}
 		}
 		
@@ -242,7 +242,7 @@ package com.services
 			try{
 				GameCenter.gameCenter.reportAchievement(ACHIEVEMENT_ID,100.0);
 			}catch(e:Error){
-				
+				Alert.show(e.getStackTrace());
 			}
 			
 		}
