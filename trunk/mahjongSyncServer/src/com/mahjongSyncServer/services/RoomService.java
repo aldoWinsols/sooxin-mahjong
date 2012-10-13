@@ -67,7 +67,14 @@ public class RoomService{
 		if (timeNum == 1) {
 			this.beginGame();
 		}
-		logicService.dealTimer();
+		
+		try {
+			logicService.dealTimer();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error(e.toString());
+		}
+		
 		for (int i = 0; i < room.getPlayerServices().size(); i++) {
 			room.getPlayerServices().get(i).dealTimer();
 		}
