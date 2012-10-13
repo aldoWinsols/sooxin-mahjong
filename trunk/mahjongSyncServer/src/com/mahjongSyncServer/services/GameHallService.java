@@ -390,7 +390,12 @@ public class GameHallService {
 		for (int i = 0; i < gameHall.getPlayerServices().size(); i++) {
 			if(!gameHall.getPlayerServices().get(i).getPlayer().getIServer().isConnected() && 
 					gameHall.getPlayerServices().get(i).getPlayer().getPlayerType() <= 2){
-				removePlayerService(gameHall.getPlayerServices().get(i).getPlayer().getIServer());
+				try{
+					removePlayerService(gameHall.getPlayerServices().get(i).getPlayer().getIServer());
+				}catch (Exception e) {
+					// TODO: handle exception
+					log.error(e.toString());
+				}
 			}
 		}
 		
